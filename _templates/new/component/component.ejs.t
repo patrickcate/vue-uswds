@@ -6,13 +6,12 @@ to: src/components/<%= h.changeCase.pascal(component_name) %>/<%= h.changeCase.p
 export default {
   name: '<%= h.changeCase.pascal(component_name) %>'
 }
+</script>
 <% } else { %>
 <script setup>
-  const props = defineProps({
-
-  })
+  const props = defineProps({})
 </script>
 <% } %>
 <template>
-<div></div>
+  <div><slot></slot></div>
 </template>

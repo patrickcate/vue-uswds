@@ -6,8 +6,7 @@ import <%= h.changeCase.pascal(component_name) %> from './<%= h.changeCase.pasca
 
 describe('<%= h.changeCase.pascal(component_name) %>', () => {
   it('renders the component', () => {
-    mount(<<%= h.changeCase.pascal(component_name) %> />)
-    cy.get('[data-testid="<%= h.changeCase.kebab(component_name) %>"]').should('exist')
+    mount(<%= h.changeCase.pascal(component_name) %>, {})
+    cy.get('.<%= h.changeCase.kebab(component_name) %>').should('exist')
   })
-
 })
