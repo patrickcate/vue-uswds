@@ -4,13 +4,25 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "commit": "cz",
+    "release": "standard-version"
   },
   "dependencies": {
     "vue": "^3.2.16"
   },
   "devDependencies": {
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
     "@vitejs/plugin-vue": "^1.9.3",
+    "commitizen": "^4.2.4",
+    "cz-customizable": "^6.3.0",
+    "standard-version": "^9.3.2",
     "vite": "^2.6.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
   }
 }
