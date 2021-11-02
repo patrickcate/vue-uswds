@@ -1,12 +1,17 @@
 {
   "name": "vue-uswds",
   "version": "0.0.0",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
     "commit": "cz",
-    "release": "standard-version"
+    "release": "standard-version",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
+    "format": "prettier . --ignore-unknown --write",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "vue": "^3.2.16"
@@ -17,6 +22,12 @@
     "@vitejs/plugin-vue": "^1.9.3",
     "commitizen": "^4.2.4",
     "cz-customizable": "^6.3.0",
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
+    "prettier": "^2.4.1",
     "standard-version": "^9.3.2",
     "vite": "^2.6.4"
   },
@@ -24,5 +35,8 @@
     "commitizen": {
       "path": "node_modules/cz-customizable"
     }
+  },
+  "lint-staged": {
+    "*.{js,vue}": "npm run lint"
   }
 }
