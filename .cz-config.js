@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 module.exports = {
   types: [
@@ -53,4 +53,4 @@ module.exports = {
 
   // limit subject length
   subjectLimit: 100,
-};
+}

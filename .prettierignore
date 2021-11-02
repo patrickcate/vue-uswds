@@ -3,3 +3,4 @@ dist
 dist-ssr
 .nvmrc
 CHANGELOG.md
+package-lock.json
