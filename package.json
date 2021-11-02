@@ -8,10 +8,14 @@
     "serve": "vite preview",
     "commit": "cz",
     "release": "standard-version",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
+    "new": "hygen new",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix .",
     "format": "prettier . --ignore-unknown --write",
-    "prepare": "husky install",
-    "lint-staged": "lint-staged"
+    "cypress:open": "cypress open",
+    "cypress:open-ct": "cypress open-ct",
+    "test:component": "cypress run-ct",
+    "test:e2e": "cypress run",
+    "prepare": "husky install"
   },
   "dependencies": {
     "vue": "^3.2.16"
@@ -19,8 +23,11 @@
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",
     "@commitlint/config-conventional": "^14.1.0",
+    "@cypress/vite-dev-server": "^2.2.0",
+    "@cypress/vue": "^3.0.3",
     "@vitejs/plugin-vue": "^1.9.3",
     "commitizen": "^4.2.4",
+    "cypress": "^8.7.0",
     "cz-customizable": "^6.3.0",
     "eslint": "^8.1.0",
     "eslint-config-prettier": "^8.3.0",
@@ -28,6 +35,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.0.3",
     "husky": "^7.0.4",
+    "hygen": "^6.1.0",
     "lint-staged": "^11.2.6",
     "prettier": "^2.4.1",
     "standard-version": "^9.3.2",
@@ -40,7 +48,7 @@
   },
   "lint-staged": {
     "*.{js,vue}": [
-      "npm run lint"
+      "eslint"
     ]
   }
 }
