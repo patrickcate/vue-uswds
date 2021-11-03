@@ -7,6 +7,7 @@
     "build": "vite build",
     "serve": "vite preview",
     "commit": "cz",
+    "commit:retry": "cz --retry",
     "release": "standard-version",
     "new": "hygen new",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix .",
@@ -15,17 +16,25 @@
     "cypress:open-ct": "cypress open-ct",
     "test:component": "cypress run-ct",
     "test:e2e": "cypress run",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "vue": "^3.2.16"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.0",
     "@commitlint/cli": "^14.1.0",
     "@commitlint/config-conventional": "^14.1.0",
     "@cypress/vite-dev-server": "^2.2.0",
     "@cypress/vue": "^3.0.3",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/vue3": "^6.3.12",
     "@vitejs/plugin-vue": "^1.9.3",
+    "babel-loader": "^8.2.3",
     "commitizen": "^4.2.4",
     "cypress": "^8.7.0",
     "cz-customizable": "^6.3.0",
@@ -39,7 +48,10 @@
     "lint-staged": "^11.2.6",
     "prettier": "^2.4.1",
     "standard-version": "^9.3.2",
-    "vite": "^2.6.4"
+    "storybook-builder-vite": "^0.1.3",
+    "uswds": "^2.12.2",
+    "vite": "^2.6.4",
+    "vue-loader": "^16.8.2"
   },
   "config": {
     "commitizen": {

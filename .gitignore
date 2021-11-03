@@ -8,3 +8,6 @@ dist-ssr
 cypress/examples
 cypress/videos
 cypress/screenshots
+
+# Storybook artifacts.
+.storybook/examples
