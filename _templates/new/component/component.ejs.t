@@ -9,7 +9,9 @@ export default {
 </script>
 <% } else { %>
 <script setup>
-  const props = defineProps({})
+import { computed } from 'vue'
+
+const props = defineProps({})
 </script>
 <% } %>
 <template>
