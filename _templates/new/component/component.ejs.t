@@ -1,17 +1,32 @@
 ---
 to: src/components/<%= h.changeCase.pascal(component_name) %>/<%= h.changeCase.pascal(component_name) %>.vue
 ---
-<% if (api === 'options') { %>
+<% if (api === 'options') { -%>
 <script>
 export default {
-  name: '<%= h.changeCase.pascal(component_name) %>'
+  name: '<%= h.changeCase.pascal(component_name) %>',
+  testProp: {
+    type: String,
+    default: '',
+    validator: () => {
+      return true
+    },
+  }
 }
 </script>
-<% } else { %>
+<% } else { -%>
 <script setup>
 import { computed } from 'vue'
 
-const props = defineProps({})
+const props = defineProps({
+  testProp: {
+    type: String,
+    default: '',
+    validator: () => {
+      return true
+    },
+  },
+})
 </script>
 <% } %>
 <template>
