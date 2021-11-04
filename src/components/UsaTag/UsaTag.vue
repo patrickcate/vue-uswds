@@ -5,8 +5,14 @@ const props = defineProps({
   size: {
     type: String,
     default: '',
-    validator(size) {
-      return size === '' || size === 'big'
+    validator: size => {
+      const isValidSize = size === '' || size === 'big'
+
+      if (!isValidSize) {
+        console.warn(`'${size}' is not a valid tag size`)
+      }
+
+      return isValidSize
     },
   },
   tag: {

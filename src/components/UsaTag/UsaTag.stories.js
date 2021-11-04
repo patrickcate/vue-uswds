@@ -2,6 +2,7 @@ import UsaTag from './UsaTag.vue'
 
 const defaultProps = {
   size: '',
+  tag: 'span',
 }
 
 export default {
@@ -27,7 +28,7 @@ export default {
     },
   },
   args: {
-    tag: 'span',
+    tag: defaultProps.tag,
     content: 'Test',
   },
 }

@@ -9,7 +9,7 @@ describe('UsaTag', () => {
         default: () => 'Test',
       },
     })
-    cy.get('span.usa-tag').should('exist').contains('Test')
+    cy.get('span.usa-tag').contains('Test')
   })
 
   it('renders the size class', () => {
@@ -34,5 +34,25 @@ describe('UsaTag', () => {
       },
     })
     cy.get('div.usa-tag').should('exist')
+  })
+
+  it('warns in console about invalid size', () => {
+    cy.stub(window.console, 'warn').as('consoleWarn')
+
+    mount(UsaTag, {
+      slots: {
+        default: () => 'Test',
+      },
+      props: {
+        size: 'notasize',
+      },
+    })
+
+    cy.get('span.usa-tag').contains('Test')
+
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `'notasize' is not a valid tag size`
+    )
   })
 })
