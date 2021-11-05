@@ -23,39 +23,42 @@ export default {
         type: 'text',
       },
     },
-    content: {
+    defaultSlot: {
       control: { type: 'text' },
     },
   },
   args: {
     tag: defaultProps.tag,
-    content: 'Test',
+    defaultSlot: 'Test',
   },
 }
 
-const Template = (args, { argTypes }) => ({
+const DefaultTemplate = (args, { argTypes }) => ({
   components: { UsaTag },
   props: Object.keys(argTypes),
   setup() {
     return { ...args }
   },
-  template: `<UsaTag :tag="tag" :size="size">{{ content }}</UsaTag>`,
+  template: `<UsaTag :tag="tag" :size="size">{{ defaultSlot }}</UsaTag>`,
 })
 
-export const Default = Template.bind({})
-Default.args = {
+export const DefaultTag = DefaultTemplate.bind({})
+DefaultTag.args = {
   ...defaultProps,
 }
+DefaultTag.storyName = 'Default'
 
-export const Big = Template.bind({})
-Big.args = {
+export const BigTag = DefaultTemplate.bind({})
+BigTag.args = {
   ...defaultProps,
   size: 'big',
 }
+BigTag.storyName = 'Big'
 
-export const CustomTag = Template.bind({})
-CustomTag.args = {
+export const CustomElementTag = DefaultTemplate.bind({})
+CustomElementTag.args = {
   ...defaultProps,
   tag: 'div',
-  content: 'Test (div)',
+  defaultSlot: 'Test (div)',
 }
+CustomElementTag.storyName = 'Custom Element'

@@ -14,26 +14,27 @@ export default {
         type: 'select',
       },
     },
-    content: {
+    defaultSlot: {
       control: { type: 'text' },
     },
   },
   args: {
     tag: defaultProps.tag,
-    content: 'Test',
+    defaultSlot: 'Test',
   },
 }
 
-const Template = (args, { argTypes }) => ({
+const DefaultTemplate = (args, { argTypes }) => ({
   components: { BaseHeading },
   props: Object.keys(argTypes),
   setup() {
     return { ...args }
   },
-  template: '<BaseHeading :tag="tag">{{ content }}</BaseHeading>',
+  template: '<BaseHeading :tag="tag">{{ defaultSlot }}</BaseHeading>',
 })
 
-export const Default = Template.bind({})
-Default.args = {
+export const DefaultBaseHeading = DefaultTemplate.bind({})
+DefaultBaseHeading.args = {
   ...defaultProps,
 }
+DefaultBaseHeading.storyName = 'Default'

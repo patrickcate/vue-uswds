@@ -9,25 +9,25 @@ export default {
   component: <%= h.changeCase.pascal(component_name) %>,
   title: 'Components/<%= h.changeCase.pascal(component_name) %>',
   argTypes: {
-    content: {
+    defaultSlot: {
       control: { type: 'text' },
     },
   },
   args: {
-    content: 'Test',
+    defaultSlot: 'Test',
   },
 }
 
-const Template = (args, { argTypes }) => ({
+const DefaultTemplate = (args, { argTypes }) => ({
   components: { <%= h.changeCase.pascal(component_name) %> },
   props: Object.keys(argTypes),
   setup() {
     return { ...args }
   },
-  template: '<<%= h.changeCase.pascal(component_name) %>>{{ content }}</<%= h.changeCase.pascal(component_name) %>>',
+  template: '<<%= h.changeCase.pascal(component_name) %>>{{ defaultSlot }}</<%= h.changeCase.pascal(component_name) %>>',
 })
 
-export const Default = Template.bind({})
-Default.args = {
+export const Default<%= h.changeCase.pascal(component_name).replace('Usa', '') %> = DefaultTemplate.bind({})
+Default<%= h.changeCase.pascal(component_name).replace('Usa', '') %>.args = {
   ...defaultProps,
 }
