@@ -4,6 +4,7 @@ const defaultProps = {
   variant: '',
   slim: false,
   noIcon: false,
+  role: '',
   heading: '',
   headingTag: 'h2',
   customClasses: {
@@ -43,6 +44,9 @@ export default {
         type: 'boolean',
       },
     },
+    role: {
+      control: { type: 'text' },
+    },
     heading: {
       control: { type: 'text' },
     },
@@ -64,6 +68,7 @@ export default {
     variant: defaultProps.variant,
     slim: defaultProps.slim,
     noIcon: defaultProps.noIcon,
+    role: defaultProps.role,
     heading: defaultProps.heading,
     headingTag: defaultProps.headingTag,
     defaultSlot:
@@ -82,6 +87,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
       :variant="variant"
       :slim="slim"
       :no-icon="noIcon"
+      :role="role"
       :heading="heading"
       :heading-tag="headingTag"
       :custom-classes="customClasses"
@@ -179,6 +185,14 @@ CustomClassesAlert.args = {
 }
 CustomClassesAlert.storyName = 'Custom Classes'
 
+export const CustomRoleAlert = DefaultTemplate.bind({})
+CustomRoleAlert.args = {
+  ...defaultProps,
+  variant: 'info',
+  role: 'alertdialog',
+}
+CustomRoleAlert.storyName = 'Custom Role Attribute'
+
 const HeadingSlotTemplate = (args, { argTypes }) => ({
   components: { UsaAlert },
   props: Object.keys(argTypes),
@@ -190,11 +204,14 @@ const HeadingSlotTemplate = (args, { argTypes }) => ({
       :variant="variant"
       :slim="slim"
       :no-icon="noIcon"
+      :role="role"
+      :heading="heading"
       :heading-tag="headingTag"
       :custom-classes="customClasses"
     >
-    <template #heading>{{ headingSlot }}</template>
-    <template #default>{{ defaultSlot }}</template></UsaAlert>`,
+      <template #heading>{{ headingSlot }}</template>
+      <template #default>{{ defaultSlot }}</template>
+    </UsaAlert>`,
 })
 
 export const HeadingSlotAlert = HeadingSlotTemplate.bind({})
@@ -216,6 +233,7 @@ const MessageSlotTemplate = (args, { argTypes }) => ({
       :variant="variant"
       :slim="slim"
       :no-icon="noIcon"
+      :role="role"
       :heading="heading"
       :heading-tag="headingTag"
       :custom-classes="customClasses"
