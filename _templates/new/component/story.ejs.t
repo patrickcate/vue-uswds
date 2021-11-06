@@ -24,10 +24,11 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: '<<%= h.changeCase.pascal(component_name) %>>{{ defaultSlot }}</<%= h.changeCase.pascal(component_name) %>>',
+  template: `<<%= h.changeCase.pascal(component_name) %>>{{ defaultSlot }}</<%= h.changeCase.pascal(component_name) %>>`,
 })
 
 export const Default<%= h.changeCase.pascal(component_name).replace('Usa', '') %> = DefaultTemplate.bind({})
 Default<%= h.changeCase.pascal(component_name).replace('Usa', '') %>.args = {
   ...defaultProps,
 }
+Default<%= h.changeCase.pascal(component_name).replace('Usa', '') %>.storyName = 'Default'
