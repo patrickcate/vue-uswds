@@ -26,11 +26,11 @@ describe('BaseHeading', () => {
 
     // Loop through all valid heading tags.
     for (let index = 0; index < 6; index++) {
-      cy.get(`${headingTags[index]}`)
+      cy.get(headingTags[index])
         .should('exist')
         .vue()
         .then(wrapper => {
-          wrapper.setProps({ tag: `${headingTags[index + 1]}` })
+          wrapper.setProps({ tag: headingTags[index + 1] })
         })
     }
   })
