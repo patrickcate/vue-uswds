@@ -55,32 +55,20 @@ const props = defineProps({
   },
 })
 
-const variantClass = computed(() => {
-  switch (props.variant) {
-    case 'info':
-      return 'usa-alert--info'
-    case 'warning':
-      return 'usa-alert--warning'
-    case 'error':
-      return 'usa-alert--error'
-    case 'success':
-      return 'usa-alert--success'
-    case 'emergency':
-      // TODO: Confirm this class is needed.
-      return 'usa-alert--emergency'
-    case 'validation':
-      return ['usa-alert--info', 'usa-alert--validation']
-    default:
-      return null
+const classes = computed(() => {
+  return {
+    'usa-alert--no-icon': props.noIcon,
+    'usa-alert--slim': props.slim,
+    'usa-alert--info':
+      props.variant === 'info' || props.variant === 'validation',
+    'usa-alert--warning': props.variant === 'warning',
+    'usa-alert--error': props.variant === 'error',
+    'usa-alert--success': props.variant === 'success',
+    // TODO: Confirm this class is needed.
+    'usa-alert--emergency': props.variant === 'emergency',
+    // TODO: Confirm this class is needed.
+    'usa-alert--validation': props.variant === 'validation',
   }
-})
-
-const slimClass = computed(() => {
-  return props.slim ? 'usa-alert--slim' : null
-})
-
-const noIconClass = computed(() => {
-  return props.noIcon ? 'usa-alert--no-icon' : null
 })
 
 const ariaRole = computed(() => {
@@ -97,25 +85,18 @@ const ariaRole = computed(() => {
 </script>
 
 <template>
-  <div
-    class="usa-alert"
-    :class="[variantClass, slimClass, noIconClass]"
-    :role="ariaRole"
-  >
-    <div class="usa-alert__body" :class="customClasses.body">
+  <div class="usa-alert" :class="classes" :role="ariaRole">
+    <div class="usa-alert__body" :class="customClasses?.body">
       <BaseHeading
         v-if="heading || $slots.heading"
         :tag="headingTag"
         class="usa-alert__heading"
-        :class="[{ 'usa-sr-only': slim }, customClasses.heading]"
+        :class="[{ 'usa-sr-only': slim }, customClasses?.heading]"
         ><slot name="heading">{{ heading }}</slot></BaseHeading
       >
-      <template v-if="$slots.message">
-        <slot name="message"></slot>
-      </template>
-      <template v-else-if="$slots.default"
-        ><p class="usa-alert__text"><slot></slot></p
-      ></template>
+      <slot name="message">
+        <p class="usa-alert__text"><slot></slot></p>
+      </slot>
     </div>
   </div>
 </template>

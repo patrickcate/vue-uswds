@@ -21,11 +21,15 @@ const props = defineProps({
   },
 })
 
-const sizeClass = computed(() => (props.size === 'big' ? 'usa-tag--big' : null))
+const classes = computed(() => {
+  return {
+    'usa-tag--big': props.size === 'big',
+  }
+})
 </script>
 
 <template>
-  <component :is="tag" class="usa-tag" :class="sizeClass"
+  <component :is="tag" class="usa-tag" :class="classes"
     ><slot></slot
   ></component>
 </template>
