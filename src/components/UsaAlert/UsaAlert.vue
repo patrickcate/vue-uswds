@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import BaseHeading from '../BaseHeading'
+import BaseHeading from '@/components/BaseHeading'
 
 const props = defineProps({
   variant: {

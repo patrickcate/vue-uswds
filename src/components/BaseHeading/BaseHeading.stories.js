@@ -30,7 +30,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: '<BaseHeading :tag="tag">{{ defaultSlot }}</BaseHeading>',
+  template: `<BaseHeading :tag="tag">${args.defaultSlot}</BaseHeading>`,
 })
 
 export const DefaultBaseHeading = DefaultTemplate.bind({})

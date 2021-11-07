@@ -80,7 +80,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
       :role="role"
       :heading="heading"
       :heading-tag="headingTag"
-      :custom-classes="customClasses">{{ defaultSlot }}
+      :custom-classes="customClasses">${args.defaultSlot}
     </UsaSiteAlert>`,
 })
 
@@ -160,8 +160,8 @@ const HeadingSlotTemplate = (args, { argTypes }) => ({
       :heading-tag="headingTag"
       :custom-classes="customClasses"
     >
-      <template #heading>{{ headingSlot }}</template>
-      <template #default>{{ defaultSlot }}</template>
+      <template #heading>${args.headingSlot}</template>
+      <template #default>${args.defaultSlot}</template>
     </UsaSiteAlert>`,
 })
 
@@ -189,8 +189,8 @@ const MessageSlotTemplate = (args, { argTypes }) => ({
       :heading-tag="headingTag"
       :custom-classes="customClasses"
     >
-      <template #message>{{ messageSlot }}</template>
-      <template #default>{{ defaultSlot }}</template>
+      <template #message>${args.messageSlot}</template>
+      <template #default>${args.defaultSlot}</template>
     </UsaSiteAlert>`,
 })
 

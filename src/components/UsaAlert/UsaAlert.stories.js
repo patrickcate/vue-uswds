@@ -91,7 +91,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
       :heading="heading"
       :heading-tag="headingTag"
       :custom-classes="customClasses"
-    >{{ defaultSlot }}</UsaAlert>`,
+    >${args.defaultSlot}</UsaAlert>`,
 })
 
 export const InfoAlert = DefaultTemplate.bind({})
@@ -209,8 +209,8 @@ const HeadingSlotTemplate = (args, { argTypes }) => ({
       :heading-tag="headingTag"
       :custom-classes="customClasses"
     >
-      <template #heading>{{ headingSlot }}</template>
-      <template #default>{{ defaultSlot }}</template>
+      <template #heading>${args.headingSlot}</template>
+      <template #default>${args.defaultSlot}</template>
     </UsaAlert>`,
 })
 
@@ -238,7 +238,7 @@ const MessageSlotTemplate = (args, { argTypes }) => ({
       :heading-tag="headingTag"
       :custom-classes="customClasses"
     >
-    <template #message>{{ messageSlot }}</template></UsaAlert>`,
+    <template #message>${args.messageSlot}</template></UsaAlert>`,
 })
 
 export const MessageSlotAlert = MessageSlotTemplate.bind({})

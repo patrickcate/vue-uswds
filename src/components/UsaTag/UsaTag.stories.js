@@ -39,7 +39,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaTag :tag="tag" :size="size">{{ defaultSlot }}</UsaTag>`,
+  template: `<UsaTag :tag="tag" :size="size">${args.defaultSlot}</UsaTag>`,
 })
 
 export const DefaultTag = DefaultTemplate.bind({})
