@@ -1,9 +1,7 @@
 <script setup>
-import { inject, computed } from 'vue'
-import { nextId as nextUniqueId } from '@/utils/unique-id.js'
+import { computed } from 'vue'
+import { nextId } from '@/utils/unique-id.js'
 import BaseHeading from '@/components/BaseHeading'
-
-const nextId = inject('nextId', nextUniqueId)
 
 const props = defineProps({
   id: {
@@ -34,7 +32,7 @@ const props = defineProps({
 })
 
 const computedId = computed(() => {
-  return !props.id ? nextId() : props.id
+  return !props.id ? nextId('usa-summary-box') : props.id
 })
 </script>
 <template>
