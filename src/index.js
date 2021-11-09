@@ -20,6 +20,6 @@ export default {
     }
 
     app.provide('vueUswds', vueUswdsOptions)
-    app.provide('nextId', () => nextId(app.config.globalProperties))
+    app.provide('nextId', nextId)
   },
 }
