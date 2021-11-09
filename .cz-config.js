@@ -17,10 +17,13 @@ module.exports = {
       value: 'perf',
       name: '⚡ perf: A code change that improves performance',
     },
-    { value: 'test', name: '✅ test: Adding missing tests' },
+    {
+      value: 'test',
+      name: '✅ test: Adding missing tests or stories (example scopes: Cypress, Storybook)',
+    },
     {
       value: 'build',
-      name: '🔨 build: Changes that affect the build system or external dependencies (example scopes: Vite, npm)',
+      name: '🔨 build: Changes that affect the build system or external dependencies (example scopes: Vite, npm, hygen)',
     },
     {
       value: 'ci',
