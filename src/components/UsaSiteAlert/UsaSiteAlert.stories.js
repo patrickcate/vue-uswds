@@ -44,6 +44,9 @@ export default {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
       control: { type: 'select' },
     },
+    customClasses: {
+      control: { type: 'object' },
+    },
     headingSlot: {
       control: { type: 'text' },
     },
@@ -61,6 +64,7 @@ export default {
     role: defaultProps.role,
     heading: defaultProps.heading,
     headingTag: defaultProps.headingTag,
+    customClasses: defaultProps.customClasses,
     defaultSlot:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.',
   },

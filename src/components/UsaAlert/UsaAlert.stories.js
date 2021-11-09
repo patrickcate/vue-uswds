@@ -57,6 +57,9 @@ export default {
     headingSlot: {
       control: { type: 'text' },
     },
+    customClasses: {
+      control: { type: 'object' },
+    },
     defaultSlot: {
       control: { type: 'text' },
     },
@@ -71,6 +74,7 @@ export default {
     role: defaultProps.role,
     heading: defaultProps.heading,
     headingTag: defaultProps.headingTag,
+    customClasses: defaultProps.customClasses,
     defaultSlot:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.',
   },
