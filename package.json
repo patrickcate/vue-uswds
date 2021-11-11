@@ -21,8 +21,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "just-kebab-case": "^4.0.0",
-    "vue": "^3.2.16"
+    "just-kebab-case": "^4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -64,5 +63,8 @@
     "*.{js,vue}": [
       "eslint"
     ]
+  },
+  "peerDependencies": {
+    "vue": "^3.2.21"
   }
 }
