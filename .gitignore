@@ -1,0 +1,13 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+
+# Cypress testing artifacts.
+cypress/examples
+cypress/videos
+cypress/screenshots
+
+# Storybook artifacts.
+.storybook/examples
