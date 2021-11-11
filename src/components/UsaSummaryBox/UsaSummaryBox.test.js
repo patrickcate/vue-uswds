@@ -65,6 +65,34 @@ describe('UsaSummaryBox', () => {
     cy.get('.usa-summary-box__heading').should('have.id', 'custom-id')
   })
 
+  it('renders custom heading tag', () => {
+    mount(UsaSummaryBox, {
+      props: {
+        heading: 'Test Heading Prop',
+        headingTag: 'h1',
+      },
+      slots: {
+        default: () => defaultSlotContent,
+      },
+    })
+
+    cy.get('h1.usa-summary-box__heading').should('exist')
+  })
+
+  it('uses the `heading` slot content', () => {
+    mount(UsaSummaryBox, {
+      props: {
+        heading: 'Custom heading text',
+      },
+      slots: {
+        default: () => defaultSlotContent,
+        heading: () => 'Test Heading Slot',
+      },
+    })
+
+    cy.get('.usa-summary-box__heading').should('contain', 'Test Heading Slot')
+  })
+
   it('adds custom CSS classes', () => {
     mount(UsaSummaryBox, {
       props: {
@@ -83,4 +111,7 @@ describe('UsaSummaryBox', () => {
     cy.get('.test-heading-class').should('exist')
     cy.get('.test-text-class').should('exist')
   })
+
+  // TODO: Text custom heaading tag.
+  // TODO: Text heading slot.
 })

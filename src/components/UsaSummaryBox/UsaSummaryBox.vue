@@ -43,7 +43,7 @@ const computedId = computed(() => {
         class="usa-summary-box__heading"
         :class="[customClasses?.heading]"
         :tag="headingTag"
-        >{{ heading }}</BaseHeading
+        ><slot name="heading">{{ heading }}</slot></BaseHeading
       >
       <div class="usa-summary-box__text" :class="[customClasses?.text]">
         <slot></slot>

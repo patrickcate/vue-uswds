@@ -3,6 +3,7 @@ import UsaSummaryBox from './UsaSummaryBox.vue'
 const defaultProps = {
   heading: 'Key information',
   headingTag: 'h2',
+  headingSlot: '',
   customClasses: {
     body: [],
     heading: [],
@@ -27,6 +28,9 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
+    headingSlot: {
+      control: { type: 'text' },
+    },
     defaultSlot: {
       control: { type: 'text' },
     },
@@ -35,6 +39,7 @@ export default {
     heading: defaultProps.heading,
     headingTag: defaultProps.headingTag,
     customClasses: defaultProps.customClasses,
+    headingSlot: '',
     defaultSlot: `<ul class="usa-list">
       <li>If you are under a winter storm warning, <a class="usa-summary-box__link" href="#">find shelter</a> right away.</li>
       <li>Sign up for <a class="usa-summary-box__link" href="#">your community's warning system</a>.</li>
@@ -52,7 +57,11 @@ const DefaultTemplate = (args, { argTypes }) => ({
       ...args,
     }
   },
-  template: `<UsaSummaryBox :id="id" :heading="heading" :heading-tag="headingTag" :custom-classes="customClasses">${args.defaultSlot}</UsaSummaryBox>`,
+  template: `
+  <UsaSummaryBox :id="id" :heading="heading" :heading-tag="headingTag" :custom-classes="customClasses">
+    <template #heading>${args.headingSlot}</template>
+    <template #default>${args.defaultSlot}</template>
+  </UsaSummaryBox>`,
 })
 
 export const DefaultSummaryBox = DefaultTemplate.bind({})
