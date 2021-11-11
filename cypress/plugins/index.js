@@ -26,7 +26,13 @@ module.exports = (on, config) => {
   on('dev-server:start', options => {
     const viteConfig = {
       configFile: path.resolve(__dirname, '..', '..', 'vite.config.js'),
+      resolve: {
+        alias: {
+          vue: 'vue/dist/vue.esm-bundler.js',
+        },
+      },
     }
+
     return startDevServer({ options, viteConfig })
   })
 
