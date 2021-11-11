@@ -111,7 +111,4 @@ describe('UsaSummaryBox', () => {
     cy.get('.test-heading-class').should('exist')
     cy.get('.test-text-class').should('exist')
   })
-
-  // TODO: Text custom heaading tag.
-  // TODO: Text heading slot.
 })
