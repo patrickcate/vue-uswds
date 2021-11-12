@@ -31,8 +31,10 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-          - macos-latest
-          - windows-latest
+          # TODO: Re-enable once a public release of the library is available.
+          # Mac and windows env's take significantly longer to run.
+          # - macos-latest
+          # - windows-latest
         node:
           - 14
           - 16
