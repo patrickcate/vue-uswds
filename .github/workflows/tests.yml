@@ -32,5 +32,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Cypress run
+      - name: Run E2E tests
         uses: cypress-io/github-action@v2
+
+      - name: Run Component tests
+        uses: cypress-io/github-action@v2
+        with:
+          # we have already installed everything
+          install: false
+          command: npm run test:component
