@@ -32,6 +32,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+        # Explicitly run `npm install` to install peer dependencies.
+        # `npm ci` does not install peer dependencies by default.
+      - run: npm install
+
       - name: Run E2E tests
         uses: cypress-io/github-action@v2
 
