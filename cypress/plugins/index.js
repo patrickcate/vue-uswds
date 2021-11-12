@@ -28,7 +28,15 @@ module.exports = (on, config) => {
       configFile: path.resolve(__dirname, '..', '..', 'vite.config.js'),
       resolve: {
         alias: {
-          vue: 'vue/dist/vue.esm-bundler.js',
+          vue: path.resolve(
+            __dirname,
+            '..',
+            '..',
+            'node_modules',
+            'vue',
+            'dist',
+            'vue.esm-bundler.js'
+          ),
         },
       },
     }
