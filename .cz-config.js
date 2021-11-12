@@ -4,7 +4,7 @@ module.exports = {
   types: [
     { value: 'feat', name: '✨ feat: A new feature' },
     { value: 'fix', name: '🐛 fix: A bug fix' },
-    { value: 'docs', name: '📝 docs: Documentation only changes' },
+    { value: 'docs', name: '📚 docs: Documentation only changes' },
     {
       value: 'style',
       name: '🎨 style: Changes that do not affect the meaning of the code\n(white-space, formatting, missing semi-colons, etc)',
@@ -15,7 +15,7 @@ module.exports = {
     },
     {
       value: 'perf',
-      name: '⚡ perf: A code change that improves performance',
+      name: '🚀 perf: A code change that improves performance',
     },
     {
       value: 'test',
@@ -23,7 +23,7 @@ module.exports = {
     },
     {
       value: 'build',
-      name: '🔨 build: Changes that affect the build system or external dependencies (example scopes: Vite, npm, hygen)',
+      name: '🛠 build: Changes that affect the build system or external dependencies (example scopes: Vite, npm, hygen)',
     },
     {
       value: 'ci',
@@ -33,8 +33,7 @@ module.exports = {
       value: 'chore',
       name: '👷 chore: Changes to the build process or auxiliary tools\nand libraries such as documentation generation',
     },
-    { value: 'revert', name: '⏪ revert: Reverts a previous commit' },
-    { value: 'WIP', name: '🚧 WIP: Work in progress' },
+    { value: 'revert', name: '🗑 revert: Reverts a previous commit' },
   ],
 
   // override the messages, defaults are as follows

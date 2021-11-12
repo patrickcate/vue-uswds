@@ -1,0 +1,60 @@
+name: Tests
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  # This job lints all files with ESLint.
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint files
+        run: npm run lint
+
+  # This job runs all Cypress tests.
+  cypress-test:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          # TODO: Re-enable once a public release of the library is available.
+          # Mac and windows env's take significantly longer to run.
+          # - macos-latest
+          # - windows-latest
+        node:
+          - 14
+          - 16
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: E2E tests on Node v${{ matrix.node }}
+        uses: cypress-io/github-action@v2
+        with:
+          command: npm run test:e2e
+
+      - name: Component tests on Node v${{ matrix.node }}
+        uses: cypress-io/github-action@v2
+        with:
+          # We have already installed everything.
+          install: false
+          command: npm run test:component
