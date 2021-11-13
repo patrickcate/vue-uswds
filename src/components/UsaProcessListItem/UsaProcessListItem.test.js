@@ -1,4 +1,5 @@
 import '@module/uswds/dist/css/uswds.min.css'
+import { h } from 'vue'
 import { mount } from '@cypress/vue'
 import UsaProcessList from '@/components/UsaProcessList'
 import UsaProcessListItem from './UsaProcessListItem.vue'
@@ -93,5 +94,32 @@ describe('UsaProcessListItem', () => {
     mount(ProcessListWrapper, {})
 
     cy.get('h1.usa-process-list__heading').should('exist')
+  })
+
+  it('renders custom heading tag from parent process list component', () => {
+    const processListItem = {
+      components: { UsaProcessListItem },
+      template: `
+        <UsaProcessListItem :heading="'Test heading 1'" :heading-tag="'h1'">
+          <p>Test content 1</p>
+        </UsaProcessListItem>
+      `,
+    }
+
+    mount(UsaProcessList, {
+      props: {
+        headingTag: 'h4',
+      },
+      slots: {
+        default: () => h(processListItem),
+      },
+    })
+      .as('component')
+      .get('h4.usa-process-list__heading')
+      .should('exist')
+      .get('@component')
+      .invoke('setProps', { headingTag: 'h6' })
+      .get('h6.usa-process-list__heading')
+      .should('exist')
   })
 })

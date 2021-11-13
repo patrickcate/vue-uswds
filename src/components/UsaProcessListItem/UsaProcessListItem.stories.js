@@ -63,6 +63,14 @@ DefaultProcessListItem.args = {
 }
 DefaultProcessListItem.storyName = 'Default'
 
+export const CustomHeadingTagProcessListItem = DefaultTemplate.bind({})
+CustomHeadingTagProcessListItem.args = {
+  ...defaultProps,
+  heading: 'Start a process',
+  headingTag: 'h4',
+}
+CustomHeadingTagProcessListItem.storyName = 'Custom Heading Tag'
+
 export const CustomClassesProcessListItem = DefaultTemplate.bind({})
 CustomClassesProcessListItem.args = {
   ...defaultProps,
