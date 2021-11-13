@@ -18,13 +18,11 @@ const props = defineProps({
 
 const labelFor = computed(() => props.for)
 
-const classes = computed(() => {
-  return [
-    {
-      'usa-label--error': props.error,
-    },
-  ]
-})
+const classes = computed(() => [
+  {
+    'usa-label--error': props.error,
+  },
+])
 </script>
 
 <template>

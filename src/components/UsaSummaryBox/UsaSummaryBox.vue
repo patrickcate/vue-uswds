@@ -6,7 +6,7 @@ import BaseHeading from '@/components/BaseHeading'
 const props = defineProps({
   id: {
     type: String,
-    default: null,
+    default: '',
   },
   heading: {
     type: String,
@@ -31,9 +31,7 @@ const props = defineProps({
   },
 })
 
-const computedId = computed(() => {
-  return !props.id ? nextId('usa-summary-box') : props.id
-})
+const computedId = computed(() => props.id || nextId('usa-summary-box'))
 </script>
 <template>
   <div class="usa-summary-box" role="region" :aria-labelledby="computedId">
