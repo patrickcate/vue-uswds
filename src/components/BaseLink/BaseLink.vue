@@ -27,7 +27,7 @@ export default {
       if (this.routerComponentName) {
         return this.routerComponentName
       }
-      return this.$nuxt ? 'nuxt-link' : 'router-link'
+      return this?.$nuxt ? 'nuxt-link' : 'router-link'
     },
   },
 }
