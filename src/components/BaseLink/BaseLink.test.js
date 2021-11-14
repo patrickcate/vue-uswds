@@ -1,22 +1,8 @@
 import '@module/uswds/dist/css/uswds.min.css'
-import { createRouter, createWebHistory } from 'vue-router'
 import { mount } from '@cypress/vue'
 import BaseLink from './BaseLink.vue'
 
 describe('BaseLink', () => {
-  let router
-
-  beforeEach(() => {
-    const TestPage = { template: '<div>Test Page</div>' }
-
-    const routes = [{ path: '/test-page', component: TestPage }]
-
-    router = createRouter({
-      history: createWebHistory(),
-      routes,
-    })
-  })
-
   it('renders the component', () => {
     mount(BaseLink, {
       props: {
@@ -27,14 +13,14 @@ describe('BaseLink', () => {
       },
       global: {
         mocks: {
+          $router: true,
           $nuxt: false,
         },
-        plugins: [router],
       },
     })
 
-    cy.get('a').should('contain', 'Test Link')
-    cy.get('a').should('have.attr', 'href').and('contain', '/test-page')
+    cy.get('router-link').should('contain', 'Test Link')
+    cy.get('router-link').should('have.attr', 'to').and('contain', '/test-page')
   })
 
   it('renders a regular `a` tag if the `href` prop is used', () => {
@@ -44,12 +30,6 @@ describe('BaseLink', () => {
       },
       slots: {
         default: () => 'Test Regular Link',
-      },
-      global: {
-        mocks: {
-          $nuxt: false,
-        },
-        plugins: [router],
       },
     })
 
@@ -67,9 +47,8 @@ describe('BaseLink', () => {
       },
       global: {
         mocks: {
-          $nuxt: {},
+          $nuxt: true,
         },
-        plugins: [router],
       },
     })
 
@@ -88,9 +67,8 @@ describe('BaseLink', () => {
       },
       global: {
         mocks: {
-          $nuxt: {},
+          $nuxt: true,
         },
-        plugins: [router],
       },
     })
 
