@@ -114,10 +114,10 @@ describe('UsaProcessListItem', () => {
         default: () => h(processListItem),
       },
     })
-      .as('component')
+      .as('wrapper')
       .get('h4.usa-process-list__heading')
       .should('exist')
-      .get('@component')
+      .get('@wrapper')
       .invoke('setProps', { headingTag: 'h6' })
       .get('h6.usa-process-list__heading')
       .should('exist')

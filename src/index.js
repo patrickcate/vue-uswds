@@ -11,6 +11,7 @@ export default {
       utilityNamespace: 'u-',
       imagePath: '/assets',
       svgSpritePath: '/assets/sprite',
+      routerComponentName: null,
       ...customOptions,
       version: pkg.version,
     }

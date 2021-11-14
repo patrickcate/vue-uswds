@@ -16,6 +16,13 @@ export default {
       default: '',
     },
   },
+  data() {
+    return {
+      isNuxt: this?.$nuxt,
+      isVueRouter: this?.$router,
+      globalRouterComponentName: this?.vueUswds?.routerComponentName,
+    }
+  },
   computed: {
     isExternalLink() {
       return (
@@ -25,16 +32,27 @@ export default {
     },
     linkComponent() {
       if (this.routerComponentName) {
-        return this.routerComponentName
+        return (
+          this.routerComponentName || this?.$vueUswds?.globalRouterComponentName
+        )
       }
-      return this.$nuxt ? 'nuxt-link' : 'router-link'
+
+      if (this.isNuxt) {
+        return 'nuxt-link'
+      }
+
+      if (this.isVueRouter) {
+        return 'router-link'
+      }
+
+      return 'a'
     },
   },
 }
 </script>
 
 <template>
-  <a v-if="isExternalLink" v-bind="$attrs" :href="href"><slot></slot></a>
+  <a v-if="isExternalLink" :href="href" v-bind="$attrs"><slot></slot></a>
   <component :is="linkComponent" v-else :to="to" v-bind="$attrs"
     ><slot></slot
   ></component>
