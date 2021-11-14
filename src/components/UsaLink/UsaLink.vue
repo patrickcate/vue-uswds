@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import BaseLink from '@/components/Baselink'
+import BaseLink from '@/components/BaseLink'
 
 const props = defineProps({
   alt: {
@@ -17,19 +17,10 @@ const classes = computed(() => [
   { 'usa-link--alt': props.alt },
   { 'usa-link--external': props.external },
 ])
-
-const computedProps = computed(() => {
-  const propNames = Object.keys(props)
-  const excludedProps = ['alt', 'external']
-
-  return propNames.filter(propName => {
-    return !excludedProps.includes(propName)
-  })
-})
 </script>
 
 <template>
-  <BaseLink class="usa-link" :class="classes" v-bind="computedProps"
+  <BaseLink class="usa-link" :class="classes" v-bind="$attrs"
     ><slot></slot
   ></BaseLink>
 </template>

@@ -1,22 +1,8 @@
 import '@module/uswds/dist/css/uswds.min.css'
-import { createRouter, createWebHistory } from 'vue-router'
 import { mount } from '@cypress/vue'
 import UsaLink from './UsaLink.vue'
 
 describe('UsaLink', () => {
-  let router
-
-  beforeEach(() => {
-    const TestPage = { template: '<div>Test Page</div>' }
-
-    const routes = [{ path: '/test-page', component: TestPage }]
-
-    router = createRouter({
-      history: createWebHistory(),
-      routes,
-    })
-  })
-
   it('renders the component with the correct CSS classes', () => {
     mount(UsaLink, {
       props: {
@@ -32,9 +18,9 @@ describe('UsaLink', () => {
       },
       global: {
         mocks: {
-          $nuxt: {},
+          $router: true,
+          $nuxt: false,
         },
-        plugins: [router],
       },
     })
 
@@ -43,6 +29,8 @@ describe('UsaLink', () => {
       .and('have.class', 'usa-link--alt')
       .and('have.class', 'usa-link--external')
       .and('have.class', 'custom-class')
+
+    cy.get('router-link').should('have.attr', 'to').and('contain', '/test-page')
 
     cy.get('.usa-link').should('not.have.attr', 'alt')
     cy.get('.usa-link').should('not.have.attr', 'external')
