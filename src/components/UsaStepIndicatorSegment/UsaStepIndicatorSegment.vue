@@ -2,50 +2,18 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  // stepNumber: {
-  //   type: Number,
-  //   required: true,
-  //   validator(currentStepNumber) {
-  //     return currentStepNumber > 0
-  //   },
-  // },
   status: {
     type: String,
     default: '',
     validator(status) {
-      return ['current', 'completed'].includes(status)
+      return ['current', 'completed', ''].includes(status)
     },
   },
   label: {
     type: String,
     required: true,
   },
-  // currentStepNumber: {
-  //   type: Number,
-  //   required: true,
-  //   validator(currentStepNumber) {
-  //     return currentStepNumber > 0
-  //   },
-  // },
 })
-
-// const currentStepNumber = inject('currentStepNumber')
-
-// const completedStatus = computed(() => {
-//   if (currentStepNumber.value > props.stepNumber) {
-//     return 'completed'
-//   }
-
-//   if (currentStepNumber.value < props.stepNumber) {
-//     return 'not completed'
-//   }
-
-//   return null
-// })
-
-// const isCurrentStep = computed(() => {
-//   return currentStepNumber.value === props.stepNumber || null
-// })
 
 const statusLabel = computed(() => {
   if (props.status === 'current') {
@@ -69,7 +37,7 @@ const classes = computed(() => [
   <li
     class="usa-step-indicator__segment"
     :class="classes"
-    :aria-current="props.status === 'current' || null"
+    :aria-current="status === 'current' || null"
   >
     <span class="usa-step-indicator__segment-label"
       >{{ label }}
