@@ -1,16 +1,16 @@
 <script setup>
-import { computed, provide } from 'vue'
+import { computed } from 'vue'
 import UsaStepIndicatorSegment from '@/components/UsaStepIndicatorSegment'
 import UsaStepIndicatorHeader from '@/components/UsaStepIndicatorHeader'
 
 const props = defineProps({
   steps: {
     type: Array,
-    required: true,
+    default: () => [],
   },
   currentStepNumber: {
     type: Number,
-    required: true,
+    default: 1,
     validator(currentStepNumber) {
       return currentStepNumber > 0
     },
@@ -47,18 +47,17 @@ const props = defineProps({
   },
 })
 
-provide(
-  'currentStepNumber',
-  computed(() => props.currentStepNumber)
-)
-
 const totalSteps = computed(() => props.steps.length)
-provide('totalSteps', totalSteps)
 
-const currentStepLabel = computed(
-  () => props.steps[props.currentStepNumber - 1]
-)
-provide('currentStepLabel', currentStepLabel)
+const currentStepLabel = computed(() => {
+  if (props.currentStepNumber > totalSteps.value) {
+    return props.steps[totalSteps.value - 1]
+  } else if (props.steps[props.currentStepNumber - 1]) {
+    return props.steps[props.currentStepNumber - 1]
+  } else {
+    return ''
+  }
+})
 
 const classes = computed(() => [
   {
@@ -68,6 +67,20 @@ const classes = computed(() => [
     'usa-step-indicator--no-labels': props.noLabels,
   },
 ])
+
+function stepStatus(label) {
+  const stepNumber = props.steps.indexOf(label) + 1
+
+  if (stepNumber < props.currentStepNumber) {
+    return 'completed'
+  }
+
+  if (stepNumber === props.currentStepNumber) {
+    return 'current'
+  }
+
+  return ''
+}
 </script>
 
 <template>
@@ -77,20 +90,23 @@ const classes = computed(() => [
       :class="customClasses?.list"
       :aria-hidden="noLabels || null"
     >
-      <slot v-bind="$props">
+      <slot>
         <UsaStepIndicatorSegment
           v-for="label in steps"
           :key="label"
           :class="customClasses?.segment"
-          status="completed"
+          :status="stepStatus(label)"
           :label="label"
         ></UsaStepIndicatorSegment>
       </slot>
     </ol>
-    <slot name="header" v-bind="$props">
+    <slot name="header">
       <UsaStepIndicatorHeader
         :class="customClasses?.header"
         :heading-tag="headingTag"
+        :current-step-number="currentStepNumber"
+        :current-step-label="currentStepLabel"
+        :total-steps="totalSteps"
       ></UsaStepIndicatorHeader>
     </slot>
   </div>

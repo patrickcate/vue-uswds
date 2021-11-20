@@ -1,5 +1,6 @@
 import UsaStepIndicator from './UsaStepIndicator.vue'
-// import UsaStepIndicatorSegment from '@/components/UsaStepIndicatorSegment'
+import UsaStepIndicatorHeader from '@/components/UsaStepIndicatorHeader'
+import UsaStepIndicatorSegment from '@/components/UsaStepIndicatorSegment'
 
 const defaultProps = {
   steps: [],
@@ -32,7 +33,7 @@ export default {
       control: { type: 'object' },
     },
     currentStepNumber: {
-      control: { type: 'number', min: 1, max: testSteps.length },
+      control: { type: 'number', min: 1, max: testSteps.length + 1 },
     },
     counters: {
       control: { type: 'boolean' },
@@ -75,7 +76,11 @@ export default {
 }
 
 const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaStepIndicator },
+  components: {
+    UsaStepIndicator,
+    UsaStepIndicatorSegment,
+    UsaStepIndicatorHeader,
+  },
   props: Object.keys(argTypes),
   setup() {
     return { ...args }
@@ -90,7 +95,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :no-labels="noLabels"
     :custom-classes="customClasses"
     :heading-tag="headingTag"
-  >${args.defaultSlot}</UsaStepIndicator>`,
+  >
+    <template #default>${args.defaultSlot}</template>
+    <template #header>${args.headerSlot}</template>
+  </UsaStepIndicator>`,
 })
 
 export const DefaultStepIndicator = DefaultTemplate.bind({})
@@ -159,6 +167,16 @@ InProgressStepIndicator.args = {
 }
 InProgressStepIndicator.storyName = 'In Progress'
 
+export const CustomHeadingTagStepIndicator = DefaultTemplate.bind({})
+CustomHeadingTagStepIndicator.args = {
+  ...defaultProps,
+  steps: testSteps,
+  counters: true,
+  currentStepNumber: 3,
+  headingTag: 'h4',
+}
+CustomHeadingTagStepIndicator.storyName = 'Custom Heading Tag'
+
 export const CustomClassesStepIndicator = DefaultTemplate.bind({})
 CustomClassesStepIndicator.args = {
   ...defaultProps,
@@ -171,3 +189,31 @@ CustomClassesStepIndicator.args = {
   },
 }
 CustomClassesStepIndicator.storyName = 'Custom Classes'
+
+export const CustomSlotSegmentsStepIndicator = DefaultTemplate.bind({})
+CustomSlotSegmentsStepIndicator.args = {
+  ...defaultProps,
+  steps: [],
+  counters: true,
+  defaultSlot: `
+    <UsaStepIndicatorSegment
+      status="completed"
+      label="Step 1"
+    ></UsaStepIndicatorSegment>
+    <UsaStepIndicatorSegment
+      status="current"
+      label="Step 2"
+    ></UsaStepIndicatorSegment>
+    <UsaStepIndicatorSegment
+      label="Step 3"
+    ></UsaStepIndicatorSegment>
+  `,
+  headerSlot: `
+    <UsaStepIndicatorHeader
+      current-step-number="2"
+      current-step-label="Step 2"
+      total-steps="3"
+    ></UsaStepIndicatorHeader>
+  `,
+}
+CustomSlotSegmentsStepIndicator.storyName = 'Custom Slots'
