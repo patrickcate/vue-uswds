@@ -98,28 +98,22 @@ describe('UsaProcessListItem', () => {
 
   it('renders custom heading tag from parent process list component', () => {
     const processListItem = {
-      components: { UsaProcessListItem },
+      components: { UsaProcessList, UsaProcessListItem },
       template: `
-        <UsaProcessListItem :heading="'Test heading 1'" :heading-tag="'h1'">
-          <p>Test content 1</p>
-        </UsaProcessListItem>
+        <UsaProcessList :heading-tag="'h4'">
+          <UsaProcessListItem :heading="'Test heading 1'" :heading-tag="'h1'">
+            <p>Test content 1</p>
+          </UsaProcessListItem>
+        </UsaProcessList>
       `,
     }
 
     mount(UsaProcessList, {
-      props: {
-        headingTag: 'h4',
-      },
       slots: {
         default: () => h(processListItem),
       },
     })
-      .as('wrapper')
       .get('h4.usa-process-list__heading')
-      .should('exist')
-      .get('@wrapper')
-      .invoke('setProps', { headingTag: 'h6' })
-      .get('h6.usa-process-list__heading')
       .should('exist')
   })
 })
