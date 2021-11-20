@@ -37,6 +37,7 @@
     "babel-loader": "^8.2.3",
     "commitizen": "^4.2.4",
     "cypress": "^8.7.0",
+    "cypress-real-events": "^1.5.1",
     "cz-customizable": "^6.3.0",
     "eslint": "^8.1.0",
     "eslint-config-prettier": "^8.3.0",

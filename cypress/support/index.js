@@ -13,6 +13,10 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
+// Import Cypress Real Event plugin.
+// https://github.com/dmtrKovalenko/cypress-real-events
+import 'cypress-real-events/support'
+
 // Import commands.js using ES2015 syntax:
 import './commands.js'
 
