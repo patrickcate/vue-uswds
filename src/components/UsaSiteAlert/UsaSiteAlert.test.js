@@ -41,6 +41,7 @@ describe('UsaSiteAlert', () => {
           wrapper.setProps({ variant: variant })
         })
         .get(`.usa-site-alert--${variant}`)
+        .should('exist')
     })
   })
 
