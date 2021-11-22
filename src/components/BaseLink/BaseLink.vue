@@ -18,6 +18,9 @@ export default {
   },
   data() {
     return {
+      // Router link checks here instead of computed to avoid Vue warning
+      // about $nuxt and $router not being defined on the instance when they
+      // are not installed.
       isNuxt: this?.$nuxt,
       isVueRouter: this?.$router,
       globalRouterComponentName: this?.vueUswds?.routerComponentName,
