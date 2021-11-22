@@ -1,7 +1,8 @@
 <script setup>
+import { inject, computed } from 'vue'
 import BaseHeading from '@/components/BaseHeading'
 
-defineProps({
+const props = defineProps({
   heading: {
     type: String,
     default: '',
@@ -19,14 +20,19 @@ defineProps({
     },
   },
 })
+
+const computedHeadingTag = computed(
+  () => inject('listHeadingTag').value || props.headingTag
+)
 </script>
 
 <template>
   <li class="usa-process-list__item">
     <BaseHeading
+      v-if="heading"
       class="usa-process-list__heading"
       :class="customClasses.heading"
-      :tag="headingTag"
+      :tag="computedHeadingTag"
       ><slot name="heading">{{ heading }}</slot></BaseHeading
     >
     <slot></slot>

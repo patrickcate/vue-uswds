@@ -53,14 +53,14 @@ const props = defineProps({
   },
 })
 
-const classes = computed(() => {
-  return {
+const classes = computed(() => [
+  {
     'usa-site-alert--slim': props.slim,
     'usa-site-alert--no-icon': props.noIcon,
     'usa-site-alert--info': props.variant === 'info',
     'usa-site-alert--emergency': props.variant === 'emergency',
-  }
-})
+  },
+])
 </script>
 
 <template>

@@ -37,7 +37,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<BaseLink :href="href" :to="to" router-component-name="routerComponentName">${args.defaultSlot}</BaseLink>`,
+  template: `<BaseLink :href="href" :to="to" :router-component-name="routerComponentName">${args.defaultSlot}</BaseLink>`,
 })
 
 export const DefaultBaseLink = DefaultTemplate.bind({})
