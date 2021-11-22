@@ -14,7 +14,9 @@ module.exports = {
   },
   rules: {
     // override/add rules settings here, such as:
-    // 'vue/no-unused-vars': 'error'
+    'no-unused-vars': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
+    'vue/no-unused-vars':
+      process.env.NODE_ENV === 'production' ? 'error' : 'warn',
     'vue/script-setup-uses-vars': 'error',
   },
 }
