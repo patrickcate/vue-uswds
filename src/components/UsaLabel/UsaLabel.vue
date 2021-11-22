@@ -16,6 +16,7 @@ const props = defineProps({
   },
 })
 
+// Needed because 'for' is throwing error in template (a reserved name?)
 const labelFor = computed(() => props.for)
 
 const classes = computed(() => [

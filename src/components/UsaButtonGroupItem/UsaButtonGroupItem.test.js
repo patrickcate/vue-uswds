@@ -4,7 +4,7 @@ import { mount } from '@cypress/vue'
 import UsaButtonGroupItem from './UsaButtonGroupItem.vue'
 
 describe('UsaButtonGroupItem', () => {
-  it.only('renders the component', () => {
+  it('renders the component', () => {
     mount(UsaButtonGroupItem, {
       slots: {
         default: () => h('button', { class: 'usa-button' }, 'Test button'),
