@@ -1,4 +1,7 @@
 import UsaCollectionItem from './UsaCollectionItem.vue'
+import UsaCollectionCalendar from '@/components/UsaCollectionCalendar'
+import UsaCollectionMeta from '@/components/UsaCollectionMeta'
+import UsaCollectionMetaItem from '@/components/UsaCollectionMetaItem'
 
 const defaultProps = {
   heading: 'Collection Item',
@@ -77,7 +80,12 @@ export default {
 }
 
 const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaCollectionItem },
+  components: {
+    UsaCollectionItem,
+    UsaCollectionCalendar,
+    UsaCollectionMeta,
+    UsaCollectionMetaItem,
+  },
   props: Object.keys(argTypes),
   setup() {
     return { ...args }
@@ -120,6 +128,28 @@ MediaCollectionItem.args = {
   mediaSlot: testMedia,
 }
 MediaCollectionItem.storyName = 'Collection w/ Media'
+
+export const CalendarCollectionItem = DefaultTemplate.bind({})
+CalendarCollectionItem.args = {
+  ...defaultProps,
+  heading: 'Collection w/ Calendar',
+  mediaSlot: '',
+  calendarSlot:
+    '<UsaCollectionCalendar datetime="2021-01-01" month="Jan" day="1" />',
+}
+CalendarCollectionItem.storyName = 'Collection w/ Calendar'
+
+export const MetaItemsCollectionItem = DefaultTemplate.bind({})
+MetaItemsCollectionItem.args = {
+  ...defaultProps,
+  heading: 'Collection w/ Meta Items',
+  mediaSlot: testMedia,
+  metaSlot: `<UsaCollectionMeta>
+      <UsaCollectionMetaItem class="usa-tag">Meta 1</UsaCollectionMetaItem>
+      <UsaCollectionMetaItem class="usa-tag">Meta 2</UsaCollectionMetaItem>
+    </UsaCollectionMeta>`,
+}
+MetaItemsCollectionItem.storyName = 'Collection w/ Meta Items'
 
 export const CustomHeadingTagCollectionItem = DefaultTemplate.bind({})
 CustomHeadingTagCollectionItem.args = {
