@@ -92,12 +92,12 @@ HeadingAltSlotHeroCallout.args = {
 }
 HeadingAltSlotHeroCallout.storyName = 'Heading Alt Slot'
 
-export const CustomHeadingHeroCallout = DefaultTemplate.bind({})
-CustomHeadingHeroCallout.args = {
+export const CustomHeadingTagHeroCallout = DefaultTemplate.bind({})
+CustomHeadingTagHeroCallout.args = {
   ...defaultProps,
   headingTag: 'h4',
 }
-CustomHeadingHeroCallout.storyName = 'Custom Heading Tag'
+CustomHeadingTagHeroCallout.storyName = 'Custom Heading Tag'
 
 export const CustomClassesHeroCallout = DefaultTemplate.bind({})
 CustomClassesHeroCallout.args = {
