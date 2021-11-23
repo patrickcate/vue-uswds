@@ -20,7 +20,10 @@ describe('UsaStepIndicator', () => {
       .should('have.attr', 'aria-label')
       .and('contain', 'progress')
 
-    cy.get('ol.usa-step-indicator__segments')
+    cy.get('ol.usa-step-indicator__segments').should(
+      'not.have.attr',
+      'aria-hidden'
+    )
 
     // Make sure the segment text is printed and is visible.
     cy.get(
@@ -83,6 +86,10 @@ describe('UsaStepIndicator', () => {
       .and('have.class', 'usa-step-indicator--counters-sm')
       .and('have.class', 'usa-step-indicator--center')
       .and('have.class', 'usa-step-indicator--no-labels')
+
+    cy.get('.usa-step-indicator__segments')
+      .should('have.attr', 'aria-hidden')
+      .and('contain', 'true')
 
     cy.get('.test-list-class').should('exist')
     cy.get('.test-segment-class').should('exist')
