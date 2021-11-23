@@ -107,6 +107,18 @@ describe('UsaCard', () => {
     cy.get('h4.usa-card__heading').should('exist')
   })
 
+  it('does not render header if prop or slot is not used', () => {
+    mount(UsaCard, {
+      slots: {
+        media: () => testMedia,
+        default: () => testContent,
+        footer: () => testFooter,
+      },
+    })
+
+    cy.get('.usa-card__heading').should('not.exist')
+  })
+
   it('renders custom card tag', () => {
     mount(UsaCard, {
       props: {
