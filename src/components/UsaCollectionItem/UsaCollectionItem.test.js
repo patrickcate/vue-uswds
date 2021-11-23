@@ -2,6 +2,8 @@ import '@module/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
 import { mount } from '@cypress/vue'
 import UsaCollectionItem from './UsaCollectionItem.vue'
+import UsaCollectionMeta from '@/components/UsaCollectionMeta'
+import UsaCollectionMetaItem from '@/components/UsaCollectionMetaItem'
 
 describe('UsaCollectionItem', () => {
   const testMedia = h(
@@ -20,7 +22,16 @@ describe('UsaCollectionItem', () => {
 
   const testContent = `Today, the Administration announces the winners of the Gears of Government President's Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.`
 
-  it('renders the component', () => {
+  const testMetaItems = h(
+    UsaCollectionMeta,
+    { ariaLabel: 'More information' },
+    [
+      h(UsaCollectionMetaItem, { class: 'usa-tag' }, 'Meta 1'),
+      h(UsaCollectionMetaItem, { class: 'usa-tag' }, 'Meta 2'),
+    ]
+  )
+
+  it.only('renders the component', () => {
     mount(UsaCollectionItem, {
       props: {
         href: testHref,
@@ -29,6 +40,7 @@ describe('UsaCollectionItem', () => {
       slots: {
         media: () => testMedia,
         default: () => testContent,
+        meta: () => testMetaItems,
       },
     })
 
@@ -47,6 +59,15 @@ describe('UsaCollectionItem', () => {
     cy.get('h2.usa-collection__heading').should('contain', testHeadingText)
     cy.get('a.usa-link').should('have.attr', 'href').and('contain', testHref)
     cy.get('p.usa-collection__description').and('contain', testContent)
+    cy.get('ul.usa-collection__meta').should('exist')
+    cy.get('li.usa-collection__meta-item:nth-child(1)').should(
+      'contain',
+      'Meta 1'
+    )
+    cy.get('li.usa-collection__meta-item:nth-child(2)').should(
+      'contain',
+      'Meta 2'
+    )
   })
 
   it('`media` slot wrapper markup should not render if `media` slot is not used', () => {
@@ -157,6 +178,4 @@ describe('UsaCollectionItem', () => {
   })
 
   // TODO: Test calendar slot.
-  // TODO: Test meta slot.
-  // TODO: Move test content to fixtures?
 })
