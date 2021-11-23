@@ -17,7 +17,7 @@ export default {
   },
   args: {
     ariaLabel: defaultProps.ariaLabel,
-    defaultSlot: 'Test',
+    defaultSlot: '<li class="usa-collection__meta-item">Test meta item</li>',
   },
 }
 
