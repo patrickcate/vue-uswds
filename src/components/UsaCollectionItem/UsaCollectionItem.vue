@@ -66,7 +66,7 @@ defineProps({
           <slot></slot>
         </p>
       </slot>
+      <slot name="meta"></slot>
     </div>
-    <slot name="meta"></slot>
   </li>
 </template>
