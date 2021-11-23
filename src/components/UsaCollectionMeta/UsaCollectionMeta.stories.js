@@ -1,0 +1,37 @@
+import UsaCollectionMeta from './UsaCollectionMeta.vue'
+
+const defaultProps = {
+  ariaLabel: 'Test aria label',
+}
+
+export default {
+  component: UsaCollectionMeta,
+  title: 'Components/UsaCollectionMeta',
+  argTypes: {
+    ariaLabel: {
+      control: { type: 'text' },
+    },
+    defaultSlot: {
+      control: { type: 'text' },
+    },
+  },
+  args: {
+    ariaLabel: defaultProps.ariaLabel,
+    defaultSlot: 'Test',
+  },
+}
+
+const DefaultTemplate = (args, { argTypes }) => ({
+  components: { UsaCollectionMeta },
+  props: Object.keys(argTypes),
+  setup() {
+    return { ...args }
+  },
+  template: `<UsaCollectionMeta :aria-label="ariaLabel">${args.defaultSlot}</UsaCollectionMeta>`,
+})
+
+export const DefaultCollectionMeta = DefaultTemplate.bind({})
+DefaultCollectionMeta.args = {
+  ...defaultProps,
+}
+DefaultCollectionMeta.storyName = 'Default'
