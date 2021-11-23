@@ -5,7 +5,7 @@ const props = defineProps({
   size: {
     type: String,
     default: '',
-    validator: size => {
+    validator(size) {
       const isValidSize = size === '' || size === 'big'
 
       if (!isValidSize) {

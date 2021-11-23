@@ -11,7 +11,7 @@ const props = defineProps({
   heading: {
     type: String,
     default: 'Key information',
-    validator: heading => {
+    validator(heading) {
       return heading !== ''
     },
   },

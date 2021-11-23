@@ -9,7 +9,7 @@ export default {
     testProp: {
       type: String,
       default: '',
-      validator: () => {
+      validator(testProp) {
         return true
       },
     },
@@ -24,7 +24,7 @@ const props = defineProps({
   testProp: {
     type: String,
     default: '',
-    validator: () => {
+    validator(testProp) {
       return true
     },
   },
