@@ -97,7 +97,7 @@ function stepStatus(label) {
           :class="customClasses?.segment"
           :status="stepStatus(label)"
           :label="label"
-        ></UsaStepIndicatorSegment>
+        />
       </slot>
     </ol>
     <slot name="header">

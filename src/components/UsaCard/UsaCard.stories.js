@@ -122,10 +122,14 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :footer-exdent="footerExdent"
     :custom-classes="customClasses"
   >
-    <template #heading>${args.headingSlot}</template>
-    <template #media>${args.mediaSlot}</template>
-    <template #default>${args.defaultSlot}</template>
-    <template #footer>${args.footerSlot}</template>
+    <template #heading v-if="${!!args.headingSlot}">${
+    args.headingSlot
+  }</template>
+    <template #media v-if="${!!args.mediaSlot}">${args.mediaSlot}</template>
+    <template #default v-if="${!!args.defaultSlot}">${
+    args.defaultSlot
+  }</template>
+    <template #footer v-if="${!!args.footerSlot}">${args.footerSlot}</template>
   </UsaCard>`,
 })
 
@@ -147,6 +151,37 @@ HeaderFirstTagCard.decorators = [
   () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
 ]
 HeaderFirstTagCard.storyName = 'Header First'
+
+export const NoMediaCard = DefaultTemplate.bind({})
+NoMediaCard.args = {
+  ...defaultProps,
+  mediaSlot: '',
+}
+NoMediaCard.decorators = [
+  () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
+]
+NoMediaCard.storyName = 'No Media'
+
+export const NoHeaderCard = DefaultTemplate.bind({})
+NoHeaderCard.args = {
+  ...defaultProps,
+  heading: '',
+  headingSlot: '',
+}
+NoHeaderCard.decorators = [
+  () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
+]
+NoHeaderCard.storyName = 'No Header'
+
+export const NoFooterCard = DefaultTemplate.bind({})
+NoFooterCard.args = {
+  ...defaultProps,
+  footerSlot: '',
+}
+NoFooterCard.decorators = [
+  () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
+]
+NoFooterCard.storyName = 'No Footer'
 
 export const CustomCardTagCard = DefaultTemplate.bind({})
 CustomCardTagCard.args = {

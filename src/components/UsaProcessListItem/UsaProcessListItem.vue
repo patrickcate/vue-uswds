@@ -29,7 +29,7 @@ const computedHeadingTag = computed(
 <template>
   <li class="usa-process-list__item">
     <BaseHeading
-      v-if="heading"
+      v-if="heading || $slots.heading"
       class="usa-process-list__heading"
       :class="customClasses.heading"
       :tag="computedHeadingTag"
