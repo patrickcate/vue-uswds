@@ -17,12 +17,12 @@ module.exports = [
     message: 'Which API to start?',
     choices: [
       {
-        name: 'options',
-        message: 'Options API',
-      },
-      {
         name: 'composition',
         message: 'Composition API',
+      },
+      {
+        name: 'options',
+        message: 'Options API',
       },
     ],
   },
