@@ -24,7 +24,7 @@ describe('UsaCollectionCalendar', () => {
     mount(UsaCollectionCalendar, {
       props: {
         month: 'Jan',
-        day: '1',
+        day: 1,
       },
     })
 
@@ -33,5 +33,24 @@ describe('UsaCollectionCalendar', () => {
       'not.have.attr',
       'datetime'
     )
+  })
+
+  it('adds custom CSS classes', () => {
+    mount(UsaCollectionCalendar, {
+      props: {
+        datetime: '2021-01-01',
+        month: 'Jan',
+        day: 1,
+        customClasses: {
+          datetime: ['test-datetime-class'],
+          month: ['test-month-class'],
+          day: ['test-day-class'],
+        },
+      },
+    })
+
+    cy.get('.test-datetime-class').should('exist')
+    cy.get('.test-month-class').should('exist')
+    cy.get('.test-day-class').should('exist')
   })
 })
