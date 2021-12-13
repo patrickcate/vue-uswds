@@ -16,9 +16,6 @@ const props = defineProps({
   },
 })
 
-// Needed because 'for' is throwing error in template (a reserved name?)
-const labelFor = computed(() => props.for)
-
 const classes = computed(() => [
   {
     'usa-label--error': props.error,
@@ -27,7 +24,7 @@ const classes = computed(() => [
 </script>
 
 <template>
-  <label :for="labelFor" class="usa-label" :class="classes">
+  <label :htmlFor="props.for" class="usa-label" :class="classes">
     <slot></slot>
     <template v-if="required"
       >&nbsp;<slot name="required"
