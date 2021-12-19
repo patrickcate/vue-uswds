@@ -11,6 +11,7 @@ module.exports = {
   globals: {
     defineProps: 'readonly',
     defineEmits: 'readonly',
+    defineExpose: 'readonly',
   },
   rules: {
     // override/add rules settings here, such as:
