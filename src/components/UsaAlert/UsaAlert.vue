@@ -6,7 +6,7 @@ const props = defineProps({
   variant: {
     type: String,
     default: '',
-    validator: variant => {
+    validator(variant) {
       const isValidVariant = [
         '',
         'info',

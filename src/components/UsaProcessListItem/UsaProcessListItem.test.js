@@ -116,4 +116,25 @@ describe('UsaProcessListItem', () => {
       .get('h4.usa-process-list__heading')
       .should('exist')
   })
+
+  it('does not render header if prop or slot is not used', () => {
+    const processListItem = {
+      components: { UsaProcessList, UsaProcessListItem },
+      template: `
+        <UsaProcessList>
+          <UsaProcessListItem>
+            <p>Test content 1</p>
+          </UsaProcessListItem>
+        </UsaProcessList>
+      `,
+    }
+
+    mount(UsaProcessList, {
+      slots: {
+        default: () => h(processListItem),
+      },
+    })
+      .get('.usa-process-list__heading')
+      .should('not.exist')
+  })
 })

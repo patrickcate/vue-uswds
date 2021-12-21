@@ -1,6 +1,14 @@
 <script>
+import { ROUTER_COMPONENT_NAME } from '@/utils/constants.js'
+
 export default {
   name: 'BaseLink',
+  inject: {
+    globalRouterComponentName: {
+      from: 'vueUswds.routerComponentName',
+      default: ROUTER_COMPONENT_NAME,
+    },
+  },
   inheritAttrs: false,
   props: {
     href: {
@@ -23,7 +31,6 @@ export default {
       // are not installed.
       isNuxt: this?.$nuxt,
       isVueRouter: this?.$router,
-      globalRouterComponentName: this?.vueUswds?.routerComponentName,
     }
   },
   computed: {
@@ -35,9 +42,11 @@ export default {
     },
     linkComponent() {
       if (this.routerComponentName) {
-        return (
-          this.routerComponentName || this?.$vueUswds?.globalRouterComponentName
-        )
+        return this.routerComponentName
+      }
+
+      if (this.globalRouterComponentName) {
+        return this.globalRouterComponentName
       }
 
       if (this.isNuxt) {

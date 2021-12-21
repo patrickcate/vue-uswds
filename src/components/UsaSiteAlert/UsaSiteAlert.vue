@@ -7,7 +7,7 @@ const props = defineProps({
   variant: {
     type: String,
     default: 'emergency',
-    validator: variant => {
+    validator(variant) {
       const isValidVariant = ['info', 'emergency'].includes(variant)
 
       if (!isValidVariant) {
