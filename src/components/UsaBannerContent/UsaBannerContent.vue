@@ -1,9 +1,14 @@
 <script setup>
 import { inject } from 'vue'
+import {
+  PREFIX_SEPARATOR,
+  GRID_NAMESPACE,
+  IMAGE_PATH,
+} from '@/utils/constants.js'
 
-const imagePath = inject('vueUswds.imagePath', '/assets/img')
-const prefixSeparator = inject('vueUswds.prefixSeparator', ':')
-const gridNamespace = inject('vueUswds.gridNamespace', 'grid-')
+const prefixSeparator = inject('vueUswds.prefixSeparator', PREFIX_SEPARATOR)
+const gridNamespace = inject('vueUswds.gridNamespace', GRID_NAMESPACE)
+const imagePath = inject('vueUswds.imagePath', IMAGE_PATH)
 </script>
 
 <template>

@@ -75,4 +75,31 @@ describe('BaseLink', () => {
     cy.get('g-link').should('contain', 'Test Custom Component Link')
     cy.get('g-link').should('have.attr', 'to').and('contain', '/test-page')
   })
+
+  it('uses globally injected router component name', () => {
+    mount(BaseLink, {
+      props: {
+        to: '/test-page',
+      },
+      slots: {
+        default: () => 'Test Global Component Link',
+      },
+      global: {
+        provide: {
+          'vueUswds.routerComponentName': 'test-global-router-component',
+        },
+        mocks: {
+          $nuxt: true,
+        },
+      },
+    })
+
+    cy.get('test-global-router-component').should(
+      'contain',
+      'Test Global Component Link'
+    )
+    cy.get('test-global-router-component')
+      .should('have.attr', 'to')
+      .and('contain', '/test-page')
+  })
 })
