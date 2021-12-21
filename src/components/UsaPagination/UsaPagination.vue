@@ -75,8 +75,8 @@ const {
   isLastPage,
   isOverflowSlot,
   visiblePageRange,
-  previousPage,
-  nextPage,
+  toPreviousPage,
+  toNextPage,
   updateCurrentPage,
 } = usePagination(
   toRef(props, 'currentPage'),
@@ -115,7 +115,7 @@ function getAriaLabel(pageNumber) {
           :router-component-name="
             items?.[currentPage - 2]?.routerComponentName || null
           "
-          @click="previousPage()"
+          @click="toPreviousPage()"
         >
           <template #before="{ svgSpritePath }">
             <slot name="previousIcon">
@@ -172,7 +172,7 @@ function getAriaLabel(pageNumber) {
           :router-component-name="
             items?.[currentPage]?.routerComponentName || null
           "
-          @click="nextPage()"
+          @click="toNextPage()"
         >
           <template #after="{ svgSpritePath }">
             <slot name="nextIcon">
