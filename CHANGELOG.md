@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/patrickcate/vue-uswds/compare/v0.0.0...v0.1.0) (2021-12-21)
+
+
+### Features
+
+* bind default $attrs to accordion item heading element ([1827902](https://github.com/patrickcate/vue-uswds/commit/182790230a7b3dbe6ae9f2afcab7f09f9635ce90))
+* implement `UsaAccordion` and `UsaAccordionItem` components ([e00f2cb](https://github.com/patrickcate/vue-uswds/commit/e00f2cb868fb97c2556f37cb685aea1d1631a7f4)), closes [#6](https://github.com/patrickcate/vue-uswds/issues/6) [#7](https://github.com/patrickcate/vue-uswds/issues/7)
+* implement `UsaBanner` and `UsaBannerContent` components ([7b396de](https://github.com/patrickcate/vue-uswds/commit/7b396dea1528f101f707365d837cbbbb1446c229)), closes [#8](https://github.com/patrickcate/vue-uswds/issues/8) [#10](https://github.com/patrickcate/vue-uswds/issues/10)
+* implement `UsaButton` component ([f25ab42](https://github.com/patrickcate/vue-uswds/commit/f25ab423f1895a7606adc0385ccc953d90c21bd5)), closes [#14](https://github.com/patrickcate/vue-uswds/issues/14)
+* implement `UsaCard` component ([e8faa47](https://github.com/patrickcate/vue-uswds/commit/e8faa47eb74401214ae7fced79fe5a48e8975ff8)), closes [#15](https://github.com/patrickcate/vue-uswds/issues/15)
+* implement `UsaCollection` component ([9e48e2e](https://github.com/patrickcate/vue-uswds/commit/9e48e2e08e56adfdbcbbce7d78bcc0d1329cb6fc)), closes [#18](https://github.com/patrickcate/vue-uswds/issues/18)
+* implement `UsaCollectionCalendar` component ([a008088](https://github.com/patrickcate/vue-uswds/commit/a008088920c680cd8a2223813f319c722506f979)), closes [#21](https://github.com/patrickcate/vue-uswds/issues/21)
+* implement `UsaCollectionHeading` component ([3c9df87](https://github.com/patrickcate/vue-uswds/commit/3c9df87426cb9487c16d4f17c42ee5789dfbb854)), closes [#20](https://github.com/patrickcate/vue-uswds/issues/20)
+* implement `UsaCollectionItem` component ([72adb9c](https://github.com/patrickcate/vue-uswds/commit/72adb9c18110d05ee31e525458b48d618d81ffcd)), closes [#19](https://github.com/patrickcate/vue-uswds/issues/19)
+* implement `UsaCollectionMeta` component ([19a3c2a](https://github.com/patrickcate/vue-uswds/commit/19a3c2a9c03f099722de96931d8a290a83a61522)), closes [#22](https://github.com/patrickcate/vue-uswds/issues/22)
+* implement `UsaCollectionMetaItem` component ([6fdab1a](https://github.com/patrickcate/vue-uswds/commit/6fdab1a655f9a606505a72dd33dbb5778ebee529)), closes [#23](https://github.com/patrickcate/vue-uswds/issues/23)
+* implement pagination components ([9ccd915](https://github.com/patrickcate/vue-uswds/commit/9ccd915913760297556a19b5a5fb416134b491c7)), closes [#59](https://github.com/patrickcate/vue-uswds/issues/59) [#60](https://github.com/patrickcate/vue-uswds/issues/60)
+
+
+### Bug Fixes
+
+* fix location of `meta` slot ([aa7804a](https://github.com/patrickcate/vue-uswds/commit/aa7804aca63c1544ea2bd82681e7ce89e8deb764))
+
 ## 0.0.0 (2021-11-22)
 
 
