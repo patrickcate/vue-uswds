@@ -1,17 +1,25 @@
 import pkg from '../package.json'
 import { nextId } from '@/utils/unique-id.js'
+import {
+  PREFIX_SEPARATOR,
+  GRID_NAMESPACE,
+  UTILITY_NAMESPACE,
+  IMAGE_PATH,
+  SVG_SPRITE_PATH,
+  ROUTER_COMPONENT_NAME,
+} from '@/utils/constants.js'
 
 export default {
   install: (app, options) => {
     const customOptions = options || {}
 
     const vueUswdsOptions = {
-      prefixSeparator: ':',
-      gridNamespace: 'grid-',
-      utilityNamespace: 'u-',
-      imagePath: '/assets/img',
-      svgSpritePath: '/assets/img/sprite.svg',
-      routerComponentName: null,
+      prefixSeparator: PREFIX_SEPARATOR,
+      gridNamespace: GRID_NAMESPACE,
+      utilityNamespace: UTILITY_NAMESPACE,
+      imagePath: IMAGE_PATH,
+      svgSpritePath: SVG_SPRITE_PATH,
+      routerComponentName: ROUTER_COMPONENT_NAME,
       ...customOptions,
       version: pkg.version,
     }

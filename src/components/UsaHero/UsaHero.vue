@@ -1,5 +1,8 @@
 <script setup>
 import { inject, computed } from 'vue'
+import { GRID_NAMESPACE } from '@/utils/constants.js'
+
+const gridNamespace = inject('vueUswds.gridNamespace', GRID_NAMESPACE)
 
 const props = defineProps({
   backgroundImage: {
@@ -19,8 +22,6 @@ const props = defineProps({
     },
   },
 })
-
-const gridNamespace = inject('vueUswds.gridNamespace', 'grid-')
 
 const gridContainerClasses = computed(() => {
   return [

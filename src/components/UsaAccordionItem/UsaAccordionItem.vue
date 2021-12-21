@@ -46,6 +46,7 @@ onBeforeUnmount(() => {
 
 <template>
   <BaseHeading
+    v-bind="$attrs"
     class="usa-accordion__heading"
     :class="customClasses?.heading"
     :tag="accordionHeadingTag"

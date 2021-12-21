@@ -90,35 +90,22 @@ export default (_currentPage, totalPages, _unbounded, emit) => {
     emit('update:currentPage', number)
   }
 
-  const previousPage = () => {
-    updateCurrentPage(_currentPage.value - 1)
-  }
-
-  const nextPage = () => {
-    updateCurrentPage(_currentPage.value + 1)
-  }
-
-  const firstPage = () => {
+  const toFirstPage = () => {
     updateCurrentPage(1)
   }
 
-  const lastPage = () => {
+  const toPreviousPage = () => {
+    updateCurrentPage(currentPage.value - 1)
+  }
+
+  const toNextPage = () => {
+    updateCurrentPage(currentPage.value + 1)
+  }
+
+  const toLastPage = () => {
     updateCurrentPage(totalPages.value)
   }
 
-  //results/pagination
-
-  //previous link text
-  //previous link aria label
-  //next link text
-  //next link aria label
-  //first page link text
-  //first page link aria label
-  //last page link text
-  //last page link aria label
-  //page aria label
-  // toPage
-  // toPreviousPage()
   return {
     currentPage: readonly(currentPage),
     unbounded: readonly(unbounded),
@@ -126,10 +113,10 @@ export default (_currentPage, totalPages, _unbounded, emit) => {
     isFirstPage,
     isLastPage,
     isOverflowSlot,
-    firstPage,
-    lastPage,
-    nextPage,
-    previousPage,
+    toFirstPage,
+    toLastPage,
+    toNextPage,
+    toPreviousPage,
     updateCurrentPage,
     visiblePageRange,
   }
