@@ -57,7 +57,7 @@ module.exports = {
       'List any ISSUES CLOSED by this change (optional). E.g.: #31, #34:\n',
     confirmCommit: 'Are you sure you want to proceed with the commit above?',
   },
-  scopes: componentNames,
+  scopes: ['', ...componentNames],
   allowCustomScopes: false,
   allowBreakingChanges: ['feat', 'fix'],
 
