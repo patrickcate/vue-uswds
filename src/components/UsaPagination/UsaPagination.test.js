@@ -396,6 +396,7 @@ describe('UsaPagination', () => {
           expect(currentPageEvent[currentPageEvent.length - 1]).to.contain(
             i + 1
           )
+          expect(currentPageEvent).to.have.length(i)
         })
 
       cy.get(`@item${i + 1}`)
@@ -482,6 +483,7 @@ describe('UsaPagination', () => {
               expect(currentPageEvent[currentPageEvent.length - 1]).to.contain(
                 i + 1
               )
+              expect(currentPageEvent).to.have.length(i)
             })
         })
     }
@@ -530,6 +532,7 @@ describe('UsaPagination', () => {
               expect(currentPageEvent[currentPageEvent.length - 1]).to.contain(
                 i + 1
               )
+              expect(currentPageEvent).to.have.length(i)
             })
 
           // Add guard to make sure DOM has been updated before moving on.
@@ -703,5 +706,60 @@ describe('UsaPagination', () => {
     })
 
     cy.get('li.usa-pagination__item button').should('have.length', 8)
+  })
+
+  it('props are bound to scoped slots', () => {
+    const wrapper = mount(UsaPagination, {
+      props: {
+        currentPage: 4,
+        items: generateTestItems(6, {}),
+        'onUpdate:current-page': async currentPage => {
+          await wrapper.vue().then(vm => {
+            vm.setProps({ currentPage: currentPage })
+          })
+        },
+      },
+      slots: {
+        previous: props =>
+          h(
+            'span',
+            {
+              'v-slot:previous': 'props',
+            },
+            `${props.isFirstPage ? 'true' : 'false'} - ${
+              props.toPreviousPage ? 'true' : 'false'
+            }`
+          ),
+        next: props =>
+          h(
+            'span',
+            {
+              'v-slot:next': 'props',
+            },
+            `${props.isLastPage ? 'true' : 'false'} - ${
+              props.toNextPage ? 'true' : 'false'
+            } `
+          ),
+      },
+    })
+
+    cy.get('li.usa-pagination__item:nth-of-type(1) button').as('firstItem')
+    cy.get('li.usa-pagination__item:nth-last-of-type(1) button').as('lastItem')
+
+    cy.get('.usa-pagination__list > span:first-of-type')
+      .as('previousSlot')
+      .should('contain', 'false - true')
+
+    cy.get('.usa-pagination__list > span:last-of-type')
+      .as('nextSlot')
+      .should('contain', 'false - true')
+
+    // Go to first item.
+    cy.get('@firstItem').click()
+    cy.get('@previousSlot').should('contain', 'true - true')
+
+    // Go to last item.
+    cy.get('@lastItem').click()
+    cy.get('@nextSlot').should('contain', 'true - true')
   })
 })

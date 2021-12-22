@@ -196,7 +196,7 @@ function getAriaLabel(pageNumber) {
     </ul>
   </nav>
 </template>
-
+// TODO: support both regular props and v-model.
 <style>
 .usa-pagination__item--hidden {
   visibility: hidden;
