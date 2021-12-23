@@ -98,4 +98,22 @@ describe('UsaGraphicList', () => {
     cy.get('@wrapper').invoke('setProps', { variant: 'dark' })
     cy.get('.usa-graphic-list').should('contain', 'variant is: dark')
   })
+
+  it('warns in console about invalid variant prop', () => {
+    cy.stub(window.console, 'warn').as('consoleWarn')
+
+    mount(UsaGraphicList, {
+      props: {
+        variant: 'notvariant',
+      },
+      slots: {
+        default: () => 'Invalid Variant',
+      },
+    })
+
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `'notvariant' is not a valid graphic list variant`
+    )
+  })
 })

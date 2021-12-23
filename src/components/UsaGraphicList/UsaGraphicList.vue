@@ -6,7 +6,13 @@ const props = defineProps({
     type: String,
     default: 'dark',
     validator(variant) {
-      return ['light', 'dark'].includes(variant)
+      const isValidVariant = ['light', 'dark'].includes(variant)
+
+      if (!isValidVariant) {
+        console.warn(`'${variant}' is not a valid graphic list variant`)
+      }
+
+      return isValidVariant
     },
   },
   customClasses: {
