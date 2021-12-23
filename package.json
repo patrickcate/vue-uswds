@@ -18,7 +18,8 @@
     "test:e2e": "cypress run",
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "postinstall": "ln -s node_modules/uswds/dist assets"
   },
   "dependencies": {
     "just-kebab-case": "^4.0.0"
@@ -33,7 +34,7 @@
     "@storybook/addon-essentials": "^6.3.12",
     "@storybook/addon-links": "^6.3.12",
     "@storybook/vue3": "^6.3.12",
-    "@vitejs/plugin-vue": "^1.9.3",
+    "@vitejs/plugin-vue": "^1.10.2",
     "babel-loader": "^8.2.3",
     "commitizen": "^4.2.4",
     "cypress": "^8.7.0",
