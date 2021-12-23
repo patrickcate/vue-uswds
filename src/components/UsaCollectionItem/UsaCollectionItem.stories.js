@@ -42,6 +42,9 @@ export default {
     routerComponentName: {
       control: { type: 'text' },
     },
+    customClasses: {
+      control: { type: 'object' },
+    },
     mediaSlot: {
       control: { type: 'text' },
     },
@@ -67,6 +70,7 @@ export default {
     href: defaultProps.href,
     to: defaultProps.to,
     routerComponentName: defaultProps.routerComponentName,
+    customClasses: defaultProps.customClasses,
     mediaSlot: '',
     calendarSlot: '',
     headingSlot: '',
