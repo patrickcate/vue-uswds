@@ -74,4 +74,15 @@ describe('UsaSidenavItem', () => {
       'path is: /page-1'
     )
   })
+
+  it('warns in console about required `item` prop', () => {
+    cy.stub(window.console, 'warn').as('consoleWarn')
+
+    mount(UsaSidenavItem, {})
+
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `[Vue warn]: Missing required prop: "item"`
+    )
+  })
 })
