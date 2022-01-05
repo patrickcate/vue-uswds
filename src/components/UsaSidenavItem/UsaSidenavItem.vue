@@ -28,7 +28,7 @@ defineProps({
       :router-component-name="item?.routerComponentName"
       :class="customClasses?.link"
       v-bind="item?.attrs"
-      ><slot :item="item">{{ item.text }}</slot></BaseLink
+      ><slot :item="item">{{ item?.text }}</slot></BaseLink
     >
     <UsaSidenavSublist
       v-if="item?.children?.length"
