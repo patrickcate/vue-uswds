@@ -1,7 +1,7 @@
 <script setup>
 import { computed, inject } from 'vue'
 import { SVG_SPRITE_PATH } from '@/utils/constants.js'
-import { BaseLink } from '@/components/BaseLink'
+import BaseLink from '@/components/BaseLink'
 
 const svgSpritePath = inject('vueUswds.svgSpritePath', SVG_SPRITE_PATH)
 

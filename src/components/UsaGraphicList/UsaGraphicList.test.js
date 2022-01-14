@@ -84,7 +84,7 @@ describe('UsaGraphicList', () => {
     cy.get('.test-container-class').should('exist')
   })
 
-  it('`variant` prop is available as scoped slot', () => {
+  it('`variant` prop is available in scoped slot', () => {
     mount(UsaGraphicList, {
       props: {
         variant: 'light',

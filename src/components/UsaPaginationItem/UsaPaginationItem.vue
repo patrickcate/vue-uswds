@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { BaseLink } from '@/components/BaseLink'
+import BaseLink from '@/components/BaseLink'
 
 const props = defineProps({
   pageNumber: {

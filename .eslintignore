@@ -1,3 +1,7 @@
 node_modules
 dist
 dist-ssr
+cypress/examples
+
+# Don't lint symlinked USWDS files.
+assets

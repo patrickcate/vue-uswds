@@ -1,5 +1,5 @@
 <script setup>
-import { UsaCollectionHeading } from '@/components/UsaCollectionHeading'
+import UsaCollectionHeading from '@/components/UsaCollectionHeading'
 
 defineProps({
   heading: {

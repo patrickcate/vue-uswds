@@ -140,10 +140,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :last-page-aria-label="lastPageAriaLabel"
     :custom-classes="customClasses"
   >
-    <template #previous>${args.previousSlot}</template>
+    <template #previous="{ isFirstPage, toPreviousPage }">${args.previousSlot}</template>
     <template #previousIcon>${args.previousIconSlot}</template>
     <template #previousLabel>${args.previousLabelSlot}</template>
-    <template #next>${args.nextSlot}</template>
+    <template #next="{ isLastPage, toNextPage }">${args.nextSlot}</template>
     <template #nextIcon>${args.nextIconSlot}</template>
     <template #nextLabel>${args.nextLabelSlot}</template>
   </UsaPagination>`,
@@ -225,3 +225,11 @@ CustomIconLabelSlotContentPagination.args = {
 }
 CustomIconLabelSlotContentPagination.storyName =
   'Custom Icon/Label Slot Content'
+
+export const ScopedSlotPagination = DefaultTemplate.bind({})
+ScopedSlotPagination.args = {
+  ...defaultProps,
+  previousSlot: 'is first page: {{ isFirstPage }}',
+  nextSlot: 'is last page: {{ isLastPage }}',
+}
+ScopedSlotPagination.storyName = 'Scoped Slot'

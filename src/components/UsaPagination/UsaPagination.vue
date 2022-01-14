@@ -1,8 +1,8 @@
 <script setup>
 import { computed, toRef } from 'vue'
 import usePagination from '@/composables/usePagination.js'
-import { UsaPaginationArrow } from '@/components/UsaPaginationArrow'
-import { UsaPaginationItem } from '@/components/UsaPaginationItem'
+import UsaPaginationArrow from '@/components/UsaPaginationArrow'
+import UsaPaginationItem from '@/components/UsaPaginationItem'
 
 const emit = defineEmits(['update:currentPage'])
 
