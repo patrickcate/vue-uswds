@@ -149,9 +149,9 @@ HeaderTextBanner.args = {
 }
 HeaderTextBanner.storyName = 'Custom Header Text'
 
-export const ActionTextlBanner = DefaultTemplate.bind({})
-ActionTextlBanner.args = {
+export const ActionTextBanner = DefaultTemplate.bind({})
+ActionTextBanner.args = {
   ...defaultProps,
   actionText: 'Custom action text',
 }
-ActionTextlBanner.storyName = 'Custom Action Text'
+ActionTextBanner.storyName = 'Custom Action Text'

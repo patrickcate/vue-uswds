@@ -35,24 +35,6 @@ describe('UsaModalCloseButton', () => {
       .and('contain', '/test.svg#close')
   })
 
-  it('emit `closeModal` event when clicked', () => {
-    mount(UsaModalCloseButton, {
-      props: {
-        ariaLabel: 'Close Modal',
-      },
-    }).as('wrapper')
-
-    // We need to force the click event since the button is displayed off-screen.
-    cy.get('.usa-modal__close').click({ force: true })
-
-    cy.get('@wrapper')
-      .vue()
-      .then(vm => {
-        expect(vm.emitted()).to.have.property('closeModal')
-        expect(vm.emitted('closeModal')).to.have.length(1)
-      })
-  })
-
   it('shows scoped slot content', () => {
     mount(UsaModalCloseButton, {
       props: {

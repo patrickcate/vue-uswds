@@ -4,8 +4,6 @@ import { SVG_SPRITE_PATH } from '@/utils/constants.js'
 
 const svgSpritePath = inject('vueUswds.svgSpritePath', SVG_SPRITE_PATH)
 
-const emit = defineEmits(['closeModal'])
-
 defineProps({
   ariaLabel: {
     type: String,
@@ -15,11 +13,7 @@ defineProps({
 </script>
 
 <template>
-  <button
-    class="usa-button usa-modal__close"
-    :aria-label="ariaLabel"
-    @click="emit('closeModal')"
-  >
+  <button class="usa-button usa-modal__close" :aria-label="ariaLabel">
     <slot :svgSpritePath="svgSpritePath">
       <svg
         v-if="svgSpritePath"
@@ -28,7 +22,7 @@ defineProps({
         focusable="false"
         role="img"
       >
-        <use v-bind="{ 'xlink:href': `${svgSpritePath}#close}` }"></use>
+        <use v-bind="{ 'xlink:href': `${svgSpritePath}#close` }"></use>
       </svg>
     </slot>
   </button>
