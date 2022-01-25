@@ -21,6 +21,9 @@
     "postinstall": "ln -s node_modules/uswds/dist assets"
   },
   "dependencies": {
+    "@vueuse/components": "^7.5.4",
+    "@vueuse/core": "^7.5.3",
+    "@vueuse/integrations": "^7.5.3",
     "just-kebab-case": "^4.0.0"
   },
   "devDependencies": {
