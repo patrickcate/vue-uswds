@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/patrickcate/vue-uswds/compare/v0.1.0...v0.2.0) (2022-01-25)
+
+
+### Features
+
+* **UsaGraphicList:** implement `UsaGraphicList` component ([635e8cf](https://github.com/patrickcate/vue-uswds/commit/635e8cf7af18a83594fb4b7e3d3ee3f7e6210487)), closes [#37](https://github.com/patrickcate/vue-uswds/issues/37)
+* **UsaGraphicListRow:** implement `UsaGraphicListRow` component ([493d4f4](https://github.com/patrickcate/vue-uswds/commit/493d4f4b1686237f113e207ee7e3dca07fb9e30f)), closes [#38](https://github.com/patrickcate/vue-uswds/issues/38)
+* **UsaLogo:** implement `UsaLogo` component ([167ea3b](https://github.com/patrickcate/vue-uswds/commit/167ea3b2f4590afec8e9e72ea84114d5e48db509)), closes [#50](https://github.com/patrickcate/vue-uswds/issues/50)
+* **UsaModalCloseButton:** implement `UsaModalCloseButton` component ([95ae5bb](https://github.com/patrickcate/vue-uswds/commit/95ae5bb817ad7b2c56cadc3e442d63e506b07907)), closes [#57](https://github.com/patrickcate/vue-uswds/issues/57)
+* **UsaModal:** implement `UsaModal` component ([d382ff4](https://github.com/patrickcate/vue-uswds/commit/d382ff42c4996d483609f08dca6ff81f1957b305)), closes [#56](https://github.com/patrickcate/vue-uswds/issues/56)
+* **UsaOverlay:** implement `UsaOverlay` component ([74989ed](https://github.com/patrickcate/vue-uswds/commit/74989ed9b602bef1f3a5016c8ce9b188a1a949d8)), closes [#58](https://github.com/patrickcate/vue-uswds/issues/58)
+* **UsaSidenav:** implement `UsaSidenav` component ([5e0541b](https://github.com/patrickcate/vue-uswds/commit/5e0541b2df83a1fcee22280bec1ec738911ab95c)), closes [#66](https://github.com/patrickcate/vue-uswds/issues/66)
+* **UsaSidenavItem:** implement `UsaSidenavItem` component ([804f4f4](https://github.com/patrickcate/vue-uswds/commit/804f4f4bd86e6fea681d770c5e069ea5763c4c7b)), closes [#66](https://github.com/patrickcate/vue-uswds/issues/66)
+* **UsaSidenavSublist:** implement `UsaSidenavSublist` component ([a5cbfb8](https://github.com/patrickcate/vue-uswds/commit/a5cbfb87293e7c03650efe3cb7520285a11a8706)), closes [#66](https://github.com/patrickcate/vue-uswds/issues/66)
+
+
+### Bug Fixes
+
+* **UsaPagination:** update preview/next slot bound methods to new name ([8a728fe](https://github.com/patrickcate/vue-uswds/commit/8a728fe7a8ae9e8e638a54ae04a7f0a4b820ff16))
+* **UsaSidenavItem:** add check that item text is set for link ([a306948](https://github.com/patrickcate/vue-uswds/commit/a30694808248ca502058f1c99dbb3e9ce938773c))
+
 ## [0.1.0](https://github.com/patrickcate/vue-uswds/compare/v0.0.0...v0.1.0) (2021-12-21)
 
 
