@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, provide } from 'vue'
 
 const props = defineProps({
   variant: {
@@ -40,6 +40,11 @@ const classes = computed(() => [
     'usa-header--megamenu': props.megamenu,
   },
 ])
+
+provide(
+  'isExtendedHeader',
+  computed(() => props.variant === 'extended')
+)
 </script>
 
 <template>
