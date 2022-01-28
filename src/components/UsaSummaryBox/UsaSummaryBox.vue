@@ -33,6 +33,7 @@ const props = defineProps({
 
 const computedId = computed(() => props.id || nextId('usa-summary-box'))
 </script>
+
 <template>
   <div class="usa-summary-box" role="region" :aria-labelledby="computedId">
     <div class="usa-summary-box__body" :class="[customClasses?.body]">
