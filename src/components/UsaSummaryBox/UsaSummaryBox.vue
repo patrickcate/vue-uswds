@@ -40,11 +40,11 @@ const computedId = computed(() => props.id || nextId('usa-summary-box'))
       <BaseHeading
         :id="computedId"
         class="usa-summary-box__heading"
-        :class="[customClasses?.heading]"
+        :class="customClasses?.heading"
         :tag="headingTag"
         ><slot name="heading">{{ heading }}</slot></BaseHeading
       >
-      <div class="usa-summary-box__text" :class="[customClasses?.text]">
+      <div class="usa-summary-box__text" :class="customClasses?.text">
         <slot></slot>
       </div>
     </div>

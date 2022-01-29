@@ -31,7 +31,7 @@ const computedHeadingTag = computed(
     <BaseHeading
       v-if="heading || $slots.heading"
       class="usa-process-list__heading"
-      :class="customClasses.heading"
+      :class="customClasses?.heading"
       :tag="computedHeadingTag"
       ><slot name="heading">{{ heading }}</slot></BaseHeading
     >

@@ -8,11 +8,11 @@ const props = defineProps({
   },
 })
 
-const classes = computed(() => {
-  return {
+const classes = computed(() => [
+  {
     'usa-button-group--segmented': props.segmented,
-  }
-})
+  },
+])
 </script>
 
 <template>
