@@ -1,10 +1,5 @@
 import UsaIdentiferMoreInfo from './UsaIdentiferMoreInfo.vue'
 
-console.log(UsaIdentiferMoreInfo.props.ariaLabel.default)
-console.log(UsaIdentiferMoreInfo.props.description.default)
-console.log(UsaIdentiferMoreInfo.props.linkText.default)
-console.log(UsaIdentiferMoreInfo.props.linkUrl.default)
-
 const defaultProps = {
   ariaLabel: UsaIdentiferMoreInfo.props.ariaLabel.default,
   description: UsaIdentiferMoreInfo.props.description.default,
