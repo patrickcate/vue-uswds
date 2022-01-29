@@ -4,12 +4,32 @@ const defaultProps = {
   ariaLabel: UsaIdentifierRequiredLinks.props.ariaLabel.default,
   items: [
     {
-      to: '/test-1',
-      text: 'Test link 1',
+      to: '/about-us',
+      text: 'About Us',
     },
     {
-      href: '/test-2',
-      text: 'Test link 2',
+      href: 'https://www.gsa.gov/website-information/accessibility-aids',
+      text: 'Accessibility support',
+    },
+    {
+      href: 'https://www.gsa.gov/reference/freedom-of-information-act-foia',
+      text: 'FOIA requests',
+    },
+    {
+      href: 'https://www.gsa.gov/reference/civil-rights-programs/notification-and-federal-employee-antidiscrimination-and-retaliation-act-of-2002',
+      text: 'No FEAR Act data',
+    },
+    {
+      href: 'https://www.gsaig.gov/',
+      text: 'Office of the Inspector General',
+    },
+    {
+      href: 'https://www.gsa.gov/reference/reports/budget-performance',
+      text: 'Performance reports',
+    },
+    {
+      href: 'https://www.gsa.gov/website-information/website-policies',
+      text: 'Privacy policy',
     },
   ],
 }
