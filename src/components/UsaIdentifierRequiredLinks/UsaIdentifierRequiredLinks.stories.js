@@ -1,7 +1,7 @@
 import UsaIdentifierRequiredLinks from './UsaIdentifierRequiredLinks.vue'
 
 const defaultProps = {
-  ariaLabel: '',
+  ariaLabel: UsaIdentifierRequiredLinks.props.ariaLabel.default,
   items: [
     {
       to: '/test-1',
@@ -27,8 +27,13 @@ export default {
   },
   args: {
     ariaLabel: defaultProps.ariaLabel,
-    items: defaultProps.testLinks,
+    items: defaultProps.items,
   },
+  decorators: [
+    () => ({
+      template: '<div class="usa-identifier"><story /></div>',
+    }),
+  ],
 }
 
 const DefaultTemplate = (args, { argTypes }) => ({
@@ -40,7 +45,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   template: `<UsaIdentifierRequiredLinks
     :aria-label="ariaLabel"
     :items="items"
-  >${args.defaultSlot}</UsaIdentifierRequiredLinks>`,
+  />`,
 })
 
 export const DefaultIdentifierRequiredLinks = DefaultTemplate.bind({})
@@ -54,4 +59,4 @@ CustomAriaLabelIdentifierRequiredLinks.args = {
   ...defaultProps,
   ariaLabel: 'Custom aria label',
 }
-CustomAriaLabelIdentifierRequiredLinks.storyName = 'Custom aria label'
+CustomAriaLabelIdentifierRequiredLinks.storyName = 'Custom Aria Label'
