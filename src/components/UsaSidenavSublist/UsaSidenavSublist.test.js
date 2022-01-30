@@ -26,7 +26,7 @@ describe('UsaSidenavSublist', () => {
     cy.viewport('ipad-mini')
   })
 
-  it('renders the component', () => {
+  it.only('renders the component', () => {
     mount(UsaSidenavSublist, {
       props: {
         items: testItems,
@@ -38,9 +38,15 @@ describe('UsaSidenavSublist', () => {
       },
     })
 
+    cy.get('[data-v-app] > ul.usa-sidenav__sublist').should(
+      'have.class',
+      'test-sublist-class'
+    )
+
+    // Re-Query to make sure async component has rendered.
     cy.get('[data-v-app] > ul.usa-sidenav__sublist')
       .as('sublist-1')
-      .should('have.class', 'test-sublist-class')
+      .should('exist')
 
     cy.get('@sublist-1')
       .find('> li.usa-sidenav__item')
