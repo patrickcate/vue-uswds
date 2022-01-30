@@ -2,7 +2,7 @@
 import { defineAsyncComponent } from 'vue'
 
 // We need to import `UsaSidenavItem` as an async component because it is a
-// circular dependency with the s`UsaSidenavSublist` component.
+// circular dependency with the `UsaSidenavSublist` component.
 const UsaSidenavItem = defineAsyncComponent(() =>
   import('@/components/UsaSidenavItem')
 )
