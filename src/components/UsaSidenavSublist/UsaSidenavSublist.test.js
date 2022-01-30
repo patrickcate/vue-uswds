@@ -26,7 +26,7 @@ describe('UsaSidenavSublist', () => {
     cy.viewport('ipad-mini')
   })
 
-  it.only('renders the component', () => {
+  it('renders the component', () => {
     mount(UsaSidenavSublist, {
       props: {
         items: testItems,
