@@ -54,18 +54,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
 export const DefaultIdentifierMasthead = DefaultTemplate.bind({})
 DefaultIdentifierMasthead.args = {
   ...defaultProps,
-  defaultSlot: `<div class="usa-identifier__logos">
-      <a href="javascript:void(0);" class="usa-identifier__logo">
-        <img class="usa-identifier__logo-img" src="https://designsystem.digital.gov/assets/img/circle-gray-20.svg" alt="Parent agency logo" role="img">
-      </a>
-    </div>
-    <div class="usa-identifier__identity" aria-label="Agency description">
-      <p class="usa-identifier__identity-domain">domain.gov</p>
-      <p class="usa-identifier__identity-disclaimer">
-        An official website of the
-        <a href="javascript:void(0);">Parent agency</a>
-      </p>
-    </div>`,
+  defaultSlot: `Your identifer content here`,
 }
 DefaultIdentifierMasthead.storyName = 'Default'
 
@@ -73,7 +62,7 @@ export const LogosSlotIdentifierMasthead = DefaultTemplate.bind({})
 LogosSlotIdentifierMasthead.args = {
   ...defaultProps,
   logosSlot: `<a href="javascript:void(0);" class="usa-identifier__logo">
-  <img class="usa-identifier__logo-img" src="https://designsystem.digital.gov/assets/img/circle-gray-20.svg" alt="Parent agency logo" role="img">
+  <img class="usa-identifier__logo-img" src="/assets/img/circle-gray-20.svg" alt="Parent agency logo" role="img">
 </a>`,
 }
 LogosSlotIdentifierMasthead.storyName = 'Logos Slot'
@@ -99,7 +88,7 @@ CustomAriaLabelsIdentifierMasthead.args = {
   ariaLabel: 'Custom aria label',
   descriptionAriaLabel: 'Custom description aria label',
   logosSlot: `<a href="javascript:void(0);" class="usa-identifier__logo">
-  <img class="usa-identifier__logo-img" src="https://designsystem.digital.gov/assets/img/circle-gray-20.svg" alt="Parent agency logo" role="img">
+  <img class="usa-identifier__logo-img" src="/assets/img/circle-gray-20.svg" alt="Parent agency logo" role="img">
   </a>`,
   domainSlot: `domain.gov`,
   disclaimerSlot: `An official website of the
