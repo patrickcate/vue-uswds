@@ -19,7 +19,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<ul class="usa-button-group"><UsaButtonGroupItem><button class="usa-button">${args.defaultSlot}</UsaButtonGroupItem></button></ul>`,
+  template: `<ul class="usa-button-group"><UsaButtonGroupItem><button class="usa-button">${args.defaultSlot}</button></UsaButtonGroupItem></ul>`,
 })
 
 export const DefaultButtonGroupItem = DefaultTemplate.bind({})

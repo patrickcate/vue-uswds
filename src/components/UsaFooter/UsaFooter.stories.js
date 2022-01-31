@@ -77,21 +77,21 @@ SlimFooter.args = {
 }
 SlimFooter.storyName = 'Slim'
 
-export const jumpLinkTextFooter = DefaultTemplate.bind({})
-jumpLinkTextFooter.args = {
+export const JumpLinkTextFooter = DefaultTemplate.bind({})
+JumpLinkTextFooter.args = {
   ...defaultProps,
   jumpLinkText: 'Custom jump link text',
   defaultSlot: 'Footer content here',
 }
-jumpLinkTextFooter.storyName = 'Jump Link Text'
+JumpLinkTextFooter.storyName = 'Jump Link Text'
 
-export const jumpLinkSlotFooter = DefaultTemplate.bind({})
-jumpLinkSlotFooter.args = {
+export const JumpLinkSlotFooter = DefaultTemplate.bind({})
+JumpLinkSlotFooter.args = {
   ...defaultProps,
   defaultSlot: 'Footer content here',
   jumpLinkSlot: 'Jump link slot',
 }
-jumpLinkSlotFooter.storyName = 'Jump Link Slot'
+JumpLinkSlotFooter.storyName = 'Jump Link Slot'
 
 export const CustomClassesFooter = DefaultTemplate.bind({})
 CustomClassesFooter.args = {

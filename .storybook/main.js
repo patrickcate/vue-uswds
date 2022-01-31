@@ -7,6 +7,7 @@ module.exports = {
   core: {
     builder: 'storybook-builder-vite',
   },
+  framework: '@storybook/vue3',
   async viteFinal(config, { configType }) {
     const { config: userConfig } = await loadConfigFromFile(
       path.resolve(__dirname, '../vite.config.ts')
