@@ -38,18 +38,12 @@ describe('UsaSidenavSublist', () => {
       },
     })
 
-    cy.get('[data-v-app] > ul.usa-sidenav__sublist').should(
-      'have.class',
-      'test-sublist-class'
-    )
-
-    // Re-Query to make sure async component has rendered.
-    cy.get('[data-v-app] > ul.usa-sidenav__sublist')
+    cy.get('ul.usa-sidenav__sublist')
       .as('sublist-1')
-      .should('exist')
+      .should('have.class', 'test-sublist-class')
 
     cy.get('@sublist-1')
-      .find('> li.usa-sidenav__item')
+      .find('> li.usa-sidenav__item', { timeout: 5000 })
       .should('have.class', 'test-item-class')
       .should('have.length', 2)
 
