@@ -4,6 +4,7 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
+    'plugin:storybook/recommended',
     'plugin:cypress/recommended',
     'plugin:vue/vue3-recommended',
     'plugin:prettier/recommended',
