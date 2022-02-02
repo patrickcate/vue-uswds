@@ -21,5 +21,7 @@ defineProps({
 </script>
 
 <template>
-  <BaseLink :href="anchor" class="usa-skipnav"><slot></slot></BaseLink>
+  <BaseLink :href="anchor" class="usa-skipnav"
+    ><slot>Skip to main content</slot></BaseLink
+  >
 </template>
