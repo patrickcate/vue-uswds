@@ -8,14 +8,11 @@ describe('UsaSkipnav', () => {
       props: {
         anchor: '#main-content',
       },
-      slots: {
-        default: () => 'Test skip link',
-      },
     })
 
     cy.get('.usa-skipnav')
       .as('skiplink')
-      .should('contain', 'Test skip link')
+      .should('contain', 'Skip to main content')
       .and('have.class', 'usa-skipnav')
       .and('have.attr', 'href')
       .and('contain', '#main-content')
@@ -40,6 +37,19 @@ describe('UsaSkipnav', () => {
       .and('have.css', 'position', 'absolute')
       .and('have.css', 'left', '0px')
       .and('have.css', 'top', '-60.8px')
+  })
+
+  it('uses custom slot content', () => {
+    mount(UsaSkipnav, {
+      props: {
+        anchor: '#main-content',
+      },
+      slots: {
+        default: () => 'Test skip link',
+      },
+    })
+
+    cy.get('.usa-skipnav').should('contain', 'Test skip link')
   })
 
   it('warns in console about invalid anchor prop value', () => {
