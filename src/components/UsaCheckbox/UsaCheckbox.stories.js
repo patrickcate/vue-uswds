@@ -36,6 +36,12 @@ export default {
     },
   },
   args: {
+    tile: defaultProps.tile,
+    modelValue: defaultProps.modelValue,
+    label: defaultProps.label,
+    description: defaultProps.description,
+    id: defaultProps.id,
+    customClasses: defaultProps.customClasses,
     defaultSlot: '',
     descriptionSlot: '',
   },
@@ -54,6 +60,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :id="id"
     :custom-classes="customClasses"
     v-model="modelValue"
+    v-bind="$attrs"
   >
     <template #default>${args.defaultSlot}</template>
     <template #description>${args.descriptionSlot}</template>
