@@ -16,8 +16,8 @@ const props = defineProps({
     default: false,
   },
   modelValue: {
-    type: Boolean,
-    default: false,
+    type: undefined,
+    default: '',
   },
   label: {
     type: String,
@@ -43,42 +43,42 @@ const props = defineProps({
   },
 })
 
-const computedId = computed(() => props.id || nextId('usa-checkbox'))
+const computedId = computed(() => props.id || nextId('usa-radio'))
 
-const checkboxValue = computed({
+const radioValue = computed({
   get() {
     return props.modelValue
   },
-  set(checked) {
-    emit('update:modelValue', checked)
+  set(value) {
+    emit('update:modelValue', value)
   },
 })
 
 const classes = computed(() => [
   {
-    'usa-checkbox__input--tile': props.tile,
+    'usa-radio__input--tile': props.tile,
   },
 ])
 </script>
 
 <template>
-  <div class="usa-checkbox" :class="customClasses?.component">
+  <div class="usa-radio" :class="customClasses?.component">
     <input
       :id="computedId"
-      v-model="checkboxValue"
-      class="usa-checkbox__input"
-      type="checkbox"
+      v-model="radioValue"
+      class="usa-radio__input"
+      type="radio"
       :class="classes"
       v-bind="$attrs"
     />
     <label
-      class="usa-checkbox__label"
-      :class="customClasses?.label"
       :htmlFor="computedId"
+      class="usa-radio__label"
+      :class="customClasses?.label"
       ><slot>{{ label }}</slot>
       <span
         v-if="description || $slots.description"
-        class="usa-checkbox__label-description"
+        class="usa-radio__label-description"
         :class="customClasses?.description"
         ><slot name="description">{{ description }}</slot></span
       >

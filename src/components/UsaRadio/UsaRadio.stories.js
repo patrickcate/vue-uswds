@@ -1,23 +1,23 @@
-import UsaCheckbox from './UsaCheckbox.vue'
+import UsaRadio from './UsaRadio.vue'
 
 const defaultProps = {
-  tile: UsaCheckbox.props.tile.default,
-  modelValue: UsaCheckbox.props.modelValue.default,
-  label: UsaCheckbox.props.label.default,
-  description: UsaCheckbox.props.description.default,
-  id: UsaCheckbox.props.id.default,
-  customClasses: UsaCheckbox.props.customClasses.default(),
+  tile: UsaRadio.props.tile.default,
+  modelValue: UsaRadio.props.modelValue.default,
+  label: UsaRadio.props.label.default,
+  description: UsaRadio.props.description.default,
+  id: UsaRadio.props.id.default,
+  customClasses: UsaRadio.props.customClasses.default(),
 }
 
 export default {
-  component: UsaCheckbox,
-  title: 'Components/UsaCheckbox',
+  component: UsaRadio,
+  title: 'Components/UsaRadio',
   argTypes: {
     tile: {
       control: { type: 'boolean' },
     },
     modelValue: {
-      control: { type: 'boolean' },
+      control: { type: 'text' },
     },
     label: {
       control: { type: 'text' },
@@ -48,12 +48,12 @@ export default {
 }
 
 const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaCheckbox },
+  components: { UsaRadio },
   props: Object.keys(argTypes),
   setup() {
     return { ...args }
   },
-  template: `<UsaCheckbox
+  template: `<UsaRadio
     :tile="tile"
     :label="label"
     :description="description"
@@ -64,86 +64,86 @@ const DefaultTemplate = (args, { argTypes }) => ({
   >
     <template #default>${args.defaultSlot}</template>
     <template #description>${args.descriptionSlot}</template>
-  </UsaCheckbox>`,
+  </UsaRadio>`,
 })
 
-export const DefaultCheckbox = DefaultTemplate.bind({})
-DefaultCheckbox.args = {
+export const DefaultRadio = DefaultTemplate.bind({})
+DefaultRadio.args = {
   ...defaultProps,
   label: 'Sojourner Truth',
 }
-DefaultCheckbox.storyName = 'Default'
+DefaultRadio.storyName = 'Default'
 
-export const WithDescriptionCheckbox = DefaultTemplate.bind({})
-WithDescriptionCheckbox.args = {
+export const WithDescriptionRadio = DefaultTemplate.bind({})
+WithDescriptionRadio.args = {
   ...defaultProps,
   label: 'Sojourner Truth',
   description:
     'This is optional text that can be used to describe the label in more detail.',
 }
-WithDescriptionCheckbox.storyName = 'Default w/ Description'
+WithDescriptionRadio.storyName = 'Default w/ Description'
 
-export const CheckedByDefaultCheckbox = DefaultTemplate.bind({})
-CheckedByDefaultCheckbox.args = {
+export const CheckedByDefaultRadio = DefaultTemplate.bind({})
+CheckedByDefaultRadio.args = {
   ...defaultProps,
   label: 'Sojourner Truth',
-  modelValue: true,
+  checked: true,
 }
-CheckedByDefaultCheckbox.storyName = 'Checked by Default'
+CheckedByDefaultRadio.storyName = 'Checked by Default'
 
-export const TileCheckbox = DefaultTemplate.bind({})
-TileCheckbox.args = {
+export const TileRadio = DefaultTemplate.bind({})
+TileRadio.args = {
   ...defaultProps,
   label: 'Sojourner Truth',
   tile: true,
 }
-TileCheckbox.storyName = 'Tile'
+TileRadio.storyName = 'Tile'
 
-export const TileWithDescriptionCheckbox = DefaultTemplate.bind({})
-TileWithDescriptionCheckbox.args = {
+export const TileWithDescriptionRadio = DefaultTemplate.bind({})
+TileWithDescriptionRadio.args = {
   ...defaultProps,
   label: 'Sojourner Truth',
   tile: true,
   description:
     'This is optional text that can be used to describe the label in more detail.',
 }
-TileWithDescriptionCheckbox.storyName = 'Tile w/ Description'
+TileWithDescriptionRadio.storyName = 'Tile w/ Description'
 
-export const TileCheckedByDefaultCheckbox = DefaultTemplate.bind({})
-TileCheckedByDefaultCheckbox.args = {
+export const TileCheckedByDefaultRadio = DefaultTemplate.bind({})
+TileCheckedByDefaultRadio.args = {
   ...defaultProps,
   label: 'Sojourner Truth',
   tile: true,
-  modelValue: true,
+  checked: true,
 }
-TileCheckedByDefaultCheckbox.storyName = 'Tile Checked by Default'
+TileCheckedByDefaultRadio.storyName = 'Tile Checked by Default'
 
-export const LabelSlotCheckbox = DefaultTemplate.bind({})
-LabelSlotCheckbox.args = {
+export const LabelSlotRadio = DefaultTemplate.bind({})
+LabelSlotRadio.args = {
   ...defaultProps,
   label: 'Sojourner Truth',
   defaultSlot: 'Custom label slot content',
 }
-LabelSlotCheckbox.storyName = 'Label Slot'
+LabelSlotRadio.storyName = 'Label Slot'
 
-export const DescriptionSlotCheckbox = DefaultTemplate.bind({})
-DescriptionSlotCheckbox.args = {
+export const DescriptionSlotRadio = DefaultTemplate.bind({})
+DescriptionSlotRadio.args = {
   ...defaultProps,
   label: 'Sojourner Truth',
   descriptionSlot: 'Custom description slot content',
 }
-DescriptionSlotCheckbox.storyName = 'Description Slot'
+DescriptionSlotRadio.storyName = 'Description Slot'
 
-export const CustomIdCheckbox = DefaultTemplate.bind({})
-CustomIdCheckbox.args = {
+export const CustomIdRadio = DefaultTemplate.bind({})
+CustomIdRadio.args = {
   ...defaultProps,
   label: 'Sojourner Truth',
   id: 'custom-id',
 }
-CustomIdCheckbox.storyName = 'Custom ID'
+CustomIdRadio.storyName = 'Custom ID'
 
-export const CustomClassesCheckbox = DefaultTemplate.bind({})
-CustomClassesCheckbox.args = {
+export const CustomClassesRadio = DefaultTemplate.bind({})
+CustomClassesRadio.args = {
   ...defaultProps,
   label: 'Sojourner Truth',
   customClasses: {
@@ -152,4 +152,4 @@ CustomClassesCheckbox.args = {
     description: ['test-description-class'],
   },
 }
-CustomClassesCheckbox.storyName = 'Custom CSS Classes'
+CustomClassesRadio.storyName = 'Custom CSS Classes'
