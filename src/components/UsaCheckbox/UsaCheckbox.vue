@@ -45,7 +45,7 @@ const props = defineProps({
 
 const computedId = computed(() => props.id || nextId('usa-checkbox'))
 
-const isChecked = computed({
+const checkboxValue = computed({
   get() {
     return props.modelValue
   },
@@ -65,7 +65,7 @@ const classes = computed(() => [
   <div class="usa-checkbox" :class="customClasses?.component">
     <input
       :id="computedId"
-      v-model="isChecked"
+      v-model="checkboxValue"
       class="usa-checkbox__input"
       type="checkbox"
       :class="classes"
