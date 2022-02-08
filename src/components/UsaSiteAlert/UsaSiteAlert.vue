@@ -1,7 +1,6 @@
 <script setup>
 import { computed } from 'vue'
 import UsaAlert from '@/components/UsaAlert'
-import { slotHasContent } from '@/utils/slots.js'
 
 const props = defineProps({
   variant: {
@@ -73,10 +72,10 @@ const classes = computed(() => [
       :heading-tag="headingTag"
       :custom-classes="customClasses"
     >
-      <template v-if="slotHasContent($slots.heading)" #heading
+      <template v-if="$slots.heading" #heading
         ><slot name="heading">{{ heading }}</slot></template
       >
-      <template v-if="slotHasContent($slots.message)" #message>
+      <template v-if="$slots.message" #message>
         <slot name="message"></slot>
       </template>
       <template v-else #default><slot></slot></template>

@@ -31,7 +31,7 @@ describe('UsaCollectionItem', () => {
     ]
   )
 
-  it.only('renders the component', () => {
+  it('renders the component', () => {
     mount(UsaCollectionItem, {
       props: {
         href: testHref,
