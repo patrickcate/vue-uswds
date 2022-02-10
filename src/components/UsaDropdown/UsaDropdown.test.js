@@ -117,12 +117,10 @@ describe('UsaDropdown', () => {
       .should('contain', 'Test error slot')
       .and('have.id', 'custom-id-error-message')
 
-    cy.get('@hint').should('not.exist')
-
     cy.get('@select')
       .should('have.class', 'usa-input--error')
       .and('have.attr', 'aria-describedby')
-      .and('contain', 'custom-id-error-message')
+      .and('contain', 'custom-id-hint custom-id-error-message')
   })
 
   it('renders all select options from `options` prop', () => {

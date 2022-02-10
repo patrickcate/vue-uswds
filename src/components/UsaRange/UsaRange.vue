@@ -13,13 +13,13 @@ const slots = useSlots()
 const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps({
-  options: {
-    type: Array,
-    default: () => [],
+  min: {
+    type: Number,
+    default: 0,
   },
-  emptyLabel: {
-    type: String,
-    default: '- Select -',
+  max: {
+    type: Number,
+    default: 100,
   },
   modelValue: {
     type: undefined,
@@ -58,7 +58,7 @@ const computedErrorMessageId = computed(
 )
 const computedHintId = computed(() => `${computedId.value}-hint`)
 
-const selectedValue = computed({
+const rangeValue = computed({
   get() {
     return props.modelValue
   },
@@ -110,39 +110,21 @@ const ariaDescribedby = computed(() => {
       ><slot name="error-message"></slot
     ></span>
 
-    <select
+    <input
       :id="computedId"
-      v-model="selectedValue"
-      class="usa-select"
+      v-model="rangeValue"
+      class="usa-range"
       :class="classes"
+      type="range"
+      role="slider"
+      :min="min"
+      :max="max"
+      :aria-valuemin="min"
+      :aria-valuemax="max"
+      :aria-valuenow="rangeValue"
       :required="required"
       :aria-describedby="ariaDescribedby"
       v-bind="$attrs"
-    >
-      <option v-if="options.length" value="">{{ emptyLabel }}</option>
-      <slot :options="options">
-        <template v-for="option in options" :key="option.value || option.group">
-          <option
-            v-if="!option.group"
-            :value="option.value"
-            :disabled="option.disabled"
-            >{{ option.text || option.value }}</option
-          >
-          <optgroup
-            v-else-if="option.group && option.options.length"
-            :label="option.group"
-            :disabled="option.disabled"
-          >
-            <option
-              v-for="groupedOption in option.options"
-              :key="groupedOption.value"
-              :value="groupedOption.value"
-              :disabled="groupedOption.disabled"
-              >{{ groupedOption.text || groupedOption.value }}</option
-            >
-          </optgroup>
-        </template>
-      </slot>
-    </select>
+    />
   </div>
 </template>
