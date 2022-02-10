@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/patrickcate/vue-uswds/compare/v0.2.0...v0.3.0) (2022-02-10)
+
+
+### Features
+
+* **UsaCheckbox:** implement `UsaCheckbox` component ([1ca165b](https://github.com/patrickcate/vue-uswds/commit/1ca165b977a3fda895e2468a716fc67d3e76e705)), closes [#17](https://github.com/patrickcate/vue-uswds/issues/17)
+* **UsaDropdown:** implement `UsaDropdown` component ([8289723](https://github.com/patrickcate/vue-uswds/commit/8289723700defa1fa316195b619ffe8eecc10cf4)), closes [#25](https://github.com/patrickcate/vue-uswds/issues/25)
+* **UsaFooter:** implement `UsaFooter` component ([a781e46](https://github.com/patrickcate/vue-uswds/commit/a781e464c24cd6f4c3fa8b64e2d5a6521dde8bfc)), closes [#27](https://github.com/patrickcate/vue-uswds/issues/27)
+* **UsaHeader:** implement `UsaHeader` component ([b0f9b2c](https://github.com/patrickcate/vue-uswds/commit/b0f9b2cca9024f7fb13d0ee9325486e0d3163fad)), closes [#39](https://github.com/patrickcate/vue-uswds/issues/39)
+* **UsaIdentiferMoreInfo:** implement `UsaIdentifierMoreInfo` component ([baae042](https://github.com/patrickcate/vue-uswds/commit/baae042f73083a0d4739afd2f89a1d0aa31b01e9)), closes [#45](https://github.com/patrickcate/vue-uswds/issues/45)
+* **UsaIdentifier:** implement `UsaIdentifier` component ([4246671](https://github.com/patrickcate/vue-uswds/commit/42466718d219baace0d5f9584f4751c1b9b018ad)), closes [#43](https://github.com/patrickcate/vue-uswds/issues/43)
+* **UsaIdentifierLogo:** implement `UsaIdentifierLogo` component ([84103dc](https://github.com/patrickcate/vue-uswds/commit/84103dc0074baa2ca155c2b5aa485f3e2144df6a))
+* **UsaIdentifierMasthead:** implement `UsaIdentifierMasthead` component ([8b43e68](https://github.com/patrickcate/vue-uswds/commit/8b43e68ed9f99e6f8c8b432ad8bbdf5afcbc8a37))
+* **UsaIdentifierRequiredLinks:** implement `UsaIdentifierRequiredLinks` component ([eb644ae](https://github.com/patrickcate/vue-uswds/commit/eb644ae0cb1ac3d991be18afd378400dcdcd3265)), closes [#44](https://github.com/patrickcate/vue-uswds/issues/44)
+* **UsaNavSecondary:** implement `UsaNavSecondary` component ([7210f7b](https://github.com/patrickcate/vue-uswds/commit/7210f7ba772b1451bb7bccd4261aa020146c27eb)), closes [#88](https://github.com/patrickcate/vue-uswds/issues/88)
+* **UsaRadio:** implement `UsaRadio` component ([911e33b](https://github.com/patrickcate/vue-uswds/commit/911e33b9e3b24803c04561aa4ee03afab25a679b)), closes [#63](https://github.com/patrickcate/vue-uswds/issues/63)
+* **UsaRange:** implement `UsaRange` component ([11dc0cd](https://github.com/patrickcate/vue-uswds/commit/11dc0cd16c2e04aee0b63f950a2eb522e3cec0ac)), closes [#64](https://github.com/patrickcate/vue-uswds/issues/64)
+* **UsaSkipnav:** add default slot content ([6bbc099](https://github.com/patrickcate/vue-uswds/commit/6bbc099969c286d83e84264b7d244188057ca1ed))
+
+
+### Bug Fixes
+
+* **UsaDropdown:** hint and error message can be displayed at same time ([183548e](https://github.com/patrickcate/vue-uswds/commit/183548ea11c14a64101fb2ea82ebf0afa784bbf1))
+
 ## [0.2.0](https://github.com/patrickcate/vue-uswds/compare/v0.1.0...v0.2.0) (2022-01-25)
 
 
