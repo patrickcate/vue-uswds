@@ -75,13 +75,17 @@ const formGroupClasses = computed(() => [
 ])
 
 const ariaDescribedby = computed(() => {
-  if (props.error && slots['error-message']) {
-    return computedErrorMessageId.value
-  } else if (slots.hint) {
-    return computedHintId.value
+  const ids = []
+
+  if (slots.hint) {
+    ids.push(computedHintId.value)
   }
 
-  return null
+  if (props.error && slots['error-message']) {
+    ids.push(computedErrorMessageId.value)
+  }
+
+  return ids.length ? ids.join(' ') : null
 })
 </script>
 
@@ -95,15 +99,15 @@ const ariaDescribedby = computed(() => {
       ><slot name="label">{{ label }}</slot></UsaLabel
     >
 
+    <span v-if="$slots.hint" :id="computedHintId" class="usa-hint"
+      ><slot name="hint"></slot
+    ></span>
+
     <span
       v-if="error && $slots['error-message']"
       :id="computedErrorMessageId"
       class="usa-error-message"
       ><slot name="error-message"></slot
-    ></span>
-
-    <span v-else-if="$slots.hint" :id="computedHintId" class="usa-hint"
-      ><slot name="hint"></slot
     ></span>
 
     <select
