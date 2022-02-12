@@ -52,7 +52,7 @@ const props = defineProps({
   },
 })
 
-const computedId = computed(() => props.id || nextId('usa-dropdown'))
+const computedId = computed(() => props.id || nextId('usa-range'))
 const computedErrorMessageId = computed(
   () => `${computedId.value}-error-message`
 )
