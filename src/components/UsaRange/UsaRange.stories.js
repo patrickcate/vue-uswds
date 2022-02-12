@@ -62,6 +62,11 @@ export default {
     hintSlot: '',
     errorMessageSlot: '',
   },
+  decorators: [
+    () => ({
+      template: '<div class="usa-form usa-form--large"><story /></div>',
+    }),
+  ],
 }
 
 const DefaultTemplate = (args, { argTypes }) => ({
