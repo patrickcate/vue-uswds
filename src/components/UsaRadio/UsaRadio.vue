@@ -64,12 +64,12 @@ const classes = computed(() => [
 <template>
   <div class="usa-radio" :class="customClasses?.component">
     <input
+      v-bind="$attrs"
       :id="computedId"
       v-model="radioValue"
       class="usa-radio__input"
       type="radio"
       :class="classes"
-      v-bind="$attrs"
     />
     <label
       :htmlFor="computedId"

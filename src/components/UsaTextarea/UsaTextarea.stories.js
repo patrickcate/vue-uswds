@@ -88,6 +88,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaTextarea
+    v-bind="$attrs"
     :width="width"
     :label="label"
     :required="required"
@@ -95,7 +96,6 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :id="id"
     :custom-classes="customClasses"
     v-model="modelValue"
-    v-bind="$attrs"
   >
     <template #label>${args.labelSlot}</template>
     <template #hint>${args.hintSlot}</template>

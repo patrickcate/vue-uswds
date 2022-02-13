@@ -59,13 +59,13 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaCheckbox
+    v-bind="$attrs"
     :tile="tile"
     :label="label"
     :description="description"
     :id="id"
     :custom-classes="customClasses"
     v-model="modelValue"
-    v-bind="$attrs"
   >
     <template #default>${args.defaultSlot}</template>
     <template #description>${args.descriptionSlot}</template>

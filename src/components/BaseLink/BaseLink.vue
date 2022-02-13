@@ -64,8 +64,8 @@ export default {
 </script>
 
 <template>
-  <a v-if="isExternalLink" :href="href" v-bind="$attrs"><slot></slot></a>
-  <component :is="linkComponent" v-else :to="to" v-bind="$attrs"
+  <a v-if="isExternalLink" v-bind="$attrs" :href="href"><slot></slot></a>
+  <component :is="linkComponent" v-else v-bind="$attrs" :to="to"
     ><slot></slot
   ></component>
 </template>

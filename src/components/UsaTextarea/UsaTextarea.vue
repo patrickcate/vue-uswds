@@ -138,13 +138,13 @@ const ariaDescribedby = computed(() => {
     ></span>
 
     <textarea
+      v-bind="$attrs"
       :id="computedId"
       v-model="textareaValue"
       class="usa-textarea"
       :class="classes"
       :required="required"
       :aria-describedby="ariaDescribedby"
-      v-bind="$attrs"
     />
   </div>
 </template>

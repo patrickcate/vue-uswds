@@ -69,11 +69,11 @@ const classes = computed(() => [
 
 <template>
   <button
+    v-bind="$attrs"
     class="usa-button"
     :class="classes"
     :type="type"
     :disabled="disabled"
-    v-bind="$attrs"
   >
     <slot name="before"></slot>
     <slot></slot>
