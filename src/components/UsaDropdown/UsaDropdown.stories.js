@@ -128,6 +128,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaDropdown
+    v-bind="$attrs"
     :options="options"
     :empty-label="emptyLabel"
     :label="label"
@@ -136,12 +137,15 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :id="id"
     :custom-classes="customClasses"
     v-model="modelValue"
-    v-bind="$attrs"
   >
-    <template #label>${args.labelSlot}</template>
-    <template #default="{ options }">${args.defaultSlot}</template>
-    <template #hint>${args.hintSlot}</template>
-    <template #error-message>${args.errorMessageSlot}</template>
+    <template v-if="${!!args.labelSlot}" #label>${args.labelSlot}</template>
+    <template v-if="${!!args.defaultSlot}" #default="{ options }">${
+    args.defaultSlot
+  }</template>
+    <template v-if="${!!args.hintSlot}" #hint>${args.hintSlot}</template>
+    <template v-if="${!!args.errorMessageSlot}" #error-message>${
+    args.errorMessageSlot
+  }</template>
   </UsaDropdown>`,
 })
 

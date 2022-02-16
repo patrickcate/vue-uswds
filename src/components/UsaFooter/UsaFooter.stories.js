@@ -49,8 +49,12 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :jump-link-text="jumpLinkText"
     :custom-classes="customClasses"
   >
-    <template #jump-link>${args.jumpLinkSlot}</template>
-    <template #default>${args.defaultSlot}</template>
+    <template v-if="${!!args.jumpLinkSlot}" #jump-link>${
+    args.jumpLinkSlot
+  }</template>
+    <template v-if="${!!args.defaultSlot}" #default>${
+    args.defaultSlot
+  }</template>
   </UsaFooter>`,
 })
 

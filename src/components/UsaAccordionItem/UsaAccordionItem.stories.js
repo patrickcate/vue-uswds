@@ -53,8 +53,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
   },
   template: `<UsaAccordion>
     <UsaAccordionItem :id="id" :label="label" :open="open" :custom-classes="customClasses">
-      <template #label>${args.labelSlot}</template>
-      <template #default>${args.defaultSlot}</template>
+      <template v-if="${!!args.labelSlot}" #label>${args.labelSlot}</template>
+      <template v-if="${!!args.defaultSlot}" #default>${
+    args.defaultSlot
+  }</template>
     </UsaAccordionItem>
   </UsaAccordion>`,
 })

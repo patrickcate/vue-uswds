@@ -146,8 +146,8 @@ onClickOutside(modal, () => {
       :class="[`${focusTrapClass}`, customClasses?.focusTrap]"
     >
       <div
-        :id="`${computedId}-modal`"
         v-bind="$attrs"
+        :id="`${computedId}-modal`"
         class="usa-modal-wrapper"
         :class="classes"
         role="dialog"

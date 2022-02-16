@@ -111,6 +111,7 @@ const ariaDescribedby = computed(() => {
     ></span>
 
     <input
+      v-bind="$attrs"
       :id="computedId"
       v-model="rangeValue"
       class="usa-range"
@@ -124,7 +125,6 @@ const ariaDescribedby = computed(() => {
       :aria-valuenow="rangeValue"
       :required="required"
       :aria-describedby="ariaDescribedby"
-      v-bind="$attrs"
     />
   </div>
 </template>

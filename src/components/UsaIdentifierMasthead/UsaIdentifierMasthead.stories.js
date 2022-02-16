@@ -44,10 +44,14 @@ const DefaultTemplate = (args, { argTypes }) => ({
   template: `<UsaIdentifierMasthead
     :aria-label="ariaLabel" :description-aria-label="descriptionAriaLabel"
   >
-    <template #default>${args.defaultSlot}</template>
-    <template #logos>${args.logosSlot}</template>
-    <template #domain>${args.domainSlot}</template>
-    <template #disclaimer>${args.disclaimerSlot}</template>
+    <template v-if="${!!args.defaultSlot}" #default>${
+    args.defaultSlot
+  }</template>
+    <template v-if="${!!args.logosSlot}" #logos>${args.logosSlot}</template>
+    <template v-if="${!!args.domainSlot}" #domain>${args.domainSlot}</template>
+    <template v-if="${!!args.disclaimerSlot}" #disclaimer>${
+    args.disclaimerSlot
+  }</template>
   </UsaIdentifierMasthead>`,
 })
 

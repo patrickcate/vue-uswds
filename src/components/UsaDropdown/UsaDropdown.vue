@@ -111,13 +111,13 @@ const ariaDescribedby = computed(() => {
     ></span>
 
     <select
+      v-bind="$attrs"
       :id="computedId"
       v-model="selectedValue"
       class="usa-select"
       :class="classes"
       :required="required"
       :aria-describedby="ariaDescribedby"
-      v-bind="$attrs"
     >
       <option v-if="options.length" value="">{{ emptyLabel }}</option>
       <slot :options="options">

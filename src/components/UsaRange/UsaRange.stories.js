@@ -76,6 +76,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaRange
+    v-bind="$attrs"
     :min="min"
     :max="max"
     :label="label"
@@ -84,11 +85,12 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :id="id"
     :custom-classes="customClasses"
     v-model="modelValue"
-    v-bind="$attrs"
   >
-    <template #label>${args.labelSlot}</template>
-    <template #hint>${args.hintSlot}</template>
-    <template #error-message>${args.errorMessageSlot}</template>
+    <template v-if="${!!args.labelSlot}" #label>${args.labelSlot}</template>
+    <template v-if="${!!args.hintSlot}" #hint>${args.hintSlot}</template>
+    <template v-if="${!!args.errorMessageSlot}" #error-message>${
+    args.errorMessageSlot
+  }</template>
   </UsaRange>`,
 })
 

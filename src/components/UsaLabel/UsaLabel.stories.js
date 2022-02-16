@@ -40,7 +40,11 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args, labelFor: args.for }
   },
-  template: `<UsaLabel :for="labelFor" :required="required" :error="error"><template #default>${args.defaultSlot}</template><template #required>${args.requiredSlot}</template></UsaLabel>`,
+  template: `<UsaLabel :for="labelFor" :required="required" :error="error"><template v-if="${!!args.disclaimerSlot}" #default>${
+    args.defaultSlot
+  }</template><template v-if="${!!args.requiredSlot}" #required>${
+    args.requiredSlot
+  }</template></UsaLabel>`,
 })
 
 export const DefaultLabel = DefaultTemplate.bind({})
