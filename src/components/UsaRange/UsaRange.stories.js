@@ -62,6 +62,11 @@ export default {
     hintSlot: '',
     errorMessageSlot: '',
   },
+  decorators: [
+    () => ({
+      template: '<div class="usa-form usa-form--large"><story /></div>',
+    }),
+  ],
 }
 
 const DefaultTemplate = (args, { argTypes }) => ({
@@ -71,6 +76,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaRange
+    v-bind="$attrs"
     :min="min"
     :max="max"
     :label="label"
@@ -79,7 +85,6 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :id="id"
     :custom-classes="customClasses"
     v-model="modelValue"
-    v-bind="$attrs"
   >
     <template #label>${args.labelSlot}</template>
     <template #hint>${args.hintSlot}</template>

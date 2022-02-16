@@ -13,13 +13,29 @@ const slots = useSlots()
 const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps({
-  min: {
-    type: Number,
-    default: 0,
-  },
-  max: {
-    type: Number,
-    default: 100,
+  width: {
+    type: String,
+    default: '',
+    validator(width) {
+      const isValidWidth = [
+        '',
+        '2xs',
+        'xs',
+        'sm',
+        'small',
+        'md',
+        'medium',
+        'lg',
+        'xl',
+        '2xl',
+      ].includes(width)
+
+      if (!isValidWidth) {
+        console.warn(`'${width}' is not a valid textarea width`)
+      }
+
+      return isValidWidth
+    },
   },
   modelValue: {
     type: undefined,
@@ -52,13 +68,13 @@ const props = defineProps({
   },
 })
 
-const computedId = computed(() => props.id || nextId('usa-range'))
+const computedId = computed(() => props.id || nextId('usa-textarea'))
 const computedErrorMessageId = computed(
   () => `${computedId.value}-error-message`
 )
 const computedHintId = computed(() => `${computedId.value}-hint`)
 
-const rangeValue = computed({
+const textareaValue = computed({
   get() {
     return props.modelValue
   },
@@ -67,7 +83,18 @@ const rangeValue = computed({
   },
 })
 
-const classes = computed(() => [{ 'usa-input--error': props.error }])
+const classes = computed(() => [
+  { 'usa-input--error': props.error },
+  { 'usa-input--2xs': props.width === '2xs' },
+  { 'usa-input--xs': props.width === 'xs' },
+  { 'usa-input--sm': props.width === 'sm' },
+  { 'usa-input--small': props.width === 'small' },
+  { 'usa-input--md': props.width === 'md' },
+  { 'usa-input--medium': props.width === 'medium' },
+  { 'usa-input--lg': props.width === 'lg' },
+  { 'usa-input--xl': props.width === 'xl' },
+  { 'usa-input--2xl': props.width === '2xl' },
+])
 
 const formGroupClasses = computed(() => [
   { 'usa-form-group--error': props.error },
@@ -110,19 +137,12 @@ const ariaDescribedby = computed(() => {
       ><slot name="error-message"></slot
     ></span>
 
-    <input
+    <textarea
       v-bind="$attrs"
       :id="computedId"
-      v-model="rangeValue"
-      class="usa-range"
+      v-model="textareaValue"
+      class="usa-textarea"
       :class="classes"
-      type="range"
-      role="slider"
-      :min="min"
-      :max="max"
-      :aria-valuemin="min"
-      :aria-valuemax="max"
-      :aria-valuenow="rangeValue"
       :required="required"
       :aria-describedby="ariaDescribedby"
     />

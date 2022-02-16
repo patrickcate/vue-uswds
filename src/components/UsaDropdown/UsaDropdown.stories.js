@@ -114,6 +114,11 @@ export default {
     hintSlot: '',
     errorMessageSlot: '',
   },
+  decorators: [
+    () => ({
+      template: '<div class="usa-form usa-form--large"><story /></div>',
+    }),
+  ],
 }
 
 const DefaultTemplate = (args, { argTypes }) => ({
@@ -123,6 +128,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaDropdown
+    v-bind="$attrs"
     :options="options"
     :empty-label="emptyLabel"
     :label="label"
@@ -131,7 +137,6 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :id="id"
     :custom-classes="customClasses"
     v-model="modelValue"
-    v-bind="$attrs"
   >
     <template #label>${args.labelSlot}</template>
     <template #default="{ options }">${args.defaultSlot}</template>

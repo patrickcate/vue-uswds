@@ -45,6 +45,11 @@ export default {
     defaultSlot: '',
     descriptionSlot: '',
   },
+  decorators: [
+    () => ({
+      template: '<div class="usa-form usa-form--large"><story /></div>',
+    }),
+  ],
 }
 
 const DefaultTemplate = (args, { argTypes }) => ({
@@ -54,13 +59,13 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaRadio
+    v-bind="$attrs"
     :tile="tile"
     :label="label"
     :description="description"
     :id="id"
     :custom-classes="customClasses"
     v-model="modelValue"
-    v-bind="$attrs"
   >
     <template #default>${args.defaultSlot}</template>
     <template #description>${args.descriptionSlot}</template>

@@ -64,12 +64,12 @@ const classes = computed(() => [
 <template>
   <div class="usa-checkbox" :class="customClasses?.component">
     <input
+      v-bind="$attrs"
       :id="computedId"
       v-model="checkboxValue"
       class="usa-checkbox__input"
       type="checkbox"
       :class="classes"
-      v-bind="$attrs"
     />
     <label
       class="usa-checkbox__label"
