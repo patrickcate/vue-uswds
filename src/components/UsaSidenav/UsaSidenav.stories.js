@@ -77,9 +77,13 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :aria-label="ariaLabel"
     :items="items"
     :custom-classes="customClasses">
-      <template #before> ${args.beforeSlot}</template>
-      <template #default="{ items }"> ${args.defaultSlot}</template>
-      <template #after> ${args.afterSlot}</template>
+      <template v-if="${!!args.beforeSlot}" #before>${
+    args.beforeSlot
+  }</template>
+      <template v-if="${!!args.defaultSlot}" #default="{ items }">${
+    args.defaultSlot
+  }</template>
+      <template v-if="${!!args.afterSlot}" #after>${args.afterSlot}</template>
     </UsaSidenav>`,
 })
 

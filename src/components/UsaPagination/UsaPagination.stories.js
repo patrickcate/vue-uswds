@@ -140,12 +140,24 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :last-page-aria-label="lastPageAriaLabel"
     :custom-classes="customClasses"
   >
-    <template #previous="{ isFirstPage, toPreviousPage }">${args.previousSlot}</template>
-    <template #previousIcon>${args.previousIconSlot}</template>
-    <template #previousLabel>${args.previousLabelSlot}</template>
-    <template #next="{ isLastPage, toNextPage }">${args.nextSlot}</template>
-    <template #nextIcon>${args.nextIconSlot}</template>
-    <template #nextLabel>${args.nextLabelSlot}</template>
+    <template v-if="${!!args.previousSlot}" #previous="{ isFirstPage, toPreviousPage }">${
+    args.previousSlot
+  }</template>
+    <template v-if="${!!args.previousIconSlot}" #previousIcon>${
+    args.previousIconSlot
+  }</template>
+    <template v-if="${!!args.previousLabelSlot}" #previousLabel>${
+    args.previousLabelSlot
+  }</template>
+    <template v-if="${!!args.nextSlot}" #next="{ isLastPage, toNextPage }">${
+    args.nextSlot
+  }</template>
+    <template v-if="${!!args.nextIconSlot}" #nextIcon>${
+    args.nextIconSlot
+  }</template>
+    <template v-if="${!!args.nextLabelSlot}" #nextLabel>${
+    args.nextLabelSlot
+  }</template>
   </UsaPagination>`,
 })
 

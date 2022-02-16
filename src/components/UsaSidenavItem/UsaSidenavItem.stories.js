@@ -40,7 +40,9 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaSidenavItem :item="item" :custom-classes="customClasses"><template #default="{ item }">${args.defaultSlot}</template></UsaSidenavItem>`,
+  template: `<UsaSidenavItem :item="item" :custom-classes="customClasses"><template v-if="${!!args.defaultSlot}" #default="{ item }">${
+    args.defaultSlot
+  }</template></UsaSidenavItem>`,
 })
 
 export const DefaultSidenavItem = DefaultTemplate.bind({})

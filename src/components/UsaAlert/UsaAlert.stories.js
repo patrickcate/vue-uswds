@@ -213,8 +213,12 @@ const HeadingSlotTemplate = (args, { argTypes }) => ({
       :heading-tag="headingTag"
       :custom-classes="customClasses"
     >
-      <template #heading>${args.headingSlot}</template>
-      <template #default>${args.defaultSlot}</template>
+      <template v-if="${!!args.headingSlot}" #heading>${
+    args.headingSlot
+  }</template>
+      <template v-if="${!!args.defaultSlot}" #default>${
+    args.defaultSlot
+  }</template>
     </UsaAlert>`,
 })
 
@@ -242,7 +246,9 @@ const MessageSlotTemplate = (args, { argTypes }) => ({
       :heading-tag="headingTag"
       :custom-classes="customClasses"
     >
-    <template #message>${args.messageSlot}</template></UsaAlert>`,
+    <template v-if="${!!args.messageSlot}" #message>${
+    args.messageSlot
+  }</template></UsaAlert>`,
 })
 
 export const MessageSlotAlert = MessageSlotTemplate.bind({})

@@ -82,9 +82,11 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :router-component-name="routerComponentName"
     :custom-classes="customClasses"
   >
-    <template #before>${args.beforeSlot}</template>
-    <template #default>${args.defaultSlot}</template>
-    <template #after>${args.afterSlot}</template>
+    <template v-if="${!!args.beforeSlot}" #before>${args.beforeSlot}</template>
+    <template v-if="${!!args.defaultSlot}" #default>${
+    args.defaultSlot
+  }</template>
+    <template v-if="${!!args.afterSlot}" #after>${args.afterSlot}</template>
   </UsaPaginationArrow>`,
 })
 

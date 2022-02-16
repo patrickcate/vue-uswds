@@ -96,8 +96,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
     :heading-tag="headingTag"
   >
-    <template #default>${args.defaultSlot}</template>
-    <template #header>${args.headerSlot}</template>
+    <template v-if="${!!args.defaultSlot}" #default>${
+    args.defaultSlot
+  }</template>
+    <template v-if="${!!args.headerSlot}" #header>${args.headerSlot}</template>
   </UsaStepIndicator>`,
 })
 

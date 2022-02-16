@@ -97,9 +97,11 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
     v-model="modelValue"
   >
-    <template #label>${args.labelSlot}</template>
-    <template #hint>${args.hintSlot}</template>
-    <template #error-message>${args.errorMessageSlot}</template>
+    <template v-if="${!!args.labelSlot}" #label>${args.labelSlot}</template>
+    <template v-if="${!!args.hintSlot}" #hint>${args.hintSlot}</template>
+    <template v-if="${!!args.errorMessageSlot}" #error-message>${
+    args.errorMessageSlot
+  }</template>
   </UsaTextarea>`,
 })
 

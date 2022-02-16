@@ -28,10 +28,18 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaBannerContent>
-    <template #tldIcon>${args.tldIconSlot}</template>
-    <template #tldDescription>${args.tldDescriptionSlot}</template>
-    <template #httpsIcon>${args.httpsIconSlot}</template>
-    <template #httpsDescription>${args.httpsDescriptionSlot}</template>
+    <template v-if="${!!args.tldIconSlot}" #tldIcon>${
+    args.tldIconSlot
+  }</template>
+    <template v-if="${!!args.tldDescriptionSlot}" #tldDescription>${
+    args.tldDescriptionSlot
+  }</template>
+    <template v-if="${!!args.httpsIconSlot}" #httpsIcon>${
+    args.httpsIconSlot
+  }</template>
+    <template v-if="${!!args.httpsDescriptionSlot}" #httpsDescription>${
+    args.httpsDescriptionSlot
+  }</template>
   </UsaBannerContent>`,
 })
 

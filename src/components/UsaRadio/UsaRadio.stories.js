@@ -67,8 +67,12 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
     v-model="modelValue"
   >
-    <template #default>${args.defaultSlot}</template>
-    <template #description>${args.descriptionSlot}</template>
+    <template v-if="${!!args.defaultSlot}" #default>${
+    args.defaultSlot
+  }</template>
+    <template v-if="${!!args.descriptionSlot}" #description>${
+    args.descriptionSlot
+  }</template>
   </UsaRadio>`,
 })
 
