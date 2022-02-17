@@ -95,7 +95,17 @@ const DefaultTemplate = (args, { argTypes }) => ({
       :heading="heading"
       :heading-tag="headingTag"
       :custom-classes="customClasses"
-    >${args.defaultSlot}</UsaAlert>`,
+    >
+      <template v-if="${!!args.headingSlot}" #heading>${
+    args.headingSlot
+  }</template>
+      <template v-if="${!!args.defaultSlot}" #default>${
+    args.defaultSlot
+  }</template>
+      <template v-if="${!!args.messageSlot}" #message>${
+    args.messageSlot
+  }</template>
+    </UsaAlert>`,
 })
 
 export const InfoAlert = DefaultTemplate.bind({})
@@ -197,32 +207,16 @@ CustomRoleAlert.args = {
 }
 CustomRoleAlert.storyName = 'Custom Role Attribute'
 
-const HeadingSlotTemplate = (args, { argTypes }) => ({
-  components: { UsaAlert },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `
-    <UsaAlert
-      :variant="variant"
-      :slim="slim"
-      :no-icon="noIcon"
-      :role="role"
-      :heading="heading"
-      :heading-tag="headingTag"
-      :custom-classes="customClasses"
-    >
-      <template v-if="${!!args.headingSlot}" #heading>${
-    args.headingSlot
-  }</template>
-      <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
-    </UsaAlert>`,
-})
+export const HeadingTagAlert = DefaultTemplate.bind({})
+HeadingTagAlert.args = {
+  ...defaultProps,
+  variant: 'info',
+  heading: 'Custom Heading Tag',
+  headingTag: 'h4',
+}
+HeadingTagAlert.storyName = 'Custom Heading Tag'
 
-export const HeadingSlotAlert = HeadingSlotTemplate.bind({})
+export const HeadingSlotAlert = DefaultTemplate.bind({})
 HeadingSlotAlert.args = {
   ...defaultProps,
   variant: 'info',
@@ -230,28 +224,7 @@ HeadingSlotAlert.args = {
 }
 HeadingSlotAlert.storyName = 'Heading Slot'
 
-const MessageSlotTemplate = (args, { argTypes }) => ({
-  components: { UsaAlert },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `
-    <UsaAlert
-      :variant="variant"
-      :slim="slim"
-      :no-icon="noIcon"
-      :role="role"
-      :heading="heading"
-      :heading-tag="headingTag"
-      :custom-classes="customClasses"
-    >
-    <template v-if="${!!args.messageSlot}" #message>${
-    args.messageSlot
-  }</template></UsaAlert>`,
-})
-
-export const MessageSlotAlert = MessageSlotTemplate.bind({})
+export const MessageSlotAlert = DefaultTemplate.bind({})
 MessageSlotAlert.args = {
   ...defaultProps,
   variant: 'info',

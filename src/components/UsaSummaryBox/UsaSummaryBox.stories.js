@@ -73,3 +73,43 @@ DefaultSummaryBox.args = {
   ...defaultProps,
 }
 DefaultSummaryBox.storyName = 'Default'
+
+export const CustomHeadingSummaryBox = DefaultTemplate.bind({})
+CustomHeadingSummaryBox.args = {
+  ...defaultProps,
+  heading: 'Custom Heading',
+}
+CustomHeadingSummaryBox.storyName = 'Custom Heading'
+
+export const HeadingSlotSummaryBox = DefaultTemplate.bind({})
+HeadingSlotSummaryBox.args = {
+  ...defaultProps,
+  headingSlot: '<em>Custom Heading Slot</em>',
+}
+HeadingSlotSummaryBox.storyName = 'Heading Slot'
+
+export const CustomHeadingTagSummaryBox = DefaultTemplate.bind({})
+CustomHeadingTagSummaryBox.args = {
+  ...defaultProps,
+  heading: 'Custom Heading Tag',
+  headingTag: 'h4',
+}
+CustomHeadingTagSummaryBox.storyName = 'Custom Heading Tag'
+
+export const CustomIdSummaryBox = DefaultTemplate.bind({})
+CustomIdSummaryBox.args = {
+  ...defaultProps,
+  id: 'custom-id',
+}
+CustomIdSummaryBox.storyName = 'Custom ID'
+
+export const CustomClassesSummaryBox = DefaultTemplate.bind({})
+CustomClassesSummaryBox.args = {
+  ...defaultProps,
+  customClasses: {
+    body: ['test-body-class'],
+    heading: ['test-heading-class'],
+    text: ['test-text-class'],
+  },
+}
+CustomClassesSummaryBox.storyName = 'Custom Classes'
