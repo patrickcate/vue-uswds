@@ -17,6 +17,8 @@ describe('UsaTextarea', () => {
     cy.get('div.usa-form-group').should('not.have.attr', 'name')
     cy.get('label.usa-label').should('have.attr', 'for')
 
+    cy.get('.usa-hint').should('not.exist')
+
     cy.get('textarea.usa-textarea').as('textarea').should('have.attr', 'id')
     cy.get('@textarea')
       .should('have.attr', 'name')
@@ -73,6 +75,20 @@ describe('UsaTextarea', () => {
       .and('contain', 'custom-id-hint custom-id-error-message')
   })
 
+  it('empty error message slot does not display if error prop is true', () => {
+    mount(UsaTextarea, {
+      props: {
+        label: 'Test label',
+        error: true,
+      },
+      slots: {
+        label: () => 'Test label slot',
+      },
+    })
+
+    cy.get('.usa-error-message').should('not.exist')
+  })
+
   it('add required attribute if `required` prop is true', () => {
     mount(UsaTextarea, {
       props: {
@@ -125,7 +141,7 @@ describe('UsaTextarea', () => {
     }
   })
 
-  it('emits update event when selection changes', () => {
+  it('emits update event when value changes', () => {
     mount(UsaTextarea, {
       props: {
         label: 'Test label',
