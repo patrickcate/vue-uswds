@@ -59,6 +59,9 @@ describe('UsaDropdown', () => {
         // Should not be inherited by root component element.
         name: 'test-dropdown-name',
       },
+      slots: {
+        hint: () => 'Test hint',
+      },
     })
 
     cy.get('div.usa-form-group').should('not.have.attr', 'name')
@@ -68,7 +71,7 @@ describe('UsaDropdown', () => {
     cy.get('select.usa-select')
       .should('have.attr', 'name')
       .and('contain', 'test-dropdown-name')
-    cy.get('select.usa-select').should('not.have.attr', 'aria-describedby')
+    cy.get('select.usa-select').should('have.attr', 'aria-describedby')
 
     cy.get('.usa-select option').should('not.exist')
     cy.get('.usa-select optgroup').should('not.exist')
@@ -334,6 +337,9 @@ describe('UsaDropdown', () => {
           component: ['test-component-class'],
           label: ['test-label-class'],
         },
+      },
+      slots: {
+        hint: () => 'Test hint',
       },
     })
 

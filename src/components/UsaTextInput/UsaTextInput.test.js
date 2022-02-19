@@ -54,7 +54,7 @@ describe('UsaTextInput', () => {
     cy.get('.usa-hint').should('not.exist')
     cy.get('.usa-error-message').should('not.exist')
 
-    cy.get('div.usa-form-group').should('not.have.attr', 'name')
+    cy.get('div.usa-form-group').should('not.exist')
     cy.get('label.usa-label').should('have.attr', 'for')
 
     cy.get('input.usa-input').as('input').should('have.attr', 'id')
@@ -149,9 +149,7 @@ describe('UsaTextInput', () => {
       },
     })
 
-    cy.get('.usa-form-group > .usa-input')
-      .should('have.attr', 'type')
-      .and('contain', 'number')
+    cy.get('.usa-input').should('have.attr', 'type').and('contain', 'number')
     cy.get('.usa-input-group > .usa-input').should('not.exist')
   })
 
@@ -172,7 +170,7 @@ describe('UsaTextInput', () => {
     cy.get('.usa-form-group > .usa-input').should('not.exist')
   })
 
-  it('add required attribute to un-grouped if `required` prop is true', () => {
+  it('add required attribute to non-prefix/non-suffix input if `required` prop is true', () => {
     mount(UsaTextInput, {
       props: {
         label: 'Test label',
@@ -189,7 +187,7 @@ describe('UsaTextInput', () => {
       .should('have.attr', 'title')
       .and('contain', 'required')
 
-    cy.get('.usa-form-group > .usa-input').should('have.attr', 'required')
+    cy.get('.usa-input').should('have.attr', 'required')
     cy.get('.usa-input-group > .usa-input').should('not.exist')
   })
 
@@ -411,6 +409,7 @@ describe('UsaTextInput', () => {
         },
       },
       slots: {
+        hint: () => 'Test hint',
         'input-prefix': () => '@',
         'input-suffix': () => '%',
       },

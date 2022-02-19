@@ -12,6 +12,9 @@ describe('UsaRange', () => {
         // Should not be inherited by root component element.
         name: 'test-dropdown-name',
       },
+      slots: {
+        hint: () => 'Test hint',
+      },
     })
 
     cy.get('div.usa-form-group').should('not.have.attr', 'name')
@@ -29,7 +32,7 @@ describe('UsaRange', () => {
     cy.get('@range').should('have.attr', 'aria-valuemax').and('contain', 100)
     cy.get('@range').should('have.attr', 'aria-valuenow').and('contain', '')
 
-    cy.get('@range').should('not.have.attr', 'aria-describedby')
+    cy.get('@range').should('have.attr', 'aria-describedby')
   })
 
   it('displays `label`, `hint`, and `error-message` slot content', () => {
@@ -147,6 +150,9 @@ describe('UsaRange', () => {
           component: ['test-component-class'],
           label: ['test-label-class'],
         },
+      },
+      slots: {
+        hint: () => 'Test hint',
       },
     })
 
