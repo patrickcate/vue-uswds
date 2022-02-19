@@ -12,18 +12,21 @@ describe('UsaTextarea', () => {
         // Should not be inherited by root component element.
         name: 'test-textarea-name',
       },
+      slots: {
+        hint: () => 'Test hint',
+      },
     })
 
     cy.get('div.usa-form-group').should('not.have.attr', 'name')
     cy.get('label.usa-label').should('have.attr', 'for')
 
-    cy.get('.usa-hint').should('not.exist')
+    cy.get('.usa-hint').should('exist')
 
     cy.get('textarea.usa-textarea').as('textarea').should('have.attr', 'id')
     cy.get('@textarea')
       .should('have.attr', 'name')
       .and('contain', 'test-textarea-name')
-    cy.get('@textarea').should('not.have.attr', 'aria-describedby')
+    cy.get('@textarea').should('have.attr', 'aria-describedby')
   })
 
   it('displays `label`, `hint`, and `error-message` slot content', () => {
@@ -86,6 +89,7 @@ describe('UsaTextarea', () => {
       },
     })
 
+    cy.get('.usa-hint').should('not.exist')
     cy.get('.usa-error-message').should('not.exist')
   })
 
@@ -180,6 +184,9 @@ describe('UsaTextarea', () => {
           component: ['test-component-class'],
           label: ['test-label-class'],
         },
+      },
+      slots: {
+        hint: () => 'Test hint',
       },
     })
 

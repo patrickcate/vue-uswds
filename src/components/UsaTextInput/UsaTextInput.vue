@@ -8,6 +8,7 @@ export default {
 import { computed, ref, useSlots, useAttrs } from 'vue'
 import { useFocus } from '@vueuse/core'
 import { nextId } from '@/utils/unique-id.js'
+import UsaFormGroup from '@/components/UsaFormGroup'
 import UsaLabel from '@/components/UsaLabel'
 
 const inputElement = ref(null)
@@ -113,11 +114,6 @@ const classes = computed(() => {
   ]
 })
 
-const formGroupClasses = computed(() => [
-  { 'usa-form-group--error': props.error },
-  ...(props.customClasses?.component || []),
-])
-
 const inputGroupClasses = computed(() => {
   if (!slots['input-prefix'] && !slots['input-suffix']) {
     return []
@@ -159,7 +155,11 @@ const ariaDescribedby = computed(() => {
 </script>
 
 <template>
-  <div class="usa-form-group" :class="formGroupClasses">
+  <UsaFormGroup
+    :group="!!$slots.hint || (error && !!$slots['error-message'])"
+    :error="error"
+    :class="props.customClasses?.component"
+  >
     <UsaLabel
       v-if="label || $slots.label"
       :for="computedId"
@@ -224,5 +224,5 @@ const ariaDescribedby = computed(() => {
       :required="required"
       :aria-describedby="ariaDescribedby"
     />
-  </div>
+  </UsaFormGroup>
 </template>
