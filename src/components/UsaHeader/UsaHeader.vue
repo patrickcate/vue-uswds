@@ -49,11 +49,14 @@ provide(
 
 <template>
   <header class="usa-header" :class="classes">
-    <template v-if="variant === 'basic'">
-      <div class="usa-nav-container" :class="customClasses?.navContainer">
-        <slot></slot>
-      </div>
-    </template>
+    <div
+      v-if="variant === 'basic'"
+      class="usa-nav-container"
+      :class="customClasses?.navContainer"
+    >
+      <slot></slot>
+    </div>
+
     <template v-else>
       <slot></slot>
     </template>
