@@ -141,6 +141,16 @@ describe('UsaTextInput', () => {
     cy.get('.usa-label').should('not.exist')
   })
 
+  it('group input elements if `group` prop is true', () => {
+    mount(UsaTextInput, {}).as('wrapper')
+
+    cy.get('.usa-form-group').should('not.exist')
+
+    cy.get('@wrapper').invoke('setProps', { group: true })
+
+    cy.get('.usa-form-group').should('exist')
+  })
+
   it('set `input` type prop for non-grouped input', () => {
     mount(UsaTextInput, {
       props: {
@@ -178,6 +188,7 @@ describe('UsaTextInput', () => {
       },
     })
 
+    cy.get('.usa-form-group').should('not.exist')
     cy.get('.usa-label').should('contain', 'Test label')
     cy.get('.usa-label > abbr')
       .should('have.class', 'usa-hint')

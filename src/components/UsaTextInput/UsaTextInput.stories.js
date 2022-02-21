@@ -5,6 +5,7 @@ const defaultProps = {
   width: UsaTextInput.props.width.default,
   modelValue: UsaTextInput.props.modelValue.default,
   label: UsaTextInput.props.label.default,
+  group: UsaTextInput.props.group.default,
   required: UsaTextInput.props.required.default,
   error: UsaTextInput.props.error.default,
   id: UsaTextInput.props.id.default,
@@ -44,6 +45,9 @@ export default {
     label: {
       control: { type: 'text' },
     },
+    group: {
+      control: { type: 'boolean' },
+    },
     required: {
       control: { type: 'boolean' },
     },
@@ -77,6 +81,7 @@ export default {
     width: defaultProps.width,
     modelValue: defaultProps.modelValue,
     label: defaultProps.label,
+    group: defaultProps.group,
     required: defaultProps.required,
     error: defaultProps.error,
     id: defaultProps.id,
@@ -104,6 +109,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     v-bind="$attrs"
     :type="type"
     :width="width"
+    :group="group"
     :label="label"
     :required="required"
     :error="error"
@@ -188,6 +194,14 @@ RequiredTextInput.args = {
   required: true,
 }
 RequiredTextInput.storyName = 'Required'
+
+export const GroupedTextInput = DefaultTemplate.bind({})
+GroupedTextInput.args = {
+  ...defaultProps,
+  label: 'Text input label',
+  group: true,
+}
+GroupedTextInput.storyName = 'Group Input Elements'
 
 export const LabelSlotTextInput = DefaultTemplate.bind({})
 LabelSlotTextInput.args = {
