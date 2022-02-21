@@ -289,9 +289,9 @@ describe('UsaTextInput', () => {
       .vue()
       .then(vm => {
         expect(vm.emitted()).to.have.property('update:modelValue')
-        const currentRangeEvent = vm.emitted('update:modelValue')
-        expect(currentRangeEvent).to.have.length(24)
-        expect(currentRangeEvent[currentRangeEvent.length - 1]).to.contain(
+        const currentInputEvent = vm.emitted('update:modelValue')
+        expect(currentInputEvent).to.have.length(24)
+        expect(currentInputEvent[currentInputEvent.length - 1]).to.contain(
           'This is some test text. This is some more text.'
         )
       })
@@ -322,9 +322,9 @@ describe('UsaTextInput', () => {
       .vue()
       .then(vm => {
         expect(vm.emitted()).to.have.property('update:modelValue')
-        const currentRangeEvent = vm.emitted('update:modelValue')
-        expect(currentRangeEvent).to.have.length(24)
-        expect(currentRangeEvent[currentRangeEvent.length - 1]).to.contain(
+        const currentInputEvent = vm.emitted('update:modelValue')
+        expect(currentInputEvent).to.have.length(24)
+        expect(currentInputEvent[currentInputEvent.length - 1]).to.contain(
           'This is some test text. This is some more text.'
         )
       })

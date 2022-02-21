@@ -47,8 +47,12 @@ const props = defineProps({
     },
   },
   modelValue: {
-    type: undefined,
+    type: [String, Number],
     default: '',
+  },
+  group: {
+    type: Boolean,
+    default: false,
   },
   label: {
     type: String,
@@ -152,13 +156,17 @@ const ariaDescribedby = computed(() => {
 
   return ids.length ? ids.join(' ') : null
 })
+
+const groupElements = computed(
+  () => props.group || !!slots.hint || (props.error && !!slots['error-message'])
+)
 </script>
 
 <template>
   <UsaFormGroup
-    :group="!!$slots.hint || (error && !!$slots['error-message'])"
+    :group="groupElements"
     :error="error"
-    :class="props.customClasses?.component"
+    :class="customClasses?.component"
   >
     <UsaLabel
       v-if="label || $slots.label"
