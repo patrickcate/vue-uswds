@@ -352,9 +352,6 @@ describe('UsaDateInput', () => {
       },
     })
 
-    // Legend should not render if not label.
-    cy.get('legend').should('not.exist')
-
     cy.get('.usa-form-group:nth-child(1)')
       .as('firstFormGroup')
       .should('have.class', 'usa-form-group--month')
@@ -376,5 +373,11 @@ describe('UsaDateInput', () => {
       .find('.usa-input')
       .should('have.attr', 'name')
       .and('contain', 'date_year')
+  })
+
+  it('label/fieldset legend is not shown because label prop and slot are not used', () => {
+    mount(UsaDateInput, {})
+
+    cy.get('legend').should('not.exist')
   })
 })
