@@ -39,7 +39,7 @@ const props = defineProps({
     },
   },
   modelValue: {
-    type: undefined,
+    type: [String, Number],
     default: '',
   },
   label: {
