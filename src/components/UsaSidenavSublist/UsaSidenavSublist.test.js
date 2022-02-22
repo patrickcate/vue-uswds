@@ -53,7 +53,9 @@ describe('UsaSidenavSublist', () => {
       .and('have.attr', 'to')
       .and('contain', '/page-1')
 
-    cy.get('@sublist-1').find('> li:first-of-type > a').contains('Page 1')
+    cy.get('@sublist-1')
+      .find('> li:first-of-type > a')
+      .should('contain', 'Page 1')
 
     cy.get('@sublist-1')
       .find('> li:first-of-type > ul')

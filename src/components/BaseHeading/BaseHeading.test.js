@@ -9,7 +9,7 @@ describe('BaseHeading', () => {
         default: () => 'Test',
       },
     })
-    cy.get('h2').contains('Test')
+    cy.get('h2').should('contain', 'Test')
   })
 
   it('renders as a custom heading tag', () => {
@@ -46,7 +46,7 @@ describe('BaseHeading', () => {
         tag: 'notheading',
       },
     })
-    cy.get('notheading').contains('Test')
+    cy.get('notheading').should('contain', 'Test')
 
     cy.get('@consoleWarn').should(
       'be.calledWith',

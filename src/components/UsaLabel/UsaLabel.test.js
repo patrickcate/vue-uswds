@@ -14,8 +14,8 @@ describe('UsaLabel', () => {
     })
 
     cy.get('label.usa-label')
-      .contains('Test label')
-      .should('have.attr', 'for')
+      .should('contain', 'Test label')
+      .and('have.attr', 'for')
       .and('contain', 'test-id')
   })
 
