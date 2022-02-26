@@ -9,7 +9,7 @@ describe('UsaTag', () => {
         default: () => 'Test',
       },
     })
-    cy.get('span.usa-tag').contains('Test')
+    cy.get('span.usa-tag').should('contain', 'Test')
   })
 
   it('renders the size class', () => {
@@ -48,7 +48,7 @@ describe('UsaTag', () => {
       },
     })
 
-    cy.get('span.usa-tag').contains('Test')
+    cy.get('span.usa-tag').should('contain', 'Test')
 
     cy.get('@consoleWarn').should(
       'be.calledWith',

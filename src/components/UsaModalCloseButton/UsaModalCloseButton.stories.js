@@ -27,7 +27,9 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaModalCloseButton :aria-label="ariaLabel"><template #default="svgSpritePath">${args.defaultSlot}</template></UsaModalCloseButton>`,
+  template: `<UsaModalCloseButton :aria-label="ariaLabel"><template v-if="${!!args.defaultSlot}" #default="svgSpritePath">${
+    args.defaultSlot
+  }</template></UsaModalCloseButton>`,
 })
 
 export const DefaultModalCloseButton = DefaultTemplate.bind({})

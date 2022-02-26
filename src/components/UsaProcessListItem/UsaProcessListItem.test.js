@@ -76,7 +76,7 @@ describe('UsaProcessListItem', () => {
 
     mount(ProcessListWrapper, {})
 
-    cy.get('.usa-process-list__heading').contains('Test Heading Slot')
+    cy.get('.usa-process-list__heading').should('contain', 'Test Heading Slot')
   })
 
   it('renders custom heading tag', () => {

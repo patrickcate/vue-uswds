@@ -117,10 +117,16 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :headingTag="headingTag"
     :customClasses="customClasses"
   >
-    <template #heading>${args.headingSlot}</template>
-    <template #default>${args.defaultSlot}</template>
-    <template #footer>${args.footerSlot}</template>
-    <template #closeButton>${args.closeButtonSlot}</template>
+    <template v-if="${!!args.headingSlot}" #heading>${
+    args.headingSlot
+  }</template>
+    <template v-if="${!!args.defaultSlot}" #default>${
+    args.defaultSlot
+  }</template>
+    <template v-if="${!!args.footerSlot}" #footer>${args.footerSlot}</template>
+    <template v-if="${!!args.closeButtonSlot}" #closeButton>${
+    args.closeButtonSlot
+  }</template>
   </UsaModal>`,
 })
 

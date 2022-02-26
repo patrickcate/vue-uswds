@@ -5,9 +5,10 @@ export default {
 </script>
 
 <script setup>
-import { computed, ref, useSlots, useAttrs } from 'vue'
+import { computed, ref, inject, useSlots, useAttrs, onMounted } from 'vue'
 import { useFocus } from '@vueuse/core'
 import { nextId } from '@/utils/unique-id.js'
+import UsaFormGroup from '@/components/UsaFormGroup'
 import UsaLabel from '@/components/UsaLabel'
 
 const inputElement = ref(null)
@@ -46,8 +47,12 @@ const props = defineProps({
     },
   },
   modelValue: {
-    type: undefined,
+    type: [String, Number],
     default: '',
+  },
+  group: {
+    type: Boolean,
+    default: false,
   },
   label: {
     type: String,
@@ -79,6 +84,10 @@ const props = defineProps({
   },
 })
 
+const updateCharacterCount = inject('updateCharacterCount', null)
+const characterCountMaxlength = inject('characterCountMaxlength', null)
+const characterCountMessageId = inject('characterCountMessageId', null)
+
 const computedId = computed(() => props.id || nextId('usa-text-input'))
 const computedErrorMessageId = computed(
   () => `${computedId.value}-error-message`
@@ -91,7 +100,18 @@ const textInputValue = computed({
   },
   set(value) {
     emit('update:modelValue', value)
+
+    if (updateCharacterCount) {
+      updateCharacterCount(value)
+    }
   },
+})
+
+// Trigger any character counts for default input values.
+onMounted(() => {
+  if (updateCharacterCount) {
+    updateCharacterCount(props.modelValue)
+  }
 })
 
 const classes = computed(() => {
@@ -110,13 +130,9 @@ const classes = computed(() => {
     { 'usa-input--lg': props.width === 'lg' },
     { 'usa-input--xl': props.width === 'xl' },
     { 'usa-input--2xl': props.width === '2xl' },
+    { 'usa-character-count__field': updateCharacterCount },
   ]
 })
-
-const formGroupClasses = computed(() => [
-  { 'usa-form-group--error': props.error },
-  ...(props.customClasses?.component || []),
-])
 
 const inputGroupClasses = computed(() => {
   if (!slots['input-prefix'] && !slots['input-suffix']) {
@@ -146,6 +162,10 @@ const ariaDescribedby = computed(() => {
     ids.push(attrs['aria-describedby'])
   }
 
+  if (characterCountMessageId) {
+    ids.push(characterCountMessageId.value)
+  }
+
   if (slots.hint) {
     ids.push(computedHintId.value)
   }
@@ -156,10 +176,18 @@ const ariaDescribedby = computed(() => {
 
   return ids.length ? ids.join(' ') : null
 })
+
+const groupElements = computed(
+  () => props.group || !!slots.hint || (props.error && !!slots['error-message'])
+)
 </script>
 
 <template>
-  <div class="usa-form-group" :class="formGroupClasses">
+  <UsaFormGroup
+    :group="groupElements"
+    :error="error"
+    :class="customClasses?.component"
+  >
     <UsaLabel
       v-if="label || $slots.label"
       :for="computedId"
@@ -190,6 +218,7 @@ const ariaDescribedby = computed(() => {
         class="usa-input-prefix"
         :class="customClasses?.inputPrefix"
         aria-hidden="true"
+        @click="inputElement.focus()"
         ><slot name="input-prefix"></slot
       ></div>
       <input
@@ -201,6 +230,7 @@ const ariaDescribedby = computed(() => {
         class="usa-input"
         :class="classes"
         :required="required"
+        :maxlength="characterCountMaxlength || $attrs.maxlength"
         :aria-describedby="ariaDescribedby"
       />
       <div
@@ -208,10 +238,10 @@ const ariaDescribedby = computed(() => {
         class="usa-input-suffix"
         :class="customClasses?.inputSuffix"
         aria-hidden="true"
+        @click="inputElement.focus()"
         ><slot name="input-suffix"></slot
       ></div>
     </div>
-
     <input
       v-else
       v-bind="$attrs"
@@ -222,7 +252,8 @@ const ariaDescribedby = computed(() => {
       class="usa-input"
       :class="classes"
       :required="required"
+      :maxlength="characterCountMaxlength || $attrs.maxlength"
       :aria-describedby="ariaDescribedby"
     />
-  </div>
+  </UsaFormGroup>
 </template>

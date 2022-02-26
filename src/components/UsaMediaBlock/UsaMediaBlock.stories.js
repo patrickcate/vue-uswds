@@ -36,8 +36,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
   },
   template: `
   <UsaMediaBlock>
-    <template #media>${args.mediaSlot}</template>
-    <template #default>${args.defaultSlot}</template>
+    <template v-if="${!!args.mediaSlot}" #media>${args.mediaSlot}</template>
+    <template v-if="${!!args.defaultSlot}" #default>${
+    args.defaultSlot
+  }</template>
   </UsaMediaBlock>`,
 })
 

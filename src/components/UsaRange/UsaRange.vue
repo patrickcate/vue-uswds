@@ -7,6 +7,7 @@ export default {
 <script setup>
 import { computed, useSlots } from 'vue'
 import { nextId } from '@/utils/unique-id.js'
+import UsaFormGroup from '@/components/UsaFormGroup'
 import UsaLabel from '@/components/UsaLabel'
 
 const slots = useSlots()
@@ -69,11 +70,6 @@ const rangeValue = computed({
 
 const classes = computed(() => [{ 'usa-input--error': props.error }])
 
-const formGroupClasses = computed(() => [
-  { 'usa-form-group--error': props.error },
-  ...(props.customClasses?.component || []),
-])
-
 const ariaDescribedby = computed(() => {
   const ids = []
 
@@ -90,7 +86,11 @@ const ariaDescribedby = computed(() => {
 </script>
 
 <template>
-  <div class="usa-form-group" :class="formGroupClasses">
+  <UsaFormGroup
+    :group="!!$slots.hint || (error && !!$slots['error-message'])"
+    :error="error"
+    :class="props.customClasses?.component"
+  >
     <UsaLabel
       :for="computedId"
       :required="required"
@@ -126,5 +126,5 @@ const ariaDescribedby = computed(() => {
       :required="required"
       :aria-describedby="ariaDescribedby"
     />
-  </div>
+  </UsaFormGroup>
 </template>

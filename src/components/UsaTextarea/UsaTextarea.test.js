@@ -11,17 +11,24 @@ describe('UsaTextarea', () => {
       attrs: {
         // Should not be inherited by root component element.
         name: 'test-textarea-name',
+        maxlength: '50',
+      },
+      slots: {
+        hint: () => 'Test hint',
       },
     })
 
     cy.get('div.usa-form-group').should('not.have.attr', 'name')
     cy.get('label.usa-label').should('have.attr', 'for')
 
+    cy.get('.usa-hint').should('exist')
+
     cy.get('textarea.usa-textarea').as('textarea').should('have.attr', 'id')
     cy.get('@textarea')
       .should('have.attr', 'name')
       .and('contain', 'test-textarea-name')
-    cy.get('@textarea').should('not.have.attr', 'aria-describedby')
+    cy.get('@textarea').should('have.attr', 'maxlength').and('contain', '50')
+    cy.get('@textarea').should('have.attr', 'aria-describedby')
   })
 
   it('displays `label`, `hint`, and `error-message` slot content', () => {
@@ -71,6 +78,21 @@ describe('UsaTextarea', () => {
       .should('have.class', 'usa-input--error')
       .and('have.attr', 'aria-describedby')
       .and('contain', 'custom-id-hint custom-id-error-message')
+  })
+
+  it('empty error message slot does not display if error prop is true', () => {
+    mount(UsaTextarea, {
+      props: {
+        label: 'Test label',
+        error: true,
+      },
+      slots: {
+        label: () => 'Test label slot',
+      },
+    })
+
+    cy.get('.usa-hint').should('not.exist')
+    cy.get('.usa-error-message').should('not.exist')
   })
 
   it('add required attribute if `required` prop is true', () => {
@@ -125,7 +147,7 @@ describe('UsaTextarea', () => {
     }
   })
 
-  it('emits update event when selection changes', () => {
+  it('emits update event when value changes', () => {
     mount(UsaTextarea, {
       props: {
         label: 'Test label',
@@ -148,11 +170,11 @@ describe('UsaTextarea', () => {
       .vue()
       .then(vm => {
         expect(vm.emitted()).to.have.property('update:modelValue')
-        const currentRangeEvent = vm.emitted('update:modelValue')
-        expect(currentRangeEvent).to.have.length(24)
-        expect(currentRangeEvent[currentRangeEvent.length - 1]).to.contain(
-          'This is some test text. This is some more text.'
-        )
+        const currentTextareaEvent = vm.emitted('update:modelValue')
+        expect(currentTextareaEvent).to.have.length(24)
+        expect(
+          currentTextareaEvent[currentTextareaEvent.length - 1]
+        ).to.contain('This is some test text. This is some more text.')
       })
   })
 
@@ -164,6 +186,9 @@ describe('UsaTextarea', () => {
           component: ['test-component-class'],
           label: ['test-label-class'],
         },
+      },
+      slots: {
+        hint: () => 'Test hint',
       },
     })
 

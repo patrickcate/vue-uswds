@@ -74,9 +74,11 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :actionText="actionText"
     :customClasses="customClasses"
   >
-    <template #flag>${args.flagSlot}</template>
-    <template #button>${args.buttonSlot}</template>
-    <template #default>${args.defaultSlot}</template>
+    <template v-if="${!!args.flagSlot}" #flag>${args.flagSlot}</template>
+    <template v-if="${!!args.buttonSlot}" #button>${args.buttonSlot}</template>
+    <template v-if="${!!args.defaultSlot}" #default>${
+    args.defaultSlot
+  }</template>
   </UsaBanner>`,
 })
 

@@ -49,8 +49,12 @@ const DefaultTemplate = (args, { argTypes }) => ({
   template: `
     <UsaProcessList>
       <UsaProcessListItem :heading="heading" :heading-tag="headingTag" :custom-classes="customClasses">
-        <template #heading>${args.headingSlot}</template>
-        <template #default>${args.defaultSlot}</template>
+        <template v-if="${!!args.headingSlot}" #heading>${
+    args.headingSlot
+  }</template>
+        <template v-if="${!!args.defaultSlot}" #default>${
+    args.defaultSlot
+  }</template>
       </UsaProcessListItem>
     </UsaProcessList>
   `,

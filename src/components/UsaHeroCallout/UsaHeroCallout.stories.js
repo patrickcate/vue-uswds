@@ -65,9 +65,15 @@ const DefaultTemplate = (args, { argTypes }) => ({
       :heading-tag="headingTag"
       :custom-classes="customClasses"
     >
-      <template #headingAlt>${args.headingAltSlot}</template>
-      <template #heading>${args.headingSlot}</template>
-      <template #default>${args.defaultSlot}</template>
+      <template v-if="${!!args.headingAltSlot}" #headingAlt>${
+    args.headingAltSlot
+  }</template>
+      <template v-if="${!!args.headingSlot}" #heading>${
+    args.headingSlot
+  }</template>
+      <template v-if="${!!args.defaultSlot}" #default>${
+    args.defaultSlot
+  }</template>
     </UsaHeroCallout>
   </UsaHero>`,
 })

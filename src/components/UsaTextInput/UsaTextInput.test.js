@@ -45,6 +45,7 @@ describe('UsaTextInput', () => {
       attrs: {
         // Should not be inherited by root component element.
         name: 'test-input-name',
+        maxlength: '50',
         'aria-describedby': 'test-id',
       },
     })
@@ -54,7 +55,7 @@ describe('UsaTextInput', () => {
     cy.get('.usa-hint').should('not.exist')
     cy.get('.usa-error-message').should('not.exist')
 
-    cy.get('div.usa-form-group').should('not.have.attr', 'name')
+    cy.get('div.usa-form-group').should('not.exist')
     cy.get('label.usa-label').should('have.attr', 'for')
 
     cy.get('input.usa-input').as('input').should('have.attr', 'id')
@@ -63,7 +64,7 @@ describe('UsaTextInput', () => {
       .and('contain', 'test-input-name')
 
     cy.get('@input').should('have.attr', 'type').and('contain', 'text')
-
+    cy.get('@input').should('have.attr', 'maxlength').and('contain', '50')
     cy.get('@input')
       .should('have.attr', 'aria-describedby')
       .and('contain', 'test-id')
@@ -141,6 +142,16 @@ describe('UsaTextInput', () => {
     cy.get('.usa-label').should('not.exist')
   })
 
+  it('group input elements if `group` prop is true', () => {
+    mount(UsaTextInput, {}).as('wrapper')
+
+    cy.get('.usa-form-group').should('not.exist')
+
+    cy.get('@wrapper').invoke('setProps', { group: true })
+
+    cy.get('.usa-form-group').should('exist')
+  })
+
   it('set `input` type prop for non-grouped input', () => {
     mount(UsaTextInput, {
       props: {
@@ -149,9 +160,7 @@ describe('UsaTextInput', () => {
       },
     })
 
-    cy.get('.usa-form-group > .usa-input')
-      .should('have.attr', 'type')
-      .and('contain', 'number')
+    cy.get('.usa-input').should('have.attr', 'type').and('contain', 'number')
     cy.get('.usa-input-group > .usa-input').should('not.exist')
   })
 
@@ -172,7 +181,7 @@ describe('UsaTextInput', () => {
     cy.get('.usa-form-group > .usa-input').should('not.exist')
   })
 
-  it('add required attribute to un-grouped if `required` prop is true', () => {
+  it('add required attribute to non-prefix/non-suffix input if `required` prop is true', () => {
     mount(UsaTextInput, {
       props: {
         label: 'Test label',
@@ -180,6 +189,7 @@ describe('UsaTextInput', () => {
       },
     })
 
+    cy.get('.usa-form-group').should('not.exist')
     cy.get('.usa-label').should('contain', 'Test label')
     cy.get('.usa-label > abbr')
       .should('have.class', 'usa-hint')
@@ -189,7 +199,7 @@ describe('UsaTextInput', () => {
       .should('have.attr', 'title')
       .and('contain', 'required')
 
-    cy.get('.usa-form-group > .usa-input').should('have.attr', 'required')
+    cy.get('.usa-input').should('have.attr', 'required')
     cy.get('.usa-input-group > .usa-input').should('not.exist')
   })
 
@@ -268,6 +278,40 @@ describe('UsaTextInput', () => {
     cy.get('@input').should('not.have.class', 'usa-input--sm')
   })
 
+  it('clicking prefix or suffix sets focus on input', () => {
+    mount(UsaTextInput, {
+      props: {
+        label: 'Test label',
+      },
+      slots: {
+        'input-prefix': () => '@',
+        'input-suffix': () => '%',
+      },
+    }).as('wrapper')
+
+    cy.get('.usa-input-group')
+      .as('inputGroup')
+      .should('not.have.class', 'is-focused')
+
+    cy.get('.usa-input').as('input').should('not.have.focus')
+
+    cy.get('.usa-input-prefix').click({ force: true })
+
+    cy.get('@inputGroup').should('have.class', 'is-focused')
+    cy.get('@input').should('have.focus')
+
+    // Reset input focus.
+    cy.get('@input').blur()
+
+    cy.get('@inputGroup').should('not.have.class', 'is-focused')
+    cy.get('@input').should('not.have.focus')
+
+    cy.get('.usa-input-suffix').click({ force: true })
+
+    cy.get('@inputGroup').should('have.class', 'is-focused')
+    cy.get('@input').should('have.focus')
+  })
+
   it('emits update event when non-prefix/non-suffix input value changes', () => {
     mount(UsaTextInput, {
       props: {
@@ -291,13 +335,14 @@ describe('UsaTextInput', () => {
       .vue()
       .then(vm => {
         expect(vm.emitted()).to.have.property('update:modelValue')
-        const currentRangeEvent = vm.emitted('update:modelValue')
-        expect(currentRangeEvent).to.have.length(24)
-        expect(currentRangeEvent[currentRangeEvent.length - 1]).to.contain(
+        const currentInputEvent = vm.emitted('update:modelValue')
+        expect(currentInputEvent).to.have.length(24)
+        expect(currentInputEvent[currentInputEvent.length - 1]).to.contain(
           'This is some test text. This is some more text.'
         )
       })
   })
+
   it('emits update event when prefix/suffix input value changes', () => {
     mount(UsaTextInput, {
       props: {
@@ -324,9 +369,9 @@ describe('UsaTextInput', () => {
       .vue()
       .then(vm => {
         expect(vm.emitted()).to.have.property('update:modelValue')
-        const currentRangeEvent = vm.emitted('update:modelValue')
-        expect(currentRangeEvent).to.have.length(24)
-        expect(currentRangeEvent[currentRangeEvent.length - 1]).to.contain(
+        const currentInputEvent = vm.emitted('update:modelValue')
+        expect(currentInputEvent).to.have.length(24)
+        expect(currentInputEvent[currentInputEvent.length - 1]).to.contain(
           'This is some test text. This is some more text.'
         )
       })
@@ -411,6 +456,7 @@ describe('UsaTextInput', () => {
         },
       },
       slots: {
+        hint: () => 'Test hint',
         'input-prefix': () => '@',
         'input-suffix': () => '%',
       },
