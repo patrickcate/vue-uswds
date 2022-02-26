@@ -120,17 +120,19 @@ const classes = computed(() => {
   }
 
   return [
-    { 'usa-input--error': props.error },
-    { 'usa-input--2xs': props.width === '2xs' },
-    { 'usa-input--xs': props.width === 'xs' },
-    { 'usa-input--sm': props.width === 'sm' },
-    { 'usa-input--small': props.width === 'small' },
-    { 'usa-input--md': props.width === 'md' },
-    { 'usa-input--medium': props.width === 'medium' },
-    { 'usa-input--lg': props.width === 'lg' },
-    { 'usa-input--xl': props.width === 'xl' },
-    { 'usa-input--2xl': props.width === '2xl' },
-    { 'usa-character-count__field': updateCharacterCount },
+    {
+      'usa-input--error': props.error,
+      'usa-input--2xs': props.width === '2xs',
+      'usa-input--xs': props.width === 'xs',
+      'usa-input--sm': props.width === 'sm',
+      'usa-input--small': props.width === 'small',
+      'usa-input--md': props.width === 'md',
+      'usa-input--medium': props.width === 'medium',
+      'usa-input--lg': props.width === 'lg',
+      'usa-input--xl': props.width === 'xl',
+      'usa-input--2xl': props.width === '2xl',
+      'usa-character-count__field': updateCharacterCount,
+    },
   ]
 })
 
@@ -140,17 +142,19 @@ const inputGroupClasses = computed(() => {
   }
 
   return [
-    { 'usa-input-group--error': props.error },
-    { 'usa-input-group--2xs': props.width === '2xs' },
-    { 'usa-input-group--xs': props.width === 'xs' },
-    { 'usa-input-group--sm': props.width === 'sm' },
-    { 'usa-input-group--small': props.width === 'small' },
-    { 'usa-input-group--md': props.width === 'md' },
-    { 'usa-input-group--medium': props.width === 'medium' },
-    { 'usa-input-group--lg': props.width === 'lg' },
-    { 'usa-input-group--xl': props.width === 'xl' },
-    { 'usa-input-group--2xl': props.width === '2xl' },
-    { 'is-focused': focused.value === true },
+    {
+      'usa-input-group--error': props.error,
+      'usa-input-group--2xs': props.width === '2xs',
+      'usa-input-group--xs': props.width === 'xs',
+      'usa-input-group--sm': props.width === 'sm',
+      'usa-input-group--small': props.width === 'small',
+      'usa-input-group--md': props.width === 'md',
+      'usa-input-group--medium': props.width === 'medium',
+      'usa-input-group--lg': props.width === 'lg',
+      'usa-input-group--xl': props.width === 'xl',
+      'usa-input-group--2xl': props.width === '2xl',
+      'is-focused': focused.value === true,
+    },
     ...(props.customClasses?.inputGroup || []),
   ]
 })

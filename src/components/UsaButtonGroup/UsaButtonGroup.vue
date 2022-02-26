@@ -9,9 +9,7 @@ const props = defineProps({
 })
 
 const classes = computed(() => [
-  {
-    'usa-button-group--segmented': props.segmented,
-  },
+  { 'usa-button-group--segmented': props.segmented },
 ])
 </script>
 

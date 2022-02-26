@@ -32,11 +32,7 @@ const props = defineProps({
 const classes = computed(() => [
   {
     'usa-header--basic': props.variant === 'basic',
-  },
-  {
     'usa-header--extended': props.variant === 'extended',
-  },
-  {
     'usa-header--megamenu': props.megamenu,
   },
 ])

@@ -41,27 +41,13 @@ const props = defineProps({
 const classes = computed(() => [
   {
     'usa-button--secondary': props.variant === 'secondary',
-  },
-  {
     'usa-button--accent-cool': props.variant === 'accent-cool',
-  },
-  {
     'usa-button--accent-warm': props.variant === 'accent-warm',
-  },
-  {
     'usa-button--base': props.variant === 'base',
-  },
-  {
     'usa-button--outline':
       props.variant === 'outline' || props.variant === 'inverse',
-  },
-  {
     'usa-button--inverse': props.variant === 'inverse',
-  },
-  {
     'usa-button--unstyled': props.variant === 'unstyled',
-  },
-  {
     'usa-button--big': props.size === 'big',
   },
 ])

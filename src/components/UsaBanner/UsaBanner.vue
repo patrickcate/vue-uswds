@@ -52,12 +52,10 @@ const props = defineProps({
 const { isOpen, toggleId, openContent, closeContent, toggleContent } =
   useToggle(props.id, 'usa-banner', toRef(props, 'open'), emit)
 
-const headerClasses = computed(() => {
-  return [
-    { 'usa-banner__header--expanded': isOpen.value },
-    ...(props.customClasses?.bannerHeader || []),
-  ]
-})
+const headerClasses = computed(() => [
+  { 'usa-banner__header--expanded': isOpen.value },
+  ...(props.customClasses?.bannerHeader || []),
+])
 
 defineExpose({
   openContent,

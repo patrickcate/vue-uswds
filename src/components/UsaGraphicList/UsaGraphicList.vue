@@ -25,12 +25,12 @@ const props = defineProps({
   },
 })
 
-const classes = computed(() => {
-  return [
-    { 'usa-section--dark': props.variant === 'dark' },
-    { 'usa-section--light': props.variant === 'light' },
-  ]
-})
+const classes = computed(() => [
+  {
+    'usa-section--dark': props.variant === 'dark',
+    'usa-section--light': props.variant === 'light',
+  },
+])
 </script>
 
 <template>

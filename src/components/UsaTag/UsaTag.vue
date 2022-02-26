@@ -21,9 +21,7 @@ const props = defineProps({
   },
 })
 
-const classes = computed(() => ({
-  'usa-tag--big': props.size === 'big',
-}))
+const classes = computed(() => [{ 'usa-tag--big': props.size === 'big' }])
 </script>
 
 <template>

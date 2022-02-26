@@ -8,9 +8,9 @@ const props = defineProps({
   },
 })
 
-const classes = computed(() => {
-  return [{ 'usa-collection--condensed': props.condensed }]
-})
+const classes = computed(() => [
+  { 'usa-collection--condensed': props.condensed },
+])
 </script>
 
 <template>

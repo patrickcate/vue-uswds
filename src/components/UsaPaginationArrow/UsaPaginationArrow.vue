@@ -44,20 +44,18 @@ const props = defineProps({
   },
 })
 
-const componentTag = computed(() => {
-  return props.routerComponentName || props.to || props.href
-    ? BaseLink
-    : 'button'
-})
+const componentTag = computed(() =>
+  props.routerComponentName || props.to || props.href ? BaseLink : 'button'
+)
 
-const classes = computed(() => {
-  return [
-    { 'usa-pagination__previous-page': props.direction === 'previous' },
-    { 'usa-pagination__next-page': props.direction === 'next' },
-    { 'usa-button--unstyled': componentTag.value === 'button' },
-    props.customClasses.link,
-  ]
-})
+const classes = computed(() => [
+  {
+    'usa-pagination__previous-page': props.direction === 'previous',
+    'usa-pagination__next-page': props.direction === 'next',
+    'usa-button--unstyled': componentTag.value === 'button',
+  },
+  props.customClasses.link,
+])
 </script>
 
 <template>

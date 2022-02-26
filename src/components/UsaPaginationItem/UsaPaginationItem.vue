@@ -32,22 +32,18 @@ const props = defineProps({
   },
 })
 
-const componentTag = computed(() => {
-  return props.routerComponentName || props.to || props.href
-    ? BaseLink
-    : 'button'
-})
+const componentTag = computed(() =>
+  props.routerComponentName || props.to || props.href ? BaseLink : 'button'
+)
 
-const ariaCurrent = computed(() => {
-  return props.isCurrentPage ? 'page' : null
-})
+const ariaCurrent = computed(() => (props.isCurrentPage ? 'page' : null))
 
-const classes = computed(() => {
-  return [
-    { 'usa-current': props.isCurrentPage },
-    { 'usa-button--unstyled': componentTag.value === 'button' },
-  ]
-})
+const classes = computed(() => [
+  {
+    'usa-current': props.isCurrentPage,
+    'usa-button--unstyled': componentTag.value === 'button',
+  },
+])
 </script>
 
 <template>
