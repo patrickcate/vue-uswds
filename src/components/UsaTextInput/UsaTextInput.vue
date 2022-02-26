@@ -218,6 +218,7 @@ const groupElements = computed(
         class="usa-input-prefix"
         :class="customClasses?.inputPrefix"
         aria-hidden="true"
+        @click="inputElement.focus()"
         ><slot name="input-prefix"></slot
       ></div>
       <input
@@ -237,6 +238,7 @@ const groupElements = computed(
         class="usa-input-suffix"
         :class="customClasses?.inputSuffix"
         aria-hidden="true"
+        @click="inputElement.focus()"
         ><slot name="input-suffix"></slot
       ></div>
     </div>

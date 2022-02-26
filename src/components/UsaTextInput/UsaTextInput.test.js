@@ -278,6 +278,40 @@ describe('UsaTextInput', () => {
     cy.get('@input').should('not.have.class', 'usa-input--sm')
   })
 
+  it('clicking prefix or suffix sets focus on input', () => {
+    mount(UsaTextInput, {
+      props: {
+        label: 'Test label',
+      },
+      slots: {
+        'input-prefix': () => '@',
+        'input-suffix': () => '%',
+      },
+    }).as('wrapper')
+
+    cy.get('.usa-input-group')
+      .as('inputGroup')
+      .should('not.have.class', 'is-focused')
+
+    cy.get('.usa-input').as('input').should('not.have.focus')
+
+    cy.get('.usa-input-prefix').click({ force: true })
+
+    cy.get('@inputGroup').should('have.class', 'is-focused')
+    cy.get('@input').should('have.focus')
+
+    // Reset input focus.
+    cy.get('@input').blur()
+
+    cy.get('@inputGroup').should('not.have.class', 'is-focused')
+    cy.get('@input').should('not.have.focus')
+
+    cy.get('.usa-input-suffix').click({ force: true })
+
+    cy.get('@inputGroup').should('have.class', 'is-focused')
+    cy.get('@input').should('have.focus')
+  })
+
   it('emits update event when non-prefix/non-suffix input value changes', () => {
     mount(UsaTextInput, {
       props: {
