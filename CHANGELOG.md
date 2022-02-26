@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/patrickcate/vue-uswds/compare/v0.3.0...v0.4.0) (2022-02-26)
+
+
+### Features
+
+* convert existing form components to use new `UsaFormGroup` component ([c67a371](https://github.com/patrickcate/vue-uswds/commit/c67a371a8e9e03e0a65557bb4ca282617e5645c4))
+* **UsaCharacterCount:** implement `UsaCharacterCount` component ([1ab70a6](https://github.com/patrickcate/vue-uswds/commit/1ab70a69e1765172e534b22b3044fd3ae98e0d40)), closes [#16](https://github.com/patrickcate/vue-uswds/issues/16)
+* **UsaDateInput:** implement `UsaDateInput` component ([11084ac](https://github.com/patrickcate/vue-uswds/commit/11084accd607667522380366a88191c6ee64ca7b)), closes [#24](https://github.com/patrickcate/vue-uswds/issues/24)
+* **UsaFormGroup:** implement `UsaFormGroup` component ([197e396](https://github.com/patrickcate/vue-uswds/commit/197e39665be95042d48d76a76cbe476567d36de2)), closes [#35](https://github.com/patrickcate/vue-uswds/issues/35)
+* **UsaSearch:** implement `UsaSearch` component ([9282bc0](https://github.com/patrickcate/vue-uswds/commit/9282bc03beb4b341ccd317f83296eb81025e6361)), closes [#65](https://github.com/patrickcate/vue-uswds/issues/65)
+* **UsaSignUp:** implement `UsaSignUp` component ([8b45829](https://github.com/patrickcate/vue-uswds/commit/8b4582997ea90728c8a031d3083ccf2145705f41)), closes [#29](https://github.com/patrickcate/vue-uswds/issues/29)
+* **UsaTextarea:** implement `UsaTextarea` component ([d279ef9](https://github.com/patrickcate/vue-uswds/commit/d279ef9efbbda61a04cf4ba641ed28e4ae50af2b)), closes [#50](https://github.com/patrickcate/vue-uswds/issues/50)
+* **UsaTextInput:** add `group` prop to group input elements ([88a44b6](https://github.com/patrickcate/vue-uswds/commit/88a44b620ee82f5047fd5f672db9e22e710e20d9))
+* **UsaTextInput:** clicking on prefix/suffix sets input focus ([6ebc3ec](https://github.com/patrickcate/vue-uswds/commit/6ebc3eccc9b021dd114e7b2b2302381fc37955b8))
+* **UsaTextInput:** implement `UsaTextInput` component ([5c06270](https://github.com/patrickcate/vue-uswds/commit/5c06270c2abfeb4f4b48bb811c0b58b3206b2de2)), closes [#74](https://github.com/patrickcate/vue-uswds/issues/74)
+
+
+### Bug Fixes
+
+* move v-bind="$attrs" as for attribute to allow specific overrides ([eb09e4c](https://github.com/patrickcate/vue-uswds/commit/eb09e4c492347a96be8c3655a52a9d26f956ba8b))
+* **UsaRange:** set correct generated id prefix name ([c36df75](https://github.com/patrickcate/vue-uswds/commit/c36df75a8fb45330bf80fbb5f205847e1b898e0b))
+
 ## [0.3.0](https://github.com/patrickcate/vue-uswds/compare/v0.2.0...v0.3.0) (2022-02-10)
 
 
