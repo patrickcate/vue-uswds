@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script setup>
-import { computed, ref, useSlots, useAttrs } from 'vue'
+import { computed, ref, inject, useSlots, useAttrs, onMounted } from 'vue'
 import { useFocus } from '@vueuse/core'
 import { nextId } from '@/utils/unique-id.js'
 import UsaFormGroup from '@/components/UsaFormGroup'
@@ -84,6 +84,10 @@ const props = defineProps({
   },
 })
 
+const updateCharacterCount = inject('updateCharacterCount', null)
+const characterCountMaxlength = inject('characterCountMaxlength', null)
+const characterCountMessageId = inject('characterCountMessageId', null)
+
 const computedId = computed(() => props.id || nextId('usa-text-input'))
 const computedErrorMessageId = computed(
   () => `${computedId.value}-error-message`
@@ -96,7 +100,18 @@ const textInputValue = computed({
   },
   set(value) {
     emit('update:modelValue', value)
+
+    if (updateCharacterCount) {
+      updateCharacterCount(value)
+    }
   },
+})
+
+// Trigger any character counts for default input values.
+onMounted(() => {
+  if (updateCharacterCount) {
+    updateCharacterCount(props.modelValue)
+  }
 })
 
 const classes = computed(() => {
@@ -115,6 +130,7 @@ const classes = computed(() => {
     { 'usa-input--lg': props.width === 'lg' },
     { 'usa-input--xl': props.width === 'xl' },
     { 'usa-input--2xl': props.width === '2xl' },
+    { 'usa-character-count__field': updateCharacterCount },
   ]
 })
 
@@ -144,6 +160,10 @@ const ariaDescribedby = computed(() => {
 
   if (attrs['aria-describedby']) {
     ids.push(attrs['aria-describedby'])
+  }
+
+  if (characterCountMessageId) {
+    ids.push(characterCountMessageId.value)
   }
 
   if (slots.hint) {
@@ -198,6 +218,7 @@ const groupElements = computed(
         class="usa-input-prefix"
         :class="customClasses?.inputPrefix"
         aria-hidden="true"
+        @click="inputElement.focus()"
         ><slot name="input-prefix"></slot
       ></div>
       <input
@@ -209,6 +230,7 @@ const groupElements = computed(
         class="usa-input"
         :class="classes"
         :required="required"
+        :maxlength="characterCountMaxlength || $attrs.maxlength"
         :aria-describedby="ariaDescribedby"
       />
       <div
@@ -216,10 +238,10 @@ const groupElements = computed(
         class="usa-input-suffix"
         :class="customClasses?.inputSuffix"
         aria-hidden="true"
+        @click="inputElement.focus()"
         ><slot name="input-suffix"></slot
       ></div>
     </div>
-
     <input
       v-else
       v-bind="$attrs"
@@ -230,6 +252,7 @@ const groupElements = computed(
       class="usa-input"
       :class="classes"
       :required="required"
+      :maxlength="characterCountMaxlength || $attrs.maxlength"
       :aria-describedby="ariaDescribedby"
     />
   </UsaFormGroup>

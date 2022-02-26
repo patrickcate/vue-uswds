@@ -12,6 +12,7 @@ describe('UsaAccordionItem', () => {
           <UsaAccordionItem label="Test Accordion Label">
             <p>Test Accordion Content</p>
           </UsaAccordionItem>
+        </UsaAccordion>
       `,
     }
 
@@ -32,6 +33,7 @@ describe('UsaAccordionItem', () => {
           <UsaAccordionItem id="test-accordion-item-id" label="Test Accordion Label">
             <p>Test Accordion Content</p>
           </UsaAccordionItem>
+        </UsaAccordion>
       `,
     }
 
@@ -55,6 +57,7 @@ describe('UsaAccordionItem', () => {
             <template #label>Custom Accordion Slot Label</template>
             <template #default><p>Test Accordion Content</p></template>
           </UsaAccordionItem>
+        </UsaAccordion>
       `,
     }
 
@@ -81,6 +84,7 @@ describe('UsaAccordionItem', () => {
           >
             <p>Test Accordion Content</p>
           </UsaAccordionItem>
+        </UsaAccordion>
       `,
     }
 
