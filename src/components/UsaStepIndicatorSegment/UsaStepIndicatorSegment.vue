@@ -24,12 +24,8 @@ const statusLabel = computed(() => {
 })
 
 const classes = computed(() => [
-  {
-    'usa-step-indicator__segment--complete': props.status === 'completed',
-  },
-  {
-    'usa-step-indicator__segment--current': props.status === 'current',
-  },
+  { 'usa-step-indicator__segment--complete': props.status === 'completed' },
+  { 'usa-step-indicator__segment--current': props.status === 'current' },
 ])
 </script>
 
