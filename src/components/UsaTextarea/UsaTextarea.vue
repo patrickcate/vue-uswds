@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script setup>
-import { computed, useSlots } from 'vue'
+import { computed, inject, useSlots, onMounted } from 'vue'
 import { nextId } from '@/utils/unique-id.js'
 import UsaFormGroup from '@/components/UsaFormGroup'
 import UsaLabel from '@/components/UsaLabel'
@@ -69,6 +69,10 @@ const props = defineProps({
   },
 })
 
+const updateCharacterCount = inject('updateCharacterCount', null)
+const characterCountMaxlength = inject('characterCountMaxlength', null)
+const characterCountMessageId = inject('characterCountMessageId', null)
+
 const computedId = computed(() => props.id || nextId('usa-textarea'))
 const computedErrorMessageId = computed(
   () => `${computedId.value}-error-message`
@@ -81,7 +85,18 @@ const textareaValue = computed({
   },
   set(value) {
     emit('update:modelValue', value)
+
+    if (updateCharacterCount) {
+      updateCharacterCount(value)
+    }
   },
+})
+
+// Trigger any character counts for default textarea values.
+onMounted(() => {
+  if (updateCharacterCount) {
+    updateCharacterCount(props.modelValue)
+  }
 })
 
 const classes = computed(() => [
@@ -95,10 +110,15 @@ const classes = computed(() => [
   { 'usa-input--lg': props.width === 'lg' },
   { 'usa-input--xl': props.width === 'xl' },
   { 'usa-input--2xl': props.width === '2xl' },
+  { 'usa-character-count__field': updateCharacterCount },
 ])
 
 const ariaDescribedby = computed(() => {
   const ids = []
+
+  if (characterCountMessageId) {
+    ids.push(characterCountMessageId.value)
+  }
 
   if (slots.hint) {
     ids.push(computedHintId.value)
@@ -144,6 +164,7 @@ const ariaDescribedby = computed(() => {
       class="usa-textarea"
       :class="classes"
       :required="required"
+      :maxlength="characterCountMaxlength || $attrs.maxlength"
       :aria-describedby="ariaDescribedby"
     />
   </UsaFormGroup>

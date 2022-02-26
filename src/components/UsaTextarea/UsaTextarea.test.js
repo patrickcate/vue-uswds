@@ -11,6 +11,7 @@ describe('UsaTextarea', () => {
       attrs: {
         // Should not be inherited by root component element.
         name: 'test-textarea-name',
+        maxlength: '50',
       },
       slots: {
         hint: () => 'Test hint',
@@ -26,6 +27,7 @@ describe('UsaTextarea', () => {
     cy.get('@textarea')
       .should('have.attr', 'name')
       .and('contain', 'test-textarea-name')
+    cy.get('@textarea').should('have.attr', 'maxlength').and('contain', '50')
     cy.get('@textarea').should('have.attr', 'aria-describedby')
   })
 

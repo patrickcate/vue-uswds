@@ -45,6 +45,7 @@ describe('UsaTextInput', () => {
       attrs: {
         // Should not be inherited by root component element.
         name: 'test-input-name',
+        maxlength: '50',
         'aria-describedby': 'test-id',
       },
     })
@@ -63,7 +64,7 @@ describe('UsaTextInput', () => {
       .and('contain', 'test-input-name')
 
     cy.get('@input').should('have.attr', 'type').and('contain', 'text')
-
+    cy.get('@input').should('have.attr', 'maxlength').and('contain', '50')
     cy.get('@input')
       .should('have.attr', 'aria-describedby')
       .and('contain', 'test-id')
@@ -307,6 +308,7 @@ describe('UsaTextInput', () => {
         )
       })
   })
+
   it('emits update event when prefix/suffix input value changes', () => {
     mount(UsaTextInput, {
       props: {
