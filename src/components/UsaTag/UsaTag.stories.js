@@ -1,8 +1,8 @@
 import UsaTag from './UsaTag.vue'
 
 const defaultProps = {
-  size: '',
-  tag: 'span',
+  size: UsaTag.props.size.default,
+  tag: UsaTag.props.tag.default,
 }
 
 export default {

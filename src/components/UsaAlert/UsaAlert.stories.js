@@ -1,16 +1,13 @@
 import UsaAlert from './UsaAlert.vue'
 
 const defaultProps = {
-  variant: '',
-  slim: false,
-  noIcon: false,
-  role: '',
-  heading: '',
-  headingTag: 'h2',
-  customClasses: {
-    body: [],
-    heading: [],
-  },
+  variant: UsaAlert.props.variant.default,
+  slim: UsaAlert.props.slim.default,
+  noIcon: UsaAlert.props.noIcon.default,
+  role: UsaAlert.props.role.default,
+  heading: UsaAlert.props.heading.default,
+  headingTag: UsaAlert.props.headingTag.default,
+  customClasses: UsaAlert.props.customClasses.default(),
 }
 
 export default {
@@ -29,9 +26,6 @@ export default {
       ],
       control: {
         type: 'select',
-        labels: {
-          '': '- none -',
-        },
       },
     },
     slim: {

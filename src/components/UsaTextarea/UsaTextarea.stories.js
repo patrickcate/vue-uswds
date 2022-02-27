@@ -29,9 +29,6 @@ export default {
       ],
       control: {
         type: 'select',
-        labels: {
-          '': '- none -',
-        },
       },
     },
     modelValue: {
