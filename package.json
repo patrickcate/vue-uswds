@@ -58,7 +58,7 @@
     "uswds": "^2.12.2",
     "vite": "^2.6.4",
     "vue": "^3.2.21",
-    "vue-loader": "^16.8.2",
+    "vue-loader": "^17.0.0",
     "vue-router": "^4.0.12"
   },
   "config": {
