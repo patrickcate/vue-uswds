@@ -42,9 +42,7 @@ provide('unregisterAccordionItem', unregisterAccordionItem)
 provide('toggleItem', toggleItem)
 provide('accordionItems', accordionItems)
 
-const classes = computed(() => {
-  return { 'usa-accordion--bordered': props.bordered }
-})
+const classes = computed(() => [{ 'usa-accordion--bordered': props.bordered }])
 
 defineExpose({
   openItem,

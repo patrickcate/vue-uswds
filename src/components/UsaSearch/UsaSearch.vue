@@ -57,9 +57,11 @@ const props = defineProps({
 const computedId = computed(() => props.id || nextId('usa-search'))
 
 const classes = computed(() => [
-  { 'usa-search--small': props.variant === 'small' },
-  { 'usa-search--medium': props.variant === 'medium' },
-  { 'usa-search--big': props.variant === 'big' },
+  {
+    'usa-search--small': props.variant === 'small',
+    'usa-search--medium': props.variant === 'medium',
+    'usa-search--big': props.variant === 'big',
+  },
 ])
 
 const labelClasses = computed(() => [

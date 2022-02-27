@@ -66,46 +66,36 @@ const props = defineProps({
   },
 })
 
-const classes = computed(() => {
-  return [
-    { 'usa-card--header-first': props.headerFirst },
-    {
-      'usa-card--flag': props.flag,
-    },
-    {
-      'usa-card--media-right': props.mediaPosition === 'right',
-    },
-  ]
-})
+const classes = computed(() => [
+  {
+    'usa-card--header-first': props.headerFirst,
+    'usa-card--flag': props.flag,
+    'usa-card--media-right': props.mediaPosition === 'right',
+  },
+])
 
-const headerClasses = computed(() => {
-  return [
-    { 'usa-card__header--exdent': props.headerExdent },
-    ...(props.customClasses?.header || []),
-  ]
-})
+const headerClasses = computed(() => [
+  { 'usa-card__header--exdent': props.headerExdent },
+  ...(props.customClasses?.header || []),
+])
 
-const mediaClasses = computed(() => {
-  return [
-    { 'usa-card__media--inset': props.insetMedia },
-    { 'usa-card__media--exdent': props.mediaExdent },
-    ...(props.customClasses?.media || []),
-  ]
-})
+const mediaClasses = computed(() => [
+  {
+    'usa-card__media--inset': props.insetMedia,
+    'usa-card__media--exdent': props.mediaExdent,
+  },
+  ...(props.customClasses?.media || []),
+])
 
-const bodyClasses = computed(() => {
-  return [
-    { 'usa-card__body--exdent': props.bodyExdent },
-    ...(props.customClasses?.body || []),
-  ]
-})
+const bodyClasses = computed(() => [
+  { 'usa-card__body--exdent': props.bodyExdent },
+  ...(props.customClasses?.body || []),
+])
 
-const footerClasses = computed(() => {
-  return [
-    { 'usa-card__footer--exdent': props.footerExdent },
-    ...(props.customClasses?.footer || []),
-  ]
-})
+const footerClasses = computed(() => [
+  { 'usa-card__footer--exdent': props.footerExdent },
+  ...(props.customClasses?.footer || []),
+])
 </script>
 
 <template>

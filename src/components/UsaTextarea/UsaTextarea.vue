@@ -100,17 +100,19 @@ onMounted(() => {
 })
 
 const classes = computed(() => [
-  { 'usa-input--error': props.error },
-  { 'usa-input--2xs': props.width === '2xs' },
-  { 'usa-input--xs': props.width === 'xs' },
-  { 'usa-input--sm': props.width === 'sm' },
-  { 'usa-input--small': props.width === 'small' },
-  { 'usa-input--md': props.width === 'md' },
-  { 'usa-input--medium': props.width === 'medium' },
-  { 'usa-input--lg': props.width === 'lg' },
-  { 'usa-input--xl': props.width === 'xl' },
-  { 'usa-input--2xl': props.width === '2xl' },
-  { 'usa-character-count__field': updateCharacterCount },
+  {
+    'usa-input--error': props.error,
+    'usa-input--2xs': props.width === '2xs',
+    'usa-input--xs': props.width === 'xs',
+    'usa-input--sm': props.width === 'sm',
+    'usa-input--small': props.width === 'small',
+    'usa-input--md': props.width === 'md',
+    'usa-input--medium': props.width === 'medium',
+    'usa-input--lg': props.width === 'lg',
+    'usa-input--xl': props.width === 'xl',
+    'usa-input--2xl': props.width === '2xl',
+    'usa-character-count__field': updateCharacterCount,
+  },
 ])
 
 const ariaDescribedby = computed(() => {

@@ -24,18 +24,12 @@ export default {
       ],
       control: {
         type: 'select',
-        labels: {
-          '': 'default',
-        },
       },
     },
     size: {
       options: ['', 'big'],
       control: {
         type: 'radio',
-        labels: {
-          '': 'default',
-        },
       },
     },
     type: {

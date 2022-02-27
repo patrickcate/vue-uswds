@@ -14,8 +14,10 @@ const props = defineProps({
 })
 
 const classes = computed(() => [
-  { 'usa-link--alt': props.alt },
-  { 'usa-link--external': props.external },
+  {
+    'usa-link--alt': props.alt,
+    'usa-link--external': props.external,
+  },
 ])
 </script>
 

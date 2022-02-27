@@ -14,9 +14,6 @@ export default {
       control: {
         options: ['', 'current', 'completed'],
         type: 'select',
-        labels: {
-          '': 'not completed',
-        },
       },
     },
     label: {

@@ -28,9 +28,6 @@ export default {
     size: {
       options: ['', 'lg'],
       control: {
-        labels: {
-          '': 'Default',
-        },
         type: 'select',
       },
     },

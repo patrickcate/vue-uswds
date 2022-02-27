@@ -26,9 +26,7 @@ const props = defineProps({
   },
 })
 
-const timeElement = computed(() => {
-  return props.datetime ? 'time' : 'div'
-})
+const timeElement = computed(() => (props.datetime ? 'time' : 'div'))
 </script>
 
 <template>

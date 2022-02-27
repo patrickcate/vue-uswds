@@ -1,7 +1,6 @@
 import UsaCharacterCount from './UsaCharacterCount.vue'
 import UsaTextInput from '@/components/UsaTextInput'
 import UsaTextarea from '@/components/UsaTextarea'
-import { ref } from 'vue'
 
 const defaultProps = {
   maxlength: UsaCharacterCount.props.maxlength.default,

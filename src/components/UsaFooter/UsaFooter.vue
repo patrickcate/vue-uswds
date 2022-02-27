@@ -32,11 +32,7 @@ const props = defineProps({
 const classes = computed(() => [
   {
     'usa-footer--big': props.variant === 'big',
-  },
-  {
     'usa-footer--medium': props.variant === 'medium',
-  },
-  {
     'usa-footer--slim': props.variant === 'slim',
   },
 ])

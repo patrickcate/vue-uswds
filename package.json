@@ -24,6 +24,7 @@
     "@vueuse/components": "^7.5.4",
     "@vueuse/core": "^7.5.3",
     "@vueuse/integrations": "^7.5.3",
+    "focus-trap": "^6.7.3",
     "just-kebab-case": "^4.0.0"
   },
   "devDependencies": {
@@ -32,10 +33,10 @@
     "@commitlint/config-conventional": "^16.0.0",
     "@cypress/vite-dev-server": "^2.2.0",
     "@cypress/vue": "^3.0.3",
-    "@storybook/addon-actions": "6.3.13",
-    "@storybook/addon-essentials": "6.3.13",
-    "@storybook/addon-links": "6.3.13",
-    "@storybook/vue3": "6.3.13",
+    "@storybook/addon-actions": "^6.4.0",
+    "@storybook/addon-essentials": "^6.4.0",
+    "@storybook/addon-links": "^6.4.0",
+    "@storybook/vue3": "^6.4.0",
     "@vitejs/plugin-vue": "^2.1.0",
     "babel-loader": "^8.2.3",
     "commitizen": "^4.2.4",
@@ -57,7 +58,7 @@
     "uswds": "^2.12.2",
     "vite": "^2.6.4",
     "vue": "^3.2.21",
-    "vue-loader": "^16.8.2",
+    "vue-loader": "^17.0.0",
     "vue-router": "^4.0.12"
   },
   "config": {
