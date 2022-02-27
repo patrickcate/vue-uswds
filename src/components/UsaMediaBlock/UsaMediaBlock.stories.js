@@ -35,7 +35,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `
-  <UsaMediaBlock>
+  <UsaMediaBlock :custom-classes="customClasses">
     <template v-if="${!!args.mediaSlot}" #media>${args.mediaSlot}</template>
     <template v-if="${!!args.defaultSlot}" #default>${
     args.defaultSlot
@@ -54,7 +54,7 @@ CustomClassesMediaBlock.args = {
   ...defaultProps,
   customClasses: {
     media: ['test-media-class'],
-    default: ['test-body-class'],
+    body: ['test-body-class'],
   },
 }
 CustomClassesMediaBlock.storyName = 'Custom Classes'
