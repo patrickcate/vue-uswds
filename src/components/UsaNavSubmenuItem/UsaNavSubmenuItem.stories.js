@@ -1,9 +1,10 @@
 import UsaNavSubmenuItem from './UsaNavSubmenuItem.vue'
+import { ref } from 'vue'
 
 const defaultProps = {
-  href: '',
-  to: '',
-  routerComponentName: '',
+  href: UsaNavSubmenuItem.props.href.default,
+  to: UsaNavSubmenuItem.props.to.default,
+  routerComponentName: UsaNavSubmenuItem.props.routerComponentName.default,
 }
 
 export default {
@@ -32,6 +33,10 @@ export default {
   decorators: [
     () => ({
       template: '<ul class="usa-dark-background"><story /></ul>',
+      provide: {
+        dropdownId: ref('sb-dropdown-id'),
+        closeDropdown: () => {},
+      },
     }),
   ],
 }
