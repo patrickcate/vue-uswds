@@ -4,7 +4,7 @@ import { h } from 'vue'
 import UsaNavbar from './UsaNavbar.vue'
 
 describe('UsaNavbar', () => {
-  it.only('renders the component', () => {
+  it('renders the component', () => {
     mount(UsaNavbar, {}).as('wrapper')
 
     cy.get('div.usa-navbar').should('exist')
@@ -13,7 +13,7 @@ describe('UsaNavbar', () => {
     cy.get('@wrapper')
       .vue()
       .then(vm => {
-        expect(vm.emitted()).to.not.have.property('toggleMenu')
+        expect(vm.emitted()).to.not.have.property('mobileMenuOpen')
       })
 
     cy.get('@button').click()
@@ -21,8 +21,8 @@ describe('UsaNavbar', () => {
     cy.get('@wrapper')
       .vue()
       .then(vm => {
-        expect(vm.emitted()).to.have.property('toggleMenu')
-        expect(vm.emitted()['toggleMenu']).to.have.lengthOf(1)
+        expect(vm.emitted()).to.have.property('mobileMenuOpen')
+        expect(vm.emitted()['mobileMenuOpen']).to.have.lengthOf(1)
       })
   })
 
