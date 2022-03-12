@@ -41,6 +41,10 @@ provide(
   'isExtendedHeader',
   computed(() => props.variant === 'extended')
 )
+provide(
+  'isMegamenu',
+  computed(() => props.megamenu)
+)
 </script>
 
 <template>
