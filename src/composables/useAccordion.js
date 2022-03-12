@@ -49,11 +49,22 @@ export default (_accordionItems, multiselectable) => {
     }
   }
 
+  const closeAllItems = () => {
+    const items = Object.keys(accordionItems)
+
+    items.forEach(accordionId => {
+      if (accordionItems[accordionId]) {
+        accordionItems[accordionId] = false
+      }
+    })
+  }
+
   return {
     registerAccordionItem,
     unregisterAccordionItem,
     openItem,
     closeItem,
     toggleItem,
+    closeAllItems,
   }
 }
