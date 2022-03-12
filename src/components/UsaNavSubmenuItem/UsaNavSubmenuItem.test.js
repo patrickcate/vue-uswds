@@ -50,7 +50,11 @@ describe('UsaNavSubmenuItem', () => {
     })
 
     cy.get('router-link').should('have.attr', 'to')
+
+    cy.get('@closeDropdown').should('not.be.called')
+
     cy.get('router-link').click()
+
     cy.get('@closeDropdown').should('be.calledWith', 'test-dropdown-id')
   })
 })
