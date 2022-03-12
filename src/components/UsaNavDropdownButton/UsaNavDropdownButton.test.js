@@ -21,7 +21,7 @@ describe('UsaNavDropdownButton', () => {
           toggleDropdown: cy.stub().as('toggleDropdown'),
         },
       },
-    }).as('wrapper')
+    })
 
     cy.get('button.usa-accordion__button')
       .as('button')
@@ -77,7 +77,7 @@ describe('UsaNavDropdownButton', () => {
           toggleDropdown: cy.stub().as('toggleDropdown'),
         },
       },
-    }).as('wrapper')
+    })
 
     cy.get('button.usa-accordion__button')
       .as('button')
