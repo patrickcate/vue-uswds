@@ -8,7 +8,7 @@ export default (_accordionItems, multiselectable) => {
       accordionItems[id] = isOpen
     }
 
-    if (multiselectable) {
+    if (multiselectable.value) {
       return
     }
 
@@ -26,7 +26,7 @@ export default (_accordionItems, multiselectable) => {
   const openItem = id => {
     accordionItems[id] = true
 
-    if (multiselectable) {
+    if (multiselectable.value) {
       return
     }
 
