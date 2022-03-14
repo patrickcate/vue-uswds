@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/patrickcate/vue-uswds/compare/v0.4.0...v0.5.0) (2022-03-14)
+
+
+### Features
+
+* **UsaHeader:** provide megamenu prop value ([6b0f103](https://github.com/patrickcate/vue-uswds/commit/6b0f1035894b33d3c88d772ecb1161cb1ae6b486))
+* **UsaNavbar:** implement `UsaNavbar` component ([5e70f66](https://github.com/patrickcate/vue-uswds/commit/5e70f66f77117e7c0b897a67aac78f3803f46c00)), closes [#155](https://github.com/patrickcate/vue-uswds/issues/155)
+* **UsaNavDropdownButton:** implement `UsaNavDropdownButton` component ([31acdb7](https://github.com/patrickcate/vue-uswds/commit/31acdb7762866cb4261ff89ce5455fec37268452))
+* **UsaNavDropdown:** implement `UsaNavDropdown` component ([368d537](https://github.com/patrickcate/vue-uswds/commit/368d537974d7f3c7640ead937bf9b32cfb04f433)), closes [#94](https://github.com/patrickcate/vue-uswds/issues/94)
+* **UsaNav:** implement `UsaNav` component ([52d72f8](https://github.com/patrickcate/vue-uswds/commit/52d72f80c74bc2f9c1073b04eabf7bbf08604588)), closes [#86](https://github.com/patrickcate/vue-uswds/issues/86)
+* **UsaNavPrimary:** implement `UsaNavPrimary` component ([8d16532](https://github.com/patrickcate/vue-uswds/commit/8d16532612ff45c5934315d00cac5e34197771ba)), closes [#87](https://github.com/patrickcate/vue-uswds/issues/87)
+* **UsaNavPrimaryItem:** implement `UsaNavPrimaryItem` component ([db5ca2f](https://github.com/patrickcate/vue-uswds/commit/db5ca2f823c4d59a657e993601ee9f7218a7892c)), closes [#93](https://github.com/patrickcate/vue-uswds/issues/93)
+* **UsaNavSecondary:** add default slot and fix search slot visibility with extended header ([d2715b8](https://github.com/patrickcate/vue-uswds/commit/d2715b8a1183f84d0d9573cb7cdf1e076a2cd084))
+* **UsaNavSubmenu:** implement `UsaNavSubmenu` component ([f8be07b](https://github.com/patrickcate/vue-uswds/commit/f8be07bf925ff4ee52bcc2e2969f3186d66e1c84)), closes [#91](https://github.com/patrickcate/vue-uswds/issues/91)
+* **UsaNavSubmenuItem:** implement `UsaNavSubmenuItem` component ([a1a9665](https://github.com/patrickcate/vue-uswds/commit/a1a96650ec0b963ef92ad60585cf390990084e12)), closes [#92](https://github.com/patrickcate/vue-uswds/issues/92)
+
 ## [0.4.0](https://github.com/patrickcate/vue-uswds/compare/v0.3.0...v0.4.0) (2022-02-26)
 
 
