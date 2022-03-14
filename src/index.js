@@ -7,6 +7,7 @@ import {
   IMAGE_PATH,
   SVG_SPRITE_PATH,
   ROUTER_COMPONENT_NAME,
+  MOBILE_MENU_BREAKPOINT,
 } from '@/utils/constants.js'
 
 export default {
@@ -20,6 +21,7 @@ export default {
       imagePath: IMAGE_PATH,
       svgSpritePath: SVG_SPRITE_PATH,
       routerComponentName: ROUTER_COMPONENT_NAME,
+      mobileMenuBreakpoint: MOBILE_MENU_BREAKPOINT,
       ...customOptions,
       version: pkg.version,
     }

@@ -19,6 +19,7 @@ describe('UsaNavSubmenuItem', () => {
         provide: {
           dropdownId: 'test-dropdown-id',
           closeDropdown: () => {},
+          closeMobileMenu: () => {},
         },
       },
     })
@@ -45,6 +46,7 @@ describe('UsaNavSubmenuItem', () => {
         provide: {
           dropdownId: 'test-dropdown-id',
           closeDropdown: cy.stub().as('closeDropdown'),
+          closeMobileMenu: cy.stub().as('closeMobileMenu'),
         },
       },
     })
@@ -52,9 +54,11 @@ describe('UsaNavSubmenuItem', () => {
     cy.get('router-link').should('have.attr', 'to')
 
     cy.get('@closeDropdown').should('not.be.called')
+    cy.get('@closeMobileMenu').should('not.be.called')
 
     cy.get('router-link').click()
 
     cy.get('@closeDropdown').should('be.calledWith', 'test-dropdown-id')
+    cy.get('@closeMobileMenu').should('be.called')
   })
 })

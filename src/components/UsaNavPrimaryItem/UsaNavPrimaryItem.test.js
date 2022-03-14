@@ -17,6 +17,7 @@ describe('UsaNavPrimaryItem', () => {
       global: {
         provide: {
           closeAllDropdowns: cy.stub().as('closeAllDropdowns'),
+          closeMobileMenu: cy.stub().as('closeMobileMenu'),
         },
       },
     })
@@ -36,10 +37,12 @@ describe('UsaNavPrimaryItem', () => {
     cy.get('@link').find('span').should('contain', 'Test nav link')
 
     cy.get('@closeAllDropdowns').should('not.be.called')
+    cy.get('@closeMobileMenu').should('not.be.called')
 
     cy.get('@link').click()
 
     cy.get('@closeAllDropdowns').should('be.called')
+    cy.get('@closeMobileMenu').should('be.called')
   })
 
   it('renders as vue router link', () => {
@@ -54,6 +57,7 @@ describe('UsaNavPrimaryItem', () => {
       global: {
         provide: {
           closeAllDropdowns: () => {},
+          closeMobileMenu: () => {},
         },
       },
     })

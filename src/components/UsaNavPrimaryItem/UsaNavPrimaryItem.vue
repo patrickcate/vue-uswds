@@ -13,6 +13,7 @@ defineProps({
 })
 
 const closeAllDropdowns = inject('closeAllDropdowns')
+const closeMobileMenu = inject('closeMobileMenu')
 </script>
 
 <template>
@@ -23,7 +24,7 @@ const closeAllDropdowns = inject('closeAllDropdowns')
       :href="href"
       :to="to"
       :router-component-name="routerComponentName"
-      @click="closeAllDropdowns"
+      @click="closeAllDropdowns(), closeMobileMenu()"
     >
       <span><slot></slot></span>
     </BaseLink>
