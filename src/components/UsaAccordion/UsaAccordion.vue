@@ -1,5 +1,5 @@
 <script setup>
-import { computed, provide, reactive, watch } from 'vue'
+import { computed, provide, reactive, watch, toRef } from 'vue'
 import useAccordion from '@/composables/useAccordion.js'
 
 const emit = defineEmits(['update:accordionItems'])
@@ -20,6 +20,7 @@ const props = defineProps({
 })
 
 const accordionItems = reactive({})
+const isMultiSelectable = toRef(props, 'multiselectable')
 
 const {
   registerAccordionItem,
@@ -27,7 +28,7 @@ const {
   openItem,
   closeItem,
   toggleItem,
-} = useAccordion(accordionItems, props.multiselectable)
+} = useAccordion(accordionItems, isMultiSelectable)
 
 watch(accordionItems, () => {
   emit('update:accordionItems', accordionItems)
@@ -55,7 +56,7 @@ defineExpose({
   <div
     class="usa-accordion"
     :class="classes"
-    :aria-multiselectable="multiselectable || null"
+    :aria-multiselectable="isMultiSelectable || null"
     ><slot></slot
   ></div>
 </template>

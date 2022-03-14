@@ -13,21 +13,24 @@ defineProps({
 </script>
 
 <template>
-  <div class="usa-nav__secondary">
-    <ul v-if="items.length" class="usa-nav__secondary-links">
-      <li
-        v-for="(item, index) in items"
-        :key="item.text || index"
-        class="usa-nav__secondary-item"
-      >
-        <BaseLink
-          :to="item.to"
-          :href="item.href"
-          :router-component-name="item.routerComponentName"
-          >{{ item.text }}</BaseLink
+  <div v-if="isExtendedHeader" class="usa-nav__secondary">
+    <ul class="usa-nav__secondary-links">
+      <slot :items="items">
+        <li
+          v-for="item in items"
+          :key="item?.id || item.text"
+          class="usa-nav__secondary-item"
         >
-      </li>
+          <BaseLink
+            :to="item.to"
+            :href="item.href"
+            :router-component-name="item.routerComponentName"
+            >{{ item.text }}</BaseLink
+          >
+        </li>
+      </slot>
     </ul>
-    <slot v-if="isExtendedHeader" name="search"></slot>
+    <slot name="search"></slot>
   </div>
+  <slot v-else name="search"></slot>
 </template>

@@ -1,5 +1,8 @@
 <script setup>
-const emit = defineEmits(['toggleMenu'])
+import { provide } from 'vue'
+import useMobileMenu from '@/composables/useMobileMenu.js'
+
+const emit = defineEmits(['mobileMenuOpen'])
 
 defineProps({
   menuButtonLabel: {
@@ -16,9 +19,19 @@ defineProps({
   },
 })
 
-function toggleMenu() {
-  emit('toggleMenu')
-}
+const {
+  isMobileMenuOpen,
+  mobileMenuId,
+  closeMobileMenu,
+  openMobileMenu,
+  toggleMobileMenu,
+} = useMobileMenu(emit)
+
+provide('isMobileMenuOpen', isMobileMenuOpen)
+provide('mobileMenuId', mobileMenuId)
+provide('closeMobileMenu', closeMobileMenu)
+provide('openMobileMenu', openMobileMenu)
+provide('toggleMobileMenu', toggleMobileMenu)
 </script>
 
 <template>
@@ -27,7 +40,8 @@ function toggleMenu() {
     <button
       class="usa-menu-btn"
       :class="customClasses?.button"
-      @click="toggleMenu"
+      :aria-controls="mobileMenuId || null"
+      @click="toggleMobileMenu"
       ><slot name="menu-button" :menuButtonLabel="menuButtonLabel">{{
         menuButtonLabel
       }}</slot></button

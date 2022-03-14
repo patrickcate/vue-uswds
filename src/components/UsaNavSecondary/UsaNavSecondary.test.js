@@ -1,5 +1,6 @@
 import '@module/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
+import { h } from 'vue'
 import UsaNavSecondary from './UsaNavSecondary.vue'
 
 describe('UsaNavSecondary', () => {
@@ -19,12 +20,24 @@ describe('UsaNavSecondary', () => {
   })
 
   it('renders the component', () => {
-    mount(UsaNavSecondary, {})
+    mount(UsaNavSecondary, {
+      slots: {
+        search: () => h('span', {}, 'Test search slot'),
+      },
+    })
 
-    cy.get('.usa-nav__secondary').should('exist')
+    cy.get('.usa-nav__secondary').should('not.exist')
     cy.get('.usa-nav__secondary-links').should('not.exist')
     cy.get('.usa-nav__secondary-item').should('not.exist')
     cy.get('.usa-nav__secondary-item a').should('not.exist')
+
+    cy.get('span').should('contain', 'Test search slot')
+  })
+
+  it('displays nothing if search slot is not used or header is not `extended` variant', () => {
+    mount(UsaNavSecondary, {})
+
+    cy.get('[data-v-app]').children().should('not.exist')
   })
 
   it('displays list of links', () => {
@@ -34,6 +47,11 @@ describe('UsaNavSecondary', () => {
       },
       slots: {
         search: () => 'Test search slot',
+      },
+      global: {
+        provide: {
+          isExtendedHeader: true,
+        },
       },
     })
 
@@ -52,25 +70,6 @@ describe('UsaNavSecondary', () => {
       .should('have.attr', 'href')
       .and('contain', '/second-link')
     cy.get('@secondLink').should('contain', 'Second link')
-
-    // Search slot is only rendered with the `extended` header variant.
-    cy.get('.usa-nav__secondary').should('not.contain', 'Test search slot')
-  })
-
-  it('`search` slot is rendered if header is `extended` variant', () => {
-    mount(UsaNavSecondary, {
-      props: {
-        items: testLinks,
-      },
-      slots: {
-        search: () => 'Test search slot',
-      },
-      global: {
-        provide: {
-          isExtendedHeader: true,
-        },
-      },
-    })
 
     cy.get('.usa-nav__secondary').should('contain', 'Test search slot')
   })

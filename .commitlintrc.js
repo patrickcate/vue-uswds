@@ -11,6 +11,10 @@ const componentNames = getDirectories(join(__dirname, 'src', 'components'))
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   rules: {
-    'scope-enum': [2, 'always', ['', ...componentNames]],
+    'scope-enum': [
+      2,
+      'always',
+      ['', ...componentNames, 'storybook', 'cypress', 'npm'],
+    ],
   },
 }

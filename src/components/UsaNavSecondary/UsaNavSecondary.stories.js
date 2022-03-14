@@ -20,12 +20,16 @@ export default {
     items: {
       control: { type: 'object' },
     },
+    defaultSlot: {
+      control: { type: 'text' },
+    },
     searchSlot: {
       control: { type: 'text' },
     },
   },
   args: {
     items: defaultProps.testLinks,
+    defaultSlot: '',
     searchSlot: '',
   },
 }
@@ -40,6 +44,9 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaNavSecondary :items="items">
+    <template v-if="${!!args.defaultSlot}" #default :items="items">${
+    args.defaultSlot
+  }</template>
     <template v-if="${!!args.searchSlot}" #search>${args.searchSlot}</template>
   </UsaNavSecondary>`,
 })

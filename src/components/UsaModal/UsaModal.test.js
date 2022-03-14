@@ -328,7 +328,7 @@ describe('UsaModal', () => {
 
     cy.get('.test-close-button').should('have.focus')
 
-    // Table to next button
+    // Tab to next button.
     cy.realPress('Tab')
     cy.get('.test-close-button-2').should('have.focus')
 
