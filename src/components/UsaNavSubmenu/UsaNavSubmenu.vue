@@ -3,6 +3,9 @@ import { computed, ref, inject, toRef } from 'vue'
 import { GRID_NAMESPACE } from '@/utils/constants.js'
 
 const gridNamespace = inject('vueUswds.gridNamespace', GRID_NAMESPACE)
+const isMegamenu = inject('isMegamenu', ref(false))
+const dropdownId = inject('dropdownId')
+const dropdownItems = inject('dropdownItems')
 
 const props = defineProps({
   cols: {
@@ -29,9 +32,6 @@ const props = defineProps({
   },
 })
 
-const isMegamenu = inject('isMegamenu', ref(false))
-const dropdownId = inject('dropdownId')
-const dropdownItems = inject('dropdownItems')
 const classes = computed(() => [{ 'usa-megamenu': isMegamenu.value }])
 
 const gridClasses = computed(() => [
