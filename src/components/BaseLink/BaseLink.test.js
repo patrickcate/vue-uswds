@@ -37,6 +37,20 @@ describe('BaseLink', () => {
     cy.get('a').should('have.attr', 'href').and('contain', '/test-page')
   })
 
+  it('renders a regular `a` tag if the `to` prop is an external URL', () => {
+    mount(BaseLink, {
+      props: {
+        to: 'https://google.com',
+      },
+      slots: {
+        default: () => 'Test Regular Link',
+      },
+    })
+
+    cy.get('a').should('contain', 'Test Regular Link')
+    cy.get('a').should('have.attr', 'href').and('contain', 'https://google.com')
+  })
+
   it('renders as a `nuxt-link` if $nuxt is detected', () => {
     mount(BaseLink, {
       props: {

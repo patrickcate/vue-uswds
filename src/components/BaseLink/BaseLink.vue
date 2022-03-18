@@ -34,7 +34,7 @@ export default {
     }
   },
   computed: {
-    isExternalLink() {
+    isHrefLink() {
       return (
         !!this.href ||
         (typeof this.to === 'string' && this.to.startsWith('http'))
@@ -64,7 +64,7 @@ export default {
 </script>
 
 <template>
-  <a v-if="isExternalLink" v-bind="$attrs" :href="href"><slot></slot></a>
+  <a v-if="isHrefLink" v-bind="$attrs" :href="href || to"><slot></slot></a>
   <component :is="linkComponent" v-else v-bind="$attrs" :to="to"
     ><slot></slot
   ></component>
