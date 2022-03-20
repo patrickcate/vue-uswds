@@ -1,7 +1,11 @@
 <script setup>
+import { computed, inject } from 'vue'
+import { GRID_NAMESPACE } from '@/utils/constants.js'
 import BaseLink from '@/components/BaseLink'
 
-defineProps({
+const gridNamespace = inject('vueUswds.gridNamespace', GRID_NAMESPACE)
+
+const props = defineProps({
   items: {
     type: Array,
     default: () => [],
@@ -9,12 +13,18 @@ defineProps({
   customClasses: {
     type: Object,
     default: () => ({
-      gridCol: ['grid-col-auto'],
+      gridCol: [],
       link: [],
       icon: [],
     }),
   },
 })
+
+const gridColClasses = computed(() =>
+  props.customClasses?.gridCol?.length
+    ? props.customClasses.gridCol
+    : [`${gridNamespace}col-auto`]
+)
 </script>
 
 <template>
@@ -22,7 +32,7 @@ defineProps({
     <div
       v-for="item in items"
       :key="item?.id || item.name"
-      :class="customClasses?.gridCol"
+      :class="gridColClasses"
     >
       <BaseLink
         :to="item.to"
