@@ -1,5 +1,8 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
+import { GRID_NAMESPACE } from '@/utils/constants.js'
+
+const gridNamespace = inject('vueUswds.gridNamespace', GRID_NAMESPACE)
 
 const props = defineProps({
   variant: {
@@ -31,11 +34,17 @@ const classes = computed(() => [
     'usa-section--light': props.variant === 'light',
   },
 ])
+
+const containerClasses = computed(() =>
+  props.customClasses?.container?.length
+    ? props.customClasses.container
+    : [`${gridNamespace}container`]
+)
 </script>
 
 <template>
   <section class="usa-graphic-list usa-section" :class="classes">
-    <div class="grid-container" :class="customClasses?.container">
+    <div :class="containerClasses">
       <slot :variant="variant"></slot>
     </div>
   </section>
