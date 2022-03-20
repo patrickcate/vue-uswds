@@ -1,5 +1,8 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
+import { GRID_NAMESPACE } from '@/utils/constants.js'
+
+const gridNamespace = inject('vueUswds.gridNamespace', GRID_NAMESPACE)
 
 const props = defineProps({
   variant: {
@@ -36,14 +39,17 @@ const classes = computed(() => [
     'usa-footer--slim': props.variant === 'slim',
   },
 ])
+
+const containerClasses = computed(() =>
+  props.customClasses?.container?.length
+    ? props.customClasses.container
+    : [`${gridNamespace}container`]
+)
 </script>
 
 <template>
   <footer class="usa-footer" :class="classes">
-    <div
-      class="grid-container usa-footer__return-to-top"
-      :class="customClasses?.container"
-    >
+    <div class="usa-footer__return-to-top" :class="containerClasses">
       <slot name="jump-link"
         ><a href="#">{{ jumpLinkText }}</a></slot
       >
