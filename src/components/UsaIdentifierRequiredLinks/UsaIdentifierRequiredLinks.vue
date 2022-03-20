@@ -19,10 +19,10 @@ defineProps({
     :aria-label="ariaLabel"
   >
     <div class="usa-identifier__container">
-      <ul v-if="items.length" class="usa-identifier__required-links-list">
+      <ul class="usa-identifier__required-links-list">
         <li
-          v-for="(item, index) in items"
-          :key="item.text || index"
+          v-for="item in items"
+          :key="item?.id || item.text"
           class="usa-identifier__required-links-item"
         >
           <BaseLink

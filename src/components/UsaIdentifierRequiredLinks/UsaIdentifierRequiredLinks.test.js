@@ -26,12 +26,12 @@ describe('UsaIdentifierRequiredLinks', () => {
       .and('contain', 'Important links')
 
     cy.get('.usa-identifier__container').should('exist')
-    cy.get('.usa-identifier__required-links-list').should('not.exist')
+    cy.get('.usa-identifier__required-links-list').should('exist')
     cy.get('.usa-identifier__required-links-item').should('not.exist')
     cy.get('.usa-identifier__required-link').should('not.exist')
   })
 
-  it('renders the component', () => {
+  it('renders list of required links', () => {
     mount(UsaIdentifierRequiredLinks, {
       props: {
         ariaLabel: 'Test aria label',
