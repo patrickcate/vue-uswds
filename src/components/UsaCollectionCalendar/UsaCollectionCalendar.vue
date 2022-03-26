@@ -2,10 +2,6 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  datetime: {
-    type: String,
-    default: '',
-  },
   month: {
     type: String,
     required: true,
@@ -13,6 +9,10 @@ const props = defineProps({
   day: {
     type: [String, Number],
     required: true,
+  },
+  datetime: {
+    type: String,
+    default: '',
   },
   customClasses: {
     type: Object,
