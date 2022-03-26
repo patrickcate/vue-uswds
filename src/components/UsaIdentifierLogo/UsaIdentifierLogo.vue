@@ -2,18 +2,7 @@
 import BaseLink from '@/components/BaseLink'
 
 defineProps({
-  href: {
-    type: String,
-    default: '',
-  },
-  to: {
-    type: [String, Object],
-    default: '',
-  },
-  routerComponentName: {
-    type: String,
-    default: '',
-  },
+  ...BaseLink.props,
   src: {
     type: String,
     default: '',
@@ -24,11 +13,9 @@ defineProps({
   },
   customClasses: {
     type: Object,
-    default: () => {
-      return {
-        image: [],
-      }
-    },
+    default: () => ({
+      image: [],
+    }),
   },
 })
 </script>
