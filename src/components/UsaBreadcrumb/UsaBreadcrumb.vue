@@ -34,9 +34,7 @@ const classes = computed(() => [
   },
 ])
 
-const hasCurrent = computed(() =>
-  props?.items.some(item => item.current !== undefined)
-)
+const hasCurrent = computed(() => props.items.some(item => item?.current))
 
 const breadcrumbItems = computed(() => {
   if (!props.items.length) {
@@ -61,22 +59,20 @@ const breadcrumbItems = computed(() => {
   <nav class="usa-breadcrumb" :class="classes" :aria-label="ariaLabel">
     <ol class="usa-breadcrumb__list" :class="customClasses?.list">
       <slot :items="breadcrumbItems">
-        <template v-if="breadcrumbItems.length">
-          <UsaBreadcrumbItem
-            v-for="(item, index) in breadcrumbItems"
-            :key="item.text || index"
-            :class="customClasses?.item"
-            :to="item.to"
-            :href="item.href"
-            :router-component-name="item.routerComponentName"
-            :current="item.current"
-            :custom-classes="{
-              link: customClasses?.link,
-              span: customClasses?.span,
-            }"
-            >{{ item.text }}</UsaBreadcrumbItem
-          >
-        </template>
+        <UsaBreadcrumbItem
+          v-for="item in breadcrumbItems"
+          :key="item?.id || item.text"
+          :class="customClasses?.item"
+          :to="item.to"
+          :href="item.href"
+          :router-component-name="item.routerComponentName"
+          :current="item.current"
+          :custom-classes="{
+            link: customClasses?.link,
+            span: customClasses?.span,
+          }"
+          >{{ item.text }}</UsaBreadcrumbItem
+        >
       </slot>
     </ol>
   </nav>
