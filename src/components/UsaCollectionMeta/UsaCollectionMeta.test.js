@@ -10,14 +10,15 @@ describe('UsaCollectionMeta', () => {
         ariaLabel: 'Test aria label',
       },
       slots: {
-        default: () => h('li', null, 'Test meta item'),
+        default: () => h('li', {}, 'Test meta item'),
       },
     })
 
     cy.get('ul.usa-collection__meta')
+      .as('list')
       .should('have.attr', 'aria-label')
       .and('contain', 'Test aria label')
 
-    cy.get('.usa-collection__meta li').should('contain', 'Test meta item')
+    cy.get('@list').find('li').should('contain', 'Test meta item')
   })
 })
