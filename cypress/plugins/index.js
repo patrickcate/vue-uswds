@@ -27,9 +27,10 @@ module.exports = (on, config) => {
 
   on('dev-server:start', options => {
     const viteConfig = {
-      configFile: path.resolve(__dirname, '..', '..', 'vite.config.js'),
       resolve: {
         alias: {
+          '@': path.resolve(__dirname, '..', '..', 'src'),
+          '@module': path.resolve(__dirname, '..', '..', 'node_modules'),
           vue: path.resolve(
             __dirname,
             '..',
@@ -43,20 +44,15 @@ module.exports = (on, config) => {
       },
       plugins: [
         istanbul({
-          include: [
-            'src/components/**/*.vue',
-            'src/components/BaseHeading/BaseHeading.vue',
-            'src/composables/*.js',
-            'src/utils/*.js',
-          ],
+          include: ['src/components', 'src/composable', 'src/utils'],
           exclude: [
             'node_modules',
             '^src/**',
             '**/*.test.js',
             '**/*.stories.js',
-            '**/components/**/index.js',
           ],
           cypress: true,
+          requireEnv: false,
           extension: ['.js', '.vue'],
         }),
       ],
