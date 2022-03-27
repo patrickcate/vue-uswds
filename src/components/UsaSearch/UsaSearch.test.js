@@ -5,7 +5,11 @@ import { h } from 'vue'
 
 describe('UsaSearch', () => {
   it('renders the component', () => {
-    mount(UsaSearch, {})
+    mount(UsaSearch, {
+      props: {
+        customClasses: {},
+      },
+    })
 
     cy.get('form.usa-search')
       .should('have.class', 'usa-search--medium')
@@ -21,14 +25,20 @@ describe('UsaSearch', () => {
       .as('label')
       .should('have.class', 'usa-sr-only')
       .and('have.attr', 'for')
+    cy.get('@label')
+      .should('have.attr', 'class')
+      .and('equal', 'usa-label usa-sr-only')
     cy.get('@label').should('contain', 'Search')
 
     cy.get('@input').should('have.attr', 'name').and('contain', 'search')
     cy.get('@input').should('have.attr', 'id')
+    cy.get('@input').should('have.attr', 'class').and('equal', 'usa-input')
 
     cy.get('button.usa-button')
+      .as('button')
       .should('have.attr', 'type')
       .and('contain', 'submit')
+    cy.get('@button').should('have.attr', 'class').and('equal', 'usa-button')
 
     cy.get('span.usa-search__submit-text').should('contain', 'Search')
 
@@ -38,6 +48,9 @@ describe('UsaSearch', () => {
       .and('contain', '/assets/img/usa-icons-bg/search--white.svg')
 
     cy.get('@buttonIcon').should('have.attr', 'alt').and('contain', 'Search')
+    cy.get('@buttonIcon')
+      .should('have.attr', 'class')
+      .and('equal', 'usa-search__submit-icon')
   })
 
   it('displays each variant size type', () => {
