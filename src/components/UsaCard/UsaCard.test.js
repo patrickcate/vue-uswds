@@ -57,6 +57,7 @@ describe('UsaCard', () => {
         mediaExdent: true,
         bodyExdent: true,
         footerExdent: true,
+        customClasses: {},
       },
       slots: {
         media: () => testMedia,

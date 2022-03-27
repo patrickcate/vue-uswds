@@ -11,6 +11,7 @@ describe('UsaBreadcrumb', () => {
       {
         to: '/',
         text: 'Home',
+        id: 'home',
       },
       {
         to: '/breadcrumb-1',
@@ -144,5 +145,13 @@ describe('UsaBreadcrumb', () => {
     cy.get('.usa-breadcrumb__list')
       .find('li')
       .should('contain', 'Test default slot')
+  })
+
+  it('does not render list if no items', () => {
+    mount(UsaBreadcrumb, {})
+
+    cy.get('ol').as('list').should('exist')
+
+    cy.get('@list').children().should('have.length', 0)
   })
 })

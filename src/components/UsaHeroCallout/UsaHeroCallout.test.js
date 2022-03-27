@@ -26,7 +26,7 @@ describe('UsaHeroCallout', () => {
     cy.get('.usa-hero__callout p').should('contain', textContent)
   })
 
-  it('renders `heading` and `headingAlt` slot content', () => {
+  it('`heading` and `headingAlt` slot content overrides prop values', () => {
     mount(UsaHeroCallout, {
       props: {
         headingAlt: testHeadingAlt,
@@ -43,6 +43,42 @@ describe('UsaHeroCallout', () => {
       'contain',
       'Custom heading slot content'
     )
+
+    cy.get('.usa-hero__heading--alt').should(
+      'contain',
+      'Custom heading alt slot content'
+    )
+  })
+
+  it('`heading` and `headingAlt` slot content renders even if `heading` and `headingAlt` prop values not used', () => {
+    mount(UsaHeroCallout, {
+      slots: {
+        headingAlt: () => 'Custom heading alt slot content',
+        heading: () => 'Custom heading slot content',
+        default: () => h('p', null, textContent),
+      },
+    })
+
+    cy.get('.usa-hero__heading').should(
+      'contain',
+      'Custom heading slot content'
+    )
+
+    cy.get('.usa-hero__heading--alt').should(
+      'contain',
+      'Custom heading alt slot content'
+    )
+  })
+
+  it('`headingAlt`text renders if `heading` prop not used', () => {
+    mount(UsaHeroCallout, {
+      slots: {
+        headingAlt: () => 'Custom heading alt slot content',
+        default: () => h('p', null, textContent),
+      },
+    })
+
+    cy.get('.usa-hero__heading').should('exist')
 
     cy.get('.usa-hero__heading--alt').should(
       'contain',

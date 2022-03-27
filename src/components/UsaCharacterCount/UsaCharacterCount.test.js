@@ -33,7 +33,7 @@ describe('UsaCharacterCount', () => {
       .as('input')
       .should('have.class', 'usa-character-count__field')
       .and('have.attr', 'maxlength')
-      .and('contain', 10)
+      .and('equal', '10')
 
     cy.get('@input').type('12345')
     cy.get('@message').should('contain', '5 characters left')

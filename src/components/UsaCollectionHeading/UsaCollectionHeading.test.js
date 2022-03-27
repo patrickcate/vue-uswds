@@ -8,6 +8,7 @@ describe('UsaCollectionHeading', () => {
       props: {
         header: 'Test header text',
         href: '/test-page',
+        customClasses: {},
       },
     })
 
@@ -15,6 +16,10 @@ describe('UsaCollectionHeading', () => {
       .should('have.class', 'usa-link')
       .and('have.attr', 'href')
       .and('contain', '/test-page')
+
+    cy.get('.usa-collection__heading a')
+      .should('have.attr', 'class')
+      .and('equal', 'usa-link')
   })
 
   it('uses the `heading` slot content', () => {

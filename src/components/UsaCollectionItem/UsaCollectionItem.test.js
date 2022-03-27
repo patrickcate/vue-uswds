@@ -36,6 +36,7 @@ describe('UsaCollectionItem', () => {
       props: {
         href: testHref,
         heading: testHeadingText,
+        customClasses: {},
       },
       slots: {
         media: () => testMedia,
@@ -45,7 +46,10 @@ describe('UsaCollectionItem', () => {
     })
 
     cy.get('li.usa-collection__item').should('exist')
-    cy.get('.usa-collection__img').should('exist')
+    cy.get('.usa-collection__img')
+      .should('have.attr', 'class')
+      .and('equal', 'usa-collection__img')
+
     cy.get('.usa-collection__img img')
       .should('have.attr', 'src')
       .and(
@@ -56,9 +60,20 @@ describe('UsaCollectionItem', () => {
       .should('have.attr', 'alt')
       .and('contain', 'A placeholder image')
     cy.get('.usa-collection__body').should('exist')
+
     cy.get('h2.usa-collection__heading').should('contain', testHeadingText)
+    cy.get('.usa-collection__heading')
+      .should('have.attr', 'class')
+      .and('equal', 'usa-collection__heading')
+
     cy.get('a.usa-link').should('have.attr', 'href').and('contain', testHref)
+    cy.get('.usa-link').should('have.attr', 'class').and('equal', 'usa-link')
+
     cy.get('p.usa-collection__description').and('contain', testContent)
+    cy.get('.usa-collection__description')
+      .should('have.attr', 'class')
+      .and('equal', 'usa-collection__description')
+
     cy.get('ul.usa-collection__meta').should('exist')
     cy.get('li.usa-collection__meta-item:nth-child(1)').should(
       'contain',

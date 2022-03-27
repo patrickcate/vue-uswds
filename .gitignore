@@ -12,3 +12,10 @@ cypress/downloads
 
 # Storybook artifacts.
 .storybook/examples
+
+# Ignore test coverage files.
+coverage
+.nyc_output
+
+# USWDS assets symlink.
+assets
