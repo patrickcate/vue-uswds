@@ -69,7 +69,7 @@ describe('UsaTableSortButton', () => {
       props: {
         headerId: 'test-header-id',
         headerLabel: 'Test header label',
-        currentSortDirection: 'ascending',
+        currentSortDirection: 'descending',
         'onUpdate:tableSort': async () => {
           await wrapper.vue().then(vm => {
             const { currentSortDirection } = vm.componentVM
@@ -80,8 +80,7 @@ describe('UsaTableSortButton', () => {
             }
 
             vm.setProps({
-              currentSortDirection:
-                reverseDirections[currentSortDirection] || 'ascending',
+              currentSortDirection: reverseDirections[currentSortDirection],
             })
           })
         },
@@ -97,12 +96,12 @@ describe('UsaTableSortButton', () => {
 
     cy.get('@button')
       .should('have.attr', 'title')
-      .and('equal', 'Click to sort by Test header label in descending order.')
+      .and('equal', 'Click to sort by Test header label in ascending order.')
 
     cy.get('@button').click()
 
     cy.get('@button')
       .should('have.attr', 'title')
-      .and('equal', 'Click to sort by Test header label in ascending order.')
+      .and('equal', 'Click to sort by Test header label in descending order.')
   })
 })

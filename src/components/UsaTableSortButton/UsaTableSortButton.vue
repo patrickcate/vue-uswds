@@ -24,7 +24,7 @@ const reverseSortDirection = computed(() => {
     descending: 'ascending',
   }
 
-  return reverseDirections[props.currentSortDirection || 'descending']
+  return reverseDirections[props.currentSortDirection] || 'ascending'
 })
 
 const title = computed(
