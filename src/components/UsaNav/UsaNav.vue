@@ -80,7 +80,12 @@ const classes = computed(() => [
 
 const UsaNavInnerComponent = {
   name: 'UsaNavInner',
-  props: ['wrap'],
+  props: {
+    wrap: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup({ wrap }, { slots }) {
     return () =>
       wrap
