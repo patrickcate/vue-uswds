@@ -8,11 +8,11 @@ describe('UsaButtonGroup', () => {
   it('renders the component', () => {
     mount(UsaButtonGroup, {
       slots: {
-        default: () => h(UsaButtonGroupItem, null, 'Test button'),
+        default: () => h(UsaButtonGroupItem, {}, () => 'Test button'),
       },
     }).as('wrapper')
 
-    cy.get('ul.usa-button-group').should('exist')
+    cy.get('ul.usa-button-group').should('contain', 'Test button')
 
     cy.get('@wrapper').invoke('setProps', { segmented: true })
 
