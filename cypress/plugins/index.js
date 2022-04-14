@@ -44,7 +44,7 @@ module.exports = (on, config) => {
       },
       plugins: [
         istanbul({
-          include: ['src/components', 'src/composable', 'src/utils'],
+          include: ['src/components', 'src/composables', 'src/utils'],
           exclude: [
             'node_modules',
             '^src/**',
