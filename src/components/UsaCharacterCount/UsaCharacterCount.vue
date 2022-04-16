@@ -80,7 +80,7 @@ provide(
       <slot
         v-else-if="countStatus === 'under'"
         name="remaining-message"
-        :charactersRemaining="charactersRemaining"
+        :characters-remaining="charactersRemaining"
         :maxlength="maxlength"
         >{{ charactersRemaining }} character<template
           v-if="charactersRemaining !== 1"
@@ -91,7 +91,7 @@ provide(
       <slot
         v-else-if="countStatus === 'over'"
         name="over-message"
-        :charactersOver="charactersOver"
+        :characters-over="charactersOver"
         :maxlength="maxlength"
         >{{ charactersOver }} character<template v-if="charactersOver !== 1"
           >s</template

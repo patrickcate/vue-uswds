@@ -103,8 +103,8 @@ function getAriaLabel(pageNumber) {
     <ul class="usa-pagination__list" :class="customClasses?.list">
       <slot
         name="previous"
-        :isFirstPage="isFirstPage"
-        :toPreviousPage="toPreviousPage"
+        :is-first-page="isFirstPage"
+        :to-previous-page="toPreviousPage"
       >
         <UsaPaginationArrow
           direction="previous"
@@ -162,7 +162,7 @@ function getAriaLabel(pageNumber) {
         >
       </template>
 
-      <slot name="next" :isLastPage="isLastPage" :toNextPage="toNextPage">
+      <slot name="next" :is-last-page="isLastPage" :to-next-page="toNextPage">
         <UsaPaginationArrow
           direction="next"
           :class="{ 'usa-pagination__item--hidden': isLastPage }"

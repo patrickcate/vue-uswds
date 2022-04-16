@@ -12,7 +12,7 @@ import UsaFormGroup from '@/components/UsaFormGroup'
 import UsaLabel from '@/components/UsaLabel'
 
 const inputElement = ref(null)
-const { focused } = useFocus({ target: inputElement })
+const { focused } = useFocus(inputElement)
 const slots = useSlots()
 const attrs = useAttrs()
 const emit = defineEmits(['update:modelValue'])
