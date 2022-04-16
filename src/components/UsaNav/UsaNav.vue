@@ -111,7 +111,7 @@ const UsaNavInnerComponent = {
           :class="customClasses?.button"
           @click="closeMobileMenu"
         >
-          <slot name="close-button" :closeButtonLabel="closeButtonLabel"
+          <slot name="close-button" :close-button-label="closeButtonLabel"
             ><img
               :src="`${imagePath}/usa-icons/close.svg`"
               role="img"

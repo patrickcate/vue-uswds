@@ -93,7 +93,7 @@ defineExpose({
             :aria-controls="toggleId"
             @click="toggleContent()"
           >
-            <slot name="button" :isOpen="isOpen" :actionText="actionText">
+            <slot name="button" :is-open="isOpen" :action-text="actionText">
               <span class="usa-banner__button-text">{{ actionText }}</span>
             </slot>
           </button>

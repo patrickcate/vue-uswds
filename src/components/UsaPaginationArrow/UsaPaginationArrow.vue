@@ -72,7 +72,7 @@ const classes = computed(() => [
       <slot
         v-if="direction === 'previous'"
         name="before"
-        :svgSpritePath="svgSpritePath"
+        :svg-sprite-path="svgSpritePath"
       >
         <svg
           v-if="svgSpritePath"
@@ -91,7 +91,7 @@ const classes = computed(() => [
       <slot
         v-if="direction === 'next'"
         name="after"
-        :svgSpritePath="svgSpritePath"
+        :svg-sprite-path="svgSpritePath"
       >
         <svg
           v-if="svgSpritePath"
