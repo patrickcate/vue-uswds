@@ -139,7 +139,7 @@ export const DefaultValueTextInput = DefaultTemplate.bind({})
 DefaultValueTextInput.args = {
   ...defaultProps,
   label: 'Text input label',
-  modelValue: `I'm some default text.`,
+  modelValue: `I am some default text`,
 }
 DefaultValueTextInput.storyName = 'Default Text'
 

@@ -36,6 +36,9 @@ export default {
         closeAllDropdowns: e => {
           e.preventDefault()
         },
+        closeMobileMenu: e => {
+          e.preventDefault()
+        },
       },
     }),
   ],
