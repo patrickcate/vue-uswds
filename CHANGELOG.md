@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/patrickcate/vue-uswds/compare/v0.5.0...v0.6.0) (2022-04-17)
+
+
+### Features
+
+* **cypress:** add basic code coverage plugins ([5c4882d](https://github.com/patrickcate/vue-uswds/commit/5c4882dd6bd7c93c46faffe2b83b031e24fdee1f)), closes [#109](https://github.com/patrickcate/vue-uswds/issues/109)
+* **UsaFooter:** add support for custom grid prefix for container class ([cc6171d](https://github.com/patrickcate/vue-uswds/commit/cc6171d98f25311dda398c0de9f90dca01ab0c42))
+* **UsaFooterLogo:** implement `UsaFooterLogo` component ([432f880](https://github.com/patrickcate/vue-uswds/commit/432f8808cf9340cba2c6909687a40af1c519c81a)), closes [#30](https://github.com/patrickcate/vue-uswds/issues/30)
+* **UsaFooterSocialLinks:** add support for custom grid prefix for grid column classes ([6848158](https://github.com/patrickcate/vue-uswds/commit/684815801aac5f113f00eab82221105c463966e9))
+* **UsaFooterSocialLinks:** implement `UsaFooterSocialLinks` component ([aa68d9d](https://github.com/patrickcate/vue-uswds/commit/aa68d9de1fb696ee2767bf7cd73bac841f314e79)), closes [#31](https://github.com/patrickcate/vue-uswds/issues/31)
+* **UsaGraphicList:** add support for custom grid prefix for container class ([80256e7](https://github.com/patrickcate/vue-uswds/commit/80256e7935e5bbc2858584919cd9fd84de7c0657))
+* **UsaNav:** add types for wrap prop ([6f0b162](https://github.com/patrickcate/vue-uswds/commit/6f0b162b0a298a586fbfc204f35523cbb1ee88f0))
+* **UsaTableHeaderCell:** implement `UsaTableHeaderCell` component ([56f1ed8](https://github.com/patrickcate/vue-uswds/commit/56f1ed803c848aa558b9175d8132cd1a350a99a1)), closes [#77](https://github.com/patrickcate/vue-uswds/issues/77)
+* **UsaTable:** implement `UsaTable` component ([eeb5804](https://github.com/patrickcate/vue-uswds/commit/eeb58047d561cd75e8ba1ca546633deee9322248))
+* **UsaTableSortButton:** implement `UsaTableSortButton` component ([658a33e](https://github.com/patrickcate/vue-uswds/commit/658a33ef232a4565b1d27921b12c4ccfb7e97271)), closes [#78](https://github.com/patrickcate/vue-uswds/issues/78)
+* **UsaValidation:** implement `UsaValidation`, `UsaChecklist` and `UsaChecklistItem` components ([42393e5](https://github.com/patrickcate/vue-uswds/commit/42393e55d0fbed5758ef7d2a7d64a9a47d74d42d)), closes [#82](https://github.com/patrickcate/vue-uswds/issues/82)
+
+
+### Bug Fixes
+
+* **BaseLink:** render as `a` tag if to prop is used but goes to external url ([c540ca8](https://github.com/patrickcate/vue-uswds/commit/c540ca81e73c7ebc88af737d140b2486ded533be))
+* **storybook:** correct missing provided function and camel case prop names in templates ([8218321](https://github.com/patrickcate/vue-uswds/commit/8218321b82b5e6882e2e517942462588ea075c82))
+* **UsaCollectionItem:** fix `heading-tag` prop name in template ([b9476cd](https://github.com/patrickcate/vue-uswds/commit/b9476cdc89e99a205512aefc2c353e9f45172553))
+
 ## [0.5.0](https://github.com/patrickcate/vue-uswds/compare/v0.4.0...v0.5.0) (2022-03-14)
 
 
