@@ -97,6 +97,14 @@ export default {
     items: defaultProps.items,
     defaultSlot: '',
   },
+  decorators: [
+    () => ({
+      template: '<story />',
+      provide: {
+        closeMobileMenu: () => {},
+      },
+    }),
+  ],
 }
 
 const DefaultTemplate = (args, { argTypes }) => ({

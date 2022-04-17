@@ -212,9 +212,9 @@ CustomSlotSegmentsStepIndicator.args = {
   `,
   headerSlot: `
     <UsaStepIndicatorHeader
-      current-step-number="2"
+      :current-step-number="2"
       current-step-label="Step 2"
-      total-steps="3"
+      :total-steps="3"
     ></UsaStepIndicatorHeader>
   `,
 }
