@@ -151,9 +151,7 @@ describe('UsaNavPrimary', () => {
     cy.get('@dropdownButton1')
       .should('have.attr', 'data-test')
       .and('contain', 'test')
-    cy.get('@dropdownButton1')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownButton1')
       .should('have.attr', 'aria-controls')
       .and('contain', '__vuswds-id-global-usa-nav-dropdown-')
@@ -243,9 +241,7 @@ describe('UsaNavPrimary', () => {
       .and('have.class', 'usa-accordion__button')
 
     cy.get('@dropdownButton2').should('not.have.attr', 'to')
-    cy.get('@dropdownButton2')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownButton2')
       .should('have.attr', 'aria-controls')
       .and('contain', '__vuswds-id-global-usa-nav-dropdown-')
@@ -334,9 +330,7 @@ describe('UsaNavPrimary', () => {
     cy.get('@dropdownButton1')
       .should('have.attr', 'data-test')
       .and('contain', 'test')
-    cy.get('@dropdownButton1')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownButton1')
       .should('have.attr', 'aria-controls')
       .and('contain', '__vuswds-id-global-usa-nav-dropdown-')
@@ -470,9 +464,7 @@ describe('UsaNavPrimary', () => {
       .and('have.class', 'usa-accordion__button')
 
     cy.get('@dropdownButton2').should('not.have.attr', 'to')
-    cy.get('@dropdownButton2')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownButton2')
       .should('have.attr', 'aria-controls')
       .and('contain', '__vuswds-id-global-usa-nav-dropdown-')
@@ -536,41 +528,31 @@ describe('UsaNavPrimary', () => {
     cy.get('@dropdown').find('> button').as('dropdownButton')
     cy.get('@dropdown').find('> ul').as('dropdownMenu')
 
-    cy.get('@dropdownButton')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'false')
 
     cy.get('@dropdownMenu').should('have.attr', 'hidden')
 
     cy.get('@dropdownButton').click()
 
-    cy.get('@dropdownButton')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', true)
+    cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'true')
 
     cy.get('@dropdownMenu').should('not.have.attr', 'hidden')
 
     cy.realPress('Escape')
 
-    cy.get('@dropdownButton')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'false')
 
     cy.get('@dropdownMenu').should('have.attr', 'hidden')
 
     cy.get('@dropdownButton').click()
 
-    cy.get('@dropdownButton')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', true)
+    cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'true')
 
     cy.get('@dropdownMenu').should('not.have.attr', 'hidden')
 
     cy.get('html').click('topLeft')
 
-    cy.get('@dropdownButton')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'false')
 
     cy.get('@dropdownMenu').should('have.attr', 'hidden')
   })
@@ -587,62 +569,54 @@ describe('UsaNavPrimary', () => {
     cy.get('.usa-nav__primary > .usa-nav__primary-item:nth-of-type(3)').as(
       'dropdown1'
     )
-    cy.get('@dropdown1').find('> button').as('dropdownButton1')
-    cy.get('@dropdown1').find('> ul').as('dropdownMenu1')
+    cy.get(
+      '.usa-nav__primary > .usa-nav__primary-item:nth-of-type(3) > button'
+    ).as('dropdownButton1')
+    cy.get('.usa-nav__primary > .usa-nav__primary-item:nth-of-type(3) > ul').as(
+      'dropdownMenu1'
+    )
 
     cy.get('.usa-nav__primary > .usa-nav__primary-item:nth-of-type(4)').as(
       'dropdown2'
     )
-    cy.get('@dropdown2').find('> button').as('dropdownButton2')
-    cy.get('@dropdown2').find('> ul').as('dropdownMenu2')
+    cy.get(
+      '.usa-nav__primary > .usa-nav__primary-item:nth-of-type(4) > button'
+    ).as('dropdownButton2')
+    cy.get('.usa-nav__primary > .usa-nav__primary-item:nth-of-type(4) > ul').as(
+      'dropdownMenu2'
+    )
 
-    cy.get('@dropdownButton1')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownMenu1').should('have.attr', 'hidden')
 
-    cy.get('@dropdownButton2')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownMenu2').should('have.attr', 'hidden')
 
     // Click first dropdown.
     cy.get('@dropdownButton1').click()
 
-    cy.get('@dropdownButton1')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', true)
+    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownMenu1').should('not.have.attr', 'hidden')
 
-    cy.get('@dropdownButton2')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownMenu2').should('have.attr', 'hidden')
 
     // Click second dropdown.
     cy.get('@dropdownButton2').click()
 
-    cy.get('@dropdownButton1')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', true)
+    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownMenu1').should('not.have.attr', 'hidden')
 
-    cy.get('@dropdownButton2')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', true)
+    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownMenu2').should('not.have.attr', 'hidden')
 
     // Click first dropdown again.
     cy.get('@dropdownButton1').click()
 
-    cy.get('@dropdownButton1')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownMenu1').should('have.attr', 'hidden')
 
-    cy.get('@dropdownButton2')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', true)
+    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownMenu2').should('not.have.attr', 'hidden')
 
     cy.get('@dropdownButton2').click()
@@ -650,40 +624,28 @@ describe('UsaNavPrimary', () => {
     // Set for large screens.
     cy.viewport('macbook-15')
 
-    cy.get('@dropdownButton1')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownMenu1').should('have.attr', 'hidden')
 
-    cy.get('@dropdownButton2')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownMenu2').should('have.attr', 'hidden')
 
     // Click first dropdown.
     cy.get('@dropdownButton1').click()
 
-    cy.get('@dropdownButton1')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', true)
+    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownMenu1').should('not.have.attr', 'hidden')
 
-    cy.get('@dropdownButton2')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownMenu2').should('have.attr', 'hidden')
 
     // Click second dropdown.
     cy.get('@dropdownButton2').click()
 
-    cy.get('@dropdownButton1')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', false)
+    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownMenu1').should('have.attr', 'hidden')
 
-    cy.get('@dropdownButton2')
-      .should('have.attr', 'aria-expanded')
-      .and('contain', true)
+    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownMenu2').should('not.have.attr', 'hidden')
   })
 
