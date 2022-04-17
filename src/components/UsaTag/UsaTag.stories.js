@@ -13,9 +13,6 @@ export default {
       options: ['', 'big'],
       control: {
         type: 'radio',
-        labels: {
-          '': 'default',
-        },
       },
     },
     tag: {
