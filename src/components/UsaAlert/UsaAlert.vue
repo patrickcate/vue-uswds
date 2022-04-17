@@ -64,9 +64,7 @@ const classes = computed(() => {
     'usa-alert--warning': props.variant === 'warning',
     'usa-alert--error': props.variant === 'error',
     'usa-alert--success': props.variant === 'success',
-    // TODO: Confirm this class is needed.
     'usa-alert--emergency': props.variant === 'emergency',
-    // TODO: Confirm this class is needed.
     'usa-alert--validation': props.variant === 'validation',
   }
 })
