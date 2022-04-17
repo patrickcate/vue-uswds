@@ -5,14 +5,14 @@ module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   core: {
-    builder: 'storybook-builder-vite',
+    builder: '@storybook/builder-vite',
   },
   framework: '@storybook/vue3',
+
   async viteFinal(config, { configType }) {
     const { config: userConfig } = await loadConfigFromFile(
       path.resolve(__dirname, '../vite.config.ts')
     )
-
     return mergeConfig(config, {
       ...userConfig,
       // manually specify plugins to avoid conflict

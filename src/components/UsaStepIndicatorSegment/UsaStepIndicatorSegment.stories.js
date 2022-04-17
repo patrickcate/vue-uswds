@@ -11,10 +11,8 @@ export default {
   title: 'Components/UsaStepIndicatorSegment',
   argTypes: {
     status: {
-      control: {
-        options: ['', 'current', 'completed'],
-        type: 'select',
-      },
+      options: ['', 'current', 'completed'],
+      control: { type: 'select' },
     },
     label: {
       control: { type: 'text' },

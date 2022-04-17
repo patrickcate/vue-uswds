@@ -5,14 +5,27 @@ import UsaBanner from './UsaBanner.vue'
 
 describe('UsaBanner', () => {
   it('renders the component', () => {
-    mount(UsaBanner, {})
+    mount(UsaBanner, {
+      props: {
+        customClasses: {},
+      },
+    })
 
     cy.get('section.usa-banner')
       .should('have.attr', 'aria-label')
       .and('contain', 'Official government website')
-    cy.get('.usa-accordion').should('exist')
-    cy.get('header.usa-banner__header').should('exist')
-    cy.get('.usa-banner__inner').should('exist')
+
+    cy.get('div.usa-accordion')
+      .should('have.attr', 'class')
+      .and('equal', 'usa-accordion')
+
+    cy.get('header.usa-banner__header')
+      .should('have.attr', 'class')
+      .and('equal', 'usa-banner__header')
+
+    cy.get('.usa-banner__inner')
+      .should('have.attr', 'class')
+      .and('equal', 'usa-banner__inner')
 
     cy.get('img.usa-banner__header-flag')
       .should('have.attr', 'alt')
@@ -39,13 +52,17 @@ describe('UsaBanner', () => {
       "Here's how you know"
     )
     cy.get('button.usa-banner__button')
-      .should('have.class', 'usa-accordion__button')
+      .as('button')
       .and('have.attr', 'aria-expanded')
       .and('contain', 'false')
 
-    cy.get('button.usa-banner__button')
-      .should('have.attr', 'aria-controls')
-      .and('not.be.empty')
+    cy.get('@button').should('have.attr', 'aria-controls').and('not.be.empty')
+
+    cy.get('@button')
+      .should('have.attr', 'class')
+      .and('equal', 'usa-accordion__button usa-banner__button')
+
+    cy.get('@button').should('have.attr', 'aria-controls').and('not.be.empty')
 
     cy.get('span.usa-banner__button-text').should(
       'contain',
@@ -53,12 +70,15 @@ describe('UsaBanner', () => {
     )
 
     cy.get('.usa-banner__content')
+      .as('bannerContent')
       .should('have.class', 'usa-accordion__content')
       .and('have.attr', 'id')
 
-    cy.get('.usa-banner__content')
-      .and('not.be.visible')
-      .and('have.attr', 'hidden')
+    cy.get('@bannerContent')
+      .should('have.attr', 'class')
+      .and('equal', 'usa-banner__content usa-accordion__content')
+
+    cy.get('@bannerContent').and('not.be.visible').and('have.attr', 'hidden')
   })
 
   it('uses custom prop text', () => {

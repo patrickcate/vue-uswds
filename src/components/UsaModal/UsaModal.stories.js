@@ -108,11 +108,11 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :size="size"
     :id="id"
     v-model:visible="visible"
-    :forceAction="forceAction"
-    :closeButtonLabel="closeButtonLabel"
+    :force-action="forceAction"
+    :close-button-label="closeButtonLabel"
     :heading="heading"
-    :headingTag="headingTag"
-    :customClasses="customClasses"
+    :heading-tag="headingTag"
+    :custom-classes="customClasses"
   >
     <template v-if="${!!args.headingSlot}" #heading>${
     args.headingSlot
@@ -146,7 +146,7 @@ export const ForceActionModal = DefaultTemplate.bind({})
 LargeModal.args = {
   ...defaultProps,
   visible: true,
-  forceAction: 'true',
+  forceAction: true,
 }
 ForceActionModal.storyName = 'Force Action'
 

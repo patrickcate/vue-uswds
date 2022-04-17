@@ -1,5 +1,7 @@
 const path = require('path')
 const { startDevServer } = require('@cypress/vite-dev-server')
+const codeCoverageTask = require('@cypress/code-coverage/task')
+const istanbul = require('vite-plugin-istanbul')
 
 /// <reference types="cypress" />
 // ***********************************************************
@@ -25,9 +27,10 @@ module.exports = (on, config) => {
 
   on('dev-server:start', options => {
     const viteConfig = {
-      configFile: path.resolve(__dirname, '..', '..', 'vite.config.js'),
       resolve: {
         alias: {
+          '@': path.resolve(__dirname, '..', '..', 'src'),
+          '@module': path.resolve(__dirname, '..', '..', 'node_modules'),
           vue: path.resolve(
             __dirname,
             '..',
@@ -39,10 +42,29 @@ module.exports = (on, config) => {
           ),
         },
       },
+      plugins: [
+        istanbul({
+          include: ['src/components', 'src/composables', 'src/utils'],
+          exclude: [
+            'node_modules',
+            '^src/**',
+            '**/*.test.js',
+            '**/*.stories.js',
+          ],
+          cypress: true,
+          requireEnv: false,
+          extension: ['.js', '.vue'],
+        }),
+      ],
+      build: {
+        sourcemap: true,
+      },
     }
 
     return startDevServer({ options, viteConfig })
   })
+
+  codeCoverageTask(on, config)
 
   return config
 }

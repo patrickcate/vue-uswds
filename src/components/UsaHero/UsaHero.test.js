@@ -12,6 +12,7 @@ describe('UsaHero', () => {
     mount(UsaHero, {
       props: {
         ariaLabel: testAriaLabel,
+        customClasses: {},
       },
     })
 
@@ -22,7 +23,10 @@ describe('UsaHero', () => {
 
     cy.get('@hero').should('not.have.attr', 'style')
 
-    cy.get('@hero').find('.grid-container').should('exist')
+    cy.get('@hero')
+      .find('.grid-container')
+      .should('have.attr', 'class')
+      .and('equals', 'grid-container')
   })
 
   it('sets correct background image', () => {

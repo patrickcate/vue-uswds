@@ -102,4 +102,39 @@ describe('UsaNavDropdownButton', () => {
 
     cy.get('@toggleDropdown').should('be.calledWith', 'test-dropdown-id')
   })
+
+  it('renders as button with router-link current CSS class', () => {
+    const routerLinkStub = {
+      name: 'RouterLink',
+      data() {
+        return {
+          isActive: false,
+          isExactActive: true,
+        }
+      },
+      template:
+        '<slot :isActive="isActive" :isExactActive="isExactActive"></slot>',
+    }
+
+    mount(UsaNavDropdownButton, {
+      slots: {
+        default: () => 'Test dropdown button',
+      },
+      global: {
+        stubs: { 'router-link': routerLinkStub },
+        provide: {
+          'vueUswds.routerComponentName': 'router-link',
+          dropdownId: ref('test-dropdown-id'),
+          dropdownItems: reactive({
+            'test-dropdown-id': true,
+          }),
+          toggleDropdown: () => {},
+        },
+      },
+    })
+
+    cy.get('button.usa-accordion__button')
+      .should('have.class', 'usa-nav__link')
+      .and('have.class', 'usa-current')
+  })
 })

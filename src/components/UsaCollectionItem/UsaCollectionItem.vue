@@ -1,5 +1,6 @@
 <script setup>
 import UsaCollectionHeading from '@/components/UsaCollectionHeading'
+import BaseLink from '@/components/BaseLink'
 
 defineProps({
   heading: {
@@ -10,18 +11,7 @@ defineProps({
     type: String,
     default: 'h2',
   },
-  href: {
-    type: String,
-    default: '',
-  },
-  to: {
-    type: [String, Object],
-    default: '',
-  },
-  routerComponentName: {
-    type: String,
-    default: '',
-  },
+  ...BaseLink.props,
   customClasses: {
     type: Object,
     default: () => {
@@ -48,7 +38,8 @@ defineProps({
     <div class="usa-collection__body">
       <slot name="heading"
         ><UsaCollectionHeading
-          :tag="headingTag"
+          :heading="heading"
+          :heading-tag="headingTag"
           :href="href"
           :to="to"
           :class="customClasses?.heading"

@@ -36,6 +36,7 @@ export default {
       provide: {
         dropdownId: ref('sb-dropdown-id'),
         closeDropdown: () => {},
+        closeMobileMenu: () => {},
       },
     }),
   ],

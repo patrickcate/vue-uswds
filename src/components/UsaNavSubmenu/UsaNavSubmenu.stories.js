@@ -21,6 +21,8 @@ export default {
     },
   },
   args: {
+    cols: defaultProps.cols,
+    customClasses: defaultProps.customClasses,
     defaultSlot: '',
   },
   decorators: [

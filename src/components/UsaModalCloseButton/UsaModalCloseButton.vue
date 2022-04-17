@@ -14,7 +14,7 @@ defineProps({
 
 <template>
   <button class="usa-button usa-modal__close" :aria-label="ariaLabel">
-    <slot :svgSpritePath="svgSpritePath">
+    <slot :svg-sprite-path="svgSpritePath">
       <svg
         v-if="svgSpritePath"
         class="usa-icon"

@@ -148,7 +148,7 @@ MetaItemsCollectionItem.args = {
   ...defaultProps,
   heading: 'Collection w/ Meta Items',
   mediaSlot: testMedia,
-  metaSlot: `<UsaCollectionMeta>
+  metaSlot: `<UsaCollectionMeta aria-label="Topics">
       <UsaCollectionMetaItem class="usa-tag">Meta 1</UsaCollectionMetaItem>
       <UsaCollectionMetaItem class="usa-tag">Meta 2</UsaCollectionMetaItem>
     </UsaCollectionMeta>`,

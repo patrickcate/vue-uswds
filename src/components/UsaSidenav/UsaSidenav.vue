@@ -31,7 +31,7 @@ defineProps({
       <slot :items="items">
         <UsaSidenavItem
           v-for="item in items"
-          :key="item?.id || item?.text"
+          :key="item?.id || item.text"
           :item="item"
           :custom-classes="customClasses"
           >{{ item.text }}</UsaSidenavItem

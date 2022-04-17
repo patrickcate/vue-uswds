@@ -1,5 +1,6 @@
 import '@module/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
+import { h } from 'vue'
 import UsaHeader from './UsaHeader.vue'
 
 describe('UsaHeader', () => {
@@ -38,6 +39,50 @@ describe('UsaHeader', () => {
     })
 
     cy.get('.usa-header--megamenu').should('exist')
+  })
+
+  it('provide reactive `isExtendedHeader` prop value to child components', () => {
+    const childComponent = {
+      inject: ['isExtendedHeader'],
+      template: `<span>Extended Variant: {{ isExtendedHeader }}</span>`,
+    }
+
+    mount(UsaHeader, {
+      props: {
+        variant: 'extended',
+      },
+      slots: {
+        default: () => h(childComponent),
+      },
+    }).as('wrapper')
+
+    cy.get('span').should('contain', 'Extended Variant: true')
+
+    cy.get('@wrapper').invoke('setProps', { variant: 'basic' })
+
+    cy.get('span').should('contain', 'Extended Variant: false')
+  })
+
+  it('provide reactive `isMegamenu` prop value to child components', () => {
+    const childComponent = {
+      inject: ['isMegamenu'],
+      template: `<span>Megamenu: {{ isMegamenu }}</span>`,
+    }
+
+    mount(UsaHeader, {
+      props: {
+        megamenu: true,
+      },
+      slots: {
+        default: () => h(childComponent),
+      },
+    }).as('wrapper')
+
+    cy.get('span').should('contain', 'Megamenu: true')
+
+    cy.get('@wrapper').invoke('setProps', { megamenu: false })
+
+    cy.get('span').should('contain', 'Megamenu: false')
   })
 
   it('adds custom CSS classes', () => {

@@ -1,5 +1,5 @@
 import { getCurrentInstance } from 'vue'
-import kebabCase from 'just-kebab-case'
+import { kebabCase } from '@/utils/common.js'
 
 const idPrefix = '__vuswds-id-'
 const idRegistry = {}
