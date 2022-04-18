@@ -12,7 +12,7 @@ describe('UsaFooterSecondarySection', () => {
     )
   })
 
-  it('uses custom classes', () => {
+  it('adds custom CSS classes', () => {
     mount(UsaFooterSecondarySection, {
       props: {
         customClasses: {
