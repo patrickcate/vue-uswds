@@ -1,6 +1,5 @@
 <script setup>
 import BaseLink from '@/components/BaseLink'
-import UsaSidenavSublist from '@/components/UsaSidenavSublist'
 
 defineProps({
   item: {
@@ -30,10 +29,18 @@ defineProps({
       v-bind="item?.attrs"
       ><slot :item="item">{{ item?.text }}</slot></BaseLink
     >
-    <UsaSidenavSublist
+    <ul
       v-if="item?.children?.length"
-      :items="item.children"
-      :custom-classes="customClasses"
-    ></UsaSidenavSublist>
+      class="usa-sidenav__sublist"
+      :class="customClasses?.sublist"
+    >
+      <UsaSidenavItem
+        v-for="subItem in item.children"
+        :key="subItem?.id || subItem.text"
+        :item="subItem"
+        :custom-classes="customClasses"
+        >{{ subItem.text }}</UsaSidenavItem
+      >
+    </ul>
   </li>
 </template>
