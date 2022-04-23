@@ -2,6 +2,21 @@
   "name": "vue-uswds",
   "version": "0.6.0",
   "license": "MIT",
+  "files": [
+    "src",
+    "!src/**/*.stories.js",
+    "!src/**/*.test.js",
+    "dist"
+  ],
+  "main": "./dist/vue-uswds.umd.js",
+  "module": "./dist/vue-uswds.es.js",
+  "browser": "./dist/vue-uswds.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-uswds.es.js",
+      "require": "./dist/vue-uswds.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -62,9 +77,12 @@
     "uswds": "^2.12.2",
     "vite": "^2.6.4",
     "vite-plugin-istanbul": "^2.5.1",
-    "vue": "^3.2.21",
+    "vue": "^3.2.33",
     "vue-loader": "^17.0.0",
     "vue-router": "^4.0.12"
+  },
+  "peerDependencies": {
+    "vue": "^3.2.0"
   },
   "config": {
     "commitizen": {
