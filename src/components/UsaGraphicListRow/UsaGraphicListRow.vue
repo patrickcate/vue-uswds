@@ -1,4 +1,4 @@
-<script></script>
+<script setup></script>
 
 <template>
   <div class="usa-graphic-list__row">

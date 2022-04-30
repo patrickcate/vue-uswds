@@ -1,25 +1,29 @@
 {
   "name": "vue-uswds",
+  "author": "Patrick Cate",
   "version": "0.6.0",
   "license": "MIT",
   "files": [
-    "src",
-    "!src/**/*.stories.js",
-    "!src/**/*.test.js",
     "dist"
   ],
+  "sideEffects": false,
   "main": "./dist/vue-uswds.umd.js",
   "module": "./dist/vue-uswds.es.js",
-  "browser": "./dist/vue-uswds.es.js",
   "exports": {
     ".": {
-      "import": "./dist/vue-uswds.es.js",
-      "require": "./dist/vue-uswds.umd.js"
+      "require": "./dist/vue-uswds.umd.js",
+      "import": "./dist/vue-uswds.es.js"
+    },
+    "./core": {
+      "require": "./dist/vue-uswds.core.umd.js",
+      "import": "./dist/vue-uswds.core.es.js"
     }
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run build:all && npm run build:core",
+    "build:all": "vite build -c ./build/vite.build.all.js",
+    "build:core": "vite build -c ./build/vite.build.core.js",
     "serve": "vite preview",
     "commit": "cz",
     "commit:retry": "cz --retry",
@@ -34,7 +38,7 @@
     "prepare": "husky install",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "postinstall": "ln -s node_modules/uswds/dist assets"
+    "symlink-assets": "ln -s node_modules/uswds/dist assets"
   },
   "dependencies": {
     "@vueuse/components": "^8.0.0",
@@ -93,5 +97,18 @@
     "*.{js,vue}": [
       "eslint"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patrickcate/vue-uswds"
+  },
+  "bugs": {
+    "url": "https://github.com/patrickcate/vue-uswds/issues"
+  },
+  "description": "Vue 3 implementation of the USWDS (U.S. Web Design System) component library",
+  "keywords": [
+    "vue",
+    "uswds",
+    "U.S. Web Design System"
+  ]
 }

@@ -93,6 +93,11 @@ describe('UsaNavPrimary', () => {
       slots: {
         default: ({ items }) => `${items[0].text}`,
       },
+      global: {
+        provide: {
+          closeMobileMenu: () => {},
+        },
+      },
     })
 
     cy.get('ul.usa-nav__primary')
@@ -104,6 +109,11 @@ describe('UsaNavPrimary', () => {
     mount(UsaNavPrimary, {
       props: {
         items: testItems,
+      },
+      global: {
+        provide: {
+          closeMobileMenu: () => {},
+        },
       },
     })
 
@@ -282,6 +292,7 @@ describe('UsaNavPrimary', () => {
       global: {
         provide: {
           isMegamenu: true,
+          closeMobileMenu: () => {},
         },
       },
     })
@@ -519,6 +530,11 @@ describe('UsaNavPrimary', () => {
       props: {
         items: testItems,
       },
+      global: {
+        provide: {
+          closeMobileMenu: () => {},
+        },
+      },
     })
 
     cy.get('.usa-nav__primary > .usa-nav__primary-item:nth-of-type(3)').as(
@@ -563,6 +579,11 @@ describe('UsaNavPrimary', () => {
     mount(UsaNavPrimary, {
       props: {
         items: testItems,
+      },
+      global: {
+        provide: {
+          closeMobileMenu: () => {},
+        },
       },
     })
 
@@ -653,6 +674,11 @@ describe('UsaNavPrimary', () => {
     mount(UsaNavPrimary, {
       props: {
         items: testItems,
+      },
+      global: {
+        provide: {
+          closeMobileMenu: () => {},
+        },
       },
     }).as('wrapper')
 

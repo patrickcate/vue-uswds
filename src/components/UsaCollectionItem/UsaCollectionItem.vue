@@ -1,6 +1,5 @@
 <script setup>
 import UsaCollectionHeading from '@/components/UsaCollectionHeading'
-import BaseLink from '@/components/BaseLink'
 
 defineProps({
   heading: {
@@ -11,7 +10,18 @@ defineProps({
     type: String,
     default: 'h2',
   },
-  ...BaseLink.props,
+  href: {
+    type: String,
+    default: '',
+  },
+  to: {
+    type: [String, Object],
+    default: '',
+  },
+  routerComponentName: {
+    type: String,
+    default: '',
+  },
   customClasses: {
     type: Object,
     default: () => {
