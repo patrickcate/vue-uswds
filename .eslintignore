@@ -5,3 +5,6 @@ cypress/examples
 
 # Don't lint symlinked USWDS files.
 assets
+
+# Don't link playground test projects.
+playground

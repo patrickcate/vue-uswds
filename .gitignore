@@ -3,6 +3,8 @@ node_modules
 dist
 dist-ssr
 *.local
+*.tgz
+*.zip
 
 # Cypress testing artifacts.
 cypress/examples
