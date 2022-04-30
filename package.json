@@ -39,7 +39,6 @@
     "build:core": "vite build -c ./build/vite.build.core.js",
     "serve": "vite preview",
     "commit": "cz",
-    "commit:retry": "npx cz --retry",
     "release": "standard-version",
     "new": "hygen new",
     "lint": "eslint --ext .js,.vue --fix .",
