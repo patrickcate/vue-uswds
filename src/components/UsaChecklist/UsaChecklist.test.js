@@ -40,7 +40,7 @@ describe('UsaChecklist', () => {
 
     mount(UsaChecklist, {
       props: {
-        items: testItems,
+        items: testItems.value,
       },
     })
 
