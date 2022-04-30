@@ -2,6 +2,53 @@
 
 A Vue 3 implementation of the [USWDS](https://designsystem.digital.gov).
 
+## Install
+
+```shell
+npm install vue-uswds
+
+// or
+
+yarn install vue-uswds
+```
+
+**Note:** You will need to install the [USWDS](https://designsystem.digital.gov) CSS separately.
+
+## Setup
+
+### Global
+
+```javascript
+// App.vue
+import { createApp } from 'vue'
+import VueUswds from 'vue-uswds'
+
+const app = createApp(App)
+
+app.use(VueUswds).mount('#app')
+```
+
+### À La Carte
+
+```javascript
+// App.vue
+import { createApp } from 'vue'
+import VueUswds from 'vue-uswds/core'
+
+const app = createApp(App)
+
+app.use(VueUswds).mount('#app')
+```
+
+```javascript
+// MyComponent.vue
+import { UsaTag } from 'vue-uswds'
+
+export default {
+  components: { UsaTag },
+}
+```
+
 ## Recommended IDE Setup
 
 - [VSCode](https://code.visualstudio.com)
