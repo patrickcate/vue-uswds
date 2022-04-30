@@ -8,11 +8,7 @@ const props = defineProps({
   },
 })
 
-const classes = computed(() => [
-  {
-    'is-visible': props.visible,
-  },
-])
+const classes = computed(() => [{ 'is-visible': props.visible }])
 </script>
 
 <template>

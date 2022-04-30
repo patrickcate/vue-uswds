@@ -3,8 +3,22 @@ import BaseHeading from '@/components/BaseHeading'
 import BaseLink from '@/components/BaseLink'
 
 defineProps({
-  ...BaseLink.props,
-  headingTag: BaseHeading.props.tag,
+  href: {
+    type: String,
+    default: '',
+  },
+  to: {
+    type: [String, Object],
+    default: '',
+  },
+  routerComponentName: {
+    type: String,
+    default: '',
+  },
+  headingTag: {
+    type: String,
+    default: 'h2',
+  },
   heading: {
     type: String,
     default: '',

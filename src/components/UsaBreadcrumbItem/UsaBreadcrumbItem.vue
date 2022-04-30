@@ -3,7 +3,18 @@ import { computed } from 'vue'
 import BaseLink from '@/components/BaseLink'
 
 const props = defineProps({
-  ...BaseLink.props,
+  href: {
+    type: String,
+    default: '',
+  },
+  to: {
+    type: [String, Object],
+    default: '',
+  },
+  routerComponentName: {
+    type: String,
+    default: '',
+  },
   current: {
     type: Boolean,
     default: false,
