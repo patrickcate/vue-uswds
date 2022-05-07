@@ -107,6 +107,7 @@ function getAriaLabel(pageNumber) {
         :to-previous-page="toPreviousPage"
       >
         <UsaPaginationArrow
+          v-show="!isFirstPage"
           direction="previous"
           :class="{ 'usa-pagination__item--hidden': isFirstPage }"
           :aria-label="previousPageAriaLabel"
@@ -164,6 +165,7 @@ function getAriaLabel(pageNumber) {
 
       <slot name="next" :is-last-page="isLastPage" :to-next-page="toNextPage">
         <UsaPaginationArrow
+          v-show="!isLastPage"
           direction="next"
           :class="{ 'usa-pagination__item--hidden': isLastPage }"
           :aria-label="nextPageAriaLabel"
@@ -196,11 +198,3 @@ function getAriaLabel(pageNumber) {
     </ul>
   </nav>
 </template>
-// TODO: support both regular props and v-model.
-<style>
-.usa-pagination__item--hidden {
-  visibility: hidden;
-  pointer-events: none;
-  z-index: -1;
-}
-</style>
