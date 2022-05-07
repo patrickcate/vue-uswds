@@ -1,18 +1,12 @@
 import UsaBanner from './UsaBanner.vue'
 
 const defaultProps = {
-  open: false,
-  id: '',
-  ariaLabel: 'Official government website',
-  headerText: 'An official website of the United States government',
-  actionText: "Here's how you know",
-  customClasses: {
-    accordion: [],
-    bannerHeader: [],
-    bannerInner: [],
-    button: [],
-    bannerContent: [],
-  },
+  open: UsaBanner.props.open.default,
+  id: UsaBanner.props.id.default,
+  ariaLabel: UsaBanner.props.ariaLabel.default,
+  headerText: UsaBanner.props.headerText.default,
+  actionText: UsaBanner.props.actionText.default,
+  customClasses: UsaBanner.props.customClasses.default(),
 }
 
 export default {

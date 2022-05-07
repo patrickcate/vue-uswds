@@ -3,18 +3,14 @@ import UsaStepIndicatorHeader from '@/components/UsaStepIndicatorHeader'
 import UsaStepIndicatorSegment from '@/components/UsaStepIndicatorSegment'
 
 const defaultProps = {
-  steps: [],
-  currentStepNumber: 1,
-  counters: false,
-  smallCounters: false,
-  center: false,
-  noLabels: false,
-  headingTag: 'h2',
-  customClasses: {
-    list: [],
-    segment: [],
-    header: [],
-  },
+  steps: UsaStepIndicator.props.steps.default(),
+  currentStepNumber: UsaStepIndicator.props.currentStepNumber.default,
+  counters: UsaStepIndicator.props.counters.default,
+  smallCounters: UsaStepIndicator.props.smallCounters.default,
+  center: UsaStepIndicator.props.center.default,
+  noLabels: UsaStepIndicator.props.noLabels.default,
+  headingTag: UsaStepIndicator.props.headingTag.default,
+  customClasses: UsaStepIndicator.props.customClasses.default(),
 }
 
 const testSteps = [

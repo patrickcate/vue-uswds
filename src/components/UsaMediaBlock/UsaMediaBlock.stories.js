@@ -1,10 +1,7 @@
 import UsaMediaBlock from './UsaMediaBlock.vue'
 
 const defaultProps = {
-  customClasses: {
-    media: [],
-    body: [],
-  },
+  customClasses: UsaMediaBlock.props.customClasses.default(),
 }
 
 export default {

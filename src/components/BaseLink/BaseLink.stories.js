@@ -1,9 +1,9 @@
 import BaseLink from './BaseLink.vue'
 
 const defaultProps = {
-  href: '',
-  to: '',
-  routerComponentName: '',
+  href: BaseLink.props.href.default,
+  to: BaseLink.props.to.default,
+  routerComponentName: BaseLink.props.routerComponentName.default,
 }
 
 export default {
@@ -27,7 +27,7 @@ export default {
     href: defaultProps.href,
     to: defaultProps.to,
     routerComponentName: defaultProps.routerComponentName,
-    defaultSlot: 'Test',
+    defaultSlot: '',
   },
 }
 
@@ -44,5 +44,6 @@ export const DefaultBaseLink = DefaultTemplate.bind({})
 DefaultBaseLink.args = {
   ...defaultProps,
   to: '/user',
+  defaultSlot: 'A link',
 }
 DefaultBaseLink.storyName = 'Default'

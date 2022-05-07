@@ -4,17 +4,12 @@ import UsaCollectionMeta from '@/components/UsaCollectionMeta'
 import UsaCollectionMetaItem from '@/components/UsaCollectionMetaItem'
 
 const defaultProps = {
-  heading: 'Collection Item',
-  headingTag: 'h2',
-  href: '/test-page',
-  to: '',
-  routerComponentName: '',
-  customClasses: {
-    media: [],
-    heading: [],
-    link: [],
-    description: [],
-  },
+  heading: UsaCollectionItem.props.heading.default,
+  headingTag: UsaCollectionItem.props.headingTag.default,
+  href: UsaCollectionItem.props.href.default,
+  to: UsaCollectionItem.props.to.default,
+  routerComponentName: UsaCollectionItem.props.routerComponentName.default,
+  customClasses: UsaCollectionItem.props.customClasses.default(),
 }
 
 const testMedia =
@@ -122,6 +117,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
 export const DefaultCollectionItem = DefaultTemplate.bind({})
 DefaultCollectionItem.args = {
   ...defaultProps,
+  heading: 'Collection Item',
 }
 DefaultCollectionItem.storyName = 'Default'
 
@@ -181,6 +177,7 @@ DescriptionSlotCollectionItem.storyName = 'Description Slot'
 export const CustomClassesCollectionItem = DefaultTemplate.bind({})
 CustomClassesCollectionItem.args = {
   ...defaultProps,
+  heading: 'Collection Item',
   customClasses: {
     media: ['test-media-class'],
     heading: ['test-heading-class'],

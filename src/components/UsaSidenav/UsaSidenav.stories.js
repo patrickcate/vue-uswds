@@ -26,12 +26,7 @@ const defaultProps = {
       text: 'Test Page 3',
     },
   ],
-  customClasses: {
-    list: [],
-    item: [],
-    link: [],
-    sublist: [],
-  },
+  customClasses: UsaSidenav.props.customClasses.default(),
 }
 
 export default {

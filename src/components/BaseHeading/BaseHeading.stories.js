@@ -1,7 +1,7 @@
 import BaseHeading from './BaseHeading.vue'
 
 const defaultProps = {
-  tag: 'h2',
+  tag: BaseHeading.props.tag.default,
 }
 
 export default {

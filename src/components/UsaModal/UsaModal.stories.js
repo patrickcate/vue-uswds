@@ -2,23 +2,14 @@ import { ref } from 'vue'
 import UsaModal from './UsaModal.vue'
 
 const defaultProps = {
-  size: '',
-  id: '',
-  visible: true,
-  forceAction: false,
-  heading: 'Are you sure you want to continue?',
-  headingTag: 'h2',
-  closeButtonLabel: 'Close this window',
-  customClasses: {
-    focusTrap: [],
-    modal: [],
-    overlay: [],
-    content: [],
-    main: [],
-    heading: [],
-    description: [],
-    footer: [],
-  },
+  size: UsaModal.props.size.default,
+  id: UsaModal.props.id.default,
+  visible: UsaModal.props.visible.default,
+  forceAction: UsaModal.props.forceAction.default,
+  heading: UsaModal.props.heading.default,
+  headingTag: UsaModal.props.headingTag.default,
+  closeButtonLabel: UsaModal.props.closeButtonLabel.default,
+  customClasses: UsaModal.props.customClasses.default(),
 }
 
 export default {
@@ -130,6 +121,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
 export const DefaultModal = DefaultTemplate.bind({})
 DefaultModal.args = {
   ...defaultProps,
+  heading: 'Are you sure you want to continue?',
   visible: true,
 }
 DefaultModal.storyName = 'Default'
@@ -137,14 +129,16 @@ DefaultModal.storyName = 'Default'
 export const LargeModal = DefaultTemplate.bind({})
 LargeModal.args = {
   ...defaultProps,
+  heading: 'Are you sure you want to continue?',
   visible: true,
   size: 'lg',
 }
 LargeModal.storyName = 'Large Size'
 
 export const ForceActionModal = DefaultTemplate.bind({})
-LargeModal.args = {
+ForceActionModal.args = {
   ...defaultProps,
+  heading: 'Are you sure you want to continue?',
   visible: true,
   forceAction: true,
 }
@@ -153,20 +147,25 @@ ForceActionModal.storyName = 'Force Action'
 export const CustomIdModal = DefaultTemplate.bind({})
 CustomIdModal.args = {
   ...defaultProps,
+  heading: 'Are you sure you want to continue?',
   id: 'custom-id',
+  visible: true,
 }
 CustomIdModal.storyName = 'Custom ID'
 
 export const CustomCloseButtonLabelModal = DefaultTemplate.bind({})
 CustomCloseButtonLabelModal.args = {
   ...defaultProps,
+  heading: 'Are you sure you want to continue?',
   closeButtonLabel: 'Custom close modal button label',
+  visible: true,
 }
 CustomCloseButtonLabelModal.storyName = 'Custom Close Button AriaLabel'
 
 export const HeadingSlotHeroModal = DefaultTemplate.bind({})
 HeadingSlotHeroModal.args = {
   ...defaultProps,
+  visible: true,
   headingSlot: 'Custom heading slot',
 }
 HeadingSlotHeroModal.storyName = 'Heading Slot'
@@ -174,13 +173,17 @@ HeadingSlotHeroModal.storyName = 'Heading Slot'
 export const CustomHeadingTagModal = DefaultTemplate.bind({})
 CustomHeadingTagModal.args = {
   ...defaultProps,
+  heading: 'Are you sure you want to continue?',
   headingTag: 'h4',
+  visible: true,
 }
 CustomHeadingTagModal.storyName = 'Custom Heading Tag'
 
 export const CustomCloseButtonSlotModal = DefaultTemplate.bind({})
 CustomCloseButtonSlotModal.args = {
   ...defaultProps,
+  visible: true,
+  heading: 'Are you sure you want to continue?',
   closeButtonSlot:
     '<button type="button" style="align-self: flex-end" @click="visible = false">Custom Close</button>',
 }
@@ -189,6 +192,7 @@ CustomCloseButtonSlotModal.storyName = 'Custom Close Button Slot'
 export const CustomClassesModal = DefaultTemplate.bind({})
 CustomClassesModal.args = {
   ...defaultProps,
+  heading: 'Are you sure you want to continue?',
   visible: true,
   customClasses: {
     focusTrap: ['test-focus-trap-class'],

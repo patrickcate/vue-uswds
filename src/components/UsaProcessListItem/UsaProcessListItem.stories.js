@@ -2,11 +2,9 @@ import UsaProcessList from '@/components/UsaProcessList'
 import UsaProcessListItem from './UsaProcessListItem.vue'
 
 const defaultProps = {
-  heading: '',
-  headingTag: 'h2',
-  customClasses: {
-    heading: [],
-  },
+  heading: UsaProcessListItem.props.heading.default,
+  headingTag: UsaProcessListItem.props.headingTag.default,
+  customClasses: UsaProcessListItem.props.customClasses.default(),
 }
 
 export default {

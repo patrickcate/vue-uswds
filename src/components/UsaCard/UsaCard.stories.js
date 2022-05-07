@@ -1,26 +1,18 @@
 import UsaCard from './UsaCard.vue'
 
 const defaultProps = {
-  cardTag: 'div',
-  heading: 'Card',
-  headingTag: 'h2',
-  flag: false,
-  headerFirst: false,
-  insetMedia: false,
-  mediaPosition: 'left',
-  headerExdent: false,
-  mediaExdent: false,
-  bodyExdent: false,
-  footerExdent: false,
-  customClasses: {
-    container: [],
-    header: [],
-    heading: [],
-    media: [],
-    img: [],
-    body: [],
-    footer: [],
-  },
+  cardTag: UsaCard.props.cardTag.default,
+  heading: UsaCard.props.heading.default,
+  headingTag: UsaCard.props.headingTag.default,
+  flag: UsaCard.props.flag.default,
+  headerFirst: UsaCard.props.headerFirst.default,
+  insetMedia: UsaCard.props.insetMedia.default,
+  mediaPosition: UsaCard.props.mediaPosition.default,
+  headerExdent: UsaCard.props.headerExdent.default,
+  mediaExdent: UsaCard.props.mediaExdent.default,
+  bodyExdent: UsaCard.props.bodyExdent.default,
+  footerExdent: UsaCard.props.footerExdent.default,
+  customClasses: UsaCard.props.customClasses.default(),
 }
 
 export default {
@@ -136,6 +128,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
 export const DefaultCard = DefaultTemplate.bind({})
 DefaultCard.args = {
   ...defaultProps,
+  heading: 'Card',
 }
 DefaultCard.decorators = [
   () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
@@ -146,6 +139,7 @@ export const HeaderFirstTagCard = DefaultTemplate.bind({})
 HeaderFirstTagCard.args = {
   ...defaultProps,
   headerFirst: true,
+  heading: 'Card',
 }
 HeaderFirstTagCard.decorators = [
   () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
@@ -156,6 +150,7 @@ export const NoMediaCard = DefaultTemplate.bind({})
 NoMediaCard.args = {
   ...defaultProps,
   mediaSlot: '',
+  heading: 'Card',
 }
 NoMediaCard.decorators = [
   () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
@@ -177,6 +172,7 @@ export const NoFooterCard = DefaultTemplate.bind({})
 NoFooterCard.args = {
   ...defaultProps,
   footerSlot: '',
+  heading: 'Card',
 }
 NoFooterCard.decorators = [
   () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
@@ -187,6 +183,7 @@ export const CustomCardTagCard = DefaultTemplate.bind({})
 CustomCardTagCard.args = {
   ...defaultProps,
   cardTag: 'section',
+  heading: 'Card',
 }
 CustomCardTagCard.decorators = [
   () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
@@ -197,6 +194,7 @@ export const InsetMediaCard = DefaultTemplate.bind({})
 InsetMediaCard.args = {
   ...defaultProps,
   insetMedia: true,
+  heading: 'Card',
 }
 InsetMediaCard.decorators = [
   () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
@@ -207,6 +205,7 @@ export const CustomHeadingTagCard = DefaultTemplate.bind({})
 CustomHeadingTagCard.args = {
   ...defaultProps,
   headingTag: 'h4',
+  heading: 'Card',
 }
 CustomHeadingTagCard.decorators = [
   () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
@@ -226,6 +225,7 @@ HeadingSlotCard.storyName = 'Header Slot'
 export const CustomClassesCard = DefaultTemplate.bind({})
 CustomClassesCard.args = {
   ...defaultProps,
+  heading: 'Card',
   customClasses: {
     container: ['test-container-class'],
     header: ['test-header-class'],
@@ -245,6 +245,7 @@ export const FlagLayoutCard = DefaultTemplate.bind({})
 FlagLayoutCard.args = {
   ...defaultProps,
   flag: true,
+  heading: 'Card',
 }
 FlagLayoutCard.storyName = 'Flag Layout'
 
@@ -253,5 +254,6 @@ FlagLayoutMediaRightCard.args = {
   ...defaultProps,
   flag: true,
   mediaPosition: 'right',
+  heading: 'Card',
 }
 FlagLayoutMediaRightCard.storyName = 'Flag Layout w/ Media Right'

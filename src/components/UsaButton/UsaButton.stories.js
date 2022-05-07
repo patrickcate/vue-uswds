@@ -1,10 +1,10 @@
 import UsaButton from './UsaButton.vue'
 
 const defaultProps = {
-  variant: '',
-  size: '',
-  type: 'button',
-  disabled: false,
+  variant: UsaButton.props.variant.default,
+  size: UsaButton.props.size.default,
+  type: UsaButton.props.type.default,
+  disabled: UsaButton.props.disabled.default,
 }
 
 export default {

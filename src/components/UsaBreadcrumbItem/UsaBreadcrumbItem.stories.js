@@ -2,14 +2,11 @@ import UsaBreadcrumbItem from './UsaBreadcrumbItem.vue'
 import UsaBreadcrumb from '@/components/UsaBreadcrumb'
 
 const defaultProps = {
-  href: '',
-  to: '',
-  routerComponentName: '',
-  current: false,
-  customClasses: {
-    link: [],
-    span: [],
-  },
+  href: UsaBreadcrumbItem.props.href.default,
+  to: UsaBreadcrumbItem.props.to.default,
+  routerComponentName: UsaBreadcrumbItem.props.routerComponentName.default,
+  current: UsaBreadcrumbItem.props.current.default,
+  customClasses: UsaBreadcrumbItem.props.customClasses.default(),
 }
 
 export default {

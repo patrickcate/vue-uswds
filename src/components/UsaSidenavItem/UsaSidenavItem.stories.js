@@ -5,11 +5,7 @@ const defaultProps = {
     to: '/test-page-1',
     text: 'Test Page 1',
   },
-  customClasses: {
-    item: [],
-    link: [],
-    sublist: [],
-  },
+  customClasses: UsaSidenavItem.props.customClasses.default(),
 }
 
 export default {

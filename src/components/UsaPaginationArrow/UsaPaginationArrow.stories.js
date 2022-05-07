@@ -1,13 +1,10 @@
 import UsaPaginationArrow from './UsaPaginationArrow.vue'
 
 const defaultProps = {
-  direction: 'previous',
-  label: 'Previous',
+  direction: UsaPaginationArrow.props.direction.default,
+  label: UsaPaginationArrow.props.label.default,
   ariaLabel: 'Previous page',
-  customClasses: {
-    link: [],
-    text: [],
-  },
+  customClasses: UsaPaginationArrow.props.customClasses.default(),
 }
 
 export default {
@@ -93,6 +90,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
 export const PreviousPaginationArrow = DefaultTemplate.bind({})
 PreviousPaginationArrow.args = {
   ...defaultProps,
+  label: 'Previous',
 }
 PreviousPaginationArrow.storyName = 'Previous'
 
@@ -109,6 +107,10 @@ NextPaginationArrow.storyName = 'Next'
 export const BeforeSlotPaginationArrow = DefaultTemplate.bind({})
 BeforeSlotPaginationArrow.args = {
   ...defaultProps,
+  direction: 'previous',
+  label: 'Previous',
+  ariaLabel: 'Previous page',
+  defaultSlot: 'Previous',
   beforeSlot: '&lt;&nbsp;',
 }
 BeforeSlotPaginationArrow.storyName = 'Before Slot'

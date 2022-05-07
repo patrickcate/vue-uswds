@@ -23,19 +23,17 @@ function generateTestItems(numberOfItems, contents) {
 
 const defaultProps = {
   items: generateTestItems(8, {}),
-  unbounded: false,
-  currentPage: 1,
-  ariaLabel: 'Pagination',
-  previousLinkText: 'Previous',
-  nextLinkText: 'Next',
-  firstPageAriaLabel: 'First page, page #',
-  previousPageAriaLabel: 'Previous page',
-  numberPageAriaLabel: 'Page #',
-  nextPageAriaLabel: 'Next page',
-  lastPageAriaLabel: 'Last page, page #',
-  customClasses: {
-    list: [],
-  },
+  unbounded: UsaPagination.props.unbounded.default,
+  currentPage: UsaPagination.props.currentPage.default,
+  ariaLabel: UsaPagination.props.ariaLabel.default,
+  previousLinkText: UsaPagination.props.previousLinkText.default,
+  nextLinkText: UsaPagination.props.nextLinkText.default,
+  firstPageAriaLabel: UsaPagination.props.firstPageAriaLabel.default,
+  previousPageAriaLabel: UsaPagination.props.previousPageAriaLabel.default,
+  numberPageAriaLabel: UsaPagination.props.numberPageAriaLabel.default,
+  nextPageAriaLabel: UsaPagination.props.nextPageAriaLabel.default,
+  lastPageAriaLabel: UsaPagination.props.lastPageAriaLabel.default,
+  customClasses: UsaPagination.props.customClasses.default(),
 }
 
 export default {

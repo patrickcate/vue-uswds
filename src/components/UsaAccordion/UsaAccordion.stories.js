@@ -2,9 +2,9 @@ import UsaAccordion from './UsaAccordion.vue'
 import UsaAccordionItem from '@/components/UsaAccordionItem'
 
 const defaultProps = {
-  bordered: false,
-  multiselectable: false,
-  headingTag: 'h2',
+  bordered: UsaAccordion.props.bordered.default,
+  multiselectable: UsaAccordion.props.multiselectable.default,
+  headingTag: UsaAccordion.props.headingTag.default,
 }
 
 export default {

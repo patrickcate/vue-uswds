@@ -33,9 +33,7 @@ const ariaCurrent = computed(() => (props.current ? 'page' : null))
 
 <template>
   <li class="usa-breadcrumb__list-item" :aria-current="ariaCurrent">
-    <span v-if="current" :class="customClasses?.span">
-      <slot></slot>
-    </span>
+    <span v-if="current" :class="customClasses?.span"><slot></slot></span>
     <BaseLink
       v-else
       :href="href"
@@ -44,9 +42,7 @@ const ariaCurrent = computed(() => (props.current ? 'page' : null))
       class="usa-breadcrumb__link"
       :class="customClasses?.link"
     >
-      <span :class="customClasses?.span">
-        <slot></slot>
-      </span>
+      <span :class="customClasses?.span"><slot></slot></span>
     </BaseLink>
   </li>
 </template>

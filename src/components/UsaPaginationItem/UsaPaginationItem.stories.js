@@ -1,8 +1,10 @@
 import UsaPaginationItem from './UsaPaginationItem.vue'
 
 const defaultProps = {
+  // Has no default value.
   pageNumber: 1,
-  isCurrentPage: false,
+  isCurrentPage: UsaPaginationItem.props.isCurrentPage.default,
+  // Has no default value.
   ariaLabel: 'Page 1',
 }
 
