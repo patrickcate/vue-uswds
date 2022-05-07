@@ -2,7 +2,11 @@ const path = require('path')
 const { loadConfigFromFile, mergeConfig } = require('vite')
 
 module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: [
+    '../docs/**/*.stories.mdx',
+    '../stories/**/*.stories.mdx',
+    '../src/**/*.stories.@(js|jsx|ts|tsx)',
+  ],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   core: {
     builder: '@storybook/builder-vite',
@@ -11,7 +15,7 @@ module.exports = {
 
   async viteFinal(config, { configType }) {
     const { config: userConfig } = await loadConfigFromFile(
-      path.resolve(__dirname, '../vite.config.ts')
+      path.resolve(__dirname, '..', 'vite.config.js')
     )
     return mergeConfig(config, {
       ...userConfig,

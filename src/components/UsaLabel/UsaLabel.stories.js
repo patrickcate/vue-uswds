@@ -1,8 +1,8 @@
 import UsaLabel from './UsaLabel.vue'
 
 const defaultProps = {
-  required: false,
-  error: false,
+  required: UsaLabel.props.required.default,
+  error: UsaLabel.props.error.default,
 }
 
 export default {
@@ -27,8 +27,8 @@ export default {
   },
   args: {
     for: 'test-id',
-    required: false,
-    error: false,
+    required: defaultProps.required,
+    error: defaultProps.error,
     requiredSlot: '',
     defaultSlot: 'Test Label',
   },
@@ -40,7 +40,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args, labelFor: args.for }
   },
-  template: `<UsaLabel :for="labelFor" :required="required" :error="error"><template v-if="${!!args.disclaimerSlot}" #default>${
+  template: `<UsaLabel :for="labelFor" :required="required" :error="error"><template v-if="${!!args.defaultSlot}" #default>${
     args.defaultSlot
   }</template><template v-if="${!!args.requiredSlot}" #required>${
     args.requiredSlot

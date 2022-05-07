@@ -1,14 +1,11 @@
 import UsaLogo from './UsaLogo.vue'
 
 const defaultProps = {
-  title: 'Project Title',
-  href: '/test-page',
-  to: '',
-  routerComponentName: '',
-  customClasses: {
-    text: [],
-    link: [],
-  },
+  title: UsaLogo.props.title.default,
+  href: UsaLogo.props.href.default,
+  to: UsaLogo.props.to.default,
+  routerComponentName: UsaLogo.props.routerComponentName.default,
+  customClasses: UsaLogo.props.customClasses.default(),
 }
 
 export default {
@@ -62,12 +59,16 @@ const DefaultTemplate = (args, { argTypes }) => ({
 export const DefaultLogo = DefaultTemplate.bind({})
 DefaultLogo.args = {
   ...defaultProps,
+  title: 'Project Title',
+  href: '/test-page',
 }
 DefaultLogo.storyName = 'Default'
 
 export const CustomClassesLogo = DefaultTemplate.bind({})
 CustomClassesLogo.args = {
   ...defaultProps,
+  title: 'Project Title',
+  href: '/test-page',
   customClasses: {
     text: ['test-text-class'],
     link: ['test-link-class'],
@@ -78,6 +79,7 @@ CustomClassesLogo.storyName = 'Custom Classes'
 export const DefaultSlotLogo = DefaultTemplate.bind({})
 DefaultSlotLogo.args = {
   ...defaultProps,
+  href: '/test-page',
   defaultSlot: 'Test Title',
 }
 DefaultSlotLogo.storyName = 'Default Slot'

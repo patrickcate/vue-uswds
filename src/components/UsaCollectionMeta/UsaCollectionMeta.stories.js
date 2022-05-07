@@ -1,7 +1,7 @@
 import UsaCollectionMeta from './UsaCollectionMeta.vue'
 
 const defaultProps = {
-  ariaLabel: 'Test aria label',
+  ariaLabel: UsaCollectionMeta.props.ariaLabel.default,
 }
 
 export default {
@@ -33,5 +33,6 @@ const DefaultTemplate = (args, { argTypes }) => ({
 export const DefaultCollectionMeta = DefaultTemplate.bind({})
 DefaultCollectionMeta.args = {
   ...defaultProps,
+  ariaLabel: 'Test aria label',
 }
 DefaultCollectionMeta.storyName = 'Default'

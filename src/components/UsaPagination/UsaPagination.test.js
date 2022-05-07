@@ -128,25 +128,25 @@ describe('UsaPagination', () => {
     // Start on first page.
     cy.get('@itemPrevious')
       .should('have.class', 'usa-pagination__item--hidden')
-      .and('have.css', 'visibility', 'hidden')
+      .and('not.be.visible')
 
     // Go to second page.
     cy.get('@wrapper').invoke('setProps', { currentPage: 2 })
 
     cy.get('@itemPrevious')
       .should('not.have.class', 'usa-pagination__item--hidden')
-      .and('not.have.css', 'visibility', 'hidden')
+      .and('be.visible')
 
     cy.get('@itemNext')
       .should('not.have.class', 'usa-pagination__item--hidden')
-      .and('not.have.css', 'visibility', 'hidden')
+      .and('be.visible')
 
     // Go to last page.
     cy.get('@wrapper').invoke('setProps', { currentPage: 8 })
 
     cy.get('@itemNext')
       .should('have.class', 'usa-pagination__item--hidden')
-      .and('have.css', 'visibility', 'hidden')
+      .and('not.be.visible')
   })
 
   it('when `unbound` prop is true, the last slot is always a overflow item unless on the last page', () => {

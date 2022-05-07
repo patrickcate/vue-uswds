@@ -1,11 +1,9 @@
 import UsaHero from './UsaHero.vue'
 
 const defaultProps = {
-  backgroundImage: '',
-  ariaLabel: '',
-  customClasses: {
-    gridContainer: [],
-  },
+  backgroundImage: UsaHero.props.backgroundImage.default,
+  ariaLabel: UsaHero.props.ariaLabel.default,
+  customClasses: UsaHero.props.customClasses.default(),
 }
 
 export default {
@@ -26,9 +24,8 @@ export default {
     },
   },
   args: {
-    backgroundImage:
-      'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.app.cloud.gov/preview/uswds/uswds/develop/dist/img/hero.png',
-    ariaLabel: 'Introduction',
+    backgroundImage: defaultProps.backgroundImage,
+    ariaLabel: defaultProps.ariaLabel,
     customClasses: defaultProps.customClasses,
     defaultSlot: '',
   },
@@ -48,7 +45,7 @@ export const DefaultHero = DefaultTemplate.bind({})
 DefaultHero.args = {
   ...defaultProps,
   backgroundImage:
-    'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.app.cloud.gov/preview/uswds/uswds/develop/dist/img/hero.png',
+    'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.app.cloud.gov/preview/uswds/uswds/develop/hero.png',
   ariaLabel: 'Introduction',
 }
 DefaultHero.storyName = 'Default'
@@ -57,7 +54,7 @@ export const CustomClassesHero = DefaultTemplate.bind({})
 CustomClassesHero.args = {
   ...defaultProps,
   backgroundImage:
-    'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.app.cloud.gov/preview/uswds/uswds/develop/dist/img/hero.png',
+    'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.app.cloud.gov/preview/uswds/uswds/develop/hero.png',
   ariaLabel: 'Introduction',
   customClasses: {
     gridContainer: ['test-grid-container-class'],

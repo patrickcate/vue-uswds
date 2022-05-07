@@ -1,8 +1,8 @@
 import UsaLink from './UsaLink.vue'
 
 const defaultProps = {
-  alt: false,
-  external: false,
+  alt: UsaLink.props.alt.default,
+  external: UsaLink.props.external.default,
 }
 
 export default {

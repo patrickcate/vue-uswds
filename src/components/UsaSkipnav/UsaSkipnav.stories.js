@@ -1,5 +1,10 @@
 import UsaSkipnav from './UsaSkipnav.vue'
 
+const defaultProps = {
+  // Has no default value.
+  anchor: '#main-content',
+}
+
 export default {
   component: UsaSkipnav,
   title: 'Components/UsaSkipnav',
@@ -12,7 +17,7 @@ export default {
     },
   },
   args: {
-    anchor: '#main-content',
+    anchor: defaultProps.anchor,
     defaultSlot: 'Test skip link',
   },
 }

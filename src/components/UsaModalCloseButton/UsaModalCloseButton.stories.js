@@ -1,6 +1,7 @@
 import UsaModalCloseButton from './UsaModalCloseButton.vue'
 
 const defaultProps = {
+  // Has no default value.
   ariaLabel: 'Close Modal',
 }
 

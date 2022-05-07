@@ -2,13 +2,10 @@ import UsaHeroCallout from './UsaHeroCallout.vue'
 import UsaHero from '@/components/UsaHero'
 
 const defaultProps = {
-  headingAlt: 'Hero callout:',
-  heading: 'Bring attention to a project priority',
-  headingTag: 'h1',
-  customClasses: {
-    heading: [],
-    headingAlt: [],
-  },
+  headingAlt: UsaHeroCallout.props.headingAlt.default,
+  heading: UsaHeroCallout.props.heading.default,
+  headingTag: UsaHeroCallout.props.headingTag.default,
+  customClasses: UsaHeroCallout.props.customClasses.default(),
 }
 
 export default {
@@ -58,7 +55,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaHero background-image="'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.app.cloud.gov/preview/uswds/uswds/develop/dist/img/hero.png'" aria-label="Introduction">
+  template: `<UsaHero background-image="https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.app.cloud.gov/preview/uswds/uswds/develop/hero.png" aria-label="Introduction">
     <UsaHeroCallout
       :heading="heading"
       :heading-alt="headingAlt"
@@ -81,6 +78,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
 export const DefaultHeroCallout = DefaultTemplate.bind({})
 DefaultHeroCallout.args = {
   ...defaultProps,
+  headingAlt: 'Hero callout:',
+  heading: 'Bring attention to a project priority',
 }
 DefaultHeroCallout.storyName = 'Default'
 
@@ -88,12 +87,14 @@ export const HeadingSlotHeroCallout = DefaultTemplate.bind({})
 HeadingSlotHeroCallout.args = {
   ...defaultProps,
   headingSlot: 'Custom heading slot',
+  headingAlt: 'Hero callout:',
 }
 HeadingSlotHeroCallout.storyName = 'Heading Slot'
 
 export const HeadingAltSlotHeroCallout = DefaultTemplate.bind({})
 HeadingAltSlotHeroCallout.args = {
   ...defaultProps,
+  heading: 'Bring attention to a project priority',
   headingAltSlot: 'Custom heading alt slot',
 }
 HeadingAltSlotHeroCallout.storyName = 'Heading Alt Slot'
@@ -101,6 +102,8 @@ HeadingAltSlotHeroCallout.storyName = 'Heading Alt Slot'
 export const CustomHeadingTagHeroCallout = DefaultTemplate.bind({})
 CustomHeadingTagHeroCallout.args = {
   ...defaultProps,
+  heading: 'Bring attention to a project priority',
+  headingAlt: 'Custom heading alt slot',
   headingTag: 'h4',
 }
 CustomHeadingTagHeroCallout.storyName = 'Custom Heading Tag'
@@ -108,6 +111,8 @@ CustomHeadingTagHeroCallout.storyName = 'Custom Heading Tag'
 export const CustomClassesHeroCallout = DefaultTemplate.bind({})
 CustomClassesHeroCallout.args = {
   ...defaultProps,
+  heading: 'Bring attention to a project priority',
+  headingAlt: 'Custom heading alt slot',
   customClasses: {
     heading: ['test-heading-class'],
     headingAlt: ['test-heading-alt-class'],

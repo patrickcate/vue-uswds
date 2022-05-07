@@ -1,6 +1,10 @@
 import UsaProcessList from './UsaProcessList.vue'
 import UsaProcessListItem from '@/components/UsaProcessListItem'
 
+const defaultProps = {
+  headingTag: UsaProcessList.props.headingTag.default,
+}
+
 export default {
   component: UsaProcessList,
   title: 'Components/UsaProcessList',
@@ -14,7 +18,7 @@ export default {
     },
   },
   args: {
-    headingTag: '',
+    headingTag: defaultProps.headingTag,
     defaultSlot:
       '<UsaProcessListItem heading="Test step 1"><p>Test body.</p></UsaProcessListItem>',
   },

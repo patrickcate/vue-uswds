@@ -2,7 +2,7 @@ import UsaButtonGroup from './UsaButtonGroup.vue'
 import UsaButtonGroupItem from '@/components/UsaButtonGroupItem'
 
 const defaultProps = {
-  segmented: false,
+  segmented: UsaButtonGroup.props.segmented.default,
 }
 
 export default {

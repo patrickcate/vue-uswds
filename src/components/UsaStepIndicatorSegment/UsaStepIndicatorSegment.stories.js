@@ -2,8 +2,8 @@ import UsaStepIndicatorSegment from './UsaStepIndicatorSegment.vue'
 import UsaStepIndicator from '@/components/UsaStepIndicator'
 
 const defaultProps = {
-  status: '',
-  label: '',
+  status: UsaStepIndicatorSegment.props.status.default,
+  label: UsaStepIndicatorSegment.props.label.default,
 }
 
 export default {

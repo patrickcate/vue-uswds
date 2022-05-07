@@ -1,7 +1,7 @@
 import UsaOverlay from './UsaOverlay.vue'
 
 const defaultProps = {
-  visible: false,
+  visible: UsaOverlay.props.visible.default,
 }
 
 export default {

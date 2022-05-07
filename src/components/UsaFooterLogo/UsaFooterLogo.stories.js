@@ -8,7 +8,7 @@ const defaultProps = {
 }
 
 const testLogoImageUrl =
-  'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.app.cloud.gov/preview/uswds/uswds/develop/dist/img/circle-124.png'
+  'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.app.cloud.gov/preview/uswds/uswds/develop/img/circle-gray-20.svg'
 
 export default {
   component: UsaFooterLogo,

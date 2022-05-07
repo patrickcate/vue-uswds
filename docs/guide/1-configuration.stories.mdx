@@ -1,0 +1,77 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title='Guide/Usage' />
+
+# Usage
+
+When importing the library via NPM you can import all components or use the _À La Carte_ method to import only specific components. The _À La Carte_ method makes it easier to reduce the final bundle size of your application by only including components you are using.
+
+## All Components
+
+```javascript
+// main.js
+import { createApp } from 'vue'
+import VueUswds from 'vue-uswds'
+import App from './App.vue'
+
+const app = createApp(App)
+
+app.use(VueUswds, {
+  // ...options
+})
+
+app.mount('#app')
+```
+
+## À La Carte
+
+```javascript
+// main.js
+import { createApp } from 'vue'
+import VueUswds from 'vue-uswds/core' // Import only the core library.
+import App from './App.vue'
+
+const app = createApp(App)
+
+app.use(VueUswds, {
+  // ...options
+})
+
+app.mount('#app')
+```
+
+```javascript
+// MyComponent.vue
+<script>
+import { UsaTag } from 'vue-uswds'
+
+export default {
+  components: { UsaTag },
+}
+</script>
+
+<template>
+  <UsaTag>My Custom Tag</UsaTag>
+</template>
+```
+
+If there are components you wish to use anywhere in your app without first importing them, you can register them globally.
+
+```javascript
+// main.js
+import { createApp } from 'vue'
+import VueUswds from 'vue-uswds/core' // Import only the core library.
+import { UsaTag } from 'vue-uswds' // Import only the `UsaTag` component.
+import App from './App.vue'
+
+const app = createApp(App)
+
+app.use(VueUswds, {
+  // ...options
+})
+
+// Register any global components...
+app.component('UsaTag', UsaTag)
+
+app.mount('#app')
+```

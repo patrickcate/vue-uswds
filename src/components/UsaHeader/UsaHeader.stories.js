@@ -1,11 +1,9 @@
 import UsaHeader from './UsaHeader.vue'
 
 const defaultProps = {
-  variant: 'basic',
-  megamenu: false,
-  customClasses: {
-    navContainer: [],
-  },
+  variant: UsaHeader.props.variant.default,
+  megamenu: UsaHeader.props.megamenu.default,
+  customClasses: UsaHeader.props.customClasses.default(),
 }
 
 export default {

@@ -2,7 +2,7 @@ import UsaCollection from './UsaCollection.vue'
 import UsaCollectionItem from '@/components/UsaCollectionItem'
 import UsaCollectionHeading from '@/components/UsaCollectionHeading'
 
-const defaultProps = { condensed: false }
+const defaultProps = { condensed: UsaCollection.props.condensed.default }
 
 const testCollectionItem = `
   <UsaCollectionItem

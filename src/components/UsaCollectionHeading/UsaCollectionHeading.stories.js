@@ -1,14 +1,12 @@
 import UsaCollectionHeading from './UsaCollectionHeading.vue'
 
 const defaultProps = {
-  heading: 'Collection Item Heading',
-  headingTag: 'h2',
-  href: '/test-page',
-  to: '',
-  routerComponentName: '',
-  customClasses: {
-    link: [],
-  },
+  heading: UsaCollectionHeading.props.heading.default,
+  headingTag: UsaCollectionHeading.props.headingTag.default,
+  href: UsaCollectionHeading.props.href.default,
+  to: UsaCollectionHeading.props.to.default,
+  routerComponentName: UsaCollectionHeading.props.routerComponentName.default,
+  customClasses: UsaCollectionHeading.props.customClasses.default(),
 }
 
 export default {
@@ -70,12 +68,14 @@ const DefaultTemplate = (args, { argTypes }) => ({
 export const DefaultCollectionItemHeading = DefaultTemplate.bind({})
 DefaultCollectionItemHeading.args = {
   ...defaultProps,
+  heading: 'Collection Item Heading',
 }
 DefaultCollectionItemHeading.storyName = 'Default'
 
 export const CustomHeadingCollectionItemHeading = DefaultTemplate.bind({})
 CustomHeadingCollectionItemHeading.args = {
   ...defaultProps,
+
   headingTag: 'h4',
   heading: 'Custom heading tag',
 }
@@ -84,6 +84,7 @@ CustomHeadingCollectionItemHeading.storyName = 'Custom Heading Tag'
 export const HeadingSlotCollectionItemHeading = DefaultTemplate.bind({})
 HeadingSlotCollectionItemHeading.args = {
   ...defaultProps,
+  heading: 'Collection Item Heading',
   defaultSlot: 'Custom header slot',
 }
 HeadingSlotCollectionItemHeading.storyName = 'Header Slot'
@@ -91,6 +92,7 @@ HeadingSlotCollectionItemHeading.storyName = 'Header Slot'
 export const CustomClassesCollectionItemHeading = DefaultTemplate.bind({})
 CustomClassesCollectionItemHeading.args = {
   ...defaultProps,
+  heading: 'Collection Item Heading',
   customClasses: {
     link: ['test-link-class'],
   },

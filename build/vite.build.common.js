@@ -19,7 +19,6 @@ const buildOptions = {
       globals: {
         vue: 'Vue',
       },
-      assetFileNames: `vue-uswds.[ext]`, // without this, it generates dist/styles.css
     },
   },
 }

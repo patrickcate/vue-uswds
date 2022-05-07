@@ -2,15 +2,10 @@ import UsaBreadcrumb from './UsaBreadcrumb.vue'
 import UsaBreadcrumbItem from '@/components/UsaBreadcrumbItem'
 
 const defaultProps = {
-  items: [],
-  wrap: false,
-  ariaLabel: 'Breadcrumbs',
-  customClasses: {
-    list: [],
-    item: [],
-    link: [],
-    span: [],
-  },
+  items: UsaBreadcrumb.props.items.default(),
+  wrap: UsaBreadcrumb.props.wrap.default,
+  ariaLabel: UsaBreadcrumb.props.ariaLabel.default,
+  customClasses: UsaBreadcrumb.props.customClasses.default(),
 }
 
 const testBreadcrumbs = [

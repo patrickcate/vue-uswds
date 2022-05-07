@@ -1,12 +1,8 @@
 import UsaStepIndicatorHeader from './UsaStepIndicatorHeader.vue'
 
 const defaultProps = {
-  headingTag: 'h2',
-  customClasses: {
-    heading: [],
-    counter: [],
-    label: [],
-  },
+  headingTag: UsaStepIndicatorHeader.props.headingTag.default,
+  customClasses: UsaStepIndicatorHeader.props.customClasses.default(),
 }
 
 const testSteps = ['Test step 1', 'Test step 2', 'Test step 3']

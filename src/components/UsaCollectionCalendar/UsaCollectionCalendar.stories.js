@@ -1,14 +1,10 @@
 import UsaCollectionCalendar from './UsaCollectionCalendar.vue'
 
 const defaultProps = {
-  datetime: '2021-01-01',
-  month: 'Jan',
-  day: 1,
-  customClasses: {
-    datetime: [],
-    month: [],
-    day: [],
-  },
+  datetime: UsaCollectionCalendar.props.datetime.default,
+  month: UsaCollectionCalendar.props.month.default,
+  day: UsaCollectionCalendar.props.day.default,
+  customClasses: UsaCollectionCalendar.props.customClasses.default(),
 }
 
 export default {
@@ -53,12 +49,18 @@ const DefaultTemplate = (args, { argTypes }) => ({
 export const DefaultCollectionCalendar = DefaultTemplate.bind({})
 DefaultCollectionCalendar.args = {
   ...defaultProps,
+  datetime: '2021-01-01',
+  month: 'Jan',
+  day: 1,
 }
 DefaultCollectionCalendar.storyName = 'Default'
 
 export const CustomClassesCollectionCalendar = DefaultTemplate.bind({})
 CustomClassesCollectionCalendar.args = {
   ...defaultProps,
+  datetime: '2021-01-01',
+  month: 'Jan',
+  day: 1,
   customClasses: {
     datetime: ['test-datetime-class'],
     month: ['test-month-class'],

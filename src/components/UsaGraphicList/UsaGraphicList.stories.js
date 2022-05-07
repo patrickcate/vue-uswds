@@ -2,10 +2,8 @@ import UsaGraphicList from './UsaGraphicList.vue'
 import UsaGraphicListRow from '@/components/UsaGraphicListRow'
 
 const defaultProps = {
-  variant: 'dark',
-  customClasses: {
-    container: [],
-  },
+  variant: UsaGraphicList.props.variant.default,
+  customClasses: UsaGraphicList.props.customClasses.default(),
 }
 
 const GraphicListRows = `

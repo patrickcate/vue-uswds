@@ -1,17 +1,13 @@
 import UsaSiteAlert from '@/components/UsaSiteAlert'
 
 const defaultProps = {
-  variant: 'emergency',
-  slim: false,
-  noIcon: false,
-  role: '',
-  heading: '',
-  headingTag: 'h2',
-  customClasses: {
-    root: [],
-    body: [],
-    heading: [],
-  },
+  variant: UsaSiteAlert.props.variant.default,
+  slim: UsaSiteAlert.props.slim.default,
+  noIcon: UsaSiteAlert.props.noIcon.default,
+  role: UsaSiteAlert.props.role.default,
+  heading: UsaSiteAlert.props.heading.default,
+  headingTag: UsaSiteAlert.props.headingTag.default,
+  customClasses: UsaSiteAlert.props.customClasses.default(),
 }
 
 export default {

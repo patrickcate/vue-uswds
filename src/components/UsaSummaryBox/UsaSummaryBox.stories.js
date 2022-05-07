@@ -1,14 +1,10 @@
 import UsaSummaryBox from './UsaSummaryBox.vue'
 
 const defaultProps = {
-  heading: 'Key information',
-  headingTag: 'h2',
-  headingSlot: '',
-  customClasses: {
-    body: [],
-    heading: [],
-    text: [],
-  },
+  id: UsaSummaryBox.props.id.default,
+  heading: UsaSummaryBox.props.heading.default,
+  headingTag: UsaSummaryBox.props.headingTag.default,
+  customClasses: UsaSummaryBox.props.customClasses.default(),
 }
 
 export default {
@@ -36,6 +32,7 @@ export default {
     },
   },
   args: {
+    id: defaultProps.id,
     heading: defaultProps.heading,
     headingTag: defaultProps.headingTag,
     customClasses: defaultProps.customClasses,
