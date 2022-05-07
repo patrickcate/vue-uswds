@@ -1,0 +1,42 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title='Guide/Installation' />
+
+# Installation
+
+**Note:** You will need to load the [USWDS](https://designsystem.digital.gov) CSS separately.
+
+Vue USWDS can be installed either by including it with a simple `script` tag or using NPM and a build system.
+
+## Script Tag
+
+The easiest way to include the library with a script tag is to use a CDN such as [jsDelivr](https://www.jsdelivr.com) or [unpkg](https://unpkg.com). You can also load the library locally on your server.
+
+When using with a script tag all components will be imported.
+
+```html
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://unpkg.com/vue-uswds"></script>
+
+<script>
+  const app = Vue.createApp({})
+
+  app.use(VueUswds, {
+    // ...options
+  })
+
+  app.mount('#app')
+</script>
+```
+
+## NPM/Yarn
+
+```shell
+npm install vue-uswds
+```
+
+or
+
+```shell
+yarn install vue-uswds
+```

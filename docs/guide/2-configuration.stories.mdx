@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/addon-docs'
+
+<Meta title='Guide/Configuration' />
+
+# Configuration
+
+Vue USWDS provides some global configuration settings to improve compatibility with [USWDS](https://designsystem.digital.gov/documentation/settings/) CSS.
+
+You can set your custom settings by passing an object of settings when you register the library with your application.
+
+```javascript
+app.use(VueUswds, {
+  imagePath: '/path/to/images',
+  routerComponentName: 'nuxt-link',
+  mobileMenuBreakpoint: '50em',
+  // more options...
+})
+```
+
+## Options
+
+| Name | Default Value | Description |
+| --- | --- | --- |
+| `prefixSeparator` | `':'` | The character that separates responsive and state prefixes from their main class name. |
+| `gridNamespace` | `'grid-'` | Namespace prefix for all grid classes. |
+| `utilityNamespace` | `'u-'` | Namespace prefix for all utility classes. |
+| `imagePath` | `'/assets/img'` | Path relative to the location of the final compiled CSS. |
+| `svgSpritePath` | `'/assets/img/sprite.svg'` | Path relative to the location of the final compiled SVG sprite. |
+| `routerComponentName` | `null` | The name of the default Vue Router link component to use. e.g. `'nuxt-link'`, `'router-link'`, etc. If set to `null` an attempt will be made to determine the correct component. |
+| `mobileMenuBreakpoint` | `'64em'` | The CSS compatible breakpoint width USWDS will use to switch from the mobile menu to desktop menu. This should match the `$theme-header-min-width` USWDS Sass variable if you customized it. |
