@@ -48,10 +48,3 @@ const backgroundImageStyle = computed(() => {
     <div :class="gridContainerClasses"><slot></slot></div>
   </section>
 </template>
-
-<style>
-.usa-hero {
-  /* Remove default background image set in USWDS CSS. */
-  background-image: none;
-}
-</style>
