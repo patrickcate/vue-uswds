@@ -6,11 +6,11 @@ A Vue 3 implementation of the [USWDS](https://designsystem.digital.gov). If you 
 
 **Note:** You will need to install the [USWDS](https://designsystem.digital.gov) CSS separately.
 
-Vue USWDS can be install either by including it with a simple `script` tag or using NPM and a build system.
+Vue USWDS can be installed either by including it with a simple `script` tag or using NPM and a build system.
 
 ### Script Tag
 
-The easiest way to include the library with a script tag is to use a CDN such as [jsDelivr](https://www.jsdelivr.com) or [unpkg](https://unpkg.com). You can also load the library locally on your own servers.
+The easiest way to include the library with a script tag is to use a CDN such as [jsDelivr](https://www.jsdelivr.com) or [unpkg](https://unpkg.com). You can also load the library locally on your server.
 
 When using with a script tag all components will be imported.
 
@@ -31,7 +31,7 @@ yarn install vue-uswds
 
 ## Usage
 
-When importing the library with NPM you can choose either to import all components or use a _À La Carte_ method to import only specific components as needed. The _À La Carte_ method makes it easier to reduce the final bundle size of your application by not including components you aren't using.
+When importing the library via NPM you can import all components or use the _À La Carte_ method to import only specific components. The _À La Carte_ method makes it easier to reduce the final bundle size of your application by only including components you are using.
 
 ### All Components
 
@@ -79,7 +79,7 @@ export default {
 </template>
 ```
 
-If there are components you wish to use anywhere in your app without first importing them, you can still register them globally as well.
+If there are components you wish to use anywhere in your app without first importing them, you can register them globally.
 
 ```javascript
 // App.vue
