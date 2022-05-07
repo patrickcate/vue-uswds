@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/patrickcate/vue-uswds/compare/v0.6.0...v0.7.0) (2022-05-07)
+
+
+### Features
+
+* **UsaFooterPrimarySection:** implement `UsaFooterPrimarySection` component ([3bf9c4b](https://github.com/patrickcate/vue-uswds/commit/3bf9c4ba3a0d5fb8cf118ff4aa337830c6206b07)), closes [#33](https://github.com/patrickcate/vue-uswds/issues/33)
+* **UsaFooterSecondarySection:** implement `UsaFooterSecondarySection` component ([dfe611d](https://github.com/patrickcate/vue-uswds/commit/dfe611d76672896e5bcf0964eb4e4d62bfdee557)), closes [#34](https://github.com/patrickcate/vue-uswds/issues/34)
+* **UsaHero:** remove custom CSS that removes default background image ([54567a9](https://github.com/patrickcate/vue-uswds/commit/54567a96955e2696cbbab4727e11253434d9cb66))
+* **UsaPagination:** use `v-show` instead of custom CSS for hiding arrows ([5f8eebd](https://github.com/patrickcate/vue-uswds/commit/5f8eebd27bbc41765741d6ae4339f828ff87c7aa))
+
 ## [0.6.0](https://github.com/patrickcate/vue-uswds/compare/v0.5.0...v0.6.0) (2022-04-17)
 
 
