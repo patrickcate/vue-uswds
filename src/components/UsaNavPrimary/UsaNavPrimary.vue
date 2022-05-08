@@ -70,7 +70,7 @@ onClickOutside(nav, () => {
           }}</UsaNavDropdownButton>
           <UsaNavSubmenu
             v-if="item?.cols > 1 && isMegamenu"
-            :key="item.children.map(item => item?.id || item.text).join('-')"
+            :key="item.children.map(item => item?.id || item.text)"
             :cols="item.cols"
           >
             <template v-for="n in item.cols" :key="n" #[`col-${n}`]>
@@ -89,7 +89,7 @@ onClickOutside(nav, () => {
           </UsaNavSubmenu>
           <template v-else>
             <UsaNavSubmenu
-              :key="item.children.map(item => item?.id || item.text).join('-')"
+              :key="item.children.map(item => item?.id || item.text)"
             >
               <UsaNavSubmenuItem
                 v-for="submenuItem in item.children"

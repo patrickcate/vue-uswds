@@ -9,6 +9,7 @@
     "uswds",
     "U.S. Web Design System"
   ],
+  "homepage": "https://patrickcate.github.io/vue-uswds",
   "repository": {
     "type": "git",
     "url": "https://github.com/patrickcate/vue-uswds"
