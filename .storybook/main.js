@@ -19,6 +19,7 @@ module.exports = {
     )
     return mergeConfig(config, {
       ...userConfig,
+      base: '/vue-uswds/',
       // manually specify plugins to avoid conflict
       plugins: [],
     })

@@ -1,5 +1,7 @@
 # Vue USWDS
 
+[![Tests](https://github.com/patrickcate/vue-uswds/actions/workflows/tests.yml/badge.svg)](https://github.com/patrickcate/vue-uswds/actions/workflows/tests.yml) [![Docs](https://github.com/patrickcate/vue-uswds/actions/workflows/docs.yml/badge.svg)](https://github.com/patrickcate/vue-uswds/actions/workflows/docs.yml)
+
 A Vue 3 implementation of the [USWDS](https://designsystem.digital.gov). If you need Vue 2 support, check out the [USWDS-Vue](https://github.com/thepipster/uswds-vue) library.
 
 ## Installation
