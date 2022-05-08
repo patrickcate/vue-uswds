@@ -4,6 +4,8 @@
 
 A Vue 3 implementation of the [USWDS](https://designsystem.digital.gov). If you need Vue 2 support, check out the [USWDS-Vue](https://github.com/thepipster/uswds-vue) library.
 
+## [Documentation](https://patrickcate.github.io/vue-uswds/)
+
 ## Installation
 
 **Note:** You will need to install the [USWDS](https://designsystem.digital.gov) CSS separately.
