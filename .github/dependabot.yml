@@ -13,3 +13,13 @@ updates:
       # Prefix all commit messages with "chore"
       prefix: 'chore'
     versioning-strategy: lockfile-only
+
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: daily
+    # Add assignees
+    assignees:
+      - 'patrickcate'
+    # Prefix all commit messages with "chore"
+    prefix: 'chore'
