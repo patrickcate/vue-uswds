@@ -1,9 +1,10 @@
 name: Docs
 
 on:
-  push:
-    tags:
-      - v*
+  - push
+  # push:
+  #   tags:
+  #     - v*
 
 jobs:
   docs:
@@ -24,7 +25,7 @@ jobs:
         run: npm run build-storybook
 
       - name: Publish documentation
-        uses: JamesIves/github-pages-deploy-action@4
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           branch: gh-pages
           folder: storybook-static
