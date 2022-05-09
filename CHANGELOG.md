@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.3](https://github.com/patrickcate/vue-uswds/compare/v0.7.2...v0.7.3) (2022-05-09)
+
+
+### Bug Fixes
+
+* **storybook:** move .nojekyll to correct folder for storybook build ([d102457](https://github.com/patrickcate/vue-uswds/commit/d102457d481236a5e93e5c01ca2b0ee1105beb91))
+
 ### [0.7.2](https://github.com/patrickcate/vue-uswds/compare/v0.7.1...v0.7.2) (2022-05-09)
 
 
