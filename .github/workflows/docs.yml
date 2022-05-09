@@ -29,4 +29,8 @@ jobs:
         with:
           branch: gh-pages
           folder: storybook-static
+          # Remove previous build files.
           clean: true
+          # Do not remove the `.nojekyll` file.
+          clean-exclude: |
+            .nojekyll
