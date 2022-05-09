@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.2](https://github.com/patrickcate/vue-uswds/compare/v0.7.1...v0.7.2) (2022-05-09)
+
+
+### Bug Fixes
+
+* set correct nojekyll filename ([9727ec1](https://github.com/patrickcate/vue-uswds/commit/9727ec1ba1222a4eea79153e39cad57db6b980ed))
+* **storybook:** set correct version number for github pages deploy action ([fa9957d](https://github.com/patrickcate/vue-uswds/commit/fa9957db54b8606f23b8ab50b92f16b139f3d95e))
+
 ### [0.7.1](https://github.com/patrickcate/vue-uswds/compare/v0.7.0...v0.7.1) (2022-05-08)
 
 ## [0.7.0](https://github.com/patrickcate/vue-uswds/compare/v0.6.0...v0.7.0) (2022-05-07)
