@@ -6,6 +6,8 @@ import { aliasOptions, buildOptions } from './vite.build.common.js'
 export default defineConfig({
   ...aliasOptions,
   plugins: [vue()],
+  // Don't copy pubic dir with builds.
+  publicDir: false,
   build: {
     ...buildOptions,
     lib: {
