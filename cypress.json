@@ -3,5 +3,9 @@
   "component": {
     "componentFolder": "src/components",
     "testFiles": "**/*.test.js"
+  },
+  "retries": {
+    "runMode": 1,
+    "openMode": 0
   }
 }

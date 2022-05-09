@@ -643,31 +643,31 @@ describe('UsaNavPrimary', () => {
     cy.get('@dropdownButton2').click()
 
     // Set for large screens.
-    cy.viewport('macbook-15')
+    cy.viewport('macbook-15').then(() => {
+      cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
+      cy.get('@dropdownMenu1').should('have.attr', 'hidden')
 
-    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownMenu1').should('have.attr', 'hidden')
+      cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
+      cy.get('@dropdownMenu2').should('have.attr', 'hidden')
 
-    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownMenu2').should('have.attr', 'hidden')
+      // Click first dropdown.
+      cy.get('@dropdownButton1').click()
 
-    // Click first dropdown.
-    cy.get('@dropdownButton1').click()
+      cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'true')
+      cy.get('@dropdownMenu1').should('not.have.attr', 'hidden')
 
-    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'true')
-    cy.get('@dropdownMenu1').should('not.have.attr', 'hidden')
+      cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
+      cy.get('@dropdownMenu2').should('have.attr', 'hidden')
 
-    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownMenu2').should('have.attr', 'hidden')
+      // Click second dropdown.
+      cy.get('@dropdownButton2').click()
 
-    // Click second dropdown.
-    cy.get('@dropdownButton2').click()
+      cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
+      cy.get('@dropdownMenu1').should('have.attr', 'hidden')
 
-    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownMenu1').should('have.attr', 'hidden')
-
-    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'true')
-    cy.get('@dropdownMenu2').should('not.have.attr', 'hidden')
+      cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'true')
+      cy.get('@dropdownMenu2').should('not.have.attr', 'hidden')
+    })
   })
 
   it('clicking dropdown emits items in event', () => {
