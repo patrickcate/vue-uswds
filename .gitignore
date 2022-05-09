@@ -22,3 +22,6 @@ coverage
 
 # USWDS assets symlink.
 assets
+
+# Don't include .nojekyll file in library builds.
+.nojekyll
