@@ -10,7 +10,7 @@
   "sideEffects": false,
   "dependencies": {
     "vue": "^3.2.33",
-    "vue-uswds": "file:../../vue-uswds-0.6.0.tgz"
+    "vue-uswds": "^0.7.3"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
