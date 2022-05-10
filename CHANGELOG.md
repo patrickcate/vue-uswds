@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.4](https://github.com/patrickcate/vue-uswds/compare/v0.7.3...v0.7.4) (2022-05-10)
+
+
+### Bug Fixes
+
+* export install function as default so it can be more easily installed ([69e77bd](https://github.com/patrickcate/vue-uswds/commit/69e77bdc762293921aa81be46c4e2e226f795ec7))
+
 ### [0.7.3](https://github.com/patrickcate/vue-uswds/compare/v0.7.2...v0.7.3) (2022-05-09)
 
 
