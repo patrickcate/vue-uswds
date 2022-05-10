@@ -1,7 +1,7 @@
 import core from './core.js'
 import * as components from '@/components/index.js'
 
-export function install(app, options) {
+export default function install(app, options) {
   core.install(app, options)
 
   // Register all components.
@@ -9,5 +9,3 @@ export function install(app, options) {
     app.component(componentName, components[componentName])
   })
 }
-
-export * from '@/components/index.js'
