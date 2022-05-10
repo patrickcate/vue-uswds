@@ -23,6 +23,8 @@
   "sideEffects": false,
   "main": "./dist/vue-uswds.umd.js",
   "module": "./dist/vue-uswds.es.js",
+  "unpkg": "./dist/vue-uswds.umd.js",
+  "jsdelivr": "./dist/vue-uswds.umd.js",
   "exports": {
     ".": {
       "require": "./dist/vue-uswds.umd.js",
