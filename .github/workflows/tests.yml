@@ -1,9 +1,12 @@
 name: Tests
 
 on:
-  - workflow_dispatch
-  - push
-  - pull_request
+  workflow_dispatch:
+  push:
+  pull_request:
+  pull_request_target:
+    branches:
+      - 'dependabot/**'
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -12,8 +15,19 @@ jobs:
   # This job lints all files with ESLint.
   lint:
     runs-on: ubuntu-latest
+    if: |
+      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
+      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        if: ${{ github.event_name != 'pull_request_target' }}
+        uses: actions/checkout@v2
+
+      - name: Checkout PR
+        if: ${{ github.event_name == 'pull_request_target' }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Setup node
         uses: actions/setup-node@v3
@@ -30,7 +44,9 @@ jobs:
   # This job runs all Cypress tests.
   cypress-test:
     runs-on: ${{ matrix.os }}
-
+    if: |
+      (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
+      (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
     strategy:
       matrix:
         os:
@@ -45,7 +61,15 @@ jobs:
           - 18
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        if: ${{ github.event_name != 'pull_request_target' }}
+        uses: actions/checkout@v2
+
+      - name: Checkout PR
+        if: ${{ github.event_name == 'pull_request_target' }}
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
