@@ -14,7 +14,15 @@ module.exports = {
     'scope-enum': [
       2,
       'always',
-      ['', ...componentNames, 'storybook', 'cypress', 'npm'],
+      [
+        '',
+        ...componentNames,
+        'cypress',
+        'github-actions',
+        'npm',
+        'storybook',
+        'vite',
+      ],
     ],
   },
 }
