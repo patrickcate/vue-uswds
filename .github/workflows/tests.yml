@@ -1,23 +1,13 @@
 name: Tests
 
 on:
-  workflow_dispatch:
-    branches-ignore:
-      - 'dependabot/**'
-  push:
-    branches-ignore:
-      - 'dependabot/**'
-  pull_request:
-    branches-ignore:
-      - 'dependabot/**'
-
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  - workflow_dispatch
+  - push
+  - pull_request
 
 jobs:
   # This job lints all files with ESLint.
   lint:
-    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,7 +27,6 @@ jobs:
 
   # This job runs all Cypress tests.
   cypress-test:
-    if: github.actor != 'dependabot[bot]'
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -62,7 +51,16 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
+      - name: Cypress.io E2E tests on Node v${{ matrix.node }}
+        if: github.actor == 'dependabot[bot]'
+        run: npm run test:e2e
+
+      - name: Cypress.io component tests on Node v${{ matrix.node }}
+        if: github.actor == 'dependabot[bot]'
+        run: npm run test:component
+
       - name: E2E tests on Node v${{ matrix.node }}
+        if: github.actor != 'dependabot[bot]'
         uses: cypress-io/github-action@v2
         with:
           command: npm run test:e2e -- --record
@@ -71,8 +69,10 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Component tests on Node v${{ matrix.node }}
+        if: github.actor != 'dependabot[bot]'
         uses: cypress-io/github-action@v2
         with:
           # We have already installed everything.
@@ -83,8 +83,10 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload coverage to Codecov
+        if: github.actor != 'dependabot[bot]'
         uses: codecov/codecov-action@v3.1.0
         with:
           file: ./coverage/lcov.info
