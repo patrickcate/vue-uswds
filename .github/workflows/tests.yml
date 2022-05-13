@@ -17,6 +17,7 @@ env:
 jobs:
   # This job lints all files with ESLint.
   lint:
+    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -36,6 +37,7 @@ jobs:
 
   # This job runs all Cypress tests.
   cypress-test:
+    if: github.actor != 'dependabot[bot]'
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
