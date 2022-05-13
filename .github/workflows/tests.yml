@@ -51,15 +51,23 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - name: Cypress.io E2E tests on Node v${{ matrix.node }}
-        if: github.actor == 'dependabot[bot]'
-        run: npm run test:e2e
-
-      - name: Cypress.io component tests on Node v${{ matrix.node }}
-        if: github.actor == 'dependabot[bot]'
-        run: npm run test:component
-
       - name: E2E tests on Node v${{ matrix.node }}
+        if: github.actor == 'dependabot[bot]'
+        uses: cypress-io/github-action@v2
+        with:
+          command: npm run test:e2e
+          record: false
+
+      - name: Component tests on Node v${{ matrix.node }}
+        if: github.actor == 'dependabot[bot]'
+        uses: cypress-io/github-action@v2
+        with:
+          # We have already installed everything.
+          install: false
+          command: npm run test:component
+          record: false
+
+      - name: Cypress.io E2E tests on Node v${{ matrix.node }}
         if: github.actor != 'dependabot[bot]'
         uses: cypress-io/github-action@v2
         with:
@@ -71,7 +79,7 @@ jobs:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Component tests on Node v${{ matrix.node }}
+      - name: Cypress.io component tests on Node v${{ matrix.node }}
         if: github.actor != 'dependabot[bot]'
         uses: cypress-io/github-action@v2
         with:
