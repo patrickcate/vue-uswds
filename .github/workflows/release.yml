@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  release-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Extract changelog
+        uses: yashanand1910/standard-release-notes@v1.2.1
+        id: changelog
+        with:
+          version: ${{ github.ref }}
+
+      - name: Generate GitHub release notes
+        if: steps.changelog.outcome == 'success'
+        uses: softprops/action-gh-release@v1
+        with:
+          body: ${{ steps.changelog.outputs.release_notes }}
