@@ -8,3 +8,6 @@ assets
 
 # Don't link playground test projects.
 playground
+
+# Don't link static storybook doc files.
+storybook-static

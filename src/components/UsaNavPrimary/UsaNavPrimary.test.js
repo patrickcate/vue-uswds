@@ -546,31 +546,31 @@ describe('UsaNavPrimary', () => {
 
     cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'false')
 
-    cy.get('@dropdownMenu').should('have.attr', 'hidden')
+    cy.get('@dropdownMenu').should('not.be.visible').and('have.attr', 'hidden')
 
-    cy.get('@dropdownButton').click()
+    cy.get('@dropdownButton')
+      .click()
+      .should('have.attr', 'aria-expanded', 'true')
 
-    cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'true')
-
-    cy.get('@dropdownMenu').should('not.have.attr', 'hidden')
+    cy.get('@dropdownMenu').should('be.visible').and('not.have.attr', 'hidden')
 
     cy.realPress('Escape')
 
     cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'false')
 
-    cy.get('@dropdownMenu').should('have.attr', 'hidden')
+    cy.get('@dropdownMenu').should('not.be.visible').and('have.attr', 'hidden')
 
-    cy.get('@dropdownButton').click()
+    cy.get('@dropdownButton')
+      .click()
+      .should('have.attr', 'aria-expanded', 'true')
 
-    cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'true')
-
-    cy.get('@dropdownMenu').should('not.have.attr', 'hidden')
+    cy.get('@dropdownMenu').should('be.visible').and('not.have.attr', 'hidden')
 
     cy.get('html').click('topLeft')
 
     cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'false')
 
-    cy.get('@dropdownMenu').should('have.attr', 'hidden')
+    cy.get('@dropdownMenu').should('not.be.visible').and('have.attr', 'hidden')
   })
 
   it('dropdowns are multiselectable on mobile screens', () => {
@@ -608,19 +608,19 @@ describe('UsaNavPrimary', () => {
     )
 
     cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownMenu1').should('have.attr', 'hidden')
+    cy.get('@dropdownMenu1').should('not.be.visible').and('have.attr', 'hidden')
 
     cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownMenu2').should('have.attr', 'hidden')
+    cy.get('@dropdownMenu2').should('not.be.visible').and('have.attr', 'hidden')
 
     // Click first dropdown.
     cy.get('@dropdownButton1')
       .click()
       .should('have.attr', 'aria-expanded', 'true')
-    cy.get('@dropdownMenu1').should('not.have.attr', 'hidden')
+    cy.get('@dropdownMenu1').should('be.visible').and('not.have.attr', 'hidden')
 
     cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownMenu2').should('have.attr', 'hidden')
+    cy.get('@dropdownMenu2').should('not.be.visible').and('have.attr', 'hidden')
 
     // Click second dropdown.
     cy.get('@dropdownButton2')
@@ -628,39 +628,41 @@ describe('UsaNavPrimary', () => {
       .should('have.attr', 'aria-expanded', 'true')
 
     cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'true')
-    cy.get('@dropdownMenu1').should('not.have.attr', 'hidden')
-    cy.get('@dropdownMenu2').should('not.have.attr', 'hidden')
+    cy.get('@dropdownMenu1').should('be.visible').and('not.have.attr', 'hidden')
+    cy.get('@dropdownMenu2').should('be.visible').and('not.have.attr', 'hidden')
 
     // Click first dropdown again.
     cy.get('@dropdownButton1')
       .click()
       .should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownMenu1').should('have.attr', 'hidden')
+    cy.get('@dropdownMenu1').should('not.be.visible').and('have.attr', 'hidden')
     cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'true')
-    cy.get('@dropdownMenu2').should('not.have.attr', 'hidden')
+    cy.get('@dropdownMenu2').should('be.visible').and('not.have.attr', 'hidden')
 
     // Click second dropdown again.
     cy.get('@dropdownButton2')
       .click()
       .should('have.attr', 'aria-expanded', 'false')
+    cy.get('@dropdownMenu2').should('not.be.visible').and('have.attr', 'hidden')
 
     // Set for large screens.
     cy.viewport('macbook-15')
 
+    // All dropdowns should still be closed.
     cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownMenu1').should('have.attr', 'hidden')
+    cy.get('@dropdownMenu1').should('not.be.visible').and('have.attr', 'hidden')
 
     cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownMenu2').should('have.attr', 'hidden')
+    cy.get('@dropdownMenu2').should('not.be.visible').and('have.attr', 'hidden')
 
     // Click first dropdown.
     cy.get('@dropdownButton1')
       .click()
       .should('have.attr', 'aria-expanded', 'true')
-    cy.get('@dropdownMenu1').should('not.have.attr', 'hidden')
+    cy.get('@dropdownMenu1').should('be.visible').and('not.have.attr', 'hidden')
 
     cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownMenu2').should('have.attr', 'hidden')
+    cy.get('@dropdownMenu2').should('not.be.visible').and('have.attr', 'hidden')
 
     // Click second dropdown.
     cy.get('@dropdownButton2')
@@ -668,8 +670,8 @@ describe('UsaNavPrimary', () => {
       .should('have.attr', 'aria-expanded', 'true')
 
     cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownMenu1').should('have.attr', 'hidden')
-    cy.get('@dropdownMenu2').should('not.have.attr', 'hidden')
+    cy.get('@dropdownMenu1').should('not.be.visible').and('have.attr', 'hidden')
+    cy.get('@dropdownMenu2').should('be.visible').and('not.have.attr', 'hidden')
   })
 
   it('clicking dropdown emits items in event', () => {
