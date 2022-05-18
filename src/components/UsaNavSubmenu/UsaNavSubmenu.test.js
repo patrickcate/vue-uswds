@@ -1,4 +1,3 @@
-import '@module/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
 import { ref, reactive } from 'vue'
 import UsaNavSubmenu from './UsaNavSubmenu.vue'

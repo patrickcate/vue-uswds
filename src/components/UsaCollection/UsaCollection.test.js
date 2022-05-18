@@ -1,4 +1,3 @@
-import '@module/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
 import UsaCollection from './UsaCollection.vue'
 import UsaCollectionItem from '@/components/UsaCollectionItem'

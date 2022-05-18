@@ -1,4 +1,3 @@
-import '@module/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
 import UsaTag from './UsaTag.vue'
 
