@@ -1,3 +1,4 @@
+import '@module/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
 import { mount } from '@cypress/vue'
 import UsaProcessList from './UsaProcessList.vue'

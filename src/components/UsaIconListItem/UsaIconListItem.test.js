@@ -1,3 +1,4 @@
+import '@module/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
 import UsaIconListItem from './UsaIconListItem.vue'
 import { h } from 'vue'
