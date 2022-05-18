@@ -41,6 +41,10 @@ watch(dropdownItems, () => {
   emit('update:items', dropdownItems)
 })
 
+watch(largeScreen, () => {
+  closeAllItems()
+})
+
 provide('registerDropdown', registerAccordionItem)
 provide('unregisterDropdown', unregisterAccordionItem)
 provide('toggleDropdown', toggleItem)

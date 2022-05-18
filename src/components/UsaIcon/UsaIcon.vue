@@ -40,7 +40,13 @@ const props = defineProps({
 
 const classes = computed(() => [
   {
-    [`usa-icon--size-${props.size}`]: !!props.size,
+    'usa-icon--size-3': `${props.size}` === '3',
+    'usa-icon--size-4': `${props.size}` === '4',
+    'usa-icon--size-5': `${props.size}` === '5',
+    'usa-icon--size-6': `${props.size}` === '6',
+    'usa-icon--size-7': `${props.size}` === '7',
+    'usa-icon--size-8': `${props.size}` === '8',
+    'usa-icon--size-9': `${props.size}` === '9',
   },
 ])
 

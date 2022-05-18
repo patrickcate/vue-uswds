@@ -23,6 +23,10 @@ export default (_accordionItems, multiselectable) => {
     delete accordionItems[id]
   }
 
+  const closeItem = id => {
+    accordionItems[id] = false
+  }
+
   const openItem = id => {
     accordionItems[id] = true
 
@@ -32,13 +36,9 @@ export default (_accordionItems, multiselectable) => {
 
     for (const accordionId in accordionItems) {
       if (accordionId !== id) {
-        accordionItems[accordionId] = false
+        closeItem(accordionId)
       }
     }
-  }
-
-  const closeItem = id => {
-    accordionItems[id] = false
   }
 
   const toggleItem = id => {
@@ -50,13 +50,9 @@ export default (_accordionItems, multiselectable) => {
   }
 
   const closeAllItems = () => {
-    const items = Object.keys(accordionItems)
-
-    items.forEach(accordionId => {
-      if (accordionItems[accordionId]) {
-        accordionItems[accordionId] = false
-      }
-    })
+    for (const accordionId in accordionItems) {
+      closeItem(accordionId)
+    }
   }
 
   return {

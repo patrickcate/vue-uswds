@@ -3,11 +3,14 @@ dist
 dist-ssr
 cypress/examples
 
-# Don't lint symlinked USWDS files.
+# Symlinked USWDS files.
 assets
 
-# Don't link playground test projects.
+# Playground test projects.
 playground
 
-# Don't link static storybook doc files.
+# Static storybook doc files.
 storybook-static
+
+# Generated code coverage files.
+coverage
