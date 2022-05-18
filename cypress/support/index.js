@@ -14,7 +14,7 @@
 // ***********************************************************
 
 // Import USWDS CSS file globally.
-import '@module/uswds/dist/css/uswds.min.css'
+import '../../node_modules/uswds/dist/css/uswds.min.css'
 
 // Import Cypress Real Event plugin.
 // https://github.com/dmtrKovalenko/cypress-real-events
