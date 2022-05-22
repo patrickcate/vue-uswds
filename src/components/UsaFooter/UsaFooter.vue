@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject } from 'vue'
+import { computed, inject, provide } from 'vue'
 import { GRID_NAMESPACE } from '@/utils/constants.js'
 
 const gridNamespace = inject('vueUswds.gridNamespace', GRID_NAMESPACE)
@@ -44,6 +44,11 @@ const containerClasses = computed(() =>
   props.customClasses?.container?.length
     ? props.customClasses.container
     : [`${gridNamespace}container`]
+)
+
+provide(
+  'footerVariant',
+  computed(() => props.variant)
 )
 </script>
 
