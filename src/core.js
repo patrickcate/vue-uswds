@@ -8,6 +8,7 @@ import {
   SVG_SPRITE_PATH,
   ROUTER_COMPONENT_NAME,
   MOBILE_MENU_BREAKPOINT,
+  FOOTER_NAV_COLLAPSIBLE_BREAKPOINT,
 } from '@/utils/constants.js'
 
 export default {
@@ -22,6 +23,7 @@ export default {
       svgSpritePath: SVG_SPRITE_PATH,
       routerComponentName: ROUTER_COMPONENT_NAME,
       mobileMenuBreakpoint: MOBILE_MENU_BREAKPOINT,
+      footerNavBigBreakpoint: FOOTER_NAV_COLLAPSIBLE_BREAKPOINT,
       ...customOptions,
       version: version,
     }
