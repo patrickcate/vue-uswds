@@ -23,7 +23,6 @@ const testItems = [
 
 const testCollapsibleItems = [
   {
-    href: '/test-1',
     text: 'Test Item 1',
     children: [
       {
@@ -41,7 +40,6 @@ const testCollapsibleItems = [
     ],
   },
   {
-    to: '/test-2',
     text: 'Test Item 2',
     children: [
       {
@@ -60,7 +58,6 @@ const testCollapsibleItems = [
   },
   {
     id: 'test-3',
-    href: '/test-3',
     text: 'Test Item 3',
     children: [
       {
