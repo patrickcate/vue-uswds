@@ -1,5 +1,6 @@
 import '@module/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
+import { h } from 'vue'
 import UsaFooter from './UsaFooter.vue'
 
 describe('UsaFooter', () => {
@@ -63,6 +64,24 @@ describe('UsaFooter', () => {
       'contain',
       'Custom return to top'
     )
+  })
+
+  it('provide `footerVariant` prop value to child components', () => {
+    const childComponent = {
+      inject: ['footerVariant'],
+      template: `<span>Footer Variant: {{ footerVariant }}</span>`,
+    }
+
+    mount(UsaFooter, {
+      props: {
+        variant: 'slim',
+      },
+      slots: {
+        default: () => h(childComponent),
+      },
+    })
+
+    cy.get('span').should('contain', 'Footer Variant: "slim"')
   })
 
   it('adds custom CSS classes', () => {
