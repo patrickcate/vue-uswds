@@ -80,37 +80,37 @@ describe('UsaFooterCollapsibleMenu', () => {
       .and('have.class', 'usa-footer__primary-content')
       .and('have.class', 'usa-footer__primary-content--collapsible')
 
-    cy.get('section h4').should('have.length', 3)
-    cy.get('section ul').should('have.length', 3)
+    cy.get('section > h4').should('have.length', 3)
+    cy.get('section > ul').should('have.length', 3)
     cy.get('section li').should('have.length', 9)
 
     cy.viewport(480, 600)
 
-    cy.get('section h4').should('have.length', 0)
-    cy.get('section button').should('have.length', 3)
-    cy.get('section ul').should('not.have.visible')
+    cy.get('section > h4').should('not.exist')
+    cy.get('section > button').should('have.length', 3)
+    cy.get('section > ul').should('not.have.visible')
 
     cy.get('section:nth-of-type(1) button').click()
     cy.get('section:nth-of-type(1) ul').should('be.visible')
-    cy.get('section:nth-of-type(2) ul').should('not.be.visible')
-    cy.get('section:nth-of-type(3) ul').should('not.be.visible')
+    cy.get('section:nth-of-type(2) ul').should('be.hidden')
+    cy.get('section:nth-of-type(3) ul').should('be.hidden')
 
     cy.get('section:nth-of-type(3) button').click()
-    cy.get('section:nth-of-type(1) ul').should('not.be.visible')
-    cy.get('section:nth-of-type(2) ul').should('not.be.visible')
+    cy.get('section:nth-of-type(1) ul').should('be.hidden')
+    cy.get('section:nth-of-type(2) ul').should('be.hidden')
     cy.get('section:nth-of-type(3) ul').should('be.visible')
 
     cy.viewport('macbook-15')
 
-    cy.get('section h4').should('have.length', 3)
-    cy.get('section button').should('have.length', 0)
-    cy.get('section ul').should('be.visible')
+    cy.get('section > h4').should('have.length', 3)
+    cy.get('section > button').should('not.exist')
+    cy.get('section > ul').should('be.visible')
 
     cy.viewport(480, 600)
 
-    cy.get('section h4').should('have.length', 0)
-    cy.get('section button').should('have.length', 3)
-    cy.get('section ul').should('not.be.visible')
+    cy.get('section > h4').should('not.exist')
+    cy.get('section > button').should('have.length', 3)
+    cy.get('section > ul').should('be.hidden')
 
     cy.get('section:nth-of-type(2) button').click()
     cy.get('section:nth-of-type(2) ul').should('be.visible')
@@ -125,9 +125,9 @@ describe('UsaFooterCollapsibleMenu', () => {
       },
     })
 
-    cy.get('section h4').should('have.length', 0)
-    cy.get('section button').should('have.length', 3)
-    cy.get('section ul').should('not.be.visible')
+    cy.get('section > h4').should('not.exist')
+    cy.get('section > button').should('have.length', 3)
+    cy.get('section > ul').should('be.hidden')
 
     cy.get('section:nth-of-type(2) button').click()
     cy.get('section:nth-of-type(2) ul').should('be.visible')
@@ -156,7 +156,7 @@ describe('UsaFooterCollapsibleMenu', () => {
       },
       global: {
         provide: {
-          'vueUswds.footerNavBigBreakpoint': '55rem',
+          'vueUswds.footerNavBigBreakpoint': '850px',
           'vueUswds.prefixSeparator': '@',
           'vueUswds.gridNamespace': 'test-grid-namespace-',
         },
@@ -171,18 +171,21 @@ describe('UsaFooterCollapsibleMenu', () => {
       .should('have.class', 'mobile-lg@test-grid-namespace-col-6')
       .and('have.class', 'desktop@test-grid-namespace-col-3')
 
-    cy.get('section h4').should('have.length', 3)
-    cy.get('section button').should('have.length', 0)
+    cy.get('section > h4').should('have.length', 3)
+    cy.get('section > button').should('not.exist')
+    cy.get('section > ul').should('be.visible')
 
-    cy.viewport(881, 1200)
+    cy.viewport(900, 1200)
 
-    cy.get('section h4').should('have.length', 3)
-    cy.get('section button').should('have.length', 0)
+    cy.get('section > h4').should('have.length', 3)
+    cy.get('section > button').should('not.exist')
+    cy.get('section > ul').should('be.visible')
 
-    cy.viewport(880, 1200)
+    cy.viewport(800, 1200)
 
-    cy.get('section h4').should('have.length', 0)
-    cy.get('section button').should('have.length', 3)
+    cy.get('section > h4').should('not.exist')
+    cy.get('section > button').should('have.length', 3)
+    cy.get('section > ul').should('be.hidden')
   })
 
   it('has custom grid CSS classes', () => {
