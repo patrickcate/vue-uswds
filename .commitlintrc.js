@@ -6,7 +6,13 @@ const getDirectories = source =>
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name)
 
+const getFilenames = source =>
+  readdirSync(source, { withFileTypes: true })
+    .filter(dirent => !dirent.isDirectory())
+    .map(dirent => dirent.name.replace('.js', ''))
+
 const componentNames = getDirectories(join(__dirname, 'src', 'components'))
+const composableNames = getFilenames(join(__dirname, 'src', 'composables'))
 
 module.exports = {
   extends: ['@commitlint/config-conventional'],
@@ -17,8 +23,10 @@ module.exports = {
       [
         '',
         ...componentNames,
+        ...composableNames,
         'cypress',
         'github-actions',
+        'hygen',
         'npm',
         'storybook',
         'vite',

@@ -6,7 +6,13 @@ const getDirectories = source =>
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name)
 
-const componentNames = getDirectories(join(__dirname, 'src/components/'))
+const getFilenames = source =>
+  readdirSync(source, { withFileTypes: true })
+    .filter(dirent => !dirent.isDirectory())
+    .map(dirent => dirent.name.replace('.js', ''))
+
+const componentNames = getDirectories(join(__dirname, 'src', 'components'))
+const composableNames = getFilenames(join(__dirname, 'src', 'composables'))
 
 module.exports = {
   types: [
@@ -31,7 +37,7 @@ module.exports = {
     },
     {
       value: 'build',
-      name: '🛠 build: Changes that affect the build system or external dependencies (example scopes: Vite, npm, hygen)',
+      name: '🛠 build: Changes that affect the build system or external dependencies (example scopes: Vite, npm, Hygen)',
     },
     {
       value: 'ci',
@@ -60,8 +66,10 @@ module.exports = {
   scopes: [
     '',
     ...componentNames,
+    ...composableNames,
     'cypress',
     'github-actions',
+    'hygen',
     'npm',
     'storybook',
     'vite',
