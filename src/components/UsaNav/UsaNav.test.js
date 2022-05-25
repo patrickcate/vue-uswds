@@ -365,6 +365,25 @@ describe('UsaNav', () => {
     cy.get('@nav').should('not.have.class', 'is-visible')
   })
 
+  it('mobile menu is closed when unmounted', () => {
+    cy.viewport('iphone-6')
+
+    mount(UsaNav, {
+      global: {
+        provide: {
+          closeMobileMenu: cy.stub().as('closeMobileMenu'),
+          isMobileMenuOpen: ref(true),
+        },
+      },
+    }).as('wrapper')
+
+    cy.get('.usa-nav').should('exist')
+
+    cy.get('@wrapper').invoke('unmount')
+
+    cy.get('@closeMobileMenu').should('be.called')
+  })
+
   it('uses custom button slot', () => {
     mount(UsaNav, {
       props: {
