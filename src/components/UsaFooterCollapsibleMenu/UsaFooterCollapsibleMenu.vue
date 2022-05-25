@@ -43,7 +43,7 @@ const {
   closeItem,
   toggleItem,
   closeAllItems,
-} = useAccordion(menuSections, false)
+} = useAccordion(menuSections)
 
 watch(isCollapsible, closeAllItems)
 
