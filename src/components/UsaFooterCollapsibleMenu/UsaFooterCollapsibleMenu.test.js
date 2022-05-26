@@ -163,7 +163,7 @@ describe('UsaFooterCollapsibleMenu', () => {
       },
     })
 
-    cy.get('div.test-grid-namespace-row').should(
+    cy.get('.test-grid-namespace-row').should(
       'have.class',
       'test-grid-namespace-gap-4'
     )
@@ -173,19 +173,27 @@ describe('UsaFooterCollapsibleMenu', () => {
 
     cy.get('section > h4').should('have.length', 3)
     cy.get('section > button').should('not.exist')
-    cy.get('section > ul').should('be.visible')
+    cy.get('section > ul')
+      .should('not.have.css', 'display', 'none')
+      .and('be.visible')
 
     cy.viewport(900, 1200)
 
-    cy.get('section > h4').should('have.length', 3)
     cy.get('section > button').should('not.exist')
-    cy.get('section > ul').should('be.visible')
+    cy.get('section > h4').should('have.length', 3)
+    cy.get('section > ul')
+      .should('not.have.css', 'display', 'none')
+      .and('be.visible')
 
-    cy.viewport(800, 1200)
+    cy.viewport(750, 1200)
 
+    cy.get('section > button')
+      .should('have.length', 3)
+      .and('have.attr', 'aria-expanded', 'false')
     cy.get('section > h4').should('not.exist')
-    cy.get('section > button').should('have.length', 3)
-    cy.get('section > ul').should('be.hidden')
+    cy.get('section > ul')
+      .should('have.css', 'display', 'none')
+      .and('be.hidden')
   })
 
   it('has custom grid CSS classes', () => {
