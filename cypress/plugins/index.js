@@ -27,6 +27,7 @@ module.exports = (on, config) => {
 
   on('dev-server:start', options => {
     const viteConfig = {
+      logLevel: 'silent',
       resolve: {
         alias: {
           '@': path.resolve(__dirname, '..', '..', 'src'),
