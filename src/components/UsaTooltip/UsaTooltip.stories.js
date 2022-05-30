@@ -54,7 +54,7 @@ export default {
   decorators: [
     () => ({
       template:
-        '<div style="display: flex; align-items: center"><div style="margin: auto"><story /></div></div>',
+        '<div style="display: flex; align-items: center; justify-content: center; height: 100vh;"><div style="margin: auto"><story /></div></div>',
     }),
   ],
 }
