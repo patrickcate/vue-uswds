@@ -41,9 +41,7 @@ watch(dropdownItems, () => {
   emit('update:items', dropdownItems)
 })
 
-watch(largeScreen, () => {
-  closeAllItems()
-})
+watch(largeScreen, closeAllItems)
 
 provide('registerDropdown', registerAccordionItem)
 provide('unregisterDropdown', unregisterAccordionItem)
@@ -52,13 +50,9 @@ provide('closeDropdown', closeItem)
 provide('closeAllDropdowns', closeAllItems)
 provide('dropdownItems', dropdownItems)
 
-onKeyStroke('Escape', () => {
-  closeAllItems()
-})
+onKeyStroke('Escape', closeAllItems)
 
-onClickOutside(nav, () => {
-  closeAllItems()
-})
+onClickOutside(nav, closeAllItems)
 </script>
 
 <template>

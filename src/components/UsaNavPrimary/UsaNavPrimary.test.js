@@ -164,7 +164,7 @@ describe('UsaNavPrimary', () => {
     cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownButton1')
       .should('have.attr', 'aria-controls')
-      .and('contain', '__vuswds-id-global-usa-nav-dropdown-')
+      .and('contain', 'vuswds-id-global-usa-nav-dropdown-')
 
     cy.get('@dropdownButton1').find('> span').should('contain', 'Section 2')
 
@@ -174,7 +174,7 @@ describe('UsaNavPrimary', () => {
       .as('submenu1')
       .should('have.class', 'usa-nav__submenu')
       .and('have.attr', 'id')
-      .and('contain', '__vuswds-id-global-usa-nav-dropdown-')
+      .and('contain', 'vuswds-id-global-usa-nav-dropdown-')
     cy.get('@submenu1').should('have.attr', 'hidden')
 
     // Item 3-1
@@ -254,7 +254,7 @@ describe('UsaNavPrimary', () => {
     cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownButton2')
       .should('have.attr', 'aria-controls')
-      .and('contain', '__vuswds-id-global-usa-nav-dropdown-')
+      .and('contain', 'vuswds-id-global-usa-nav-dropdown-')
 
     cy.get('@dropdownButton2').find('> span').should('contain', 'Section 3')
 
@@ -264,7 +264,7 @@ describe('UsaNavPrimary', () => {
       .as('submenu2')
       .should('have.class', 'usa-nav__submenu')
       .and('have.attr', 'id')
-      .and('contain', '__vuswds-id-global-usa-nav-dropdown-')
+      .and('contain', 'vuswds-id-global-usa-nav-dropdown-')
     cy.get('@submenu2').should('have.attr', 'hidden')
 
     // Item 4-1
@@ -344,7 +344,7 @@ describe('UsaNavPrimary', () => {
     cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownButton1')
       .should('have.attr', 'aria-controls')
-      .and('contain', '__vuswds-id-global-usa-nav-dropdown-')
+      .and('contain', 'vuswds-id-global-usa-nav-dropdown-')
 
     cy.get('@dropdownButton1').find('> span').should('contain', 'Section 2')
 
@@ -355,7 +355,7 @@ describe('UsaNavPrimary', () => {
     cy.get('@item3')
       .find('> div.usa-nav__submenu')
       .should('have.attr', 'id')
-      .and('contain', '__vuswds-id-global-usa-nav-dropdown-')
+      .and('contain', 'vuswds-id-global-usa-nav-dropdown-')
 
     cy.get('@item3')
       .find('> div.usa-nav__submenu > div')
@@ -478,7 +478,7 @@ describe('UsaNavPrimary', () => {
     cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownButton2')
       .should('have.attr', 'aria-controls')
-      .and('contain', '__vuswds-id-global-usa-nav-dropdown-')
+      .and('contain', 'vuswds-id-global-usa-nav-dropdown-')
 
     cy.get('@dropdownButton2').find('> span').should('contain', 'Section 3')
 
@@ -489,7 +489,7 @@ describe('UsaNavPrimary', () => {
     cy.get('@item4')
       .find('> div.usa-nav__submenu')
       .should('have.attr', 'id')
-      .and('contain', '__vuswds-id-global-usa-nav-dropdown-')
+      .and('contain', 'vuswds-id-global-usa-nav-dropdown-')
 
     cy.get('@item4')
       .find('> div.usa-nav__submenu > div')

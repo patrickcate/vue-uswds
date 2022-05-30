@@ -22,7 +22,5 @@ const classes = computed(() => [
 </script>
 
 <template>
-  <BaseLink v-bind="$attrs" class="usa-link" :class="classes"
-    ><slot></slot
-  ></BaseLink>
+  <BaseLink class="usa-link" :class="classes"><slot></slot></BaseLink>
 </template>

@@ -23,14 +23,14 @@ export default (_id, idPrefix = '', defaultOpen = false, emit) => {
     }
   }
 
-  watch(isOpen, () => {
+  watch(isOpen, newValue => {
     if (emit) {
-      emit('update:open', isOpen.value)
+      emit('update:open', newValue)
     }
   })
 
-  watch(propValue, () => {
-    if (propValue.value !== isOpen.value) {
+  watch(propValue, newValue => {
+    if (propValue.value !== newValue) {
       toggleContent()
     }
   })

@@ -32,7 +32,7 @@ describe('UsaAccordion', () => {
     const items = [1, 2, 3, 4]
 
     items.forEach(item => {
-      const id = `__vuswds-id-global-usa-accordion-item-${item}`
+      const id = `vuswds-id-global-usa-accordion-item-${item}`
 
       cy.get(`h2.usa-accordion__heading:nth-of-type(${item})`).should('exist')
       cy.get(
