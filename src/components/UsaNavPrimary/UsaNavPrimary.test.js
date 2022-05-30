@@ -695,7 +695,7 @@ describe('UsaNavPrimary', () => {
       .then(vm => {
         expect(vm.emitted()).to.have.property('update:items')
         const currentRangeEvent = vm.emitted('update:items')
-        expect(currentRangeEvent).to.have.length(2)
+        expect(currentRangeEvent).to.have.length(1)
 
         const dropdownIds = Object.keys(
           currentRangeEvent[currentRangeEvent.length - 1][0]
@@ -713,7 +713,7 @@ describe('UsaNavPrimary', () => {
       .then(vm => {
         expect(vm.emitted()).to.have.property('update:items')
         const currentRangeEvent = vm.emitted('update:items')
-        expect(currentRangeEvent).to.have.length(3)
+        expect(currentRangeEvent).to.have.length(2)
 
         const dropdownIds = Object.keys(
           currentRangeEvent[currentRangeEvent.length - 1][0]

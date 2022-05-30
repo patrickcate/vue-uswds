@@ -1,6 +1,6 @@
 import '@module/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
-import { h } from 'vue'
+import { h, toRaw } from 'vue'
 import UsaAccordion from './UsaAccordion.vue'
 import UsaAccordionItem from '@/components/UsaAccordionItem'
 
@@ -324,9 +324,14 @@ describe('UsaAccordion', () => {
 
     cy.get('@wrapper')
       .vue()
-      .then(async vm => {
-        expect(vm.emitted()['update:accordionItems']).to.have.lengthOf(3)
-        const accordionItems = vm.emitted()['update:accordionItems'][2][0]
+      .then(vm => {
+        const currentAccordionItemsEvent = vm.emitted('update:accordionItems')
+        expect(Object.keys(currentAccordionItemsEvent)).to.have.lengthOf(1)
+
+        const accordionItemEventObject = toRaw(currentAccordionItemsEvent[0][0])
+        expect(Object.keys(accordionItemEventObject)).to.have.lengthOf(3)
+
+        const accordionItems = accordionItemEventObject
         const accordionItemKeys = Object.keys(accordionItems)
 
         expect(accordionItems[accordionItemKeys[0]]).to.equal(false)
@@ -341,8 +346,13 @@ describe('UsaAccordion', () => {
     cy.get('@wrapper')
       .vue()
       .then(vm => {
-        expect(vm.emitted()['update:accordionItems']).to.have.lengthOf(4)
-        const accordionItems = vm.emitted()['update:accordionItems'][3][0]
+        const currentAccordionItemsEvent = vm.emitted('update:accordionItems')
+        expect(Object.keys(currentAccordionItemsEvent)).to.have.lengthOf(2)
+
+        const accordionItemEventObject = toRaw(currentAccordionItemsEvent[1][0])
+        expect(Object.keys(accordionItemEventObject)).to.have.lengthOf(3)
+
+        const accordionItems = accordionItemEventObject
         const accordionItemKeys = Object.keys(accordionItems)
 
         expect(accordionItems[accordionItemKeys[0]]).to.equal(true)
