@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script setup>
-import { computed, ref, onMounted, onBeforeUnmount, watch, markRaw } from 'vue'
+import { computed, ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import {
   computePosition,
   autoUpdate,
