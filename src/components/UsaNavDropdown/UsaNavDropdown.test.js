@@ -52,7 +52,7 @@ describe('UsaNavDropdown', () => {
 
     cy.get('@registerDropdown').should(
       'be.calledWithMatch',
-      '__vuswds-id-global-usa-nav-dropdown',
+      'vuswds-id-global-usa-nav-dropdown',
       true
     )
   })
