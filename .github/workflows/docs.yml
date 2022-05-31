@@ -24,6 +24,9 @@ jobs:
       - name: Generate documentation
         run: npm run build-storybook
 
+      - name: Disable Jekyll builder
+        run: touch ./storybook-static/.nojekyll
+
       - name: Publish documentation
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
