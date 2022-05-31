@@ -43,7 +43,7 @@
     "serve": "vite preview",
     "commit": "cz",
     "release": "standard-version",
-    "new": "hygen new",
+    "new": "HYGEN_TMPLS=./.hygen hygen new",
     "lint": "eslint --ext .js,.vue --fix .",
     "cypress:open": "cypress open",
     "cypress:open-ct": "cypress open-ct",
