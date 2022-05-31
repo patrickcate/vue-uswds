@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/patrickcate/vue-uswds/compare/v0.7.4...v0.8.0) (2022-05-31)
+
+
+### Features
+
+* **UsaFooterCollapsibleMenu:** implement `UsaFooterCollapsibleMenu` component ([4c379d3](https://github.com/patrickcate/vue-uswds/commit/4c379d379a674ae93d3418638d0589fdf3f65706))
+* **UsaFooterCollapsibleMenuSection:** implement `UsaFooterCollapsibleMenuSection` component ([c31718e](https://github.com/patrickcate/vue-uswds/commit/c31718e303567d2941b4412c6a6a61f04ce2cbc4))
+* **UsaFooterMenu:** implement `UsaFooterMenu` component ([23dc8a0](https://github.com/patrickcate/vue-uswds/commit/23dc8a00cbf7d770467bb055cb243402dc177237))
+* **UsaFooterNav:** implement `UsaFooterNav` component ([66be9db](https://github.com/patrickcate/vue-uswds/commit/66be9db3ed4683b2724ba424a8978911b4ab0ed9)), closes [#28](https://github.com/patrickcate/vue-uswds/issues/28)
+* **UsaIcon:** implement `UsaIcon` component ([ffb9401](https://github.com/patrickcate/vue-uswds/commit/ffb9401a3a5a2692eefa4cb493f61e36f682a4d2)), closes [#174](https://github.com/patrickcate/vue-uswds/issues/174)
+* **UsaIconList:** implement `UsaIconList` component ([cafeb54](https://github.com/patrickcate/vue-uswds/commit/cafeb54219ebc837971cf48de17f9330fe0739b6)), closes [#175](https://github.com/patrickcate/vue-uswds/issues/175)
+* **UsaIconListItem:** implement `UsaIconListItem` component ([7377534](https://github.com/patrickcate/vue-uswds/commit/7377534023e8886ab6dfaf27ae8107d3193bdef8)), closes [#214](https://github.com/patrickcate/vue-uswds/issues/214)
+* **UsaTooltip:** implement `UsaTooltip` component ([678c076](https://github.com/patrickcate/vue-uswds/commit/678c0764eb7fffeecb72bf89f61945b0d84b921f)), closes [#81](https://github.com/patrickcate/vue-uswds/issues/81)
+* **useAccordion:** set `multiselectable` default argument value ([86b8ac1](https://github.com/patrickcate/vue-uswds/commit/86b8ac1ccf98c3388f294232a15b879a464184f4))
+
+
+### Bug Fixes
+
+* **cypress:** replace alias import of global CSS file with relative one ([17d933f](https://github.com/patrickcate/vue-uswds/commit/17d933f2be502f6bb4b5642f2f8297662b3cb68e))
+* fix unique id generator function to start with a letter instead of `__` ([2788404](https://github.com/patrickcate/vue-uswds/commit/2788404a89d624b8f7501e7bdeabab8089cc2df1))
+* **UsaNavPrimary:** close all open menus with switch to mobile/desktop functionality ([6ecd354](https://github.com/patrickcate/vue-uswds/commit/6ecd354cb5bfcccbe8b0787e9301a229b4841923))
+
 ### [0.7.4](https://github.com/patrickcate/vue-uswds/compare/v0.7.3...v0.7.4) (2022-05-10)
 
 
