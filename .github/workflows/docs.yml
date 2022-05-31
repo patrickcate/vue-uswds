@@ -24,11 +24,15 @@ jobs:
       - name: Generate documentation
         run: npm run build-storybook
 
+      - name: Disable Jekyll builder
+        run: touch ./storybook-static/.nojekyll
+
       - name: Publish documentation
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           branch: gh-pages
           folder: storybook-static
+          target-folder: docs
           # Remove previous build files.
           clean: true
           # Do not remove the `.nojekyll` file.
