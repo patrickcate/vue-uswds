@@ -142,7 +142,7 @@ describe('UsaModal', () => {
       .and('contain', 'true')
 
     // Close modal by clicking outside.
-    cy.get('body').click()
+    cy.get('html').click('topLeft')
 
     cy.get('@wrapper')
       .vue()
