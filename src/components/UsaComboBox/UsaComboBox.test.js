@@ -1046,26 +1046,72 @@ describe('UsaComboBox', () => {
   })
 
   it('`disabled` prop makes component non-interactive', () => {
-    mount(UsaComboBox, {
-      props: {
-        label: 'Disabled ComboBox',
-        options: testData,
-        disabled: true,
+    const wrapperComponent = {
+      components: { UsaComboBox },
+      data() {
+        return {
+          options: testData,
+          selectedOption: '',
+          disabled: true,
+        }
       },
-    })
+      template: `<UsaComboBox v-model="selectedOption" :options="options" label="Disabled ComboBox" :disabled="disabled"></UsaComboBox>`,
+    }
 
-    cy.get('input').should('not.have.focus').click({ force: true })
+    mount(wrapperComponent, {})
+
+    cy.get('input').should('not.have.focus').and('have.attr', 'disabled')
+    cy.get('input').click({ force: true })
     cy.get('input').should('not.have.focus')
 
     cy.get('.usa-combo-box__clear-input')
       .should('not.have.focus')
-      .click({ force: true })
+      .and('have.attr', 'disabled')
+
+    cy.get('.usa-combo-box__clear-input').click({ force: true })
     cy.get('.usa-combo-box__clear-input').should('not.have.focus')
 
     cy.get('.usa-combo-box__toggle-list')
       .should('not.have.focus')
-      .click({ force: true })
+      .and('have.attr', 'disabled')
+
+    cy.get('.usa-combo-box__toggle-list').click({ force: true })
     cy.get('.usa-combo-box__toggle-list').should('not.have.focus')
+  })
+
+  it('`readonly` prop makes component non-interactive', () => {
+    const wrapperComponent = {
+      components: { UsaComboBox },
+      data() {
+        return {
+          options: testData,
+          selectedOption: 'persimmon',
+          readonly: true,
+        }
+      },
+      template: `<UsaComboBox v-model="selectedOption" :options="options" label="Readonly ComboBox" :readonly="readonly"></UsaComboBox>`,
+    }
+
+    mount(wrapperComponent, {}).as('wrapper')
+
+    cy.get('input').should('not.have.focus').and('have.attr', 'readonly')
+    cy.get('input').click({ force: true })
+    cy.get('input').should('have.focus')
+
+    cy.get('.usa-combo-box__clear-input')
+      .should('not.have.focus')
+      .and('have.attr', 'disabled')
+    cy.get('.usa-combo-box__clear-input').click({ force: true })
+    cy.get('.usa-combo-box__clear-input').should('not.have.focus')
+
+    cy.get('.usa-combo-box__toggle-list')
+      .should('not.have.focus')
+      .and('have.attr', 'disabled')
+    cy.get('.usa-combo-box__toggle-list').click({ force: true })
+    cy.get('.usa-combo-box__toggle-list').should('not.have.focus')
+
+    cy.get('@wrapper').invoke('setProps', { modalValue: 'tamarind' })
+    cy.get('input').should('have.value', 'Persimmon')
   })
 
   it('uses custom CSS classes', () => {

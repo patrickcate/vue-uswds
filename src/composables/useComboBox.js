@@ -3,14 +3,17 @@ import { onKeyStroke, onClickOutside, useActiveElement } from '@vueuse/core'
 import { nextId } from '@/utils/unique-id.js'
 import { escapeRegExp } from '@/utils/common.js'
 
-export default (_id, _selectedOption, _options, emit) => {
+export default (_id, _selectedOption, _options, _disabled, _readonly, emit) => {
   const id = ref(_id)
+  const options = ref(_options)
+  const isDisabled = ref(_disabled)
+  const isReadonly = ref(_readonly)
   const selectedOption = computed({
     get() {
-      return ref(_selectedOption).value
+      return _selectedOption.value
     },
-    set(value) {
-      emit('update:modelValue', value)
+    set(newSelectedValue) {
+      emit('update:modelValue', newSelectedValue)
     },
   })
 
@@ -18,7 +21,7 @@ export default (_id, _selectedOption, _options, emit) => {
   const isDirty = ref(false)
   const searchTerm = ref('')
   const highlightedOption = ref('')
-  const options = ref(_options)
+
   const isOpen = ref(false)
 
   const selectedLabel = computed(() => {
@@ -33,16 +36,22 @@ export default (_id, _selectedOption, _options, emit) => {
     return foundOption?.label || ''
   })
 
-  // Set the default value.
-  if (selectedLabel.value) {
-    searchTerm.value = selectedLabel.value
-  }
+  watch(selectedLabel, currentLabel => {
+    if (currentLabel !== '') {
+      searchTerm.value = currentLabel
+    }
+  })
 
   watch(searchTerm, currentTerm => {
     if (isOpen.value && currentTerm !== '') {
       isDirty.value = true
     }
   })
+
+  // Set the default value.
+  if (selectedLabel.value) {
+    searchTerm.value = selectedLabel.value
+  }
 
   const filteredOptions = computed(() => {
     if (
@@ -204,7 +213,9 @@ export default (_id, _selectedOption, _options, emit) => {
   }
 
   const openList = () => {
-    isOpen.value = true
+    if (!isDisabled.value && !isReadonly.value) {
+      isOpen.value = true
+    }
   }
 
   const closeList = () => {
@@ -232,6 +243,14 @@ export default (_id, _selectedOption, _options, emit) => {
 
     return getListItemIdByIndex(highlightedOptionIndex)
   })
+
+  const clearButtonIsVisible = computed(
+    () =>
+      selectedOption.value !== '' &&
+      searchTerm.value === selectedLabel.value &&
+      !isDisabled.value &&
+      !isReadonly.value
+  )
 
   const handleFilterOnInput = () => {
     if (!isOpen.value) {
@@ -338,10 +357,10 @@ export default (_id, _selectedOption, _options, emit) => {
 
   const handleClickOutside = () => {
     if (isOpen.value) {
+      selectOption(selectedOption.value)
       closeList()
+      clearHighlightedOption()
     }
-    selectOption(selectedOption.value)
-    clearHighlightedOption()
   }
 
   const handleClickOnListOption = value => {
@@ -351,8 +370,8 @@ export default (_id, _selectedOption, _options, emit) => {
   }
 
   const handleEscape = () => {
-    closeList()
     selectOption(selectedOption.value)
+    closeList()
     clearHighlightedOption()
     focusInput()
   }
@@ -387,7 +406,6 @@ export default (_id, _selectedOption, _options, emit) => {
 
   const handleClickOnInput = () => {
     if (!isOpen.value) {
-      ;``
       openList()
     }
 
@@ -414,6 +432,7 @@ export default (_id, _selectedOption, _options, emit) => {
 
   return {
     activeDescendent,
+    clearButtonIsVisible,
     componentElement,
     computedAssistiveHintId,
     computedErrorMessageId,
@@ -437,12 +456,13 @@ export default (_id, _selectedOption, _options, emit) => {
     handleUpOnListOption,
     highlightedOption: readonly(highlightedOption),
     inputElement,
+    isDisabled: readonly(isDisabled),
     isOpen: readonly(isOpen),
+    isReadonly: readonly(isReadonly),
     listElement,
     listItemElements,
     listItemTabIndex,
     searchTerm,
-    selectedLabel,
     selectedOption,
     totalFilteredOptions,
   }

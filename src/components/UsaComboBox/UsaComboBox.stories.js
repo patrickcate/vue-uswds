@@ -8,6 +8,7 @@ const defaultProps = {
   label: UsaComboBox.props.label.default,
   required: UsaComboBox.props.required.default,
   disabled: UsaComboBox.props.disabled.default,
+  readonly: UsaComboBox.props.readonly.default,
   error: UsaComboBox.props.error.default,
   id: UsaComboBox.props.id.default,
   clearButtonAriaLabel: UsaComboBox.props.clearButtonAriaLabel.default,
@@ -32,6 +33,9 @@ export default {
       control: { type: 'boolean' },
     },
     disabled: {
+      control: { type: 'boolean' },
+    },
+    readonly: {
       control: { type: 'boolean' },
     },
     error: {
@@ -71,6 +75,7 @@ export default {
     label: defaultProps.label,
     required: defaultProps.required,
     disabled: defaultProps.disabled,
+    readonly: defaultProps.readonly,
     error: defaultProps.error,
     id: defaultProps.id,
     clearButtonAriaLabel: defaultProps.clearButtonAriaLabel,
@@ -96,6 +101,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :label="label"
     :required="required"
     :disabled="disabled"
+    :readonly="readonly"
     :error="error"
     :id="id"
     :clear-button-aria-label="clearButtonAriaLabel"
@@ -170,6 +176,26 @@ RequiredComboBox.args = {
   required: true,
 }
 RequiredComboBox.storyName = 'Required'
+
+export const DisabledComboBox = DefaultTemplate.bind({})
+DisabledComboBox.args = {
+  ...defaultProps,
+  label: 'Fruit',
+  options: testData,
+  disabled: true,
+  modelValue: 'raspberry',
+}
+DisabledComboBox.storyName = 'Disabled'
+
+export const ReadonlyComboBox = DefaultTemplate.bind({})
+ReadonlyComboBox.args = {
+  ...defaultProps,
+  label: 'Fruit',
+  options: testData,
+  readonly: true,
+  modelValue: 'raspberry',
+}
+ReadonlyComboBox.storyName = 'Readonly'
 
 export const CustomIdComboBox = DefaultTemplate.bind({})
 CustomIdComboBox.args = {
