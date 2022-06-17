@@ -65,6 +65,9 @@ export default {
     noResultsSlot: {
       control: { type: 'text' },
     },
+    statusSlot: {
+      control: { type: 'text' },
+    },
     assistiveHintSlot: {
       control: { type: 'text' },
     },
@@ -85,6 +88,7 @@ export default {
     hintSlot: '',
     errorMessageSlot: '',
     noResultsSlot: '',
+    statusSlot: '',
     assistiveHintSlot: '',
   },
 }
@@ -116,6 +120,9 @@ const DefaultTemplate = (args, { argTypes }) => ({
   }</template>
     <template v-if="${!!args.noResultsSlot}" #no-results>${
     args.noResultsSlot
+  }</template>
+    <template v-if="${!!args.statusSlot}" #status="{ filteredOptions }">${
+    args.statusSlot
   }</template>
     <template v-if="${!!args.assistiveHintSlot}" #assistive-hint>${
     args.assistiveHintSlot
@@ -243,6 +250,15 @@ NoResultsSlotComboBox.args = {
 }
 NoResultsSlotComboBox.storyName = 'No Results Slot'
 
+export const StatusScopedSlotComboBox = DefaultTemplate.bind({})
+StatusScopedSlotComboBox.args = {
+  ...defaultProps,
+  label: 'Fruit',
+  options: testData,
+  statusSlot: 'Total options available: {{ filteredOptions.length }}',
+}
+StatusScopedSlotComboBox.storyName = 'Status Scoped Slot'
+
 export const AssistiveHintSlotComboBox = DefaultTemplate.bind({})
 AssistiveHintSlotComboBox.args = {
   ...defaultProps,
@@ -259,6 +275,7 @@ CustomClassesComboBox.args = {
   options: testData,
   hintSlot: 'Choose wisely',
   customClasses: {
+    formGroup: ['test-form-group-class'],
     component: ['test-component-class'],
     label: ['test-label-class'],
     input: ['test-input-class'],

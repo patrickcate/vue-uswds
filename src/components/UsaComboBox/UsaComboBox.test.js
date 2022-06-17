@@ -557,9 +557,10 @@ describe('UsaComboBox', () => {
           options: testData,
           selectedOption: '',
           id: 'mouse-click',
+          customClasses: {},
         }
       },
-      template: `<UsaComboBox v-model="selectedOption" :options="options" :id="id" label="ComboBox"></UsaComboBox>`,
+      template: `<UsaComboBox v-model="selectedOption" :options="options" :id="id" label="ComboBox" :custom-classes="customClasses"></UsaComboBox>`,
     }
 
     mount(wrapperComponent, {})
@@ -750,7 +751,7 @@ describe('UsaComboBox', () => {
           id: 'enter-key',
         }
       },
-      template: `<UsaComboBox v-model="selectedOption" :options="options"  :id="id"label="ComboBox"></UsaComboBox>`,
+      template: `<UsaComboBox v-model="selectedOption" :options="options"  :id="id" label="ComboBox"></UsaComboBox>`,
     }
 
     mount(wrapperComponent, {})
@@ -1120,6 +1121,7 @@ describe('UsaComboBox', () => {
         label: 'Custom ComboBox',
         options: testData,
         customClasses: {
+          formGroup: ['test-form-group-class'],
           component: ['test-component-class'],
           label: ['test-label-class'],
           input: ['test-input-class'],
@@ -1135,8 +1137,10 @@ describe('UsaComboBox', () => {
     })
 
     cy.get('.usa-form-group')
-      .should('have.class', 'test-component-class')
+      .should('have.class', 'test-form-group-class')
       .and('not.have.attr', 'data-test')
+
+    cy.get('.usa-combo-box').should('have.class', 'test-component-class')
 
     cy.get('label').should('have.class', 'test-label-class')
 
