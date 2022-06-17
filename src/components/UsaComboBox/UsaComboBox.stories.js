@@ -8,6 +8,7 @@ const defaultProps = {
   label: UsaComboBox.props.label.default,
   required: UsaComboBox.props.required.default,
   disabled: UsaComboBox.props.disabled.default,
+  readonly: UsaComboBox.props.readonly.default,
   error: UsaComboBox.props.error.default,
   id: UsaComboBox.props.id.default,
   clearButtonAriaLabel: UsaComboBox.props.clearButtonAriaLabel.default,
@@ -32,6 +33,9 @@ export default {
       control: { type: 'boolean' },
     },
     disabled: {
+      control: { type: 'boolean' },
+    },
+    readonly: {
       control: { type: 'boolean' },
     },
     error: {
@@ -61,6 +65,9 @@ export default {
     noResultsSlot: {
       control: { type: 'text' },
     },
+    statusSlot: {
+      control: { type: 'text' },
+    },
     assistiveHintSlot: {
       control: { type: 'text' },
     },
@@ -71,6 +78,7 @@ export default {
     label: defaultProps.label,
     required: defaultProps.required,
     disabled: defaultProps.disabled,
+    readonly: defaultProps.readonly,
     error: defaultProps.error,
     id: defaultProps.id,
     clearButtonAriaLabel: defaultProps.clearButtonAriaLabel,
@@ -80,6 +88,7 @@ export default {
     hintSlot: '',
     errorMessageSlot: '',
     noResultsSlot: '',
+    statusSlot: '',
     assistiveHintSlot: '',
   },
 }
@@ -96,6 +105,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :label="label"
     :required="required"
     :disabled="disabled"
+    :readonly="readonly"
     :error="error"
     :id="id"
     :clear-button-aria-label="clearButtonAriaLabel"
@@ -110,6 +120,9 @@ const DefaultTemplate = (args, { argTypes }) => ({
   }</template>
     <template v-if="${!!args.noResultsSlot}" #no-results>${
     args.noResultsSlot
+  }</template>
+    <template v-if="${!!args.statusSlot}" #status="{ filteredOptions }">${
+    args.statusSlot
   }</template>
     <template v-if="${!!args.assistiveHintSlot}" #assistive-hint>${
     args.assistiveHintSlot
@@ -171,6 +184,26 @@ RequiredComboBox.args = {
 }
 RequiredComboBox.storyName = 'Required'
 
+export const DisabledComboBox = DefaultTemplate.bind({})
+DisabledComboBox.args = {
+  ...defaultProps,
+  label: 'Fruit',
+  options: testData,
+  disabled: true,
+  modelValue: 'raspberry',
+}
+DisabledComboBox.storyName = 'Disabled'
+
+export const ReadonlyComboBox = DefaultTemplate.bind({})
+ReadonlyComboBox.args = {
+  ...defaultProps,
+  label: 'Fruit',
+  options: testData,
+  readonly: true,
+  modelValue: 'raspberry',
+}
+ReadonlyComboBox.storyName = 'Readonly'
+
 export const CustomIdComboBox = DefaultTemplate.bind({})
 CustomIdComboBox.args = {
   ...defaultProps,
@@ -217,6 +250,15 @@ NoResultsSlotComboBox.args = {
 }
 NoResultsSlotComboBox.storyName = 'No Results Slot'
 
+export const StatusScopedSlotComboBox = DefaultTemplate.bind({})
+StatusScopedSlotComboBox.args = {
+  ...defaultProps,
+  label: 'Fruit',
+  options: testData,
+  statusSlot: 'Total options available: {{ filteredOptions.length }}',
+}
+StatusScopedSlotComboBox.storyName = 'Status Scoped Slot'
+
 export const AssistiveHintSlotComboBox = DefaultTemplate.bind({})
 AssistiveHintSlotComboBox.args = {
   ...defaultProps,
@@ -233,6 +275,7 @@ CustomClassesComboBox.args = {
   options: testData,
   hintSlot: 'Choose wisely',
   customClasses: {
+    formGroup: ['test-form-group-class'],
     component: ['test-component-class'],
     label: ['test-label-class'],
     input: ['test-input-class'],

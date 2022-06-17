@@ -34,6 +34,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  readonly: {
+    type: Boolean,
+    default: false,
+  },
   error: {
     type: Boolean,
     default: false,
@@ -54,6 +58,7 @@ const props = defineProps({
     type: Object,
     default: () => {
       return {
+        formGroup: [],
         component: [],
         label: [],
         input: [],
@@ -65,6 +70,7 @@ const props = defineProps({
 
 const {
   activeDescendent,
+  clearButtonIsVisible,
   componentElement,
   computedAssistiveHintId,
   computedErrorMessageId,
@@ -89,17 +95,20 @@ const {
   highlightedOption,
   inputElement,
   isOpen,
+  isDisabled,
+  isReadonly,
   listElement,
   listItemElements,
   listItemTabIndex,
   searchTerm,
-  selectedLabel,
   selectedOption,
   totalFilteredOptions,
 } = useComboBox(
   toRef(props, 'id'),
   toRef(props, 'modelValue'),
   toRef(props, 'options'),
+  toRef(props, 'disabled'),
+  toRef(props, 'readonly'),
   emit
 )
 
@@ -117,19 +126,17 @@ const ariaDescribedby = computed(() => {
   return ids.join(' ')
 })
 
-const clearButtonIsVisible = computed(
-  () =>
-    selectedOption.value !== '' &&
-    searchTerm.value === selectedLabel.value &&
-    !props.disabled
-)
+const classes = computed(() => [
+  { 'usa-combo-box--pristine': selectedOption.value !== '' },
+  ...(props.customClasses?.component || []),
+])
 </script>
 
 <template>
   <UsaFormGroup
     :group="!!$slots.hint || (error && !!$slots['error-message'])"
     :error="error"
-    :class="props.customClasses?.component"
+    :class="props.customClasses?.formGroup"
   >
     <UsaLabel
       v-if="label || $slots.label"
@@ -155,9 +162,7 @@ const clearButtonIsVisible = computed(
     <div
       ref="componentElement"
       class="usa-combo-box"
-      :class="{
-        'usa-combo-box--pristine': selectedOption !== '',
-      }"
+      :class="classes"
       data-enhanced="true"
     >
       <input
@@ -166,7 +171,8 @@ const clearButtonIsVisible = computed(
         ref="inputElement"
         v-model="searchTerm"
         :required="required"
-        :disabled="disabled"
+        :disabled="isDisabled"
+        :readonly="isReadonly"
         :aria-owns="computedListId"
         :aria-controls="computedListId"
         :aria-describedby="ariaDescribedby"
@@ -190,7 +196,7 @@ const clearButtonIsVisible = computed(
           type="button"
           class="usa-combo-box__clear-input"
           :aria-label="clearButtonAriaLabel"
-          :disabled="disabled"
+          :disabled="isDisabled || isReadonly"
           @click="handleClearInput"
           >&nbsp;</button
         >
@@ -202,7 +208,7 @@ const clearButtonIsVisible = computed(
           tabindex="-1"
           class="usa-combo-box__toggle-list"
           :aria-label="toggleButtonAriaLabel"
-          :disabled="disabled"
+          :disabled="isDisabled || isReadonly"
           @click="handleListToggle"
           >&nbsp;</button
         >

@@ -557,9 +557,10 @@ describe('UsaComboBox', () => {
           options: testData,
           selectedOption: '',
           id: 'mouse-click',
+          customClasses: {},
         }
       },
-      template: `<UsaComboBox v-model="selectedOption" :options="options" :id="id" label="ComboBox"></UsaComboBox>`,
+      template: `<UsaComboBox v-model="selectedOption" :options="options" :id="id" label="ComboBox" :custom-classes="customClasses"></UsaComboBox>`,
     }
 
     mount(wrapperComponent, {})
@@ -750,7 +751,7 @@ describe('UsaComboBox', () => {
           id: 'enter-key',
         }
       },
-      template: `<UsaComboBox v-model="selectedOption" :options="options"  :id="id"label="ComboBox"></UsaComboBox>`,
+      template: `<UsaComboBox v-model="selectedOption" :options="options"  :id="id" label="ComboBox"></UsaComboBox>`,
     }
 
     mount(wrapperComponent, {})
@@ -1046,26 +1047,72 @@ describe('UsaComboBox', () => {
   })
 
   it('`disabled` prop makes component non-interactive', () => {
-    mount(UsaComboBox, {
-      props: {
-        label: 'Disabled ComboBox',
-        options: testData,
-        disabled: true,
+    const wrapperComponent = {
+      components: { UsaComboBox },
+      data() {
+        return {
+          options: testData,
+          selectedOption: '',
+          disabled: true,
+        }
       },
-    })
+      template: `<UsaComboBox v-model="selectedOption" :options="options" label="Disabled ComboBox" :disabled="disabled"></UsaComboBox>`,
+    }
 
-    cy.get('input').should('not.have.focus').click({ force: true })
+    mount(wrapperComponent, {})
+
+    cy.get('input').should('not.have.focus').and('have.attr', 'disabled')
+    cy.get('input').click({ force: true })
     cy.get('input').should('not.have.focus')
 
     cy.get('.usa-combo-box__clear-input')
       .should('not.have.focus')
-      .click({ force: true })
+      .and('have.attr', 'disabled')
+
+    cy.get('.usa-combo-box__clear-input').click({ force: true })
     cy.get('.usa-combo-box__clear-input').should('not.have.focus')
 
     cy.get('.usa-combo-box__toggle-list')
       .should('not.have.focus')
-      .click({ force: true })
+      .and('have.attr', 'disabled')
+
+    cy.get('.usa-combo-box__toggle-list').click({ force: true })
     cy.get('.usa-combo-box__toggle-list').should('not.have.focus')
+  })
+
+  it('`readonly` prop makes component non-interactive', () => {
+    const wrapperComponent = {
+      components: { UsaComboBox },
+      data() {
+        return {
+          options: testData,
+          selectedOption: 'persimmon',
+          readonly: true,
+        }
+      },
+      template: `<UsaComboBox v-model="selectedOption" :options="options" label="Readonly ComboBox" :readonly="readonly"></UsaComboBox>`,
+    }
+
+    mount(wrapperComponent, {}).as('wrapper')
+
+    cy.get('input').should('not.have.focus').and('have.attr', 'readonly')
+    cy.get('input').click({ force: true })
+    cy.get('input').should('have.focus')
+
+    cy.get('.usa-combo-box__clear-input')
+      .should('not.have.focus')
+      .and('have.attr', 'disabled')
+    cy.get('.usa-combo-box__clear-input').click({ force: true })
+    cy.get('.usa-combo-box__clear-input').should('not.have.focus')
+
+    cy.get('.usa-combo-box__toggle-list')
+      .should('not.have.focus')
+      .and('have.attr', 'disabled')
+    cy.get('.usa-combo-box__toggle-list').click({ force: true })
+    cy.get('.usa-combo-box__toggle-list').should('not.have.focus')
+
+    cy.get('@wrapper').invoke('setProps', { modalValue: 'tamarind' })
+    cy.get('input').should('have.value', 'Persimmon')
   })
 
   it('uses custom CSS classes', () => {
@@ -1074,6 +1121,7 @@ describe('UsaComboBox', () => {
         label: 'Custom ComboBox',
         options: testData,
         customClasses: {
+          formGroup: ['test-form-group-class'],
           component: ['test-component-class'],
           label: ['test-label-class'],
           input: ['test-input-class'],
@@ -1089,8 +1137,10 @@ describe('UsaComboBox', () => {
     })
 
     cy.get('.usa-form-group')
-      .should('have.class', 'test-component-class')
+      .should('have.class', 'test-form-group-class')
       .and('not.have.attr', 'data-test')
+
+    cy.get('.usa-combo-box').should('have.class', 'test-component-class')
 
     cy.get('label').should('have.class', 'test-label-class')
 
