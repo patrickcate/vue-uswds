@@ -5,11 +5,7 @@ import { h } from 'vue'
 
 describe('UsaSearch', () => {
   it('renders the component', () => {
-    mount(UsaSearch, {
-      props: {
-        customClasses: {},
-      },
-    })
+    mount(UsaSearch, {})
 
     cy.get('form.usa-search')
       .should('have.class', 'usa-search--medium')

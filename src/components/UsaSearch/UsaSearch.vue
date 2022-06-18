@@ -2,7 +2,8 @@
 import { computed, inject } from 'vue'
 import { IMAGE_PATH } from '@/utils/constants.js'
 import { nextId } from '@/utils/unique-id.js'
-import UsaLabel from '@/components/UsaLabel'
+import UsaButton from '@/components/UsaButton'
+import UsaTextInput from '@/components/UsaTextInput'
 
 const imagePath = inject('vueUswds.imagePath', IMAGE_PATH)
 const emit = defineEmits(['update:modelValue'])
@@ -22,7 +23,7 @@ const props = defineProps({
     },
   },
   modelValue: {
-    type: undefined,
+    type: String,
     default: '',
   },
   label: {
@@ -45,7 +46,7 @@ const props = defineProps({
     type: Object,
     default: () => {
       return {
-        label: [],
+        label: ['usa-sr-only'],
         input: [],
         button: [],
         icon: [],
@@ -64,11 +65,6 @@ const classes = computed(() => [
   },
 ])
 
-const labelClasses = computed(() => [
-  'usa-sr-only',
-  ...(props.customClasses?.label || []),
-])
-
 const searchValue = computed({
   get() {
     return props.modelValue
@@ -81,17 +77,17 @@ const searchValue = computed({
 
 <template>
   <form class="usa-search" role="search" :class="classes">
-    <UsaLabel :for="computedId" :class="labelClasses">{{ label }}</UsaLabel>
-    <input
+    <UsaTextInput
       v-bind="inputAttrs"
       :id="computedId"
       v-model="searchValue"
       name="search"
       type="search"
-      class="usa-input"
+      :label="label"
       :class="customClasses?.input"
-    />
-    <button class="usa-button" type="submit" :class="customClasses?.button">
+      :custom-classes="customClasses"
+    ></UsaTextInput>
+    <UsaButton type="submit" :class="customClasses?.button">
       <span
         v-if="variant === 'medium' || variant === 'big'"
         class="usa-search__submit-text"
@@ -105,6 +101,6 @@ const searchValue = computed({
           :alt="buttonLabel"
         />
       </slot>
-    </button>
+    </UsaButton>
   </form>
 </template>
