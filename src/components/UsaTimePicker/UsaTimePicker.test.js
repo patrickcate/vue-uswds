@@ -341,9 +341,9 @@ describe('UsaTimePicker', () => {
       .vue()
       .then(vm => {
         expect(vm.emitted()).to.have.property('update:modelValue')
-        const currentCheckedEvent = vm.emitted('update:modelValue')
-        expect(currentCheckedEvent).to.have.length(1)
-        expect(currentCheckedEvent[currentCheckedEvent.length - 1]).to.contain(
+        const currentValueEvent = vm.emitted('update:modelValue')
+        expect(currentValueEvent).to.have.length(1)
+        expect(currentValueEvent[currentValueEvent.length - 1]).to.contain(
           '00:30'
         )
       })
