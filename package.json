@@ -51,7 +51,7 @@
     "test:component": "cypress run-ct",
     "test:e2e": "cypress run",
     "prepare": "husky install",
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "symlink-assets": "ln -s node_modules/uswds/dist assets"
