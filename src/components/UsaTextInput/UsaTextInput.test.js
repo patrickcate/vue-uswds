@@ -287,6 +287,7 @@ describe('UsaTextInput', () => {
         'input-prefix': () => '@',
         'input-suffix': () => '%',
       },
+      customClasses: {},
     }).as('wrapper')
 
     cy.get('.usa-input-group')
@@ -377,6 +378,27 @@ describe('UsaTextInput', () => {
       })
   })
 
+  it('masked inputs are registered and unregistered', () => {
+    mount(UsaTextInput, {
+      props: {
+        label: 'Test input',
+        id: 'test-id',
+      },
+      global: {
+        provide: {
+          registerInput: cy.stub().as('registerInput'),
+          unregisterInput: cy.stub().as('unregisterInput'),
+        },
+      },
+    }).as('wrapper')
+
+    cy.get('@registerInput').should('be.calledWith', 'test-id')
+
+    cy.get('@wrapper').invoke('unmount')
+
+    cy.get('@unregisterInput').should('be.calledWith', 'test-id')
+  })
+
   it('adds correct CSS class to input for `width` prop value', () => {
     mount(UsaTextInput, {
       props: {
@@ -418,6 +440,7 @@ describe('UsaTextInput', () => {
       props: {
         label: 'Test label',
         width: '',
+        customClasses: {},
       },
       slots: {
         'input-suffix': () => '%',

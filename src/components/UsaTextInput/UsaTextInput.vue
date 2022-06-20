@@ -5,7 +5,15 @@ export default {
 </script>
 
 <script setup>
-import { computed, ref, inject, useSlots, useAttrs, onMounted } from 'vue'
+import {
+  computed,
+  ref,
+  inject,
+  useSlots,
+  useAttrs,
+  onMounted,
+  onBeforeUnmount,
+} from 'vue'
 import { useFocus } from '@vueuse/core'
 import { nextId } from '@/utils/unique-id.js'
 import UsaFormGroup from '@/components/UsaFormGroup'
@@ -16,6 +24,12 @@ const { focused } = useFocus(inputElement)
 const slots = useSlots()
 const attrs = useAttrs()
 const emit = defineEmits(['update:modelValue'])
+
+const updateCharacterCount = inject('updateCharacterCount', null)
+const characterCountMaxlength = inject('characterCountMaxlength', null)
+const characterCountMessageId = inject('characterCountMessageId', null)
+const registerInput = inject('registerInput', null)
+const unregisterInput = inject('unregisterInput', null)
 
 const props = defineProps({
   type: {
@@ -84,10 +98,6 @@ const props = defineProps({
   },
 })
 
-const updateCharacterCount = inject('updateCharacterCount', null)
-const characterCountMaxlength = inject('characterCountMaxlength', null)
-const characterCountMessageId = inject('characterCountMessageId', null)
-
 const computedId = computed(() => props.id || nextId('usa-text-input'))
 const computedErrorMessageId = computed(
   () => `${computedId.value}-error-message`
@@ -111,6 +121,16 @@ const textInputValue = computed({
 onMounted(() => {
   if (updateCharacterCount) {
     updateCharacterCount(props.modelValue)
+  }
+
+  if (registerInput) {
+    registerInput(computedId.value)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (unregisterInput) {
+    unregisterInput(computedId.value)
   }
 })
 
@@ -137,6 +157,7 @@ const classes = computed(() => {
 })
 
 const inputGroupClasses = computed(() => {
+  // istanbul ignore next
   if (!slots['input-prefix'] && !slots['input-suffix']) {
     return []
   }
