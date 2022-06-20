@@ -126,6 +126,20 @@ describe('UsaDropdown', () => {
       .and('contain', 'custom-id-hint custom-id-error-message')
   })
 
+  it('wraps component in form group if error message is displayed', () => {
+    mount(UsaDropdown, {
+      props: {
+        error: true,
+      },
+      slots: {
+        'error-message': () => 'Test error slot',
+      },
+    })
+
+    cy.get('.usa-form-group').should('have.class', 'usa-form-group--error')
+    cy.get('.usa-error-message').should('contain', 'Test error slot')
+  })
+
   it('renders all select options from `options` prop', () => {
     mount(UsaDropdown, {
       props: {
