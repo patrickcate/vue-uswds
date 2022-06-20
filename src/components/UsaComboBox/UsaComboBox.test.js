@@ -1300,11 +1300,11 @@ describe('UsaComboBox', () => {
       .vue()
       .then(vm => {
         expect(vm.emitted()).to.have.property('update:modelValue')
-        const currentCheckedEvent = vm.emitted('update:modelValue')
-        expect(currentCheckedEvent).to.have.length(1)
-        expect(currentCheckedEvent[currentCheckedEvent.length - 1]).to.contain(
-          'apple'
-        )
+        const currentSelectedEvent = vm.emitted('update:modelValue')
+        expect(currentSelectedEvent).to.have.length(1)
+        expect(
+          currentSelectedEvent[currentSelectedEvent.length - 1]
+        ).to.contain('apple')
       })
   })
 })

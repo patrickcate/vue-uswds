@@ -92,6 +92,7 @@ const ariaDescribedby = computed(() => {
     :class="props.customClasses?.component"
   >
     <UsaLabel
+      v-if="label || $slots.label"
       :for="computedId"
       :required="required"
       :error="error"
