@@ -5,11 +5,7 @@ import { h } from 'vue'
 
 describe('UsaSearch', () => {
   it('renders the component', () => {
-    mount(UsaSearch, {
-      props: {
-        customClasses: {},
-      },
-    })
+    mount(UsaSearch, {})
 
     cy.get('form.usa-search')
       .should('have.class', 'usa-search--medium')
@@ -161,9 +157,9 @@ describe('UsaSearch', () => {
       .vue()
       .then(vm => {
         expect(vm.emitted()).to.have.property('update:modelValue')
-        const currentRangeEvent = vm.emitted('update:modelValue')
-        expect(currentRangeEvent).to.have.length(12)
-        expect(currentRangeEvent[currentRangeEvent.length - 1]).to.contain(
+        const currentValueEvent = vm.emitted('update:modelValue')
+        expect(currentValueEvent).to.have.length(12)
+        expect(currentValueEvent[currentValueEvent.length - 1]).to.contain(
           'Test search term'
         )
       })

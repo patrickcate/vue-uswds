@@ -23,7 +23,7 @@ const props = defineProps({
     default: 100,
   },
   modelValue: {
-    type: undefined,
+    type: [String, Number],
     default: '',
   },
   label: {
@@ -92,6 +92,7 @@ const ariaDescribedby = computed(() => {
     :class="props.customClasses?.component"
   >
     <UsaLabel
+      v-if="label || $slots.label"
       :for="computedId"
       :required="required"
       :error="error"

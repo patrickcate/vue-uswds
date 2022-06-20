@@ -40,7 +40,7 @@ provide('toggleMobileMenu', toggleMobileMenu)
     <button
       class="usa-menu-btn"
       :class="customClasses?.button"
-      :aria-controls="mobileMenuId || null"
+      :aria-controls="mobileMenuId"
       @click="toggleMobileMenu"
       ><slot name="menu-button" :menu-button-label="menuButtonLabel">{{
         menuButtonLabel

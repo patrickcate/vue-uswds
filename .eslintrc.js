@@ -19,6 +19,5 @@ module.exports = {
     'no-unused-vars': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
     'vue/no-unused-vars':
       process.env.NODE_ENV === 'production' ? 'error' : 'warn',
-    'vue/script-setup-uses-vars': 'error',
   },
 }

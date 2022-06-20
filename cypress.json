@@ -2,7 +2,8 @@
   "video": false,
   "component": {
     "componentFolder": "src/components",
-    "testFiles": "**/*.test.js"
+    "testFiles": "**/*.test.js",
+    "port": 3030
   },
   "retries": {
     "runMode": 1,

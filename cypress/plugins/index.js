@@ -51,6 +51,7 @@ module.exports = (on, config) => {
             '^src/**',
             '**/*.test.js',
             '**/*.stories.js',
+            '**/*.fixtures.js',
           ],
           cypress: true,
           requireEnv: false,

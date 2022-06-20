@@ -30,14 +30,11 @@ const charactersOver = computed(() =>
 const countStatus = computed(() => {
   if (charactersRemaining.value === props.maxlength) {
     return 'equal'
-  } else if (
-    charactersRemaining.value < props.maxlength &&
-    charactersRemaining.value >= 0
-  ) {
-    return 'under'
+  } else if (charactersOver.value > 0) {
+    return 'over'
   }
 
-  return 'over'
+  return 'under'
 })
 
 const computedId = computed(() => props.id || nextId('usa-character-count'))

@@ -694,13 +694,13 @@ describe('UsaNavPrimary', () => {
       .vue()
       .then(vm => {
         expect(vm.emitted()).to.have.property('update:items')
-        const currentRangeEvent = vm.emitted('update:items')
-        expect(currentRangeEvent).to.have.length(1)
+        const currentEvent = vm.emitted('update:items')
+        expect(currentEvent).to.have.length(1)
 
         const dropdownIds = Object.keys(
-          currentRangeEvent[currentRangeEvent.length - 1][0]
+          currentEvent[currentEvent.length - 1][0]
         )
-        expect(currentRangeEvent[currentRangeEvent.length - 1][0]).to.contain({
+        expect(currentEvent[currentEvent.length - 1][0]).to.contain({
           [dropdownIds[0]]: false,
           [dropdownIds[1]]: false,
         })
@@ -712,13 +712,13 @@ describe('UsaNavPrimary', () => {
       .vue()
       .then(vm => {
         expect(vm.emitted()).to.have.property('update:items')
-        const currentRangeEvent = vm.emitted('update:items')
-        expect(currentRangeEvent).to.have.length(2)
+        const currentEvent = vm.emitted('update:items')
+        expect(currentEvent).to.have.length(2)
 
         const dropdownIds = Object.keys(
-          currentRangeEvent[currentRangeEvent.length - 1][0]
+          currentEvent[currentEvent.length - 1][0]
         )
-        expect(currentRangeEvent[currentRangeEvent.length - 1][0]).to.contain({
+        expect(currentEvent[currentEvent.length - 1][0]).to.contain({
           [dropdownIds[0]]: true,
           [dropdownIds[1]]: false,
         })

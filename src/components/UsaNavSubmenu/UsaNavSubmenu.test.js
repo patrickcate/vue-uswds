@@ -166,6 +166,7 @@ describe('UsaNavSubmenu', () => {
     mount(UsaNavSubmenu, {
       props: {
         cols: 0,
+        customClasses: {},
       },
       global: {
         provide: {
