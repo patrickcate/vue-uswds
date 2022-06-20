@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/patrickcate/vue-uswds/compare/v0.8.0...v0.9.0) (2022-06-20)
+
+
+### Features
+
+* **UsaComboBox:** add support for readonly prop ([0e3ed5a](https://github.com/patrickcate/vue-uswds/commit/0e3ed5a0b09514fc9733039572c2df2130e4d1e8))
+* **UsaComboBox:** implement `UsaComboBox` component ([b4d949e](https://github.com/patrickcate/vue-uswds/commit/b4d949ee174fe33f07c27e5169ba9f7f144c06cd)), closes [#97](https://github.com/patrickcate/vue-uswds/issues/97)
+* **UsaFooterAddress:** implement `UsaFooterAddress` component ([ab9db2d](https://github.com/patrickcate/vue-uswds/commit/ab9db2d21a195d476c239bcf930e2ac5c682b538)), closes [#32](https://github.com/patrickcate/vue-uswds/issues/32)
+* **UsaPasswordMask:** implement `UsaPasswordMask` component ([08f9b80](https://github.com/patrickcate/vue-uswds/commit/08f9b8069ad8129a9bc7056f984fc511ee4d35da)), closes [#36](https://github.com/patrickcate/vue-uswds/issues/36)
+* **UsaRange:** allow modalValue to be a string or number ([ed1a966](https://github.com/patrickcate/vue-uswds/commit/ed1a966cffd37788434a296761afbdc0c352dc6f))
+* **UsaTimePicker:** implement `UsaTimePicker` component ([626f285](https://github.com/patrickcate/vue-uswds/commit/626f285d33db8b77cf6b380f8fbbbc6b7f7e82f9)), closes [#173](https://github.com/patrickcate/vue-uswds/issues/173)
+
+
+### Bug Fixes
+
+* **github-actions:** only trigger dependabot automerge step on pull requests ([2d7030d](https://github.com/patrickcate/vue-uswds/commit/2d7030de66b8f54a8fb5c2284a072703ddb0b70b))
+
 ## [0.8.0](https://github.com/patrickcate/vue-uswds/compare/v0.7.4...v0.8.0) (2022-05-31)
 
 
