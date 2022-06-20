@@ -1,6 +1,5 @@
 import '@module/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
-import { h, ref } from 'vue'
 import UsaPasswordMask from './UsaPasswordMask.vue'
 import UsaTextInput from '@/components/UsaTextInput'
 
