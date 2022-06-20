@@ -367,6 +367,7 @@ describe('UsaTable', () => {
       'data-test',
       'test'
     )
+
     cy.get('.usa-table caption').should('contain', 'Test caption')
   })
 
@@ -476,6 +477,7 @@ describe('UsaTable', () => {
   it('only the age column is sortable', () => {
     mount(UsaTable, {
       props: {
+        caption: 'Test Table',
         headers: [
           'Name',
           {
@@ -507,6 +509,7 @@ describe('UsaTable', () => {
       'not.have.attr',
       'aria-label'
     )
+    cy.get('.usa-table thead th:nth-of-type(1) button').should('not.exist')
 
     cy.get('.usa-table thead th:nth-of-type(2)').should(
       'have.attr',
@@ -525,6 +528,21 @@ describe('UsaTable', () => {
     )
 
     cy.get('.usa-table tbody th').should('not.exist')
+
+    cy.get('.usa-table thead th:nth-of-type(2) button').click()
+
+    cy.get('.usa-table thead th:nth-of-type(2)').should(
+      'have.attr',
+      'aria-label',
+      'Age, sortable column, currently sorted ascending'
+    )
+
+    cy.get('.usa-table caption').should('contain', 'Test Table')
+
+    cy.get('.usa-table__announcement-region').should(
+      'contain',
+      'The table named "Test Table" is now sorted by "Age" in ascending order.'
+    )
   })
 
   it('uses header and body scoped slots', () => {

@@ -91,12 +91,12 @@ const tableIsSortable = computed(
 )
 
 const tableCaption = computed(() => {
-  if (captionRef.value) {
-    return captionRef.value.textContent
-  }
-
   if (props.caption) {
     return props.caption
+  }
+
+  if (captionRef.value) {
+    return captionRef.value.textContent
   }
 
   return null

@@ -87,12 +87,14 @@ describe('UsaRange', () => {
   it('add required attribute if `required` prop is true', () => {
     mount(UsaRange, {
       props: {
-        label: 'Test label',
         required: true,
+      },
+      slots: {
+        label: () => 'Test label slot',
       },
     })
 
-    cy.get('.usa-label').should('contain', 'Test label')
+    cy.get('.usa-label').should('contain', 'Test label slot')
     cy.get('.usa-label > abbr')
       .should('have.class', 'usa-hint')
       .and('have.class', 'usa-hint--required')
@@ -102,6 +104,20 @@ describe('UsaRange', () => {
       .and('contain', 'required')
 
     cy.get('.usa-range').should('have.attr', 'required')
+  })
+
+  it('wraps component in form group if error message is displayed', () => {
+    mount(UsaRange, {
+      props: {
+        error: true,
+      },
+      slots: {
+        'error-message': () => 'Test error slot',
+      },
+    })
+
+    cy.get('.usa-form-group').should('have.class', 'usa-form-group--error')
+    cy.get('.usa-error-message').should('contain', 'Test error slot')
   })
 
   it('emits update event when selection changes', () => {
