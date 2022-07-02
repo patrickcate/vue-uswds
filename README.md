@@ -1,3 +1,6 @@
+<!-- markdownlint-disable-next-line -->
+<img width="300" src="media/logo.svg" alt="Vue-USWDS logo">
+
 # Vue USWDS
 
 [![Tests](https://github.com/patrickcate/vue-uswds/actions/workflows/tests.yml/badge.svg)](https://github.com/patrickcate/vue-uswds/actions/workflows/tests.yml) [![Docs](https://github.com/patrickcate/vue-uswds/actions/workflows/docs.yml/badge.svg)](https://github.com/patrickcate/vue-uswds/actions/workflows/docs.yml) [![codecov](https://codecov.io/gh/patrickcate/vue-uswds/branch/develop/graph/badge.svg?token=3R49R79IKK)](https://codecov.io/gh/patrickcate/vue-uswds)
