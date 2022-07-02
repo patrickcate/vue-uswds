@@ -37,8 +37,8 @@ export default (
 
     formats.forEach(format => {
       if (format.includes('/') && !validFileFormats.types.includes(format)) {
-        if (format.includes('*')) {
-          validFileFormats.types.push(format.replace('*', ''))
+        if (format.endsWith('/*')) {
+          validFileFormats.types.push(format.substring(0, format.length - 1))
         } else {
           validFileFormats.types.push(format)
         }
