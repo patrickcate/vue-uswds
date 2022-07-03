@@ -30,7 +30,7 @@ describe('UsaTooltip', () => {
       .and('not.have.class', 'is-visible')
       .and('have.attr', 'role', 'tooltip')
       .and('have.attr', 'aria-hidden', 'true')
-      .and('have.class', 'usa-tooltip__body--top')
+      .and('have.class', 'usa-tooltip__body--bottom')
       .and('contain', 'Test tooltip label')
       .and('be.hidden')
 
@@ -83,6 +83,22 @@ describe('UsaTooltip', () => {
       .and('not.have.class', 'is-set')
       .and('not.have.class', 'is-visible')
       .and('have.attr', 'aria-hidden', 'true')
+
+    cy.get('@tooltipTrigger').focus()
+
+    cy.get('@tooltipLabel')
+      .should('be.visible')
+      .and('have.class', 'is-set')
+      .and('have.class', 'is-visible')
+      .and('have.attr', 'aria-hidden', 'false')
+
+    cy.get('@tooltip').type('{enter}')
+
+    cy.get('@tooltipLabel')
+      .should('be.hidden')
+      .and('not.have.class', 'is-set')
+      .and('not.have.class', 'is-visible')
+      .and('have.attr', 'aria-hidden', 'true')
   })
 
   it('renders with custom tags, CSS classes, and label slot content', () => {
@@ -127,15 +143,18 @@ describe('UsaTooltip', () => {
     const positions = ['top', 'bottom', 'left', 'right']
 
     positions.forEach(position => {
-      mount(UsaTooltip, {
-        props: {
-          position: position,
-          label: 'Test tooltip label',
+      const wrapperComponent = {
+        components: { UsaTooltip },
+        data() {
+          return {
+            position: position,
+            label: 'Test tooltip label',
+          }
         },
-        slots: {
-          default: () => 'Test tooltip trigger',
-        },
-      }).as('wrapper')
+        template: `<div style="padding:150px;"><UsaTooltip :position="position" :label="label">Test tooltip trigger</UsaTooltip></div>`,
+      }
+
+      mount(wrapperComponent, {}).as('wrapper')
 
       cy.get('.usa-tooltip__body').and(
         'have.class',

@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script setup>
-import { computed, ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { computed, ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import {
   computePosition,
   autoUpdate,
@@ -63,7 +63,7 @@ const floatingElement = ref(null)
 const isSet = ref(false)
 const isVisible = ref(isSet.value)
 const currentPosition = ref(props.position)
-const currentCoordinates = ref({})
+const currentCoordinates = ref({ left: 0, top: 0, opacity: 0 })
 const computedId = computed(() => props.id || nextId('usa-tooltip'))
 
 const labelClasses = computed(() => [
@@ -93,27 +93,40 @@ const updatePosition = () => {
     ],
   }).then(({ x, y, placement }) => {
     currentPosition.value = placement
-    currentCoordinates.value = {
-      left: `${x}px`,
-      top: `${y}px`,
-    }
+    currentCoordinates.value.left = `${x}px`
+    currentCoordinates.value.top = `${y}px`
   })
 }
 
 watch(isSet, currentlySet => {
-  requestAnimationFrame(() => {
+  nextTick(() => {
     requestAnimationFrame(() => {
       isVisible.value = currentlySet
+      // May be able to be removed once:
+      // https://github.com/uswds/uswds/issues/4458 is fixed.
+      currentCoordinates.value.opacity = currentlySet ? 1 : 0
     })
   })
 })
 
 onMounted(() => {
+  // `isSet` needs to be `true` until floating UI has initialized and has
+  // calculated it's initial position.
+  // May be able to be removed once:
+  //  https://github.com/uswds/uswds/issues/4458 is fixed.
+  isSet.value = true
+
   cleanupFloatingUi = autoUpdate(
     referenceElement.value,
     floatingElement.value,
     updatePosition
   )
+
+  nextTick(() => {
+    requestAnimationFrame(() => {
+      isSet.value = false
+    })
+  })
 })
 
 onBeforeUnmount(() => {
@@ -134,11 +147,12 @@ onBeforeUnmount(() => {
       class="usa-tooltip__trigger"
       tabindex="0"
       :aria-describedby="computedId"
+      @mouseenter="isSet = true"
       @mouseover="isSet = true"
       @mouseout="isSet = false"
       @focus="isSet = true"
       @blur="isSet = false"
-      @keyup.esc="isSet = false"
+      @keydown="isSet = false"
       ><slot></slot
     ></component>
     <span
