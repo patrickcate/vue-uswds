@@ -4,7 +4,6 @@ export default (_currentPage, totalPages, _unbounded, emit) => {
   const currentPage = ref(_currentPage)
   const unbounded = ref(_unbounded)
 
-  // create from items?s
   const pageRange = computed(() => {
     const range = []
 
