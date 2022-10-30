@@ -39,6 +39,8 @@ const monthButtonRefs = ref([])
 const { activate, deactivate } = useFocusTrap(monthDatePickerRef, {
   immediate: true,
   clickOutsideDeactivates: true,
+  initialFocus: '.usa-date-picker__calendar__month--focused',
+  fallbackFocus: '.usa-date-picker__calendar__date-picker',
 })
 
 const activeDateObject = shallowRef(parseIsoDate(props.activeDate))
@@ -135,7 +137,6 @@ watch(
 
 onMounted(() => {
   activate()
-  setButtonFocusByMonth(activeMonth.value)
 })
 
 onBeforeUnmount(() => {

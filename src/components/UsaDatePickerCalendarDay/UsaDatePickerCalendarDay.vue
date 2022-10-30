@@ -23,6 +23,10 @@ import {
 import { useDayPicker } from './useDayPicker.js'
 
 const inputHighlightedDate = inject('inputHighlightedDate')
+const isDateRange = inject('isDateRange', false)
+const dateRangeStart = inject('dateRangeStart', '')
+const dateRangeEnd = inject('dateRangeEnd', '')
+const rangeType = inject('rangeType', '')
 
 const emit = defineEmits([
   'update:open',
@@ -149,6 +153,9 @@ const {
   maxDate: toRef(props, 'maxDate'),
   dayOfWeekLabels: toRef(props, 'dayOfWeekLabels'),
   monthLabels: toRef(props, 'monthLabels'),
+  isDateRange: isDateRange,
+  dateRangeStart: dateRangeStart,
+  dateRangeEnd: dateRangeEnd,
 })
 
 const highlightedDate = ref(activeDate.value)
@@ -206,7 +213,6 @@ const toPreviousMonth = () => {
     : parseIsoDate(props.minDate)
 
   activeDate.value = formatIsoDate(previousMonth)
-  // emit('update:activeDate', formatIsoDate(previousMonth))
 }
 
 const toNextMonth = () => {
@@ -219,7 +225,6 @@ const toNextMonth = () => {
     : parseIsoDate(props.maxDate)
 
   activeDate.value = formatIsoDate(nextMonth)
-  // emit('update:activeDate', formatIsoDate(nextMonth))
 }
 
 const toPreviousYear = () => {
@@ -411,7 +416,6 @@ const stopWatchingHighlightedDate = watch(highlightedDate, () => {
 
 onMounted(() => {
   activate()
-  setButtonFocusByDate(highlightedDate.value)
 })
 
 onBeforeUnmount(() => {
@@ -531,6 +535,52 @@ onBeforeUnmount(() => {
                   highlightedRowIndex === rowIndex &&
                   highlightedButtonIndex === buttonIndex &&
                   item.isCurrentMonth,
+                'usa-date-picker__calendar__date--range-date':
+                  (isDateRange &&
+                    dateRangeEnd &&
+                    rangeType === 'start' &&
+                    item.date === dateRangeEnd) ||
+                  (isDateRange &&
+                    dateRangeStart &&
+                    rangeType === 'end' &&
+                    item.date === dateRangeStart),
+                'usa-date-picker__calendar__date--within-range':
+                  (isDateRange &&
+                    dateRangeStart &&
+                    dateRangeEnd &&
+                    item.isInCurrentRange) ||
+                  (isDateRange &&
+                    dateRangeStart &&
+                    !dateRangeEnd &&
+                    item.date > dateRangeStart &&
+                    item.date < highlightedDate) ||
+                  (isDateRange &&
+                    dateRangeEnd &&
+                    !dateRangeStart &&
+                    item.date < dateRangeEnd &&
+                    item.date > highlightedDate),
+                'usa-date-picker__calendar__date--range-date-start':
+                  (isDateRange &&
+                    dateRangeStart &&
+                    item.date === dateRangeStart) ||
+                  (isDateRange &&
+                    dateRangeEnd &&
+                    item.date !== dateRangeEnd &&
+                    rangeType === 'start' &&
+                    !dateRangeStart &&
+                    highlightedRowIndex === rowIndex &&
+                    highlightedButtonIndex === buttonIndex &&
+                    item.isCurrentMonth),
+                'usa-date-picker__calendar__date--range-date-end':
+                  (isDateRange && dateRangeEnd && item.date === dateRangeEnd) ||
+                  (isDateRange &&
+                    dateRangeStart &&
+                    item.date !== dateRangeStart &&
+                    rangeType === 'end' &&
+                    !dateRangeEnd &&
+                    highlightedRowIndex === rowIndex &&
+                    highlightedButtonIndex === buttonIndex &&
+                    item.isCurrentMonth),
               }"
               :data-day="item.day"
               :data-month="item.month"

@@ -5,6 +5,7 @@ const defaultProps = {
   modelValue: UsaDatePicker.props.modelValue.default,
   minDate: UsaDatePicker.props.minDate.default,
   maxDate: UsaDatePicker.props.maxDate.default,
+  rangeType: UsaDatePicker.props.rangeType.default,
   monthLabels: UsaDatePicker.props.monthLabels.default(),
   dayOfWeekLabels: UsaDatePicker.props.dayOfWeekLabels.default(),
   dayOfWeekAbbreviationLabels:
@@ -43,6 +44,12 @@ export default {
     },
     maxDate: {
       control: { type: 'text' },
+    },
+    rangeType: {
+      options: ['', 'start', 'end'],
+      control: {
+        type: 'select',
+      },
     },
     monthLabels: {
       control: { type: 'object' },
@@ -115,6 +122,7 @@ export default {
     modelValue: defaultProps.modelValue,
     minDate: defaultProps.minDate,
     maxDate: defaultProps.maxDate,
+    rangeType: defaultProps.rangeType,
     monthLabels: defaultProps.monthLabels,
     toggleButtonAriaLabel: defaultProps.toggleButtonAriaLabel,
     dayOfWeekLabels: defaultProps.dayOfWeekLabels,
@@ -152,6 +160,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     v-model="modelValue"
     :min-date="minDate"
     :max-date="maxDate"
+    :range-type="rangeType"
     :month-labels="monthLabels"
     :day-of-week-labels="dayOfWeekLabels"
     :day-of-week-abbreviation-labels="dayOfWeekAbbreviationLabels"
@@ -217,6 +226,13 @@ MaxDateDatePicker.args = {
   maxDate: '2023-12-15',
 }
 MaxDateDatePicker.storyName = 'Max Date'
+
+export const RangeTypeDateDatePicker = DefaultTemplate.bind({})
+RangeTypeDateDatePicker.args = {
+  ...defaultProps,
+  rangeType: 'start',
+}
+RangeTypeDateDatePicker.storyName = 'Range Type'
 
 export const CustomLabelsDateDatePicker = DefaultTemplate.bind({})
 CustomLabelsDateDatePicker.args = {

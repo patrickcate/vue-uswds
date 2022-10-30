@@ -54,6 +54,8 @@ const yearButtonRefs = ref([])
 const { activate, deactivate } = useFocusTrap(yearDatePickerRef, {
   immediate: true,
   clickOutsideDeactivates: true,
+  initialFocus: '.usa-date-picker__calendar__year--focused',
+  fallbackFocus: '.usa-date-picker__calendar__date-picker',
 })
 
 const activeDateObject = shallowRef(parseIsoDate(props.activeDate))
@@ -236,7 +238,6 @@ watch(years, (newVisibleYears, oldVisibleYear) => {
 
 onMounted(() => {
   activate()
-  setButtonFocusByYear(activeYear.value)
 })
 
 onBeforeUnmount(() => {

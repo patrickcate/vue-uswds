@@ -32,6 +32,9 @@ export const useDayPicker = ({
   maxDate,
   dayOfWeekLabels,
   monthLabels,
+  isDateRange,
+  dateRangeStart,
+  dateRangeEnd,
 }) => {
   const minDateObject = shallowRef(parseIsoDate(minDate.value))
   watch(minDate, newMinDate => (minDateObject.value = parseIsoDate(newMinDate)))
@@ -78,6 +81,17 @@ export const useDayPicker = ({
     return (
       !isBefore(date, parseIsoDate(minDate.value)) &&
       !isAfter(date, parseIsoDate(maxDate.value))
+    )
+  }
+
+  const isDateInCurrentRange = date => {
+    return (
+      isDateRange.value &&
+      dateRangeStart.value &&
+      dateRangeEnd.value &&
+      isDateInRange(date) &&
+      !isBefore(subDays(date, 1), parseIsoDate(dateRangeStart.value)) &&
+      !isAfter(addDays(date, 1), parseIsoDate(dateRangeEnd.value))
     )
   }
 
@@ -223,6 +237,7 @@ export const useDayPicker = ({
         isPreviousMonth: isPreviousMonth(monthIndex, activeMonthIndex.value),
         isCurrentMonth: isCurrentMonth(monthIndex, activeMonthIndex.value),
         isNextMonth: isNextMonth(monthIndex, activeMonthIndex.value),
+        isInCurrentRange: isDateInCurrentRange(currentDate),
         previousMonth: findPreviousMonth(currentDate),
         nextMonth: findNextMonth(currentDate),
         previousYear: findPreviousYear(currentDate),

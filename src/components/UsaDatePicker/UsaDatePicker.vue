@@ -5,7 +5,17 @@ export default {
 </script>
 
 <script setup>
-import { ref, computed, useSlots, shallowRef, watch, provide } from 'vue'
+import {
+  ref,
+  computed,
+  useSlots,
+  shallowRef,
+  watch,
+  provide,
+  inject,
+  toRef,
+  onMounted,
+} from 'vue'
 import { onKeyStroke, onClickOutside } from '@vueuse/core'
 import { nextId } from '@/utils/unique-id.js'
 
@@ -37,6 +47,13 @@ import UsaLabel from '@/components/UsaLabel'
 import UsaDatePickerCalendar from '@/components/UsaDatePickerCalendar'
 
 const slots = useSlots()
+
+const isDateRange = inject('isDateRange', false)
+const dateRangeStart = inject('dateRangeStart', '')
+const dateRangeEnd = inject('dateRangeEnd', '')
+const updateDateRangeStart = inject('updateDateRangeStart', null)
+const updateDateRangeEnd = inject('updateDateRangeEnd', null)
+
 const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps({
@@ -51,6 +68,22 @@ const props = defineProps({
   modelValue: {
     type: String,
     default: '',
+  },
+  rangeType: {
+    type: String,
+    default: '',
+    validator(rangeType) {
+      const isValidRangeType =
+        rangeType === '' || rangeType === 'start' || rangeType === 'end'
+
+      if (!isValidRangeType) {
+        console.warn(
+          `'${rangeType}' is an invalid range type. Range must be empty, 'start', or 'end'.`
+        )
+      }
+
+      return isValidRangeType
+    },
   },
   label: {
     type: String,
@@ -173,12 +206,38 @@ const props = defineProps({
   },
 })
 
+const minDate = computed(() => {
+  if (isDateRange.value && props.rangeType === 'end' && dateRangeStart.value) {
+    return dateRangeStart.value
+  }
+
+  return props.minDate
+})
+
+const maxDate = computed(() => {
+  if (isDateRange.value && props.rangeType === 'start' && dateRangeEnd.value) {
+    return dateRangeEnd.value
+  }
+
+  return props.maxDate
+})
+
 const selectedDate = computed({
   get() {
     return props.modelValue
   },
   set(newDate) {
     emit('update:modelValue', newDate)
+
+    if (!isDateRange.value) {
+      return
+    }
+
+    if (props.rangeType === 'start' && updateDateRangeStart) {
+      updateDateRangeStart(newDate)
+    } else if (props.rangeType === 'end' && updateDateRangeEnd) {
+      updateDateRangeEnd(newDate)
+    }
   },
 })
 
@@ -187,24 +246,42 @@ const initialDate = () => {
     selectedDate.value &&
     isDateInRange(
       parseIsoDate(selectedDate.value),
-      parseIsoDate(props.minDate),
-      parseIsoDate(props.maxDate)
+      parseIsoDate(minDate.value),
+      parseIsoDate(maxDate.value)
     )
   ) {
     return selectedDate.value
   }
 
   if (
+    isDateRange.value &&
+    props.rangeType === 'end' &&
+    dateRangeStart.value &&
+    !dateRangeEnd.value
+  ) {
+    return dateRangeStart.value
+  }
+
+  if (
+    isDateRange.value &&
+    props.rangeType === 'start' &&
+    dateRangeEnd.value &&
+    !dateRangeStart.value
+  ) {
+    return dateRangeEnd.value
+  }
+
+  if (
     isDateInRange(
       today(),
-      parseIsoDate(props.minDate),
-      parseIsoDate(props.maxDate)
+      parseIsoDate(minDate.value),
+      parseIsoDate(maxDate.value)
     )
   ) {
     return formatIsoDate(today())
   }
 
-  return props.minDate
+  return minDate.value
 }
 
 const datePickerWrapperRef = ref(null)
@@ -277,6 +354,14 @@ const ariaDescribedby = computed(() => {
 
 const classes = computed(() => [
   { 'usa-date-picker--active': open.value },
+  {
+    'usa-date-range-picker__range-start':
+      isDateRange.value && props.rangeType === 'start',
+  },
+  {
+    'usa-date-range-picker__range-end':
+      isDateRange.value && props.rangeType === 'end',
+  },
   ...(props.customClasses?.component || []),
 ])
 
@@ -299,8 +384,8 @@ watch(textInputValue, newInputValue => {
   }
 
   const dateObject = parseUsaDate(newInputValue)
-  const minimumDate = parseIsoDate(props.minDate)
-  const maximumDate = parseIsoDate(props.maxDate)
+  const minimumDate = parseIsoDate(minDate.value)
+  const maximumDate = parseIsoDate(maxDate.value)
   const inputValueIsoDate = formatIsoDate(dateObject)
 
   if (
@@ -341,6 +426,24 @@ provide(
   'inputHighlightedDate',
   computed(() => highlightedDate.value)
 )
+
+provide('rangeType', toRef(props, 'rangeType'))
+
+onMounted(() => {
+  if (
+    isDateRange.value &&
+    props.rangeType === 'start' &&
+    updateDateRangeStart
+  ) {
+    updateDateRangeStart(selectedDate.value)
+  } else if (
+    isDateRange.value &&
+    props.rangeType === 'end' &&
+    updateDateRangeEnd
+  ) {
+    updateDateRangeEnd(selectedDate.value)
+  }
+})
 </script>
 
 <template>

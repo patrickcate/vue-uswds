@@ -866,4 +866,19 @@ describe('UsaDatePicker', () => {
       'Missing labels, there must be a label for each month of the year. 12 total are needed but only 11 were given.'
     )
   })
+
+  it('warns in console about invalid range type value', () => {
+    cy.stub(window.console, 'warn').as('consoleWarn')
+
+    mount(UsaDatePicker, {
+      props: {
+        rangeType: 'noarange',
+      },
+    })
+
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `'noarange' is an invalid range type. Range must be empty, 'start', or 'end'.`
+    )
+  })
 })
