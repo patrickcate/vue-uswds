@@ -1,3 +1,4 @@
+import { ref } from 'vue'
 import UsaTextInput from './UsaTextInput.vue'
 
 const defaultProps = {
@@ -100,7 +101,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
   components: { UsaTextInput },
   props: Object.keys(argTypes),
   setup() {
-    return { ...args }
+    const modelValue = ref(args.modelValue)
+    return { ...args, modelValue }
   },
   template: `<UsaTextInput
     v-bind="$attrs"
@@ -240,7 +242,7 @@ CustomIdTextInput.storyName = 'Custom ID'
 export const CustomClassesTextInput = DefaultTemplate.bind({})
 CustomClassesTextInput.args = {
   ...defaultProps,
-  label: 'Textarea label',
+  label: 'Text input label',
   customClasses: {
     component: ['test-component-class'],
     label: ['test-label-class'],

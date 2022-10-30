@@ -125,3 +125,23 @@ container:
 The specific container can be one of [Cypress's docker images](https://github.com/cypress-io/cypress-docker-images).
 
 You may also need to temporarily adjust the node matrix versions to use the provided by the Cypress container.
+
+# Tests
+
+Specific Cypress component tests:
+
+```shell
+node_modules/.bin/cypress run-ct  --spec="src/components/UsaDatePickerCalendar/UsaDatePickerCalendar.test.js" --headed --no-exit
+```
+
+All Cypress component tests headless:
+
+```shell
+npm run test:component
+```
+
+Headed Cypress interactive component tests:
+
+```shell
+npm run cypress:open-ct
+```

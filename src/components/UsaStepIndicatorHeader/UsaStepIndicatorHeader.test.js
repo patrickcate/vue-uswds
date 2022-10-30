@@ -84,6 +84,8 @@ describe('UsaStepIndicatorHeader', () => {
   })
 
   it('the displayed current step is always > 0 and < total steps', () => {
+    cy.stub(window.console, 'warn').as('consoleWarn')
+
     mount(UsaStepIndicatorHeader, {
       props: {
         ...defaultProps,
@@ -97,6 +99,12 @@ describe('UsaStepIndicatorHeader', () => {
     cy.get('@wrapper').invoke('setProps', {
       currentStepNumber: 0,
     })
+
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `[Vue warn]: Invalid prop: custom validator check failed for prop "currentStepNumber".`
+    )
+
     cy.get('.usa-step-indicator__current-step').should('contain', 1)
 
     // Step number should still display 4.

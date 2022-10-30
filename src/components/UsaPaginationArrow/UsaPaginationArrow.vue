@@ -81,7 +81,7 @@ const classes = computed(() => [
           role="img"
         >
           <use
-            v-bind="{ 'xlink:href': `${svgSpritePath}#navigate_before}` }"
+            v-bind="{ 'xlink:href': `${svgSpritePath}#navigate_before` }"
           ></use>
         </svg>
       </slot>
@@ -100,7 +100,7 @@ const classes = computed(() => [
           role="img"
         >
           <use
-            v-bind="{ 'xlink:href': `${svgSpritePath}#navigate_next}` }"
+            v-bind="{ 'xlink:href': `${svgSpritePath}#navigate_next` }"
           ></use>
         </svg>
       </slot>

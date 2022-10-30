@@ -1,5 +1,5 @@
-import UsaTimePicker from './UsaTimePicker.vue'
 import { ref } from 'vue'
+import UsaTimePicker from './UsaTimePicker.vue'
 
 const defaultProps = {
   minTime: UsaTimePicker.props.minTime.default,

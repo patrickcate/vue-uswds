@@ -211,6 +211,7 @@ describe('UsaPaginationArrow', () => {
       props: {
         direction: 'previous',
         label: 'Previous',
+        ariaLabel: 'Previous page',
       },
     }).as('wrapper')
 
@@ -235,6 +236,7 @@ describe('UsaPaginationArrow', () => {
         direction: 'previous',
         label: 'Previous',
         to: '/test-page',
+        ariaLabel: 'Previous page',
       },
       global: {
         mocks: {
@@ -252,6 +254,7 @@ describe('UsaPaginationArrow', () => {
         direction: 'previous',
         label: 'Previous',
         to: '/test-page',
+        ariaLabel: 'Previous page',
       },
       global: {
         mocks: {

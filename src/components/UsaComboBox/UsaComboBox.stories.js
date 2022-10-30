@@ -1,5 +1,5 @@
-import UsaComboBox from './UsaComboBox.vue'
 import { ref } from 'vue'
+import UsaComboBox from './UsaComboBox.vue'
 import { testData } from '@/components/UsaComboBox/UsaComboBox.fixtures.js'
 
 const defaultProps = {

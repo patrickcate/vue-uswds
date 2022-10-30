@@ -1,3 +1,4 @@
+import { ref } from 'vue'
 import UsaTextarea from './UsaTextarea.vue'
 
 const defaultProps = {
@@ -82,7 +83,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
   components: { UsaTextarea },
   props: Object.keys(argTypes),
   setup() {
-    return { ...args }
+    const modelValue = ref(args.modelValue)
+    return { ...args, modelValue }
   },
   template: `<UsaTextarea
     v-bind="$attrs"

@@ -92,7 +92,6 @@ const DefaultTemplate = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   setup() {
     const visible = ref(args.visible)
-
     return { ...args, visible }
   },
   template: `<UsaModal

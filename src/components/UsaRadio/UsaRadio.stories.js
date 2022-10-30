@@ -1,3 +1,4 @@
+import { ref } from 'vue'
 import UsaRadio from './UsaRadio.vue'
 
 const defaultProps = {
@@ -56,7 +57,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
   components: { UsaRadio },
   props: Object.keys(argTypes),
   setup() {
-    return { ...args }
+    const modelValue = ref(args.modelValue)
+    return { ...args, modelValue }
   },
   template: `<UsaRadio
     v-bind="$attrs"
