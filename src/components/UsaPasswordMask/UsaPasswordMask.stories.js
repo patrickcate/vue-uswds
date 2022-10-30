@@ -1,5 +1,5 @@
-import UsaPasswordMask from './UsaPasswordMask.vue'
 import { ref } from 'vue'
+import UsaPasswordMask from './UsaPasswordMask.vue'
 import UsaTextInput from '@/components/UsaTextInput'
 
 const defaultProps = {
