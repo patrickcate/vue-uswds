@@ -1,3 +1,4 @@
+import { ref } from 'vue'
 import UsaDropdown from './UsaDropdown.vue'
 
 const testOptions = [
@@ -125,7 +126,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
   components: { UsaDropdown },
   props: Object.keys(argTypes),
   setup() {
-    return { ...args }
+    const modelValue = ref(args.modelValue)
+    return { ...args, modelValue }
   },
   template: `<UsaDropdown
     v-bind="$attrs"

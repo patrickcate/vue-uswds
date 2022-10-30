@@ -1,3 +1,4 @@
+import { ref } from 'vue'
 import UsaRange from './UsaRange.vue'
 
 const defaultProps = {
@@ -73,7 +74,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
   components: { UsaRange },
   props: Object.keys(argTypes),
   setup() {
-    return { ...args }
+    const modelValue = ref(args.modelValue)
+    return { ...args, modelValue }
   },
   template: `<UsaRange
     v-bind="$attrs"
