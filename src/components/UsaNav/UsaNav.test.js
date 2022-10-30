@@ -371,6 +371,7 @@ describe('UsaNav', () => {
     mount(UsaNav, {
       global: {
         provide: {
+          mobileMenuId: 'test-mobile-menu-id',
           closeMobileMenu: cy.stub().as('closeMobileMenu'),
           isMobileMenuOpen: ref(true),
         },
