@@ -22,14 +22,15 @@ describe('UsaCollectionItem', () => {
 
   const testContent = `Today, the Administration announces the winners of the Gears of Government President's Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.`
 
-  const testMetaItems = h(
-    UsaCollectionMeta,
-    { ariaLabel: 'More information' },
-    [
-      h(UsaCollectionMetaItem, { class: 'usa-tag' }, 'Meta 1'),
-      h(UsaCollectionMetaItem, { class: 'usa-tag' }, 'Meta 2'),
-    ]
-  )
+  const testMetaItems = h({
+    components: { UsaCollectionMeta, UsaCollectionMetaItem },
+    template: `
+      <UsaCollectionMeta aria-label="'More information'">
+        <UsaCollectionMetaItem class="usa-tag">Meta 1</UsaCollectionMetaItem>
+        <UsaCollectionMetaItem class="usa-tag">Meta 2</UsaCollectionMetaItem>
+      </UsaCollectionMeta>
+    `,
+  })
 
   it('renders the component', () => {
     mount(UsaCollectionItem, {
