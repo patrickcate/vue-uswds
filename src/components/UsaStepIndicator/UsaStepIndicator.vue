@@ -52,11 +52,13 @@ const totalSteps = computed(() => props.steps.length)
 const currentStepLabel = computed(() => {
   if (props.currentStepNumber > totalSteps.value) {
     return props.steps[totalSteps.value - 1]
-  } else if (props.steps[props.currentStepNumber - 1]) {
-    return props.steps[props.currentStepNumber - 1]
-  } else {
-    return ''
   }
+
+  if (props.steps[props.currentStepNumber - 1]) {
+    return props.steps[props.currentStepNumber - 1]
+  }
+
+  return ''
 })
 
 const classes = computed(() => [

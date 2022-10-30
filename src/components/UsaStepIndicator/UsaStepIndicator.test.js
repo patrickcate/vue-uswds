@@ -113,9 +113,7 @@ describe('UsaStepIndicator', () => {
         steps: testSteps,
         currentStepNumber: 1,
       },
-    })
-      .as('wrapper')
-      .should('exist')
+    }).as('wrapper')
 
     cy.get('li.usa-step-indicator__segment:nth-child(1)').as('step1')
     cy.get('li.usa-step-indicator__segment:nth-child(2)').as('step2')
@@ -300,9 +298,7 @@ describe('UsaStepIndicator', () => {
       props: {
         steps: testSteps,
       },
-    })
-      .as('wrapper')
-      .should('exist')
+    }).as('wrapper')
 
     cy.get('@wrapper').invoke('setProps', { currentStepNumber: 0 })
 
