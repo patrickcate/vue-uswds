@@ -166,7 +166,7 @@ describe('UsaTooltip', () => {
   })
 
   it('warns in console about invalid `position` prop value', () => {
-    cy.spy(window.console, 'warn').as('consoleWarn')
+    cy.stub(window.console, 'warn').as('consoleWarn')
 
     mount(UsaTooltip, {
       props: {
