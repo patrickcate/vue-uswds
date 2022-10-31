@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.10.0](https://github.com/patrickcate/vue-uswds/compare/v0.9.1...v0.10.0) (2022-10-31)
+
+
+### Features
+
+* **UsaDatePicker:** implement `UsaDatePicker` and related components ([090be24](https://github.com/patrickcate/vue-uswds/commit/090be249a6df276bfc0e6dcc7617b02e1d9e1d44))
+* **UsaDateRangePicker:** implement `UsaDateRangePicker` component ([f768677](https://github.com/patrickcate/vue-uswds/commit/f768677399a65ffe527fd7eb9f6733192aedcb45))
+* **UsaFileInput:** implement `UsaFileInput` component ([72bd1b4](https://github.com/patrickcate/vue-uswds/commit/72bd1b456e38f858ab1bd22003bc163edb4d9801)), closes [#26](https://github.com/patrickcate/vue-uswds/issues/26)
+
+
+### Bug Fixes
+
+* **UsaPaginationArrow:** fix svg icon href binding ([0bbfc4a](https://github.com/patrickcate/vue-uswds/commit/0bbfc4ab95f987a8a07cf9e8d9c02f412bc42dec))
+* **UsaTooltip:** fix initial positioning of tooltip ([d840af7](https://github.com/patrickcate/vue-uswds/commit/d840af7921d8cab1b8c1415a2c53cf4518c013f4))
+
 ### [0.9.1](https://github.com/patrickcate/vue-uswds/compare/v0.9.0...v0.9.1) (2022-06-20)
 
 ## [0.9.0](https://github.com/patrickcate/vue-uswds/compare/v0.8.0...v0.9.0) (2022-06-20)
