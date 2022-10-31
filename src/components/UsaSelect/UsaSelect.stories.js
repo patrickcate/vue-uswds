@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import UsaDropdown from './UsaDropdown.vue'
+import UsaSelect from './UsaSelect.vue'
 
 const testOptions = [
   {
@@ -50,19 +50,19 @@ const testOptions = [
 ]
 
 const defaultProps = {
-  options: UsaDropdown.props.options.default(),
-  emptyLabel: UsaDropdown.props.emptyLabel.default,
-  modelValue: UsaDropdown.props.modelValue.default,
-  label: UsaDropdown.props.label.default,
-  required: UsaDropdown.props.required.default,
-  error: UsaDropdown.props.error.default,
-  id: UsaDropdown.props.id.default,
-  customClasses: UsaDropdown.props.customClasses.default(),
+  options: UsaSelect.props.options.default(),
+  emptyLabel: UsaSelect.props.emptyLabel.default,
+  modelValue: UsaSelect.props.modelValue.default,
+  label: UsaSelect.props.label.default,
+  required: UsaSelect.props.required.default,
+  error: UsaSelect.props.error.default,
+  id: UsaSelect.props.id.default,
+  customClasses: UsaSelect.props.customClasses.default(),
 }
 
 export default {
-  component: UsaDropdown,
-  title: 'Components/UsaDropdown',
+  component: UsaSelect,
+  title: 'Components/UsaSelect',
   argTypes: {
     options: {
       control: { type: 'object' },
@@ -123,13 +123,13 @@ export default {
 }
 
 const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaDropdown },
+  components: { UsaSelect },
   props: Object.keys(argTypes),
   setup() {
     const modelValue = ref(args.modelValue)
     return { ...args, modelValue }
   },
-  template: `<UsaDropdown
+  template: `<UsaSelect
     v-bind="$attrs"
     :options="options"
     :empty-label="emptyLabel"
@@ -148,7 +148,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     <template v-if="${!!args.errorMessageSlot}" #error-message>${
     args.errorMessageSlot
   }</template>
-  </UsaDropdown>`,
+  </UsaSelect>`,
 })
 
 export const DefaultDropdown = DefaultTemplate.bind({})

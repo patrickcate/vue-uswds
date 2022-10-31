@@ -1,7 +1,7 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
 import { h } from 'vue'
-import UsaDropdown from './UsaDropdown.vue'
+import UsaSelect from './UsaSelect.vue'
 
 const testOptions = [
   {
@@ -49,9 +49,9 @@ const testOptions = [
   },
 ]
 
-describe('UsaDropdown', () => {
+describe('UsaSelect', () => {
   it('renders the component', () => {
-    mount(UsaDropdown, {
+    mount(UsaSelect, {
       props: {
         label: 'Test label',
       },
@@ -78,7 +78,7 @@ describe('UsaDropdown', () => {
   })
 
   it('displays `label`, `hint`, and `error-message` slot content', () => {
-    mount(UsaDropdown, {
+    mount(UsaSelect, {
       props: {
         label: 'Test label',
         id: 'custom-id',
@@ -127,7 +127,7 @@ describe('UsaDropdown', () => {
   })
 
   it('wraps component in form group if error message is displayed', () => {
-    mount(UsaDropdown, {
+    mount(UsaSelect, {
       props: {
         error: true,
       },
@@ -141,7 +141,7 @@ describe('UsaDropdown', () => {
   })
 
   it('renders all select options from `options` prop', () => {
-    mount(UsaDropdown, {
+    mount(UsaSelect, {
       props: {
         label: 'Test label',
         options: testOptions,
@@ -243,7 +243,7 @@ describe('UsaDropdown', () => {
   })
 
   it('add required attribute if `required` prop is true', () => {
-    mount(UsaDropdown, {
+    mount(UsaSelect, {
       props: {
         label: 'Test label',
         required: true,
@@ -263,7 +263,7 @@ describe('UsaDropdown', () => {
   })
 
   it('renders default slot with bound `options` prop', () => {
-    mount(UsaDropdown, {
+    mount(UsaSelect, {
       props: {
         label: 'Test label',
         options: testOptions,
@@ -288,7 +288,7 @@ describe('UsaDropdown', () => {
   })
 
   it('emits update event when selection changes', () => {
-    mount(UsaDropdown, {
+    mount(UsaSelect, {
       props: {
         label: 'Test label',
         options: testOptions,
@@ -344,7 +344,7 @@ describe('UsaDropdown', () => {
   })
 
   it('uses custom CSS classes', () => {
-    mount(UsaDropdown, {
+    mount(UsaSelect, {
       props: {
         label: 'Test label',
         customClasses: {
