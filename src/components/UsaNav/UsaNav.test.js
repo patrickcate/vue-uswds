@@ -96,6 +96,7 @@ describe('UsaNav', () => {
       .find('> button.usa-nav__close')
       .as('closeButton')
       .should('have.class', 'test-button-class')
+      .and('have.attr', 'type', 'button')
 
     cy.get('@closeButton')
       .find('> img')

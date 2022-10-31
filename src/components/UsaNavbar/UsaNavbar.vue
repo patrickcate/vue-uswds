@@ -38,6 +38,7 @@ provide('toggleMobileMenu', toggleMobileMenu)
   <div class="usa-navbar">
     <slot></slot>
     <button
+      type="button"
       class="usa-menu-btn"
       :class="customClasses?.button"
       :aria-controls="mobileMenuId"

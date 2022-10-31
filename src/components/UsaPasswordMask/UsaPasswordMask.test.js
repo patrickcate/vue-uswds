@@ -11,11 +11,9 @@ describe('UsaPasswordMask', () => {
       },
     })
 
-    cy.get('p.usa-form__note').should('exist')
-
-    cy.get('a.usa-show-password')
+    cy.get('button.usa-show-password')
       .as('toggle')
-      .should('have.attr', 'href', '')
+      .should('have.attr', 'type', 'button')
       .and('have.attr', 'data-test', 'test-attr')
       .and('have.attr', 'aria-controls', '')
       .and('have.attr', 'aria-pressed', 'false')
@@ -32,7 +30,6 @@ describe('UsaPasswordMask', () => {
     cy.get('@toggle').click()
 
     cy.get('@toggle')
-      .should('have.attr', 'href', '')
       .and('have.attr', 'data-test', 'test-attr')
       .and('have.attr', 'aria-controls', '')
       .and('have.attr', 'aria-pressed', 'false')
@@ -47,7 +44,7 @@ describe('UsaPasswordMask', () => {
       },
     })
 
-    cy.get('a.usa-show-password')
+    cy.get('button.usa-show-password')
       .as('toggle')
       .should('have.attr', 'aria-pressed', 'false')
       .and('contain', 'Custom show text')
@@ -90,7 +87,7 @@ describe('UsaPasswordMask', () => {
       .as('input2')
       .should('have.attr', 'type', 'password')
 
-    cy.get('a.usa-show-password')
+    cy.get('button.usa-show-password')
       .as('toggle')
       .should('have.attr', 'aria-controls', 'password confirm-password')
       .and('have.attr', 'aria-pressed', 'false')

@@ -26,6 +26,7 @@ describe('UsaNavDropdownButton', () => {
     cy.get('button.usa-accordion__button')
       .as('button')
       .should('have.class', 'usa-nav__link')
+      .and('have.attr', 'type', 'button')
 
     cy.get('@button')
       .should('have.attr', 'data-test')

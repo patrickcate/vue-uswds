@@ -87,6 +87,7 @@ defineExpose({
             }}</p>
           </div>
           <button
+            type="button"
             class="usa-accordion__button usa-banner__button"
             :class="customClasses?.button"
             :aria-expanded="isOpen"

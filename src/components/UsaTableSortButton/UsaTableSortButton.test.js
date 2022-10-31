@@ -28,7 +28,8 @@ describe('UsaTableSortButton', () => {
 
     cy.get('button.usa-table__header__button')
       .as('button')
-      .should('have.attr', 'tabindex')
+      .should('have.attr', 'type', 'button')
+      .and('have.attr', 'tabindex')
       .and('equal', '0')
 
     cy.get('@button')

@@ -107,6 +107,7 @@ const UsaNavInnerComponent = {
     >
       <UsaNavInnerComponent :wrap="isExtendedHeader">
         <button
+          type="button"
           class="usa-nav__close"
           :class="customClasses?.button"
           @click="closeMobileMenu"

@@ -53,6 +53,7 @@ describe('UsaBanner', () => {
     )
     cy.get('button.usa-banner__button')
       .as('button')
+      .should('have.attr', 'type', 'button')
       .and('have.attr', 'aria-expanded')
       .and('contain', 'false')
 
