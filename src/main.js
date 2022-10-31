@@ -1,4 +1,4 @@
-import '../node_modules/uswds/dist/css/uswds.min.css'
+import '../node_modules/@uswds/uswds/dist/css/uswds.min.css'
 import { createApp } from 'vue'
 import VueUswds from './index.js'
 import App from './App.vue'

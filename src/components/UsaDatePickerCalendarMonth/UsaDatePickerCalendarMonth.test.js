@@ -1,4 +1,4 @@
-import '@module/uswds/dist/css/uswds.min.css'
+import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
 import UsaDatePickerCalendarMonth from './UsaDatePickerCalendarMonth.vue'
 import { MONTH_LABELS, MIN_DATE, MAX_DATE } from '@/utils/constants.js'

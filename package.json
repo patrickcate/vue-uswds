@@ -54,7 +54,7 @@
     "prepublishOnly": "npm run build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "symlink-assets": "ln -s node_modules/uswds/dist assets"
+    "symlink-assets": "ln -s node_modules/@uswds/uswds/dist assets"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.0.4",
@@ -81,6 +81,7 @@
     "@storybook/builder-vite": "^0.1.28",
     "@storybook/theming": "^6.4.0",
     "@storybook/vue3": "^6.4.0",
+    "@uswds/uswds": "^3.2.0",
     "@vitejs/plugin-vue": "^2.1.0",
     "babel-loader": "^8.2.3",
     "commitizen": "^4.2.4",
@@ -98,7 +99,6 @@
     "lint-staged": "^13.0.2",
     "prettier": "^2.4.1",
     "standard-version": "^9.3.2",
-    "uswds": "^2.12.2",
     "vite": "^2.6.4",
     "vite-plugin-istanbul": "^2.5.1",
     "vue": "^3.2.33",
