@@ -63,13 +63,11 @@ const imagePath = inject('vueUswds.imagePath', IMAGE_PATH)
                 viewBox="0 0 52 64"
                 class="usa-banner__lock-image"
                 role="img"
-                aria-labelledby="banner-lock-title-default banner-lock-description-default"
+                aria-labelledby="banner-lock-description"
                 focusable="false"
               >
-                <title id="banner-lock-title-default">Lock</title>
-                <desc id="banner-lock-description-default">
-                  A locked padlock
-                </desc>
+                <title id="banner-lock-title">Lock</title>
+                <desc id="banner-lock-description">Locked padlock icon</desc>
                 <path
                   fill="#000000"
                   fill-rule="evenodd"

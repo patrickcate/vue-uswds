@@ -25,7 +25,7 @@ const props = defineProps({
   },
   ariaLabel: {
     type: String,
-    default: 'Official government website',
+    default: 'Official website of the United States government',
   },
   headerText: {
     type: String,
@@ -72,19 +72,19 @@ defineExpose({
           <div :class="`${gridNamespace}col-auto`">
             <slot name="flag">
               <img
+                aria-hidden="true"
                 class="usa-banner__header-flag"
                 :src="`${imagePath}/us_flag_small.png`"
-                alt="U.S. flag"
+                alt=""
               />
             </slot>
           </div>
           <div
+            aria-hidden="true"
             :class="`${gridNamespace}col-fill tablet${prefixSeparator}${gridNamespace}col-auto`"
           >
             <p class="usa-banner__header-text">{{ headerText }}</p>
-            <p class="usa-banner__header-action" aria-hidden="true">{{
-              actionText
-            }}</p>
+            <p class="usa-banner__header-action">{{ actionText }}</p>
           </div>
           <button
             type="button"

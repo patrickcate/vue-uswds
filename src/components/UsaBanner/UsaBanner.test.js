@@ -13,7 +13,7 @@ describe('UsaBanner', () => {
 
     cy.get('section.usa-banner')
       .should('have.attr', 'aria-label')
-      .and('contain', 'Official government website')
+      .and('contain', 'Official website of the United States government')
 
     cy.get('div.usa-accordion')
       .should('have.attr', 'class')
@@ -28,11 +28,9 @@ describe('UsaBanner', () => {
       .and('equal', 'usa-banner__inner')
 
     cy.get('img.usa-banner__header-flag')
-      .should('have.attr', 'alt')
-      .and('contain', 'U.S. flag')
-    cy.get('img.usa-banner__header-flag')
-      .should('have.attr', 'src')
-      .and('contain', '/assets/img/us_flag_small.png')
+      .should('have.attr', 'alt', '')
+      .and('have.attr', 'src', '/assets/img/us_flag_small.png')
+      .and('have.attr', 'aria-hidden', 'true')
 
     cy.get('.usa-banner__header-text').should(
       'contain',
@@ -42,11 +40,8 @@ describe('UsaBanner', () => {
     // Check that the default grid classes exist.
     cy.get('.grid-col-auto').should('exist')
     cy.get('.grid-col-fill').should('exist')
-    cy.get(`.tablet\\:grid-col-auto`).should('exist')
+    cy.get(`.tablet\\:grid-col-auto`).and('have.attr', 'aria-hidden', 'true')
 
-    cy.get('p.usa-banner__header-action')
-      .should('have.attr', 'aria-hidden')
-      .and('contain', 'true')
     cy.get('p.usa-banner__header-action').should(
       'contain',
       "Here's how you know"
