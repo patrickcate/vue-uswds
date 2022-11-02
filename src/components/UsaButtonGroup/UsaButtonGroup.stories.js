@@ -19,13 +19,13 @@ export default {
   args: {
     segmented: defaultProps.segmented,
     defaultSlot: `<UsaButtonGroupItem>
-      <button class="usa-button">Test button 1</button>
+      <button type="button" class="usa-button">Test button 1</button>
     </UsaButtonGroupItem>
     <UsaButtonGroupItem>
-      <button class="usa-button usa-button--outline">Test button 2</button>
+      <button type="button" class="usa-button usa-button--outline">Test button 2</button>
     </UsaButtonGroupItem>
     <UsaButtonGroupItem>
-      <button class="usa-button usa-button--outline">Test button 3</button>
+      <button type="button" class="usa-button usa-button--outline">Test button 3</button>
     </UsaButtonGroupItem>`,
   },
 }

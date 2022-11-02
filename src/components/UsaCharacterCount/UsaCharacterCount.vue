@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref, provide } from 'vue'
+import { useDebounceFn } from '@vueuse/core'
 import { nextId } from '@/utils/unique-id.js'
 
 const props = defineProps({
@@ -43,9 +44,11 @@ const messageClasses = computed(() => [
   { 'usa-character-count__message--invalid': countStatus.value === 'over' },
 ])
 
-const updateCharacterCount = inputValue => {
-  charactersRemaining.value = props.maxlength - `${inputValue}`.length
-}
+const updateCharacterCount = useDebounceFn(
+  inputValue =>
+    (charactersRemaining.value = props.maxlength - `${inputValue}`.length),
+  1000
+)
 
 provide('updateCharacterCount', updateCharacterCount)
 provide(

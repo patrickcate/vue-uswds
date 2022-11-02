@@ -1,4 +1,4 @@
-import '@module/uswds/dist/css/uswds.min.css'
+import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaNavbar from './UsaNavbar.vue'
@@ -8,7 +8,10 @@ describe('UsaNavbar', () => {
     mount(UsaNavbar, {}).as('wrapper')
 
     cy.get('div.usa-navbar').should('exist')
-    cy.get('button.usa-menu-btn').as('button').should('contain', 'Menu')
+    cy.get('button.usa-menu-btn')
+      .as('button')
+      .should('have.attr', 'type', 'button')
+      .and('contain', 'Menu')
 
     cy.get('@wrapper')
       .vue()

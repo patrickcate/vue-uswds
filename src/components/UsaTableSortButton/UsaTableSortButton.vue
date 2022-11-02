@@ -35,6 +35,7 @@ const title = computed(
 
 <template>
   <button
+    type="button"
     tabindex="0"
     class="usa-table__header__button"
     :title="title"

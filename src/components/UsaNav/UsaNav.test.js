@@ -1,4 +1,4 @@
-import '@module/uswds/dist/css/uswds.min.css'
+import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
 import { h, ref } from 'vue'
 import UsaNav from './UsaNav.vue'
@@ -96,6 +96,7 @@ describe('UsaNav', () => {
       .find('> button.usa-nav__close')
       .as('closeButton')
       .should('have.class', 'test-button-class')
+      .and('have.attr', 'type', 'button')
 
     cy.get('@closeButton')
       .find('> img')

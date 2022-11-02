@@ -55,15 +55,13 @@ provide('unregisterInput', unregisterInput)
 
 <template>
   <slot :type="currentInputType"></slot>
-  <p class="usa-form__note">
-    <a
-      v-bind="$attrs"
-      href=""
-      class="usa-show-password"
-      :aria-controls="ariaControls"
-      :aria-pressed="isVisible"
-      @click.prevent="isVisible = !isVisible"
-      >{{ currentLabel }}</a
-    >
-  </p>
+  <button
+    v-bind="$attrs"
+    type="button"
+    class="usa-show-password usa-button usa-button--unstyled"
+    :aria-controls="ariaControls"
+    :aria-pressed="isVisible"
+    @click="isVisible = !isVisible"
+    >{{ currentLabel }}</button
+  >
 </template>
