@@ -30,6 +30,8 @@ module.exports = {
         'npm',
         'storybook',
         'vite',
+        'release',
+        'no-release',
       ],
     ],
   },
