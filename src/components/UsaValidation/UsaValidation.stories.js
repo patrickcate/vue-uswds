@@ -4,24 +4,27 @@ const testItems = [
   {
     id: 'item1',
     text: 'Use at least one uppercase character',
-    checked: false,
+    validator: /[A-Z]/,
   },
   {
     id: 'item2',
     text: 'Use at least one number',
-    checked: true,
+    validator: '\\d',
   },
   {
-    id: 'item3',
     text: 'Use at least one symbol',
-    checked: false,
+    validator: value => value.length > 6,
   },
 ]
 
 const defaultProps = {
-  items: UsaValidation.props.items.default(),
+  validations: UsaValidation.props.validations.default(),
+  validationValue: UsaValidation.props.validationValue.default,
   heading: UsaValidation.props.heading.default,
   headingTag: UsaValidation.props.headingTag.default,
+  validLabel: UsaValidation.props.validLabel.default,
+  invalidLabel: UsaValidation.props.invalidLabel.default,
+  id: UsaValidation.props.id.default,
   customClasses: UsaValidation.props.customClasses.default(),
 }
 
@@ -29,8 +32,11 @@ export default {
   component: UsaValidation,
   title: 'Components/UsaValidation',
   argTypes: {
-    items: {
+    validations: {
       control: { type: 'object' },
+    },
+    validationValue: {
+      control: { type: 'text' },
     },
     heading: {
       control: { type: 'text' },
@@ -39,13 +45,28 @@ export default {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
       control: { type: 'select' },
     },
+    validLabel: {
+      control: { type: 'text' },
+    },
+    invalidLabel: {
+      control: { type: 'text' },
+    },
+    id: {
+      control: { type: 'text' },
+    },
+    customClasses: {
+      control: { type: 'object' },
+    },
   },
   args: {
-    items: defaultProps.items,
+    validations: defaultProps.validations,
+    validationValue: defaultProps.validationValue,
     heading: defaultProps.heading,
     headingTag: defaultProps.headingTag,
+    validLabel: defaultProps.validLabel,
+    invalidLabel: defaultProps.invalidLabel,
+    id: defaultProps.id,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
   },
 }
 
@@ -56,18 +77,22 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaValidation
-    :items="items"
+    :validations="validations"
+    :validationValue="validationValue"
     :heading="heading"
     :heading-tag="headingTag"
+    :validLabel="validLabel"
+    :invalidLabel="invalidLabel"
+    :id="id"
     :custom-classes="customClasses"
-    >${args.defaultSlot}</UsaValidation>`,
+    ></UsaValidation>`,
 })
 
 export const DefaultValidation = DefaultTemplate.bind({})
 DefaultValidation.args = {
   ...defaultProps,
   heading: 'Code requirements',
-  items: testItems,
+  validations: testItems,
 }
 DefaultValidation.storyName = 'Default'
 
@@ -76,18 +101,38 @@ HeadingTagValidation.args = {
   ...defaultProps,
   heading: 'Custom Heading Tag',
   headingTag: 'h4',
-  items: testItems,
+  validations: testItems,
 }
 HeadingTagValidation.storyName = 'Custom Heading Tag'
+
+export const CustomIdValidation = DefaultTemplate.bind({})
+CustomIdValidation.args = {
+  ...defaultProps,
+  heading: 'Custom Heading Tag',
+  id: 'test-id',
+  validations: testItems,
+}
+CustomIdValidation.storyName = 'Custom ID'
+
+export const CustomValidityLabelsValidation = DefaultTemplate.bind({})
+CustomValidityLabelsValidation.args = {
+  ...defaultProps,
+  heading: 'Custom Heading Tag',
+  validLabel: 'is valid',
+  invalidLabel: 'is invalid',
+  validations: testItems,
+}
+CustomValidityLabelsValidation.storyName = 'Custom Validity Labels'
 
 export const CustomClassesValidation = DefaultTemplate.bind({})
 CustomClassesValidation.args = {
   ...defaultProps,
   heading: 'Custom CSS classes',
-  items: testItems,
+  validations: testItems,
   customClasses: {
     body: ['test-body-class'],
     heading: ['test-heading-class'],
+    checklist: ['test-checklist-class'],
   },
 }
 CustomClassesValidation.storyName = 'Custom Classes'

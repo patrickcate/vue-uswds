@@ -5,6 +5,10 @@ import UsaChecklistItem from './UsaChecklistItem.vue'
 describe('UsaChecklistItem', () => {
   it('renders the component', () => {
     mount(UsaChecklistItem, {
+      props: {
+        checked: false,
+        ariaLabel: 'invalid',
+      },
       slots: {
         default: () => 'Test item 1',
       },
@@ -12,13 +16,13 @@ describe('UsaChecklistItem', () => {
 
     cy.get('li.usa-checklist__item')
       .as('item1')
-      .should('have.attr', 'aria-checked', 'false')
+      .should('have.attr', 'aria-label', 'invalid')
       .and('contain', 'Test item 1')
 
-    cy.get('@wrapper').invoke('setProps', { checked: true })
+    cy.get('@wrapper').invoke('setProps', { checked: true, ariaLabel: 'valid' })
 
     cy.get('@item1')
-      .should('have.attr', 'aria-checked', 'true')
+      .should('have.attr', 'aria-label', 'valid')
       .and('have.class', 'usa-checklist__item--checked')
   })
 })
