@@ -6,6 +6,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  ariaLabel: {
+    type: String,
+    default: '',
+  },
 })
 
 const classes = computed(() => [
@@ -14,7 +18,11 @@ const classes = computed(() => [
 </script>
 
 <template>
-  <li class="usa-checklist__item" :class="classes" :aria-checked="checked"
+  <li
+    class="usa-checklist__item"
+    :aria-label="ariaLabel"
+    :class="classes"
+    tabindex="0"
     ><slot></slot
   ></li>
 </template>

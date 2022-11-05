@@ -26,15 +26,18 @@ describe('UsaChecklist', () => {
         id: 'item1',
         checked: false,
         text: 'Test item 1',
+        ariaLabel: 'Test item 1: invalid',
       },
       {
         id: 'item2',
         checked: true,
         text: 'Test item 2',
+        ariaLabel: 'Test item 2: valid',
       },
       {
         checked: false,
         text: 'Test item 3',
+        ariaLabel: 'Test item 3: invalid',
       },
     ])
 
@@ -44,27 +47,27 @@ describe('UsaChecklist', () => {
       },
     })
 
-    cy.get('.usa-checklist li').should('have.length', 3)
+    cy.get('.usa-checklist li')
+      .should('have.length', 3)
+      .and('have.attr', 'tabindex', '0')
 
     cy.get('li:nth-of-type(1)')
-      .should('have.attr', 'aria-checked', 'false')
+      .should('have.attr', 'aria-label', 'Test item 1: invalid')
       .and('contain', 'Test item 1')
 
     cy.get('li:nth-of-type(2)')
       .should('have.class', 'usa-checklist__item--checked')
-      .and('have.attr', 'aria-checked', 'true')
+      .and('have.attr', 'aria-label', 'Test item 2: valid')
       .and('contain', 'Test item 2')
 
     cy.get('li:nth-of-type(3)')
       .as('item3')
-      .should('have.attr', 'aria-checked', 'false')
+      .should('have.attr', 'aria-label', 'Test item 3: invalid')
       .and('contain', 'Test item 3')
       .then(() => {
         testItems.value[2].checked = true
 
-        cy.get('@item3')
-          .should('have.attr', 'aria-checked', 'true')
-          .and('have.class', 'usa-checklist__item--checked')
+        cy.get('@item3').should('have.class', 'usa-checklist__item--checked')
       })
   })
 })
