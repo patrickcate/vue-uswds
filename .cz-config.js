@@ -5,7 +5,6 @@ const hiddenFilesRegexPattern = /(^|\/)\.[^/.]/g
 const getDirectories = source =>
   readdirSync(source, { withFileTypes: true })
     .filter(dirent => {
-      console.log(dirent)
       return dirent.isDirectory() && !hiddenFilesRegexPattern.test(dirent.name)
     })
     .map(dirent => dirent.name)
