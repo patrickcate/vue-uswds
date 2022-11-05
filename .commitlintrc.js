@@ -1,14 +1,21 @@
 const { readdirSync } = require('fs')
 const { join } = require('path')
+const hiddenFilesRegexPattern = /(^|\/)\.[^/.]/g
 
 const getDirectories = source =>
   readdirSync(source, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
+    .filter(
+      dirent =>
+        dirent.isDirectory() && !hiddenFilesRegexPattern.test(dirent.name)
+    )
     .map(dirent => dirent.name)
 
 const getFilenames = source =>
   readdirSync(source, { withFileTypes: true })
-    .filter(dirent => !dirent.isDirectory())
+    .filter(
+      dirent =>
+        !dirent.isDirectory() && !hiddenFilesRegexPattern.test(dirent.name)
+    )
     .map(dirent => dirent.name.replace('.js', ''))
 
 const componentNames = getDirectories(join(__dirname, 'src', 'components'))
@@ -30,6 +37,8 @@ module.exports = {
         'npm',
         'storybook',
         'vite',
+        'release',
+        'no-release',
       ],
     ],
   },

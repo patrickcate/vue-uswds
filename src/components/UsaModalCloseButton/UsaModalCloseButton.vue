@@ -13,7 +13,11 @@ defineProps({
 </script>
 
 <template>
-  <button class="usa-button usa-modal__close" :aria-label="ariaLabel">
+  <button
+    type="button"
+    class="usa-button usa-modal__close"
+    :aria-label="ariaLabel"
+  >
     <slot :svg-sprite-path="svgSpritePath">
       <svg
         v-if="svgSpritePath"

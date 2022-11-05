@@ -11,13 +11,13 @@ export default {
     checked: {
       control: { type: 'boolean' },
     },
-    defaultSlot: {
+    ariaLabel: {
       control: { type: 'text' },
     },
   },
   args: {
     checked: defaultProps.checked,
-    defaultSlot: '',
+    ariaLabel: '',
   },
   decorators: [
     () => ({
@@ -33,7 +33,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaChecklistItem :checked="checked">
+  template: `<UsaChecklistItem :checked="checked" :aria-label="ariaLabel">
     <template v-if="${!!args.defaultSlot}" #default>${
     args.defaultSlot
   }</template>
@@ -54,3 +54,11 @@ CheckedChecklistItem.args = {
   checked: true,
 }
 CheckedChecklistItem.storyName = 'Checked'
+
+export const CustomAriaLabelChecklistItem = DefaultTemplate.bind({})
+CustomAriaLabelChecklistItem.args = {
+  ...defaultProps,
+  defaultSlot: 'Test item',
+  ariaLabel: 'is invalid',
+}
+CustomAriaLabelChecklistItem.storyName = 'Custom Aria Label'

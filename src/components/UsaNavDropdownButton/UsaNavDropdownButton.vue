@@ -28,6 +28,7 @@ const isOpen = toRef(dropdownItems, dropdownId.value)
   >
     <button
       v-bind="$attrs"
+      type="button"
       class="usa-accordion__button usa-nav__link"
       :class="[{ 'usa-current': isActive || isExactActive }]"
       :aria-expanded="isOpen"
@@ -40,6 +41,7 @@ const isOpen = toRef(dropdownItems, dropdownId.value)
   <button
     v-else
     v-bind="$attrs"
+    type="button"
     class="usa-accordion__button usa-nav__link"
     :aria-expanded="isOpen"
     :aria-controls="dropdownId"

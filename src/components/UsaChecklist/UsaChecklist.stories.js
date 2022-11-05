@@ -3,17 +3,20 @@ import UsaChecklist from './UsaChecklist.vue'
 const testItems = [
   {
     id: 'item1',
+    text: 'Use at least one uppercase character',
     checked: false,
-    text: 'Test item 1',
+    ariaLabel: 'is valid',
   },
   {
     id: 'item2',
+    text: 'Use at least one number',
     checked: true,
-    text: 'Test item 2',
+    ariaLabel: 'is valid',
   },
   {
+    text: 'Use at least one symbol',
     checked: false,
-    text: 'Test item 3',
+    ariaLabel: 'is invalid',
   },
 ]
 

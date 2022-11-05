@@ -90,7 +90,7 @@ export default {
     defaultSlot:
       '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p>',
     footerSlot:
-      '<div><button class="usa-button">Visit Florida Keys</button></div>',
+      '<div><button type="button" class="usa-button">Visit Florida Keys</button></div>',
   },
 }
 

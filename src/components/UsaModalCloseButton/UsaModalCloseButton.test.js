@@ -1,4 +1,4 @@
-import '@module/uswds/dist/css/uswds.min.css'
+import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
 import UsaModalCloseButton from './UsaModalCloseButton.vue'
 
@@ -17,6 +17,7 @@ describe('UsaModalCloseButton', () => {
 
     cy.get('button.usa-modal__close')
       .should('have.class', 'usa-button')
+      .and('have.attr', 'type', 'button')
       .and('have.attr', 'aria-label')
       .and('contain', 'Close Modal')
 

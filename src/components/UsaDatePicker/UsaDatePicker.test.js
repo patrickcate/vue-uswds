@@ -1,4 +1,4 @@
-import '@module/uswds/dist/css/uswds.min.css'
+import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
 import { today, formatIsoDate } from '@/utils/dates.js'
 import UsaDatePicker from './UsaDatePicker.vue'

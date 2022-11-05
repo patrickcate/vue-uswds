@@ -1,4 +1,4 @@
-import '@module/uswds/dist/css/uswds.min.css'
+import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
 import { ref, reactive } from 'vue'
 import UsaNavDropdownButton from './UsaNavDropdownButton.vue'
@@ -26,6 +26,7 @@ describe('UsaNavDropdownButton', () => {
     cy.get('button.usa-accordion__button')
       .as('button')
       .should('have.class', 'usa-nav__link')
+      .and('have.attr', 'type', 'button')
 
     cy.get('@button')
       .should('have.attr', 'data-test')

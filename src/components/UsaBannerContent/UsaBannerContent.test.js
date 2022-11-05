@@ -1,4 +1,4 @@
-import '@module/uswds/dist/css/uswds.min.css'
+import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
 import UsaBannerContent from './UsaBannerContent.vue'
 
@@ -13,26 +13,23 @@ describe('UsaBannerContent', () => {
     cy.get('img.usa-banner__icon[src$="icon-dot-gov.svg"]')
       .as('tldIcon')
       .should('have.class', 'usa-media-block__img')
-      .and('have.attr', 'role')
-      .and('contain', 'img')
-
-    cy.get('@tldIcon').should('have.attr', 'alt').and('be.empty')
-    cy.get('@tldIcon').should('have.attr', 'aria-hidden').and('contain', 'true')
+      .and('have.attr', 'role', 'img')
+      .and('have.attr', 'alt', '')
+      .and('have.attr', 'aria-hidden', 'true')
 
     cy.get('img.usa-banner__icon[src$="icon-https.svg"]')
       .as('httpsIcon')
       .should('have.class', 'usa-media-block__img')
-      .and('have.attr', 'role')
-      .and('contain', 'img')
+      .and('have.attr', 'role', 'img')
+      .and('have.attr', 'alt', '')
+      .and('have.attr', 'aria-hidden', 'true')
 
-    cy.get('@httpsIcon').should('have.attr', 'alt').and('be.empty')
-    cy.get('@httpsIcon')
-      .should('have.attr', 'aria-hidden')
-      .and('contain', 'true')
+    cy.get('span.icon-lock').should('exist')
 
     cy.get('svg.usa-banner__lock-image')
-      .should('have.attr', 'focusable')
-      .and('contain', 'false')
+      .should('have.attr', 'focusable', 'false')
+      .and('have.attr', 'role', 'img')
+      .and('have.attr', 'aria-labelledby', 'banner-lock-description')
   })
 
   it('uses custom slot content', () => {
