@@ -1,3 +1,21 @@
+# [1.0.0](https://github.com/patrickcate/vue-uswds/compare/v0.10.0...v1.0.0) (2022-11-06)
+
+
+### Features
+
+* add `button` type to all non-form component buttons ([b2c92ad](https://github.com/patrickcate/vue-uswds/commit/b2c92ada9c177f22582461e29b90181f8d090e3a))
+* **npm:** replace uswds v2 package with v3 ([0e7893e](https://github.com/patrickcate/vue-uswds/commit/0e7893e61edeebdc993bf01f7bb67c786cfed401))
+* **UsaBanner:** update banner component text and simplify aria markup ([f33bc00](https://github.com/patrickcate/vue-uswds/commit/f33bc00b6af77992edb74eea34722afb41024af8))
+* **UsaCharacterCount:** debounce status count updating to prevent aria-live updating too fast ([c9afe91](https://github.com/patrickcate/vue-uswds/commit/c9afe913a648c0eccc11a3664de53c5f63db0d6b))
+* **UsaSelect:** rename `UsaDropdown` component to `UsaSelect` ([c486b92](https://github.com/patrickcate/vue-uswds/commit/c486b9258d5276a4875e95b54a6f2a2e3b70de1d))
+* **UsaValidation:** allow actual validations to be run with component ([104de29](https://github.com/patrickcate/vue-uswds/commit/104de2948ea57114373e9e4e5051936b8d005ea9)), closes [#439](https://github.com/patrickcate/vue-uswds/issues/439)
+
+
+### BREAKING CHANGES
+
+* **UsaSelect:** The `UsaDropdown` component has been renamed to `UsaSelect`. You will need to update the component
+name anywhere it is used.
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
