@@ -84,7 +84,4 @@ module.exports = {
   ],
   allowCustomScopes: false,
   allowBreakingChanges: ['feat', 'fix'],
-
-  // limit subject length
-  subjectLimit: 100,
 }
