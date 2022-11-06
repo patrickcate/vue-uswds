@@ -1,24 +1,4 @@
-const { readdirSync } = require('fs')
-const { join } = require('path')
-const hiddenFilesRegexPattern = /(^|\/)\.[^/.]/g
-
-const getDirectories = source =>
-  readdirSync(source, { withFileTypes: true })
-    .filter(dirent => {
-      return dirent.isDirectory() && !hiddenFilesRegexPattern.test(dirent.name)
-    })
-    .map(dirent => dirent.name)
-
-const getFilenames = source =>
-  readdirSync(source, { withFileTypes: true })
-    .filter(
-      dirent =>
-        !dirent.isDirectory() && !hiddenFilesRegexPattern.test(dirent.name)
-    )
-    .map(dirent => dirent.name.replace('.js', ''))
-
-const componentNames = getDirectories(join(__dirname, 'src', 'components'))
-const composableNames = getFilenames(join(__dirname, 'src', 'composables'))
+const { scopes } = require('./scripts/git-commit-scope-names.js')
 
 module.exports = {
   types: [
@@ -69,19 +49,8 @@ module.exports = {
       'List any ISSUES CLOSED by this change (optional). E.g.: #31, #34:\n',
     confirmCommit: 'Are you sure you want to proceed with the commit above?',
   },
-  scopes: [
-    '',
-    ...componentNames,
-    ...composableNames,
-    'cypress',
-    'github-actions',
-    'hygen',
-    'npm',
-    'storybook',
-    'vite',
-    'release',
-    'no-release',
-  ],
+  // Scope names set in ./scripts/git-commit-scope-names.js file.
+  scopes: [...scopes],
   allowCustomScopes: false,
   allowBreakingChanges: ['feat', 'fix'],
 }
