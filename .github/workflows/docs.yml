@@ -2,9 +2,13 @@ name: Docs
 
 on:
   workflow_dispatch:
-  push:
-    tags:
-      - v*
+  workflow_run:
+    workflows:
+      - Release
+    types:
+      - completed
+    branches:
+      - main
 
 jobs:
   docs:
