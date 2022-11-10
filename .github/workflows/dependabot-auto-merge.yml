@@ -10,7 +10,7 @@ on:
 jobs:
   # Merge dependabot PR's after tests pass.
   automerge:
-    if: ${{ github.actor == 'dependabot[bot]' && github.event.workflow_run.conclusion == 'success' && github.event_name == 'pull_request' }}
+    if: ${{ github.actor == 'dependabot[bot]' && github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Automatically merge dependabot updates
