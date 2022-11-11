@@ -1,6 +1,7 @@
 <script setup>
 import { computed, inject } from 'vue'
 import { GRID_NAMESPACE } from '@/utils/constants.js'
+
 const gridNamespace = inject('vueUswds.gridNamespace', GRID_NAMESPACE)
 
 const props = defineProps({

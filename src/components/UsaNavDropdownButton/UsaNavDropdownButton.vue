@@ -12,10 +12,10 @@ const routerComponentName = inject(
   'vueUswds.routerComponentName',
   ROUTER_COMPONENT_NAME
 )
-
 const dropdownId = inject('dropdownId')
 const toggleDropdown = inject('toggleDropdown')
 const dropdownItems = inject('dropdownItems')
+
 const isOpen = toRef(dropdownItems, dropdownId.value)
 </script>
 

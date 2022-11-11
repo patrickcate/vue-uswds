@@ -2,6 +2,8 @@
 import { inject, computed } from 'vue'
 import BaseHeading from '@/components/BaseHeading'
 
+const listHeadingTag = inject('listHeadingTag')
+
 const props = defineProps({
   heading: {
     type: String,
@@ -22,7 +24,7 @@ const props = defineProps({
 })
 
 const computedHeadingTag = computed(
-  () => inject('listHeadingTag').value || props.headingTag
+  () => listHeadingTag.value || props.headingTag
 )
 </script>
 

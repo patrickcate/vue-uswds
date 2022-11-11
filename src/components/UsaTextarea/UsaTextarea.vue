@@ -11,6 +11,11 @@ import UsaFormGroup from '@/components/UsaFormGroup'
 import UsaLabel from '@/components/UsaLabel'
 
 const slots = useSlots()
+
+const updateCharacterCount = inject('updateCharacterCount', null)
+const characterCountMaxlength = inject('characterCountMaxlength', null)
+const characterCountMessageId = inject('characterCountMessageId', null)
+
 const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps({
@@ -68,10 +73,6 @@ const props = defineProps({
     },
   },
 })
-
-const updateCharacterCount = inject('updateCharacterCount', null)
-const characterCountMaxlength = inject('characterCountMaxlength', null)
-const characterCountMessageId = inject('characterCountMessageId', null)
 
 const computedId = computed(() => props.id || nextId('usa-textarea'))
 const computedErrorMessageId = computed(

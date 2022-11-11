@@ -23,13 +23,14 @@ const inputElement = ref(null)
 const { focused } = useFocus(inputElement)
 const slots = useSlots()
 const attrs = useAttrs()
-const emit = defineEmits(['update:modelValue'])
 
 const updateCharacterCount = inject('updateCharacterCount', null)
 const characterCountMaxlength = inject('characterCountMaxlength', null)
 const characterCountMessageId = inject('characterCountMessageId', null)
 const registerInput = inject('registerInput', null)
 const unregisterInput = inject('unregisterInput', null)
+
+const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps({
   type: {
