@@ -27,36 +27,88 @@ describe('UsaTableHeaderCell', () => {
   })
 
   it('clicking header button changes sort direction', () => {
-    const wrapper = mount(UsaTableHeaderCell, {
-      props: {
-        id: 'test-header-id',
-        label: 'Test header',
-        sortable: true,
+    const wrapperComponent = {
+      components: { UsaTableHeaderCell },
+      data() {
+        return {
+          id: 'test-header-id',
+          label: 'Test header',
+          sortable: true,
+          currentSortedHeader: '',
+          currentSortDirection: '',
+        }
       },
-      global: {
-        mocks: {
-          toggleTableSort: async headerId => {
-            await wrapper.vue().then(vm => {
-              const { currentSortDirection } = vm.componentVM
-              const reverseDirections = {
-                ascending: 'descending',
-                descending: 'ascending',
-              }
+      methods: {
+        updateCurrentSortedHeader: function (headerId) {
+          console.log(headerId)
+          this.currentSortedHeader = headerId
+        },
+        toggleSortDirection: function () {
+          if (
+            !this.currentSortDirection ||
+            this.currentSortDirection === 'unsorted'
+          ) {
+            this.currentSortDirection = 'ascending'
+          } else {
+            this.currentSortDirection =
+              this.currentSortDirection === 'ascending'
+                ? 'descending'
+                : 'ascending'
+          }
+        },
+      },
+      provide() {
+        return {
+          updateCurrentSortedHeader: this.updateCurrentSortedHeader,
+          toggleSortDirection: this.toggleSortDirection,
+        }
+      },
+      template: `<table>
+        <thead>
+          <tr>
+            <UsaTableHeaderCell
+              :id="id"
+              :label="label"
+              :sortable="sortable"
+              :currentSortedHeader="currentSortedHeader"
+              :currentSortDirection="currentSortDirection"
+            ></UsaTableHeaderCell>
+          </tr>
+        </thead>
+      </table>`,
+    }
 
-              wrapper.invoke('setProps', {
-                currentSortedHeader: headerId,
-                currentSortDirection:
-                  reverseDirections[currentSortDirection] || 'ascending',
-              })
-            })
-          },
-        },
-        provide: {
-          updateCurrentSortedHeader: cy.stub().as('updateCurrentSortedHeader'),
-          toggleSortDirection: cy.stub().as('toggleSortDirection'),
-        },
-      },
-    }).as('wrapper')
+    // const wrapper = mount(UsaTableHeaderCell, {
+    //   props: {
+    //     id: 'test-header-id',
+    //     label: 'Test header',
+    //     sortable: true,
+    //   },
+    //   global: {
+    //     mocks: {
+    //       // toggleTableSort: async headerId => {
+    //       //   console.log(headerId)
+    //       //   await wrapper.vue().then(vm => {
+    //       //     console.log(vm)
+    //       //     const { currentSortDirection } = vm.componentVM
+    //       //     const reverseDirections = {
+    //       //       ascending: 'descending',
+    //       //       descending: 'ascending',
+    //       //     }
+    //       //     wrapper.invoke('setProps', {
+    //       //       currentSortedHeader: headerId,
+    //       //       currentSortDirection:
+    //       //         reverseDirections[currentSortDirection] || 'ascending',
+    //       //     })
+    //       //   })
+    //       // },
+    //     },
+    //     provide: {
+    //       updateCurrentSortedHeader: cy.stub().as('updateCurrentSortedHeader'),
+    //       toggleSortDirection: cy.stub().as('toggleSortDirection'),
+    //     },
+    //   },
+    mount(wrapperComponent, {}).as('wrapper')
 
     cy.get('th').should('have.attr', 'data-sortable').and('equal', 'true')
     cy.get('th')

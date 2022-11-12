@@ -53,12 +53,6 @@ describe('UsaNav', () => {
             'a',
             {
               href: '#',
-              onClick: async () => {
-                await wrapper.vue().then(vm => {
-                  const usaNavComponent = vm.findComponent(UsaNav)
-                  usaNavComponent.vm.closeMobileMenu()
-                })
-              },
             },
             'Test primary slot'
           ),
@@ -67,12 +61,6 @@ describe('UsaNav', () => {
             'a',
             {
               href: '#',
-              onClick: async () => {
-                await wrapper.vue().then(vm => {
-                  const usaNavComponent = vm.findComponent(UsaNav)
-                  usaNavComponent.vm.closeMobileMenu()
-                })
-              },
             },
             'Test secondary slot'
           ),
@@ -224,14 +212,6 @@ describe('UsaNav', () => {
 
     cy.get('@overlay').should('have.class', 'is-visible').and('be.visible')
     cy.get('@nav').should('have.class', 'is-visible').and('be.visible')
-
-    // Close menu with click on nav link.
-    cy.get('@link2').click()
-
-    cy.get('@overlay')
-      .should('not.have.class', 'is-visible')
-      .and('not.be.visible')
-    cy.get('@nav').should('not.have.class', 'is-visible').and('not.be.visible')
   })
 
   it('slot positions change on mobile screens', () => {

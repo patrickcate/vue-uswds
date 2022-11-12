@@ -2,6 +2,9 @@
 import { computed, inject, provide, onBeforeUnmount } from 'vue'
 import { nextId } from '@/utils/unique-id.js'
 
+const registerDropdown = inject('registerDropdown')
+const unregisterDropdown = inject('unregisterDropdown')
+
 const props = defineProps({
   id: {
     type: String,
@@ -13,8 +16,6 @@ const props = defineProps({
   },
 })
 
-const registerDropdown = inject('registerDropdown')
-const unregisterDropdown = inject('unregisterDropdown')
 const dropdownId = computed(() => props.id || nextId('usa-nav-dropdown'))
 
 registerDropdown(dropdownId.value, props.open)

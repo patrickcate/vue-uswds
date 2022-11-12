@@ -8,6 +8,9 @@ export default {
 import { inject } from 'vue'
 import BaseLink from '@/components/BaseLink'
 
+const closeAllDropdowns = inject('closeAllDropdowns')
+const closeMobileMenu = inject('closeMobileMenu')
+
 defineProps({
   href: {
     type: String,
@@ -22,9 +25,6 @@ defineProps({
     default: '',
   },
 })
-
-const closeAllDropdowns = inject('closeAllDropdowns')
-const closeMobileMenu = inject('closeMobileMenu')
 </script>
 
 <template>
