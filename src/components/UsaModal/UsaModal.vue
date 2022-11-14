@@ -1,10 +1,18 @@
 <script setup>
-import { computed, watch, ref, onBeforeUnmount } from 'vue'
+import { computed, watch, ref, useSlots, onBeforeUnmount } from 'vue'
 import { onKeyStroke, onClickOutside } from '@vueuse/core'
 import { UseFocusTrap } from '@vueuse/integrations/useFocusTrap/component'
 import { nextId } from '@/utils/unique-id.js'
 import BaseHeading from '@/components/BaseHeading'
 import UsaModalCloseButton from '@/components/UsaModalCloseButton'
+
+const slots = useSlots()
+
+if (slots?.closeButton) {
+  console.warn(
+    `The 'closeButton' slot' is deprecated, use 'close-button' instead.`
+  )
+}
 
 const emit = defineEmits(['update:visible'])
 
@@ -186,13 +194,19 @@ onClickOutside(modal, () => {
                   <slot name="footer"></slot>
                 </div>
               </div>
-              <slot name="closeButton">
+              <slot v-if="$slots['close-button']" name="close-button"></slot>
+              <!--
+              	@slot closeButton
+            		@deprecated Use the `close-button` slot instead.
+            	-->
+              <slot v-else-if="$slots.closeButton" name="closeButton"></slot>
+              <template v-else>
                 <UsaModalCloseButton
                   v-if="!forceAction"
                   :aria-label="closeButtonLabel"
                   @click="isVisible = false"
                 ></UsaModalCloseButton>
-              </slot>
+              </template>
             </div>
           </div>
         </div>

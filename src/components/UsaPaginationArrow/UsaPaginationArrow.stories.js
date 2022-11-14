@@ -35,13 +35,13 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
-    beforeSlot: {
+    before: {
       control: { type: 'text' },
     },
-    afterSlot: {
+    after: {
       control: { type: 'text' },
     },
   },
@@ -53,9 +53,9 @@ export default {
     href: '/test-page',
     to: '',
     routerComponentName: '',
-    defaultSlot: defaultProps.label,
-    beforeSlot: '',
-    afterSlot: '',
+    default: defaultProps.label,
+    before: '',
+    after: '',
   },
   decorators: [
     () => ({
@@ -79,11 +79,9 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :router-component-name="routerComponentName"
     :custom-classes="customClasses"
   >
-    <template v-if="${!!args.beforeSlot}" #before>${args.beforeSlot}</template>
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
-    <template v-if="${!!args.afterSlot}" #after>${args.afterSlot}</template>
+    <template v-if="${!!args.before}" #before>${args.before}</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
+    <template v-if="${!!args.after}" #after>${args.after}</template>
   </UsaPaginationArrow>`,
 })
 
@@ -100,7 +98,7 @@ NextPaginationArrow.args = {
   direction: 'next',
   label: 'Next',
   ariaLabel: 'Next page',
-  defaultSlot: 'Next',
+  default: 'Next',
 }
 NextPaginationArrow.storyName = 'Next'
 
@@ -110,8 +108,8 @@ BeforeSlotPaginationArrow.args = {
   direction: 'previous',
   label: 'Previous',
   ariaLabel: 'Previous page',
-  defaultSlot: 'Previous',
-  beforeSlot: '&lt;&nbsp;',
+  default: 'Previous',
+  before: '&lt;&nbsp;',
 }
 BeforeSlotPaginationArrow.storyName = 'Before Slot'
 
@@ -121,8 +119,8 @@ AfterSlotPaginationArrow.args = {
   direction: 'next',
   label: 'Next',
   ariaLabel: 'Next page',
-  defaultSlot: 'Next',
-  afterSlot: '&nbsp;&gt;',
+  default: 'Next',
+  after: '&nbsp;&gt;',
 }
 AfterSlotPaginationArrow.storyName = 'After Slot'
 

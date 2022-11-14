@@ -4,12 +4,12 @@ export default {
   component: UsaIdentifier,
   title: 'Components/UsaIdentifier',
   argTypes: {
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
-    defaultSlot: 'Test',
+    default: 'Test',
   },
 }
 
@@ -19,7 +19,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaIdentifier>${args.defaultSlot}</UsaIdentifier>`,
+  template: `<UsaIdentifier>${args.default}</UsaIdentifier>`,
 })
 
 export const DefaultIdentifier = DefaultTemplate.bind({})

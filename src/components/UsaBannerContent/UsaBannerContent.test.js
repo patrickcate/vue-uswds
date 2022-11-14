@@ -35,10 +35,10 @@ describe('UsaBannerContent', () => {
   it('uses custom slot content', () => {
     mount(UsaBannerContent, {
       slots: {
-        tldIcon: () => 'test tld icon',
-        tldDescription: () => 'test tld description',
-        httpsIcon: () => 'test https icon',
-        httpsDescription: () => 'test https description',
+        'tld-icon': () => 'test tld icon',
+        'tld-description': () => 'test tld description',
+        'https-icon': () => 'test https icon',
+        'https-description': () => 'test https description',
       },
     })
 
@@ -62,5 +62,52 @@ describe('UsaBannerContent', () => {
     cy.get('.test-grid-namespace-row').should('exist')
     cy.get('.test-grid-namespace-gap-lg').should('exist')
     cy.get(`.tablet\\@test-grid-namespace-col-6`).should('have.length', 2)
+  })
+
+  it('warns in console of deprecated slots', () => {
+    cy.stub(window.console, 'warn').as('consoleWarn')
+
+    mount(UsaBannerContent, {
+      slots: {
+        tldIcon: () => 'deprecated test tld icon',
+        tldDescription: () => 'deprecated test tld description',
+        httpsIcon: () => 'deprecated test https icon',
+        httpsDescription: () => 'deprecated test https description',
+      },
+    })
+
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `The 'tldIcon' slot' is deprecated, use 'tld-icon' instead.`
+    )
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `The 'tldDescription' slot' is deprecated, use 'tld-description' instead.`
+    )
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `The 'httpsIcon' slot' is deprecated, use 'https-icon' instead.`
+    )
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `The 'httpsDescription' slot' is deprecated, use 'https-description' instead.`
+    )
+
+    cy.get('.usa-banner__guidance').should(
+      'contain',
+      'deprecated test tld icon'
+    )
+    cy.get('.usa-media-block__body').should(
+      'contain',
+      'deprecated test tld description'
+    )
+    cy.get('.usa-banner__guidance').should(
+      'contain',
+      'deprecated test https icon'
+    )
+    cy.get('.usa-media-block__body').should(
+      'contain',
+      'deprecated test https description'
+    )
   })
 })

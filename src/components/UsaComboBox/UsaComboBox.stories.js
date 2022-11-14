@@ -28,6 +28,9 @@ export default {
     },
     label: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     required: {
       control: { type: 'boolean' },
@@ -53,22 +56,26 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    labelSlot: {
+    'slot:label': {
+      control: { type: 'text' },
+      name: 'label',
+      table: {
+        category: 'slots',
+      },
+    },
+    hint: {
       control: { type: 'text' },
     },
-    hintSlot: {
+    'error-message': {
       control: { type: 'text' },
     },
-    errorMessageSlot: {
+    'no-results': {
       control: { type: 'text' },
     },
-    noResultsSlot: {
+    status: {
       control: { type: 'text' },
     },
-    statusSlot: {
-      control: { type: 'text' },
-    },
-    assistiveHintSlot: {
+    'assistive-hint': {
       control: { type: 'text' },
     },
   },
@@ -84,12 +91,12 @@ export default {
     clearButtonAriaLabel: defaultProps.clearButtonAriaLabel,
     toggleButtonAriaLabel: defaultProps.toggleButtonAriaLabel,
     customClasses: defaultProps.customClasses,
-    labelSlot: '',
-    hintSlot: '',
-    errorMessageSlot: '',
-    noResultsSlot: '',
-    statusSlot: '',
-    assistiveHintSlot: '',
+    'slot:label': '',
+    hint: '',
+    'error-message': '',
+    'no-results': '',
+    status: '',
+    'assistive-hint': '',
   },
 }
 
@@ -113,19 +120,21 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
     v-model="modelValue"
   >
-    <template v-if="${!!args.labelSlot}" #label>${args.labelSlot}</template>
-    <template v-if="${!!args.hintSlot}" #hint>${args.hintSlot}</template>
-    <template v-if="${!!args.errorMessageSlot}" #error-message>${
-    args.errorMessageSlot
+    <template v-if="${!!args['slot:label']}" #label>${
+    args['slot:label']
   }</template>
-    <template v-if="${!!args.noResultsSlot}" #no-results>${
-    args.noResultsSlot
+    <template v-if="${!!args.hint}" #hint>${args.hint}</template>
+    <template v-if="${!!args['error-message']}" #error-message>${
+    args['error-message']
   }</template>
-    <template v-if="${!!args.statusSlot}" #status="{ filteredOptions }">${
-    args.statusSlot
+    <template v-if="${!!args['no-results']}" #no-results>${
+    args['no-results']
   }</template>
-    <template v-if="${!!args.assistiveHintSlot}" #assistive-hint>${
-    args.assistiveHintSlot
+    <template v-if="${!!args.status}" #status="{ filteredOptions }">${
+    args.status
+  }</template>
+    <template v-if="${!!args['assistive-hint']}" #assistive-hint>${
+    args['assistive-hint']
   }</template>
   </UsaComboBox>`,
 })
@@ -152,7 +161,7 @@ HintComboBox.args = {
   ...defaultProps,
   label: 'Fruit',
   options: testData,
-  hintSlot: 'Choose wisely',
+  hint: 'Choose wisely',
 }
 HintComboBox.storyName = 'Hint'
 
@@ -171,7 +180,7 @@ ErrorMessageComboBox.args = {
   label: 'Fruit',
   options: testData,
   error: true,
-  errorMessageSlot: 'Error message here',
+  'error-message': 'Error message here',
 }
 ErrorMessageComboBox.storyName = 'Error Message'
 
@@ -237,7 +246,7 @@ LabelSlotComboBox.args = {
   ...defaultProps,
   label: 'Fruit',
   options: testData,
-  labelSlot: `<em>Label slot content</em>`,
+  'slot:label': `<em>Label slot content</em>`,
 }
 LabelSlotComboBox.storyName = 'Label Slot'
 
@@ -246,7 +255,7 @@ NoResultsSlotComboBox.args = {
   ...defaultProps,
   label: 'Fruit',
   options: testData,
-  noResultsSlot: `<em>Sorry, didn't find that.</em>`,
+  'no-results': `<em>Sorry, didn't find that.</em>`,
 }
 NoResultsSlotComboBox.storyName = 'No Results Slot'
 
@@ -255,7 +264,7 @@ StatusScopedSlotComboBox.args = {
   ...defaultProps,
   label: 'Fruit',
   options: testData,
-  statusSlot: 'Total options available: {{ filteredOptions.length }}',
+  status: 'Total options available: {{ filteredOptions.length }}',
 }
 StatusScopedSlotComboBox.storyName = 'Status Scoped Slot'
 
@@ -264,7 +273,7 @@ AssistiveHintSlotComboBox.args = {
   ...defaultProps,
   label: 'Fruit',
   options: testData,
-  assistiveHintSlot: `<em>Some custom hint text for screenreaders.</em>`,
+  'assistive-hint': `<em>Some custom hint text for screenreaders.</em>`,
 }
 AssistiveHintSlotComboBox.storyName = 'Assistive Hint Slot'
 
@@ -273,7 +282,7 @@ CustomClassesComboBox.args = {
   ...defaultProps,
   label: 'Fruit',
   options: testData,
-  hintSlot: 'Choose wisely',
+  hint: 'Choose wisely',
   customClasses: {
     formGroup: ['test-form-group-class'],
     component: ['test-component-class'],

@@ -31,13 +31,13 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    flagSlot: {
+    flag: {
       control: { type: 'text' },
     },
-    buttonSlot: {
+    button: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -48,9 +48,9 @@ export default {
     headerText: defaultProps.headerText,
     actionText: defaultProps.actionText,
     customClasses: defaultProps.customClasses,
-    flagSlot: '',
-    buttonSlot: '',
-    defaultSlot: '',
+    flag: '',
+    button: '',
+    default: '',
   },
 }
 
@@ -68,11 +68,9 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :actionText="actionText"
     :customClasses="customClasses"
   >
-    <template v-if="${!!args.flagSlot}" #flag>${args.flagSlot}</template>
-    <template v-if="${!!args.buttonSlot}" #button>${args.buttonSlot}</template>
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
+    <template v-if="${!!args.flag}" #flag>${args.flag}</template>
+    <template v-if="${!!args.button}" #button>${args.button}</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
   </UsaBanner>`,
 })
 
@@ -99,14 +97,14 @@ CustomIdBanner.storyName = 'Custom ID'
 export const FlagSlotBanner = DefaultTemplate.bind({})
 FlagSlotBanner.args = {
   ...defaultProps,
-  flagSlot: 'Custom Flag Icon',
+  flag: 'Custom Flag Icon',
 }
 FlagSlotBanner.storyName = 'Flag Slot'
 
 export const ButtonSlotBanner = DefaultTemplate.bind({})
 ButtonSlotBanner.args = {
   ...defaultProps,
-  buttonSlot: 'Custom Button Text',
+  button: 'Custom Button Text',
 }
 ButtonSlotBanner.storyName = 'Button Slot'
 
@@ -114,7 +112,7 @@ export const DefaultSlotBanner = DefaultTemplate.bind({})
 DefaultSlotBanner.args = {
   ...defaultProps,
   open: true,
-  defaultSlot: 'Custom Banner Content',
+  default: 'Custom Banner Content',
 }
 DefaultSlotBanner.storyName = 'Default Slot'
 

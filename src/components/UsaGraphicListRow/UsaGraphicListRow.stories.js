@@ -23,12 +23,12 @@ export default {
   component: UsaGraphicListRow,
   title: 'Components/UsaGraphicListRow',
   argTypes: {
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
-    defaultSlot: slotContent,
+    default: slotContent,
   },
 }
 
@@ -38,7 +38,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaGraphicListRow class="grid-row grid-gap">${args.defaultSlot}</UsaGraphicListRow>`,
+  template: `<UsaGraphicListRow class="grid-row grid-gap">${args.default}</UsaGraphicListRow>`,
 })
 
 export const DefaultGraphicListRow = DefaultTemplate.bind({})

@@ -34,23 +34,21 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaChecklistItem :checked="checked" :aria-label="ariaLabel">
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
   </UsaChecklistItem>`,
 })
 
 export const DefaultChecklistItem = DefaultTemplate.bind({})
 DefaultChecklistItem.args = {
   ...defaultProps,
-  defaultSlot: 'Test item',
+  default: 'Test item',
 }
 DefaultChecklistItem.storyName = 'Default'
 
 export const CheckedChecklistItem = DefaultTemplate.bind({})
 CheckedChecklistItem.args = {
   ...defaultProps,
-  defaultSlot: 'Test item',
+  default: 'Test item',
   checked: true,
 }
 CheckedChecklistItem.storyName = 'Checked'
@@ -58,7 +56,7 @@ CheckedChecklistItem.storyName = 'Checked'
 export const CustomAriaLabelChecklistItem = DefaultTemplate.bind({})
 CustomAriaLabelChecklistItem.args = {
   ...defaultProps,
-  defaultSlot: 'Test item',
+  default: 'Test item',
   ariaLabel: 'is invalid',
 }
 CustomAriaLabelChecklistItem.storyName = 'Custom Aria Label'

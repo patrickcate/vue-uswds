@@ -13,6 +13,9 @@ export default {
   argTypes: {
     heading: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     headingTag: {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
@@ -21,10 +24,14 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    headingSlot: {
+    'slot:heading': {
       control: { type: 'text' },
+      name: 'heading',
+      table: {
+        category: 'slots',
+      },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -32,8 +39,8 @@ export default {
     heading: defaultProps.heading,
     headingTag: defaultProps.headingTag,
     customClasses: defaultProps.customClasses,
-    headingSlot: '',
-    defaultSlot:
+    'slot:heading': '',
+    default:
       '<p>Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien.</p>',
   },
 }
@@ -47,12 +54,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
   template: `
     <UsaProcessList>
       <UsaProcessListItem :heading="heading" :heading-tag="headingTag" :custom-classes="customClasses">
-        <template v-if="${!!args.headingSlot}" #heading>${
-    args.headingSlot
+        <template v-if="${!!args['slot:heading']}" #heading>${
+    args['slot:heading']
   }</template>
-        <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
+        <template v-if="${!!args.default}" #default>${args.default}</template>
       </UsaProcessListItem>
     </UsaProcessList>
   `,
@@ -86,6 +91,6 @@ CustomClassesProcessListItem.storyName = 'Custom Classes'
 export const HeadingSlotProcessListItem = DefaultTemplate.bind({})
 HeadingSlotProcessListItem.args = {
   ...defaultProps,
-  headingSlot: 'Custom Heading Slot',
+  'slot:heading': 'Custom Heading Slot',
 }
 HeadingSlotProcessListItem.storyName = 'Heading Slot'

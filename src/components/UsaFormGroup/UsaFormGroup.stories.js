@@ -15,14 +15,14 @@ export default {
     error: {
       control: { type: 'boolean' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     group: defaultProps.group,
     error: defaultProps.error,
-    defaultSlot:
+    default:
       '<label for="test-id">Test Input</label><input id="test-id" type="text" class="usa-input" />',
   },
 }
@@ -36,7 +36,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   template: `<UsaFormGroup
     :group="group"
     :error="error"
-  >${args.defaultSlot}</UsaFormGroup>`,
+  >${args.default}</UsaFormGroup>`,
 })
 
 export const DefaultFormGroup = DefaultTemplate.bind({})

@@ -1,10 +1,32 @@
 <script setup>
-import { inject } from 'vue'
+import { inject, useSlots } from 'vue'
 import {
   PREFIX_SEPARATOR,
   GRID_NAMESPACE,
   IMAGE_PATH,
 } from '@/utils/constants.js'
+
+const slots = useSlots()
+
+if (slots?.tldIcon) {
+  console.warn(`The 'tldIcon' slot' is deprecated, use 'tld-icon' instead.`)
+}
+
+if (slots?.tldDescription) {
+  console.warn(
+    `The 'tldDescription' slot' is deprecated, use 'tld-description' instead.`
+  )
+}
+
+if (slots?.httpsIcon) {
+  console.warn(`The 'httpsIcon' slot' is deprecated, use 'https-icon' instead.`)
+}
+
+if (slots?.httpsDescription) {
+  console.warn(
+    `The 'httpsDescription' slot' is deprecated, use 'https-description' instead.`
+  )
+}
 
 const prefixSeparator = inject('vueUswds.prefixSeparator', PREFIX_SEPARATOR)
 const gridNamespace = inject('vueUswds.gridNamespace', GRID_NAMESPACE)
@@ -16,7 +38,13 @@ const imagePath = inject('vueUswds.imagePath', IMAGE_PATH)
     <div
       :class="`usa-banner__guidance tablet${prefixSeparator}${gridNamespace}col-6`"
     >
-      <slot name="tldIcon">
+      <slot v-if="$slots['tld-icon']" name="tld-icon"></slot>
+      <!--
+      	@slot tldIcon
+    		@deprecated Use the `tld-icon` slot instead.
+    	-->
+      <slot v-else-if="$slots.tldIcon" name="tldIcon"></slot>
+      <template v-else>
         <img
           class="usa-banner__icon usa-media-block__img"
           :src="`${imagePath}/icon-dot-gov.svg`"
@@ -24,23 +52,34 @@ const imagePath = inject('vueUswds.imagePath', IMAGE_PATH)
           alt=""
           aria-hidden="true"
         />
-      </slot>
-
+      </template>
       <div class="usa-media-block__body">
-        <slot name="tldDescription">
+        <slot v-if="$slots['tld-description']" name="tld-description"></slot>
+        <!--
+        	@slot tldDescription
+      		@deprecated Use the `tld-description` slot instead.
+      	-->
+        <slot v-else-if="$slots.tldDescription" name="tldDescription"></slot>
+        <template v-else>
           <p>
             <strong>Official websites use .gov</strong>
             <br />
             A <strong>.gov</strong> website belongs to an official government
             organization in the United States.
           </p>
-        </slot>
+        </template>
       </div>
     </div>
     <div
       :class="`usa-banner__guidance tablet${prefixSeparator}${gridNamespace}col-6`"
     >
-      <slot name="httpsIcon">
+      <slot v-if="$slots['https-icon']" name="https-icon"></slot>
+      <!--
+      	@slot httpsIcon
+    		@deprecated Use the `https-icon` slot instead.
+    	-->
+      <slot v-else-if="$slots.httpsIcon" name="httpsIcon"></slot>
+      <template v-else>
         <img
           class="usa-banner__icon usa-media-block__img"
           :src="`${imagePath}/icon-https.svg`"
@@ -48,9 +87,21 @@ const imagePath = inject('vueUswds.imagePath', IMAGE_PATH)
           alt=""
           aria-hidden="true"
         />
-      </slot>
+      </template>
       <div class="usa-media-block__body">
-        <slot name="httpsDescription">
+        <slot
+          v-if="$slots['https-description']"
+          name="https-description"
+        ></slot>
+        <!--
+        	@slot httpsDescription
+      		@deprecated Use the `https-description` slot instead.
+      	-->
+        <slot
+          v-else-if="$slots.httpsDescription"
+          name="httpsDescription"
+        ></slot>
+        <template v-else>
           <p>
             <strong>Secure .gov websites use HTTPS</strong>
             <br />
@@ -78,7 +129,7 @@ const imagePath = inject('vueUswds.imagePath', IMAGE_PATH)
             .gov website. Share sensitive information only on official, secure
             websites.
           </p>
-        </slot>
+        </template>
       </div>
     </div>
   </div>

@@ -4,12 +4,12 @@ export default {
   component: UsaFooterPrimarySection,
   title: 'Components/UsaFooterPrimarySection',
   argTypes: {
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
-    defaultSlot: '',
+    default: '',
   },
 }
 
@@ -19,11 +19,11 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaFooterPrimarySection>${args.defaultSlot}</UsaFooterPrimarySection>`,
+  template: `<UsaFooterPrimarySection>${args.default}</UsaFooterPrimarySection>`,
 })
 
 export const DefaultFooterPrimarySection = DefaultTemplate.bind({})
 DefaultFooterPrimarySection.args = {
-  defaultSlot: 'Test primary footer content',
+  default: 'Test primary footer content',
 }
 DefaultFooterPrimarySection.storyName = 'Default'

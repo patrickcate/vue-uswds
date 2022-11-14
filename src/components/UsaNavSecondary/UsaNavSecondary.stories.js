@@ -20,17 +20,17 @@ export default {
     items: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
-    searchSlot: {
+    search: {
       control: { type: 'text' },
     },
   },
   args: {
     items: defaultProps.testLinks,
-    defaultSlot: '',
-    searchSlot: '',
+    default: '',
+    search: '',
   },
 }
 
@@ -44,10 +44,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaNavSecondary :items="items">
-    <template v-if="${!!args.defaultSlot}" #default :items="items">${
-    args.defaultSlot
+    <template v-if="${!!args.default}" #default :items="items">${
+    args.default
   }</template>
-    <template v-if="${!!args.searchSlot}" #search>${args.searchSlot}</template>
+    <template v-if="${!!args.search}" #search>${args.search}</template>
   </UsaNavSecondary>`,
 })
 
@@ -60,7 +60,7 @@ DefaultNavSecondary.storyName = 'Default'
 export const SearchSlotNavSecondary = DefaultTemplate.bind({})
 SearchSlotNavSecondary.args = {
   ...defaultProps,
-  searchSlot: `<form class="usa-search usa-search--small" role="search">
+  search: `<form class="usa-search usa-search--small" role="search">
     <label class="usa-sr-only" for="extended-search-field-en-small">Search</label>
     <input class="usa-input" id="extended-search-field-en-small" type="search" name="search">
     <button class="usa-button" type="submit">

@@ -13,14 +13,14 @@ export default {
     color: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     color: defaultProps.color,
     size: defaultProps.size,
-    defaultSlot: `<UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem>`,
+    default: `<UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem>`,
   },
 }
 
@@ -33,7 +33,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   template: `<UsaIconList
     :color="color"
     :size="size"
-  >${args.defaultSlot}</UsaIconList>`,
+  >${args.default}</UsaIconList>`,
 })
 
 export const DefaultIconList = DefaultTemplate.bind({})

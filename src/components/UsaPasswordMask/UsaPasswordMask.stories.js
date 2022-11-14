@@ -17,12 +17,12 @@ export default {
     hideText: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
-    defaultSlot: '',
+    default: '',
   },
   decorators: [
     () => ({
@@ -42,13 +42,13 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :show-text="showText"
     :hide-text="hideText"
     v-slot="{ type }"
-  >${args.defaultSlot}</UsaPasswordMask>`,
+  >${args.default}</UsaPasswordMask>`,
 })
 
 export const DefaultPasswordMask = DefaultTemplate.bind({})
 DefaultPasswordMask.args = {
   ...defaultProps,
-  defaultSlot:
+  default:
     '<UsaTextInput v-model="modelValue" label="Password" :type="type"></UsaTextInput>',
 }
 DefaultPasswordMask.storyName = 'Default'
@@ -58,7 +58,7 @@ CustomShowHideTextPasswordMask.args = {
   ...defaultProps,
   showText: 'Show typing',
   hideText: 'Hide typing',
-  defaultSlot:
+  default:
     '<UsaTextInput v-model="modelValue" label="Password" :type="type"></UsaTextInput>',
 }
 CustomShowHideTextPasswordMask.storyName = 'Custom Show/Hide Text'

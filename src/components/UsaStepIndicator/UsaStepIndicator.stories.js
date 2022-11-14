@@ -50,10 +50,10 @@ export default {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
       control: { type: 'select' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
-    headerSlot: {
+    header: {
       control: { type: 'text' },
     },
   },
@@ -66,8 +66,8 @@ export default {
     noLabels: defaultProps.noLabels,
     headingTag: defaultProps.headingTag,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
-    headerSlot: '',
+    default: '',
+    header: '',
   },
 }
 
@@ -92,10 +92,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
     :heading-tag="headingTag"
   >
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
-    <template v-if="${!!args.headerSlot}" #header>${args.headerSlot}</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
+    <template v-if="${!!args.header}" #header>${args.header}</template>
   </UsaStepIndicator>`,
 })
 
@@ -193,7 +191,7 @@ CustomSlotSegmentsStepIndicator.args = {
   ...defaultProps,
   steps: [],
   counters: true,
-  defaultSlot: `
+  default: `
     <UsaStepIndicatorSegment
       status="completed"
       label="Step 1"
@@ -206,7 +204,7 @@ CustomSlotSegmentsStepIndicator.args = {
       label="Step 3"
     ></UsaStepIndicatorSegment>
   `,
-  headerSlot: `
+  header: `
     <UsaStepIndicatorHeader
       :current-step-number="2"
       current-step-label="Step 2"

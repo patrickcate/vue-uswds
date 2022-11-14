@@ -29,10 +29,10 @@ export default {
     id: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
-    descriptionSlot: {
+    'slot:description': {
       control: { type: 'text' },
     },
   },
@@ -43,8 +43,8 @@ export default {
     description: defaultProps.description,
     id: defaultProps.id,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
-    descriptionSlot: '',
+    default: '',
+    'slot:description': '',
   },
   decorators: [
     () => ({
@@ -69,11 +69,9 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
     v-model="modelValue"
   >
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
-    <template v-if="${!!args.descriptionSlot}" #description>${
-    args.descriptionSlot
+    <template v-if="${!!args.default}" #default>${args.default}</template>
+    <template v-if="${!!args['slot:description']}" #description>${
+    args['slot:description']
   }</template>
   </UsaCheckbox>`,
 })
@@ -133,7 +131,7 @@ export const LabelSlotCheckbox = DefaultTemplate.bind({})
 LabelSlotCheckbox.args = {
   ...defaultProps,
   label: 'Sojourner Truth',
-  defaultSlot: 'Custom label slot content',
+  default: 'Custom label slot content',
 }
 LabelSlotCheckbox.storyName = 'Label Slot'
 
@@ -141,7 +139,7 @@ export const DescriptionSlotCheckbox = DefaultTemplate.bind({})
 DescriptionSlotCheckbox.args = {
   ...defaultProps,
   label: 'Sojourner Truth',
-  descriptionSlot: 'Custom description slot content',
+  'slot:description': '<em>Custom description slot content</em>',
 }
 DescriptionSlotCheckbox.storyName = 'Description Slot'
 

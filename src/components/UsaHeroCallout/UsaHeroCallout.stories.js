@@ -20,20 +20,40 @@ export default {
     },
     headingAlt: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     heading: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     customClasses: {
       control: { type: 'object' },
     },
-    headingAltSlot: {
+    'heading-alt': {
       control: { type: 'text' },
+      table: {
+        category: 'slots',
+      },
     },
-    headingSlot: {
+    'slot:headingAlt': {
       control: { type: 'text' },
+      name: 'headingAlt (deprecated: use `heading-alt`)',
+      table: {
+        category: 'slots',
+      },
     },
-    defaultSlot: {
+    'slot:heading': {
+      control: { type: 'text' },
+      name: 'heading',
+      table: {
+        category: 'slots',
+      },
+    },
+    default: {
       control: { type: 'text' },
     },
   },
@@ -42,9 +62,9 @@ export default {
     headingAlt: defaultProps.headingAlt,
     heading: defaultProps.heading,
     customClasses: defaultProps.customClasses,
-    headingAltSlot: '',
-    headingSlot: '',
-    defaultSlot:
+    'heading-alt': '',
+    'slot:heading': '',
+    default:
       "<p>Support the callout with some short explanatory text. You don't need more than a couple of sentences.</p>",
   },
 }
@@ -62,15 +82,16 @@ const DefaultTemplate = (args, { argTypes }) => ({
       :heading-tag="headingTag"
       :custom-classes="customClasses"
     >
-      <template v-if="${!!args.headingAltSlot}" #headingAlt>${
-    args.headingAltSlot
+      <template v-if="${!!args['heading-alt']}" #heading-alt>${
+    args['heading-alt']
   }</template>
-      <template v-if="${!!args.headingSlot}" #heading>${
-    args.headingSlot
+      <template v-else-if="${!!args['slot:heading-alt']}" #headingAlt>${
+    args['slot:heading-alt']
   }</template>
-      <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
+      <template v-if="${!!args['slot:heading']}" #heading>${
+    args['slot:heading']
   }</template>
+      <template v-if="${!!args.default}" #default>${args.default}</template>
     </UsaHeroCallout>
   </UsaHero>`,
 })
@@ -86,7 +107,7 @@ DefaultHeroCallout.storyName = 'Default'
 export const HeadingSlotHeroCallout = DefaultTemplate.bind({})
 HeadingSlotHeroCallout.args = {
   ...defaultProps,
-  headingSlot: 'Custom heading slot',
+  'slot:heading': 'Custom heading slot',
   headingAlt: 'Hero callout:',
 }
 HeadingSlotHeroCallout.storyName = 'Heading Slot'
@@ -95,7 +116,7 @@ export const HeadingAltSlotHeroCallout = DefaultTemplate.bind({})
 HeadingAltSlotHeroCallout.args = {
   ...defaultProps,
   heading: 'Bring attention to a project priority',
-  headingAltSlot: 'Custom heading alt slot',
+  'heading-alt': 'Custom heading alt slot',
 }
 HeadingAltSlotHeroCallout.storyName = 'Heading Alt Slot'
 

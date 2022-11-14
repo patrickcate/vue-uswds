@@ -15,6 +15,9 @@ export default {
   argTypes: {
     heading: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     headingTag: {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
@@ -34,7 +37,7 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -45,7 +48,7 @@ export default {
     to: defaultProps.to,
     routerComponentName: defaultProps.routerComponentName,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
+    default: '',
   },
 }
 
@@ -62,7 +65,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :to="to"
     :router-component-name="routerComponentName"
     :custom-classes="customClasses"
-  >${args.defaultSlot}</UsaCollectionHeading>`,
+  >${args.default}</UsaCollectionHeading>`,
 })
 
 export const DefaultCollectionItemHeading = DefaultTemplate.bind({})
@@ -85,7 +88,7 @@ export const HeadingSlotCollectionItemHeading = DefaultTemplate.bind({})
 HeadingSlotCollectionItemHeading.args = {
   ...defaultProps,
   heading: 'Collection Item Heading',
-  defaultSlot: 'Custom header slot',
+  default: 'Custom header slot',
 }
 HeadingSlotCollectionItemHeading.storyName = 'Header Slot'
 

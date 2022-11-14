@@ -15,6 +15,9 @@ export default {
   argTypes: {
     label: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     id: {
       control: { type: 'text' },
@@ -34,11 +37,15 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
-    labelSlot: {
+    'slot:label': {
       control: { type: 'text' },
+      name: 'label',
+      table: {
+        category: 'slots',
+      },
     },
   },
   args: {
@@ -48,8 +55,8 @@ export default {
     tag: defaultProps.tag,
     position: defaultProps.position,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
-    labelSlot: '',
+    default: '',
+    'slot:label': '',
   },
   decorators: [
     () => ({
@@ -73,10 +80,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :position="position"
     :customClasses="customClasses"
   >
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
+    <template v-if="${!!args.default}" #default>${args.default}</template>
+    <template v-if="${!!args['slot:label']}" #label>${
+    args['slot:label']
   }</template>
-    <template v-if="${!!args.labelSlot}" #label>${args.labelSlot}</template>
  </UsaTooltip>`,
 })
 
@@ -84,7 +91,7 @@ export const DefaultTooltip = DefaultTemplate.bind({})
 DefaultTooltip.args = {
   ...defaultProps,
   label: 'Test tooltip',
-  defaultSlot: 'Tooltip trigger element',
+  default: 'Tooltip trigger element',
 }
 DefaultTooltip.storyName = 'Default'
 
@@ -93,7 +100,7 @@ TopPositionTooltip.args = {
   ...defaultProps,
   label: 'Test tooltip',
   position: 'top',
-  defaultSlot: 'Top tooltip',
+  default: 'Top tooltip',
 }
 TopPositionTooltip.storyName = 'Top Position'
 
@@ -102,7 +109,7 @@ BottomPositionTooltip.args = {
   ...defaultProps,
   label: 'Test tooltip',
   position: 'bottom',
-  defaultSlot: 'Bottom tooltip',
+  default: 'Bottom tooltip',
 }
 BottomPositionTooltip.storyName = 'Bottom Position'
 
@@ -111,7 +118,7 @@ LeftPositionTooltip.args = {
   ...defaultProps,
   label: 'Test tooltip',
   position: 'left',
-  defaultSlot: 'Left tooltip',
+  default: 'Left tooltip',
 }
 LeftPositionTooltip.storyName = 'Left Position'
 
@@ -120,7 +127,7 @@ RightPositionTooltip.args = {
   ...defaultProps,
   label: 'Test tooltip',
   position: 'right',
-  defaultSlot: 'Right tooltip',
+  default: 'Right tooltip',
 }
 RightPositionTooltip.storyName = 'Right Position'
 
@@ -129,7 +136,7 @@ CustomIdTooltip.args = {
   ...defaultProps,
   label: 'Test tooltip',
   id: 'test-custom-id',
-  defaultSlot: 'Tooltip using custom ID',
+  default: 'Tooltip using custom ID',
 }
 CustomIdTooltip.storyName = 'Custom ID'
 
@@ -139,7 +146,7 @@ CustomWrapperComponentTagsTooltip.args = {
   label: 'Test tooltip',
   wrapperTag: 'div',
   tag: 'abbr',
-  defaultSlot: 'Custom tags tooltip',
+  default: 'Custom tags tooltip',
 }
 CustomWrapperComponentTagsTooltip.storyName =
   'Custom Wrapper and Component tags'
@@ -147,8 +154,8 @@ CustomWrapperComponentTagsTooltip.storyName =
 export const LabelSlotTooltip = DefaultTemplate.bind({})
 LabelSlotTooltip.args = {
   ...defaultProps,
-  labelSlot: '<em>Label w/ HTML</em>>',
-  defaultSlot: 'Tooltip using label slot',
+  'slot:label': '<em>Label w/ HTML</em>>',
+  default: 'Tooltip using label slot',
 }
 LabelSlotTooltip.storyName = 'Label Slot'
 
@@ -156,7 +163,7 @@ export const CustomClassesTooltip = DefaultTemplate.bind({})
 CustomClassesTooltip.args = {
   ...defaultProps,
   label: 'Test tooltip',
-  defaultSlot: 'Uses custom CSS classes',
+  default: 'Uses custom CSS classes',
   customClasses: {
     component: ['test-component-class'],
     label: ['test-label-class'],

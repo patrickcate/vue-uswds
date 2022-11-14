@@ -75,6 +75,9 @@ export default {
     },
     label: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     required: {
       control: { type: 'boolean' },
@@ -88,16 +91,20 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
-    labelSlot: {
+    'slot:label': {
+      control: { type: 'text' },
+      name: 'label',
+      table: {
+        category: 'slots',
+      },
+    },
+    hint: {
       control: { type: 'text' },
     },
-    hintSlot: {
-      control: { type: 'text' },
-    },
-    errorMessageSlot: {
+    'error-message': {
       control: { type: 'text' },
     },
   },
@@ -110,10 +117,10 @@ export default {
     error: defaultProps.error,
     id: defaultProps.id,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
-    labelSlot: '',
-    hintSlot: '',
-    errorMessageSlot: '',
+    default: '',
+    'slot:label': '',
+    hint: '',
+    'error-message': '',
   },
   decorators: [
     () => ({
@@ -140,13 +147,15 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
     v-model="modelValue"
   >
-    <template v-if="${!!args.labelSlot}" #label>${args.labelSlot}</template>
-    <template v-if="${!!args.defaultSlot}" #default="{ options }">${
-    args.defaultSlot
+    <template v-if="${!!args['slot:label']}" #label>${
+    args['slot:label']
   }</template>
-    <template v-if="${!!args.hintSlot}" #hint>${args.hintSlot}</template>
-    <template v-if="${!!args.errorMessageSlot}" #error-message>${
-    args.errorMessageSlot
+    <template v-if="${!!args.default}" #default="{ options }">${
+    args.default
+  }</template>
+    <template v-if="${!!args.hint}" #hint>${args.hint}</template>
+    <template v-if="${!!args['error-message']}" #error-message>${
+    args['error-message']
   }</template>
   </UsaSelect>`,
 })
@@ -173,7 +182,7 @@ HintDropdown.args = {
   ...defaultProps,
   label: 'Dropdown label',
   options: testOptions,
-  hintSlot: 'Choose wisely',
+  hint: 'Choose wisely',
 }
 HintDropdown.storyName = 'Hint'
 
@@ -192,7 +201,7 @@ ErrorMessageDropdown.args = {
   label: 'Dropdown label',
   options: testOptions,
   error: true,
-  errorMessageSlot: 'Error message here',
+  'error-message': 'Error message here',
 }
 ErrorMessageDropdown.storyName = 'Error Message'
 
@@ -218,7 +227,7 @@ export const LabelSlotDropdown = DefaultTemplate.bind({})
 LabelSlotDropdown.args = {
   ...defaultProps,
   options: testOptions,
-  labelSlot: `<em>Label slot content</em>`,
+  'slot:label': `<em>Label slot content</em>`,
 }
 LabelSlotDropdown.storyName = 'Label Slot'
 
@@ -227,7 +236,7 @@ ScopedSlotDropdown.args = {
   ...defaultProps,
   label: 'Dropdown label',
   options: testOptions,
-  defaultSlot: `<option :value="options[0].value">{{ options[0].value }}</option>`,
+  default: `<option :value="options[0].value">{{ options[0].value }}</option>`,
 }
 ScopedSlotDropdown.storyName = 'Scoped Slot'
 

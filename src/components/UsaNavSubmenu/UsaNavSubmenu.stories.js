@@ -16,14 +16,14 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     cols: defaultProps.cols,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
+    default: '',
   },
   decorators: [
     () => ({
@@ -48,17 +48,17 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :cols="cols"
     :custom-classes="customClasses"
   >
-    <template v-if="${args.cols <= 1 && !!args.defaultSlot}" #default>${
-    args.defaultSlot
+    <template v-if="${args.cols <= 1 && !!args.default}" #default>${
+    args.default
   }</template>
-    <template v-if="${args.cols > 1 && !!args.col1Slot}" #col-1>${
-    args.col1Slot
+    <template v-if="${args.cols > 1 && !!args.col1}" #col-1>${
+    args.col1
   }</template>
-    <template v-if="${args.cols > 1 && !!args.col2Slot}" #col-2>${
-    args.col2Slot
+    <template v-if="${args.cols > 1 && !!args.col2}" #col-2>${
+    args.col2
   }</template>
-    <template v-if="${args.cols > 1 && !!args.col3Slot}" #col-3>${
-    args.col3Slot
+    <template v-if="${args.cols > 1 && !!args.col3}" #col-3>${
+    args.col3
   }</template>
   </UsaNavSubmenu>`,
 })
@@ -66,14 +66,14 @@ const DefaultTemplate = (args, { argTypes }) => ({
 export const DefaultNavSubmenu = DefaultTemplate.bind({})
 DefaultNavSubmenu.args = {
   ...defaultProps,
-  defaultSlot: '<li class="usa-nav__submenu-item"><a href="">Item 1</a></li>',
+  default: '<li class="usa-nav__submenu-item"><a href="">Item 1</a></li>',
 }
 DefaultNavSubmenu.storyName = 'Default'
 
 export const MegamenuNavSubmenu = DefaultTemplate.bind({})
 MegamenuNavSubmenu.args = {
   ...defaultProps,
-  defaultSlot: '<li class="usa-nav__submenu-item"><a href="">Item 1</a></li>',
+  default: '<li class="usa-nav__submenu-item"><a href="">Item 1</a></li>',
 }
 MegamenuNavSubmenu.decorators = [
   () => ({
@@ -93,9 +93,9 @@ export const MultipleColsMegamenuNavSubmenu = DefaultTemplate.bind({})
 MultipleColsMegamenuNavSubmenu.args = {
   ...defaultProps,
   cols: 3,
-  col1Slot: '<li class="usa-nav__submenu-item"><a href="">Item 1</a></li>',
-  col2Slot: '<li class="usa-nav__submenu-item"><a href="">Item 2</a></li>',
-  col3Slot: '<li class="usa-nav__submenu-item"><a href="">Item 3</a></li>',
+  col1: '<li class="usa-nav__submenu-item"><a href="">Item 1</a></li>',
+  col2: '<li class="usa-nav__submenu-item"><a href="">Item 2</a></li>',
+  col3: '<li class="usa-nav__submenu-item"><a href="">Item 3</a></li>',
 }
 MultipleColsMegamenuNavSubmenu.decorators = [
   () => ({
@@ -119,9 +119,9 @@ CustomClassesNavSubmenu.args = {
     gridRow: ['test-row'],
     gridCol: ['test-col'],
   },
-  col1Slot: '<li class="usa-nav__submenu-item"><a href="">Item 1</a></li>',
-  col2Slot: '<li class="usa-nav__submenu-item"><a href="">Item 2</a></li>',
-  col3Slot: '<li class="usa-nav__submenu-item"><a href="">Item 3</a></li>',
+  col1: '<li class="usa-nav__submenu-item"><a href="">Item 1</a></li>',
+  col2: '<li class="usa-nav__submenu-item"><a href="">Item 2</a></li>',
+  col3: '<li class="usa-nav__submenu-item"><a href="">Item 3</a></li>',
 }
 CustomClassesNavSubmenu.decorators = [
   () => ({

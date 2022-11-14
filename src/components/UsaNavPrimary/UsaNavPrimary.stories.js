@@ -89,13 +89,13 @@ export default {
     items: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     items: defaultProps.items,
-    defaultSlot: '',
+    default: '',
   },
   decorators: [
     () => ({
@@ -115,7 +115,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   },
   template: `<UsaNavPrimary
     :items="items">
-      <template #default="{ items }">${args.defaultSlot}</template>
+      <template #default="{ items }">${args.default}</template>
     </UsaNavPrimary>`,
 })
 
@@ -143,7 +143,7 @@ ScopedDefaultSlotNavPrimary.args = {
       text: 'Test nav link 3',
     },
   ],
-  defaultSlot:
+  default:
     '<a v-for="item in items" :href="item.href" :key="item.text" class="usa-nav__primary-item">{{ item.text }}</a>',
 }
 ScopedDefaultSlotNavPrimary.storyName = 'Scoped Slot'

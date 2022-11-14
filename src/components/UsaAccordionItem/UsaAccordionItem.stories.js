@@ -17,6 +17,9 @@ export default {
     },
     label: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     open: {
       control: { type: 'boolean' },
@@ -24,10 +27,14 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    labelSlot: {
+    'slot:label': {
       control: { type: 'text' },
+      name: 'label',
+      table: {
+        category: 'slots',
+      },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -36,8 +43,8 @@ export default {
     label: defaultProps.label,
     open: defaultProps.open,
     customClasses: defaultProps.customClasses,
-    labelSlot: '',
-    defaultSlot: '',
+    'slot:label': '',
+    default: '',
   },
 }
 
@@ -49,10 +56,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
   },
   template: `<UsaAccordion>
     <UsaAccordionItem :id="id" :label="label" :open="open" :custom-classes="customClasses">
-      <template v-if="${!!args.labelSlot}" #label>${args.labelSlot}</template>
-      <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
+      <template v-if="${!!args['slot:label']}" #label>${
+    args['slot:label']
   }</template>
+      <template v-if="${!!args.default}" #default>${args.default}</template>
     </UsaAccordionItem>
   </UsaAccordion>`,
 })
@@ -61,15 +68,15 @@ export const DefaultAccordionItem = DefaultTemplate.bind({})
 DefaultAccordionItem.args = {
   ...defaultProps,
   label: 'Accordion 1',
-  defaultSlot: 'Accordion 1 Content',
+  default: 'Accordion 1 Content',
 }
 DefaultAccordionItem.storyName = 'Default'
 
 export const LabelSlotAccordionItem = DefaultTemplate.bind({})
 LabelSlotAccordionItem.args = {
   ...defaultProps,
-  labelSlot: 'Custom Label',
-  defaultSlot: 'Accordion 1 Content',
+  'slot:label': 'Custom Label',
+  default: 'Accordion 1 Content',
 }
 LabelSlotAccordionItem.storyName = 'Label Slot'
 
@@ -78,7 +85,7 @@ DefaultOpenAccordionItem.args = {
   ...defaultProps,
   open: true,
   label: 'Accordion 1',
-  defaultSlot: 'Accordion 1 Content',
+  default: 'Accordion 1 Content',
 }
 DefaultOpenAccordionItem.storyName = 'Open by Default'
 
@@ -99,6 +106,6 @@ CustomClassesAccordionItem.args = {
     content: ['custom-content-class'],
   },
   label: 'Accordion 1',
-  defaultSlot: 'Accordion 1 Content',
+  default: 'Accordion 1 Content',
 }
 CustomClassesAccordionItem.storyName = 'Custom Classes'

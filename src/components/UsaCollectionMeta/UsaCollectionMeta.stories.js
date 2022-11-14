@@ -11,13 +11,13 @@ export default {
     ariaLabel: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     ariaLabel: defaultProps.ariaLabel,
-    defaultSlot: '<li class="usa-collection__meta-item">Test meta item</li>',
+    default: '<li class="usa-collection__meta-item">Test meta item</li>',
   },
 }
 
@@ -27,7 +27,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaCollectionMeta :aria-label="ariaLabel">${args.defaultSlot}</UsaCollectionMeta>`,
+  template: `<UsaCollectionMeta :aria-label="ariaLabel">${args.default}</UsaCollectionMeta>`,
 })
 
 export const DefaultCollectionMeta = DefaultTemplate.bind({})
