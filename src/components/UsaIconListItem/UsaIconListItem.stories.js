@@ -14,9 +14,15 @@ export default {
   argTypes: {
     icon: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     title: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     titleTag: {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
@@ -27,13 +33,21 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    iconSlot: {
+    'slot:icon': {
       control: { type: 'text' },
+      name: 'icon',
+      table: {
+        category: 'slots',
+      },
     },
-    titleSlot: {
+    'slot:title': {
       control: { type: 'text' },
+      name: 'title',
+      table: {
+        category: 'slots',
+      },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -42,9 +56,9 @@ export default {
     title: defaultProps.title,
     titleTag: defaultProps.titleTag,
     customClasses: defaultProps.customClasses,
-    iconSlot: '',
-    titleSlot: '',
-    defaultSlot:
+    'slot:icon': '',
+    'slot:title': '',
+    default:
       '<p>An icon list reinforces the meaning and visibility of individual list items with a leading icon.</p>',
   },
   decorators: [
@@ -66,11 +80,13 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :title-tag="titleTag"
     :custom-classes="customClasses"
   >
-    <template v-if="${!!args.iconSlot}" #icon>${args.iconSlot}</template>
-    <template v-if="${!!args.titleSlot}" #title>${args.titleSlot}</template>
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
+    <template v-if="${!!args['slot:icon']}" #icon>${
+    args['slot:icon']
   }</template>
+    <template v-if="${!!args['slot:title']}" #title>${
+    args['slot:title']
+  }</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
   </UsaIconListItem>`,
 })
 
@@ -101,7 +117,7 @@ export const IconSlotIconListItem = DefaultTemplate.bind({})
 IconSlotIconListItem.args = {
   ...defaultProps,
   title: 'Icon list item title',
-  iconSlot: `<svg class="usa-icon" aria-hidden="true" focusable="false" role="img"><use xlink:href="/assets/img/sprite.svg#push_pin"></use></svg>`,
+  'slot:icon': `<svg class="usa-icon" aria-hidden="true" focusable="false" role="img"><use xlink:href="/assets/img/sprite.svg#push_pin"></use></svg>`,
 }
 IconSlotIconListItem.storyName = 'Icon Slot'
 
@@ -109,7 +125,7 @@ export const TitleSlotIconListItem = DefaultTemplate.bind({})
 TitleSlotIconListItem.args = {
   ...defaultProps,
   icon: 'directions',
-  titleSlot: '<em>Icon slot title</em>',
+  'slot:title': '<em>Icon slot title</em>',
 }
 TitleSlotIconListItem.storyName = 'Title Slot'
 

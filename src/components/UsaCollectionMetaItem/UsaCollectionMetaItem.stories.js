@@ -6,12 +6,12 @@ export default {
   component: UsaCollectionMetaItem,
   title: 'Components/UsaCollectionMetaItem',
   argTypes: {
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
-    defaultSlot: 'Test collection meta item',
+    default: 'Test collection meta item',
   },
   decorators: [
     () => ({ template: '<ul class="usa-collection__meta"><story /></ul>' }),
@@ -24,7 +24,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaCollectionMetaItem>${args.defaultSlot}</UsaCollectionMetaItem>`,
+  template: `<UsaCollectionMetaItem>${args.default}</UsaCollectionMetaItem>`,
 })
 
 export const DefaultCollectionMetaItem = DefaultTemplate.bind({})

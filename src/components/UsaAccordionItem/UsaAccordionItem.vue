@@ -3,6 +3,12 @@ import { computed, inject, toRef, onBeforeUnmount } from 'vue'
 import { nextId } from '@/utils/unique-id.js'
 import BaseHeading from '@/components/BaseHeading'
 
+const accordionHeadingTag = inject('accordionHeadingTag')
+const registerAccordionItem = inject('registerAccordionItem')
+const unregisterAccordionItem = inject('unregisterAccordionItem')
+const toggleItem = inject('toggleItem')
+const accordionItems = inject('accordionItems')
+
 const props = defineProps({
   id: {
     type: String,
@@ -27,12 +33,6 @@ const props = defineProps({
     },
   },
 })
-
-const accordionHeadingTag = inject('accordionHeadingTag')
-const registerAccordionItem = inject('registerAccordionItem')
-const unregisterAccordionItem = inject('unregisterAccordionItem')
-const toggleItem = inject('toggleItem')
-const accordionItems = inject('accordionItems')
 
 const computedId = computed(() => props.id || nextId('usa-accordion-item'))
 const isOpen = toRef(accordionItems, computedId.value)

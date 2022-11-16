@@ -99,7 +99,7 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -108,7 +108,7 @@ export default {
     items: defaultProps.items,
     collapsibleHeadingTag: defaultProps.collapsibleHeadingTag,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
+    default: '',
   },
 }
 
@@ -124,8 +124,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :collapsible-heading-tag="collapsibleHeadingTag"
     :custom-classes="customClasses"
   >
-    <template v-if="${!!args.defaultSlot}" #default="{ items }">${
-    args.defaultSlot
+    <template v-if="${!!args.default}" #default="{ items }">${
+    args.default
   }</template>
   </UsaFooterNav>`,
 })
@@ -204,7 +204,7 @@ export const DefaultScopedSlotFooterNav = DefaultTemplate.bind({})
 DefaultScopedSlotFooterNav.args = {
   ...defaultProps,
   items: testCollapsibleItems,
-  defaultSlot: `<em>{{ items[0].text }}</em>`,
+  default: `<em>{{ items[0].text }}</em>`,
 }
 DefaultScopedSlotFooterNav.decorators = [
   () => ({

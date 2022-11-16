@@ -14,6 +14,9 @@ export default {
   argTypes: {
     heading: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     headingTag: {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
@@ -24,23 +27,27 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
-    headingSlot: {
+    'slot:heading': {
       control: { type: 'text' },
+      name: 'heading',
+      table: {
+        category: 'slots',
+      },
     },
   },
   args: {
     heading: defaultProps.heading,
     headingTag: defaultProps.headingTag,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
-    headingSlot: '',
+    default: '',
+    'slot:heading': '',
   },
 }
 
-const defaultSlotContent = `<form class="usa-form" @submit.prevent>
+const defaultContent = `<form class="usa-form" @submit.prevent>
 <UsaTextInput label="Your email address" type="email"></UsaTextInput>
 <UsaButton type="submit">Sign up</UsaButton>
 </form>`
@@ -56,12 +63,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :heading-tag="headingTag"
     :custom-classes="customClasses"
   >
-    <template #heading v-if="${!!args.headingSlot}">${
-    args.headingSlot
+    <template #heading v-if="${!!args['slot:heading']}">${
+    args['slot:heading']
   }</template>
-    <template #default v-if="${!!args.defaultSlot}">${
-    args.defaultSlot
-  }</template>
+    <template #default v-if="${!!args.default}">${args.default}</template>
   </UsaSignUp>`,
 })
 
@@ -74,7 +79,7 @@ DefaultSignUp.storyName = 'Default'
 export const DefaultSlotSignUp = DefaultTemplate.bind({})
 DefaultSlotSignUp.args = {
   ...defaultProps,
-  defaultSlot: defaultSlotContent,
+  default: defaultContent,
 }
 DefaultSlotSignUp.storyName = 'Default Slot'
 
@@ -82,7 +87,7 @@ export const CustomHeadingSignUp = DefaultTemplate.bind({})
 CustomHeadingSignUp.args = {
   ...defaultProps,
   heading: 'Custom Heading',
-  defaultSlot: defaultSlotContent,
+  default: defaultContent,
 }
 CustomHeadingSignUp.storyName = 'Custom Heading'
 
@@ -91,22 +96,22 @@ CustomHeadingTagSignUp.args = {
   ...defaultProps,
   heading: 'Custom Heading Tag',
   headingTag: 'h4',
-  defaultSlot: defaultSlotContent,
+  default: defaultContent,
 }
 CustomHeadingTagSignUp.storyName = 'Custom Heading Tag'
 
 export const HeadingSlotSignUp = DefaultTemplate.bind({})
 HeadingSlotSignUp.args = {
   ...defaultProps,
-  headingSlot: '<em>Custom Heading Slot</em>',
-  defaultSlot: defaultSlotContent,
+  'slot:heading': '<em>Custom Heading Slot</em>',
+  default: defaultContent,
 }
 HeadingSlotSignUp.storyName = 'Heading Slot'
 
 export const CustomClassesSignUp = DefaultTemplate.bind({})
 CustomClassesSignUp.args = {
   ...defaultProps,
-  defaultSlot: defaultSlotContent,
+  default: defaultContent,
   customClasses: {
     heading: ['test-heading-class'],
   },

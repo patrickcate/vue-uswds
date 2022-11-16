@@ -35,6 +35,9 @@ export default {
     },
     label: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     required: {
       control: { type: 'boolean' },
@@ -60,22 +63,26 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    labelSlot: {
+    'slot:label': {
+      control: { type: 'text' },
+      name: 'label',
+      table: {
+        category: 'slots',
+      },
+    },
+    hint: {
       control: { type: 'text' },
     },
-    hintSlot: {
+    'error-message': {
       control: { type: 'text' },
     },
-    errorMessageSlot: {
+    'no-results': {
       control: { type: 'text' },
     },
-    noResultsSlot: {
+    status: {
       control: { type: 'text' },
     },
-    statusSlot: {
-      control: { type: 'text' },
-    },
-    assistiveHintSlot: {
+    'assistive-hint': {
       control: { type: 'text' },
     },
   },
@@ -93,12 +100,12 @@ export default {
     clearButtonAriaLabel: defaultProps.clearButtonAriaLabel,
     toggleButtonAriaLabel: defaultProps.toggleButtonAriaLabel,
     customClasses: defaultProps.customClasses,
-    labelSlot: '',
-    hintSlot: '',
-    errorMessageSlot: '',
-    noResultsSlot: '',
-    statusSlot: '',
-    assistiveHintSlot: '',
+    'slot:label': '',
+    hint: '',
+    'error-message': '',
+    'no-results': '',
+    status: '',
+    'assistive-hint': '',
   },
 }
 
@@ -124,17 +131,19 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
     v-model="modelValue"
   >
-    <template v-if="${!!args.labelSlot}" #label>${args.labelSlot}</template>
-    <template v-if="${!!args.hintSlot}" #hint>${args.hintSlot}</template>
-    <template v-if="${!!args.errorMessageSlot}" #error-message>${
-    args.errorMessageSlot
+    <template v-if="${!!args['slot:label']}" #label>${
+    args['slot:label']
   }</template>
-    <template v-if="${!!args.noResultsSlot}" #no-results>${
-    args.noResultsSlot
+    <template v-if="${!!args.hint}" #hint>${args.hint}</template>
+    <template v-if="${!!args['error-message']}" #error-message>${
+    args['error-message']
   }</template>
-    <template v-if="${!!args.statusSlot}" #status>${args.statusSlot}</template>
-    <template v-if="${!!args.assistiveHintSlot}" #assistive-hint>${
-    args.assistiveHintSlot
+    <template v-if="${!!args['no-results']}" #no-results>${
+    args['no-results']
+  }</template>
+    <template v-if="${!!args.status}" #status>${args.status}</template>
+    <template v-if="${!!args['assistive-hint']}" #assistive-hint>${
+    args['assistive-hint']
   }</template>
   </UsaTimePicker>`,
 })
@@ -175,7 +184,7 @@ export const HintTimePicker = DefaultTemplate.bind({})
 HintTimePicker.args = {
   ...defaultProps,
   label: 'Hint',
-  hintSlot: 'Choose wisely',
+  hint: 'Choose wisely',
 }
 HintTimePicker.storyName = 'Hint'
 
@@ -192,7 +201,7 @@ ErrorMessageTimePicker.args = {
   ...defaultProps,
   label: 'Error',
   error: true,
-  errorMessageSlot: 'Error message here',
+  'error-message': 'Error message here',
 }
 ErrorMessageTimePicker.storyName = 'Error Message'
 
@@ -251,7 +260,7 @@ export const LabelSlotTimePicker = DefaultTemplate.bind({})
 LabelSlotTimePicker.args = {
   ...defaultProps,
   label: 'Time',
-  labelSlot: `<em>Label slot content</em>`,
+  'slot:label': `<em>Label slot content</em>`,
 }
 LabelSlotTimePicker.storyName = 'Label Slot'
 
@@ -259,7 +268,7 @@ export const NoResultsSlotTimePicker = DefaultTemplate.bind({})
 NoResultsSlotTimePicker.args = {
   ...defaultProps,
   label: 'Time',
-  noResultsSlot: `<em>Sorry, didn't find that.</em>`,
+  'no-results': `<em>Sorry, didn't find that.</em>`,
 }
 NoResultsSlotTimePicker.storyName = 'No Results Slot'
 
@@ -267,7 +276,7 @@ export const StatusScopedSlotTimePicker = DefaultTemplate.bind({})
 StatusScopedSlotTimePicker.args = {
   ...defaultProps,
   label: 'Time',
-  statusSlot: 'Total options available: {{ filteredOptions.length }}',
+  status: 'Total options available: {{ filteredOptions.length }}',
 }
 StatusScopedSlotTimePicker.storyName = 'Status Scoped Slot'
 
@@ -275,7 +284,7 @@ export const AssistiveHintSlotTimePicker = DefaultTemplate.bind({})
 AssistiveHintSlotTimePicker.args = {
   ...defaultProps,
   label: 'Time',
-  assistiveHintSlot: `<em>Some custom hint text for screenreaders.</em>`,
+  'assistive-hint': `<em>Some custom hint text for screenreaders.</em>`,
 }
 AssistiveHintSlotTimePicker.storyName = 'Assistive Hint Slot'
 
@@ -283,7 +292,7 @@ export const CustomClassesTimePicker = DefaultTemplate.bind({})
 CustomClassesTimePicker.args = {
   ...defaultProps,
   label: 'Time',
-  hintSlot: 'Choose wisely',
+  hint: 'Choose wisely',
   customClasses: {
     formGroup: ['test-form-group-class'],
     component: ['test-component-class'],

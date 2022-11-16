@@ -24,6 +24,9 @@ export default {
     },
     heading: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     headingTag: {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
@@ -58,16 +61,20 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    headingSlot: {
+    'slot:heading': {
+      control: { type: 'text' },
+      name: 'heading',
+      table: {
+        category: 'slots',
+      },
+    },
+    media: {
       control: { type: 'text' },
     },
-    mediaSlot: {
+    default: {
       control: { type: 'text' },
     },
-    defaultSlot: {
-      control: { type: 'text' },
-    },
-    footerSlot: {
+    footer: {
       control: { type: 'text' },
     },
   },
@@ -84,12 +91,12 @@ export default {
     bodyExdent: defaultProps.bodyExdent,
     footerExdent: defaultProps.footerExdent,
     customClasses: defaultProps.customClasses,
-    headingSlot: '',
-    mediaSlot:
+    'slot:heading': '',
+    media:
       '<img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image">',
-    defaultSlot:
+    default:
       '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p>',
-    footerSlot:
+    footer:
       '<div><button type="button" class="usa-button">Visit Florida Keys</button></div>',
   },
 }
@@ -114,14 +121,12 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :footer-exdent="footerExdent"
     :custom-classes="customClasses"
   >
-    <template #heading v-if="${!!args.headingSlot}">${
-    args.headingSlot
+    <template #heading v-if="${!!args['slot:heading']}">${
+    args['slot:heading']
   }</template>
-    <template #media v-if="${!!args.mediaSlot}">${args.mediaSlot}</template>
-    <template #default v-if="${!!args.defaultSlot}">${
-    args.defaultSlot
-  }</template>
-    <template #footer v-if="${!!args.footerSlot}">${args.footerSlot}</template>
+    <template #media v-if="${!!args.media}">${args.media}</template>
+    <template #default v-if="${!!args.default}">${args.default}</template>
+    <template #footer v-if="${!!args.footer}">${args.footer}</template>
   </UsaCard>`,
 })
 
@@ -149,7 +154,7 @@ HeaderFirstTagCard.storyName = 'Header First'
 export const NoMediaCard = DefaultTemplate.bind({})
 NoMediaCard.args = {
   ...defaultProps,
-  mediaSlot: '',
+  media: '',
   heading: 'Card',
 }
 NoMediaCard.decorators = [
@@ -161,7 +166,7 @@ export const NoHeaderCard = DefaultTemplate.bind({})
 NoHeaderCard.args = {
   ...defaultProps,
   heading: '',
-  headingSlot: '',
+  'slot:heading': '',
 }
 NoHeaderCard.decorators = [
   () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
@@ -171,7 +176,7 @@ NoHeaderCard.storyName = 'No Header'
 export const NoFooterCard = DefaultTemplate.bind({})
 NoFooterCard.args = {
   ...defaultProps,
-  footerSlot: '',
+  footer: '',
   heading: 'Card',
 }
 NoFooterCard.decorators = [
@@ -215,7 +220,7 @@ CustomHeadingTagCard.storyName = 'Custom Heading Tag'
 export const HeadingSlotCard = DefaultTemplate.bind({})
 HeadingSlotCard.args = {
   ...defaultProps,
-  headingSlot: 'Custom header slot',
+  'slot:heading': 'Custom header slot',
 }
 HeadingSlotCard.decorators = [
   () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),

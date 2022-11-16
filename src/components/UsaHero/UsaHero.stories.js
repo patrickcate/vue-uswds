@@ -19,7 +19,7 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -27,7 +27,7 @@ export default {
     backgroundImage: defaultProps.backgroundImage,
     ariaLabel: defaultProps.ariaLabel,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
+    default: '',
   },
 }
 
@@ -38,7 +38,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaHero :background-image="backgroundImage"
-  :aria-label="ariaLabel" :custom-classes="customClasses">${args.defaultSlot}</UsaHero>`,
+  :aria-label="ariaLabel" :custom-classes="customClasses">${args.default}</UsaHero>`,
 })
 
 export const DefaultHero = DefaultTemplate.bind({})

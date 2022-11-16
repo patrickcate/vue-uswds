@@ -17,26 +17,26 @@ export default {
     id: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
-    equalMessageSlot: {
+    'equal-message': {
       control: { type: 'text' },
     },
-    remainingMessageSlot: {
+    'remaining-message': {
       control: { type: 'text' },
     },
-    overMessageSlot: {
+    'over-message': {
       control: { type: 'text' },
     },
   },
   args: {
     maxlength: defaultProps.maxlength,
     id: defaultProps.id,
-    defaultSlot: '',
-    equalMessageSlot: '',
-    remainingMessageSlot: '',
-    overMessageSlot: '',
+    default: '',
+    'equal-message': '',
+    'remaining-message': '',
+    'over-message': '',
   },
 }
 
@@ -47,17 +47,19 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaCharacterCount :id="id" :maxlength="maxlength">
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
+    <template v-if="${!!args.default}" #default>${args.default}</template>
+    <template v-if="${!!args[
+      'equal-message'
+    ]}" #equal-message="{ maxlength }">${args['equal-message']}</template>
+    <template v-if="${!!args[
+      'remaining-message'
+    ]}" #remaining-message="{ maxlength, charactersRemaining }">${
+    args['remaining-message']
   }</template>
-    <template v-if="${!!args.equalMessageSlot}" #equal-message="{ maxlength }">${
-    args.equalMessageSlot
-  }</template>
-    <template v-if="${!!args.remainingMessageSlot}" #remaining-message="{ maxlength, charactersRemaining }">${
-    args.remainingMessageSlot
-  }</template>
-    <template v-if="${!!args.overMessageSlot}" #over-message="{ maxlength, charactersOver }">${
-    args.overMessageSlot
+    <template v-if="${!!args[
+      'over-message'
+    ]}" #over-message="{ maxlength, charactersOver }">${
+    args['over-message']
   }</template>
   </UsaCharacterCount>`,
 })
@@ -66,7 +68,7 @@ export const DefaultCharacterCount = DefaultTemplate.bind({})
 DefaultCharacterCount.args = {
   ...defaultProps,
   maxlength: 25,
-  defaultSlot: '<div><em>UsaTextarea or UsaTextInput goes here</em></div>',
+  default: '<div><em>UsaTextarea or UsaTextInput goes here</em></div>',
 }
 DefaultCharacterCount.storyName = 'Default'
 
@@ -74,7 +76,7 @@ export const DefaultTextInputCharacterCount = DefaultTemplate.bind({})
 DefaultTextInputCharacterCount.args = {
   ...defaultProps,
   maxlength: 25,
-  defaultSlot: '<UsaTextInput label="Text input"></UsaTextInput>',
+  default: '<UsaTextInput label="Text input"></UsaTextInput>',
 }
 DefaultTextInputCharacterCount.storyName = 'Text Input'
 
@@ -82,7 +84,7 @@ export const DefaultTextareaCharacterCount = DefaultTemplate.bind({})
 DefaultTextareaCharacterCount.args = {
   ...defaultProps,
   maxlength: 50,
-  defaultSlot: '<UsaTextarea label="Textarea"></UsaTextarea>',
+  default: '<UsaTextarea label="Textarea"></UsaTextarea>',
 }
 DefaultTextareaCharacterCount.storyName = 'Textarea'
 
@@ -90,8 +92,8 @@ export const EqualMessageScopedSlotCharacterCount = DefaultTemplate.bind({})
 EqualMessageScopedSlotCharacterCount.args = {
   ...defaultProps,
   maxlength: 25,
-  defaultSlot: '<UsaTextInput label="Text input"></UsaTextInput>',
-  equalMessageSlot: 'You can enter up to {{ maxlength }} characters',
+  default: '<UsaTextInput label="Text input"></UsaTextInput>',
+  'equal-message': 'You can enter up to {{ maxlength }} characters',
 }
 EqualMessageScopedSlotCharacterCount.storyName = 'Custom Count Message Slot'
 
@@ -99,8 +101,8 @@ export const RemainingMessageScopedSlotCharacterCount = DefaultTemplate.bind({})
 RemainingMessageScopedSlotCharacterCount.args = {
   ...defaultProps,
   maxlength: 25,
-  defaultSlot: `<UsaTextInput :model-value="'some test text'" label="Text input"></UsaTextInput>`,
-  remainingMessageSlot:
+  default: `<UsaTextInput :model-value="'some test text'" label="Text input"></UsaTextInput>`,
+  'remaining-message':
     '{{ charactersRemaining }} out of {{ maxlength }} characters remaining',
 }
 RemainingMessageScopedSlotCharacterCount.storyName =
@@ -110,9 +112,8 @@ export const OverMessageScopedSlotCharacterCount = DefaultTemplate.bind({})
 OverMessageScopedSlotCharacterCount.args = {
   ...defaultProps,
   maxlength: 20,
-  defaultSlot: `<UsaTextInput :model-value="'some really long test text'" label="Text input"></UsaTextInput>`,
-  overMessageSlot:
-    '{{ charactersOver }} over the {{ maxlength }} character max',
+  default: `<UsaTextInput :model-value="'some really long test text'" label="Text input"></UsaTextInput>`,
+  'over-message': '{{ charactersOver }} over the {{ maxlength }} character max',
 }
 OverMessageScopedSlotCharacterCount.storyName = 'Custom Over Message Slot'
 
@@ -121,6 +122,6 @@ CustomIdCharacterCount.args = {
   ...defaultProps,
   maxlength: 25,
   id: 'custom-id',
-  defaultSlot: '<UsaTextInput label="Text input"></UsaTextInput>',
+  default: '<UsaTextInput label="Text input"></UsaTextInput>',
 }
 CustomIdCharacterCount.storyName = 'Custom ID'

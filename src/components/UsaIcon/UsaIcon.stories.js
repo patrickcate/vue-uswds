@@ -31,7 +31,7 @@ export default {
     focusable: {
       control: { type: 'boolean' },
     },
-    titleSlot: {
+    title: {
       control: { type: 'text' },
     },
   },
@@ -41,7 +41,7 @@ export default {
     ariaHidden: defaultProps.ariaHidden,
     role: defaultProps.role,
     focusable: defaultProps.focusable,
-    titleSlot: '',
+    title: '',
   },
 }
 
@@ -58,7 +58,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :role="role"
     :focusable="focusable"
   >
-    <template v-if="${!!args.titleSlot}" #title>${args.titleSlot}</template>
+    <template v-if="${!!args.title}" #title>${args.title}</template>
   </UsaIcon>`,
 })
 
@@ -78,6 +78,6 @@ CustomSizeIcon.storyName = 'Custom Size'
 export const TitleSlotIcon = DefaultTemplate.bind({})
 TitleSlotIcon.args = {
   ...defaultProps,
-  titleSlot: '<title>Flag icon</title>',
+  title: '<title>Flag icon</title>',
 }
 TitleSlotIcon.storyName = 'Title Slot'

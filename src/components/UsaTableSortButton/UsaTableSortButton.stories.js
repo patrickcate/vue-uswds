@@ -19,7 +19,7 @@ export default {
     currentSortDirection: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -27,7 +27,7 @@ export default {
     headerId: defaultProps.headerId,
     headerLabel: defaultProps.headerLabel,
     currentSortDirection: defaultProps.currentSortDirection,
-    defaultSlot: '',
+    default: '',
   },
   decorators: [
     () => ({
@@ -48,9 +48,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :header-label="headerLabel"
     :current-sort-direction="currentSortDirection"
   >
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
   </UsaTableSortButton>`,
 })
 
@@ -100,6 +98,6 @@ CustomSlotTableSortButton.args = {
   ...defaultProps,
   headerId: 'test-header-id',
   headerLabel: 'Test header',
-  defaultSlot: '<em>Custom icon here...</em>',
+  default: '<em>Custom icon here...</em>',
 }
 CustomSlotTableSortButton.storyName = 'Custom Slot'

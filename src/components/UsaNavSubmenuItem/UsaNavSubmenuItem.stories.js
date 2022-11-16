@@ -20,7 +20,7 @@ export default {
     routerComponentName: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -28,7 +28,7 @@ export default {
     href: defaultProps.href,
     to: defaultProps.to,
     routerComponentName: defaultProps.routerComponentName,
-    defaultSlot: 'Test',
+    default: 'Test',
   },
   decorators: [
     () => ({
@@ -53,7 +53,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :href="href"
     :to="to"
     :router-component-name="routerComponentName"
-  >${args.defaultSlot}</UsaNavSubmenuItem>`,
+  >${args.default}</UsaNavSubmenuItem>`,
 })
 
 export const DefaultNavSubmenuItem = DefaultTemplate.bind({})

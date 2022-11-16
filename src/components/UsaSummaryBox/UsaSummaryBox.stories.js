@@ -16,6 +16,9 @@ export default {
     },
     heading: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     headingTag: {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
@@ -24,10 +27,14 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    headingSlot: {
+    'slot:heading': {
       control: { type: 'text' },
+      name: 'heading',
+      table: {
+        category: 'slots',
+      },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -36,8 +43,8 @@ export default {
     heading: defaultProps.heading,
     headingTag: defaultProps.headingTag,
     customClasses: defaultProps.customClasses,
-    headingSlot: '',
-    defaultSlot: `<ul class="usa-list">
+    'slot:heading': '',
+    default: `<ul class="usa-list">
       <li>If you are under a winter storm warning, <a class="usa-summary-box__link" href="#">find shelter</a> right away.</li>
       <li>Sign up for <a class="usa-summary-box__link" href="#">your community's warning system</a>.</li>
       <li>Learn the signs of, and basic treatments for, <a class="usa-summary-box__link" href="#">frostbite</a> and <a class="usa-summary-box__link" href="#">hypothermia</a>.</li>
@@ -56,12 +63,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
   },
   template: `
   <UsaSummaryBox :id="id" :heading="heading" :heading-tag="headingTag" :custom-classes="customClasses">
-    <template v-if="${!!args.headingSlot}" #heading>${
-    args.headingSlot
+    <template v-if="${!!args['slot:heading']}" #heading>${
+    args['slot:heading']
   }</template>
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
   </UsaSummaryBox>`,
 })
 
@@ -81,7 +86,7 @@ CustomHeadingSummaryBox.storyName = 'Custom Heading'
 export const HeadingSlotSummaryBox = DefaultTemplate.bind({})
 HeadingSlotSummaryBox.args = {
   ...defaultProps,
-  headingSlot: '<em>Custom Heading Slot</em>',
+  'slot:heading': '<em>Custom Heading Slot</em>',
 }
 HeadingSlotSummaryBox.storyName = 'Heading Slot'
 

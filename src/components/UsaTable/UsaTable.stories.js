@@ -103,6 +103,9 @@ export default {
   argTypes: {
     caption: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     borderless: {
       control: { type: 'boolean' },
@@ -124,6 +127,9 @@ export default {
     },
     headers: {
       control: { type: 'object' },
+      table: {
+        category: 'props',
+      },
     },
     rows: {
       control: { type: 'object' },
@@ -134,16 +140,24 @@ export default {
     defaultSortHeader: {
       control: { type: 'text' },
     },
-    captionSlot: {
+    'slot:caption': {
+      control: { type: 'text' },
+      name: 'caption',
+      table: {
+        category: 'slots',
+      },
+    },
+    'slot:headers': {
+      control: { type: 'text' },
+      name: 'headers',
+      table: {
+        category: 'slots',
+      },
+    },
+    default: {
       control: { type: 'text' },
     },
-    headersSlot: {
-      control: { type: 'text' },
-    },
-    defaultSlot: {
-      control: { type: 'text' },
-    },
-    tableAnnouncementSlot: {
+    'table-announcement': {
       control: { type: 'text' },
     },
   },
@@ -159,10 +173,10 @@ export default {
     rows: defaultProps.rows,
     defaultSortDirection: defaultProps.defaultSortDirection,
     defaultSortHeader: defaultProps.defaultSortHeader,
-    captionSlot: '',
-    headersSlot: '',
-    defaultSlot: '',
-    tableAnnouncementSlot: '',
+    'slot:caption': '',
+    'slot:headers': '',
+    default: '',
+    'table-announcement': '',
   },
 }
 
@@ -185,17 +199,17 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :defaultSortDirection="defaultSortDirection"
     :defaultSortHeader="defaultSortHeader"
   >
-    <template v-if="${!!args.captionSlot}" #caption>${
-    args.captionSlot
+    <template v-if="${!!args['slot:caption']}" #caption>${
+    args['slot:caption']
   }</template>
-    <template v-if="${!!args.headersSlot}" #headers="{ headers }">${
-    args.headersSlot
+    <template v-if="${!!args['slot:headers']}" #headers="{ headers }">${
+    args['slot:headers']
   }</template>
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
-    <template v-if="${!!args.tableAnnouncementSlot}" #table-announcement="{ currentSortedHeader, currentSortDirection, currentSortedHeaderLabel, tableCaption }">${
-    args.tableAnnouncementSlot
+    <template v-if="${!!args.default}" #default>${args.default}</template>
+    <template v-if="${!!args[
+      'table-announcement'
+    ]}" #table-announcement="{ currentSortedHeader, currentSortDirection, currentSortedHeaderLabel, tableCaption }">${
+    args['table-announcement']
   }</template>
   </UsaTable>`,
 })
@@ -324,7 +338,7 @@ CaptionSlotTable.args = {
     return header
   }),
   rows: testRows,
-  captionSlot: '<em>A table caption slot</em>',
+  'slot:caption': '<em>A table caption slot</em>',
 }
 CaptionSlotTable.storyName = 'Caption Slot'
 
@@ -336,7 +350,7 @@ HeadersSlotTable.args = {
     return header
   }),
   rows: testRows,
-  headersSlot:
+  'slot:headers':
     '<th>Header 1</th><th>Header 2</th><th>Header 3</th><th>Header 4</th>',
 }
 HeadersSlotTable.storyName = 'Headers Slot'
@@ -349,7 +363,7 @@ DefaultRowsSlotTable.args = {
     return header
   }),
   rows: testRows,
-  defaultSlot: '<td>Cell 1</td><td>Cell 2</td><td>Cell 3</td><td>Cell 4</td>',
+  default: '<td>Cell 1</td><td>Cell 2</td><td>Cell 3</td><td>Cell 4</td>',
 }
 DefaultRowsSlotTable.storyName = 'Default (Rows) Slot'
 
@@ -359,7 +373,7 @@ TableAnnouncementSlotTable.args = {
   headers: testHeaders,
   rows: testRows,
   caption: 'Inspect aria-live region...',
-  tableAnnouncementSlot:
+  'table-announcement':
     'Sorted By: {{ currentSortedHeaderLabel }} ({{ currentSortedHeader }}), Direction: {{ currentSortDirection }}, Table Caption: {{ tableCaption }}',
 }
 TableAnnouncementSlotTable.storyName = 'Table Announcement Slot'

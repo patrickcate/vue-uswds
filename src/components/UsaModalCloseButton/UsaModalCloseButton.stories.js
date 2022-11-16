@@ -12,13 +12,13 @@ export default {
     ariaLabel: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     ariaLabel: defaultProps.ariaLabel,
-    defaultSlot: '',
+    default: '',
   },
 }
 
@@ -28,8 +28,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaModalCloseButton :aria-label="ariaLabel"><template v-if="${!!args.defaultSlot}" #default="svgSpritePath">${
-    args.defaultSlot
+  template: `<UsaModalCloseButton :aria-label="ariaLabel"><template v-if="${!!args.default}" #default="svgSpritePath">${
+    args.default
   }</template></UsaModalCloseButton>`,
 })
 
@@ -42,6 +42,6 @@ DefaultModalCloseButton.storyName = 'Default'
 export const CustomIconModalCloseButton = DefaultTemplate.bind({})
 CustomIconModalCloseButton.args = {
   ...defaultProps,
-  defaultSlot: 'x',
+  default: 'x',
 }
 CustomIconModalCloseButton.storyName = 'Custom Icon'

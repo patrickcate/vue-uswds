@@ -15,14 +15,14 @@ export default {
     open: {
       control: { type: 'boolean' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     id: defaultProps.id,
     open: defaultProps.open,
-    defaultSlot: '',
+    default: '',
   },
   decorators: [
     () => ({
@@ -44,13 +44,13 @@ const DefaultTemplate = (args, { argTypes }) => ({
   template: `<UsaNavDropdown
     :id="id"
     :open="open"
-  >${args.defaultSlot}</UsaNavDropdown>`,
+  >${args.default}</UsaNavDropdown>`,
 })
 
 export const DefaultNavDropdown = DefaultTemplate.bind({})
 DefaultNavDropdown.args = {
   ...defaultProps,
-  defaultSlot: 'Dropdown items here',
+  default: 'Dropdown items here',
 }
 DefaultNavDropdown.storyName = 'Default'
 
@@ -58,7 +58,7 @@ export const OpenByDefaultNavDropdown = DefaultTemplate.bind({})
 OpenByDefaultNavDropdown.args = {
   ...defaultProps,
   open: true,
-  defaultSlot: 'Dropdown items here',
+  default: 'Dropdown items here',
 }
 OpenByDefaultNavDropdown.storyName = 'Open by Default'
 
@@ -66,6 +66,6 @@ export const CustomIdNavDropdown = DefaultTemplate.bind({})
 CustomIdNavDropdown.args = {
   ...defaultProps,
   id: 'custom-id',
-  defaultSlot: 'Dropdown items here',
+  default: 'Dropdown items here',
 }
 CustomIdNavDropdown.storyName = 'Custom ID'

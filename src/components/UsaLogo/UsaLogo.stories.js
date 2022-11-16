@@ -27,7 +27,7 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -37,7 +37,7 @@ export default {
     to: defaultProps.to,
     routerComponentName: defaultProps.routerComponentName,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
+    default: '',
   },
 }
 
@@ -53,7 +53,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :to="to"
     :router-component-name="routerComponentName"
     :custom-classes="customClasses"
-  >${args.defaultSlot}</UsaLogo>`,
+  >${args.default}</UsaLogo>`,
 })
 
 export const DefaultLogo = DefaultTemplate.bind({})
@@ -80,6 +80,6 @@ export const DefaultSlotLogo = DefaultTemplate.bind({})
 DefaultSlotLogo.args = {
   ...defaultProps,
   href: '/test-page',
-  defaultSlot: 'Test Title',
+  default: 'Test Title',
 }
 DefaultSlotLogo.storyName = 'Default Slot'

@@ -6,6 +6,7 @@ import UsaButton from '@/components/UsaButton'
 import UsaTextInput from '@/components/UsaTextInput'
 
 const imagePath = inject('vueUswds.imagePath', IMAGE_PATH)
+
 const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps({

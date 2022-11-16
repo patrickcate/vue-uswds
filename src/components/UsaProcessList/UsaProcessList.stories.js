@@ -13,13 +13,13 @@ export default {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
       control: { type: 'select' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     headingTag: defaultProps.headingTag,
-    defaultSlot:
+    default:
       '<UsaProcessListItem heading="Test step 1"><p>Test body.</p></UsaProcessListItem>',
   },
 }
@@ -30,7 +30,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaProcessList :heading-tag="headingTag">${args.defaultSlot}</UsaProcessList>`,
+  template: `<UsaProcessList :heading-tag="headingTag">${args.default}</UsaProcessList>`,
 })
 
 export const DefaultProcessList = DefaultTemplate.bind({})

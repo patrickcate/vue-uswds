@@ -76,23 +76,39 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    previousSlot: {
+    previous: {
       control: { type: 'text' },
     },
-    previousIconSlot: {
+    'previous-icon': {
       control: { type: 'text' },
     },
-    previousLabelSlot: {
+    previousIcon: {
+      control: { type: 'text' },
+      name: 'previousIcon (deprecated: use `previous-icon`)',
+    },
+    'previous-label': {
       control: { type: 'text' },
     },
-    nextSlot: {
+    previousLabel: {
+      control: { type: 'text' },
+      name: 'previousLabel (deprecated: use `previous-label`)',
+    },
+    next: {
       control: { type: 'text' },
     },
-    nextIconSlot: {
+    'next-icon': {
       control: { type: 'text' },
     },
-    nextLabelSlot: {
+    nextIcon: {
       control: { type: 'text' },
+      name: 'nextIcon (deprecated: use `next-icon`)',
+    },
+    'next-label': {
+      control: { type: 'text' },
+    },
+    nextLabel: {
+      control: { type: 'text' },
+      name: 'nextLabel (deprecated: use `next-label`)',
     },
   },
   args: {
@@ -108,12 +124,12 @@ export default {
     nextPageAriaLabel: defaultProps.nextPageAriaLabel,
     lastPageAriaLabel: defaultProps.lastPageAriaLabel,
     customClasses: defaultProps.customClasses,
-    previousSlot: '',
-    previousIconSlot: '',
-    previousLabelSlot: '',
-    nextSlot: '',
-    nextIconSlot: '',
-    nextLabelSlot: '',
+    previous: '',
+    'previous-icon': '',
+    'previous-label': '',
+    next: '',
+    'next-icon': '',
+    'next-label': '',
   },
 }
 
@@ -138,23 +154,35 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :last-page-aria-label="lastPageAriaLabel"
     :custom-classes="customClasses"
   >
-    <template v-if="${!!args.previousSlot}" #previous="{ isFirstPage, toPreviousPage }">${
-    args.previousSlot
+    <template v-if="${!!args.previous}" #previous="{ isFirstPage, toPreviousPage }">${
+    args.previous
   }</template>
-    <template v-if="${!!args.previousIconSlot}" #previousIcon>${
-    args.previousIconSlot
+    <template v-if="${!!args['previous-icon']}" #previous-icon>${
+    args['previous-icon']
   }</template>
-    <template v-if="${!!args.previousLabelSlot}" #previousLabel>${
-    args.previousLabelSlot
+    <template v-else-if="${!!args.previousIcon}" #previousIcon>${
+    args.previousIcon
   }</template>
-    <template v-if="${!!args.nextSlot}" #next="{ isLastPage, toNextPage }">${
-    args.nextSlot
+    <template v-if="${!!args['previous-label']}" #previous-label>${
+    args['previous-label']
   }</template>
-    <template v-if="${!!args.nextIconSlot}" #nextIcon>${
-    args.nextIconSlot
+    <template v-else-if="${!!args.previousLabel}" #previousLabel>${
+    args.previousLabel
   }</template>
-    <template v-if="${!!args.nextLabelSlot}" #nextLabel>${
-    args.nextLabelSlot
+    <template v-if="${!!args.next}" #next="{ isLastPage, toNextPage }">${
+    args.next
+  }</template>
+    <template v-if="${!!args['next-icon']}" #next-icon>${
+    args['next-icon']
+  }</template>
+    <template v-else-if="${!!args.nextIcon}" #nextIcon>${
+    args.nextIcon
+  }</template>
+    <template v-if="${!!args['next-label']}" #next-label>${
+    args['next-label']
+  }</template>
+    <template v-else-if="${!!args.nextLabel}" #nextLabel>${
+    args.nextLabel
   }</template>
   </UsaPagination>`,
 })
@@ -218,8 +246,8 @@ CustomSlotContentPagination.args = {
   ...defaultProps,
   items: generateTestItems(12, {}),
   currentPage: 6,
-  previousSlot: 'Test Previous Slot',
-  nextSlot: 'Test Next Slot',
+  previous: 'Test Previous Slot',
+  next: 'Test Next Slot',
 }
 CustomSlotContentPagination.storyName = 'Custom Prev/Next Slot Content'
 
@@ -228,10 +256,10 @@ CustomIconLabelSlotContentPagination.args = {
   ...defaultProps,
   items: generateTestItems(12, {}),
   currentPage: 6,
-  previousIconSlot: '&lt;',
-  previousLabelSlot: 'Test Label Slot',
-  nextLabelSlot: 'Test Label Slot',
-  nextIconSlot: '&gt;',
+  'previous-icon': '&lt;',
+  'previous-label': 'Test Label Slot',
+  'next-label': 'Test Label Slot',
+  'next-icon': '&gt;',
 }
 CustomIconLabelSlotContentPagination.storyName =
   'Custom Icon/Label Slot Content'
@@ -239,7 +267,7 @@ CustomIconLabelSlotContentPagination.storyName =
 export const ScopedSlotPagination = DefaultTemplate.bind({})
 ScopedSlotPagination.args = {
   ...defaultProps,
-  previousSlot: 'is first page: {{ isFirstPage }}',
-  nextSlot: 'is last page: {{ isLastPage }}',
+  previous: 'is first page: {{ isFirstPage }}',
+  next: 'is last page: {{ isLastPage }}',
 }
 ScopedSlotPagination.storyName = 'Scoped Slot'

@@ -20,13 +20,13 @@ export default {
     condensed: {
       control: { type: 'boolean' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     condensed: defaultProps.condensed,
-    defaultSlot: testCollectionItem,
+    default: testCollectionItem,
   },
 }
 
@@ -36,7 +36,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaCollection :condensed="condensed">${args.defaultSlot}</UsaCollection>`,
+  template: `<UsaCollection :condensed="condensed">${args.default}</UsaCollection>`,
 })
 
 export const DefaultCollection = DefaultTemplate.bind({})

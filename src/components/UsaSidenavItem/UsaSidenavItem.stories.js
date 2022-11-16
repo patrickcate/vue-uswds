@@ -18,14 +18,14 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     item: defaultProps.item,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
+    default: '',
   },
   decorators: [() => ({ template: '<ul class="usa-sidenav"><story /></ul>' })],
 }
@@ -36,8 +36,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaSidenavItem :item="item" :custom-classes="customClasses"><template v-if="${!!args.defaultSlot}" #default="{ item }">${
-    args.defaultSlot
+  template: `<UsaSidenavItem :item="item" :custom-classes="customClasses"><template v-if="${!!args.default}" #default="{ item }">${
+    args.default
   }</template></UsaSidenavItem>`,
 })
 
@@ -99,6 +99,6 @@ ScopedSlotSidenavItem.args = {
     to: '/parent-page',
     text: 'Parent page',
   },
-  defaultSlot: `<strong>{{ item.to }} &rarr;</strong>`,
+  default: `<strong>{{ item.to }} &rarr;</strong>`,
 }
 ScopedSlotSidenavItem.storyName = 'Scoped Slot'

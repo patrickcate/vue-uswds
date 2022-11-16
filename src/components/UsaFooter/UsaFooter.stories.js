@@ -22,10 +22,10 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
-    jumpLinkSlot: {
+    'jump-link': {
       control: { type: 'text' },
     },
   },
@@ -33,8 +33,8 @@ export default {
     variant: defaultProps.variant,
     jumpLinkText: defaultProps.jumpLinkText,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
-    jumpLinkSlot: '',
+    default: '',
+    'jump-link': '',
   },
 }
 
@@ -49,19 +49,17 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :jump-link-text="jumpLinkText"
     :custom-classes="customClasses"
   >
-    <template v-if="${!!args.jumpLinkSlot}" #jump-link>${
-    args.jumpLinkSlot
+    <template v-if="${!!args['jump-link']}" #jump-link>${
+    args['jump-link']
   }</template>
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
   </UsaFooter>`,
 })
 
 export const DefaultFooter = DefaultTemplate.bind({})
 DefaultFooter.args = {
   ...defaultProps,
-  defaultSlot: 'Footer content here',
+  default: 'Footer content here',
 }
 DefaultFooter.storyName = 'Default (Medium)'
 
@@ -69,7 +67,7 @@ export const BigFooter = DefaultTemplate.bind({})
 BigFooter.args = {
   ...defaultProps,
   variant: 'big',
-  defaultSlot: 'Footer content here',
+  default: 'Footer content here',
 }
 BigFooter.storyName = 'Big'
 
@@ -77,7 +75,7 @@ export const SlimFooter = DefaultTemplate.bind({})
 SlimFooter.args = {
   ...defaultProps,
   variant: 'slim',
-  defaultSlot: 'Footer content here',
+  default: 'Footer content here',
 }
 SlimFooter.storyName = 'Slim'
 
@@ -85,22 +83,22 @@ export const JumpLinkTextFooter = DefaultTemplate.bind({})
 JumpLinkTextFooter.args = {
   ...defaultProps,
   jumpLinkText: 'Custom jump link text',
-  defaultSlot: 'Footer content here',
+  default: 'Footer content here',
 }
 JumpLinkTextFooter.storyName = 'Jump Link Text'
 
-export const JumpLinkSlotFooter = DefaultTemplate.bind({})
-JumpLinkSlotFooter.args = {
+export const JumpLinkFooterSlot = DefaultTemplate.bind({})
+JumpLinkFooterSlot.args = {
   ...defaultProps,
-  defaultSlot: 'Footer content here',
-  jumpLinkSlot: 'Jump link slot',
+  default: 'Footer content here',
+  'jump-link': '<em>Jump link slot</em>',
 }
-JumpLinkSlotFooter.storyName = 'Jump Link Slot'
+JumpLinkFooterSlot.storyName = 'Jump Link Slot'
 
 export const CustomClassesFooter = DefaultTemplate.bind({})
 CustomClassesFooter.args = {
   ...defaultProps,
-  defaultSlot: 'Footer content here',
+  default: 'Footer content here',
   customClasses: {
     container: ['custom-container-class'],
   },

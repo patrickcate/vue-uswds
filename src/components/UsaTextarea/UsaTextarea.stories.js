@@ -37,6 +37,9 @@ export default {
     },
     label: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     required: {
       control: { type: 'boolean' },
@@ -50,13 +53,17 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    labelSlot: {
+    'slot:label': {
+      control: { type: 'text' },
+      name: 'label',
+      table: {
+        category: 'slots',
+      },
+    },
+    hint: {
       control: { type: 'text' },
     },
-    hintSlot: {
-      control: { type: 'text' },
-    },
-    errorMessageSlot: {
+    'error-message': {
       control: { type: 'text' },
     },
   },
@@ -68,9 +75,9 @@ export default {
     error: defaultProps.error,
     id: defaultProps.id,
     customClasses: defaultProps.customClasses,
-    labelSlot: '',
-    hintSlot: '',
-    errorMessageSlot: '',
+    'slot:label': '',
+    hint: '',
+    'error-message': '',
   },
   decorators: [
     () => ({
@@ -96,10 +103,12 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
     v-model="modelValue"
   >
-    <template v-if="${!!args.labelSlot}" #label>${args.labelSlot}</template>
-    <template v-if="${!!args.hintSlot}" #hint>${args.hintSlot}</template>
-    <template v-if="${!!args.errorMessageSlot}" #error-message>${
-    args.errorMessageSlot
+    <template v-if="${!!args['slot:label']}" #label>${
+    args['slot:label']
+  }</template>
+    <template v-if="${!!args.hint}" #hint>${args.hint}</template>
+    <template v-if="${!!args['error-message']}" #error-message>${
+    args['error-message']
   }</template>
   </UsaTextarea>`,
 })
@@ -131,7 +140,7 @@ export const HintTextarea = DefaultTemplate.bind({})
 HintTextarea.args = {
   ...defaultProps,
   label: 'Textarea label',
-  hintSlot: 'Choose wisely',
+  hint: 'Choose wisely',
 }
 HintTextarea.storyName = 'Hint'
 
@@ -148,7 +157,7 @@ ErrorMessageTextarea.args = {
   ...defaultProps,
   label: 'Textarea label',
   error: true,
-  errorMessageSlot: 'Error message here',
+  'error-message': 'Error message here',
 }
 ErrorMessageTextarea.storyName = 'Error Message'
 
@@ -163,7 +172,7 @@ RequiredTextarea.storyName = 'Required'
 export const LabelSlotTextarea = DefaultTemplate.bind({})
 LabelSlotTextarea.args = {
   ...defaultProps,
-  labelSlot: `<em>Label slot content</em>`,
+  'slot:label': `<em>Label slot content</em>`,
 }
 LabelSlotTextarea.storyName = 'Label Slot'
 

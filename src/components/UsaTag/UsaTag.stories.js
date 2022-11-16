@@ -20,13 +20,13 @@ export default {
         type: 'text',
       },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     tag: defaultProps.tag,
-    defaultSlot: 'Test',
+    default: 'Test',
   },
 }
 
@@ -36,7 +36,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaTag :tag="tag" :size="size">${args.defaultSlot}</UsaTag>`,
+  template: `<UsaTag :tag="tag" :size="size">${args.default}</UsaTag>`,
 })
 
 export const DefaultTag = DefaultTemplate.bind({})
@@ -56,6 +56,6 @@ export const CustomElementTag = DefaultTemplate.bind({})
 CustomElementTag.args = {
   ...defaultProps,
   tag: 'div',
-  defaultSlot: 'Test (div)',
+  default: 'Test (div)',
 }
 CustomElementTag.storyName = 'Custom Element'

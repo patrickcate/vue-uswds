@@ -15,18 +15,18 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
-    menuButtonSlot: {
+    'menu-button': {
       control: { type: 'text' },
     },
   },
   args: {
     menuButtonLabel: defaultProps.menuButtonLabel,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
-    menuButtonSlot: '',
+    default: '',
+    'menu-button': '',
   },
 }
 
@@ -40,12 +40,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :menu-button-label="menuButtonLabel"
     :custom-classes="customClasses"
   >
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
-    <template v-if="${!!args.menuButtonSlot}" #menu-button="{ menuButtonLabel }">${
-    args.menuButtonSlot
-  }</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
+    <template v-if="${!!args[
+      'menu-button'
+    ]}" #menu-button="{ menuButtonLabel }">${args['menu-button']}</template>
   </UsaNavbar>`,
 })
 
@@ -65,14 +63,14 @@ MenuButtonLabelNavbar.storyName = 'Menu Button Label'
 export const DefaultSlotNavbar = DefaultTemplate.bind({})
 DefaultSlotNavbar.args = {
   ...defaultProps,
-  defaultSlot: 'Your Logo Here',
+  default: 'Your Logo Here',
 }
 DefaultSlotNavbar.storyName = 'Default Slot'
 
 export const MenuButtonScopedSlotNavbar = DefaultTemplate.bind({})
 MenuButtonScopedSlotNavbar.args = {
   ...defaultProps,
-  menuButtonSlot: '<em>My {{ menuButtonLabel }}</em>',
+  'menu-button': '<em>My {{ menuButtonLabel }}</em>',
 }
 MenuButtonScopedSlotNavbar.storyName = 'Menu Button Scoped Slot'
 

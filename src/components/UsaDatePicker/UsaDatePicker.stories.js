@@ -89,6 +89,9 @@ export default {
     },
     label: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     error: {
       control: { type: 'boolean' },
@@ -105,16 +108,20 @@ export default {
     id: {
       control: { type: 'text' },
     },
-    labelSlot: {
+    'slot:label': {
+      control: { type: 'text' },
+      name: 'label',
+      table: {
+        category: 'slots',
+      },
+    },
+    hint: {
       control: { type: 'text' },
     },
-    hintSlot: {
+    'error-message': {
       control: { type: 'text' },
     },
-    errorMessageSlot: {
-      control: { type: 'text' },
-    },
-    statusSlot: {
+    status: {
       control: { type: 'text' },
     },
   },
@@ -142,10 +149,10 @@ export default {
     error: defaultProps.error,
     id: defaultProps.id,
     customClasses: defaultProps.customClasses,
-    labelSlot: '',
-    hintSlot: '',
-    errorMessageSlot: '',
-    statusSlot: '',
+    'slot:label': '',
+    hint: '',
+    'error-message': '',
+    status: '',
   },
 }
 
@@ -181,12 +188,14 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :id="id"
     :custom-classes="customClasses"
   >
-    <template v-if="${!!args.labelSlot}" #label>${args.labelSlot}</template>
-    <template v-if="${!!args.hintSlot}" #hint>${args.hintSlot}</template>
-    <template v-if="${!!args.errorMessageSlot}" #error-message>${
-    args.errorMessageSlot
+    <template v-if="${!!args['slot:label']}" #label>${
+    args['slot:label']
   }</template>
-    <template v-if="${!!args.statusSlot}" #status="{
+    <template v-if="${!!args.hint}" #hint>${args.hint}</template>
+    <template v-if="${!!args['error-message']}" #error-message>${
+    args['error-message']
+  }</template>
+    <template v-if="${!!args.status}" #status="{
       open,
       isPristine,
       selectorMode,
@@ -196,7 +205,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
       activeYear,
       yearRangeStart,
       yearRangeStop
-    }">${args.statusSlot}</template>
+    }">${args.status}</template>
   </UsaDatePicker>`,
 })
 
@@ -277,7 +286,7 @@ export const HintDatePicker = DefaultTemplate.bind({})
 HintDatePicker.args = {
   ...defaultProps,
   label: 'Hint date picker',
-  hintSlot: 'Choose wisely',
+  hint: 'Choose wisely',
 }
 HintDatePicker.storyName = 'Hint'
 
@@ -294,7 +303,7 @@ ErrorMessageDatePicker.args = {
   ...defaultProps,
   label: 'Error message date picker',
   error: true,
-  errorMessageSlot: 'Error message here',
+  'error-message': 'Error message here',
 }
 ErrorMessageDatePicker.storyName = 'Error Message'
 
@@ -325,7 +334,7 @@ ReadOnlyDatePicker.storyName = 'Readonly'
 export const LabelSlotDatePicker = DefaultTemplate.bind({})
 LabelSlotDatePicker.args = {
   ...defaultProps,
-  labelSlot: `<em>Label slot content</em>`,
+  'slot:label': `<em>Label slot content</em>`,
 }
 LabelSlotDatePicker.storyName = 'Label Slot'
 
@@ -333,7 +342,7 @@ export const ScreenReaderStatusSlotDatePicker = DefaultTemplate.bind({})
 ScreenReaderStatusSlotDatePicker.args = {
   ...defaultProps,
   label: 'Screen reader status slot',
-  statusSlot: `Is open: {{ open }}<br>
+  status: `Is open: {{ open }}<br>
     Is pristine: {{ isPristine }}<br>
     Selector Mode: {{ selectorMode }}<br>
     Selected Date: {{ selectedDate }}<br>

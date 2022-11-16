@@ -31,7 +31,7 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -41,7 +41,7 @@ export default {
     routerComponentName: defaultProps.routerComponentName,
     src: defaultProps.src,
     alt: defaultProps.alt,
-    defaultSlot: '',
+    default: '',
   },
   decorators: [
     () => ({
@@ -63,7 +63,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :src="src"
     :alt="alt"
     :custom-classes="customClasses"
-  >${args.defaultSlot}</UsaIdentifierLogo>`,
+  >${args.default}</UsaIdentifierLogo>`,
 })
 
 export const DefaultIdentifierLogo = DefaultTemplate.bind({})
@@ -78,7 +78,7 @@ DefaultIdentifierLogo.storyName = 'Default'
 export const DefaultSlotIdentifierLogo = DefaultTemplate.bind({})
 DefaultSlotIdentifierLogo.args = {
   ...defaultProps,
-  defaultSlot: `Your logo here`,
+  default: `Your logo here`,
 }
 DefaultSlotIdentifierLogo.storyName = 'Default Slot'
 

@@ -8,12 +8,12 @@ export default {
   component: UsaDateRangePicker,
   title: 'Components/UsaDateRangePicker',
   argTypes: {
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
-    defaultSlot: `<UsaDatePicker
+    default: `<UsaDatePicker
       label="Start Date"
       v-model="startDate"
       range-type="start">
@@ -35,9 +35,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args, startDate, endDate }
   },
   template: `<UsaDateRangePicker>
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
   </UsaDateRangePicker>`,
 })
 

@@ -28,7 +28,7 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -38,7 +38,7 @@ export default {
     routerComponentName: defaultProps.routerComponentName,
     current: defaultProps.current,
     customClasses: defaultProps.customClasses,
-    defaultSlot: 'Test breadcrumb',
+    default: 'Test breadcrumb',
   },
 }
 
@@ -55,7 +55,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
       :router-component-name="routerComponentName"
       :current="current"
       :custom-classes="customClasses"
-    >${args.defaultSlot}</UsaBreadcrumbItem>
+    >${args.default}</UsaBreadcrumbItem>
   </UsaBreadcrumb>`,
 })
 

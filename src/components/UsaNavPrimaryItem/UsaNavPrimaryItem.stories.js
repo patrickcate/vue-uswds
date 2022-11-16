@@ -19,7 +19,7 @@ export default {
     routerComponentName: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -27,7 +27,7 @@ export default {
     href: defaultProps.href,
     to: defaultProps.to,
     routerComponentName: defaultProps.routerComponentName,
-    defaultSlot: 'Test nav link',
+    default: 'Test nav link',
   },
   decorators: [
     () => ({
@@ -55,7 +55,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :href="href"
     :to="to"
     :router-component-name="routerComponentName"
-  >${args.defaultSlot}</UsaNavPrimaryItem>`,
+  >${args.default}</UsaNavPrimaryItem>`,
 })
 
 export const DefaultNavPrimaryItem = DefaultTemplate.bind({})

@@ -31,13 +31,13 @@ export default {
     items: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     items: defaultProps.items,
-    defaultSlot: '',
+    default: '',
   },
   decorators: [
     () => ({
@@ -54,9 +54,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaChecklist :items="items">
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
   </UsaChecklist>`,
 })
 
@@ -70,6 +68,6 @@ DefaultChecklist.storyName = 'Default'
 export const CustomSlotContentChecklist = DefaultTemplate.bind({})
 CustomSlotContentChecklist.args = {
   ...defaultProps,
-  defaultSlot: '<li>A custom item</li>',
+  default: '<li>A custom item</li>',
 }
 CustomSlotContentChecklist.storyName = 'Custom Slot Content'

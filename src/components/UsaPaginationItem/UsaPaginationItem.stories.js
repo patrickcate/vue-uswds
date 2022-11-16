@@ -30,7 +30,7 @@ export default {
     routerComponentName: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -41,7 +41,7 @@ export default {
     href: '/test-page',
     to: '',
     routerComponentName: '',
-    defaultSlot: '',
+    default: '',
   },
   decorators: [
     () => ({
@@ -64,7 +64,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :href="href"
     :to="to"
     :router-component-name="routerComponentName"
-  >${args.defaultSlot}</UsaPaginationItem>`,
+  >${args.default}</UsaPaginationItem>`,
 })
 
 export const DefaultPaginationItem = DefaultTemplate.bind({})

@@ -23,6 +23,9 @@ export default {
     },
     label: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     required: {
       control: { type: 'boolean' },
@@ -36,22 +39,26 @@ export default {
     id: {
       control: { type: 'text' },
     },
-    labelSlot: {
+    'slot:label': {
+      control: { type: 'text' },
+      name: 'label',
+      table: {
+        category: 'slots',
+      },
+    },
+    hint: {
       control: { type: 'text' },
     },
-    hintSlot: {
+    'error-message': {
       control: { type: 'text' },
     },
-    errorMessageSlot: {
+    instructions: {
       control: { type: 'text' },
     },
-    instructionsSlot: {
+    'preview-heading': {
       control: { type: 'text' },
     },
-    previewHeadingSlot: {
-      control: { type: 'text' },
-    },
-    invalidFilesMessageSlot: {
+    'invalid-files-message': {
       control: { type: 'text' },
     },
   },
@@ -63,12 +70,12 @@ export default {
     disabled: defaultProps.disabled,
     error: defaultProps.error,
     id: defaultProps.id,
-    labelSlot: '',
-    hintSlot: '',
-    errorMessageSlot: '',
-    instructionsSlot: '',
-    previewHeadingSlot: '',
-    invalidFilesMessageSlot: '',
+    'slot:label': '',
+    hint: '',
+    'error-message': '',
+    instructions: '',
+    'preview-heading': '',
+    'invalid-files-message': '',
   },
 }
 
@@ -87,20 +94,22 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :disabled="disabled"
     :error="error"
   >
-    <template v-if="${!!args.labelSlot}" #label>${args.labelSlot}</template>
-    <template v-if="${!!args.hintSlot}" #hint>${args.hintSlot}</template>
-    <template v-if="${!!args.errorMessageSlot}" #error-message>${
-    args.errorMessageSlot
+    <template v-if="${!!args['slot:label']}" #label>${
+    args['slot:label']
   }</template>
-    <template v-if="${!!args.instructionsSlot}" #instructions="{ multiple }">${
-    args.instructionsSlot
+    <template v-if="${!!args.hint}" #hint>${args.hint}</template>
+    <template v-if="${!!args['error-message']}" #error-message>${
+    args['error-message']
   }</template>
-    <template v-if="${!!args.previewHeadingSlot}" #preview-heading="{ loadedFiles }">${
-    args.previewHeadingSlot
+    <template v-if="${!!args.instructions}" #instructions="{ multiple }">${
+    args.instructions
   }</template>
-    <template v-if="${!!args.invalidFilesMessageSlot}" #invalid-files-message>${
-    args.invalidFilesMessageSlot
-  }</template>
+    <template v-if="${!!args[
+      'preview-heading'
+    ]}" #preview-heading="{ loadedFiles }">${args['preview-heading']}</template>
+    <template v-if="${!!args[
+      'invalid-files-message'
+    ]}" #invalid-files-message>${args['invalid-files-message']}</template>
   </UsaFileInput>`,
 })
 
@@ -131,7 +140,7 @@ export const HintFileInput = DefaultTemplate.bind({})
 HintFileInput.args = {
   ...defaultProps,
   label: 'File',
-  hintSlot: 'Choose wisely',
+  hint: 'Choose wisely',
 }
 HintFileInput.storyName = 'Hint'
 
@@ -148,7 +157,7 @@ ErrorMessageFileInput.args = {
   ...defaultProps,
   label: 'File',
   error: true,
-  errorMessageSlot: 'Error message here',
+  'error-message': 'Error message here',
 }
 ErrorMessageFileInput.storyName = 'Error Message'
 
@@ -180,7 +189,7 @@ export const InstructionsSlotFileInput = DefaultTemplate.bind({})
 InstructionsSlotFileInput.args = {
   ...defaultProps,
   label: 'File',
-  instructionsSlot:
+  instructions:
     'You can choose multiple files: <strong>{{ multiple }}</strong>',
 }
 InstructionsSlotFileInput.storyName = 'Instructions Slot'
@@ -189,7 +198,7 @@ export const PreviewHeadingSlotFileInput = DefaultTemplate.bind({})
 PreviewHeadingSlotFileInput.args = {
   ...defaultProps,
   label: 'Load file to see preview heading',
-  previewHeadingSlot: 'Total files: <strong>{{ loadedFiles.length }}</strong>',
+  'preview-heading': 'Total files: <strong>{{ loadedFiles.length }}</strong>',
 }
 PreviewHeadingSlotFileInput.storyName = 'Preview Heading Slot'
 
@@ -197,7 +206,7 @@ export const InvalidFilesMessageSlotFileInput = DefaultTemplate.bind({})
 InvalidFilesMessageSlotFileInput.args = {
   ...defaultProps,
   label: 'Load file to see message',
-  invalidFilesMessageSlot: 'Not a valid file.',
+  'invalid-files-message': 'Not a valid file.',
   accept: '.json',
 }
 InvalidFilesMessageSlotFileInput.storyName = 'Invalid Message Slot'
@@ -214,3 +223,5 @@ CustomClassesFileInput.args = {
   },
 }
 CustomClassesFileInput.storyName = 'Custom CSS Classes'
+
+// TODO: Add label slot story.
