@@ -39,7 +39,7 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    iconSlot: {
+    icon: {
       control: { type: 'text' },
     },
   },
@@ -51,7 +51,7 @@ export default {
     inputAttrs: defaultProps.inputAttrs,
     id: defaultProps.id,
     customClasses: defaultProps.customClasses,
-    iconSlot: '',
+    icon: '',
   },
 }
 
@@ -71,7 +71,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :id="id"
     :customClasses="customClasses"
   >
-    <template v-if="${!!args.iconSlot}" #icon>${args.iconSlot}</template>
+    <template v-if="${!!args.icon}" #icon>${args.icon}</template>
   </UsaSearch>`,
 })
 
@@ -129,7 +129,7 @@ export const IconSlotSearch = DefaultTemplate.bind({})
 IconSlotSearch.args = {
   ...defaultProps,
   variant: 'small',
-  iconSlot: '<strong>-></strong>',
+  icon: '<strong>-></strong>',
 }
 IconSlotSearch.storyName = 'Icon Slot'
 

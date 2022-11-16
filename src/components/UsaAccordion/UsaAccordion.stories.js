@@ -20,7 +20,7 @@ export default {
     headingTag: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -28,7 +28,7 @@ export default {
     bordered: defaultProps.bordered,
     multiselectable: defaultProps.multiselectable,
     headingTag: defaultProps.headingTag,
-    defaultSlot: `
+    default: `
       <UsaAccordionItem label="Accordion 1" open>Accordion 1 Content</UsaAccordionItem>
       <UsaAccordionItem label="Accordion 2" open>Accordion 2 Content</UsaAccordionItem>
       <UsaAccordionItem label="Accordion 3">Accordion 3 Content</UsaAccordionItem>
@@ -46,7 +46,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :bordered="bordered"
     :multiselectable="multiselectable"
     :headingTag="headingTag"
-    >${args.defaultSlot}</UsaAccordion>`,
+    >${args.default}</UsaAccordion>`,
 })
 
 export const DefaultAccordion = DefaultTemplate.bind({})

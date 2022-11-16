@@ -12,13 +12,13 @@ export default {
     segmented: {
       control: { type: 'boolean' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     segmented: defaultProps.segmented,
-    defaultSlot: `<UsaButtonGroupItem>
+    default: `<UsaButtonGroupItem>
       <button type="button" class="usa-button">Test button 1</button>
     </UsaButtonGroupItem>
     <UsaButtonGroupItem>
@@ -36,7 +36,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaButtonGroup :segmented="segmented">${args.defaultSlot}</UsaButtonGroup>`,
+  template: `<UsaButtonGroup :segmented="segmented">${args.default}</UsaButtonGroup>`,
 })
 
 export const DefaultButtonGroup = DefaultTemplate.bind({})

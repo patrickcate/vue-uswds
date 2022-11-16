@@ -41,13 +41,13 @@ export default {
     disabled: {
       control: { type: 'boolean' },
     },
-    beforeSlot: {
+    before: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
-    afterSlot: {
+    after: {
       control: { type: 'text' },
     },
   },
@@ -56,9 +56,9 @@ export default {
     size: defaultProps.size,
     type: defaultProps.type,
     disabled: defaultProps.disabled,
-    beforeSlot: '',
-    defaultSlot: 'Button',
-    afterSlot: '',
+    before: '',
+    default: 'Button',
+    after: '',
   },
 }
 
@@ -74,11 +74,9 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :type="type"
     :disabled="disabled"
   >
-    <template v-if="${!!args.beforeSlot}" #before>${args.beforeSlot}</template>
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
-    <template v-if="${!!args.afterSlot}" #after>${args.afterSlot}</template>
+    <template v-if="${!!args.before}" #before>${args.before}</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
+    <template v-if="${!!args.after}" #after>${args.after}</template>
   </UsaButton>`,
 })
 
@@ -159,13 +157,13 @@ DisabledButton.storyName = 'Disabled'
 export const BeforeSlotButton = DefaultTemplate.bind({})
 BeforeSlotButton.args = {
   ...defaultProps,
-  beforeSlot: '⨂ ',
+  before: '⨂ ',
 }
 BeforeSlotButton.storyName = 'Before Slot'
 
 export const AfterSlotButton = DefaultTemplate.bind({})
 AfterSlotButton.args = {
   ...defaultProps,
-  afterSlot: ' ⨁',
+  after: ' ⨁',
 }
 AfterSlotButton.storyName = 'After Slot'

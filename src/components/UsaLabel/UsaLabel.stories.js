@@ -14,14 +14,21 @@ export default {
     },
     required: {
       control: { type: 'boolean' },
+      table: {
+        category: 'props',
+      },
     },
     error: {
       control: { type: 'boolean' },
     },
-    requiredSlot: {
+    'slot:required': {
       control: { type: 'text' },
+      name: 'required',
+      table: {
+        category: 'slots',
+      },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -29,8 +36,8 @@ export default {
     for: 'test-id',
     required: defaultProps.required,
     error: defaultProps.error,
-    requiredSlot: '',
-    defaultSlot: 'Test Label',
+    'slot:required': '',
+    default: 'Test Label',
   },
 }
 
@@ -40,10 +47,10 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args, labelFor: args.for }
   },
-  template: `<UsaLabel :for="labelFor" :required="required" :error="error"><template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template><template v-if="${!!args.requiredSlot}" #required>${
-    args.requiredSlot
+  template: `<UsaLabel :for="labelFor" :required="required" :error="error"><template v-if="${!!args.default}" #default>${
+    args.default
+  }</template><template v-if="${!!args['slot:required']}" #required>${
+    args['slot:required']
   }</template></UsaLabel>`,
 })
 
@@ -71,6 +78,6 @@ export const RequiredSlotLabel = DefaultTemplate.bind({})
 RequiredSlotLabel.args = {
   ...defaultProps,
   required: true,
-  requiredSlot: '(required)',
+  'slot:required': '(required)',
 }
 RequiredSlotLabel.storyName = 'Required Slot'

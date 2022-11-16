@@ -33,7 +33,7 @@ describe('UsaHeroCallout', () => {
         heading: testHeading,
       },
       slots: {
-        headingAlt: () => 'Custom heading alt slot content',
+        'heading-alt': () => 'Custom heading alt slot content',
         heading: () => 'Custom heading slot content',
         default: () => h('p', null, textContent),
       },
@@ -53,7 +53,7 @@ describe('UsaHeroCallout', () => {
   it('`heading` and `headingAlt` slot content renders even if `heading` and `headingAlt` prop values not used', () => {
     mount(UsaHeroCallout, {
       slots: {
-        headingAlt: () => 'Custom heading alt slot content',
+        'heading-alt': () => 'Custom heading alt slot content',
         heading: () => 'Custom heading slot content',
         default: () => h('p', null, textContent),
       },
@@ -70,10 +70,10 @@ describe('UsaHeroCallout', () => {
     )
   })
 
-  it('`headingAlt`text renders if `heading` prop not used', () => {
+  it('`headingAlt` text renders if `heading` prop not used', () => {
     mount(UsaHeroCallout, {
       slots: {
-        headingAlt: () => 'Custom heading alt slot content',
+        'heading-alt': () => 'Custom heading alt slot content',
         default: () => h('p', null, textContent),
       },
     })
@@ -118,5 +118,29 @@ describe('UsaHeroCallout', () => {
 
     cy.get('.test-heading-alt-class').should('exist')
     cy.get('.test-heading-class').should('exist')
+  })
+
+  it('warns in console of deprecated slots', () => {
+    cy.stub(window.console, 'warn').as('consoleWarn')
+
+    mount(UsaHeroCallout, {
+      props: {
+        headingAlt: testHeadingAlt,
+        heading: testHeading,
+      },
+      slots: {
+        headingAlt: () => 'deprecated heading alt slot content',
+      },
+    })
+
+    cy.get('.usa-hero__heading--alt').should(
+      'contain',
+      'deprecated heading alt slot content'
+    )
+
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `The 'headingAlt' slot' is deprecated, use 'heading-alt' instead.`
+    )
   })
 })

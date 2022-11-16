@@ -19,7 +19,7 @@ export default {
     routerComponentName: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -27,7 +27,7 @@ export default {
     href: defaultProps.href,
     to: defaultProps.to,
     routerComponentName: defaultProps.routerComponentName,
-    defaultSlot: '',
+    default: '',
   },
 }
 
@@ -37,13 +37,13 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<BaseLink :href="href" :to="to" :router-component-name="routerComponentName">${args.defaultSlot}</BaseLink>`,
+  template: `<BaseLink :href="href" :to="to" :router-component-name="routerComponentName">${args.default}</BaseLink>`,
 })
 
 export const DefaultBaseLink = DefaultTemplate.bind({})
 DefaultBaseLink.args = {
   ...defaultProps,
   to: '/user',
-  defaultSlot: 'A link',
+  default: 'A link',
 }
 DefaultBaseLink.storyName = 'Default'

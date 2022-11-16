@@ -35,6 +35,9 @@ export default {
     },
     heading: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     headingTag: {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
@@ -43,13 +46,17 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    headingSlot: {
+    'slot:heading': {
+      control: { type: 'text' },
+      name: 'heading',
+      table: {
+        category: 'slots',
+      },
+    },
+    default: {
       control: { type: 'text' },
     },
-    defaultSlot: {
-      control: { type: 'text' },
-    },
-    messageSlot: {
+    message: {
       control: { type: 'text' },
     },
   },
@@ -61,8 +68,10 @@ export default {
     heading: defaultProps.heading,
     headingTag: defaultProps.headingTag,
     customClasses: defaultProps.customClasses,
-    defaultSlot:
+    default:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.',
+    'slot:heading': '',
+    message: '',
   },
 }
 
@@ -80,7 +89,12 @@ const DefaultTemplate = (args, { argTypes }) => ({
       :role="role"
       :heading="heading"
       :heading-tag="headingTag"
-      :custom-classes="customClasses">${args.defaultSlot}
+      :custom-classes="customClasses">
+        <template  v-if="${!!args['slot:heading']}" #heading>${
+    args['slot:heading']
+  }</template>
+        <template v-if="${!!args.default}" #default>${args.default}</template>
+        <template v-if="${!!args.message}" #message>${args.message}</template>
     </UsaSiteAlert>`,
 })
 
@@ -133,7 +147,7 @@ CustomClassesSiteAlert.args = {
     body: ['test-body-class'],
     heading: ['test-heading-class'],
   },
-  defaultSlot: 'Uses custom CSS classes.',
+  default: 'Uses custom CSS classes.',
 }
 CustomClassesSiteAlert.storyName = 'Custom Classes'
 
@@ -144,68 +158,18 @@ CustomRoleAlert.args = {
 }
 CustomRoleAlert.storyName = 'Custom Role Attribute'
 
-const HeadingSlotTemplate = (args, { argTypes }) => ({
-  components: { UsaSiteAlert },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `
-    <UsaSiteAlert
-      :variant="variant"
-      :slim="slim"
-      :no-icon="noIcon"
-      :role="role"
-      :heading="heading"
-      :heading-tag="headingTag"
-      :custom-classes="customClasses"
-    >
-      <template  v-if="${!!args.headingSlot}" #heading>${
-    args.headingSlot
-  }</template>
-      <template  v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
-    </UsaSiteAlert>`,
-})
-
-export const HeadingSlotAlert = HeadingSlotTemplate.bind({})
+export const HeadingSlotAlert = DefaultTemplate.bind({})
 HeadingSlotAlert.args = {
   ...defaultProps,
   heading: 'Emergency alert message',
-  headingSlot: 'Custom Heading Slot',
+  'slot:heading': 'Custom Heading Slot',
 }
 HeadingSlotAlert.storyName = 'Heading Slot'
 
-const MessageSlotTemplate = (args, { argTypes }) => ({
-  components: { UsaSiteAlert },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `
-    <UsaSiteAlert
-      :variant="variant"
-      :slim="slim"
-      :no-icon="noIcon"
-      :role="role"
-      :heading="heading"
-      :heading-tag="headingTag"
-      :custom-classes="customClasses"
-    >
-      <template v-if="${!!args.messageSlot}" #message>${
-    args.messageSlot
-  }</template>
-      <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
-    </UsaSiteAlert>`,
-})
-
-export const MessageSlotAlert = MessageSlotTemplate.bind({})
+export const MessageSlotAlert = DefaultTemplate.bind({})
 MessageSlotAlert.args = {
   ...defaultProps,
   heading: 'Emergency alert message',
-  messageSlot: 'Custom message slot content.',
+  message: 'Custom message slot content.',
 }
 MessageSlotAlert.storyName = 'Message Slot'

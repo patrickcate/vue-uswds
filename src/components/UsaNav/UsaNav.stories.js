@@ -20,13 +20,13 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    primarySlot: {
+    primary: {
       control: { type: 'text' },
     },
-    secondarySlot: {
+    secondary: {
       control: { type: 'text' },
     },
-    closeButtonSlot: {
+    'close-button': {
       control: { type: 'text' },
     },
   },
@@ -34,9 +34,9 @@ export default {
     ariaLabel: defaultProps.ariaLabel,
     closeButtonLabel: defaultProps.closeButtonLabel,
     customClasses: defaultProps.customClasses,
-    primarySlot: '<div>Primary nav here</div>',
-    secondarySlot: '<div>Secondary nav here</div>',
-    closeButtonSlot: '',
+    primary: '<div>Primary nav here</div>',
+    secondary: '<div>Secondary nav here</div>',
+    'close-button': '',
   },
   decorators: [
     () => ({
@@ -57,15 +57,11 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :close-button-label="closeButtonLabel"
     :custom-classes="customClasses"
   >
-    <template v-if="${!!args.primarySlot}" #primary>${
-    args.primarySlot
-  }</template>
-    <template v-if="${!!args.secondarySlot}" #secondary>${
-    args.secondarySlot
-  }</template>
-    <template v-if="${!!args.closeButtonSlot}" #close-button="{closeButtonLabel}">${
-    args.closeButtonSlot
-  }</template>
+    <template v-if="${!!args.primary}" #primary>${args.primary}</template>
+    <template v-if="${!!args.secondary}" #secondary>${args.secondary}</template>
+    <template v-if="${!!args[
+      'close-button'
+    ]}" #close-button="{closeButtonLabel}">${args['close-button']}</template>
   </UsaNav>`,
 })
 
@@ -92,7 +88,7 @@ CloseButtonLabelNav.storyName = 'Close Button Label'
 export const CloseButtonSlotNav = DefaultTemplate.bind({})
 CloseButtonSlotNav.args = {
   ...defaultProps,
-  closeButtonSlot: '<em>Close Me</em>',
+  'close-button': '<em>Close Me</em>',
 }
 CloseButtonSlotNav.storyName = 'Close Button Slot'
 

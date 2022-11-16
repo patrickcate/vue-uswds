@@ -24,7 +24,7 @@ export default {
     routerComponentName: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -34,7 +34,7 @@ export default {
     routerComponentName: '',
     alt: defaultProps.alt,
     external: defaultProps.external,
-    defaultSlot: 'Test',
+    default: 'Test',
   },
 }
 
@@ -50,7 +50,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :href="href"
     :to="to"
     :router-component-name="routerComponentName"
-   >${args.defaultSlot}</UsaLink>`,
+   >${args.default}</UsaLink>`,
 })
 
 export const DefaultLink = DefaultTemplate.bind({})

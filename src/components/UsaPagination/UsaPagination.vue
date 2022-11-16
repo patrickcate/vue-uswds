@@ -1,8 +1,30 @@
 <script setup>
-import { computed, toRef } from 'vue'
+import { computed, toRef, useSlots } from 'vue'
 import usePagination from '@/composables/usePagination.js'
 import UsaPaginationArrow from '@/components/UsaPaginationArrow'
 import UsaPaginationItem from '@/components/UsaPaginationItem'
+
+const slots = useSlots()
+
+if (slots?.previousIcon) {
+  console.warn(
+    `The 'previousIcon' slot' is deprecated, use 'previous-icon' instead.`
+  )
+}
+
+if (slots?.previousLabel) {
+  console.warn(
+    `The 'previousLabel' slot' is deprecated, use 'previous-label' instead.`
+  )
+}
+
+if (slots?.nextIcon) {
+  console.warn(`The 'nextIcon' slot' is deprecated, use 'next-icon' instead.`)
+}
+
+if (slots?.nextLabel) {
+  console.warn(`The 'nextLabel' slot' is deprecated, use 'next-label' instead.`)
+}
 
 const emit = defineEmits(['update:currentPage'])
 
@@ -36,7 +58,7 @@ const props = defineProps({
   },
   firstPageAriaLabel: {
     type: String,
-    default: 'First page, page #',
+    default: 'First page, page %s',
   },
   previousPageAriaLabel: {
     type: String,
@@ -44,7 +66,7 @@ const props = defineProps({
   },
   numberPageAriaLabel: {
     type: String,
-    default: 'Page #',
+    default: 'Page %s',
   },
   nextPageAriaLabel: {
     type: String,
@@ -52,7 +74,7 @@ const props = defineProps({
   },
   lastPageAriaLabel: {
     type: String,
-    default: 'Last page, page #',
+    default: 'Last page, page %s',
   },
   customClasses: {
     type: Object,
@@ -87,14 +109,26 @@ const {
 
 function getAriaLabel(pageNumber) {
   if (pageNumber === 1) {
-    return props.firstPageAriaLabel.replace('#', pageNumber)
+    if (props.firstPageAriaLabel.includes('#')) {
+      console.warn(`The '#' placeholder is deprecated, use '%s' instead.`)
+      return props.firstPageAriaLabel.replaceAll('#', pageNumber)
+    }
+    return props.firstPageAriaLabel.replaceAll('%s', pageNumber)
   }
 
   if (pageNumber === totalPages.value) {
-    return props.lastPageAriaLabel.replace('#', pageNumber)
+    if (props.lastPageAriaLabel.includes('#')) {
+      console.warn(`The '#' placeholder is deprecated, use '%s' instead.`)
+      return props.lastPageAriaLabel.replaceAll('#', pageNumber)
+    }
+    return props.lastPageAriaLabel.replaceAll('%s', pageNumber)
   }
 
-  return props.numberPageAriaLabel.replace('#', pageNumber)
+  if (props.numberPageAriaLabel.includes('#')) {
+    console.warn(`The '#' placeholder is deprecated, use '%s' instead.`)
+    return props.numberPageAriaLabel.replaceAll('#', pageNumber)
+  }
+  return props.numberPageAriaLabel.replaceAll('%s', pageNumber)
 }
 </script>
 
@@ -119,7 +153,13 @@ function getAriaLabel(pageNumber) {
           @click="toPreviousPage()"
         >
           <template #before="{ svgSpritePath }">
-            <slot name="previousIcon">
+            <slot v-if="$slots['previous-icon']" name="previous-icon"></slot>
+            <!--
+            	@slot previousIcon
+          		@deprecated Use the `previous-icon` slot instead.
+          	-->
+            <slot v-else-if="$slots.previousIcon" name="previousIcon"></slot>
+            <template v-else>
               <svg
                 v-if="svgSpritePath"
                 class="usa-icon"
@@ -130,10 +170,16 @@ function getAriaLabel(pageNumber) {
                   v-bind="{ 'xlink:href': `${svgSpritePath}#navigate_before}` }"
                 ></use>
               </svg>
-            </slot>
+            </template>
           </template>
           <template #default>
-            <slot name="previousLabel">{{ previousLinkText }}</slot>
+            <slot v-if="$slots['previous-label']" name="previous-label"></slot>
+            <!--
+            	@slot previousLabel
+          		@deprecated Use the `previous-label` slot instead.
+          	-->
+            <slot v-else-if="$slots.previousLabel" name="previousLabel"></slot>
+            <template v-else>{{ previousLinkText }}</template>
           </template>
         </UsaPaginationArrow>
       </slot>
@@ -177,7 +223,13 @@ function getAriaLabel(pageNumber) {
           @click="toNextPage()"
         >
           <template #after="{ svgSpritePath }">
-            <slot name="nextIcon">
+            <slot v-if="$slots['next-icon']" name="next-icon"></slot>
+            <!--
+            	@slot nextIcon
+          		@deprecated Use the `next-icon` slot instead.
+          	-->
+            <slot v-else-if="$slots.nextIcon" name="nextIcon"></slot>
+            <template v-else>
               <svg
                 v-if="svgSpritePath"
                 class="usa-icon"
@@ -188,10 +240,16 @@ function getAriaLabel(pageNumber) {
                   v-bind="{ 'xlink:href': `${svgSpritePath}#navigate_next}` }"
                 ></use>
               </svg>
-            </slot>
+            </template>
           </template>
           <template #default>
-            <slot name="nextLabel">{{ nextLinkText }}</slot>
+            <slot v-if="$slots['next-label']" name="next-label"></slot>
+            <!--
+            	@slot nextLabel
+          		@deprecated Use the `next-label` slot instead.
+          	-->
+            <slot v-else-if="$slots.nextLabel" name="nextLabel"></slot>
+            <template v-else>{{ nextLinkText }}</template>
           </template>
         </UsaPaginationArrow>
       </slot>

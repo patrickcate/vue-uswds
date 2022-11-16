@@ -36,6 +36,9 @@ export default {
     },
     heading: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     headingTag: {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
@@ -44,17 +47,25 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
-    headingSlot: {
+    'slot:heading': {
+      control: { type: 'text' },
+      name: 'heading',
+      table: {
+        category: 'slots',
+      },
+    },
+    footer: {
       control: { type: 'text' },
     },
-    footerSlot: {
+    'close-button': {
       control: { type: 'text' },
     },
-    closeButtonSlot: {
+    closeButton: {
       control: { type: 'text' },
+      name: 'closeButton (deprecated: use `close-button`)',
     },
   },
   args: {
@@ -66,9 +77,9 @@ export default {
     heading: defaultProps.heading,
     headingTag: defaultProps.headingTag,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '<p>You have unsaved changes that will be lost.</p>',
-    headingSlot: '',
-    footerSlot: `<ul class="usa-button-group">
+    default: '<p>You have unsaved changes that will be lost.</p>',
+    'slot:heading': '',
+    footer: `<ul class="usa-button-group">
       <li class="usa-button-group__item">
         <button type="button" class="usa-button" @click="visible = false">
           Continue without saving
@@ -83,7 +94,7 @@ export default {
         </button>
       </li>
     </ul>`,
-    closeButtonSlot: '',
+    'close-button': '',
   },
 }
 
@@ -104,15 +115,16 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :heading-tag="headingTag"
     :custom-classes="customClasses"
   >
-    <template v-if="${!!args.headingSlot}" #heading>${
-    args.headingSlot
+    <template v-if="${!!args['slot:heading']}" #heading>${
+    args['slot:heading']
   }</template>
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
+    <template v-if="${!!args.default}" #default>${args.default}</template>
+    <template v-if="${!!args.footer}" #footer>${args.footer}</template>
+    <template v-if="${!!args['close-button']}" #close-button>${
+    args['close-button']
   }</template>
-    <template v-if="${!!args.footerSlot}" #footer>${args.footerSlot}</template>
-    <template v-if="${!!args.closeButtonSlot}" #closeButton>${
-    args.closeButtonSlot
+    <template v-else-if="${!!args.closeButton}" #close-button>${
+    args.closeButton
   }</template>
   </UsaModal>`,
 })
@@ -165,7 +177,7 @@ export const HeadingSlotHeroModal = DefaultTemplate.bind({})
 HeadingSlotHeroModal.args = {
   ...defaultProps,
   visible: true,
-  headingSlot: 'Custom heading slot',
+  'slot:heading': 'Custom heading slot',
 }
 HeadingSlotHeroModal.storyName = 'Heading Slot'
 
@@ -183,7 +195,7 @@ CustomCloseButtonSlotModal.args = {
   ...defaultProps,
   visible: true,
   heading: 'Are you sure you want to continue?',
-  closeButtonSlot:
+  'close-button':
     '<button type="button" style="align-self: flex-end" @click="visible = false">Custom Close</button>',
 }
 CustomCloseButtonSlotModal.storyName = 'Custom Close Button Slot'

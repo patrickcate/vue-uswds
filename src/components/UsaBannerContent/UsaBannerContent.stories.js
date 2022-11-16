@@ -6,17 +6,33 @@ export default {
   component: UsaBannerContent,
   title: 'Components/UsaBannerContent',
   argTypes: {
-    tldIconSlot: {
+    'tld-icon': {
       control: { type: 'text' },
     },
-    tldDescriptionSlot: {
+    tldIcon: {
+      control: { type: 'text' },
+      name: 'tldIcon (deprecated: use `tld-icon`)',
+    },
+    'tld-description': {
       control: { type: 'text' },
     },
-    httpsIconSlot: {
+    tldDescription: {
+      control: { type: 'text' },
+      name: 'tldDescription (deprecated: use `tld-description`)',
+    },
+    'https-icon': {
       control: { type: 'text' },
     },
-    httpsDescriptionSlot: {
+    httpsIcon: {
       control: { type: 'text' },
+      name: 'httpsIcon (deprecated: use `https-icon`)',
+    },
+    'https-description': {
+      control: { type: 'text' },
+    },
+    httpsDescription: {
+      control: { type: 'text' },
+      name: 'httpsDescription (deprecated: use `https-description`)',
     },
   },
 }
@@ -28,17 +44,27 @@ const DefaultTemplate = (args, { argTypes }) => ({
     return { ...args }
   },
   template: `<UsaBannerContent>
-    <template v-if="${!!args.tldIconSlot}" #tldIcon>${
-    args.tldIconSlot
+    <template v-if="${!!args['tld-icon']}" #tld-icon>${
+    args['tld-icon']
   }</template>
-    <template v-if="${!!args.tldDescriptionSlot}" #tldDescription>${
-    args.tldDescriptionSlot
+    <template v-else-if="${!!args.tldIcon}" #tldIcon>${args.tldIcon}</template>
+    <template v-if="${!!args['tld-description']}" #tld-description>${
+    args['tld-description']
   }</template>
-    <template v-if="${!!args.httpsIconSlot}" #httpsIcon>${
-    args.httpsIconSlot
+    <template v-else-if="${!!args.tldDescription}" #tldDescription>${
+    args.tldDescription
   }</template>
-    <template v-if="${!!args.httpsDescriptionSlot}" #httpsDescription>${
-    args.httpsDescriptionSlot
+    <template v-if="${!!args['https-icon']}" #https-icon>${
+    args['https-icon']
+  }</template>
+    <template v-else-if="${!!args.httpsIcon}" #httpsIcon>${
+    args.httpsIcon
+  }</template>
+    <template v-if="${!!args['https-description']}" #https-description>${
+    args['https-description']
+  }</template>
+    <template v-else-if="${!!args.httpsDescription}" #httpsDescription>${
+    args.httpsDescription
   }</template>
   </UsaBannerContent>`,
 })
@@ -52,9 +78,9 @@ DefaultBannerContent.storyName = 'Default'
 export const CustomSlotBannerContent = DefaultTemplate.bind({})
 CustomSlotBannerContent.args = {
   ...defaultProps,
-  tldIconSlot: 'Custom TLD Icon',
-  tldDescriptionSlot: 'Custom TLD Desciption',
-  httpsIconSlot: 'Custom HTTPS Icon',
-  httpsDescriptionSlot: 'Custom HTTPS Desciption',
+  'tld-icon': 'Custom TLD Icon',
+  'tld-description': 'Custom TLD Desciption',
+  'https-icon': 'Custom HTTPS Icon',
+  'https-description': 'Custom HTTPS Desciption',
 }
 CustomSlotBannerContent.storyName = 'Custom Slot Content'

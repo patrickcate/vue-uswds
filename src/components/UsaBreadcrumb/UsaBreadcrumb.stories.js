@@ -43,7 +43,7 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -52,7 +52,7 @@ export default {
     wrap: defaultProps.wrap,
     ariaLabel: defaultProps.ariaLabel,
     customClasses: defaultProps.customClasses,
-    defaultSlot: '',
+    default: '',
   },
 }
 
@@ -67,7 +67,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :wrap="wrap"
     :aria-label="ariaLabel"
     :custom-classes="customClasses"
-  >${args.defaultSlot}</UsaBreadcrumb>`,
+  >${args.default}</UsaBreadcrumb>`,
 })
 
 export const DefaultBreadcrumb = DefaultTemplate.bind({})

@@ -43,21 +43,28 @@ export default {
     },
     heading: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     headingTag: {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
       control: { type: 'select' },
     },
-    headingSlot: {
-      control: { type: 'text' },
-    },
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
-    messageSlot: {
+    'slot:heading': {
+      control: { type: 'text' },
+      name: 'heading',
+      table: {
+        category: 'slots',
+      },
+    },
+    message: {
       control: { type: 'text' },
     },
   },
@@ -69,8 +76,10 @@ export default {
     heading: defaultProps.heading,
     headingTag: defaultProps.headingTag,
     customClasses: defaultProps.customClasses,
-    defaultSlot:
+    default:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.',
+    'slot:heading': '',
+    message: '',
   },
 }
 
@@ -90,15 +99,11 @@ const DefaultTemplate = (args, { argTypes }) => ({
       :heading-tag="headingTag"
       :custom-classes="customClasses"
     >
-      <template v-if="${!!args.headingSlot}" #heading>${
-    args.headingSlot
+      <template v-if="${!!args['slot:heading']}" #heading>${
+    args['slot:heading']
   }</template>
-      <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
-      <template v-if="${!!args.messageSlot}" #message>${
-    args.messageSlot
-  }</template>
+      <template v-if="${!!args.default}" #default>${args.default}</template>
+      <template v-if="${!!args.message}" #message>${args.message}</template>
     </UsaAlert>`,
 })
 
@@ -139,7 +144,7 @@ EmergencyAlert.args = {
   ...defaultProps,
   variant: 'emergency',
   heading: 'Emergency alert message',
-  defaultSlot: 'I should only be used with the SiteAlert component.',
+  default: 'I should only be used with the SiteAlert component.',
 }
 EmergencyAlert.storyName = 'Emergency'
 
@@ -148,7 +153,7 @@ ValidationAlert.args = {
   ...defaultProps,
   variant: 'validation',
   heading: 'Short alert message',
-  defaultSlot: 'I should only be used with the Validation component.',
+  default: 'I should only be used with the Validation component.',
 }
 ValidationAlert.storyName = 'Validation'
 
@@ -189,7 +194,7 @@ CustomClassesAlert.args = {
     body: ['test-body-class'],
     heading: ['test-heading-class'],
   },
-  defaultSlot: 'Uses custom CSS classes.',
+  default: 'Uses custom CSS classes.',
 }
 CustomClassesAlert.storyName = 'Custom Classes'
 
@@ -214,7 +219,7 @@ export const HeadingSlotAlert = DefaultTemplate.bind({})
 HeadingSlotAlert.args = {
   ...defaultProps,
   variant: 'info',
-  headingSlot: 'Custom Heading Slot',
+  'slot:heading': 'Custom Heading Slot',
 }
 HeadingSlotAlert.storyName = 'Heading Slot'
 
@@ -223,6 +228,6 @@ MessageSlotAlert.args = {
   ...defaultProps,
   variant: 'info',
   heading: 'Informative status',
-  messageSlot: 'Custom message slot content.',
+  message: 'Custom message slot content.',
 }
 MessageSlotAlert.storyName = 'Message Slot'

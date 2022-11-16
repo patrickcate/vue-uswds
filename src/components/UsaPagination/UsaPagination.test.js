@@ -201,11 +201,11 @@ describe('UsaPagination', () => {
         items: generateTestItems(10, {}),
         previousLinkText: 'TEST Previous',
         nextLinkText: 'TEST Next',
-        firstPageAriaLabel: 'TEST First page, page #',
+        firstPageAriaLabel: 'TEST First page, page %s',
         previousPageAriaLabel: 'TEST Previous page',
-        numberPageAriaLabel: 'TEST Page #',
+        numberPageAriaLabel: 'TEST Page %s',
         nextPageAriaLabel: 'TEST Next page',
-        lastPageAriaLabel: 'TEST Last page, page #',
+        lastPageAriaLabel: 'TEST Last page, page %s',
       },
     })
 
@@ -273,10 +273,10 @@ describe('UsaPagination', () => {
         items: generateTestItems(8, {}),
       },
       slots: {
-        previousLabel: () => h('span', null, 'Test previous label slot'),
-        previousIcon: () => h('span', null, 'Test previous icon slot'),
-        nextIcon: () => h('span', null, 'Test next icon slot'),
-        nextLabel: () => h('span', null, 'Test next label slot'),
+        'previous-label': () => h('span', null, 'Test previous label slot'),
+        'previous-icon': () => h('span', null, 'Test previous icon slot'),
+        'next-icon': () => h('span', null, 'Test next icon slot'),
+        'next-label': () => h('span', null, 'Test next label slot'),
       },
     })
 
@@ -761,5 +761,99 @@ describe('UsaPagination', () => {
     // Go to last item.
     cy.get('@lastItem').click()
     cy.get('@nextSlot').should('contain', 'true - true')
+  })
+
+  it('warns in console of deprecated placeholder character and slots', () => {
+    cy.stub(window.console, 'warn').as('consoleWarn')
+
+    mount(UsaPagination, {
+      props: {
+        currentPage: 2,
+        items: generateTestItems(8, {}),
+        firstPageAriaLabel: 'deprecated first page #',
+        numberPageAriaLabel: 'deprecated page #',
+        lastPageAriaLabel: 'deprecated last page #',
+      },
+      slots: {
+        previousLabel: () =>
+          h(
+            'span',
+            { class: 'test-previous-label' },
+            'deprecated previous label slot'
+          ),
+        previousIcon: () =>
+          h(
+            'span',
+            { class: 'test-previous-icon' },
+            'deprecated previous icon slot'
+          ),
+        nextIcon: () =>
+          h('span', { class: 'test-next-label' }, 'deprecated next label slot'),
+        nextLabel: () =>
+          h('span', { class: 'test-next-icon' }, 'deprecated next icon slot'),
+      },
+    })
+
+    cy.get('li.usa-pagination__item:nth-child(2)').as('itemFirst')
+    cy.get('li.usa-pagination__item:nth-child(3)').as('item2')
+    cy.get('li.usa-pagination__item:nth-child(8)').as('itemLast')
+
+    cy.get('span.test-previous-icon').should(
+      'contain',
+      'deprecated previous icon slot'
+    )
+
+    cy.get('span.test-previous-label').should(
+      'contain',
+      'deprecated previous label slot'
+    )
+
+    cy.get('span.test-next-label').should(
+      'contain',
+      'deprecated next label slot'
+    )
+
+    cy.get('span.test-next-icon').should('contain', 'deprecated next icon slot')
+
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `The 'previousIcon' slot' is deprecated, use 'previous-icon' instead.`
+    )
+
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `The 'previousLabel' slot' is deprecated, use 'previous-label' instead.`
+    )
+
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `The 'nextIcon' slot' is deprecated, use 'next-icon' instead.`
+    )
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `The 'nextLabel' slot' is deprecated, use 'next-label' instead.`
+    )
+
+    cy.get('span.test-next-label').should(
+      'contain',
+      'deprecated next label slot'
+    )
+
+    cy.get('@itemFirst')
+      .children()
+      .and('have.attr', 'aria-label', 'deprecated first page 1')
+
+    cy.get('@item2')
+      .children()
+      .and('have.attr', 'aria-label', 'deprecated page 2')
+
+    cy.get(`@itemLast`)
+      .children()
+      .and('have.attr', 'aria-label', 'deprecated last page 8')
+
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `The '#' placeholder is deprecated, use '%s' instead.`
+    )
   })
 })

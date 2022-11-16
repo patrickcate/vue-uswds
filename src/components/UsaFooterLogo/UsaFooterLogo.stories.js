@@ -22,15 +22,22 @@ export default {
     },
     heading: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     customClasses: {
       control: { type: 'object' },
     },
-    logoSlot: {
+    logo: {
       control: { type: 'text' },
     },
-    headingSlot: {
+    'slot:heading': {
       control: { type: 'text' },
+      name: 'heading',
+      table: {
+        category: 'slots',
+      },
     },
   },
   args: {
@@ -38,8 +45,8 @@ export default {
     alt: defaultProps.alt,
     heading: defaultProps.heading,
     customClasses: defaultProps.customClasses,
-    logoSlot: '',
-    headingSlot: '',
+    logo: '',
+    'slot:heading': '',
   },
 }
 
@@ -56,9 +63,9 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
     class="grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2"
   >
-    <template v-if="${!!args.logoSlot}" #logo>${args.logoSlot}</template>
-    <template v-if="${!!args.headingSlot}" #heading>${
-    args.headingSlot
+    <template v-if="${!!args.logo}" #logo>${args.logo}</template>
+    <template v-if="${!!args['slot:heading']}" #heading>${
+    args['slot:heading']
   }</template>
   </UsaFooterLogo>`,
 })
@@ -75,8 +82,8 @@ DefaultFooterLogo.storyName = 'Default'
 export const SlotsFooterLogo = DefaultTemplate.bind({})
 SlotsFooterLogo.args = {
   ...defaultProps,
-  logoSlot: 'Logo slot content here...',
-  headingSlot: 'Heading slot content here...',
+  logo: 'Logo slot content here...',
+  'slot:heading': 'Heading slot content here...',
 }
 SlotsFooterLogo.storyName = 'Slots'
 

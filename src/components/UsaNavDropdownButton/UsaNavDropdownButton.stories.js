@@ -8,12 +8,12 @@ export default {
   component: UsaNavDropdownButton,
   title: 'Components/UsaNavDropdownButton',
   argTypes: {
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
-    defaultSlot: 'Test dropdown button',
+    default: 'Test dropdown button',
   },
   decorators: [
     () => ({
@@ -35,7 +35,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<div class="usa-header usa-header--basic"><ul class="usa-nav__primary usa-accordion"><li class="usa-nav__primary-item"><UsaNavDropdownButton>${args.defaultSlot}</UsaNavDropdownButton></li></ul></div>`,
+  template: `<div class="usa-header usa-header--basic"><ul class="usa-nav__primary usa-accordion"><li class="usa-nav__primary-item"><UsaNavDropdownButton>${args.default}</UsaNavDropdownButton></li></ul></div>`,
 })
 
 export const DefaultNavDropdownButton = DefaultTemplate.bind({})

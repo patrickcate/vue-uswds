@@ -150,9 +150,9 @@ const timeRangeOptions = computed(() => {
 const classes = computed(() => {
   const customClasses = props.customClasses
 
-  if (!customClasses?.component) {
+  if (!customClasses?.component?.length) {
     customClasses.component = ['usa-time-picker']
-  } else {
+  } else if (!customClasses.component.includes('usa-time-picker')) {
     customClasses.component.push('usa-time-picker')
   }
 

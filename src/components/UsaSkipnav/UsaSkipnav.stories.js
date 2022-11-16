@@ -12,13 +12,13 @@ export default {
     anchor: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     anchor: defaultProps.anchor,
-    defaultSlot: 'Test skip link',
+    default: 'Test skip link',
   },
 }
 
@@ -28,7 +28,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaSkipnav :anchor="anchor">${args.defaultSlot}</UsaSkipnav>`,
+  template: `<UsaSkipnav :anchor="anchor">${args.default}</UsaSkipnav>`,
 })
 
 export const DefaultSkipnav = DefaultTemplate.bind({})

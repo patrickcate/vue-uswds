@@ -426,7 +426,7 @@ describe('UsaModal', () => {
         visible: true,
       },
       slots: {
-        closeButton: () =>
+        'close-button': () =>
           h('button', { class: 'test-close-slot' }, 'Custom close button'),
       },
     })
@@ -447,5 +447,25 @@ describe('UsaModal', () => {
     })
 
     cy.get('h4').should('contain', 'Test custom modal heading')
+  })
+
+  it('warns in console of deprecated slot', () => {
+    cy.stub(window.console, 'warn').as('consoleWarn')
+
+    mount(UsaModal, {
+      props: {
+        visible: true,
+      },
+      slots: {
+        closeButton: () => h('button', 'deprecated close button slot'),
+      },
+    })
+
+    cy.get('button').should('contain', 'deprecated close button slot')
+
+    cy.get('@consoleWarn').should(
+      'be.calledWith',
+      `The 'closeButton' slot' is deprecated, use 'close-button' instead.`
+    )
   })
 })

@@ -27,7 +27,7 @@ export default {
     currentSortDirection: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -37,7 +37,7 @@ export default {
     sortable: defaultProps.sortable,
     currentSortedHeader: defaultProps.currentSortedHeader,
     currentSortDirection: defaultProps.currentSortDirection,
-    defaultSlot: '',
+    default: '',
   },
   decorators: [
     () => ({
@@ -64,9 +64,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :current-sorted-header="currentSortedHeader"
     :current-sort-direction="currentSortDirection"
   >
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
   </UsaTableHeaderCell>`,
 })
 
@@ -115,6 +113,6 @@ CustomSlotTableHeaderCell.args = {
   id: 'test-header-id',
   label: 'Test header',
   sortable: true,
-  defaultSlot: '<em>Custom header label text here...</em>',
+  default: '<em>Custom header label text here...</em>',
 }
 CustomSlotTableHeaderCell.storyName = 'Custom Slot'

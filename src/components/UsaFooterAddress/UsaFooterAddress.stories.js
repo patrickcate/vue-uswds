@@ -23,7 +23,7 @@ export default {
     phoneUrl: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -32,7 +32,7 @@ export default {
     email: defaultProps.email,
     phone: defaultProps.phone,
     phoneUrl: defaultProps.phoneUrl,
-    defaultSlot: '',
+    default: '',
   },
 }
 
@@ -47,7 +47,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :email="email"
     :phone="phone"
     :phoneUrl="phoneUrl"
-  >${args.defaultSlot}</UsaFooterAddress>`,
+  >${args.default}</UsaFooterAddress>`,
 })
 
 export const DefaultFooterAddress = DefaultTemplate.bind({})
@@ -100,7 +100,7 @@ export const DefaultSlotFooterAddress = DefaultTemplate.bind({})
 DefaultSlotFooterAddress.args = {
   ...defaultProps,
   heading: 'Agency Contact Center',
-  defaultSlot: '<em>Custom footer address markup here...</em>',
+  default: '<em>Custom footer address markup here...</em>',
 }
 DefaultSlotFooterAddress.decorators = [
   () => ({

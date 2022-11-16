@@ -42,6 +42,9 @@ export default {
     },
     label: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     group: {
       control: { type: 'boolean' },
@@ -58,19 +61,23 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    labelSlot: {
+    'slot:label': {
+      control: { type: 'text' },
+      name: 'label',
+      table: {
+        category: 'slots',
+      },
+    },
+    hint: {
       control: { type: 'text' },
     },
-    hintSlot: {
+    'error-message': {
       control: { type: 'text' },
     },
-    errorMessageSlot: {
+    'input-prefix': {
       control: { type: 'text' },
     },
-    inputPrefixSlot: {
-      control: { type: 'text' },
-    },
-    inputSuffixSlot: {
+    'input-suffix': {
       control: { type: 'text' },
     },
   },
@@ -84,11 +91,11 @@ export default {
     error: defaultProps.error,
     id: defaultProps.id,
     customClasses: defaultProps.customClasses,
-    labelSlot: '',
-    hintSlot: '',
-    errorMessageSlot: '',
-    inputPrefixSlot: '',
-    inputSuffixSlot: '',
+    'slot:label': '',
+    hint: '',
+    'error-message': '',
+    'input-prefix': '',
+    'input-suffix': '',
   },
   decorators: [
     () => ({
@@ -116,16 +123,18 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
     v-model="modelValue"
   >
-    <template v-if="${!!args.labelSlot}" #label>${args.labelSlot}</template>
-    <template v-if="${!!args.hintSlot}" #hint>${args.hintSlot}</template>
-    <template v-if="${!!args.errorMessageSlot}" #error-message>${
-    args.errorMessageSlot
+    <template v-if="${!!args['slot:label']}" #label>${
+    args['slot:label']
   }</template>
-    <template v-if="${!!args.inputPrefixSlot}" #input-prefix>${
-    args.inputPrefixSlot
+    <template v-if="${!!args.hint}" #hint>${args.hint}</template>
+    <template v-if="${!!args['error-message']}" #error-message>${
+    args['error-message']
   }</template>
-    <template v-if="${!!args.inputSuffixSlot}" #input-suffix>${
-    args.inputSuffixSlot
+    <template v-if="${!!args['input-prefix']}" #input-prefix>${
+    args['input-prefix']
+  }</template>
+    <template v-if="${!!args['input-suffix']}" #input-suffix>${
+    args['input-suffix']
   }</template>
   </UsaTextInput>`,
 })
@@ -165,7 +174,7 @@ export const HintTextInput = DefaultTemplate.bind({})
 HintTextInput.args = {
   ...defaultProps,
   label: 'Text input label',
-  hintSlot: 'Choose wisely',
+  hint: 'Choose wisely',
 }
 HintTextInput.storyName = 'Hint'
 
@@ -182,7 +191,7 @@ ErrorMessageTextInput.args = {
   ...defaultProps,
   label: 'Text input label',
   error: true,
-  errorMessageSlot: 'Error message here',
+  'error-message': 'Error message here',
 }
 ErrorMessageTextInput.storyName = 'Error Message'
 
@@ -205,29 +214,29 @@ GroupedTextInput.storyName = 'Group Input Elements'
 export const LabelSlotTextInput = DefaultTemplate.bind({})
 LabelSlotTextInput.args = {
   ...defaultProps,
-  labelSlot: `<em>Label slot content</em>`,
+  'slot:label': `<em>Label slot content</em>`,
 }
 LabelSlotTextInput.storyName = 'Label Slot'
 
 export const PrefixSlotTextInput = DefaultTemplate.bind({})
 PrefixSlotTextInput.args = {
   ...defaultProps,
-  inputPrefixSlot: '@',
+  'input-prefix': '@',
 }
 PrefixSlotTextInput.storyName = 'Input Prefix'
 
 export const SuffixSlotTextInput = DefaultTemplate.bind({})
 SuffixSlotTextInput.args = {
   ...defaultProps,
-  inputSuffixSlot: '%',
+  'input-suffix': '%',
 }
 SuffixSlotTextInput.storyName = 'Input Suffix'
 
 export const PrefixAndSuffixSlotTextInput = DefaultTemplate.bind({})
 PrefixAndSuffixSlotTextInput.args = {
   ...defaultProps,
-  inputPrefixSlot: '@',
-  inputSuffixSlot: '%',
+  'input-prefix': '@',
+  'input-suffix': '%',
 }
 PrefixAndSuffixSlotTextInput.storyName = 'Input Prefix & Suffix'
 
@@ -250,7 +259,7 @@ CustomClassesTextInput.args = {
     inputPrefix: ['test-input-prefix-class'],
     inputSuffix: ['test-input-suffix-class'],
   },
-  inputPrefixSlot: '@',
-  inputSuffixSlot: '%',
+  'input-prefix': '@',
+  'input-suffix': '%',
 }
 CustomClassesTextInput.storyName = 'Custom CSS Classes'

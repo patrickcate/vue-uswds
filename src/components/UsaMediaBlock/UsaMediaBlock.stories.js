@@ -11,17 +11,17 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    mediaSlot: {
+    media: {
       control: { type: 'text' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     customClasses: defaultProps.customClasses,
-    mediaSlot: 'Media',
-    defaultSlot: 'Body',
+    media: 'Media',
+    default: 'Body',
   },
 }
 
@@ -33,10 +33,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
   },
   template: `
   <UsaMediaBlock :custom-classes="customClasses">
-    <template v-if="${!!args.mediaSlot}" #media>${args.mediaSlot}</template>
-    <template v-if="${!!args.defaultSlot}" #default>${
-    args.defaultSlot
-  }</template>
+    <template v-if="${!!args.media}" #media>${args.media}</template>
+    <template v-if="${!!args.default}" #default>${args.default}</template>
   </UsaMediaBlock>`,
 })
 

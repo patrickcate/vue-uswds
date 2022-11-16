@@ -21,6 +21,9 @@ export default {
   argTypes: {
     heading: {
       control: { type: 'text' },
+      table: {
+        category: 'props',
+      },
     },
     headingTag: {
       options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
@@ -40,22 +43,26 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    mediaSlot: {
+    media: {
       control: { type: 'text' },
     },
-    calendarSlot: {
+    calendar: {
       control: { type: 'text' },
     },
-    headingSlot: {
+    'slot:heading': {
+      control: { type: 'text' },
+      name: 'heading',
+      table: {
+        category: 'slots',
+      },
+    },
+    description: {
       control: { type: 'text' },
     },
-    descriptionSlot: {
+    default: {
       control: { type: 'text' },
     },
-    defaultSlot: {
-      control: { type: 'text' },
-    },
-    metaSlot: {
+    meta: {
       control: { type: 'text' },
     },
   },
@@ -66,12 +73,12 @@ export default {
     to: defaultProps.to,
     routerComponentName: defaultProps.routerComponentName,
     customClasses: defaultProps.customClasses,
-    mediaSlot: '',
-    calendarSlot: '',
-    headingSlot: '',
-    descriptionSlot: '',
-    defaultSlot: `Today, the Administration announces the winners of the Gears of Government President's Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.`,
-    metaSlot: '',
+    media: '',
+    calendar: '',
+    'slot:heading': '',
+    description: '',
+    default: `Today, the Administration announces the winners of the Gears of Government President's Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.`,
+    meta: '',
   },
   decorators: [
     () => ({ template: '<ul class="usa-collection"><story /></ul>' }),
@@ -97,20 +104,16 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :router-component-name="routerComponentName"
     :custom-classes="customClasses"
   >
-    <template #media v-if="${!!args.mediaSlot}">${args.mediaSlot}</template>
-    <template #calendar v-if="${!!args.calendarSlot}">${
-    args.calendarSlot
+    <template #media v-if="${!!args.media}">${args.media}</template>
+    <template #calendar v-if="${!!args.calendar}">${args.calendar}</template>
+    <template #heading v-if="${!!args['slot:heading']}">${
+    args['slot:heading']
   }</template>
-    <template #heading v-if="${!!args.headingSlot}">${
-    args.headingSlot
+    <template #description v-if="${!!args.description}">${
+    args.description
   }</template>
-    <template #description v-if="${!!args.descriptionSlot}">${
-    args.descriptionSlot
-  }</template>
-    <template #default v-if="${!!args.defaultSlot}">${
-    args.defaultSlot
-  }</template>
-    <template #meta v-if="${!!args.metaSlot}">${args.metaSlot}</template>
+    <template #default v-if="${!!args.default}">${args.default}</template>
+    <template #meta v-if="${!!args.meta}">${args.meta}</template>
   </UsaCollectionItem>`,
 })
 
@@ -125,7 +128,7 @@ export const MediaCollectionItem = DefaultTemplate.bind({})
 MediaCollectionItem.args = {
   ...defaultProps,
   heading: 'Collection w/ Media',
-  mediaSlot: testMedia,
+  media: testMedia,
 }
 MediaCollectionItem.storyName = 'Collection w/ Media'
 
@@ -133,8 +136,8 @@ export const CalendarCollectionItem = DefaultTemplate.bind({})
 CalendarCollectionItem.args = {
   ...defaultProps,
   heading: 'Collection w/ Calendar',
-  mediaSlot: '',
-  calendarSlot:
+  media: '',
+  calendar:
     '<UsaCollectionCalendar datetime="2021-01-01" month="Jan" day="1" />',
 }
 CalendarCollectionItem.storyName = 'Collection w/ Calendar'
@@ -143,8 +146,8 @@ export const MetaItemsCollectionItem = DefaultTemplate.bind({})
 MetaItemsCollectionItem.args = {
   ...defaultProps,
   heading: 'Collection w/ Meta Items',
-  mediaSlot: testMedia,
-  metaSlot: `<UsaCollectionMeta aria-label="Topics">
+  media: testMedia,
+  meta: `<UsaCollectionMeta aria-label="Topics">
       <UsaCollectionMetaItem class="usa-tag">Meta 1</UsaCollectionMetaItem>
       <UsaCollectionMetaItem class="usa-tag">Meta 2</UsaCollectionMetaItem>
     </UsaCollectionMeta>`,
@@ -162,15 +165,15 @@ CustomHeadingTagCollectionItem.storyName = 'Custom Heading Tag'
 export const HeadingSlotCollectionItem = DefaultTemplate.bind({})
 HeadingSlotCollectionItem.args = {
   ...defaultProps,
-  headingSlot: 'Custom header slot',
+  'slot:heading': 'Custom header slot',
 }
 HeadingSlotCollectionItem.storyName = 'Header Slot'
 
 export const DescriptionSlotCollectionItem = DefaultTemplate.bind({})
 DescriptionSlotCollectionItem.args = {
   ...defaultProps,
-  headingSlot: 'Custom header slot',
-  descriptionSlot: 'Custom description slot',
+  'slot:heading': 'Custom header slot',
+  description: 'Custom description slot',
 }
 DescriptionSlotCollectionItem.storyName = 'Description Slot'
 

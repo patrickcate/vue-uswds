@@ -55,14 +55,14 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
     variant: defaultProps.variant,
     customClasses: defaultProps.customClasses,
-    defaultSlot: GraphicListRows,
+    default: GraphicListRows,
   },
 }
 
@@ -72,7 +72,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
   setup() {
     return { ...args }
   },
-  template: `<UsaGraphicList :variant="variant" :custom-classes="customClasses">${args.defaultSlot}</UsaGraphicList>`,
+  template: `<UsaGraphicList :variant="variant" :custom-classes="customClasses">${args.default}</UsaGraphicList>`,
 })
 
 export const DefaultGraphicList = DefaultTemplate.bind({})

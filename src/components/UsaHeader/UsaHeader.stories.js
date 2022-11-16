@@ -22,7 +22,7 @@ export default {
     customClasses: {
       control: { type: 'object' },
     },
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
@@ -30,7 +30,7 @@ export default {
     variant: defaultProps.variant,
     megamenu: defaultProps.megamenu,
     customClasses: defaultProps.customClasses,
-    defaultSlot: 'Header content',
+    default: 'Header content',
   },
 }
 
@@ -44,13 +44,13 @@ const DefaultTemplate = (args, { argTypes }) => ({
       :variant="variant"
       :megamenu="megamenu"
       :custom-classes="customClasses"
-    >${args.defaultSlot}</UsaHeader>`,
+    >${args.default}</UsaHeader>`,
 })
 
 export const BasicHeader = DefaultTemplate.bind({})
 BasicHeader.args = {
   ...defaultProps,
-  defaultSlot: 'Basic header',
+  default: 'Basic header',
 }
 BasicHeader.storyName = 'Basic'
 
@@ -58,7 +58,7 @@ export const BasicMegamenuHeader = DefaultTemplate.bind({})
 BasicMegamenuHeader.args = {
   ...defaultProps,
   megamenu: true,
-  defaultSlot: 'Basic header with megamenu',
+  default: 'Basic header with megamenu',
 }
 BasicMegamenuHeader.storyName = 'Basic w/ Megamenu'
 
@@ -66,7 +66,7 @@ export const ExtendedHeader = DefaultTemplate.bind({})
 ExtendedHeader.args = {
   ...defaultProps,
   variant: 'extended',
-  defaultSlot: 'Extended header',
+  default: 'Extended header',
 }
 ExtendedHeader.storyName = 'Extended'
 
@@ -75,7 +75,7 @@ ExtendedMegamenuHeader.args = {
   ...defaultProps,
   variant: 'extended',
   megamenu: true,
-  defaultSlot: 'Extended header with Megamenu',
+  default: 'Extended header with Megamenu',
 }
 ExtendedMegamenuHeader.storyName = 'Extended w/ Megamenu'
 
