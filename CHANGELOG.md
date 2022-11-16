@@ -1,3 +1,17 @@
+Changelog
+
+## [1.0.1](https://github.com/patrickcate/vue-uswds/compare/v1.0.0...v1.0.1) (2022-11-16)
+
+
+### Bug Fixes
+
+* **UsaTimePicker:** prevent `usa-time-picker` class from being added which each prop change ([869f53b](https://github.com/patrickcate/vue-uswds/commit/869f53b595e05988da84fdc298d25c2529a96dd9))
+
+
+### Reverts
+
+* **github-actions:** reverse separating dependabot workflow in separate file ([9d1764a](https://github.com/patrickcate/vue-uswds/commit/9d1764a7473a23eff7877a83b2ed783822352cc9))
+
 # [1.0.0](https://github.com/patrickcate/vue-uswds/compare/v0.10.0...v1.0.0) (2022-11-06)
 
 
