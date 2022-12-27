@@ -290,6 +290,11 @@ describe('UsaTextInput', () => {
       customClasses: {},
     }).as('wrapper')
 
+    // Insert focusable element so focus can be moved to it.
+    Cypress.$('body').append(
+      '<button type="button" class="test-button">Test Button</button>'
+    )
+
     cy.get('.usa-input-group')
       .as('inputGroup')
       .should('not.have.class', 'is-focused')
@@ -302,7 +307,8 @@ describe('UsaTextInput', () => {
     cy.get('@input').should('have.focus')
 
     // Reset input focus.
-    cy.get('@input').blur()
+    cy.get('.test-button').as('testButton').focus()
+    cy.get('@testButton').should('have.focus')
 
     cy.get('@inputGroup').should('not.have.class', 'is-focused')
     cy.get('@input').should('not.have.focus')
