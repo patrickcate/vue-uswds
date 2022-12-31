@@ -1,5 +1,12 @@
 Changelog
 
+# [1.1.0](https://github.com/patrickcate/vue-uswds/compare/v1.0.1...v1.1.0) (2022-12-31)
+
+
+### Features
+
+* **UsaCharacterCount:** debounce UsaCharacterCount SR-only message ([3394f0f](https://github.com/patrickcate/vue-uswds/commit/3394f0f3ef787ee6ad79b9c6202e88352f7f7de6)), closes [#528](https://github.com/patrickcate/vue-uswds/issues/528)
+
 ## [1.0.1](https://github.com/patrickcate/vue-uswds/compare/v1.0.0...v1.0.1) (2022-11-16)
 
 
