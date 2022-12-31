@@ -5,23 +5,23 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
     # Add assignees
     assignees:
       - 'patrickcate'
     commit-message:
       # Prefix all commit messages with "chore"
-      prefix: 'chore'
+      prefix: 'chore (npm)'
     versioning-strategy: lockfile-only
     open-pull-requests-limit: 20
 
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
     # Add assignees
     assignees:
       - 'patrickcate'
     commit-message:
       # Prefix all commit messages with "chore"
-      prefix: 'chore'
+      prefix: 'chore (github-actions)'

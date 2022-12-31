@@ -17,17 +17,30 @@ describe('UsaCharacterCount', () => {
     }).as('wrapper')
 
     cy.get('div.usa-character-count').should('exist')
-    cy.get('span.usa-hint')
-      .as('message')
-      .should('have.class', 'usa-character-count__message')
+    cy.get('span.usa-character-count__message')
+      .as('defaultMessage')
+      .should('have.class', 'usa-sr-only')
       .and('have.attr', 'id')
 
-    cy.get('@message')
-      .should('not.have.class', 'usa-character-count__message--invalid')
-      .and('have.attr', 'aria-live')
-      .and('contain', 'polite')
+    cy.get('div.usa-character-count__status')
+      .as('statusMessage')
+      .should('have.class', 'usa-hint')
+      .and('have.attr', 'aria-hidden', 'true')
+      .and('not.have.attr', 'id')
 
-    cy.get('@message').should('contain', '10 characters allowed')
+    cy.get('div.usa-character-count__sr-status')
+      .as('srOnlyStatusMessage')
+      .should('have.class', 'usa-sr-only')
+      .should('not.have.class', 'usa-character-count__message--invalid')
+      .and('have.attr', 'aria-live', 'polite')
+      .and('not.have.attr', 'id')
+
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage').should('contain', '10 characters allowed')
+    cy.get('@srOnlyStatusMessage').should('contain', '10 characters allowed')
 
     cy.get('.usa-input')
       .as('input')
@@ -36,26 +49,56 @@ describe('UsaCharacterCount', () => {
       .and('equal', '10')
 
     cy.get('@input').type('12345')
-    cy.get('@message').should('contain', '5 characters left')
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage').should('contain', '5 characters left')
+    cy.get('@srOnlyStatusMessage').should('contain', '5 characters left')
 
     cy.get('@input').type('6789')
-    cy.get('@message').should('contain', '1 character left')
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage').should('contain', '1 character left')
+    cy.get('@srOnlyStatusMessage').should('contain', '1 character left')
 
     cy.get('@input').type('1')
-    cy.get('@message').should('contain', '0 characters left')
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage').should('contain', '0 characters left')
+    cy.get('@srOnlyStatusMessage').should('contain', '0 characters left')
 
     cy.get('@input').type('0')
-    cy.get('@message').should('contain', '0 characters left')
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage').should('contain', '0 characters left')
+    cy.get('@srOnlyStatusMessage').should('contain', '0 characters left')
 
     cy.get('@input').invoke('val', 12345678912).trigger('input')
-    cy.get('@message')
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage')
       .should('have.class', 'usa-character-count__message--invalid')
       .and('contain', '1 character over limit')
+    cy.get('@srOnlyStatusMessage').should('contain', '1 character over limit')
 
     cy.get('@input').invoke('val', 123456789123).trigger('input')
-    cy.get('@message')
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage')
       .should('have.class', 'usa-character-count__message--invalid')
       .and('contain', '2 characters over limit')
+    cy.get('@srOnlyStatusMessage').should('contain', '2 characters over limit')
   })
 
   it('renders the component with textarea form element', () => {
@@ -69,17 +112,30 @@ describe('UsaCharacterCount', () => {
     }).as('wrapper')
 
     cy.get('div.usa-character-count').should('exist')
-    cy.get('span.usa-hint')
-      .as('message')
-      .should('have.class', 'usa-character-count__message')
+    cy.get('span.usa-character-count__message')
+      .as('defaultMessage')
+      .should('have.class', 'usa-sr-only')
       .and('have.attr', 'id')
 
-    cy.get('@message')
-      .should('not.have.class', 'usa-character-count__message--invalid')
-      .and('have.attr', 'aria-live')
-      .and('contain', 'polite')
+    cy.get('div.usa-character-count__status')
+      .as('statusMessage')
+      .should('have.class', 'usa-hint')
+      .and('have.attr', 'aria-hidden', 'true')
+      .and('not.have.attr', 'id')
 
-    cy.get('@message').should('contain', '10 characters allowed')
+    cy.get('div.usa-character-count__sr-status')
+      .as('srOnlyStatusMessage')
+      .should('have.class', 'usa-sr-only')
+      .should('not.have.class', 'usa-character-count__message--invalid')
+      .and('have.attr', 'aria-live', 'polite')
+      .and('not.have.attr', 'id')
+
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage').should('contain', '10 characters allowed')
+    cy.get('@srOnlyStatusMessage').should('contain', '10 characters allowed')
 
     cy.get('.usa-textarea')
       .as('textarea')
@@ -88,28 +144,59 @@ describe('UsaCharacterCount', () => {
       .and('contain', 10)
 
     cy.get('@textarea').type('12345')
-    cy.get('@message').should('contain', '5 characters left')
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage').should('contain', '5 characters left')
+    cy.get('@srOnlyStatusMessage').should('contain', '5 characters left')
 
     cy.get('@textarea').type('6789')
-    cy.get('@message').should('contain', '1 character left')
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage').should('contain', '1 character left')
+    cy.get('@srOnlyStatusMessage').should('contain', '1 character left')
 
     cy.get('@textarea').as('input').type('1')
-    cy.get('@message').should('contain', '0 characters left')
+    cy.get('@textarea').type('6789')
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage').should('contain', '0 characters left')
+    cy.get('@srOnlyStatusMessage').should('contain', '0 characters left')
 
     cy.get('@textarea').type('0')
-    cy.get('@message').should('contain', '0 characters left')
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage').should('contain', '0 characters left')
+    cy.get('@srOnlyStatusMessage').should('contain', '0 characters left')
 
     // Force value over maxlength.
     cy.get('@textarea').invoke('val', 12345678912).trigger('input')
-    cy.get('@message')
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage')
       .should('have.class', 'usa-character-count__message--invalid')
       .and('contain', '1 character over limit')
+    cy.get('@srOnlyStatusMessage').should('contain', '1 character over limit')
 
     // Force value over maxlength.
     cy.get('@textarea').invoke('val', 123456789123).trigger('input')
-    cy.get('@message')
+    cy.get('@defaultMessage').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('@statusMessage')
       .should('have.class', 'usa-character-count__message--invalid')
       .and('contain', '2 characters over limit')
+    cy.get('@srOnlyStatusMessage').should('contain', '2 characters over limit')
   })
 
   it('character count for text input form element includes default value', () => {
@@ -124,6 +211,10 @@ describe('UsaCharacterCount', () => {
 
     cy.get('.usa-input').should('have.value', 12345)
     cy.get('.usa-character-count__message').should(
+      'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('.usa-character-count__status').should(
       'contain',
       '5 characters left'
     )
@@ -142,6 +233,10 @@ describe('UsaCharacterCount', () => {
     cy.get('.usa-textarea').should('have.value', 12345)
     cy.get('.usa-character-count__message').should(
       'contain',
+      'You can enter up to 10 characters'
+    )
+    cy.get('.usa-character-count__status').should(
+      'contain',
       '5 characters left'
     )
   })
@@ -157,7 +252,7 @@ describe('UsaCharacterCount', () => {
       },
     })
 
-    cy.get('.usa-hint').should('have.id', 'test-id')
+    cy.get('.usa-character-count__message').should('have.id', 'test-id')
     cy.get('.usa-input')
       .should('have.attr', 'aria-describedby')
       .and('contain', 'test-id')
@@ -174,7 +269,7 @@ describe('UsaCharacterCount', () => {
       },
     })
 
-    cy.get('.usa-hint').should('have.id', 'test-id')
+    cy.get('.usa-character-count__message').should('have.id', 'test-id')
     cy.get('.usa-textarea')
       .should('have.attr', 'aria-describedby')
       .and('contain', 'test-id')
