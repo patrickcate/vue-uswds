@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref, provide } from 'vue'
-import { useDebounceFn } from '@vueuse/core'
+import { watchDebounced } from '@vueuse/core'
 import { nextId } from '@/utils/unique-id.js'
 
 const props = defineProps({
@@ -23,11 +23,13 @@ const props = defineProps({
   },
 })
 
+const statusMessageRef = ref('')
+const srOnlyStatusMessage = ref('')
+
 const charactersRemaining = ref(props.maxlength)
 const charactersOver = computed(() =>
   charactersRemaining.value < 0 ? charactersRemaining.value * -1 : 0
 )
-
 const countStatus = computed(() => {
   if (charactersRemaining.value === props.maxlength) {
     return 'equal'
@@ -44,10 +46,15 @@ const messageClasses = computed(() => [
   { 'usa-character-count__message--invalid': countStatus.value === 'over' },
 ])
 
-const updateCharacterCount = useDebounceFn(
-  inputValue =>
-    (charactersRemaining.value = props.maxlength - `${inputValue}`.length),
-  1000
+const updateCharacterCount = inputValue =>
+  (charactersRemaining.value = props.maxlength - `${inputValue}`.length)
+
+watchDebounced(
+  charactersRemaining,
+  () => {
+    srOnlyStatusMessage.value = statusMessageRef.value?.textContent
+  },
+  { debounce: 1000, immediate: true }
 )
 
 provide('updateCharacterCount', updateCharacterCount)
@@ -64,11 +71,16 @@ provide(
 <template>
   <div class="usa-character-count">
     <slot></slot>
-    <span
-      :id="computedId"
-      class="usa-hint usa-character-count__message"
+    <span :id="computedId" class="usa-character-count__message usa-sr-only">
+      <slot name="default-message"
+        >You can enter up to {{ maxlength }} characters</slot
+      >
+    </span>
+    <div
+      ref="statusMessageRef"
+      class="usa-character-count__status usa-hint"
       :class="messageClasses"
-      aria-live="polite"
+      aria-hidden="true"
     >
       <slot
         v-if="countStatus === 'equal'"
@@ -98,6 +110,11 @@ provide(
         >
         over limit</slot
       >
-    </span>
+    </div>
+    <div
+      class="usa-character-count__sr-status usa-sr-only"
+      aria-live="polite"
+      >{{ srOnlyStatusMessage }}</div
+    >
   </div>
 </template>
