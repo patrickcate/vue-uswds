@@ -9,22 +9,22 @@ import {
 const slots = useSlots()
 
 if (slots?.tldIcon) {
-  console.warn(`The 'tldIcon' slot' is deprecated, use 'tld-icon' instead.`)
+  console.warn(`The 'tldIcon' slot is deprecated, use 'tld-icon' instead.`)
 }
 
 if (slots?.tldDescription) {
   console.warn(
-    `The 'tldDescription' slot' is deprecated, use 'tld-description' instead.`
+    `The 'tldDescription' slot is deprecated, use 'tld-description' instead.`
   )
 }
 
 if (slots?.httpsIcon) {
-  console.warn(`The 'httpsIcon' slot' is deprecated, use 'https-icon' instead.`)
+  console.warn(`The 'httpsIcon' slot is deprecated, use 'https-icon' instead.`)
 }
 
 if (slots?.httpsDescription) {
   console.warn(
-    `The 'httpsDescription' slot' is deprecated, use 'https-description' instead.`
+    `The 'httpsDescription' slot is deprecated, use 'https-description' instead.`
   )
 }
 

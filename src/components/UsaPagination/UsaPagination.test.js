@@ -817,21 +817,21 @@ describe('UsaPagination', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'previousIcon' slot' is deprecated, use 'previous-icon' instead.`
+      `The 'previousIcon' slot is deprecated, use 'previous-icon' instead.`
     )
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'previousLabel' slot' is deprecated, use 'previous-label' instead.`
+      `The 'previousLabel' slot is deprecated, use 'previous-label' instead.`
     )
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'nextIcon' slot' is deprecated, use 'next-icon' instead.`
+      `The 'nextIcon' slot is deprecated, use 'next-icon' instead.`
     )
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'nextLabel' slot' is deprecated, use 'next-label' instead.`
+      `The 'nextLabel' slot is deprecated, use 'next-label' instead.`
     )
 
     cy.get('span.test-next-label').should(

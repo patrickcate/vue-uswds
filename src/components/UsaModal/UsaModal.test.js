@@ -465,7 +465,7 @@ describe('UsaModal', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'closeButton' slot' is deprecated, use 'close-button' instead.`
+      `The 'closeButton' slot is deprecated, use 'close-button' instead.`
     )
   })
 })

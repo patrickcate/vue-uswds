@@ -10,7 +10,7 @@ const slots = useSlots()
 
 if (slots?.closeButton) {
   console.warn(
-    `The 'closeButton' slot' is deprecated, use 'close-button' instead.`
+    `The 'closeButton' slot is deprecated, use 'close-button' instead.`
   )
 }
 
