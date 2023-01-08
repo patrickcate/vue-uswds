@@ -6,7 +6,7 @@ const slots = useSlots()
 
 if (slots?.headingAlt) {
   console.warn(
-    `The 'headingAlt' slot' is deprecated, use 'heading-alt' instead.`
+    `The 'headingAlt' slot is deprecated, use 'heading-alt' instead.`
   )
 }
 

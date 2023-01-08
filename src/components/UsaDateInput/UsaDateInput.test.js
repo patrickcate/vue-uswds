@@ -380,4 +380,272 @@ describe('UsaDateInput', () => {
 
     cy.get('legend').should('not.exist')
   })
+
+  it('uses select element for month', () => {
+    mount(UsaDateInput, {
+      props: {
+        monthAsSelect: true,
+        id: 'custom-id',
+      },
+    }).as('wrapper')
+
+    cy.get('@wrapper')
+      .vue()
+      .then(vm => {
+        expect(vm.emitted()).to.not.have.property('update:month')
+      })
+
+    cy.get('.usa-form-group--month label')
+      .should('have.class', 'usa-label')
+      .and('have.attr', 'for', 'custom-id-date-month')
+      .and('have.contain', 'Month')
+
+    cy.get('.usa-form-group--month select')
+      .as('select')
+      .should('have.id', 'custom-id-date-month')
+      .and('have.class', 'usa-select')
+      .and('have.attr', 'name', 'date_month')
+      .and('not.have.attr', 'aria-describedby', 'custom-id-hint')
+
+    cy.get('@select')
+      .find('option:nth-of-type(1)')
+      .should('have.attr', 'value', '')
+      .and('contain', '- Select -')
+
+    cy.get('@select')
+      .find('option:nth-of-type(2)')
+      .should('have.attr', 'value', '1')
+      .and('contain', '01 - January')
+
+    cy.get('@select')
+      .find('option:nth-of-type(3)')
+      .should('have.attr', 'value', '2')
+      .and('contain', '02 - February')
+
+    cy.get('@select')
+      .find('option:nth-of-type(4)')
+      .should('have.attr', 'value', '3')
+      .and('contain', '03 - March')
+
+    cy.get('@select')
+      .find('option:nth-of-type(5)')
+      .should('have.attr', 'value', '4')
+      .and('contain', '04 - April')
+
+    cy.get('@select')
+      .find('option:nth-of-type(6)')
+      .should('have.attr', 'value', '5')
+      .and('contain', '05 - May')
+
+    cy.get('@select')
+      .find('option:nth-of-type(7)')
+      .should('have.attr', 'value', '6')
+      .and('contain', '06 - June')
+
+    cy.get('@select')
+      .find('option:nth-of-type(8)')
+      .should('have.attr', 'value', '7')
+      .and('contain', '07 - July')
+
+    cy.get('@select')
+      .find('option:nth-of-type(9)')
+      .should('have.attr', 'value', '8')
+      .and('contain', '08 - August')
+
+    cy.get('@select')
+      .find('option:nth-of-type(10)')
+      .should('have.attr', 'value', '9')
+      .and('contain', '09 - September')
+
+    cy.get('@select')
+      .find('option:nth-of-type(11)')
+      .should('have.attr', 'value', '10')
+      .and('contain', '10 - October')
+
+    cy.get('@select')
+      .find('option:nth-of-type(12)')
+      .should('have.attr', 'value', '11')
+      .and('contain', '11 - November')
+
+    cy.get('@select')
+      .find('option:nth-of-type(13)')
+      .should('have.attr', 'value', '12')
+      .and('contain', '12 - December')
+
+    cy.get('@select').select('5')
+
+    cy.get('@select').should('have.value', '5')
+
+    cy.get('@wrapper')
+      .vue()
+      .then(vm => {
+        expect(vm.emitted()).to.have.property('update:month')
+        const currentMonthEvent = vm.emitted('update:month')
+        expect(currentMonthEvent).to.have.length(1)
+        expect(currentMonthEvent[currentMonthEvent.length - 1]).to.contain(5)
+      })
+  })
+
+  it('uses custom month select options', () => {
+    mount(UsaDateInput, {
+      props: {
+        monthAsSelect: true,
+        id: 'custom-id',
+        required: true,
+        month: 'July',
+        monthEmptyLabel: 'Choose Month',
+        monthOptions: [
+          {
+            value: 'January',
+            text: 'Jan - 1',
+          },
+          {
+            value: 'February',
+            text: 'Feb - 2',
+          },
+          {
+            value: 'March',
+            text: 'Mar - 3',
+          },
+          {
+            value: 'April',
+            text: 'Apr - 4',
+          },
+          {
+            value: 'May',
+            text: 'May - 5',
+          },
+          {
+            value: 'June',
+            text: 'Jun - 6',
+          },
+          {
+            value: 'July',
+            text: 'Jul - 7',
+          },
+          {
+            value: 'August',
+            text: 'Aug - 8',
+          },
+          {
+            value: 'September',
+            text: 'Sep - 9',
+          },
+          {
+            value: 'October',
+            text: 'Oct - 10',
+          },
+          {
+            value: 'November',
+            text: 'Nov - 11',
+          },
+          {
+            value: 'December',
+            text: 'Dec - 12',
+          },
+        ],
+      },
+      slots: {
+        hint: () => 'Test select hint',
+      },
+    })
+
+    cy.get('.usa-form-group--month label')
+      .should('have.class', 'usa-label')
+      .and('have.attr', 'for', 'custom-id-date-month')
+      .and('have.contain', 'Month')
+
+    cy.get('.usa-form-group--month  abbr')
+      .should('have.attr', 'title', 'required')
+      .and('contain', '*')
+
+    cy.get('.usa-form-group--month select')
+      .as('select')
+      .should('have.id', 'custom-id-date-month')
+      .and('have.class', 'usa-select')
+      .and('have.attr', 'name', 'date_month')
+      .and('have.attr', 'aria-describedby', 'custom-id-hint')
+      .and('have.attr', 'required', 'required')
+      .and('have.value', 'July')
+
+    cy.get('@select')
+      .find('option:nth-of-type(1)')
+      .should('have.attr', 'value', '')
+      .and('contain', 'Choose Month')
+
+    cy.get('@select')
+      .find('option:nth-of-type(2)')
+      .should('have.attr', 'value', 'January')
+      .and('contain', 'Jan - 1')
+
+    cy.get('@select')
+      .find('option:nth-of-type(3)')
+      .should('have.attr', 'value', 'February')
+      .and('contain', 'Feb - 2')
+
+    cy.get('@select')
+      .find('option:nth-of-type(4)')
+      .should('have.attr', 'value', 'March')
+      .and('contain', 'Mar - 3')
+
+    cy.get('@select')
+      .find('option:nth-of-type(5)')
+      .should('have.attr', 'value', 'April')
+      .and('contain', 'Apr - 4')
+
+    cy.get('@select')
+      .find('option:nth-of-type(6)')
+      .should('have.attr', 'value', 'May')
+      .and('contain', 'May - 5')
+
+    cy.get('@select')
+      .find('option:nth-of-type(7)')
+      .should('have.attr', 'value', 'June')
+      .and('contain', 'Jun - 6')
+
+    cy.get('@select')
+      .find('option:nth-of-type(8)')
+      .should('have.attr', 'value', 'July')
+      .and('contain', 'Jul - 7')
+
+    cy.get('@select')
+      .find('option:nth-of-type(9)')
+      .should('have.attr', 'value', 'August')
+      .and('contain', 'Aug - 8')
+
+    cy.get('@select')
+      .find('option:nth-of-type(10)')
+      .should('have.attr', 'value', 'September')
+      .and('contain', 'Sep - 9')
+
+    cy.get('@select')
+      .find('option:nth-of-type(11)')
+      .should('have.attr', 'value', 'October')
+      .and('contain', 'Oct - 10')
+
+    cy.get('@select')
+      .find('option:nth-of-type(12)')
+      .should('have.attr', 'value', 'November')
+      .and('contain', 'Nov - 11')
+
+    cy.get('@select')
+      .find('option:nth-of-type(13)')
+      .should('have.attr', 'value', 'December')
+      .and('contain', 'Dec - 12')
+  })
+
+  it('console prints deprecation warning if `monthAsSelect` is false', () => {
+    cy.stub(window.console, 'warn').as('consoleWarn')
+
+    mount(UsaDateInput, {
+      props: {
+        monthAsSelect: false,
+      },
+    }).as('wrapper')
+
+    cy.get('@consoleWarn').should(
+      'be.calledOnceWith',
+      `The 'monthAsSelect' prop is deprecated. Starting with vue-uswds 2.0 the month will always use a select form element. You can set the 'monthAsSelect' prop value to true to minimize changes.`
+    )
+  })
 })
