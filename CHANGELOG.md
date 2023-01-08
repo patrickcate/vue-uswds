@@ -1,5 +1,18 @@
 Changelog
 
+# [1.2.0](https://github.com/patrickcate/vue-uswds/compare/v1.1.0...v1.2.0) (2023-01-08)
+
+
+### Bug Fixes
+
+* remove extra comma from deprecation message ([de825e0](https://github.com/patrickcate/vue-uswds/commit/de825e0d22fa1a922657cc77ac0f253f0e41db08))
+
+
+### Features
+
+* **UsaDateInput:** add option to use select element for month ([b46289d](https://github.com/patrickcate/vue-uswds/commit/b46289d0b78b237d46252828e44436470cb55d09)), closes [#475](https://github.com/patrickcate/vue-uswds/issues/475)
+* **UsaSelect:** add explicit `group` prop option ([aa08448](https://github.com/patrickcate/vue-uswds/commit/aa084488eb91c192690cd6929ac2ad70ca34b562))
+
 # [1.1.0](https://github.com/patrickcate/vue-uswds/compare/v1.0.1...v1.1.0) (2022-12-31)
 
 
