@@ -140,7 +140,7 @@ describe('UsaHeroCallout', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'headingAlt' slot' is deprecated, use 'heading-alt' instead.`
+      `The 'headingAlt' slot is deprecated, use 'heading-alt' instead.`
     )
   })
 })

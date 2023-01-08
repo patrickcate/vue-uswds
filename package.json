@@ -119,7 +119,7 @@
   },
   "lint-staged": {
     "*.{js,vue}": [
-      "eslint"
+      "npm run lint"
     ]
   }
 }

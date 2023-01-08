@@ -8,22 +8,22 @@ const slots = useSlots()
 
 if (slots?.previousIcon) {
   console.warn(
-    `The 'previousIcon' slot' is deprecated, use 'previous-icon' instead.`
+    `The 'previousIcon' slot is deprecated, use 'previous-icon' instead.`
   )
 }
 
 if (slots?.previousLabel) {
   console.warn(
-    `The 'previousLabel' slot' is deprecated, use 'previous-label' instead.`
+    `The 'previousLabel' slot is deprecated, use 'previous-label' instead.`
   )
 }
 
 if (slots?.nextIcon) {
-  console.warn(`The 'nextIcon' slot' is deprecated, use 'next-icon' instead.`)
+  console.warn(`The 'nextIcon' slot is deprecated, use 'next-icon' instead.`)
 }
 
 if (slots?.nextLabel) {
-  console.warn(`The 'nextLabel' slot' is deprecated, use 'next-label' instead.`)
+  console.warn(`The 'nextLabel' slot is deprecated, use 'next-label' instead.`)
 }
 
 const emit = defineEmits(['update:currentPage'])

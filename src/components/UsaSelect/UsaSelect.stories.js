@@ -73,6 +73,9 @@ export default {
     modelValue: {
       control: { type: 'text' },
     },
+    group: {
+      control: { type: 'boolean' },
+    },
     label: {
       control: { type: 'text' },
       table: {
@@ -112,6 +115,7 @@ export default {
     options: defaultProps.options,
     emptyLabel: defaultProps.emptyLabel,
     modelValue: defaultProps.modelValue,
+    group: defaultProps.group,
     label: defaultProps.label,
     required: defaultProps.required,
     error: defaultProps.error,
@@ -140,6 +144,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     v-bind="$attrs"
     :options="options"
     :empty-label="emptyLabel"
+    :group="group"
     :label="label"
     :required="required"
     :error="error"
@@ -160,103 +165,112 @@ const DefaultTemplate = (args, { argTypes }) => ({
   </UsaSelect>`,
 })
 
-export const DefaultDropdown = DefaultTemplate.bind({})
-DefaultDropdown.args = {
+export const DefaultSelect = DefaultTemplate.bind({})
+DefaultSelect.args = {
   ...defaultProps,
-  label: 'Dropdown label',
+  label: 'Select label',
   options: testOptions,
 }
-DefaultDropdown.storyName = 'Default'
+DefaultSelect.storyName = 'Default'
 
-export const DefaultByDefaultDropdown = DefaultTemplate.bind({})
-DefaultByDefaultDropdown.args = {
+export const DefaultByDefaultSelect = DefaultTemplate.bind({})
+DefaultByDefaultSelect.args = {
   ...defaultProps,
-  label: 'Dropdown label',
+  label: 'Select label',
   options: testOptions,
   modelValue: '2',
 }
-DefaultByDefaultDropdown.storyName = 'Selected by Default'
+DefaultByDefaultSelect.storyName = 'Selected by Default'
 
-export const HintDropdown = DefaultTemplate.bind({})
-HintDropdown.args = {
+export const HintSelect = DefaultTemplate.bind({})
+HintSelect.args = {
   ...defaultProps,
-  label: 'Dropdown label',
+  label: 'Select label',
   options: testOptions,
   hint: 'Choose wisely',
 }
-HintDropdown.storyName = 'Hint'
+HintSelect.storyName = 'Hint'
 
-export const ErrorDropdown = DefaultTemplate.bind({})
-ErrorDropdown.args = {
+export const ErrorSelect = DefaultTemplate.bind({})
+ErrorSelect.args = {
   ...defaultProps,
-  label: 'Dropdown label',
+  label: 'Select label',
   options: testOptions,
   error: true,
 }
-ErrorDropdown.storyName = 'Error'
+ErrorSelect.storyName = 'Error'
 
-export const ErrorMessageDropdown = DefaultTemplate.bind({})
-ErrorMessageDropdown.args = {
+export const ErrorMessageSelect = DefaultTemplate.bind({})
+ErrorMessageSelect.args = {
   ...defaultProps,
-  label: 'Dropdown label',
+  label: 'Select label',
   options: testOptions,
   error: true,
   'error-message': 'Error message here',
 }
-ErrorMessageDropdown.storyName = 'Error Message'
+ErrorMessageSelect.storyName = 'Error Message'
 
-export const RequiredDropdown = DefaultTemplate.bind({})
-RequiredDropdown.args = {
+export const GroupedSelect = DefaultTemplate.bind({})
+GroupedSelect.args = {
   ...defaultProps,
-  label: 'Dropdown label',
+  label: 'Select label',
+  options: testOptions,
+  group: true,
+}
+GroupedSelect.storyName = 'Group Elements'
+
+export const RequiredSelect = DefaultTemplate.bind({})
+RequiredSelect.args = {
+  ...defaultProps,
+  label: 'Select label',
   options: testOptions,
   required: true,
 }
-RequiredDropdown.storyName = 'Required'
+RequiredSelect.storyName = 'Required'
 
-export const CustomEmptyLabelDropdown = DefaultTemplate.bind({})
-CustomEmptyLabelDropdown.args = {
+export const CustomEmptyLabelSelect = DefaultTemplate.bind({})
+CustomEmptyLabelSelect.args = {
   ...defaultProps,
-  label: 'Dropdown label',
+  label: 'Select label',
   options: testOptions,
   emptyLabel: 'Custom empty label',
 }
-CustomEmptyLabelDropdown.storyName = 'Custom Empty Label'
+CustomEmptyLabelSelect.storyName = 'Custom Empty Label'
 
-export const LabelSlotDropdown = DefaultTemplate.bind({})
-LabelSlotDropdown.args = {
+export const LabelSlotSelect = DefaultTemplate.bind({})
+LabelSlotSelect.args = {
   ...defaultProps,
   options: testOptions,
   'slot:label': `<em>Label slot content</em>`,
 }
-LabelSlotDropdown.storyName = 'Label Slot'
+LabelSlotSelect.storyName = 'Label Slot'
 
-export const ScopedSlotDropdown = DefaultTemplate.bind({})
-ScopedSlotDropdown.args = {
+export const ScopedSlotSelect = DefaultTemplate.bind({})
+ScopedSlotSelect.args = {
   ...defaultProps,
-  label: 'Dropdown label',
+  label: 'Select label',
   options: testOptions,
   default: `<option :value="options[0].value">{{ options[0].value }}</option>`,
 }
-ScopedSlotDropdown.storyName = 'Scoped Slot'
+ScopedSlotSelect.storyName = 'Scoped Slot'
 
-export const CustomIdDropdown = DefaultTemplate.bind({})
-CustomIdDropdown.args = {
+export const CustomIdSelect = DefaultTemplate.bind({})
+CustomIdSelect.args = {
   ...defaultProps,
-  label: 'Dropdown label',
+  label: 'Select label',
   options: testOptions,
   id: 'custom-id',
 }
-CustomIdDropdown.storyName = 'Custom ID'
+CustomIdSelect.storyName = 'Custom ID'
 
-export const CustomClassesDropdown = DefaultTemplate.bind({})
-CustomClassesDropdown.args = {
+export const CustomClassesSelect = DefaultTemplate.bind({})
+CustomClassesSelect.args = {
   ...defaultProps,
-  label: 'Dropdown label',
+  label: 'Select label',
   options: testOptions,
   customClasses: {
     component: ['test-component-class'],
     label: ['test-label-class'],
   },
 }
-CustomClassesDropdown.storyName = 'Custom CSS Classes'
+CustomClassesSelect.storyName = 'Custom CSS Classes'
