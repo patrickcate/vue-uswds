@@ -2,6 +2,7 @@
 import { computed, useSlots } from 'vue'
 import { nextId } from '@/utils/unique-id.js'
 import UsaTextInput from '@/components/UsaTextInput'
+import UsaSelect from '@/components/UsaSelect'
 
 const slots = useSlots()
 const emit = defineEmits(['update:month', 'update:day', 'update:year'])
@@ -31,6 +32,70 @@ const props = defineProps({
     type: Object,
     default: () => ({ month: 'Month', day: 'Day', year: 'Year' }),
   },
+  /**
+   * @deprecated
+   */
+  monthAsSelect: {
+    type: Boolean,
+    default: false,
+  },
+  monthEmptyLabel: {
+    type: String,
+    default: undefined,
+  },
+  monthOptions: {
+    type: Array,
+    default: () => [
+      {
+        value: 1,
+        text: '01 - January',
+      },
+      {
+        value: 2,
+        text: '02 - February',
+      },
+      {
+        value: 3,
+        text: '03 - March',
+      },
+      {
+        value: 4,
+        text: '04 - April',
+      },
+      {
+        value: 5,
+        text: '05 - May',
+      },
+      {
+        value: 6,
+        text: '06 - June',
+      },
+      {
+        value: 7,
+        text: '07 - July',
+      },
+      {
+        value: 8,
+        text: '08 - August',
+      },
+      {
+        value: 9,
+        text: '09 - September',
+      },
+      {
+        value: 10,
+        text: '10 - October',
+      },
+      {
+        value: 11,
+        text: '11 - November',
+      },
+      {
+        value: 12,
+        text: '12 - December',
+      },
+    ],
+  },
   name: {
     type: String,
     default: 'date',
@@ -48,6 +113,12 @@ const props = defineProps({
     default: '',
   },
 })
+
+if (!props.monthAsSelect) {
+  console.warn(
+    `The 'monthAsSelect' prop is deprecated. Starting with vue-uswds 2.0 the month will always use a select form element. You can set the 'monthAsSelect' prop value to true to minimize changes.`
+  )
+}
 
 const computedId = computed(() => props.id || nextId('usa-date-input'))
 const computedErrorMessageId = computed(
@@ -102,20 +173,35 @@ const ariaDescribedby = computed(() => {
 
     <div class="usa-memorable-date">
       <template v-for="date in dateOrder" :key="date">
-        <UsaTextInput
-          v-if="date === 'month'"
-          :id="`${computedId}-${name}-month`"
-          v-model="monthValue"
-          :label="dateLabels[date]"
-          :group="true"
-          :name="`${name}_month`"
-          :maxlength="2"
-          :required="required"
-          pattern="[0-9]*"
-          inputmode="numeric"
-          :aria-describedby="ariaDescribedby"
-          :custom-classes="{ component: ['usa-form-group--month'] }"
-        ></UsaTextInput>
+        <template v-if="date === 'month'">
+          <UsaSelect
+            v-if="monthAsSelect"
+            :id="`${computedId}-${name}-month`"
+            v-model="monthValue"
+            :options="monthOptions"
+            :empty-label="monthEmptyLabel"
+            :label="dateLabels[date]"
+            :group="true"
+            :name="`${name}_month`"
+            :required="required"
+            :aria-describedby="ariaDescribedby"
+            :custom-classes="{ component: ['usa-form-group--month'] }"
+          ></UsaSelect>
+          <UsaTextInput
+            v-else
+            :id="`${computedId}-${name}-month`"
+            v-model="monthValue"
+            :label="dateLabels[date]"
+            :group="true"
+            :name="`${name}_month`"
+            :maxlength="2"
+            :required="required"
+            pattern="[0-9]*"
+            inputmode="numeric"
+            :aria-describedby="ariaDescribedby"
+            :custom-classes="{ component: ['usa-form-group--month'] }"
+          ></UsaTextInput>
+        </template>
         <UsaTextInput
           v-else-if="date === 'day'"
           :id="`${computedId}-${name}-day`"

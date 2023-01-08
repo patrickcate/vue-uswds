@@ -7,6 +7,9 @@ const defaultProps = {
   year: UsaDateInput.props.year.default,
   dateOrder: UsaDateInput.props.dateOrder.default(),
   dateLabels: UsaDateInput.props.dateLabels.default(),
+  monthAsSelect: UsaDateInput.props.monthAsSelect.default,
+  monthEmptyLabel: UsaDateInput.props.monthEmptyLabel.default,
+  monthOptions: UsaDateInput.props.monthOptions.default(),
   name: UsaDateInput.props.name.default,
   required: UsaDateInput.props.required.default,
   error: UsaDateInput.props.error.default,
@@ -36,6 +39,15 @@ export default {
       control: { type: 'object' },
     },
     dateLabels: {
+      control: { type: 'object' },
+    },
+    monthAsSelect: {
+      control: { type: 'boolean' },
+    },
+    monthEmptyLabel: {
+      control: { type: 'text' },
+    },
+    monthOptions: {
       control: { type: 'object' },
     },
     name: {
@@ -71,6 +83,9 @@ export default {
     year: defaultProps.year,
     dateOrder: defaultProps.dateOrder,
     dateLabels: defaultProps.dateLabels,
+    monthAsSelect: defaultProps.monthAsSelect,
+    monthEmptyLabel: defaultProps.monthEmptyLabel,
+    monthOptions: defaultProps.monthOptions,
     name: defaultProps.name,
     required: defaultProps.required,
     error: defaultProps.error,
@@ -99,6 +114,9 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :year="year"
     :dateOrder="dateOrder"
     :dateLabels="dateLabels"
+    :monthAsSelect="monthAsSelect"
+    :monthEmptyLabel="monthEmptyLabel"
+    :monthOptions="monthOptions"
     :name="name"
     :required="required"
     :error="error"
@@ -187,6 +205,81 @@ CustomInputLabelsDateInput.args = {
   dateLabels: { month: 'MM', day: 'DD', year: 'YYYY' },
 }
 CustomInputLabelsDateInput.storyName = 'Custom Input Labels'
+
+export const MonthAsSelectDateInput = DefaultTemplate.bind({})
+MonthAsSelectDateInput.args = {
+  ...defaultProps,
+  label: 'Month as select form element',
+  monthAsSelect: true,
+}
+MonthAsSelectDateInput.storyName = 'Month as Select form element'
+
+export const CustomMonthSelectEmptyLabelDateInput = DefaultTemplate.bind({})
+CustomMonthSelectEmptyLabelDateInput.args = {
+  ...defaultProps,
+  label: 'Custom month empty label',
+  monthAsSelect: true,
+  monthEmptyLabel: 'Choose a month',
+}
+CustomMonthSelectEmptyLabelDateInput.storyName = 'Custom Month Empty Label'
+
+export const CustomMonthOptionsDateInput = DefaultTemplate.bind({})
+CustomMonthOptionsDateInput.args = {
+  ...defaultProps,
+  label: 'Custom month options',
+  monthAsSelect: true,
+  monthOptions: [
+    {
+      value: 'January',
+      text: 'Jan - 1',
+    },
+    {
+      value: 'February',
+      text: 'Feb - 2',
+    },
+    {
+      value: 'March',
+      text: 'Mar - 3',
+    },
+    {
+      value: 'April',
+      text: 'Apr - 4',
+    },
+    {
+      value: 'May',
+      text: 'May - 5',
+    },
+    {
+      value: 'June',
+      text: 'Jun - 6',
+    },
+    {
+      value: 'July',
+      text: 'Jul - 7',
+    },
+    {
+      value: 'August',
+      text: 'Aug - 8',
+    },
+    {
+      value: 'September',
+      text: 'Sep - 9',
+    },
+    {
+      value: 'October',
+      text: 'Oct - 10',
+    },
+    {
+      value: 'November',
+      text: 'Nov - 11',
+    },
+    {
+      value: 'December',
+      text: 'Dec - 12',
+    },
+  ],
+}
+CustomMonthOptionsDateInput.storyName = 'Custom Month Options'
 
 export const LabelSlotDateInput = DefaultTemplate.bind({})
 LabelSlotDateInput.args = {
