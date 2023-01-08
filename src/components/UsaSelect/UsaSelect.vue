@@ -5,12 +5,13 @@ export default {
 </script>
 
 <script setup>
-import { computed, useSlots } from 'vue'
+import { computed, useSlots, useAttrs } from 'vue'
 import { nextId } from '@/utils/unique-id.js'
 import UsaFormGroup from '@/components/UsaFormGroup'
 import UsaLabel from '@/components/UsaLabel'
 
 const slots = useSlots()
+const attrs = useAttrs()
 const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps({
@@ -23,8 +24,12 @@ const props = defineProps({
     default: '- Select -',
   },
   modelValue: {
-    type: undefined,
+    type: [String, Number],
     default: '',
+  },
+  group: {
+    type: Boolean,
+    default: false,
   },
   label: {
     type: String,
@@ -73,6 +78,10 @@ const classes = computed(() => [{ 'usa-input--error': props.error }])
 const ariaDescribedby = computed(() => {
   const ids = []
 
+  if (attrs['aria-describedby']) {
+    ids.push(attrs['aria-describedby'])
+  }
+
   if (slots.hint) {
     ids.push(computedHintId.value)
   }
@@ -83,11 +92,15 @@ const ariaDescribedby = computed(() => {
 
   return ids.length ? ids.join(' ') : null
 })
+
+const groupElements = computed(
+  () => props.group || !!slots.hint || (props.error && !!slots['error-message'])
+)
 </script>
 
 <template>
   <UsaFormGroup
-    :group="!!$slots.hint || (error && !!$slots['error-message'])"
+    :group="groupElements"
     :error="error"
     :class="props.customClasses?.component"
   >

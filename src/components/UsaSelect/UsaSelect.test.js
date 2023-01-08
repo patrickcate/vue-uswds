@@ -360,4 +360,18 @@ describe('UsaSelect', () => {
     cy.get('.usa-form-group').should('have.class', 'test-component-class')
     cy.get('.usa-label').should('have.class', 'test-label-class')
   })
+
+  it('use group wrapper if `group` prop is true', () => {
+    mount(UsaSelect, {
+      props: {
+        group: true,
+      },
+      attrs: {
+        'aria-describedby': 'test-hint',
+      },
+    })
+
+    cy.get('div.usa-form-group').should('exist')
+    cy.get('select').should('have.attr', 'aria-describedby', 'test-hint')
+  })
 })
