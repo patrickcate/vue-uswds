@@ -30,6 +30,7 @@ jobs:
   cypress-test:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
     strategy:
       matrix:
         os:
