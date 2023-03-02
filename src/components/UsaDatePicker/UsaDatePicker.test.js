@@ -147,7 +147,8 @@ describe('UsaDatePicker', () => {
     cy.get('.usa-date-picker__calendar__date-picker').should('not.exist')
 
     // Set new date input value.
-    cy.get('@input').clear().type('09/01/2023')
+    cy.get('@input').clear()
+    cy.get('@input').type('09/01/2023')
     cy.get('@input').should('have.value', '09/01/2023')
 
     // Open date picker.
@@ -335,6 +336,7 @@ describe('UsaDatePicker', () => {
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('have.focus')
 
+    cy.get('@input').click()
     cy.get('@input').type('04/12/2022')
 
     cy.get('button[data-value="2022-04-12"]')
@@ -355,7 +357,8 @@ describe('UsaDatePicker', () => {
       .and('not.have.class', 'usa-date-picker__calendar__date--selected')
       .and('not.have.attr', 'aria-selected', 'true')
 
-    cy.get('@input').clear().type('04/12/2020')
+    cy.get('@input').clear()
+    cy.get('@input').type('04/12/2020')
 
     cy.get('button[data-value="2022-03-25"]')
       .should('have.class', 'usa-date-picker__calendar__date--focused')
