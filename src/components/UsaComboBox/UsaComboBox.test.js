@@ -519,7 +519,8 @@ describe('UsaComboBox', () => {
     cy.get('.usa-combo-box__toggle-list').as('toggleButton').should('exist')
     cy.get('.usa-combo-box__status').as('status').should('be.empty')
 
-    cy.get('@input').click().type('APPLE')
+    cy.get('@input').click()
+    cy.get('@input').type('APPLE')
 
     cy.get('@input')
       .should('have.focus')
@@ -627,7 +628,8 @@ describe('UsaComboBox', () => {
       'usa-combo-box__list-option--focused'
     )
 
-    cy.get('@input').type(' ').should('have.value', 'Custard apple ')
+    cy.get('@input').type(' ')
+    cy.get('@input').should('have.value', 'Custard apple ')
 
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
     cy.get('@list').children().should('have.length', 1)
@@ -639,7 +641,8 @@ describe('UsaComboBox', () => {
     cy.get('@status').should('contain', 'No results.')
 
     // Remove space.
-    cy.get('@input').type('{backspace}').should('have.value', 'Custard apple')
+    cy.get('@input').type('{backspace}')
+    cy.get('@input').should('have.value', 'Custard apple')
 
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
     cy.get('@list').children().should('have.length', 1)
@@ -877,7 +880,8 @@ describe('UsaComboBox', () => {
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
     cy.get('@status').should('contain', '64 results available.')
 
-    cy.get('@input').type(' ').type('{downArrow}')
+    cy.get('@input').type(' ')
+    cy.get('@input').type('{downArrow}')
 
     cy.get('@input')
       .should('have.focus')
@@ -1194,7 +1198,8 @@ describe('UsaComboBox', () => {
 
     cy.get('@status').should('contain', 'total: 4')
 
-    cy.get('@input').clear().type('Pineapple')
+    cy.get('@input').clear()
+    cy.get('@input').type('Pineapple')
 
     cy.get('@status').should('contain', 'total: 1')
 
