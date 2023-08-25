@@ -282,27 +282,28 @@ describe('UsaTable', () => {
               })
           })
         })
-        .then(() => {
-          if (test.nextButton && currentRowIndex === 3) {
-            cy.get(`@header${test.nextButton}Button`).click()
 
-            if (test.sortDirection) {
-              const nextTest = testData[testIndex + 1]
-              const header = testHeaders.find(
-                headerItem => nextTest.sortHeader === headerItem.id
-              )
-              cy.get(`@header${test.nextButton}`).should(
-                'have.attr',
-                'aria-sort',
-                nextTest.sortDirection
-              )
+      cy.get('tbody > tr').then(() => {
+        if (test.nextButton && currentRowIndex === 3) {
+          cy.get(`@header${test.nextButton}Button`).click()
 
-              cy.get('@announcementRegion').contains(
-                `The table is now sorted by "${header.label}" in ${nextTest.sortDirection} order.`
-              )
-            }
+          if (test.sortDirection) {
+            const nextTest = testData[testIndex + 1]
+            const header = testHeaders.find(
+              headerItem => nextTest.sortHeader === headerItem.id
+            )
+            cy.get(`@header${test.nextButton}`).should(
+              'have.attr',
+              'aria-sort',
+              nextTest.sortDirection
+            )
+
+            cy.get('@announcementRegion').contains(
+              `The table is now sorted by "${header.label}" in ${nextTest.sortDirection} order.`
+            )
           }
-        })
+        }
+      })
     })
   })
 

@@ -548,9 +548,9 @@ describe('UsaNavPrimary', () => {
 
     cy.get('@dropdownMenu').should('be.hidden').and('have.attr', 'hidden')
 
-    cy.get('@dropdownButton')
-      .click()
-      .should('have.attr', 'aria-expanded', 'true')
+    cy.get('@dropdownButton').click()
+
+    cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'true')
 
     cy.get('@dropdownMenu').should('be.visible').and('not.have.attr', 'hidden')
 
@@ -560,9 +560,9 @@ describe('UsaNavPrimary', () => {
 
     cy.get('@dropdownMenu').should('be.hidden').and('have.attr', 'hidden')
 
-    cy.get('@dropdownButton')
-      .click()
-      .should('have.attr', 'aria-expanded', 'true')
+    cy.get('@dropdownButton').click()
+
+    cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'true')
 
     cy.get('@dropdownMenu').should('be.visible').and('not.have.attr', 'hidden')
 
@@ -614,35 +614,34 @@ describe('UsaNavPrimary', () => {
     cy.get('@dropdownMenu2').should('be.hidden').and('have.attr', 'hidden')
 
     // Click first dropdown.
-    cy.get('@dropdownButton1')
-      .click()
-      .should('have.attr', 'aria-expanded', 'true')
+    cy.get('@dropdownButton1').click()
+
+    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownMenu1').should('be.visible').and('not.have.attr', 'hidden')
 
     cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownMenu2').should('be.hidden').and('have.attr', 'hidden')
 
     // Click second dropdown.
-    cy.get('@dropdownButton2')
-      .click()
-      .should('have.attr', 'aria-expanded', 'true')
+    cy.get('@dropdownButton2').click()
 
+    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownMenu1').should('be.visible').and('not.have.attr', 'hidden')
     cy.get('@dropdownMenu2').should('be.visible').and('not.have.attr', 'hidden')
 
     // Click first dropdown again.
-    cy.get('@dropdownButton1')
-      .click()
-      .should('have.attr', 'aria-expanded', 'false')
+    cy.get('@dropdownButton1').click()
+
+    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownMenu1').should('be.hidden').and('have.attr', 'hidden')
     cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownMenu2').should('be.visible').and('not.have.attr', 'hidden')
 
     // Click first dropdown again.
-    cy.get('@dropdownButton1')
-      .click()
-      .should('have.attr', 'aria-expanded', 'true')
+    cy.get('@dropdownButton1').click()
+
+    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownMenu1').should('be.visible').and('not.have.attr', 'hidden')
     cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownMenu2').should('be.visible').and('not.have.attr', 'hidden')
@@ -657,17 +656,17 @@ describe('UsaNavPrimary', () => {
     cy.get('@dropdownMenu2').should('be.hidden').and('have.attr', 'hidden')
 
     // Click first dropdown.
-    cy.get('@dropdownButton1')
-      .click()
-      .should('have.attr', 'aria-expanded', 'true')
+    cy.get('@dropdownButton1').click()
+
+    cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownMenu1').should('be.visible').and('not.have.attr', 'hidden')
     cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownMenu2').should('be.hidden').and('have.attr', 'hidden')
 
     // Click second dropdown.
-    cy.get('@dropdownButton2')
-      .click()
-      .should('have.attr', 'aria-expanded', 'true')
+    cy.get('@dropdownButton2').click()
+
+    cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'true')
     cy.get('@dropdownMenu2').should('be.visible').and('not.have.attr', 'hidden')
     cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
     cy.get('@dropdownMenu1').should('be.hidden').and('have.attr', 'hidden')
