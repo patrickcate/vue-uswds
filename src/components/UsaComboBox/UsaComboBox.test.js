@@ -212,8 +212,11 @@ describe('UsaComboBox', () => {
       .and('have.class', 'usa-combo-box__list-option--focused')
 
     // Close with up arrow.
+    cy.get(
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)'
+    ).type('{upArrow}')
+
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)')
-      .type('{upArrow}')
       .should('not.have.focus')
       .and('not.have.class', 'usa-combo-box__list-option--focused')
 
@@ -351,8 +354,11 @@ describe('UsaComboBox', () => {
       .and('have.focus')
 
     // Highlight second option again.
+    cy.get(
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)'
+    ).type('{upArrow}')
+
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)')
-      .type('{upArrow}')
       .should('not.have.class', 'usa-combo-box__list-option--focused')
       .and('not.have.focus')
 
@@ -361,8 +367,11 @@ describe('UsaComboBox', () => {
       .and('have.focus')
 
     // Highlight third option with mouseover.
+    cy.get(
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)'
+    ).trigger('mouseover')
+
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)')
-      .trigger('mouseover')
       .should('have.class', 'usa-combo-box__list-option--focused')
       .and('have.focus')
 
@@ -371,8 +380,11 @@ describe('UsaComboBox', () => {
       .and('not.have.class', 'usa-combo-box__list-option--focused')
 
     // Highlight last option with mouseover.
+    cy.get(
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)'
+    ).trigger('mouseover')
+
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)')
-      .trigger('mouseover')
       .should('have.class', 'usa-combo-box__list-option--focused')
       .and('have.focus')
 
@@ -381,8 +393,11 @@ describe('UsaComboBox', () => {
       .and('not.have.class', 'usa-combo-box__list-option--focused')
 
     // Can't highlight past last item.
+    cy.get(
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)'
+    ).type('{downArrow}')
+
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)')
-      .type('{downArrow}')
       .should('have.focus')
       .should('have.class', 'usa-combo-box__list-option--focused')
   })
@@ -420,8 +435,11 @@ describe('UsaComboBox', () => {
     cy.get('@input').click()
 
     // Highlight last option with mouseover.
+    cy.get(
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)'
+    ).trigger('mouseover')
+
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)')
-      .trigger('mouseover')
       .should('have.class', 'usa-combo-box__list-option--focused')
       .and('have.focus')
 
@@ -581,8 +599,9 @@ describe('UsaComboBox', () => {
     cy.get('.usa-combo-box__toggle-list').as('toggleButton').should('exist')
     cy.get('.usa-combo-box__status').as('status').should('be.empty')
 
+    cy.get('@input').type('apple')
+
     cy.get('@input')
-      .type('apple')
       .should('have.focus')
       .and('have.attr', 'aria-expanded', 'true')
       .and('not.have.attr', 'aria-activedescendant')

@@ -81,7 +81,7 @@ describe('UsaFooter', () => {
       },
     })
 
-    cy.get('span').should('contain', 'Footer Variant: "slim"')
+    cy.get('span').should('contain', 'Footer Variant: slim')
   })
 
   it('adds custom CSS classes', () => {
