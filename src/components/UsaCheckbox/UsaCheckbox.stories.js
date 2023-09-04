@@ -6,6 +6,7 @@ const defaultProps = {
   modelValue: UsaCheckbox.props.modelValue.default,
   label: UsaCheckbox.props.label.default,
   description: UsaCheckbox.props.description.default,
+  disabled: UsaCheckbox.props.disabled.default,
   id: UsaCheckbox.props.id.default,
   customClasses: UsaCheckbox.props.customClasses.default(),
 }
@@ -26,6 +27,9 @@ export default {
     description: {
       control: { type: 'text' },
     },
+    disabled: {
+      control: { type: 'boolean' },
+    },
     id: {
       control: { type: 'text' },
     },
@@ -41,6 +45,7 @@ export default {
     modelValue: defaultProps.modelValue,
     label: defaultProps.label,
     description: defaultProps.description,
+    disabled: defaultProps.disabled,
     id: defaultProps.id,
     customClasses: defaultProps.customClasses,
     default: '',
@@ -65,6 +70,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :tile="tile"
     :label="label"
     :description="description"
+    :disabled="disabled"
     :id="id"
     :custom-classes="customClasses"
     v-model="modelValue"
@@ -99,6 +105,15 @@ CheckedByDefaultCheckbox.args = {
   modelValue: true,
 }
 CheckedByDefaultCheckbox.storyName = 'Checked by Default'
+
+export const DisabledCheckbox = DefaultTemplate.bind({})
+DisabledCheckbox.args = {
+  ...defaultProps,
+  label: 'Sojourner Truth',
+  modelValue: true,
+  disabled: true,
+}
+DisabledCheckbox.storyName = 'Disabled'
 
 export const TileCheckbox = DefaultTemplate.bind({})
 TileCheckbox.args = {

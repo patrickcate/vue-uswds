@@ -20,8 +20,10 @@ describe('UsaCheckbox', () => {
     cy.get('div.usa-checkbox').should('exist')
 
     cy.get('input.usa-checkbox__input')
-      .should('have.attr', 'type')
-      .and('contain', 'checkbox')
+      .should('have.attr', 'type', 'checkbox')
+      .and('not.have.attr', 'disabled', 'disabled')
+      .and('not.have.attr', 'aria-disabled', 'true')
+      .and('not.have.attr', 'aria-disabled', 'false')
     cy.get('input.usa-checkbox__input').should('have.attr', 'id')
     cy.get('input.usa-checkbox__input').should('not.be.checked')
 
@@ -83,17 +85,18 @@ describe('UsaCheckbox', () => {
     )
   })
 
-  it('`disabled` attr binding disables checkbox', () => {
+  it('`disabled` prop disables checkbox', () => {
     mount(UsaCheckbox, {
       props: {
         label: 'Test label',
-      },
-      attrs: {
         disabled: true,
       },
     })
 
-    cy.get('.usa-checkbox__input').should('be.disabled')
+    cy.get('.usa-checkbox__input')
+      .should('be.disabled')
+      .and('have.attr', 'disabled', 'disabled')
+      .and('have.attr', 'aria-disabled', 'true')
   })
 
   it('root element does not inherit attrs', () => {

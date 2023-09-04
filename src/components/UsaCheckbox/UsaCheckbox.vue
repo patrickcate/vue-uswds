@@ -27,6 +27,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
   id: {
     type: String,
     default: '',
@@ -67,6 +71,8 @@ const classes = computed(() => [
       v-bind="$attrs"
       :id="computedId"
       v-model="checkboxValue"
+      :disabled="disabled"
+      :aria-disabled="disabled || null"
       class="usa-checkbox__input"
       type="checkbox"
       :class="classes"
