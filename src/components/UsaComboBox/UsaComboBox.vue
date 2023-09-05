@@ -90,7 +90,7 @@ const {
   handleFilterOnInput,
   handleHoverOnListOption,
   handleListToggle,
-  handleTabOnListOption,
+  handleSpaceOnListOption,
   handleUpOnListOption,
   highlightedOption,
   inputElement,
@@ -248,7 +248,7 @@ const classes = computed(() => [
             @keydown.prevent.up="handleUpOnListOption(index)"
             @keydown.prevent.down="handleDownOnListOption(index)"
             @keydown.prevent.enter="handleEnterOnListOption(option.value)"
-            @keydown.prevent.tab.exact="handleTabOnListOption(option.value)"
+            @keydown.prevent.space="handleSpaceOnListOption(option.value)"
             @mouseover="handleHoverOnListOption(option.value)"
             >{{ option.label }}</li
           >

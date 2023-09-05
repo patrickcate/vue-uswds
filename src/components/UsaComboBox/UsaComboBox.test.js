@@ -439,12 +439,11 @@ describe('UsaComboBox', () => {
       '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)'
     ).trigger('mouseover')
 
+    // Select option by pressing spacebar.
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)')
       .should('have.class', 'usa-combo-box__list-option--focused')
       .and('have.focus')
-
-    // Select option by pressing tab.
-    cy.realPress('Tab')
+      .type(' ')
 
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)')
       .should('not.have.focus')
