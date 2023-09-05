@@ -33,6 +33,7 @@ const defaultProps = {
   numberPageAriaLabel: UsaPagination.props.numberPageAriaLabel.default,
   nextPageAriaLabel: UsaPagination.props.nextPageAriaLabel.default,
   lastPageAriaLabel: UsaPagination.props.lastPageAriaLabel.default,
+  overflowAriaLabel: UsaPagination.props.overflowAriaLabel.default,
   customClasses: UsaPagination.props.customClasses.default(),
 }
 
@@ -71,6 +72,9 @@ export default {
       control: { type: 'text' },
     },
     lastPageAriaLabel: {
+      control: { type: 'text' },
+    },
+    overflowAriaLabel: {
       control: { type: 'text' },
     },
     customClasses: {
@@ -123,6 +127,7 @@ export default {
     numberPageAriaLabel: defaultProps.numberPageAriaLabel,
     nextPageAriaLabel: defaultProps.nextPageAriaLabel,
     lastPageAriaLabel: defaultProps.lastPageAriaLabel,
+    overflowAriaLabel: defaultProps.overflowAriaLabel,
     customClasses: defaultProps.customClasses,
     previous: '',
     'previous-icon': '',
@@ -152,6 +157,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :number-page-aria-label="numberPageAriaLabel"
     :next-page-aria-label="nextPageAriaLabel"
     :last-page-aria-label="lastPageAriaLabel"
+    :overflow-aria-label="overflowAriaLabel"
     :custom-classes="customClasses"
   >
     <template v-if="${!!args.previous}" #previous="{ isFirstPage, toPreviousPage }">${

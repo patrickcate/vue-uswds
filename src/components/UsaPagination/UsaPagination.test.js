@@ -89,8 +89,8 @@ describe('UsaPagination', () => {
 
     cy.get('@item6')
       .should('have.class', 'usa-pagination__overflow')
-      .and('have.attr', 'role')
-      .and('contain', 'presentation')
+      .and('not.have.attr', 'role', 'presentation')
+      .and('have.attr', 'aria-label', 'ellipsis indicating non-visible pages')
       .get('@item6')
       .find('span')
       .should('contain', '…')
@@ -162,6 +162,8 @@ describe('UsaPagination', () => {
 
     cy.get('@item7')
       .should('have.class', 'usa-pagination__overflow')
+      .and('not.have.attr', 'role', 'presentation')
+      .and('have.attr', 'aria-label', 'ellipsis indicating non-visible pages')
       .find('span')
       .should('contain', '…')
 
@@ -169,6 +171,8 @@ describe('UsaPagination', () => {
     cy.get('@wrapper').invoke('setProps', { currentPage: 19 })
     cy.get('@item7')
       .should('have.class', 'usa-pagination__overflow')
+      .and('not.have.attr', 'role', 'presentation')
+      .and('have.attr', 'aria-label', 'ellipsis indicating non-visible pages')
       .find('span')
       .should('contain', '…')
 
@@ -176,6 +180,12 @@ describe('UsaPagination', () => {
     cy.get('@wrapper').invoke('setProps', { currentPage: 20 })
     cy.get('@item7')
       .should('not.have.class', 'usa-pagination__overflow')
+      .and('not.have.attr', 'role', 'presentation')
+      .and(
+        'not.have.attr',
+        'aria-label',
+        'ellipsis indicating non-visible pages'
+      )
       .children()
       .should('contain', '20')
   })

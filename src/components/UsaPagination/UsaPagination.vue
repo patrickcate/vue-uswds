@@ -76,6 +76,10 @@ const props = defineProps({
     type: String,
     default: 'Last page, page %s',
   },
+  overflowAriaLabel: {
+    type: String,
+    default: 'ellipsis indicating non-visible pages',
+  },
   customClasses: {
     type: Object,
     default: () => {
@@ -191,7 +195,7 @@ function getAriaLabel(pageNumber) {
         <li
           v-if="isOverflowSlot(index)"
           class="usa-pagination__item usa-pagination__overflow"
-          role="presentation"
+          :aria-label="overflowAriaLabel"
         >
           <span>&hellip;</span>
         </li>
