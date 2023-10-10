@@ -111,16 +111,15 @@ const dropZoneClasses = computed(() => [
 
 // TODO: Support custom text for other languages.
 const ariaLabel = computed(() => {
-  if (!loadedFiles.value?.length) {
-    return props.multiple ? 'No files selected' : 'No file selected'
+  const fileLabel = props.multiple ? 'files' : 'file'
+
+  if (!hasFiles.value) {
+    return `Drag ${fileLabel} here or choose from folder`
   }
 
-  if (loadedFiles.value.length === 1) {
-    return `You have selected the file: ${loadedFiles.value[0].name}`
-  }
-
-  return `You have selected ${loadedFiles.value.length} files: ${loadedFileNames.value}`
+  return `Change ${fileLabel}`
 })
+// TODO: Debounce screen reader only text updates.
 </script>
 
 <template>
@@ -154,19 +153,41 @@ const ariaLabel = computed(() => {
       :aria-disabled="isDisabled || null"
       :class="classes"
     >
+      <div class="usa-sr-only" aria-live="polite">
+        <slot
+          name="status"
+          :multiple="multiple"
+          :loaded-files="loadedFiles"
+          :has-invalid-files="hasInvalidFiles"
+        >
+          <template v-if="!loadedFiles.length || hasInvalidFiles">
+            <template v-if="multiple">No files selected</template>
+            <template v-else>No file selected</template>
+          </template>
+          <template v-else-if="loadedFiles.length === 1 && !hasInvalidFiles">
+            You have selected the file: {{ loadedFiles[0].name }}
+          </template>
+          <template v-else-if="loadedFiles.length > 1 && !hasInvalidFiles">
+            test You have selected {{ loadedFiles.length }} files:
+            {{ loadedFileNames }}
+          </template>
+        </slot>
+      </div>
       <div class="usa-file-input__target" :class="dropZoneClasses">
+        <div class="usa-file-input__box"></div>
         <div
           v-show="hasInvalidFiles || !hasFiles"
           class="usa-file-input__instructions"
           aria-hidden="true"
+          :hidden="!hasInvalidFiles && hasFiles"
           ><slot name="instructions" :multiple="multiple"
             ><span class="usa-file-input__drag-text"
               >Drag file<template v-if="multiple">s</template> here or </span
             ><span class="usa-file-input__choose"
               >choose from folder</span
             ></slot
-          ></div
-        >
+          >
+        </div>
         <template v-if="!hasInvalidFiles && hasFiles">
           <div class="usa-file-input__preview-heading">
             <slot name="preview-heading" :loaded-files="loadedFiles">
@@ -193,7 +214,6 @@ const ariaLabel = computed(() => {
           </div>
         </template>
 
-        <div class="usa-file-input__box"></div>
         <div
           v-if="hasInvalidFiles"
           class="usa-file-input__accepted-files-message"
@@ -214,7 +234,6 @@ const ariaLabel = computed(() => {
           :class="customClasses?.input"
           :aria-label="ariaLabel"
           :aria-describedby="ariaDescribedby"
-          aria-live="polite"
           @change="loadFiles($event.target.files)"
           @dragenter="isOverDropzone = true"
           @dragover="isOverDropzone = true"

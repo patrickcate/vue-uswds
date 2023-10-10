@@ -46,6 +46,13 @@ export default {
         category: 'slots',
       },
     },
+    'slot:status': {
+      control: { type: 'text' },
+      name: 'status',
+      table: {
+        category: 'slots',
+      },
+    },
     hint: {
       control: { type: 'text' },
     },
@@ -71,6 +78,7 @@ export default {
     error: defaultProps.error,
     id: defaultProps.id,
     'slot:label': '',
+    'slot:status': '',
     hint: '',
     'error-message': '',
     instructions: '',
@@ -100,6 +108,11 @@ const DefaultTemplate = (args, { argTypes }) => ({
     <template v-if="${!!args.hint}" #hint>${args.hint}</template>
     <template v-if="${!!args['error-message']}" #error-message>${
     args['error-message']
+  }</template>
+    <template v-if="${!!args[
+      'slot:status'
+    ]}" #status="{ multiple, loadedFiles, hasInvalidFiles }">${
+    args['slot:status']
   }</template>
     <template v-if="${!!args.instructions}" #instructions="{ multiple }">${
     args.instructions
@@ -224,4 +237,18 @@ CustomClassesFileInput.args = {
 }
 CustomClassesFileInput.storyName = 'Custom CSS Classes'
 
-// TODO: Add label slot story.
+export const LabelSlotFileInput = DefaultTemplate.bind({})
+LabelSlotFileInput.args = {
+  ...defaultProps,
+  'slot:label': `<em>Label slot content</em>`,
+}
+LabelSlotFileInput.storyName = 'Label Slot'
+
+export const StatusSlotFileInput = DefaultTemplate.bind({})
+StatusSlotFileInput.args = {
+  ...defaultProps,
+  label: 'File',
+  'slot:status':
+    'Total files: <strong>{{ loadedFiles.length }}</strong>, multiple: {{ multiple }}, hasInvalidFiles: {{ hasInvalidFiles }}',
+}
+StatusSlotFileInput.storyName = 'Status Slot'
