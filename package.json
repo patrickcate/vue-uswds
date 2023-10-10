@@ -52,7 +52,7 @@
     "prepare": "husky install",
     "prepublishOnly": "npm run build",
     "storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
-    "build-storybook": "cross-env STORYBOOK_MODE=BUILD build-storybook",
+    "build-storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider STORYBOOK_MODE=BUILD build-storybook",
     "postbuild-storybook": "cp ./media/logo.svg ./storybook-static/logo.svg",
     "symlink-assets": "ln -s node_modules/@uswds/uswds/dist assets",
     "semantic-release": "semantic-release"
