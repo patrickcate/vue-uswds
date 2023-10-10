@@ -41,6 +41,12 @@ describe('UsaCollectionItem', () => {
       },
       slots: {
         media: () => testMedia,
+        calendar: () =>
+          h(
+            'div',
+            { class: 'test-calendar-slot' },
+            'Custom calendar slot content'
+          ),
         default: () => testContent,
         meta: () => testMetaItems,
       },
@@ -61,6 +67,8 @@ describe('UsaCollectionItem', () => {
       .should('have.attr', 'alt')
       .and('contain', 'A placeholder image')
     cy.get('.usa-collection__body').should('exist')
+
+    cy.get('.test-calendar-slot').should('not.exist')
 
     cy.get('h2.usa-collection__heading').should('contain', testHeadingText)
     cy.get('.usa-collection__heading')
@@ -139,6 +147,29 @@ describe('UsaCollectionItem', () => {
     cy.get('h3').should('contain', 'Custom slot heading text')
   })
 
+  it('uses the `calendar` slot content', () => {
+    mount(UsaCollectionItem, {
+      props: {
+        href: testHref,
+        heading: testHeadingText,
+      },
+      slots: {
+        calendar: () =>
+          h(
+            'div',
+            { class: 'test-calendar-slot' },
+            'Custom calendar slot content'
+          ),
+        default: () => testContent,
+      },
+    })
+
+    cy.get('div.test-calendar-slot').should(
+      'contain',
+      'Custom calendar slot content'
+    )
+  })
+
   it('renders custom heading tag', () => {
     mount(UsaCollectionItem, {
       props: {
@@ -192,6 +223,4 @@ describe('UsaCollectionItem', () => {
 
     cy.get('router-link').should('have.attr', 'to').and('contain', '/test-page')
   })
-
-  // TODO: Test calendar slot.
 })
