@@ -19,7 +19,10 @@ export const getTestData = today => {
   const todaysIsoDate = formatIsoDate(today)
   const monthStart = startOfWeek(startOfMonth(today))
   const monthEnd = endOfWeek(endOfMonth(today))
-  const start = startOfDay(addDays(monthStart, 8))
+  const start =
+    formatIsoDate(startOfDay(addDays(monthStart, 8))) === formatIsoDate(today)
+      ? startOfDay(addDays(monthStart, 6))
+      : startOfDay(addDays(monthStart, 8))
   const startAlternative = startOfDay(addDays(monthStart, 10))
   const end = startOfDay(subDays(monthEnd, 13))
   const endAlternative = startOfDay(subDays(monthEnd, 11))
