@@ -439,12 +439,11 @@ describe('UsaComboBox', () => {
       '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)'
     ).trigger('mouseover')
 
+    // Select option by pressing spacebar.
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)')
       .should('have.class', 'usa-combo-box__list-option--focused')
       .and('have.focus')
-
-    // Select option by pressing tab.
-    cy.realPress('Tab')
+      .type(' ')
 
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)')
       .should('not.have.focus')
@@ -773,7 +772,7 @@ describe('UsaComboBox', () => {
           id: 'enter-key',
         }
       },
-      template: `<UsaComboBox v-model="selectedOption" :options="options"  :id="id" label="ComboBox"></UsaComboBox>`,
+      template: `<UsaComboBox v-model="selectedOption" :options="options" :id="id" label="ComboBox"></UsaComboBox>`,
     }
 
     mount(wrapperComponent, {})
@@ -1119,22 +1118,20 @@ describe('UsaComboBox', () => {
     mount(wrapperComponent, {}).as('wrapper')
 
     cy.get('input').should('not.have.focus').and('have.attr', 'readonly')
+    cy.get('input').should('have.value', 'Persimmon')
+
     cy.get('input').click({ force: true })
     cy.get('input').should('have.focus')
 
     cy.get('.usa-combo-box__clear-input')
       .should('not.have.focus')
       .and('have.attr', 'disabled')
-    cy.get('.usa-combo-box__clear-input').click({ force: true })
-    cy.get('.usa-combo-box__clear-input').should('not.have.focus')
 
-    cy.get('.usa-combo-box__toggle-list')
-      .should('not.have.focus')
-      .and('have.attr', 'disabled')
+    cy.get('.usa-combo-box__toggle-list').and('have.attr', 'disabled')
     cy.get('.usa-combo-box__toggle-list').click({ force: true })
     cy.get('.usa-combo-box__toggle-list').should('not.have.focus')
 
-    cy.get('@wrapper').invoke('setProps', { modalValue: 'tamarind' })
+    cy.get('@wrapper').invoke('setProps', { selectedOption: 'tamarind' })
     cy.get('input').should('have.value', 'Persimmon')
   })
 

@@ -60,12 +60,30 @@ export default {
       return 'a'
     },
   },
+  methods: {
+    handleSpaceKeydown(event) {
+      if (this.$attrs?.class?.includes('usa-button')) {
+        event.target.click()
+      }
+    },
+  },
 }
 </script>
 
 <template>
-  <a v-if="isHrefLink" v-bind="$attrs" :href="href || to"><slot></slot></a>
-  <component :is="linkComponent" v-else v-bind="$attrs" :to="to"
+  <a
+    v-if="isHrefLink"
+    v-bind="$attrs"
+    :href="href || to"
+    @keydown.prevent.space="handleSpaceKeydown"
+    ><slot></slot
+  ></a>
+  <component
+    :is="linkComponent"
+    v-else
+    v-bind="$attrs"
+    :to="to"
+    @keydown.prevent.space="handleSpaceKeydown"
     ><slot></slot
   ></component>
 </template>

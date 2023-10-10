@@ -311,7 +311,7 @@ export default (_id, _selectedOption, _options, _disabled, _readonly, emit) => {
     }
   }
 
-  const handleTabOnListOption = value => {
+  const handleSpaceOnListOption = value => {
     selectOption(value)
     closeList()
     focusInput()
@@ -452,7 +452,7 @@ export default (_id, _selectedOption, _options, _disabled, _readonly, emit) => {
     handleFilterOnInput,
     handleHoverOnListOption,
     handleListToggle,
-    handleTabOnListOption,
+    handleSpaceOnListOption,
     handleUpOnListOption,
     highlightedOption: readonly(highlightedOption),
     inputElement,
