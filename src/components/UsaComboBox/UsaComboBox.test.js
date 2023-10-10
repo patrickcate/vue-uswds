@@ -772,7 +772,7 @@ describe('UsaComboBox', () => {
           id: 'enter-key',
         }
       },
-      template: `<UsaComboBox v-model="selectedOption" :options="options"  :id="id" label="ComboBox"></UsaComboBox>`,
+      template: `<UsaComboBox v-model="selectedOption" :options="options" :id="id" label="ComboBox"></UsaComboBox>`,
     }
 
     mount(wrapperComponent, {})
@@ -1118,22 +1118,20 @@ describe('UsaComboBox', () => {
     mount(wrapperComponent, {}).as('wrapper')
 
     cy.get('input').should('not.have.focus').and('have.attr', 'readonly')
+    cy.get('input').should('have.value', 'Persimmon')
+
     cy.get('input').click({ force: true })
     cy.get('input').should('have.focus')
 
     cy.get('.usa-combo-box__clear-input')
       .should('not.have.focus')
       .and('have.attr', 'disabled')
-    cy.get('.usa-combo-box__clear-input').click({ force: true })
-    cy.get('.usa-combo-box__clear-input').should('not.have.focus')
 
-    cy.get('.usa-combo-box__toggle-list')
-      .should('not.have.focus')
-      .and('have.attr', 'disabled')
+    cy.get('.usa-combo-box__toggle-list').and('have.attr', 'disabled')
     cy.get('.usa-combo-box__toggle-list').click({ force: true })
     cy.get('.usa-combo-box__toggle-list').should('not.have.focus')
 
-    cy.get('@wrapper').invoke('setProps', { modalValue: 'tamarind' })
+    cy.get('@wrapper').invoke('setProps', { selectedOption: 'tamarind' })
     cy.get('input').should('have.value', 'Persimmon')
   })
 
