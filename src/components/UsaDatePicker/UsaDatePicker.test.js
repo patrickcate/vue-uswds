@@ -1,6 +1,7 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { mount } from '@cypress/vue'
-import { today, formatIsoDate } from '@/utils/dates.js'
+import { addMonths, subDays } from 'date-fns'
+import { today, formatIsoDate, formatUsaDate } from '@/utils/dates.js'
 import UsaDatePicker from './UsaDatePicker.vue'
 
 describe('UsaDatePicker', () => {
@@ -146,7 +147,8 @@ describe('UsaDatePicker', () => {
     cy.get('.usa-date-picker__calendar__date-picker').should('not.exist')
 
     // Set new date input value.
-    cy.get('@input').clear().type('09/01/2023')
+    cy.get('@input').clear()
+    cy.get('@input').type('09/01/2023')
     cy.get('@input').should('have.value', '09/01/2023')
 
     // Open date picker.
@@ -212,14 +214,6 @@ describe('UsaDatePicker', () => {
 
     cy.get('@input').should('have.value', '')
     cy.get('@calendar').should('not.have.attr', 'data-value', '2023-09-01')
-
-    // cy.get('@wrapper').invoke('setProps', { modelValue: '2022-04-20' })
-
-    // cy.get('button[data-value="2022-05-25"]')
-    //   .should('have.class', 'usa-date-picker__calendar__date--focused')
-    //   .and('not.have.class', 'usa-date-picker__calendar__date--selected')
-    //   .and('not.have.attr', 'aria-selected', 'true')
-    //   .and('have.focus')
   })
 
   it('displays label, hint, and error messages', () => {
@@ -308,7 +302,11 @@ describe('UsaDatePicker', () => {
   })
 
   it('changing date in text input updates calendar picker', () => {
-    const todaysDate = formatIsoDate(today())
+    const todaysDateObject = today()
+    const todaysDate = formatIsoDate(todaysDateObject)
+    const typedUsaDate = formatUsaDate(addMonths(todaysDateObject, 2))
+    const typedIsoDate = formatIsoDate(addMonths(todaysDateObject, 2))
+    const maxDate = formatIsoDate(subDays(addMonths(todaysDateObject, 2), 1))
 
     const wrapperComponent = {
       components: { UsaDatePicker },
@@ -316,7 +314,7 @@ describe('UsaDatePicker', () => {
         return {
           selectedDate: '',
           minDate: '2022-03-25',
-          maxDate: '2023-01-09',
+          maxDate: `${maxDate}`,
         }
       },
       template: `<UsaDatePicker
@@ -338,6 +336,7 @@ describe('UsaDatePicker', () => {
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('have.focus')
 
+    cy.get('@input').click()
     cy.get('@input').type('04/12/2022')
 
     cy.get('button[data-value="2022-04-12"]')
@@ -346,18 +345,20 @@ describe('UsaDatePicker', () => {
       .and('have.attr', 'aria-selected', 'true')
 
     cy.get('@input').clear()
-    cy.get('@input').type('01/10/2023')
+    cy.get('@input').type(typedUsaDate)
 
-    cy.get('button[data-value="2023-01-10"]')
+    cy.get(`button[data-value="${typedIsoDate}"]`)
       .should('not.have.class', 'usa-date-picker__calendar__date--focused')
       .and('not.have.class', 'usa-date-picker__calendar__date--selected')
       .and('not.have.attr', 'aria-selected', 'true')
-    cy.get('button[data-value="2023-01-09"]')
+
+    cy.get(`button[data-value="${maxDate}"]`)
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('not.have.class', 'usa-date-picker__calendar__date--selected')
       .and('not.have.attr', 'aria-selected', 'true')
 
-    cy.get('@input').clear().type('04/12/2020')
+    cy.get('@input').clear()
+    cy.get('@input').type('04/12/2020')
 
     cy.get('button[data-value="2022-03-25"]')
       .should('have.class', 'usa-date-picker__calendar__date--focused')

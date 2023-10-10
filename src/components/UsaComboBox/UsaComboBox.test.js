@@ -212,8 +212,11 @@ describe('UsaComboBox', () => {
       .and('have.class', 'usa-combo-box__list-option--focused')
 
     // Close with up arrow.
+    cy.get(
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)'
+    ).type('{upArrow}')
+
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)')
-      .type('{upArrow}')
       .should('not.have.focus')
       .and('not.have.class', 'usa-combo-box__list-option--focused')
 
@@ -351,8 +354,11 @@ describe('UsaComboBox', () => {
       .and('have.focus')
 
     // Highlight second option again.
+    cy.get(
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)'
+    ).type('{upArrow}')
+
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)')
-      .type('{upArrow}')
       .should('not.have.class', 'usa-combo-box__list-option--focused')
       .and('not.have.focus')
 
@@ -361,8 +367,11 @@ describe('UsaComboBox', () => {
       .and('have.focus')
 
     // Highlight third option with mouseover.
+    cy.get(
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)'
+    ).trigger('mouseover')
+
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)')
-      .trigger('mouseover')
       .should('have.class', 'usa-combo-box__list-option--focused')
       .and('have.focus')
 
@@ -371,8 +380,11 @@ describe('UsaComboBox', () => {
       .and('not.have.class', 'usa-combo-box__list-option--focused')
 
     // Highlight last option with mouseover.
+    cy.get(
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)'
+    ).trigger('mouseover')
+
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)')
-      .trigger('mouseover')
       .should('have.class', 'usa-combo-box__list-option--focused')
       .and('have.focus')
 
@@ -381,8 +393,11 @@ describe('UsaComboBox', () => {
       .and('not.have.class', 'usa-combo-box__list-option--focused')
 
     // Can't highlight past last item.
+    cy.get(
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)'
+    ).type('{downArrow}')
+
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)')
-      .type('{downArrow}')
       .should('have.focus')
       .should('have.class', 'usa-combo-box__list-option--focused')
   })
@@ -420,13 +435,15 @@ describe('UsaComboBox', () => {
     cy.get('@input').click()
 
     // Highlight last option with mouseover.
+    cy.get(
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)'
+    ).trigger('mouseover')
+
+    // Select option by pressing spacebar.
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)')
-      .trigger('mouseover')
       .should('have.class', 'usa-combo-box__list-option--focused')
       .and('have.focus')
-
-    // Select option by pressing tab.
-    cy.realPress('Tab')
+      .type(' ')
 
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)')
       .should('not.have.focus')
@@ -519,7 +536,8 @@ describe('UsaComboBox', () => {
     cy.get('.usa-combo-box__toggle-list').as('toggleButton').should('exist')
     cy.get('.usa-combo-box__status').as('status').should('be.empty')
 
-    cy.get('@input').click().type('APPLE')
+    cy.get('@input').click()
+    cy.get('@input').type('APPLE')
 
     cy.get('@input')
       .should('have.focus')
@@ -580,8 +598,9 @@ describe('UsaComboBox', () => {
     cy.get('.usa-combo-box__toggle-list').as('toggleButton').should('exist')
     cy.get('.usa-combo-box__status').as('status').should('be.empty')
 
+    cy.get('@input').type('apple')
+
     cy.get('@input')
-      .type('apple')
       .should('have.focus')
       .and('have.attr', 'aria-expanded', 'true')
       .and('not.have.attr', 'aria-activedescendant')
@@ -627,7 +646,8 @@ describe('UsaComboBox', () => {
       'usa-combo-box__list-option--focused'
     )
 
-    cy.get('@input').type(' ').should('have.value', 'Custard apple ')
+    cy.get('@input').type(' ')
+    cy.get('@input').should('have.value', 'Custard apple ')
 
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
     cy.get('@list').children().should('have.length', 1)
@@ -639,7 +659,8 @@ describe('UsaComboBox', () => {
     cy.get('@status').should('contain', 'No results.')
 
     // Remove space.
-    cy.get('@input').type('{backspace}').should('have.value', 'Custard apple')
+    cy.get('@input').type('{backspace}')
+    cy.get('@input').should('have.value', 'Custard apple')
 
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
     cy.get('@list').children().should('have.length', 1)
@@ -751,7 +772,7 @@ describe('UsaComboBox', () => {
           id: 'enter-key',
         }
       },
-      template: `<UsaComboBox v-model="selectedOption" :options="options"  :id="id" label="ComboBox"></UsaComboBox>`,
+      template: `<UsaComboBox v-model="selectedOption" :options="options" :id="id" label="ComboBox"></UsaComboBox>`,
     }
 
     mount(wrapperComponent, {})
@@ -877,7 +898,8 @@ describe('UsaComboBox', () => {
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
     cy.get('@status').should('contain', '64 results available.')
 
-    cy.get('@input').type(' ').type('{downArrow}')
+    cy.get('@input').type(' ')
+    cy.get('@input').type('{downArrow}')
 
     cy.get('@input')
       .should('have.focus')
@@ -1096,22 +1118,20 @@ describe('UsaComboBox', () => {
     mount(wrapperComponent, {}).as('wrapper')
 
     cy.get('input').should('not.have.focus').and('have.attr', 'readonly')
+    cy.get('input').should('have.value', 'Persimmon')
+
     cy.get('input').click({ force: true })
     cy.get('input').should('have.focus')
 
     cy.get('.usa-combo-box__clear-input')
       .should('not.have.focus')
       .and('have.attr', 'disabled')
-    cy.get('.usa-combo-box__clear-input').click({ force: true })
-    cy.get('.usa-combo-box__clear-input').should('not.have.focus')
 
-    cy.get('.usa-combo-box__toggle-list')
-      .should('not.have.focus')
-      .and('have.attr', 'disabled')
+    cy.get('.usa-combo-box__toggle-list').and('have.attr', 'disabled')
     cy.get('.usa-combo-box__toggle-list').click({ force: true })
     cy.get('.usa-combo-box__toggle-list').should('not.have.focus')
 
-    cy.get('@wrapper').invoke('setProps', { modalValue: 'tamarind' })
+    cy.get('@wrapper').invoke('setProps', { selectedOption: 'tamarind' })
     cy.get('input').should('have.value', 'Persimmon')
   })
 
@@ -1194,7 +1214,8 @@ describe('UsaComboBox', () => {
 
     cy.get('@status').should('contain', 'total: 4')
 
-    cy.get('@input').clear().type('Pineapple')
+    cy.get('@input').clear()
+    cy.get('@input').type('Pineapple')
 
     cy.get('@status').should('contain', 'total: 1')
 

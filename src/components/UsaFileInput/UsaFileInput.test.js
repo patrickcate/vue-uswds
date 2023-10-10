@@ -31,11 +31,23 @@ describe('UsaFileInput', () => {
 
     cy.get('div.usa-file-input').should('not.have.attr', 'data-test')
 
+    cy.get('div.usa-file-input > div:first-of-type')
+      .as('status')
+      .should('have.class', 'usa-sr-only')
+      .and('have.attr', 'aria-live', 'polite')
+      .and('contain', 'No file selected')
+
     cy.get('div.usa-file-input__target').should('exist')
+
+    cy.get('div.usa-file-input__target > div:first-of-type')
+      .should('have.class', 'usa-file-input__box')
+      .and('be.empty')
+
     cy.get('div.usa-file-input__instructions')
       .as('instructions')
       .should('not.have.css', 'display', 'none')
       .and('have.attr', 'aria-hidden', 'true')
+      .and('not.have.attr', 'hidden')
 
     cy.get(
       '.usa-file-input__instructions span.usa-file-input__drag-text'
@@ -49,16 +61,14 @@ describe('UsaFileInput', () => {
     cy.get('div.usa-file-input__preview-heading').should('not.exist')
     cy.get('div.usa-file-input__preview').should('not.exist')
 
-    cy.get('div.usa-file-input__box').should('be.empty')
-
     cy.get('div.usa-file-input__accepted-files-message').should('not.exist')
     cy.get('input.usa-file-input__input')
       .as('input')
       .should('have.attr', 'type', 'file')
-      .and('have.attr', 'aria-label', 'No file selected')
-      .and('have.attr', 'aria-live', 'polite')
+      .and('have.attr', 'aria-label', 'Drag file here or choose from folder')
       .and('have.attr', 'data-test', 'test')
       .and('have.attr', 'id')
+    cy.get('@input').should('not.have.attr', 'aria-live')
 
     cy.get('@input').should('not.have.attr', 'aria-describedby')
     cy.get('@input').should('not.have.attr', 'accept')
@@ -70,16 +80,18 @@ describe('UsaFileInput', () => {
     cy.get('.usa-file-input__preview img').should('have.class', 'is-loading')
 
     cy.get('@input')
-      .should(
-        'have.attr',
-        'aria-label',
-        'You have selected the file: example.png'
-      )
+      .should('have.attr', 'aria-label', 'Change file')
       .and('have.value', 'C:\\fakepath\\example.png')
+
+    cy.get('@status').should(
+      'contain',
+      'You have selected the file: example.png'
+    )
 
     cy.get('@instructions')
       .should('have.css', 'display', 'none')
       .and('have.attr', 'aria-hidden', 'true')
+      .and('have.attr', 'hidden', 'hidden')
 
     cy.get('div.usa-file-input__preview-heading').should(
       'contain',
@@ -104,16 +116,17 @@ describe('UsaFileInput', () => {
     cy.get('.usa-file-input__preview img').should('have.class', 'is-loading')
 
     cy.get('@input')
-      .should(
-        'have.attr',
-        'aria-label',
-        'You have selected the file: example.txt'
-      )
+      .should('have.attr', 'aria-label', 'Change file')
       .and('have.value', 'C:\\fakepath\\example.txt')
 
     cy.get('.usa-file-input__preview img').should(
       'not.have.class',
       'is-loading'
+    )
+
+    cy.get('@status').should(
+      'contain',
+      'You have selected the file: example.txt'
     )
 
     cy.get('div.usa-file-input__preview').should('contain', 'example.txt')
@@ -151,6 +164,18 @@ describe('UsaFileInput', () => {
       },
     })
 
+    cy.get('div.usa-file-input > div:first-of-type')
+      .as('status')
+      .should('have.class', 'usa-sr-only')
+      .and('have.attr', 'aria-live', 'polite')
+      .and('contain', 'No file selected')
+
+    cy.get('div.usa-file-input__instructions')
+      .as('instructions')
+      .should('not.have.css', 'display', 'none')
+      .and('have.attr', 'aria-hidden', 'true')
+      .and('not.have.attr', 'hidden')
+
     cy.get(
       '.usa-file-input__instructions span.usa-file-input__drag-text'
     ).should('contain', 'Drag file here or')
@@ -166,6 +191,7 @@ describe('UsaFileInput', () => {
     cy.get('.usa-file-input__input')
       .as('input')
       .should('have.attr', 'accept', 'image/* , .pdf')
+      .and('not.have.attr', 'aria-live')
 
     // Add a invalid file.
     cy.get('@input').selectFile('cypress/fixtures/example.txt')
@@ -179,6 +205,13 @@ describe('UsaFileInput', () => {
       'contain',
       'This is not a valid file type.'
     )
+
+    cy.get('@status').should('contain', 'No file selected')
+
+    cy.get('@instructions')
+      .should('not.have.css', 'display', 'none')
+      .and('have.attr', 'aria-hidden', 'true')
+      .and('not.have.attr', 'hidden')
 
     cy.get(
       '.usa-file-input__instructions span.usa-file-input__drag-text'
@@ -203,6 +236,13 @@ describe('UsaFileInput', () => {
       'contain',
       'This is not a valid file type.'
     )
+
+    cy.get('@status').should('contain', 'No file selected')
+
+    cy.get('@instructions')
+      .should('not.have.css', 'display', 'none')
+      .and('have.attr', 'aria-hidden', 'true')
+      .and('not.have.attr', 'hidden')
 
     cy.get(
       '.usa-file-input__instructions span.usa-file-input__drag-text'
@@ -231,16 +271,22 @@ describe('UsaFileInput', () => {
     cy.get('.usa-file-input__preview').should('contain', 'example.png')
     cy.get('.usa-file-input__accepted-files-message').should('not.exist')
 
+    cy.get('@status').should(
+      'contain',
+      'You have selected the file: example.png'
+    )
+
+    cy.get('@instructions')
+      .should('have.css', 'display', 'none')
+      .and('have.attr', 'aria-hidden', 'true')
+      .and('have.attr', 'hidden', 'hidden')
+
     cy.get('.usa-file-input__instructions')
       .should('have.css', 'display', 'none')
       .and('have.attr', 'aria-hidden', 'true')
 
     cy.get('@input')
-      .should(
-        'have.attr',
-        'aria-label',
-        'You have selected the file: example.png'
-      )
+      .should('have.attr', 'aria-label', 'Change file')
       .and('have.value', 'C:\\fakepath\\example.png')
 
     cy.get('.usa-file-input__preview img')
@@ -257,6 +303,12 @@ describe('UsaFileInput', () => {
         multiple: true,
       },
     })
+
+    cy.get('div.usa-file-input > div:first-of-type')
+      .as('status')
+      .should('have.class', 'usa-sr-only')
+      .and('have.attr', 'aria-live', 'polite')
+      .and('contain', 'No files selected')
 
     cy.get('.usa-file-input').should('not.have.class', 'has-invalid-file')
 
@@ -282,6 +334,7 @@ describe('UsaFileInput', () => {
         'accept',
         'image/*,.pdf,.doc, .docx,.pages,.xls,.xlsx,.numbers,.mov,.mp4 '
       )
+      .and('have.attr', 'aria-label', 'Drag files here or choose from folder')
       .and('have.attr', 'multiple', 'multiple')
 
     cy.get('@input').selectFile([
@@ -331,17 +384,18 @@ describe('UsaFileInput', () => {
 
     cy.get('.usa-file-input__preview img').should('have.class', 'is-loading')
 
+    cy.get('@status').should(
+      'contain',
+      'You have selected 9 files: example.pdf, example.doc, example.docx, example.pages, example.xls, example.xlsx, example.numbers, example.mov, example.mp4'
+    )
     cy.get('@input')
-      .should(
-        'have.attr',
-        'aria-label',
-        'You have selected 9 files: example.pdf, example.doc, example.docx, example.pages, example.xls, example.xlsx, example.numbers, example.mov, example.mp4'
-      )
+      .should('have.attr', 'aria-label', 'Change files')
       .and('have.value', 'C:\\fakepath\\example.pdf')
 
     cy.get('.usa-file-input__instructions')
       .should('have.css', 'display', 'none')
       .and('have.attr', 'aria-hidden', 'true')
+      .and('have.attr', 'hidden', 'hidden')
 
     cy.get('.usa-file-input__preview-heading').should(
       'contain',
@@ -356,29 +410,24 @@ describe('UsaFileInput', () => {
       .children()
       .should('have.length', 9)
 
-    cy.get('.usa-file-input__preview:nth-of-type(3)').should(
-      'contain',
-      'example.pdf'
+    cy.get('.usa-file-input__preview img').should(
+      'not.have.class',
+      'is-loading'
     )
-    cy.get('.usa-file-input__preview:nth-of-type(3) img')
-      .should('not.have.class', 'is-loading')
-      .and('have.attr', 'src', genericIconBase64Data)
-      .and('have.attr', 'alt', '')
-      .and('have.class', 'usa-file-input__preview-image--pdf')
 
     cy.get('.usa-file-input__preview:nth-of-type(4)').should(
       'contain',
-      'example.doc'
+      'example.pdf'
     )
     cy.get('.usa-file-input__preview:nth-of-type(4) img')
       .should('not.have.class', 'is-loading')
       .and('have.attr', 'src', genericIconBase64Data)
       .and('have.attr', 'alt', '')
-      .and('have.class', 'usa-file-input__preview-image--word')
+      .and('have.class', 'usa-file-input__preview-image--pdf')
 
     cy.get('.usa-file-input__preview:nth-of-type(5)').should(
       'contain',
-      'example.docx'
+      'example.doc'
     )
     cy.get('.usa-file-input__preview:nth-of-type(5) img')
       .should('not.have.class', 'is-loading')
@@ -388,7 +437,7 @@ describe('UsaFileInput', () => {
 
     cy.get('.usa-file-input__preview:nth-of-type(6)').should(
       'contain',
-      'example.pages'
+      'example.docx'
     )
     cy.get('.usa-file-input__preview:nth-of-type(6) img')
       .should('not.have.class', 'is-loading')
@@ -398,17 +447,17 @@ describe('UsaFileInput', () => {
 
     cy.get('.usa-file-input__preview:nth-of-type(7)').should(
       'contain',
-      'example.xls'
+      'example.pages'
     )
     cy.get('.usa-file-input__preview:nth-of-type(7) img')
       .should('not.have.class', 'is-loading')
       .and('have.attr', 'src', genericIconBase64Data)
       .and('have.attr', 'alt', '')
-      .and('have.class', 'usa-file-input__preview-image--excel')
+      .and('have.class', 'usa-file-input__preview-image--word')
 
     cy.get('.usa-file-input__preview:nth-of-type(8)').should(
       'contain',
-      'example.xlsx'
+      'example.xls'
     )
     cy.get('.usa-file-input__preview:nth-of-type(8) img')
       .should('not.have.class', 'is-loading')
@@ -418,7 +467,7 @@ describe('UsaFileInput', () => {
 
     cy.get('.usa-file-input__preview:nth-of-type(9)').should(
       'contain',
-      'example.numbers'
+      'example.xlsx'
     )
     cy.get('.usa-file-input__preview:nth-of-type(9) img')
       .should('not.have.class', 'is-loading')
@@ -428,19 +477,29 @@ describe('UsaFileInput', () => {
 
     cy.get('.usa-file-input__preview:nth-of-type(10)').should(
       'contain',
-      'example.mov'
+      'example.numbers'
     )
     cy.get('.usa-file-input__preview:nth-of-type(10) img')
       .should('not.have.class', 'is-loading')
       .and('have.attr', 'src', genericIconBase64Data)
       .and('have.attr', 'alt', '')
-      .and('have.class', 'usa-file-input__preview-image--video')
+      .and('have.class', 'usa-file-input__preview-image--excel')
 
     cy.get('.usa-file-input__preview:nth-of-type(11)').should(
       'contain',
-      'example.mp4'
+      'example.mov'
     )
     cy.get('.usa-file-input__preview:nth-of-type(11) img')
+      .should('not.have.class', 'is-loading')
+      .and('have.attr', 'src', genericIconBase64Data)
+      .and('have.attr', 'alt', '')
+      .and('have.class', 'usa-file-input__preview-image--video')
+
+    cy.get('.usa-file-input__preview:nth-of-type(12)').should(
+      'contain',
+      'example.mp4'
+    )
+    cy.get('.usa-file-input__preview:nth-of-type(12) img')
       .should('not.have.class', 'is-loading')
       .and('have.attr', 'src', genericIconBase64Data)
       .and('have.attr', 'alt', '')
@@ -454,6 +513,12 @@ describe('UsaFileInput', () => {
         multiple: true,
       },
     })
+
+    cy.get('div.usa-file-input > div:first-of-type')
+      .as('status')
+      .should('have.class', 'usa-sr-only')
+      .and('have.attr', 'aria-live', 'polite')
+      .and('contain', 'No files selected')
 
     cy.get('.usa-file-input__input')
       .as('input')
@@ -469,12 +534,17 @@ describe('UsaFileInput', () => {
       'cypress/fixtures/example.webp',
     ])
 
-    cy.get('@input')
-      .should(
-        'have.attr',
-        'aria-label',
+    cy.get('div.usa-file-input > div:first-of-type')
+      .as('status')
+      .should('have.class', 'usa-sr-only')
+      .and('have.attr', 'aria-live', 'polite')
+      .and(
+        'contain',
         'You have selected 6 files: example.gif, example.jpeg, example.jpg, example.png, example.svg, example.webp'
       )
+
+    cy.get('@input')
+      .should('have.attr', 'aria-label', 'Change files')
       .and('have.value', 'C:\\fakepath\\example.gif')
 
     cy.get('.usa-file-input__instructions')
@@ -494,56 +564,56 @@ describe('UsaFileInput', () => {
       .children()
       .should('have.length', 6)
 
-    cy.get('.usa-file-input__preview:nth-of-type(3)').should(
+    cy.get('.usa-file-input__preview:nth-of-type(4)').should(
       'contain',
       'example.gif'
     )
-    cy.get('.usa-file-input__preview:nth-of-type(3) img')
+    cy.get('.usa-file-input__preview:nth-of-type(4) img')
       .should('not.have.class', 'is-loading')
       .and('have.attr', 'src', gifBase64Data)
       .and('have.attr', 'alt', '')
 
-    cy.get('.usa-file-input__preview:nth-of-type(4)').should(
+    cy.get('.usa-file-input__preview:nth-of-type(5)').should(
       'contain',
       'example.jpeg'
     )
-    cy.get('.usa-file-input__preview:nth-of-type(4) img')
+    cy.get('.usa-file-input__preview:nth-of-type(5) img')
       .should('not.have.class', 'is-loading')
       .and('have.attr', 'src', jpegBase64Data)
       .and('have.attr', 'alt', '')
 
-    cy.get('.usa-file-input__preview:nth-of-type(5)').should(
+    cy.get('.usa-file-input__preview:nth-of-type(6)').should(
       'contain',
       'example.jpg'
     )
-    cy.get('.usa-file-input__preview:nth-of-type(5) img')
+    cy.get('.usa-file-input__preview:nth-of-type(6) img')
       .should('not.have.class', 'is-loading')
       .and('have.attr', 'src', jpgBase64Data)
       .and('have.attr', 'alt', '')
 
-    cy.get('.usa-file-input__preview:nth-of-type(6)').should(
+    cy.get('.usa-file-input__preview:nth-of-type(7)').should(
       'contain',
       'example.png'
     )
-    cy.get('.usa-file-input__preview:nth-of-type(6) img')
+    cy.get('.usa-file-input__preview:nth-of-type(7) img')
       .should('not.have.class', 'is-loading')
       .and('have.attr', 'src', pngBase64Data)
       .and('have.attr', 'alt', '')
 
-    cy.get('.usa-file-input__preview:nth-of-type(7)').should(
+    cy.get('.usa-file-input__preview:nth-of-type(8)').should(
       'contain',
       'example.svg'
     )
-    cy.get('.usa-file-input__preview:nth-of-type(7) img')
+    cy.get('.usa-file-input__preview:nth-of-type(8) img')
       .should('not.have.class', 'is-loading')
       .and('have.attr', 'src', svgBase64Data)
       .and('have.attr', 'alt', '')
 
-    cy.get('.usa-file-input__preview:nth-of-type(8)').should(
+    cy.get('.usa-file-input__preview:nth-of-type(9)').should(
       'contain',
       'example.webp'
     )
-    cy.get('.usa-file-input__preview:nth-of-type(8) img')
+    cy.get('.usa-file-input__preview:nth-of-type(9) img')
       .should('not.have.class', 'is-loading')
       .and('have.attr', 'src', webpBase64Data)
       .and('have.attr', 'alt', '')

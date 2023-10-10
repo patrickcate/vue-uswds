@@ -1167,7 +1167,8 @@ describe('UsaDatePickerCalendarDay', () => {
 
     // Shift + Page Down
     // Should highlight & focus 2023-01-09 as last available date (max date).
-    cy.get('button[data-value="2023-01-01"]').focus().type('{shift+pageDown}')
+    cy.get('button[data-value="2023-01-01"]').focus()
+    cy.get('button[data-value="2023-01-01"]').type('{shift+pageDown}')
 
     cy.get('button[data-value="2023-01-09"]')
       .should('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -1233,7 +1234,8 @@ describe('UsaDatePickerCalendarDay', () => {
     // Should highlight & focus 2022-06-01 as the date to the immediate right
     // of the current active date in the calendar. Since it is moving from the
     // last day of month, the next months calendar should show.
-    cy.get('button[data-value="2022-05-31"]').focus().type('{rightArrow}')
+    cy.get('button[data-value="2022-05-31"]').focus()
+    cy.get('button[data-value="2022-05-31"]').type('{rightArrow}')
 
     cy.get('button[data-value="2022-05-31"]').should(
       'have.class',
@@ -1547,7 +1549,8 @@ describe('UsaDatePickerCalendarDay', () => {
 
     // Right Arrow
     // Cycle to 2022-05-27 by pressing right arrow.
-    cy.get('button[data-value="2022-05-25"]').focus().type('{rightArrow}')
+    cy.get('button[data-value="2022-05-25"]').focus()
+    cy.get('button[data-value="2022-05-25"]').type('{rightArrow}')
 
     cy.get('button[data-value="2022-05-26"]')
       .should('not.have.class', 'usa-date-picker__calendar__date--selected')

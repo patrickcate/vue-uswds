@@ -112,11 +112,13 @@ describe('UsaFooterCollapsibleMenuSection', () => {
       .should('have.attr', 'href', '/test-1/test-1-3')
       .and('contain', 'Test Item 1.3')
 
-    cy.get('@button').click().should('have.attr', 'aria-expanded', 'true')
+    cy.get('@button').click()
+    cy.get('@button').should('have.attr', 'aria-expanded', 'true')
 
     cy.get('@submenu').and('not.have.css', 'display', 'none').and('be.visible')
 
-    cy.get('@button').click().should('have.attr', 'aria-expanded', 'false')
+    cy.get('@button').click()
+    cy.get('@button').should('have.attr', 'aria-expanded', 'false')
     cy.get('@submenu').and('have.css', 'display', 'none').and('not.be.visible')
 
     cy.viewport('macbook-15')

@@ -116,4 +116,39 @@ describe('BaseLink', () => {
       .should('have.attr', 'to')
       .and('contain', '/test-page')
   })
+
+  it('spacebar triggers click if `a` has `usa-button` class', () => {
+    mount(BaseLink, {
+      props: {
+        href: '#',
+      },
+      attrs: {
+        class: 'usa-button',
+      },
+      slots: {
+        default: () => 'Test spacebar click',
+      },
+    }).as('wrapper')
+
+    cy.get('@wrapper')
+      .vue()
+      .then(vm => {
+        cy.spy(vm.vm, 'handleSpaceKeydown').as('handleSpaceKeydownStub')
+        const emitted = vm.emitted()
+        expect(emitted).not.to.have.property('keydown')
+      })
+
+    cy.get('a').focus()
+    cy.get('a').should('have.focus').type(' ')
+
+    cy.get('@wrapper')
+      .vue()
+      .then(vm => {
+        const emitted = vm.emitted()
+        expect(emitted).to.have.property('keydown')
+        expect(emitted.keydown[0][0].code).to.eq('Space')
+      })
+
+    cy.get('@handleSpaceKeydownStub').should('have.been.called')
+  })
 })

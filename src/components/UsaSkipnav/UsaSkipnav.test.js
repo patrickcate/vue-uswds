@@ -24,17 +24,19 @@ describe('UsaSkipnav', () => {
       .and('have.css', 'top', '-60.8px')
 
     // Should be visible after focus.
+    cy.get('@skiplink').focus()
+
+    cy.get('@skiplink').realHover()
+
     cy.get('@skiplink')
-      .focus()
-      .realHover()
-      .then(() => {
-        cy.get('@skiplink')
-          .should('have.css', 'top', '0px')
-          .and('have.css', 'outline', 'rgb(36, 145, 255) solid 4px')
-      })
-      // After focus is removed, it should not be visible.
-      .blur()
-      .and('have.css', 'position', 'absolute')
+      .should('have.css', 'top', '0px')
+      .and('have.css', 'outline', 'rgb(36, 145, 255) solid 4px')
+
+    // After focus is removed, it should not be visible.
+    cy.get('@skiplink').blur()
+
+    cy.get('@skiplink')
+      .should('have.css', 'position', 'absolute')
       .and('have.css', 'left', '0px')
       .and('have.css', 'top', '-60.8px')
   })

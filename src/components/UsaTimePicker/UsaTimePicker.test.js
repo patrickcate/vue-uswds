@@ -235,7 +235,8 @@ describe('UsaTimePicker', () => {
 
     cy.get('@status').should('contain', 'total: 24')
 
-    cy.get('@input').clear().type('12:00')
+    cy.get('@input').clear()
+    cy.get('@input').type('12:00')
 
     cy.get('@status').should('contain', 'total: 2')
 
