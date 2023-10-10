@@ -117,10 +117,10 @@ describe('BaseLink', () => {
       .and('contain', '/test-page')
   })
 
-  it.only('spacebar triggers click if `a` has `usa-button` class', () => {
+  it('spacebar triggers click if `a` has `usa-button` class', () => {
     mount(BaseLink, {
       props: {
-        href: '/',
+        href: '#',
       },
       attrs: {
         class: 'usa-button',
@@ -133,7 +133,7 @@ describe('BaseLink', () => {
     cy.get('@wrapper')
       .vue()
       .then(vm => {
-        cy.stub(vm.vm, 'handleSpaceKeydown').as('handleSpaceKeydownStub')
+        cy.spy(vm.vm, 'handleSpaceKeydown').as('handleSpaceKeydownStub')
         const emitted = vm.emitted()
         expect(emitted).not.to.have.property('keydown')
       })
