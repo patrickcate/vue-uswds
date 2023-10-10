@@ -1,5 +1,25 @@
 Changelog
 
+# [1.3.0](https://github.com/patrickcate/vue-uswds/compare/v1.2.0...v1.3.0) (2023-10-10)
+
+
+### Bug Fixes
+
+* **UsaComboBox:** `space` selects the current highlighted option ([246ed7b](https://github.com/patrickcate/vue-uswds/commit/246ed7b19cf68709b653c480ca25825339374713))
+
+
+### Features
+
+* **BaseLink:** spacebar triggers navigation if link is styled as button ([b58fc6f](https://github.com/patrickcate/vue-uswds/commit/b58fc6f369ecea937bc9958c32aca90a13aa227f))
+* **UsaCheckbox:** add `disabled` prop and render `aria-disabled` attr ([7b40eab](https://github.com/patrickcate/vue-uswds/commit/7b40eab02b43d70f831468aae857333651f0bc0e))
+* **UsaFileInput:** improve status text for screen readers ([15a22ba](https://github.com/patrickcate/vue-uswds/commit/15a22ba9152b5dbfb74a2bdf73ab1b7b7d310b4e))
+* **UsaPagination:** add `overflowAriaLabel` prop ([7c2c958](https://github.com/patrickcate/vue-uswds/commit/7c2c95898f88435028f5b42ade9d6b386718d5e0))
+
+
+### Reverts
+
+* Revert "feat(UsaCheckbox): add `disabled` prop and render `aria-disabled` attr" ([6f07c3d](https://github.com/patrickcate/vue-uswds/commit/6f07c3dfcce9ea7d7d999a967309cc5af29f1d21))
+
 # [1.2.0](https://github.com/patrickcate/vue-uswds/compare/v1.1.0...v1.2.0) (2023-01-08)
 
 
