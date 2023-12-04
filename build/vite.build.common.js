@@ -6,6 +6,7 @@ const aliasOptions = {
       '@': resolve(__dirname, '../src'),
       '@module': resolve(__dirname, '../node_modules'),
     },
+    dedupe: ['vue'],
   },
 }
 

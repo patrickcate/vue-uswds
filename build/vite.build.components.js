@@ -12,13 +12,14 @@ export default defineConfig({
   build: {
     ...buildOptions,
     lib: {
-      formats: ['es', 'cjs'],
       entry: resolve(__dirname, '../src/components/index.js'),
+      formats: ['es', 'cjs'],
       fileName: format => `vue-uswds.components.${format}.js`,
     },
     rollupOptions: {
       // Externalize dependencies that should not be bundled with library.
       external: ['vue', ...Object.keys(dependencies)],
+      output: { ...buildOptions.rollupOptions.output },
     },
   },
 })
