@@ -60,7 +60,7 @@ app.mount('#app')
 ```javascript
 // App.vue
 import Vue from 'vue'
-import VueUswds/core from 'vue-uswds' // Import only the core library.
+import VueUswds from 'vue-uswds/core' // Import only the core library.
 
 const app = Vue.createApp({})
 
@@ -74,7 +74,7 @@ app.mount('#app')
 ```js
 // MyComponent.vue
 <script>
-import { UsaTag } from 'vue-uswds'
+import { UsaTag } from 'vue-uswds/components'
 
 export default {
   components: { UsaTag },
@@ -91,8 +91,8 @@ If there are components you wish to use anywhere in your app without first impor
 ```javascript
 // App.vue
 import Vue from 'vue'
-import VueUswds/core from 'vue-uswds' // Import only the core library.
-import { UsaTag } from 'vue-uswds'
+import VueUswds from 'vue-uswds/core' // Import only the core library.
+import { UsaTag } from 'vue-uswds/components'
 
 const app = Vue.createApp({})
 
