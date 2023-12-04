@@ -33,13 +33,18 @@
     "./core": {
       "require": "./dist/vue-uswds.core.umd.js",
       "import": "./dist/vue-uswds.core.es.js"
+    },
+    "./components": {
+      "require": "./dist/vue-uswds.components.cjs.js",
+      "import": "./dist/vue-uswds.components.es.js"
     }
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:all && npm run build:core",
+    "build": "npm run build:all && npm run build:core && npm run build:components",
     "build:all": "vite build -c ./build/vite.build.all.js",
     "build:core": "vite build -c ./build/vite.build.core.js",
+    "build:components": "vite build -c ./build/vite.build.components.js",
     "serve": "vite preview",
     "commit": "cz",
     "new": "cross-env HYGEN_TMPLS=./.hygen hygen new",
@@ -85,7 +90,8 @@
     "@storybook/theming": "^6.4.0",
     "@storybook/vue3": "^6.4.0",
     "@uswds/uswds": "^3.6.1",
-    "@vitejs/plugin-vue": "^2.1.0",
+    "@vitejs/plugin-vue": "^3.2.0",
+    "agadoo": "^3.0.0",
     "babel-loader": "^8.2.3",
     "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",
@@ -98,12 +104,13 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-storybook": "^0.5.6",
     "eslint-plugin-vue": "^9.1.1",
+    "glob": "^10.3.10",
     "husky": "^8.0.1",
     "hygen": "^6.1.0",
     "lint-staged": "^13.0.2",
     "prettier": "^2.4.1",
     "semantic-release": "^19.0.5",
-    "vite": "^2.6.4",
+    "vite": "^3.2.7",
     "vite-plugin-istanbul": "^2.5.1",
     "vue": "^3.2.33",
     "vue-loader": "^17.0.0",

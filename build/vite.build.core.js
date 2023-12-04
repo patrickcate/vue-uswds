@@ -13,6 +13,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, '../src/core.js'),
       name: 'VueUswds',
+      formats: ['es', 'umd'],
       fileName: format => `vue-uswds.core.${format}.js`,
     },
   },
