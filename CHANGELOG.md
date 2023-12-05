@@ -1,5 +1,17 @@
 Changelog
 
+# [1.4.0](https://github.com/patrickcate/vue-uswds/compare/v1.3.0...v1.4.0) (2023-12-05)
+
+
+### Bug Fixes
+
+* correct provide/inject configuration names ([c79fd09](https://github.com/patrickcate/vue-uswds/commit/c79fd09f8bc8d9d70b343eac46fa585b1198dc84))
+
+
+### Features
+
+* **npm:** add separate `components` export to destructure component imports ([557cd45](https://github.com/patrickcate/vue-uswds/commit/557cd45ae0a07faca431f380f8ad22a845e3c74f))
+
 # [1.3.0](https://github.com/patrickcate/vue-uswds/compare/v1.2.0...v1.3.0) (2023-10-10)
 
 
