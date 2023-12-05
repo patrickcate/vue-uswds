@@ -1,5 +1,5 @@
 <script setup>
-import { UsaTag } from 'vue-uswds'
+import { UsaTag } from 'vue-uswds/components'
 </script>
 
 <template>
