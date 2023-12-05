@@ -13,7 +13,7 @@ import {
 
 export default {
   install: (app, options) => {
-    const customOptions = options || {}
+    const customOptions = options ?? {}
 
     const vueUswdsOptions = {
       prefixSeparator: PREFIX_SEPARATOR,
@@ -32,7 +32,24 @@ export default {
       app.config.globalProperties.$vueUswds = vueUswdsOptions
     }
 
-    app.provide('vueUswds', vueUswdsOptions)
+    app.provide('vueUswds.prefixSeparator', vueUswdsOptions.prefixSeparator)
+    app.provide('vueUswds.gridNamespace', vueUswdsOptions.gridNamespace)
+    app.provide('vueUswds.utilityNamespace', vueUswdsOptions.utilityNamespace)
+    app.provide('vueUswds.imagePath', vueUswdsOptions.imagePath)
+    app.provide('vueUswds.svgSpritePath', vueUswdsOptions.svgSpritePath)
+    app.provide(
+      'vueUswds.routerComponentName',
+      vueUswdsOptions.routerComponentName
+    )
+    app.provide(
+      'vueUswds.mobileMenuBreakpoint',
+      vueUswdsOptions.mobileMenuBreakpoint
+    )
+    app.provide(
+      'vueUswds.footerNavBigBreakpoint',
+      vueUswdsOptions.footerNavBigBreakpoint
+    )
+    app.provide('vueUswds.version', vueUswdsOptions.version)
     app.provide('nextId', nextId)
   },
 }
