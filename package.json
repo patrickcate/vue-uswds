@@ -33,13 +33,18 @@
     "./core": {
       "require": "./dist/vue-uswds.core.umd.js",
       "import": "./dist/vue-uswds.core.es.js"
+    },
+    "./components": {
+      "require": "./dist/vue-uswds.components.cjs.js",
+      "import": "./dist/vue-uswds.components.es.js"
     }
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:all && npm run build:core",
+    "build": "npm run build:all && npm run build:core && npm run build:components",
     "build:all": "vite build -c ./build/vite.build.all.js",
     "build:core": "vite build -c ./build/vite.build.core.js",
+    "build:components": "vite build -c ./build/vite.build.components.js",
     "serve": "vite preview",
     "commit": "cz",
     "new": "cross-env HYGEN_TMPLS=./.hygen hygen new",
