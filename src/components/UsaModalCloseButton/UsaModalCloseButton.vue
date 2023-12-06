@@ -26,7 +26,7 @@ defineProps({
         focusable="false"
         role="img"
       >
-        <use v-bind="{ 'xlink:href': `${svgSpritePath}#close` }"></use>
+        <use :xlink:href="`${svgSpritePath}#close`"></use>
       </svg>
     </slot>
   </button>

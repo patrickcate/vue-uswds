@@ -62,6 +62,6 @@ const iconHref = computed(() => `${svgSpritePath}#${props.name}`)
     :focusable="focusable"
   >
     <slot name="title"></slot>
-    <use v-bind="{ 'xlink:href': iconHref }"></use>
+    <use :xlink:href="iconHref"></use>
   </svg>
 </template>

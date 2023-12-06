@@ -49,9 +49,7 @@ describe('UsaPagination', () => {
     cy.get('li.usa-pagination__item:nth-child(8)').as('item7')
     cy.get('li.usa-pagination__item:nth-child(9)').as('itemNext')
 
-    cy.get('nav.usa-pagination')
-      .should('have.attr', 'aria-label')
-      .and('contain', 'Pagination')
+    cy.get('nav.usa-pagination').should('have.attr', 'aria-label', 'Pagination')
 
     cy.get('ul.usa-pagination__list li').should('have.length', 9)
 
@@ -60,31 +58,38 @@ describe('UsaPagination', () => {
       .children()
       .should('have.class', 'usa-pagination__link')
       .and('have.class', 'usa-pagination__previous-page')
-      .and('have.attr', 'aria-label')
-      .and('contain', 'Previous page')
-      .get('@itemPrevious')
-      .find('span')
-      .should('contain', 'Previous')
+      .and('have.attr', 'aria-label', 'Previous page')
+
+    cy.get('@itemPrevious')
+      .find('svg')
+      .should('have.class', 'usa-icon')
+      .and('have.attr', 'aria-hidden', 'true')
+      .and('have.attr', 'role', 'img')
+
+    cy.get('@itemPrevious')
+      .find('svg use')
+      .should(
+        'have.attr',
+        'xlink:href',
+        '/assets/img/sprite.svg#navigate_before'
+      )
+
+    cy.get('@itemPrevious').find('span').should('contain', 'Previous')
 
     cy.get('@item1')
       .should('have.class', 'usa-pagination__page-no')
       .children()
       .should('have.class', 'usa-pagination__button')
-      .and('have.attr', 'aria-label')
-      .and('contain', 'First page, page 1')
+      .and('have.attr', 'aria-label', 'First page, page 1')
 
-    cy.get('@item2')
-      .children()
-      .should('have.attr', 'aria-current')
-      .and('contain', 'page')
+    cy.get('@item2').children().should('have.attr', 'aria-current', 'page')
 
     for (let i = 2; i <= 5; i++) {
       cy.get(`@item${i}`)
         .should('have.class', 'usa-pagination__page-no')
         .children()
         .should('have.class', 'usa-pagination__button')
-        .and('have.attr', 'aria-label')
-        .and('contain', `Page ${i}`)
+        .and('have.attr', 'aria-label', `Page ${i}`)
     }
 
     cy.get('@item6')
@@ -99,19 +104,26 @@ describe('UsaPagination', () => {
       .should('have.class', 'usa-pagination__page-no')
       .children()
       .should('have.class', 'usa-pagination__button')
-      .and('have.attr', 'aria-label')
-      .and('contain', 'Last page, page 8')
+      .and('have.attr', 'aria-label', 'Last page, page 8')
 
     cy.get('@itemNext')
       .should('have.class', 'usa-pagination__arrow')
       .children()
       .should('have.class', 'usa-pagination__link')
       .and('have.class', 'usa-pagination__next-page')
-      .and('have.attr', 'aria-label')
-      .and('contain', 'Next page')
-      .get('@itemNext')
-      .find('span')
-      .should('contain', 'Next')
+      .and('have.attr', 'aria-label', 'Next page')
+
+    cy.get('@itemNext')
+      .find('svg')
+      .should('have.class', 'usa-icon')
+      .and('have.attr', 'aria-hidden', 'true')
+      .and('have.attr', 'role', 'img')
+
+    cy.get('@itemNext')
+      .find('svg use')
+      .should('have.attr', 'xlink:href', '/assets/img/sprite.svg#navigate_next')
+
+    cy.get('@itemNext').find('span').should('contain', 'Next')
   })
 
   it('does not show the previous/next links on the first/last pages', () => {
@@ -199,9 +211,11 @@ describe('UsaPagination', () => {
       },
     })
 
-    cy.get('nav.usa-pagination')
-      .should('have.attr', 'aria-label')
-      .and('contain', 'Test aria label')
+    cy.get('nav.usa-pagination').should(
+      'have.attr',
+      'aria-label',
+      'Test aria label'
+    )
   })
 
   it('shows custom item labels', () => {
@@ -230,36 +244,29 @@ describe('UsaPagination', () => {
 
     cy.get('@itemPrevious')
       .children()
-      .should('have.attr', 'aria-label')
-      .and('contain', 'TEST Previous page')
-      .get('@itemPrevious')
-      .find('span')
-      .should('contain', 'TEST Previous')
+      .should('have.attr', 'aria-label', 'TEST Previous page')
+
+    cy.get('@itemPrevious').find('span').should('contain', 'TEST Previous')
 
     cy.get('@item1')
       .children()
-      .should('have.attr', 'aria-label')
-      .and('contain', 'TEST First page, page 1')
+      .should('have.attr', 'aria-label', 'TEST First page, page 1')
 
     for (let i = 2; i <= 5; i++) {
       cy.get(`@item${i}`)
         .children()
-        .should('have.attr', 'aria-label')
-        .and('contain', `TEST Page ${i}`)
+        .should('have.attr', 'aria-label', `TEST Page ${i}`)
     }
 
     cy.get('@item7')
       .children()
-      .should('have.attr', 'aria-label')
-      .and('contain', 'TEST Last page, page 10')
+      .should('have.attr', 'aria-label', 'TEST Last page, page 10')
 
     cy.get('@itemNext')
       .children()
-      .should('have.attr', 'aria-label')
-      .and('contain', 'TEST Next page')
-      .get('@itemNext')
-      .find('span')
-      .should('contain', 'TEST Next')
+      .should('have.attr', 'aria-label', 'TEST Next page')
+
+    cy.get('@itemNext').find('span').should('contain', 'TEST Next')
   })
 
   it('adds custom CSS classes', () => {
@@ -616,15 +623,13 @@ describe('UsaPagination', () => {
       .as('itemPrevious')
       .children()
       .should('contain', 'Test Previous Slot')
-      .and('have.attr', 'aria-label')
-      .and('contain', 'Test aria label')
+      .and('have.attr', 'aria-label', 'Test aria label previous')
 
     cy.get('li.usa-pagination__item:nth-last-child(1)')
       .as('itemNext')
       .children()
       .should('contain', 'Test Next Slot')
-      .and('have.attr', 'aria-label')
-      .and('contain', 'Test aria label next')
+      .and('have.attr', 'aria-label', 'Test aria label next')
   })
 
   it('clicking next/previous link goes to the next/previous page', () => {
