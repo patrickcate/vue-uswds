@@ -18,22 +18,17 @@ describe('UsaModalCloseButton', () => {
     cy.get('button.usa-modal__close')
       .should('have.class', 'usa-button')
       .and('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label')
-      .and('contain', 'Close Modal')
+      .and('have.attr', 'aria-label', 'Close Modal')
 
     cy.get('svg.usa-icon')
       .as('svgIcon')
-      .should('have.attr', 'aria-hidden')
-      .and('contain', 'true')
-
-    cy.get('@svgIcon').should('have.attr', 'focusable').and('contain', 'false')
-
-    cy.get('@svgIcon').should('have.attr', 'role').and('contain', 'img')
+      .should('have.attr', 'aria-hidden', 'true')
+      .and('have.attr', 'focusable', 'false')
+      .and('have.attr', 'role', 'img')
 
     cy.get('@svgIcon')
       .find('use')
-      .should('have.attr', 'xlink:href')
-      .and('contain', '/test.svg#close')
+      .should('have.attr', 'xlink:href', '/test.svg#close')
   })
 
   it('shows scoped slot content', () => {

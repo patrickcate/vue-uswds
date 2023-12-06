@@ -27,8 +27,7 @@ describe('UsaPaginationArrow', () => {
       .should('have.class', 'usa-pagination__previous-page')
       .and('have.class', 'usa-pagination__link')
       .and('have.class', 'usa-button--unstyled')
-      .and('have.attr', 'aria-label')
-      .and('contains', 'Previous page')
+      .and('have.attr', 'aria-label', 'Previous page')
 
     cy.get('@arrowItem')
       .find('span')
@@ -44,8 +43,7 @@ describe('UsaPaginationArrow', () => {
     cy.get('@arrowItem')
       .find('button')
       .should('have.class', 'usa-pagination__next-page')
-      .and('have.attr', 'aria-label')
-      .and('contains', 'Next page')
+      .and('have.attr', 'aria-label', 'Next page')
 
     cy.get('@arrowItem')
       .find('span')
@@ -89,15 +87,13 @@ describe('UsaPaginationArrow', () => {
     cy.get('.usa-pagination__arrow svg')
       .as('arrowSvg')
       .should('have.class', 'usa-icon')
-      .and('have.attr', 'role')
-      .and('contain', 'img')
+      .and('have.attr', 'role', 'img')
 
-    cy.get('@arrowSvg').should('have.attr', 'aria-hidden').and('contain', true)
+    cy.get('@arrowSvg').should('have.attr', 'aria-hidden', 'true')
 
     cy.get('@arrowSvg')
       .find('use')
-      .should('have.attr', 'xlink:href')
-      .and('contain', '/test.svg#navigate_before')
+      .should('have.attr', 'xlink:href', '/test.svg#navigate_before')
 
     cy.get('@wrapper').invoke('setProps', {
       direction: 'next',
@@ -108,15 +104,13 @@ describe('UsaPaginationArrow', () => {
     cy.get('.usa-pagination__arrow svg')
       .as('arrowSvg')
       .should('have.class', 'usa-icon')
-      .and('have.attr', 'role')
-      .and('contain', 'img')
+      .and('have.attr', 'role', 'img')
 
-    cy.get('@arrowSvg').should('have.attr', 'aria-hidden').and('contain', true)
+    cy.get('@arrowSvg').should('have.attr', 'aria-hidden', 'true')
 
     cy.get('@arrowSvg')
       .find('use')
-      .should('have.attr', 'xlink:href')
-      .and('contain', '/test.svg#navigate_next')
+      .should('have.attr', 'xlink:href', '/test.svg#navigate_next')
   })
 
   it('renders custom `before` and `after` slot content', () => {
