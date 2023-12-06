@@ -170,9 +170,7 @@ function getAriaLabel(pageNumber) {
                 aria-hidden="true"
                 role="img"
               >
-                <use
-                  v-bind="{ 'xlink:href': `${svgSpritePath}#navigate_before}` }"
-                ></use>
+                <use :xlink:href="`${svgSpritePath}#navigate_before`"></use>
               </svg>
             </template>
           </template>
@@ -240,9 +238,7 @@ function getAriaLabel(pageNumber) {
                 aria-hidden="true"
                 role="img"
               >
-                <use
-                  v-bind="{ 'xlink:href': `${svgSpritePath}#navigate_next}` }"
-                ></use>
+                <use :xlink:href="`${svgSpritePath}#navigate_next`"></use>
               </svg>
             </template>
           </template>

@@ -80,9 +80,7 @@ const classes = computed(() => [
           aria-hidden="true"
           role="img"
         >
-          <use
-            v-bind="{ 'xlink:href': `${svgSpritePath}#navigate_before` }"
-          ></use>
+          <use :xlink:href="`${svgSpritePath}#navigate_before`"></use>
         </svg>
       </slot>
       <span class="usa-pagination__link-text" :class="customClasses?.text"
@@ -99,9 +97,7 @@ const classes = computed(() => [
           aria-hidden="true"
           role="img"
         >
-          <use
-            v-bind="{ 'xlink:href': `${svgSpritePath}#navigate_next` }"
-          ></use>
+          <use :xlink:href="`${svgSpritePath}#navigate_next`"></use>
         </svg>
       </slot>
     </component>
