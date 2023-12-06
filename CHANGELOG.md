@@ -1,5 +1,12 @@
 Changelog
 
+## [1.4.1](https://github.com/patrickcate/vue-uswds/compare/v1.4.0...v1.4.1) (2023-12-06)
+
+
+### Bug Fixes
+
+* fix svg sprite attribute binding ([cf9f6a7](https://github.com/patrickcate/vue-uswds/commit/cf9f6a7752a6efd015fc0f2137560e9535c84e6f))
+
 # [1.4.0](https://github.com/patrickcate/vue-uswds/compare/v1.3.0...v1.4.0) (2023-12-05)
 
 
