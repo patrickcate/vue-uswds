@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaCheckbox from './UsaCheckbox.vue'
 
 describe('UsaCheckbox', () => {
   it('renders the component', () => {
-    mount(UsaCheckbox, {
+    cy.mount(UsaCheckbox, {
       props: {
         label: 'Test label',
         description: 'Test description',
@@ -15,7 +14,9 @@ describe('UsaCheckbox', () => {
         value: 'test-checkbox-value',
         name: 'text-checkbox-name',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('div.usa-checkbox').should('exist')
 
@@ -59,7 +60,7 @@ describe('UsaCheckbox', () => {
   })
 
   it('checkbox is checked by default', () => {
-    mount(UsaCheckbox, {
+    cy.mount(UsaCheckbox, {
       props: {
         label: 'Test label',
         modelValue: true,
@@ -70,7 +71,7 @@ describe('UsaCheckbox', () => {
   })
 
   it('`tiled` prop added correct CSS class', () => {
-    mount(UsaCheckbox, {
+    cy.mount(UsaCheckbox, {
       props: {
         label: 'Test label',
         tile: true,
@@ -84,7 +85,7 @@ describe('UsaCheckbox', () => {
   })
 
   it('`disabled` attr binding disables checkbox', () => {
-    mount(UsaCheckbox, {
+    cy.mount(UsaCheckbox, {
       props: {
         label: 'Test label',
       },
@@ -97,7 +98,7 @@ describe('UsaCheckbox', () => {
   })
 
   it('root element does not inherit attrs', () => {
-    mount(UsaCheckbox, {
+    cy.mount(UsaCheckbox, {
       props: {
         label: 'Test label',
       },
@@ -111,7 +112,7 @@ describe('UsaCheckbox', () => {
   })
 
   it('uses slot content', () => {
-    mount(UsaCheckbox, {
+    cy.mount(UsaCheckbox, {
       props: {
         label: 'Test label',
         description: 'Test description',
@@ -130,7 +131,7 @@ describe('UsaCheckbox', () => {
   })
 
   it('does not render description wrapper span if `description` slot or prop not used', () => {
-    mount(UsaCheckbox, {
+    cy.mount(UsaCheckbox, {
       props: {
         label: 'Test label',
       },
@@ -143,7 +144,7 @@ describe('UsaCheckbox', () => {
   })
 
   it('uses custom id and associates label with `for` attribute', () => {
-    mount(UsaCheckbox, {
+    cy.mount(UsaCheckbox, {
       props: {
         label: 'Test label',
         id: 'test-custom-id',
@@ -157,7 +158,7 @@ describe('UsaCheckbox', () => {
   })
 
   it('uses custom CSS classes', () => {
-    mount(UsaCheckbox, {
+    cy.mount(UsaCheckbox, {
       props: {
         label: 'Test label',
         description: 'Test description',

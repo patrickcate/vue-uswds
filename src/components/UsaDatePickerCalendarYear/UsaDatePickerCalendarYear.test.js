@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaDatePickerCalendarYear from './UsaDatePickerCalendarYear.vue'
 
 describe('UsaDatePickerCalendarYear', () => {
@@ -35,7 +34,7 @@ describe('UsaDatePickerCalendarYear', () => {
       </template>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('div.usa-date-picker__calendar__year-picker').should(
       'have.attr',
@@ -869,7 +868,7 @@ describe('UsaDatePickerCalendarYear', () => {
   })
 
   it('calendar updates to reflect new selected, min, and max dates', () => {
-    mount(UsaDatePickerCalendarYear, {
+    cy.mount(UsaDatePickerCalendarYear, {
       props: {
         selectedYear: 2022,
         activeDate: '2022-08-07',
@@ -878,7 +877,9 @@ describe('UsaDatePickerCalendarYear', () => {
         previousYearsButtonLabel: 'Navigate back 12 years',
         nextYearsButtonLabel: 'Navigate forward 12 years',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-date-picker__calendar__year-picker > table > tbody > tr')
       .as('table')
@@ -1142,7 +1143,7 @@ describe('UsaDatePickerCalendarYear', () => {
   })
 
   it('uses custom button labels', () => {
-    mount(UsaDatePickerCalendarYear, {
+    cy.mount(UsaDatePickerCalendarYear, {
       props: {
         selectorMode: 'year',
         selectedYear: 2023,
@@ -1168,7 +1169,7 @@ describe('UsaDatePickerCalendarYear', () => {
   })
 
   it('emits `selectedYear`, `activeYearStart`, `activeYearEnd`, and `selectorMode` prop values', () => {
-    mount(UsaDatePickerCalendarYear, {
+    cy.mount(UsaDatePickerCalendarYear, {
       props: {
         selectedYear: 2022,
         activeDate: '2023-08-07',
@@ -1177,7 +1178,9 @@ describe('UsaDatePickerCalendarYear', () => {
         previousYearsButtonLabel: 'Navigate back 12 years',
         nextYearsButtonLabel: 'Navigate forward 12 years',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@wrapper')
       .vue()

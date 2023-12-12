@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaIdentifierMasthead from './UsaIdentifierMasthead.vue'
 
 describe('UsaIdentifierMasthead', () => {
   it('renders the component', () => {
-    mount(UsaIdentifierMasthead, {})
+    cy.mount(UsaIdentifierMasthead, {})
 
     cy.get('section.usa-identifier__section--masthead')
       .should('have.class', 'usa-identifier__section')
@@ -20,7 +19,7 @@ describe('UsaIdentifierMasthead', () => {
   })
 
   it('shows default slot content', () => {
-    mount(UsaIdentifierMasthead, {
+    cy.mount(UsaIdentifierMasthead, {
       slots: {
         default: () => 'Test default slot',
       },
@@ -39,7 +38,7 @@ describe('UsaIdentifierMasthead', () => {
   })
 
   it('shows `domain` slot content', () => {
-    mount(UsaIdentifierMasthead, {
+    cy.mount(UsaIdentifierMasthead, {
       slots: {
         domain: () => 'www.test.com',
       },
@@ -58,7 +57,7 @@ describe('UsaIdentifierMasthead', () => {
   })
 
   it('shows `disclaimer` slot content', () => {
-    mount(UsaIdentifierMasthead, {
+    cy.mount(UsaIdentifierMasthead, {
       slots: {
         disclaimer: () => 'Test disclaimer',
       },
@@ -73,7 +72,7 @@ describe('UsaIdentifierMasthead', () => {
   })
 
   it('shows `logos` slot content', () => {
-    mount(UsaIdentifierMasthead, {
+    cy.mount(UsaIdentifierMasthead, {
       slots: {
         logos: () => 'Test logo',
       },
@@ -83,7 +82,7 @@ describe('UsaIdentifierMasthead', () => {
   })
 
   it('use custom aria labels', () => {
-    mount(UsaIdentifierMasthead, {
+    cy.mount(UsaIdentifierMasthead, {
       props: {
         ariaLabel: 'Test aria label',
         descriptionAriaLabel: 'Test description aria label',

@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaFooterMenu from './UsaFooterMenu.vue'
 
 const testItems = [
@@ -21,7 +20,7 @@ const testItems = [
 
 describe('UsaFooterMenu', () => {
   it('renders the component', () => {
-    mount(UsaFooterMenu, {
+    cy.mount(UsaFooterMenu, {
       props: {
         items: testItems,
       },
@@ -52,7 +51,7 @@ describe('UsaFooterMenu', () => {
   })
 
   it('uses custom grid prefix and separator', () => {
-    mount(UsaFooterMenu, {
+    cy.mount(UsaFooterMenu, {
       props: {
         items: testItems,
       },
@@ -74,7 +73,7 @@ describe('UsaFooterMenu', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaFooterMenu, {
+    cy.mount(UsaFooterMenu, {
       props: {
         items: testItems,
         customClasses: {

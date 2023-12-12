@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaNavSubmenuItem from './UsaNavSubmenuItem.vue'
 
 describe('UsaNavSubmenuItem', () => {
   it('renders the component', () => {
-    mount(UsaNavSubmenuItem, {
+    cy.mount(UsaNavSubmenuItem, {
       props: {
         href: '/test-page',
       },
@@ -35,7 +34,7 @@ describe('UsaNavSubmenuItem', () => {
   })
 
   it('clicking link trigger `closeAllDropdowns` method', () => {
-    mount(UsaNavSubmenuItem, {
+    cy.mount(UsaNavSubmenuItem, {
       props: {
         routerComponentName: 'router-link',
       },

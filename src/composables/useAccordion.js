@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 
-export default (_accordionItems, multiselectable = false) => {
+export function useAccordion(_accordionItems, multiselectable = false) {
   const accordionItems = reactive(_accordionItems)
 
   const registerAccordionItem = (id, isOpen) => {

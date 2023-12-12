@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import BaseHeading from './BaseHeading.vue'
 
 describe('BaseHeading', () => {
   it('renders the component', () => {
-    mount(BaseHeading, {
+    cy.mount(BaseHeading, {
       slots: {
         default: () => 'Test',
       },
@@ -13,7 +12,7 @@ describe('BaseHeading', () => {
   })
 
   it('renders as a custom heading tag', () => {
-    mount(BaseHeading, {
+    cy.mount(BaseHeading, {
       slots: {
         default: () => 'Test',
       },
@@ -38,7 +37,7 @@ describe('BaseHeading', () => {
   it('warns in console about invalid heading tag', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(BaseHeading, {
+    cy.mount(BaseHeading, {
       slots: {
         default: () => 'Test',
       },

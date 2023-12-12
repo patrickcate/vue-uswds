@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaSignUp from './UsaSignUp.vue'
 
 describe('UsaSignUp', () => {
   it('renders the component', () => {
-    mount(UsaSignUp, {
+    cy.mount(UsaSignUp, {
       slots: {
         default: () => h('strong', {}, 'Test default slot content'),
       },
@@ -22,7 +21,7 @@ describe('UsaSignUp', () => {
   })
 
   it('heading contains slot text instead of prop text', () => {
-    mount(UsaSignUp, {
+    cy.mount(UsaSignUp, {
       props: {
         heading: 'Custom test heading',
       },
@@ -38,7 +37,7 @@ describe('UsaSignUp', () => {
   })
 
   it('heading matches `heading` prop value and uses correct heading tag', () => {
-    mount(UsaSignUp, {
+    cy.mount(UsaSignUp, {
       props: {
         heading: 'Custom test heading',
         headingTag: 'h4',
@@ -49,7 +48,7 @@ describe('UsaSignUp', () => {
   })
 
   it('custom CSS class are added to correct elements', () => {
-    mount(UsaSignUp, {
+    cy.mount(UsaSignUp, {
       props: {
         customClasses: {
           heading: ['test-heading-class'],

@@ -7,7 +7,7 @@ export default {
 
 <script setup>
 import { computed, ref, h, toRef, useSlots, provide } from 'vue'
-import useTableSort from '@/composables/useTableSort'
+import { useTableSort } from '@/composables/useTableSort'
 import UsaTableHeaderCell from '@/components/UsaTableHeaderCell'
 
 const slots = useSlots()

@@ -1,6 +1,5 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
-import { mount } from '@cypress/vue'
 import UsaHeroCallout from './UsaHeroCallout.vue'
 
 describe('UsaHeroCallout', () => {
@@ -10,7 +9,7 @@ describe('UsaHeroCallout', () => {
     "Support the callout with some short explanatory text. You don't need more than a couple of sentences."
 
   it('renders the component', () => {
-    mount(UsaHeroCallout, {
+    cy.mount(UsaHeroCallout, {
       props: {
         headingAlt: testHeadingAlt,
         heading: testHeading,
@@ -27,7 +26,7 @@ describe('UsaHeroCallout', () => {
   })
 
   it('`heading` and `headingAlt` slot content overrides prop values', () => {
-    mount(UsaHeroCallout, {
+    cy.mount(UsaHeroCallout, {
       props: {
         headingAlt: testHeadingAlt,
         heading: testHeading,
@@ -51,7 +50,7 @@ describe('UsaHeroCallout', () => {
   })
 
   it('`heading` and `headingAlt` slot content renders even if `heading` and `headingAlt` prop values not used', () => {
-    mount(UsaHeroCallout, {
+    cy.mount(UsaHeroCallout, {
       slots: {
         'heading-alt': () => 'Custom heading alt slot content',
         heading: () => 'Custom heading slot content',
@@ -71,7 +70,7 @@ describe('UsaHeroCallout', () => {
   })
 
   it('`headingAlt` text renders if `heading` prop not used', () => {
-    mount(UsaHeroCallout, {
+    cy.mount(UsaHeroCallout, {
       slots: {
         'heading-alt': () => 'Custom heading alt slot content',
         default: () => h('p', null, textContent),
@@ -87,7 +86,7 @@ describe('UsaHeroCallout', () => {
   })
 
   it('renders custom heading tag', () => {
-    mount(UsaHeroCallout, {
+    cy.mount(UsaHeroCallout, {
       props: {
         headingAlt: testHeadingAlt,
         heading: testHeading,
@@ -102,7 +101,7 @@ describe('UsaHeroCallout', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaHeroCallout, {
+    cy.mount(UsaHeroCallout, {
       props: {
         headingAlt: testHeadingAlt,
         heading: testHeading,
@@ -123,7 +122,7 @@ describe('UsaHeroCallout', () => {
   it('warns in console of deprecated slots', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaHeroCallout, {
+    cy.mount(UsaHeroCallout, {
       props: {
         headingAlt: testHeadingAlt,
         heading: testHeading,

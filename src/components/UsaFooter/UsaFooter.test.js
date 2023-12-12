@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaFooter from './UsaFooter.vue'
 
 describe('UsaFooter', () => {
   it('renders the component', () => {
-    mount(UsaFooter, {
+    cy.mount(UsaFooter, {
       slots: {
         default: () => 'Default slot content here',
       },
@@ -26,7 +25,7 @@ describe('UsaFooter', () => {
   it('adds the correct variant classes', () => {
     const variants = ['big', 'medium', 'slim']
 
-    mount(UsaFooter, {})
+    cy.mount(UsaFooter, {})
 
     variants.forEach(variant => {
       cy.get('.usa-footer')
@@ -41,7 +40,7 @@ describe('UsaFooter', () => {
   })
 
   it('renders jump link slot content', () => {
-    mount(UsaFooter, {
+    cy.mount(UsaFooter, {
       slots: {
         'jump-link': () => 'Test jump link slot',
       },
@@ -54,7 +53,7 @@ describe('UsaFooter', () => {
   })
 
   it('uses custom return to top link text', () => {
-    mount(UsaFooter, {
+    cy.mount(UsaFooter, {
       props: {
         jumpLinkText: 'Custom return to top',
       },
@@ -72,7 +71,7 @@ describe('UsaFooter', () => {
       template: `<span>Footer Variant: {{ footerVariant }}</span>`,
     }
 
-    mount(UsaFooter, {
+    cy.mount(UsaFooter, {
       props: {
         variant: 'slim',
       },
@@ -85,7 +84,7 @@ describe('UsaFooter', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaFooter, {
+    cy.mount(UsaFooter, {
       props: {
         customClasses: {
           container: ['test-container-class'],
@@ -102,7 +101,7 @@ describe('UsaFooter', () => {
   it('warns in console about invalid variant prop', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaFooter, {
+    cy.mount(UsaFooter, {
       props: {
         variant: 'notvariant',
       },

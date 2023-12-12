@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import BaseLink from './BaseLink.vue'
 
 describe('BaseLink', () => {
   it('renders the component', () => {
-    mount(BaseLink, {
+    cy.mount(BaseLink, {
       props: {
         to: '/test-page',
       },
@@ -24,7 +23,7 @@ describe('BaseLink', () => {
   })
 
   it('renders a regular `a` tag if the `href` prop is used', () => {
-    mount(BaseLink, {
+    cy.mount(BaseLink, {
       props: {
         href: '/test-page',
       },
@@ -38,7 +37,7 @@ describe('BaseLink', () => {
   })
 
   it('renders a regular `a` tag if the `to` prop is an external URL', () => {
-    mount(BaseLink, {
+    cy.mount(BaseLink, {
       props: {
         to: 'https://google.com',
       },
@@ -52,7 +51,7 @@ describe('BaseLink', () => {
   })
 
   it('renders as a `nuxt-link` if $nuxt is detected', () => {
-    mount(BaseLink, {
+    cy.mount(BaseLink, {
       props: {
         to: '/test-page',
       },
@@ -71,7 +70,7 @@ describe('BaseLink', () => {
   })
 
   it('`routerComponentName` prop overrides what component is rendered', () => {
-    mount(BaseLink, {
+    cy.mount(BaseLink, {
       props: {
         to: '/test-page',
         routerComponentName: 'g-link',
@@ -91,7 +90,7 @@ describe('BaseLink', () => {
   })
 
   it('uses globally injected router component name', () => {
-    mount(BaseLink, {
+    cy.mount(BaseLink, {
       props: {
         to: '/test-page',
       },
@@ -118,7 +117,7 @@ describe('BaseLink', () => {
   })
 
   it('spacebar triggers click if `a` has `usa-button` class', () => {
-    mount(BaseLink, {
+    cy.mount(BaseLink, {
       props: {
         href: '#',
       },
@@ -128,7 +127,9 @@ describe('BaseLink', () => {
       slots: {
         default: () => 'Test spacebar click',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@wrapper')
       .vue()

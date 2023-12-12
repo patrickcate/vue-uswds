@@ -1,16 +1,17 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaStepIndicatorSegment from './UsaStepIndicatorSegment.vue'
 
 const testSteps = ['First Step', 'Second Step', 'Third Step', 'Fourth Step']
 
 describe('UsaStepIndicatorSegment', () => {
   it('renders the component', () => {
-    mount(UsaStepIndicatorSegment, {
+    cy.mount(UsaStepIndicatorSegment, {
       props: {
         label: testSteps[0],
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-step-indicator__segment').should('contain', testSteps[0])
 
@@ -30,11 +31,12 @@ describe('UsaStepIndicatorSegment', () => {
   it('warns in console about invalid step status', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaStepIndicatorSegment, {
+    cy.mount(UsaStepIndicatorSegment, {
       props: {
         label: testSteps[0],
       },
     })
+      .its('wrapper')
       .as('wrapper')
       .should('exist')
 

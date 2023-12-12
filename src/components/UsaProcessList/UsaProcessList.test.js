@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
-import { mount } from '@cypress/vue'
 import UsaProcessList from './UsaProcessList.vue'
 
 describe('UsaProcessList', () => {
   it('renders the component', () => {
-    mount(UsaProcessList, {
+    cy.mount(UsaProcessList, {
       slots: {
         default: () => h('li', null, 'Test'),
       },

@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaNavDropdown from './UsaNavDropdown.vue'
 
 describe('UsaNavDropdown', () => {
   it('renders the component', () => {
-    mount(UsaNavDropdown, {
+    cy.mount(UsaNavDropdown, {
       props: {
         id: 'test-dropdown-id',
       },
@@ -17,7 +16,9 @@ describe('UsaNavDropdown', () => {
           unregisterDropdown: cy.stub().as('unregisterDropdown'),
         },
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@registerDropdown').should(
       'be.calledWith',
@@ -35,7 +36,7 @@ describe('UsaNavDropdown', () => {
   })
 
   it('registers dropdown as open by default', () => {
-    mount(UsaNavDropdown, {
+    cy.mount(UsaNavDropdown, {
       props: {
         open: true,
       },

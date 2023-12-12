@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaSkipnav from './UsaSkipnav.vue'
 
 describe('UsaSkipnav', () => {
   it('renders the component', () => {
-    mount(UsaSkipnav, {
+    cy.mount(UsaSkipnav, {
       props: {
         anchor: '#main-content',
       },
@@ -42,7 +41,7 @@ describe('UsaSkipnav', () => {
   })
 
   it('uses custom slot content', () => {
-    mount(UsaSkipnav, {
+    cy.mount(UsaSkipnav, {
       props: {
         anchor: '#main-content',
       },
@@ -57,7 +56,7 @@ describe('UsaSkipnav', () => {
   it('warns in console about invalid anchor prop value', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaSkipnav, {
+    cy.mount(UsaSkipnav, {
       props: {
         anchor: 'badanchor',
       },

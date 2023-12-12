@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaSidenavItem from './UsaSidenavItem.vue'
 
@@ -21,7 +20,7 @@ describe('UsaSidenavItem', () => {
   })
 
   it('renders the component', () => {
-    mount(UsaSidenavItem, {
+    cy.mount(UsaSidenavItem, {
       props: {
         item: testItem,
         customClasses: {
@@ -60,7 +59,7 @@ describe('UsaSidenavItem', () => {
   })
 
   it('`item` prop is available in scoped slot', () => {
-    mount(UsaSidenavItem, {
+    cy.mount(UsaSidenavItem, {
       props: {
         item: testItem,
       },
@@ -78,7 +77,7 @@ describe('UsaSidenavItem', () => {
   it('warns in console about required `item` prop', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaSidenavItem, {})
+    cy.mount(UsaSidenavItem, {})
 
     cy.get('@consoleWarn').should(
       'be.calledWith',

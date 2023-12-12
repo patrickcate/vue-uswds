@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaCharacterCount from './UsaCharacterCount.vue'
 import UsaTextInput from '@/components/UsaTextInput'
@@ -7,14 +6,16 @@ import UsaTextarea from '@/components/UsaTextarea'
 
 describe('UsaCharacterCount', () => {
   it('renders the component with text input', () => {
-    mount(UsaCharacterCount, {
+    cy.mount(UsaCharacterCount, {
       props: {
         maxlength: 10,
       },
       slots: {
         default: () => h(UsaTextInput),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('div.usa-character-count').should('exist')
     cy.get('span.usa-character-count__message')
@@ -102,14 +103,16 @@ describe('UsaCharacterCount', () => {
   })
 
   it('renders the component with textarea form element', () => {
-    mount(UsaCharacterCount, {
+    cy.mount(UsaCharacterCount, {
       props: {
         maxlength: 10,
       },
       slots: {
         default: () => h(UsaTextarea),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('div.usa-character-count').should('exist')
     cy.get('span.usa-character-count__message')
@@ -200,14 +203,16 @@ describe('UsaCharacterCount', () => {
   })
 
   it('character count for text input form element includes default value', () => {
-    mount(UsaCharacterCount, {
+    cy.mount(UsaCharacterCount, {
       props: {
         maxlength: 10,
       },
       slots: {
         default: () => h(UsaTextInput, { 'model-value': 12345 }),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-input').should('have.value', 12345)
     cy.get('.usa-character-count__message').should(
@@ -221,14 +226,16 @@ describe('UsaCharacterCount', () => {
   })
 
   it('character count for textarea form element includes default value', () => {
-    mount(UsaCharacterCount, {
+    cy.mount(UsaCharacterCount, {
       props: {
         maxlength: 10,
       },
       slots: {
         default: () => h(UsaTextarea, { 'model-value': 12345 }),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-textarea').should('have.value', 12345)
     cy.get('.usa-character-count__message').should(
@@ -242,7 +249,7 @@ describe('UsaCharacterCount', () => {
   })
 
   it('custom id is added to message element and referenced on text input form element', () => {
-    mount(UsaCharacterCount, {
+    cy.mount(UsaCharacterCount, {
       props: {
         maxlength: 10,
         id: 'test-id',
@@ -259,7 +266,7 @@ describe('UsaCharacterCount', () => {
   })
 
   it('custom id is added to message element and referenced on textarea form element', () => {
-    mount(UsaCharacterCount, {
+    cy.mount(UsaCharacterCount, {
       props: {
         maxlength: 10,
         id: 'test-id',
@@ -276,7 +283,7 @@ describe('UsaCharacterCount', () => {
   })
 
   it('uses custom slot content and scoped values', () => {
-    mount(UsaCharacterCount, {
+    cy.mount(UsaCharacterCount, {
       props: {
         maxlength: 5,
       },
@@ -301,7 +308,9 @@ describe('UsaCharacterCount', () => {
             `over, maxlength: ${maxlength}, charactersOver: ${charactersOver}`
           ),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('span.remaining-message').should('not.exist')
     cy.get('span.over-message').should('not.exist')
@@ -329,7 +338,7 @@ describe('UsaCharacterCount', () => {
   it('console prints warning about invalid `maxlength` prop value', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaCharacterCount, {
+    cy.mount(UsaCharacterCount, {
       props: {
         maxlength: 0,
       },

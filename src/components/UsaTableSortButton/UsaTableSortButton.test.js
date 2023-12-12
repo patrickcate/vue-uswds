@@ -1,30 +1,33 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaTableSortButton from './UsaTableSortButton.vue'
 
 describe('UsaTableSortButton', () => {
   it('renders the component', () => {
-    const wrapper = mount(UsaTableSortButton, {
-      props: {
-        headerId: 'test-header-id',
-        headerLabel: 'Test header label',
-        'onUpdate:tableSort': async () => {
-          await wrapper.vue().then(vm => {
-            const { currentSortDirection } = vm.componentVM
+    // eslint-disable-next-line cypress/no-assigning-return-values
+    const wrapper = cy
+      .mount(UsaTableSortButton, {
+        props: {
+          headerId: 'test-header-id',
+          headerLabel: 'Test header label',
+          'onUpdate:tableSort': async () => {
+            await wrapper.vue().then(vm => {
+              const { currentSortDirection } = vm.componentVM
 
-            const reverseDirections = {
-              ascending: 'descending',
-              descending: 'ascending',
-            }
+              const reverseDirections = {
+                ascending: 'descending',
+                descending: 'ascending',
+              }
 
-            vm.setProps({
-              currentSortDirection:
-                reverseDirections[currentSortDirection] || 'ascending',
+              vm.setProps({
+                currentSortDirection:
+                  reverseDirections[currentSortDirection] || 'ascending',
+              })
             })
-          })
+          },
         },
-      },
-    }).as('wrapper')
+      })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('button.usa-table__header__button')
       .as('button')
@@ -66,30 +69,34 @@ describe('UsaTableSortButton', () => {
   })
 
   it('uses default sort direction prop and default slot', () => {
-    const wrapper = mount(UsaTableSortButton, {
-      props: {
-        headerId: 'test-header-id',
-        headerLabel: 'Test header label',
-        currentSortDirection: 'descending',
-        'onUpdate:tableSort': async () => {
-          await wrapper.vue().then(vm => {
-            const { currentSortDirection } = vm.componentVM
+    // eslint-disable-next-line cypress/no-assigning-return-values
+    const wrapper = cy
+      .mount(UsaTableSortButton, {
+        props: {
+          headerId: 'test-header-id',
+          headerLabel: 'Test header label',
+          currentSortDirection: 'descending',
+          'onUpdate:tableSort': async () => {
+            await wrapper.vue().then(vm => {
+              const { currentSortDirection } = vm.componentVM
 
-            const reverseDirections = {
-              ascending: 'descending',
-              descending: 'ascending',
-            }
+              const reverseDirections = {
+                ascending: 'descending',
+                descending: 'ascending',
+              }
 
-            vm.setProps({
-              currentSortDirection: reverseDirections[currentSortDirection],
+              vm.setProps({
+                currentSortDirection: reverseDirections[currentSortDirection],
+              })
             })
-          })
+          },
         },
-      },
-      slots: {
-        default: () => 'Test default slot',
-      },
-    }).as('wrapper')
+        slots: {
+          default: () => 'Test default slot',
+        },
+      })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-table__header__button')
       .as('button')

@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaRadio from './UsaRadio.vue'
 
 describe('UsaRadio', () => {
   it('renders the component', () => {
-    mount(UsaRadio, {
+    cy.mount(UsaRadio, {
       props: {
         label: 'Test label',
         description: 'Test description',
@@ -13,7 +12,9 @@ describe('UsaRadio', () => {
         value: 'test-radio-value',
         name: 'text-radio-name',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-radio').should('exist')
 
@@ -57,7 +58,7 @@ describe('UsaRadio', () => {
   })
 
   it('radio is checked by default', () => {
-    mount(UsaRadio, {
+    cy.mount(UsaRadio, {
       props: {
         label: 'Test label',
         checked: true,
@@ -68,7 +69,7 @@ describe('UsaRadio', () => {
   })
 
   it('`tiled` prop added correct CSS class', () => {
-    mount(UsaRadio, {
+    cy.mount(UsaRadio, {
       props: {
         label: 'Test label',
         tile: true,
@@ -79,7 +80,7 @@ describe('UsaRadio', () => {
   })
 
   it('`disabled` attr binding disables radio button', () => {
-    mount(UsaRadio, {
+    cy.mount(UsaRadio, {
       props: {
         label: 'Test label',
       },
@@ -92,7 +93,7 @@ describe('UsaRadio', () => {
   })
 
   it('root element does not inherit attrs', () => {
-    mount(UsaRadio, {
+    cy.mount(UsaRadio, {
       props: {
         label: 'Test label',
       },
@@ -106,7 +107,7 @@ describe('UsaRadio', () => {
   })
 
   it('uses slot content', () => {
-    mount(UsaRadio, {
+    cy.mount(UsaRadio, {
       props: {
         label: 'Test label',
         description: 'Test description',
@@ -125,7 +126,7 @@ describe('UsaRadio', () => {
   })
 
   it('does not render description wrapper span if `description` slot or prop not used', () => {
-    mount(UsaRadio, {
+    cy.mount(UsaRadio, {
       props: {
         label: 'Test label',
       },
@@ -138,7 +139,7 @@ describe('UsaRadio', () => {
   })
 
   it('uses custom id and associates label with `for` attribute', () => {
-    mount(UsaRadio, {
+    cy.mount(UsaRadio, {
       props: {
         label: 'Test label',
         id: 'test-custom-id',
@@ -152,7 +153,7 @@ describe('UsaRadio', () => {
   })
 
   it('uses custom CSS classes', () => {
-    mount(UsaRadio, {
+    cy.mount(UsaRadio, {
       props: {
         label: 'Test label',
         description: 'Test description',

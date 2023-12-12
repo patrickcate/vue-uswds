@@ -1,12 +1,11 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaSiteAlert from './UsaSiteAlert.vue'
 
 const defaultSlotContent = 'Test default slot content'
 
 describe('UsaSiteAlert', () => {
   it('renders the component', () => {
-    mount(UsaSiteAlert, {
+    cy.mount(UsaSiteAlert, {
       props: {
         heading: 'Test Heading Prop Text',
       },
@@ -23,7 +22,7 @@ describe('UsaSiteAlert', () => {
   it('adds the correct variant classes', () => {
     const variants = ['info', 'emergency']
 
-    mount(UsaSiteAlert, {
+    cy.mount(UsaSiteAlert, {
       props: {
         variant: 'info',
         heading: 'Short alert message',
@@ -46,7 +45,7 @@ describe('UsaSiteAlert', () => {
   })
 
   it('does not render the heading element if there is no heading content', () => {
-    mount(UsaSiteAlert, {
+    cy.mount(UsaSiteAlert, {
       slots: {
         default: () => defaultSlotContent,
       },
@@ -56,7 +55,7 @@ describe('UsaSiteAlert', () => {
   })
 
   it('does not visually show the heading when the `slim` prop is true', () => {
-    mount(UsaSiteAlert, {
+    cy.mount(UsaSiteAlert, {
       props: {
         heading: 'Test Heading',
         slim: true,
@@ -71,7 +70,7 @@ describe('UsaSiteAlert', () => {
   })
 
   it('does not show the icon when the `no-icon` prop is true', () => {
-    mount(UsaSiteAlert, {
+    cy.mount(UsaSiteAlert, {
       props: {
         heading: 'Test Heading',
         noIcon: true,
@@ -85,7 +84,7 @@ describe('UsaSiteAlert', () => {
   })
 
   it('renders a custom role attribute', () => {
-    mount(UsaSiteAlert, {
+    cy.mount(UsaSiteAlert, {
       props: {
         heading: 'Test Heading',
         role: 'custom-role',
@@ -99,7 +98,7 @@ describe('UsaSiteAlert', () => {
   })
 
   it('renders custom heading tag', () => {
-    mount(UsaSiteAlert, {
+    cy.mount(UsaSiteAlert, {
       props: {
         heading: 'Test Heading Prop',
         headingTag: 'h1',
@@ -113,7 +112,7 @@ describe('UsaSiteAlert', () => {
   })
 
   it('uses the `heading` slot content', () => {
-    mount(UsaSiteAlert, {
+    cy.mount(UsaSiteAlert, {
       props: {
         heading: 'Test Heading Prop',
       },
@@ -127,7 +126,7 @@ describe('UsaSiteAlert', () => {
   })
 
   it('uses the `message` slot content', () => {
-    mount(UsaSiteAlert, {
+    cy.mount(UsaSiteAlert, {
       props: {
         variant: 'info',
         heading: 'Test Heading Prop',
@@ -142,7 +141,7 @@ describe('UsaSiteAlert', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaSiteAlert, {
+    cy.mount(UsaSiteAlert, {
       props: {
         variant: 'info',
         heading: 'Test Heading',
@@ -165,7 +164,7 @@ describe('UsaSiteAlert', () => {
   it('warns in console about invalid variant prop', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaSiteAlert, {
+    cy.mount(UsaSiteAlert, {
       props: {
         variant: 'notvariant',
         heading: 'Test Heading',

@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaHero from './UsaHero.vue'
 
 describe('UsaHero', () => {
@@ -9,7 +8,7 @@ describe('UsaHero', () => {
   const testAriaLabel = 'Test aria label'
 
   it('renders the component', () => {
-    mount(UsaHero, {
+    cy.mount(UsaHero, {
       props: {
         ariaLabel: testAriaLabel,
         customClasses: {},
@@ -30,7 +29,7 @@ describe('UsaHero', () => {
   })
 
   it('sets correct background image', () => {
-    mount(UsaHero, {
+    cy.mount(UsaHero, {
       props: {
         ariaLabel: testAriaLabel,
         backgroundImage: testBackgroundImage,
@@ -43,7 +42,7 @@ describe('UsaHero', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaHero, {
+    cy.mount(UsaHero, {
       props: {
         ariaLabel: testAriaLabel,
         backgroundImage: testBackgroundImage,
@@ -57,7 +56,7 @@ describe('UsaHero', () => {
   })
 
   it('uses custom grid prefix for CSS grid classes', () => {
-    mount(UsaHero, {
+    cy.mount(UsaHero, {
       props: {
         ariaLabel: testAriaLabel,
         backgroundImage: testBackgroundImage,

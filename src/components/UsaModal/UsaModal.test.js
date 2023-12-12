@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaModal from './UsaModal.vue'
 
 describe('UsaModal', () => {
   it('renders the component', () => {
-    mount(UsaModal, {
+    cy.mount(UsaModal, {
       props: {
         visible: true,
         heading: 'Test Modal',
@@ -63,7 +62,7 @@ describe('UsaModal', () => {
   })
 
   it('add `size` prop CSS class', () => {
-    mount(UsaModal, {
+    cy.mount(UsaModal, {
       props: {
         visible: true,
         size: 'lg',
@@ -74,15 +73,19 @@ describe('UsaModal', () => {
   })
 
   it('`visible` prop toggles modal visibility', () => {
-    const wrapper = mount(UsaModal, {
-      props: {
-        'onUpdate:visible': async currentlyVisible => {
-          await wrapper.vue().then(vm => {
-            vm.setProps({ visible: currentlyVisible })
-          })
+    // eslint-disable-next-line cypress/no-assigning-return-values
+    const wrapper = cy
+      .mount(UsaModal, {
+        props: {
+          'onUpdate:visible': async currentlyVisible => {
+            await wrapper.vue().then(vm => {
+              vm.setProps({ visible: currentlyVisible })
+            })
+          },
         },
-      },
-    }).as('wrapper')
+      })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.js-focus-trap-wrapper').should('not.exist')
     cy.get('.usa-modal-wrapper').should('not.exist')
@@ -194,31 +197,35 @@ describe('UsaModal', () => {
   })
 
   it('`forceAction` prop limits modal close options', () => {
-    const wrapper = mount(UsaModal, {
-      props: {
-        forceAction: true,
-        'onUpdate:visible': async currentlyVisible => {
-          await wrapper.vue().then(vm => {
-            vm.setProps({ visible: currentlyVisible })
-          })
+    // eslint-disable-next-line cypress/no-assigning-return-values
+    const wrapper = cy
+      .mount(UsaModal, {
+        props: {
+          forceAction: true,
+          'onUpdate:visible': async currentlyVisible => {
+            await wrapper.vue().then(vm => {
+              vm.setProps({ visible: currentlyVisible })
+            })
+          },
         },
-      },
-      slots: {
-        footer: () =>
-          h(
-            'button',
-            {
-              class: 'test-close-button',
-              onClick: async () => {
-                await wrapper.vue().then(vm => {
-                  vm.setProps({ visible: false })
-                })
+        slots: {
+          footer: () =>
+            h(
+              'button',
+              {
+                class: 'test-close-button',
+                onClick: async () => {
+                  await wrapper.vue().then(vm => {
+                    vm.setProps({ visible: false })
+                  })
+                },
               },
-            },
-            'Close Modal'
-          ),
-      },
-    }).as('wrapper')
+              'Close Modal'
+            ),
+        },
+      })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.js-focus-trap-wrapper').should('not.exist')
     cy.get('.usa-modal-wrapper').should('not.exist')
@@ -297,34 +304,38 @@ describe('UsaModal', () => {
   })
 
   it('keyword focus is trapped while modal is open', () => {
-    const wrapper = mount(UsaModal, {
-      props: {
-        visible: true,
-        'onUpdate:visible': async currentlyVisible => {
-          await wrapper.vue().then(vm => {
-            vm.setProps({ visible: currentlyVisible })
-          })
+    // eslint-disable-next-line cypress/no-assigning-return-values
+    const wrapper = cy
+      .mount(UsaModal, {
+        props: {
+          visible: true,
+          'onUpdate:visible': async currentlyVisible => {
+            await wrapper.vue().then(vm => {
+              vm.setProps({ visible: currentlyVisible })
+            })
+          },
         },
-      },
-      slots: {
-        footer: () => [
-          h(
-            'button',
-            {
-              class: 'test-close-button',
-            },
-            'Close Modal'
-          ),
-          h(
-            'button',
-            {
-              class: 'test-close-button-2',
-            },
-            'Also Close Modal'
-          ),
-        ],
-      },
-    }).as('wrapper')
+        slots: {
+          footer: () => [
+            h(
+              'button',
+              {
+                class: 'test-close-button',
+              },
+              'Close Modal'
+            ),
+            h(
+              'button',
+              {
+                class: 'test-close-button-2',
+              },
+              'Also Close Modal'
+            ),
+          ],
+        },
+      })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.test-close-button').should('have.focus')
 
@@ -342,7 +353,7 @@ describe('UsaModal', () => {
   })
 
   it('applies custom id and aria attributes', () => {
-    mount(UsaModal, {
+    cy.mount(UsaModal, {
       props: {
         visible: true,
         id: 'test-id',
@@ -369,7 +380,7 @@ describe('UsaModal', () => {
   })
 
   it('should not have aria attributes if no content', () => {
-    mount(UsaModal, {
+    cy.mount(UsaModal, {
       props: {
         visible: true,
         id: 'test-id',
@@ -394,7 +405,7 @@ describe('UsaModal', () => {
   it('warns in console about invalid size prop', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaModal, {
+    cy.mount(UsaModal, {
       props: {
         visible: true,
         size: 'notasize',
@@ -408,7 +419,7 @@ describe('UsaModal', () => {
   })
 
   it('uses custom close button label text', () => {
-    mount(UsaModal, {
+    cy.mount(UsaModal, {
       props: {
         visible: true,
         closeButtonLabel: 'Test close button label',
@@ -421,7 +432,7 @@ describe('UsaModal', () => {
   })
 
   it('renders close button slot', () => {
-    mount(UsaModal, {
+    cy.mount(UsaModal, {
       props: {
         visible: true,
       },
@@ -435,7 +446,7 @@ describe('UsaModal', () => {
   })
 
   it('heading slot content overrides heading prop', () => {
-    mount(UsaModal, {
+    cy.mount(UsaModal, {
       props: {
         visible: true,
         heading: 'Modal heading',
@@ -452,7 +463,7 @@ describe('UsaModal', () => {
   it('warns in console of deprecated slot', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaModal, {
+    cy.mount(UsaModal, {
       props: {
         visible: true,
       },

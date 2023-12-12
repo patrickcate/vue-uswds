@@ -1,12 +1,11 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaSummaryBox from './UsaSummaryBox.vue'
 
 describe('UsaSummaryBox', () => {
   const defaultSlotContent = `Test slot content.`
 
   it('renders the component', () => {
-    mount(UsaSummaryBox, {
+    cy.mount(UsaSummaryBox, {
       slots: {
         default: () => defaultSlotContent,
       },
@@ -21,7 +20,7 @@ describe('UsaSummaryBox', () => {
   })
 
   it('renders custom heading text', () => {
-    mount(UsaSummaryBox, {
+    cy.mount(UsaSummaryBox, {
       props: {
         heading: 'Custom heading text',
       },
@@ -34,7 +33,7 @@ describe('UsaSummaryBox', () => {
   })
 
   it('aria-labelledby attribute matches id', () => {
-    mount(UsaSummaryBox, {
+    cy.mount(UsaSummaryBox, {
       slots: {
         default: () => defaultSlotContent,
       },
@@ -49,7 +48,7 @@ describe('UsaSummaryBox', () => {
   })
 
   it('uses custom id prop', () => {
-    mount(UsaSummaryBox, {
+    cy.mount(UsaSummaryBox, {
       props: {
         id: 'custom-id',
       },
@@ -66,7 +65,7 @@ describe('UsaSummaryBox', () => {
   })
 
   it('renders custom heading tag', () => {
-    mount(UsaSummaryBox, {
+    cy.mount(UsaSummaryBox, {
       props: {
         heading: 'Test Heading Prop',
         headingTag: 'h1',
@@ -80,7 +79,7 @@ describe('UsaSummaryBox', () => {
   })
 
   it('uses the `heading` slot content', () => {
-    mount(UsaSummaryBox, {
+    cy.mount(UsaSummaryBox, {
       props: {
         heading: 'Custom heading text',
       },
@@ -94,7 +93,7 @@ describe('UsaSummaryBox', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaSummaryBox, {
+    cy.mount(UsaSummaryBox, {
       props: {
         customClasses: {
           body: ['test-body-class'],

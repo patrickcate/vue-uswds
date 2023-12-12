@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaPasswordMask from './UsaPasswordMask.vue'
 import UsaTextInput from '@/components/UsaTextInput'
 
 describe('UsaPasswordMask', () => {
   it('renders the component', () => {
-    mount(UsaPasswordMask, {
+    cy.mount(UsaPasswordMask, {
       attrs: {
         'data-test': 'test-attr',
       },
@@ -37,7 +36,7 @@ describe('UsaPasswordMask', () => {
   })
 
   it('displays custom show/hide text', () => {
-    mount(UsaPasswordMask, {
+    cy.mount(UsaPasswordMask, {
       props: {
         showText: 'Custom show text',
         hideText: 'Custom hide text',
@@ -77,7 +76,7 @@ describe('UsaPasswordMask', () => {
         </UsaPasswordMask>`,
     }
 
-    mount(wrapperComponent, {}).as('wrapper')
+    cy.mount(wrapperComponent, {}).its('wrapper').as('wrapper')
 
     cy.get('input:nth-of-type(1)')
       .as('input1')

@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaBannerContent from './UsaBannerContent.vue'
 
 describe('UsaBannerContent', () => {
   it('renders the component', () => {
-    mount(UsaBannerContent, {})
+    cy.mount(UsaBannerContent, {})
 
     cy.get('[data-v-app] > div').should('exist')
     cy.get('.usa-banner__guidance').should('have.length', 2)
@@ -33,7 +32,7 @@ describe('UsaBannerContent', () => {
   })
 
   it('uses custom slot content', () => {
-    mount(UsaBannerContent, {
+    cy.mount(UsaBannerContent, {
       slots: {
         'tld-icon': () => 'test tld icon',
         'tld-description': () => 'test tld description',
@@ -49,7 +48,7 @@ describe('UsaBannerContent', () => {
   })
 
   it('uses injected prop values', () => {
-    mount(UsaBannerContent, {
+    cy.mount(UsaBannerContent, {
       global: {
         provide: {
           'vueUswds.svgSpritePath': '/test.svg',
@@ -67,7 +66,7 @@ describe('UsaBannerContent', () => {
   it('warns in console of deprecated slots', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaBannerContent, {
+    cy.mount(UsaBannerContent, {
       slots: {
         tldIcon: () => 'deprecated test tld icon',
         tldDescription: () => 'deprecated test tld description',

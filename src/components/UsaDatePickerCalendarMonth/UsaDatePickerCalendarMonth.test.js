@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaDatePickerCalendarMonth from './UsaDatePickerCalendarMonth.vue'
 import { MONTH_LABELS, MIN_DATE, MAX_DATE } from '@/utils/constants.js'
 
@@ -54,7 +53,7 @@ describe('UsaDatePickerCalendarMonth', () => {
       </template>`,
     }
 
-    mount(wrapperComponent, {
+    cy.mount(wrapperComponent, {
       global: {
         provide: {
           monthLabels: MONTH_LABELS,
@@ -979,7 +978,7 @@ describe('UsaDatePickerCalendarMonth', () => {
   })
 
   it('only allows selecting months within min/max range', () => {
-    mount(UsaDatePickerCalendarMonth, {
+    cy.mount(UsaDatePickerCalendarMonth, {
       props: {
         activeDate: '2022-08-15',
         monthLabels: MONTH_LABELS,
@@ -1355,14 +1354,16 @@ describe('UsaDatePickerCalendarMonth', () => {
   })
 
   it('calendar updates to reflect new active, min, and max dates', () => {
-    mount(UsaDatePickerCalendarMonth, {
+    cy.mount(UsaDatePickerCalendarMonth, {
       props: {
         activeDate: '2022-08-15',
         monthLabels: MONTH_LABELS,
         minDate: '2022-05-15',
         maxDate: '2022-11-15',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('tr:nth-of-type(1) td:nth-of-type(1) button')
       .as('button1')
@@ -1622,7 +1623,7 @@ describe('UsaDatePickerCalendarMonth', () => {
   })
 
   it('shows custom month labels', () => {
-    mount(UsaDatePickerCalendarMonth, {
+    cy.mount(UsaDatePickerCalendarMonth, {
       props: {
         activeDate: '2022-08-15',
         monthLabels: [
@@ -1763,14 +1764,16 @@ describe('UsaDatePickerCalendarMonth', () => {
   })
 
   it('emits `activeMonth` and `selectorMode` prop values', () => {
-    mount(UsaDatePickerCalendarMonth, {
+    cy.mount(UsaDatePickerCalendarMonth, {
       props: {
         activeDate: '2022-08-15',
         monthLabels: MONTH_LABELS,
         minDate: MIN_DATE,
         maxDate: MAX_DATE,
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@wrapper')
       .vue()

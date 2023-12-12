@@ -1,15 +1,16 @@
 import { ref, computed, readonly } from 'vue'
-import { naturalSort } from '@/utils/sorting.js'
+import { createNaturalSort } from '@/utils/sorting.js'
 import { objectHasKey, kebabCase } from '@/utils/common.js'
 
-export default (
+export function useTableSort(
   _headers = [],
   _rows = [],
   _defaultSortHeader = '',
   _defaultSortDirection = ''
-) => {
+) {
   const currentSortedHeader = ref(_defaultSortHeader)
   const currentSortDirection = ref(_defaultSortDirection)
+  const naturalSort = createNaturalSort()
 
   const headers = computed(() => {
     return _headers.value.map(header => {
