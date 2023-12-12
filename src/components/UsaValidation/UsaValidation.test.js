@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaValidation from './UsaValidation.vue'
 
 describe('UsaValidation', () => {
@@ -53,7 +52,7 @@ describe('UsaValidation', () => {
       </div>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('.usa-alert--validation')
       .should('have.class', 'usa-alert')
@@ -372,7 +371,7 @@ describe('UsaValidation', () => {
   })
 
   it('test custom prop and emitted values', () => {
-    mount(UsaValidation, {
+    cy.mount(UsaValidation, {
       props: {
         validations: [
           {
@@ -391,7 +390,9 @@ describe('UsaValidation', () => {
           checklist: ['test-checklist-class'],
         },
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-alert__body').should('have.class', 'test-body-class')
     cy.get('h4.usa-alert__heading')

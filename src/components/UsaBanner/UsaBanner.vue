@@ -5,7 +5,7 @@ import {
   GRID_NAMESPACE,
   IMAGE_PATH,
 } from '@/utils/constants.js'
-import useToggle from '@/composables/useToggle.js'
+import { useToggle } from '@/composables/useToggle.js'
 import UsaBannerContent from '@/components/UsaBannerContent'
 
 const prefixSeparator = inject('vueUswds.prefixSeparator', PREFIX_SEPARATOR)

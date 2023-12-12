@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaCollectionCalendar from './UsaCollectionCalendar.vue'
 
 describe('UsaCollectionCalendar', () => {
   it('renders the component', () => {
-    mount(UsaCollectionCalendar, {
+    cy.mount(UsaCollectionCalendar, {
       props: {
         datetime: '2021-01-01',
         month: 'Jan',
@@ -21,7 +20,7 @@ describe('UsaCollectionCalendar', () => {
   })
 
   it('renders a div if the `datetime` prop is not used', () => {
-    mount(UsaCollectionCalendar, {
+    cy.mount(UsaCollectionCalendar, {
       props: {
         month: 'Jan',
         day: 1,
@@ -36,7 +35,7 @@ describe('UsaCollectionCalendar', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaCollectionCalendar, {
+    cy.mount(UsaCollectionCalendar, {
       props: {
         datetime: '2021-01-01',
         month: 'Jan',

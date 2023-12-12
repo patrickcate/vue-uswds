@@ -2,7 +2,7 @@
 import { ref, computed, reactive, watch, provide, inject } from 'vue'
 import { MOBILE_MENU_BREAKPOINT } from '@/utils/constants.js'
 import { onKeyStroke, useMediaQuery, onClickOutside } from '@vueuse/core'
-import useAccordion from '@/composables/useAccordion.js'
+import { useAccordion } from '@/composables/useAccordion.js'
 import UsaNavPrimaryItem from '@/components/UsaNavPrimaryItem'
 import UsaNavDropdown from '@/components/UsaNavDropdown'
 import UsaNavDropdownButton from '@/components/UsaNavDropdownButton'

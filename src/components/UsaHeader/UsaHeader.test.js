@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaHeader from './UsaHeader.vue'
 
 describe('UsaHeader', () => {
   it('renders the component', () => {
-    mount(UsaHeader, {
+    cy.mount(UsaHeader, {
       slots: {
         default: () => 'Basic header slot content',
       },
@@ -16,7 +15,7 @@ describe('UsaHeader', () => {
   })
 
   it('renders `extended` variant', () => {
-    mount(UsaHeader, {
+    cy.mount(UsaHeader, {
       props: {
         variant: 'extended',
       },
@@ -32,7 +31,7 @@ describe('UsaHeader', () => {
   })
 
   it('add megamenu class', () => {
-    mount(UsaHeader, {
+    cy.mount(UsaHeader, {
       props: {
         megamenu: true,
       },
@@ -47,14 +46,16 @@ describe('UsaHeader', () => {
       template: `<span>Extended Variant: {{ isExtendedHeader }}</span>`,
     }
 
-    mount(UsaHeader, {
+    cy.mount(UsaHeader, {
       props: {
         variant: 'extended',
       },
       slots: {
         default: () => h(childComponent),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('span').should('contain', 'Extended Variant: true')
 
@@ -69,14 +70,16 @@ describe('UsaHeader', () => {
       template: `<span>Megamenu: {{ isMegamenu }}</span>`,
     }
 
-    mount(UsaHeader, {
+    cy.mount(UsaHeader, {
       props: {
         megamenu: true,
       },
       slots: {
         default: () => h(childComponent),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('span').should('contain', 'Megamenu: true')
 
@@ -86,7 +89,7 @@ describe('UsaHeader', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaHeader, {
+    cy.mount(UsaHeader, {
       props: {
         customClasses: {
           navContainer: ['test-nav-container-class'],
@@ -103,7 +106,7 @@ describe('UsaHeader', () => {
   it('warns in console about invalid variant prop', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaHeader, {
+    cy.mount(UsaHeader, {
       props: {
         variant: 'notvariant',
       },

@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaButton from './UsaButton.vue'
 
 describe('UsaButton', () => {
   it('renders the component', () => {
-    mount(UsaButton, {
+    cy.mount(UsaButton, {
       slots: {
         default: () => 'Button',
       },
@@ -14,14 +13,16 @@ describe('UsaButton', () => {
   })
 
   it('render correct button type', () => {
-    mount(UsaButton, {
+    cy.mount(UsaButton, {
       props: {
         type: 'submit',
       },
       slots: {
         default: () => 'Button',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('button').should('have.attr', 'type').and('contain', 'submit')
 
@@ -31,14 +32,16 @@ describe('UsaButton', () => {
   })
 
   it('`disabled` attr matches `disabled` prop', () => {
-    mount(UsaButton, {
+    cy.mount(UsaButton, {
       props: {
         disabled: true,
       },
       slots: {
         default: () => 'Button',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('button').should('have.attr', 'disabled')
 
@@ -58,7 +61,7 @@ describe('UsaButton', () => {
       'unstyled',
     ]
 
-    mount(UsaButton, {
+    cy.mount(UsaButton, {
       slots: {
         default: () => 'Button',
       },
@@ -76,7 +79,7 @@ describe('UsaButton', () => {
   })
 
   it('the `inverse` variant gets both the `inverse` and `outline` classes', () => {
-    mount(UsaButton, {
+    cy.mount(UsaButton, {
       props: {
         variant: 'inverse',
       },
@@ -91,11 +94,13 @@ describe('UsaButton', () => {
   })
 
   it('adds the correct size class', () => {
-    mount(UsaButton, {
+    cy.mount(UsaButton, {
       slots: {
         default: () => 'Button',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('button').should('not.have.class', 'usa-button--big')
 
@@ -105,7 +110,7 @@ describe('UsaButton', () => {
   })
 
   it('uses the `before` and `after` slot content', () => {
-    mount(UsaButton, {
+    cy.mount(UsaButton, {
       slots: {
         before: () => 'Before Slot',
         default: () => 'Button',

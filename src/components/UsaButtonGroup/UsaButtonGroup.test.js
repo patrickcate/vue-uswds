@@ -1,16 +1,17 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
-import { mount } from '@cypress/vue'
 import UsaButtonGroup from './UsaButtonGroup.vue'
 import UsaButtonGroupItem from '@/components/UsaButtonGroupItem'
 
 describe('UsaButtonGroup', () => {
   it('renders the component', () => {
-    mount(UsaButtonGroup, {
+    cy.mount(UsaButtonGroup, {
       slots: {
         default: () => h(UsaButtonGroupItem, {}, () => 'Test button'),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('ul.usa-button-group').should('contain', 'Test button')
 

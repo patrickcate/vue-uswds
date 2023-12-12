@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaPaginationItem from './UsaPaginationItem.vue'
 
 describe('UsaPaginationItem', () => {
   it('renders the component', () => {
-    mount(UsaPaginationItem, {
+    cy.mount(UsaPaginationItem, {
       props: {
         pageNumber: 1,
         ariaLabel: 'Page 1',
@@ -29,7 +28,7 @@ describe('UsaPaginationItem', () => {
   })
 
   it('current page should have `aria-current` attribute and `usa-current` CSS class', () => {
-    mount(UsaPaginationItem, {
+    cy.mount(UsaPaginationItem, {
       props: {
         pageNumber: 2,
         ariaLabel: 'Page 2',
@@ -44,12 +43,14 @@ describe('UsaPaginationItem', () => {
   })
 
   it('should only have `usa-button--unstyled` CSS class if button', () => {
-    mount(UsaPaginationItem, {
+    cy.mount(UsaPaginationItem, {
       props: {
         pageNumber: 3,
         ariaLabel: 'Page 3',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-pagination__item button').should(
       'have.class',
@@ -67,7 +68,7 @@ describe('UsaPaginationItem', () => {
   })
 
   it('renders as `router-link` if vue-router is detected', () => {
-    mount(UsaPaginationItem, {
+    cy.mount(UsaPaginationItem, {
       props: {
         pageNumber: 3,
         ariaLabel: 'Page 3',
@@ -84,7 +85,7 @@ describe('UsaPaginationItem', () => {
   })
 
   it('renders as `nuxt-link` if nuxt is detected', () => {
-    mount(UsaPaginationItem, {
+    cy.mount(UsaPaginationItem, {
       props: {
         pageNumber: 3,
         ariaLabel: 'Page 3',
@@ -103,7 +104,7 @@ describe('UsaPaginationItem', () => {
   it('warns in console about required aria-label prop', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaPaginationItem, {
+    cy.mount(UsaPaginationItem, {
       props: {
         pageNumber: 3,
       },
@@ -118,7 +119,7 @@ describe('UsaPaginationItem', () => {
   it('warns in console about invalid `pageNumber` prop value', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaPaginationItem, {
+    cy.mount(UsaPaginationItem, {
       props: {
         pageNumber: 0,
         ariaLabel: 'Page 3',

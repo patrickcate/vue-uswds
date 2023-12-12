@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaFooterSecondarySection from './UsaFooterSecondarySection.vue'
 
 describe('UsaFooterSecondarySection', () => {
   it('renders the component', () => {
-    mount(UsaFooterSecondarySection, {})
+    cy.mount(UsaFooterSecondarySection, {})
 
     cy.get('div.usa-footer__secondary-section').should('exist')
     cy.get('div.usa-footer__secondary-section .grid-container').should(
@@ -13,7 +12,7 @@ describe('UsaFooterSecondarySection', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaFooterSecondarySection, {
+    cy.mount(UsaFooterSecondarySection, {
       props: {
         customClasses: {
           container: ['test-container-class'],

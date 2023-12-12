@@ -1,9 +1,9 @@
 import { ref, readonly } from 'vue'
 
-const isMobileMenuOpen = ref(false)
-const menuId = ref('__vuswds-id-global-mobile-header-menu')
+export const isMobileMenuOpen = /*#__PURE__*/ ref(false)
+export const menuId = /*#__PURE__*/ ref('__vuswds-id-global-mobile-header-menu')
 
-export default emit => {
+export function useMobileMenu(emit) {
   const mobileMenuOpenClass = 'usa-js-mobile-nav--active'
 
   const closeMobileMenu = () => {

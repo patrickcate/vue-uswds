@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaIconListItem from './UsaIconListItem.vue'
 import { h } from 'vue'
 
 describe('UsaIconListItem', () => {
   it('renders the component', () => {
-    mount(UsaIconListItem, {
+    cy.mount(UsaIconListItem, {
       props: {
         icon: 'flag',
       },
@@ -24,7 +23,7 @@ describe('UsaIconListItem', () => {
   })
 
   it('renders custom title tag and slot content', () => {
-    mount(UsaIconListItem, {
+    cy.mount(UsaIconListItem, {
       props: {
         icon: 'flag',
         title: 'TestTitleProp',
@@ -45,7 +44,7 @@ describe('UsaIconListItem', () => {
   })
 
   it('title heading element displays title prop text', () => {
-    mount(UsaIconListItem, {
+    cy.mount(UsaIconListItem, {
       props: {
         icon: 'flag',
         title: 'Test item title',
@@ -59,7 +58,7 @@ describe('UsaIconListItem', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaIconListItem, {
+    cy.mount(UsaIconListItem, {
       props: {
         icon: 'flag',
         title: 'Test item title',

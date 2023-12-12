@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { reactive } from 'vue'
 import UsaFooterCollapsibleMenu from '@/components/UsaFooterCollapsibleMenu'
 import UsaFooterCollapsibleMenuSection from './UsaFooterCollapsibleMenuSection.vue'
@@ -34,7 +33,7 @@ describe('UsaFooterCollapsibleMenuSection', () => {
       template: `<UsaFooterCollapsibleMenu :items="items"></UsaFooterCollapsibleMenu>`,
     }
 
-    mount(wrapperComponent, {
+    cy.mount(wrapperComponent, {
       props: {
         items: [testItem],
       },
@@ -135,7 +134,7 @@ describe('UsaFooterCollapsibleMenuSection', () => {
   })
 
   it('uses custom heading tag', () => {
-    mount(UsaFooterCollapsibleMenuSection, {
+    cy.mount(UsaFooterCollapsibleMenuSection, {
       props: {
         item: testItem,
         headingTag: 'h3',
@@ -160,7 +159,7 @@ describe('UsaFooterCollapsibleMenuSection', () => {
   it('does not render submenu items if not in item prop', () => {
     delete testItem.children
 
-    mount(UsaFooterCollapsibleMenuSection, {
+    cy.mount(UsaFooterCollapsibleMenuSection, {
       props: {
         item: testItem,
       },
@@ -181,7 +180,7 @@ describe('UsaFooterCollapsibleMenuSection', () => {
   it('un-registers section when unmounted', () => {
     testItem.id = 'test-item-1'
 
-    mount(UsaFooterCollapsibleMenuSection, {
+    cy.mount(UsaFooterCollapsibleMenuSection, {
       props: {
         item: testItem,
       },
@@ -194,7 +193,9 @@ describe('UsaFooterCollapsibleMenuSection', () => {
           footerMenuIsCollapsible: false,
         },
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@registerMenuSection').should('be.calledWith', 'test-item-1')
 
@@ -217,7 +218,7 @@ describe('UsaFooterCollapsibleMenuSection', () => {
     testItem.children[2].to = '/test-1/test-1-3'
     testItem.children[2].routerComponentName = 'nuxt-link'
 
-    mount(UsaFooterCollapsibleMenuSection, {
+    cy.mount(UsaFooterCollapsibleMenuSection, {
       props: {
         item: testItem,
       },

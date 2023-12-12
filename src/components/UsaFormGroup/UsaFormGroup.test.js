@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaFormGroup from './UsaFormGroup.vue'
 
 describe('UsaFormGroup', () => {
   it('renders the component', () => {
-    mount(UsaFormGroup, {
+    cy.mount(UsaFormGroup, {
       attrs: {
         id: 'test-id',
         'data-test': 'Test data attribute',
@@ -13,7 +12,9 @@ describe('UsaFormGroup', () => {
       slots: {
         default: () => 'Test form group content',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-form-group').should('not.exist')
     cy.get('*').should('contain', 'Test form group content')

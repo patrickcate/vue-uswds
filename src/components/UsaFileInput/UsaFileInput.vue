@@ -6,7 +6,7 @@ export default {
 
 <script setup>
 import { computed, ref, toRef, useSlots, watch } from 'vue'
-import useFileInput from '@/composables/useFileInput.js'
+import { useFileInput } from '@/composables/useFileInput.js'
 import UsaFormGroup from '@/components/UsaFormGroup'
 import UsaLabel from '@/components/UsaLabel'
 

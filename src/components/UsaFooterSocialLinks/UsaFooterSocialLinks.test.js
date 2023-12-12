@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaFooterSocialLinks from './UsaFooterSocialLinks.vue'
 
 describe('UsaFooterSocialLinks', () => {
@@ -24,14 +23,14 @@ describe('UsaFooterSocialLinks', () => {
   ]
 
   it('renders the component', () => {
-    mount(UsaFooterSocialLinks, {})
+    cy.mount(UsaFooterSocialLinks, {})
 
     cy.get('div.usa-footer__social-links').as('socialLink').should('exist')
     cy.get('@socialLink').children().should('have.length', 0)
   })
 
   it('display social media icons', () => {
-    mount(UsaFooterSocialLinks, {
+    cy.mount(UsaFooterSocialLinks, {
       props: {
         items: testItems,
       },
@@ -105,7 +104,7 @@ describe('UsaFooterSocialLinks', () => {
   })
 
   it('uses named icon scoped slots', () => {
-    mount(UsaFooterSocialLinks, {
+    cy.mount(UsaFooterSocialLinks, {
       props: {
         items: testItems,
       },
@@ -132,7 +131,7 @@ describe('UsaFooterSocialLinks', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaFooterSocialLinks, {
+    cy.mount(UsaFooterSocialLinks, {
       props: {
         items: testItems,
         customClasses: {

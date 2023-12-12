@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaIconList from './UsaIconList.vue'
 
 describe('UsaIconList', () => {
   it('renders the component', () => {
-    mount(UsaIconList, {
+    cy.mount(UsaIconList, {
       slots: {
         default: () => h('li', {}, 'Test icon list item'),
       },
@@ -18,7 +17,7 @@ describe('UsaIconList', () => {
   })
 
   it('applied color and size CSS classes from prop values', () => {
-    mount(UsaIconList, {
+    cy.mount(UsaIconList, {
       props: {
         color: 'primary',
         size: 'xl',
@@ -31,7 +30,7 @@ describe('UsaIconList', () => {
   })
 
   it('formats RWD CSS size classes', () => {
-    mount(UsaIconList, {
+    cy.mount(UsaIconList, {
       props: {
         size: {
           mobile: 'sm',
@@ -48,7 +47,7 @@ describe('UsaIconList', () => {
   })
 
   it('uses custom responsive prefix separator', () => {
-    mount(UsaIconList, {
+    cy.mount(UsaIconList, {
       props: {
         size: {
           mobile: 'sm',
@@ -72,7 +71,7 @@ describe('UsaIconList', () => {
   it('warns in console about invalid `size` prop', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaIconList, {
+    cy.mount(UsaIconList, {
       props: {
         size: 'invalidsize',
       },

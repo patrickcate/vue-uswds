@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaTooltip from './UsaTooltip.vue'
 
 describe('UsaTooltip', () => {
   it('renders the component', () => {
-    mount(UsaTooltip, {
+    cy.mount(UsaTooltip, {
       props: {
         id: 'test-tooltip-id',
         label: 'Test tooltip label',
@@ -102,7 +101,7 @@ describe('UsaTooltip', () => {
   })
 
   it('renders with custom tags, CSS classes, and label slot content', () => {
-    mount(UsaTooltip, {
+    cy.mount(UsaTooltip, {
       props: {
         wrapperTag: 'div',
         tag: 'nuxt-link',
@@ -154,7 +153,7 @@ describe('UsaTooltip', () => {
         template: `<div style="padding:150px;"><UsaTooltip :position="position" :label="label">Test tooltip trigger</UsaTooltip></div>`,
       }
 
-      mount(wrapperComponent, {}).as('wrapper')
+      cy.mount(wrapperComponent, {}).its('wrapper').as('wrapper')
 
       cy.get('.usa-tooltip__body').and(
         'have.class',
@@ -168,7 +167,7 @@ describe('UsaTooltip', () => {
   it('warns in console about invalid `position` prop value', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaTooltip, {
+    cy.mount(UsaTooltip, {
       props: {
         position: 'notavalidposition',
         label: 'Test tooltip label',

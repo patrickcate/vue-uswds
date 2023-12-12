@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { addDays, subDays } from 'date-fns'
 import {
   today,
@@ -46,7 +45,7 @@ describe('UsaDateRangePicker', () => {
       </UsaDateRangePicker>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('.usa-date-range-picker').should('exist')
 
@@ -956,7 +955,7 @@ describe('UsaDateRangePicker', () => {
       </UsaDateRangePicker>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('.usa-date-range-picker').should('exist')
 
@@ -1860,7 +1859,7 @@ describe('UsaDateRangePicker', () => {
       </UsaDateRangePicker>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get(
       '.usa-date-range-picker__range-start .usa-date-picker__external-input'

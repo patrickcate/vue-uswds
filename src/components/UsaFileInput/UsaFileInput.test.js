@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaFileInput from './UsaFileInput.vue'
 import {
   spacer as genericIconBase64Data,
@@ -13,7 +12,7 @@ import {
 
 describe('UsaFileInput', () => {
   it('renders the component', () => {
-    mount(UsaFileInput, {
+    cy.mount(UsaFileInput, {
       attrs: {
         'data-test': 'test',
       },
@@ -158,7 +157,7 @@ describe('UsaFileInput', () => {
   })
 
   it('stops invalid files from being added', () => {
-    mount(UsaFileInput, {
+    cy.mount(UsaFileInput, {
       props: {
         accept: 'image/* , .pdf',
       },
@@ -296,7 +295,7 @@ describe('UsaFileInput', () => {
   })
 
   it('adds icons for specific file types', () => {
-    mount(UsaFileInput, {
+    cy.mount(UsaFileInput, {
       props: {
         accept:
           'image/*,.pdf,.doc, .docx,.pages,.xls,.xlsx,.numbers,.mov,.mp4 ',
@@ -507,7 +506,7 @@ describe('UsaFileInput', () => {
   })
 
   it('generates previews for many image types', () => {
-    mount(UsaFileInput, {
+    cy.mount(UsaFileInput, {
       props: {
         accept: 'image/*',
         multiple: true,
@@ -620,7 +619,7 @@ describe('UsaFileInput', () => {
   })
 
   it('component is disabled when `disabled` prop is `true`', () => {
-    mount(UsaFileInput, {
+    cy.mount(UsaFileInput, {
       props: {
         label: 'Disabled',
         disabled: true,
@@ -685,7 +684,7 @@ describe('UsaFileInput', () => {
   })
 
   it('form group and slot content displays', () => {
-    mount(UsaFileInput, {
+    cy.mount(UsaFileInput, {
       props: {
         label: 'Should not display',
         required: true,
@@ -706,7 +705,9 @@ describe('UsaFileInput', () => {
           `Number of loaded files: ${loadedFiles.length}`,
         'invalid-files-message': () => 'Test invalid file message slot',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-form-group')
       .should('have.class', 'usa-form-group--error')
@@ -783,7 +784,7 @@ describe('UsaFileInput', () => {
   })
 
   it('error message slot must be used to display error message', () => {
-    mount(UsaFileInput, {
+    cy.mount(UsaFileInput, {
       props: {
         id: 'test-id',
         error: true,
@@ -796,7 +797,7 @@ describe('UsaFileInput', () => {
   })
 
   it('uses custom CSS classes', () => {
-    mount(UsaFileInput, {
+    cy.mount(UsaFileInput, {
       props: {
         label: 'Custom classes',
         error: true,
@@ -811,7 +812,9 @@ describe('UsaFileInput', () => {
         hint: () => 'Test hint slot',
         'error-message': () => 'Test error slot',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-form-group').should('have.class', 'test-form-group')
     cy.get('.usa-label').should('have.class', 'test-label')
@@ -827,11 +830,13 @@ describe('UsaFileInput', () => {
   })
 
   it('emits loaded files on change', () => {
-    mount(UsaFileInput, {
+    cy.mount(UsaFileInput, {
       props: {
         multiple: true,
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-file-input__input').as('input').should('have.value', '')
 

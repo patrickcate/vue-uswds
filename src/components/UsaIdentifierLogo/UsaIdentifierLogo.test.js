@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaIdentifierLogo from './UsaIdentifierLogo.vue'
 
 describe('UsaIdentifierLogo', () => {
   it('renders the component', () => {
-    mount(UsaIdentifierLogo, {
+    cy.mount(UsaIdentifierLogo, {
       slots: {
         default: () => 'Test default slot',
       },
@@ -15,7 +14,7 @@ describe('UsaIdentifierLogo', () => {
   })
 
   it('displays logo image', () => {
-    mount(UsaIdentifierLogo, {
+    cy.mount(UsaIdentifierLogo, {
       props: {
         href: '/test-page',
         src: '/assets/img/circle-gray-20.svg',

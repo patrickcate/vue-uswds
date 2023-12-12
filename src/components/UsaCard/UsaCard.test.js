@@ -1,6 +1,5 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
-import { mount } from '@cypress/vue'
 import UsaCard from './UsaCard.vue'
 
 describe('UsaCard', () => {
@@ -24,7 +23,7 @@ describe('UsaCard', () => {
   ])
 
   it('renders the component', () => {
-    mount(UsaCard, {
+    cy.mount(UsaCard, {
       props: {
         heading: 'Card',
       },
@@ -46,7 +45,7 @@ describe('UsaCard', () => {
   })
 
   it('correct CSS classes are applied for each prop value', () => {
-    mount(UsaCard, {
+    cy.mount(UsaCard, {
       props: {
         heading: 'Card prop classes',
         flag: true,
@@ -77,7 +76,7 @@ describe('UsaCard', () => {
   })
 
   it('uses the `heading` slot content', () => {
-    mount(UsaCard, {
+    cy.mount(UsaCard, {
       props: {
         heading: 'Card',
       },
@@ -93,7 +92,7 @@ describe('UsaCard', () => {
   })
 
   it('renders custom heading tag', () => {
-    mount(UsaCard, {
+    cy.mount(UsaCard, {
       props: {
         heading: 'Card w/ h4 heading tag',
         headingTag: 'h4',
@@ -109,7 +108,7 @@ describe('UsaCard', () => {
   })
 
   it('does not render header if prop or slot is not used', () => {
-    mount(UsaCard, {
+    cy.mount(UsaCard, {
       slots: {
         media: () => testMedia,
         default: () => testContent,
@@ -121,7 +120,7 @@ describe('UsaCard', () => {
   })
 
   it('renders custom card tag', () => {
-    mount(UsaCard, {
+    cy.mount(UsaCard, {
       props: {
         heading: 'Card w/ custom element',
         cardTag: 'section',
@@ -137,7 +136,7 @@ describe('UsaCard', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaCard, {
+    cy.mount(UsaCard, {
       props: {
         heading: 'Card w/ custom classes',
         customClasses: {

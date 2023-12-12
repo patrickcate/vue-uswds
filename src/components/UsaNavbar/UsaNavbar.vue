@@ -1,6 +1,6 @@
 <script setup>
 import { provide } from 'vue'
-import useMobileMenu from '@/composables/useMobileMenu.js'
+import { useMobileMenu } from '@/composables/useMobileMenu.js'
 
 const emit = defineEmits(['mobileMenuOpen'])
 

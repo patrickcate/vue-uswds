@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaNavbar from './UsaNavbar.vue'
 
 describe('UsaNavbar', () => {
   it('renders the component', () => {
-    mount(UsaNavbar, {}).as('wrapper')
+    cy.mount(UsaNavbar, {}).its('wrapper').as('wrapper')
 
     cy.get('div.usa-navbar').should('exist')
     cy.get('button.usa-menu-btn')
@@ -30,7 +29,7 @@ describe('UsaNavbar', () => {
   })
 
   it('custom slot content is rendered', () => {
-    mount(UsaNavbar, {
+    cy.mount(UsaNavbar, {
       slots: {
         default: () => h('span', {}, 'Test default slot content'),
         'menu-button': ({ menuButtonLabel }) =>
@@ -43,7 +42,7 @@ describe('UsaNavbar', () => {
   })
 
   it('button contains custom label text', () => {
-    mount(UsaNavbar, {
+    cy.mount(UsaNavbar, {
       props: {
         menuButtonLabel: 'Custom Menu',
       },
@@ -53,7 +52,7 @@ describe('UsaNavbar', () => {
   })
 
   it('button has custom CSS class', () => {
-    mount(UsaNavbar, {
+    cy.mount(UsaNavbar, {
       props: {
         customClasses: {
           button: ['test-button-class'],

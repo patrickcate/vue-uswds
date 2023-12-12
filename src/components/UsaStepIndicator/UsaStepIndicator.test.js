@@ -1,13 +1,12 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
-import { mount } from '@cypress/vue'
 import UsaStepIndicator from './UsaStepIndicator.vue'
 
 const testSteps = ['First Step', 'Second Step', 'Third Step', 'Fourth Step']
 
 describe('UsaStepIndicator', () => {
   it('renders the component', () => {
-    mount(UsaStepIndicator, {
+    cy.mount(UsaStepIndicator, {
       props: {
         steps: testSteps,
       },
@@ -65,7 +64,7 @@ describe('UsaStepIndicator', () => {
   })
 
   it('adds the correct CSS classes for each prop', () => {
-    mount(UsaStepIndicator, {
+    cy.mount(UsaStepIndicator, {
       props: {
         steps: testSteps,
         counters: true,
@@ -97,7 +96,7 @@ describe('UsaStepIndicator', () => {
   })
 
   it('renders custom heading tag', () => {
-    mount(UsaStepIndicator, {
+    cy.mount(UsaStepIndicator, {
       props: {
         steps: testSteps,
         headingTag: 'h4',
@@ -108,12 +107,14 @@ describe('UsaStepIndicator', () => {
   })
 
   it('status CSS classes, attributes, and text, is applied to segments when steps change', () => {
-    mount(UsaStepIndicator, {
+    cy.mount(UsaStepIndicator, {
       props: {
         steps: testSteps,
         currentStepNumber: 1,
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('li.usa-step-indicator__segment:nth-child(1)').as('step1')
     cy.get('li.usa-step-indicator__segment:nth-child(2)').as('step2')
@@ -264,7 +265,7 @@ describe('UsaStepIndicator', () => {
   })
 
   it('uses the `default` slot content', () => {
-    mount(UsaStepIndicator, {
+    cy.mount(UsaStepIndicator, {
       props: {
         steps: testSteps,
       },
@@ -279,7 +280,7 @@ describe('UsaStepIndicator', () => {
   })
 
   it('uses the `header` slot content', () => {
-    mount(UsaStepIndicator, {
+    cy.mount(UsaStepIndicator, {
       props: {
         steps: testSteps,
       },
@@ -294,11 +295,13 @@ describe('UsaStepIndicator', () => {
   it('warns in console about invalid step number being < 1', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaStepIndicator, {
+    cy.mount(UsaStepIndicator, {
       props: {
         steps: testSteps,
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@wrapper').invoke('setProps', { currentStepNumber: 0 })
 

@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaCollection from './UsaCollection.vue'
 import UsaCollectionItem from '@/components/UsaCollectionItem'
 import UsaCollectionHeading from '@/components/UsaCollectionHeading'
@@ -20,7 +19,7 @@ describe('UsaCollection', () => {
   }
 
   it('renders the component', () => {
-    mount(CollectionWrapper, {
+    cy.mount(CollectionWrapper, {
       slots: {
         default: () => 'Test',
       },
@@ -30,7 +29,7 @@ describe('UsaCollection', () => {
   })
 
   it('adds the `condensed` prop CSS class', () => {
-    mount(CollectionWrapper, {
+    cy.mount(CollectionWrapper, {
       props: {
         condensed: true,
       },

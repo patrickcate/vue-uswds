@@ -1,7 +1,7 @@
 import { ref, computed, readonly, watch } from 'vue'
 import { nextId } from '@/utils/unique-id.js'
 
-export default (_id, idPrefix = '', defaultOpen = false, emit) => {
+export function useToggle(_id, idPrefix = '', defaultOpen = false, emit) {
   const propValue = ref(defaultOpen)
   const isOpen = ref(propValue.value)
 

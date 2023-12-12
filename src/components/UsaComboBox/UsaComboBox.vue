@@ -6,7 +6,7 @@ export default {
 
 <script setup>
 import { computed, useSlots, toRef } from 'vue'
-import useComboBox from '@/composables/useComboBox'
+import { useComboBox } from '@/composables/useComboBox'
 import UsaFormGroup from '@/components/UsaFormGroup'
 import UsaLabel from '@/components/UsaLabel'
 

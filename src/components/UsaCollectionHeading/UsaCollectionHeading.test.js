@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaCollectionHeading from './UsaCollectionHeading.vue'
 
 describe('UsaCollectionHeading', () => {
   it('renders the component', () => {
-    mount(UsaCollectionHeading, {
+    cy.mount(UsaCollectionHeading, {
       props: {
         header: 'Test header text',
         href: '/test-page',
@@ -23,7 +22,7 @@ describe('UsaCollectionHeading', () => {
   })
 
   it('uses the `heading` slot content', () => {
-    mount(UsaCollectionHeading, {
+    cy.mount(UsaCollectionHeading, {
       props: {
         header: 'Test header text',
       },
@@ -39,7 +38,7 @@ describe('UsaCollectionHeading', () => {
   })
 
   it('renders custom heading tag', () => {
-    mount(UsaCollectionHeading, {
+    cy.mount(UsaCollectionHeading, {
       props: {
         header: 'Test header text',
         headingTag: 'h4',
@@ -50,7 +49,7 @@ describe('UsaCollectionHeading', () => {
   })
 
   it('renders the custom router link tag and props', () => {
-    mount(UsaCollectionHeading, {
+    cy.mount(UsaCollectionHeading, {
       props: {
         heading: 'Test header text',
         to: '/test-page',
@@ -62,7 +61,7 @@ describe('UsaCollectionHeading', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaCollectionHeading, {
+    cy.mount(UsaCollectionHeading, {
       props: {
         header: 'Test header text',
         customClasses: {

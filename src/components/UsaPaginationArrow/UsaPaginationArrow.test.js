@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaPaginationArrow from './UsaPaginationArrow.vue'
 
 describe('UsaPaginationArrow', () => {
@@ -10,13 +9,15 @@ describe('UsaPaginationArrow', () => {
   })
 
   it('renders the component', () => {
-    mount(UsaPaginationArrow, {
+    cy.mount(UsaPaginationArrow, {
       props: {
         direction: 'previous',
         label: 'Previous',
         ariaLabel: 'Previous page',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('li.usa-pagination__item.usa-pagination__arrow')
       .as('arrowItem')
@@ -52,7 +53,7 @@ describe('UsaPaginationArrow', () => {
   })
 
   it('default slot override `label` prop', () => {
-    mount(UsaPaginationArrow, {
+    cy.mount(UsaPaginationArrow, {
       props: {
         direction: 'previous',
         label: 'Previous',
@@ -71,7 +72,7 @@ describe('UsaPaginationArrow', () => {
   })
 
   it('renders default icon svgs', () => {
-    mount(UsaPaginationArrow, {
+    cy.mount(UsaPaginationArrow, {
       props: {
         direction: 'previous',
         label: 'Previous',
@@ -82,7 +83,9 @@ describe('UsaPaginationArrow', () => {
           'vueUswds.svgSpritePath': '/test.svg',
         },
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-pagination__arrow svg')
       .as('arrowSvg')
@@ -114,7 +117,7 @@ describe('UsaPaginationArrow', () => {
   })
 
   it('renders custom `before` and `after` slot content', () => {
-    mount(UsaPaginationArrow, {
+    cy.mount(UsaPaginationArrow, {
       props: {
         direction: 'previous',
         label: 'Previous',
@@ -124,7 +127,9 @@ describe('UsaPaginationArrow', () => {
         before: () => 'Test previous slot',
         after: () => 'Test next slot',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-pagination__arrow').as('arrowItem').should('exist')
 
@@ -144,7 +149,7 @@ describe('UsaPaginationArrow', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaPaginationArrow, {
+    cy.mount(UsaPaginationArrow, {
       props: {
         direction: 'previous',
         label: 'Previous',
@@ -170,7 +175,7 @@ describe('UsaPaginationArrow', () => {
   it('warns in console about invalid direction prop', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaPaginationArrow, {
+    cy.mount(UsaPaginationArrow, {
       props: {
         direction: 'notdirection',
         label: 'Previous',
@@ -187,7 +192,7 @@ describe('UsaPaginationArrow', () => {
   it('warns in console about required aria-label prop', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaPaginationArrow, {
+    cy.mount(UsaPaginationArrow, {
       props: {
         direction: 'previous',
         label: 'Previous',
@@ -201,13 +206,15 @@ describe('UsaPaginationArrow', () => {
   })
 
   it('should only have `usa-button--unstyled` CSS class if button', () => {
-    mount(UsaPaginationArrow, {
+    cy.mount(UsaPaginationArrow, {
       props: {
         direction: 'previous',
         label: 'Previous',
         ariaLabel: 'Previous page',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-pagination__arrow button').should(
       'have.class',
@@ -225,7 +232,7 @@ describe('UsaPaginationArrow', () => {
   })
 
   it('renders as `router-link` if vue-router is detected', () => {
-    mount(UsaPaginationArrow, {
+    cy.mount(UsaPaginationArrow, {
       props: {
         direction: 'previous',
         label: 'Previous',
@@ -243,7 +250,7 @@ describe('UsaPaginationArrow', () => {
   })
 
   it('renders as `nuxt-link` if nuxt is detected', () => {
-    mount(UsaPaginationArrow, {
+    cy.mount(UsaPaginationArrow, {
       props: {
         direction: 'previous',
         label: 'Previous',

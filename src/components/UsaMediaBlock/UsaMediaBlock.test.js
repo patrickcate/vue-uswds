@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaMediaBlock from './UsaMediaBlock.vue'
 
 describe('UsaMediaBlock', () => {
   it('renders the component', () => {
-    mount(UsaMediaBlock, {
+    cy.mount(UsaMediaBlock, {
       slots: {
         media: () => 'Test media slot',
         default: () => 'Test default slot',
@@ -17,7 +16,7 @@ describe('UsaMediaBlock', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaMediaBlock, {
+    cy.mount(UsaMediaBlock, {
       props: {
         customClasses: {
           media: ['test-media-class'],

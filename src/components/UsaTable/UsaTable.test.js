@@ -1,10 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
-import { naturalSort } from '@/utils/sorting.js'
+import { createNaturalSort } from '@/utils/sorting.js'
 import { h } from 'vue'
 import UsaTable from './UsaTable.vue'
 
 describe('UsaTable', () => {
+  const naturalSort = createNaturalSort()
   let testHeaders
   let testRows
 
@@ -165,7 +165,7 @@ describe('UsaTable', () => {
       },
     ]
 
-    mount(UsaTable, {
+    cy.mount(UsaTable, {
       props: {
         headers: testHeaders,
         rows: testRows,
@@ -308,7 +308,7 @@ describe('UsaTable', () => {
   })
 
   it('uses slot content', () => {
-    mount(UsaTable, {
+    cy.mount(UsaTable, {
       props: {
         caption: 'Test caption',
         headers: testHeaders,
@@ -319,7 +319,9 @@ describe('UsaTable', () => {
         headers: () => h('tr', {}, [h('th', {}, 'Test header slot content.')]),
         default: () => h('tr', {}, [h('td', {}, 'Test default slot content.')]),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-table caption').should('contain', 'Test caption slot.')
     cy.get('.usa-table thead > tr > th').should(
@@ -341,7 +343,7 @@ describe('UsaTable', () => {
   })
 
   it('wraps scrollable table in div', () => {
-    mount(UsaTable, {
+    cy.mount(UsaTable, {
       props: {
         caption: 'Test caption',
         scrollable: true,
@@ -373,7 +375,7 @@ describe('UsaTable', () => {
   })
 
   it('add CSS classes for styling props', () => {
-    mount(UsaTable, {
+    cy.mount(UsaTable, {
       props: {
         caption: 'Test caption',
         borderless: true,
@@ -399,7 +401,7 @@ describe('UsaTable', () => {
       row => row.percent?.sortValue || row.percent
     )
 
-    mount(UsaTable, {
+    cy.mount(UsaTable, {
       props: {
         defaultSortHeader: 'percent',
         defaultSortDirection: 'descending',
@@ -476,7 +478,7 @@ describe('UsaTable', () => {
   })
 
   it('only the age column is sortable', () => {
-    mount(UsaTable, {
+    cy.mount(UsaTable, {
       props: {
         caption: 'Test Table',
         headers: [
@@ -547,7 +549,7 @@ describe('UsaTable', () => {
   })
 
   it('uses header and body scoped slots', () => {
-    mount(UsaTable, {
+    cy.mount(UsaTable, {
       props: {
         headers: [
           'User ID',

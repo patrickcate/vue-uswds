@@ -1,6 +1,5 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
-import { mount } from '@cypress/vue'
 import UsaProcessList from '@/components/UsaProcessList'
 import UsaProcessListItem from './UsaProcessListItem.vue'
 
@@ -23,7 +22,7 @@ describe('UsaProcessListItem', () => {
   }
 
   it('renders the component', () => {
-    mount(ProcessListWrapper, {})
+    cy.mount(ProcessListWrapper, {})
 
     cy.get('ol.usa-process-list').should('exist')
     cy.get('li.usa-process-list__item').should('exist')
@@ -54,7 +53,7 @@ describe('UsaProcessListItem', () => {
       `,
     }
 
-    mount(ProcessListWrapper, {})
+    cy.mount(ProcessListWrapper, {})
 
     cy.get('.test-heading-class').should('exist')
   })
@@ -74,7 +73,7 @@ describe('UsaProcessListItem', () => {
       `,
     }
 
-    mount(ProcessListWrapper, {})
+    cy.mount(ProcessListWrapper, {})
 
     cy.get('.usa-process-list__heading').should('contain', 'Test Heading Slot')
   })
@@ -91,7 +90,7 @@ describe('UsaProcessListItem', () => {
       `,
     }
 
-    mount(ProcessListWrapper, {})
+    cy.mount(ProcessListWrapper, {})
 
     cy.get('h1.usa-process-list__heading').should('exist')
   })
@@ -108,7 +107,7 @@ describe('UsaProcessListItem', () => {
       `,
     }
 
-    mount(UsaProcessList, {
+    cy.mount(UsaProcessList, {
       slots: {
         default: () => h(processListItem),
       },
@@ -129,7 +128,7 @@ describe('UsaProcessListItem', () => {
       `,
     }
 
-    mount(UsaProcessList, {
+    cy.mount(UsaProcessList, {
       slots: {
         default: () => h(processListItem),
       },

@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaIcon from './UsaIcon.vue'
 
 describe('UsaIcon', () => {
   it('renders the component', () => {
-    mount(UsaIcon, {
+    cy.mount(UsaIcon, {
       props: {
         name: 'flag',
       },
@@ -24,7 +23,7 @@ describe('UsaIcon', () => {
   })
 
   it('attribute values match prop values', () => {
-    mount(UsaIcon, {
+    cy.mount(UsaIcon, {
       props: {
         name: 'github',
         ariaHidden: false,
@@ -49,7 +48,7 @@ describe('UsaIcon', () => {
   })
 
   it('custom slot content is used', () => {
-    mount(UsaIcon, {
+    cy.mount(UsaIcon, {
       props: {
         name: 'bug_report',
       },
@@ -64,7 +63,7 @@ describe('UsaIcon', () => {
   it('warns in console about invalid `size` prop', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaIcon, {
+    cy.mount(UsaIcon, {
       props: {
         name: 'zoom_out_map',
         size: 10,

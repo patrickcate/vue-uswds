@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaStepIndicatorHeader from './UsaStepIndicatorHeader.vue'
 
 const testSteps = ['First Step', 'Second Step', 'Third Step', 'Fourth Step']
@@ -11,7 +10,7 @@ const defaultProps = {
 
 describe('UsaStepIndicatorHeader', () => {
   it('renders the component', () => {
-    mount(UsaStepIndicatorHeader, {
+    cy.mount(UsaStepIndicatorHeader, {
       props: {
         ...defaultProps,
       },
@@ -28,7 +27,7 @@ describe('UsaStepIndicatorHeader', () => {
   })
 
   it('renders custom heading tag', () => {
-    mount(UsaStepIndicatorHeader, {
+    cy.mount(UsaStepIndicatorHeader, {
       props: {
         ...defaultProps,
         headingTag: 'h4',
@@ -39,7 +38,7 @@ describe('UsaStepIndicatorHeader', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaStepIndicatorHeader, {
+    cy.mount(UsaStepIndicatorHeader, {
       props: {
         ...defaultProps,
         customClasses: {
@@ -56,11 +55,13 @@ describe('UsaStepIndicatorHeader', () => {
   })
 
   it('correct step number and header are displayed when step changes', () => {
-    mount(UsaStepIndicatorHeader, {
+    cy.mount(UsaStepIndicatorHeader, {
       props: {
         ...defaultProps,
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     let currentStep = 1
 
@@ -86,11 +87,13 @@ describe('UsaStepIndicatorHeader', () => {
   it('the displayed current step is always > 0 and < total steps', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaStepIndicatorHeader, {
+    cy.mount(UsaStepIndicatorHeader, {
       props: {
         ...defaultProps,
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-step-indicator__current-step').should('contain', 1)
     cy.get('.usa-step-indicator__heading-text').should('contain', testSteps[0])

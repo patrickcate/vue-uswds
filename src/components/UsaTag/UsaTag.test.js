@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaTag from './UsaTag.vue'
 
 describe('UsaTag', () => {
   it('renders the component', () => {
-    mount(UsaTag, {
+    cy.mount(UsaTag, {
       slots: {
         default: () => 'Test',
       },
@@ -13,7 +12,7 @@ describe('UsaTag', () => {
   })
 
   it('renders the size class', () => {
-    mount(UsaTag, {
+    cy.mount(UsaTag, {
       slots: {
         default: () => 'Test',
       },
@@ -25,7 +24,7 @@ describe('UsaTag', () => {
   })
 
   it('renders as a custom HTML element', () => {
-    mount(UsaTag, {
+    cy.mount(UsaTag, {
       slots: {
         default: () => 'Test',
       },
@@ -39,7 +38,7 @@ describe('UsaTag', () => {
   it('warns in console about invalid size', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaTag, {
+    cy.mount(UsaTag, {
       slots: {
         default: () => 'Test',
       },

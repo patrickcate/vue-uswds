@@ -6,7 +6,7 @@ import {
   GRID_NAMESPACE,
   FOOTER_NAV_COLLAPSIBLE_BREAKPOINT,
 } from '@/utils/constants.js'
-import useAccordion from '@/composables/useAccordion.js'
+import { useAccordion } from '@/composables/useAccordion.js'
 import UsaFooterCollapsibleMenuSection from '@/components/UsaFooterCollapsibleMenuSection'
 
 const prefixSeparator = inject('vueUswds.prefixSeparator', PREFIX_SEPARATOR)

@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaIdentiferMoreInfo from './UsaIdentiferMoreInfo.vue'
 
 describe('UsaIdentiferMoreInfo', () => {
   it('renders the component', () => {
-    mount(UsaIdentiferMoreInfo, {})
+    cy.mount(UsaIdentiferMoreInfo, {})
 
     cy.get('.usa-identifier__section')
       .should('have.class', 'usa-identifier__section--usagov')
@@ -28,7 +27,7 @@ describe('UsaIdentiferMoreInfo', () => {
   })
 
   it('use custom prop text', () => {
-    mount(UsaIdentiferMoreInfo, {
+    cy.mount(UsaIdentiferMoreInfo, {
       props: {
         ariaLabel: 'Test aria label',
         description: 'Test description',

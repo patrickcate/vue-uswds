@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import {
   MONTH_LABELS,
   DAY_OF_WEEK_LABELS,
@@ -51,7 +50,7 @@ describe('UsaDatePickerCalendarDay', () => {
       ></UsaDatePickerCalendarDay>`,
     }
 
-    mount(wrapperComponent, {
+    cy.mount(wrapperComponent, {
       global: {
         provide: {
           inputHighlightedDate: ref(''),
@@ -719,7 +718,7 @@ describe('UsaDatePickerCalendarDay', () => {
         ></UsaDatePickerCalendarDay>`,
     }
 
-    mount(wrapperComponent, {
+    cy.mount(wrapperComponent, {
       global: {
         provide: {
           inputHighlightedDate: ref(''),
@@ -1702,7 +1701,7 @@ describe('UsaDatePickerCalendarDay', () => {
       ></UsaDatePickerCalendarDay>`,
     }
 
-    mount(wrapperComponent, {
+    cy.mount(wrapperComponent, {
       global: {
         provide: {
           inputHighlightedDate: ref(''),
@@ -1870,7 +1869,7 @@ describe('UsaDatePickerCalendarDay', () => {
       ></UsaDatePickerCalendarDay>`,
     }
 
-    mount(wrapperComponent, {
+    cy.mount(wrapperComponent, {
       global: {
         provide: {
           inputHighlightedDate: ref(''),
@@ -2004,7 +2003,7 @@ describe('UsaDatePickerCalendarDay', () => {
       ></UsaDatePickerCalendarDay>`,
     }
 
-    mount(wrapperComponent, {
+    cy.mount(wrapperComponent, {
       global: {
         provide: {
           inputHighlightedDate: ref(''),
@@ -2096,7 +2095,7 @@ describe('UsaDatePickerCalendarDay', () => {
   })
 
   it('calendar updates to reflect new selected, min, and max dates', () => {
-    mount(UsaDatePickerCalendarDay, {
+    cy.mount(UsaDatePickerCalendarDay, {
       props: {
         selectedDate: '2022-06-15',
         activeDate: '2022-06-15',
@@ -2119,7 +2118,9 @@ describe('UsaDatePickerCalendarDay', () => {
           inputHighlightedDate: ref(''),
         },
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-date-picker__calendar__table > tbody > tr')
       .should('have.length', 5)
@@ -2246,7 +2247,7 @@ describe('UsaDatePickerCalendarDay', () => {
   })
 
   it('correct selected date and open values are emitted', () => {
-    mount(UsaDatePickerCalendarDay, {
+    cy.mount(UsaDatePickerCalendarDay, {
       props: {
         selectedDate: '2022-06-15',
         activeDate: '2022-06-15',
@@ -2269,7 +2270,9 @@ describe('UsaDatePickerCalendarDay', () => {
           inputHighlightedDate: ref(''),
         },
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@wrapper')
       .vue()
@@ -2301,7 +2304,7 @@ describe('UsaDatePickerCalendarDay', () => {
   })
 
   it('month select value is emitted', () => {
-    mount(UsaDatePickerCalendarDay, {
+    cy.mount(UsaDatePickerCalendarDay, {
       props: {
         selectedDate: '2022-06-15',
         activeDate: '2022-06-15',
@@ -2324,7 +2327,9 @@ describe('UsaDatePickerCalendarDay', () => {
           inputHighlightedDate: ref(''),
         },
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@wrapper')
       .vue()
@@ -2348,7 +2353,7 @@ describe('UsaDatePickerCalendarDay', () => {
       })
   })
   it('year select value is emitted', () => {
-    mount(UsaDatePickerCalendarDay, {
+    cy.mount(UsaDatePickerCalendarDay, {
       props: {
         selectorMode: 'day',
         selectedDate: '2022-06-15',
@@ -2372,7 +2377,9 @@ describe('UsaDatePickerCalendarDay', () => {
           inputHighlightedDate: ref(''),
         },
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@wrapper')
       .vue()
@@ -2397,7 +2404,7 @@ describe('UsaDatePickerCalendarDay', () => {
   })
 
   it('marked as dirty after change in highlighted date', () => {
-    mount(UsaDatePickerCalendarDay, {
+    cy.mount(UsaDatePickerCalendarDay, {
       props: {
         selectedDate: '',
         activeDate: '2022-06-15',
@@ -2420,7 +2427,9 @@ describe('UsaDatePickerCalendarDay', () => {
           inputHighlightedDate: ref(''),
         },
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@wrapper')
       .vue()

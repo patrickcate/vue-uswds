@@ -1,6 +1,5 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
-import { mount } from '@cypress/vue'
 import UsaSidenav from './UsaSidenav.vue'
 
 const testItems = [
@@ -98,7 +97,7 @@ describe('UsaSidenav', () => {
   })
 
   it('renders the component', () => {
-    mount(UsaSidenav, {
+    cy.mount(UsaSidenav, {
       props: {
         items: testItems,
       },
@@ -311,7 +310,7 @@ describe('UsaSidenav', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaSidenav, {
+    cy.mount(UsaSidenav, {
       props: {
         items: testItems,
         customClasses: {
@@ -330,7 +329,7 @@ describe('UsaSidenav', () => {
   })
 
   it('render custom aria label', () => {
-    mount(UsaSidenav, {
+    cy.mount(UsaSidenav, {
       props: {
         items: testItems,
         ariaLabel: 'Custom aria label',
@@ -343,7 +342,7 @@ describe('UsaSidenav', () => {
   })
 
   it('uses custom slot content', () => {
-    mount(UsaSidenav, {
+    cy.mount(UsaSidenav, {
       props: {
         items: testItems,
       },

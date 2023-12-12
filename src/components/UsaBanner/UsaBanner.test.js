@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaBanner from './UsaBanner.vue'
 
 describe('UsaBanner', () => {
   it('renders the component', () => {
-    mount(UsaBanner, {
+    cy.mount(UsaBanner, {
       props: {
         customClasses: {},
       },
@@ -78,7 +77,7 @@ describe('UsaBanner', () => {
   })
 
   it('uses custom prop text', () => {
-    mount(UsaBanner, {
+    cy.mount(UsaBanner, {
       props: {
         open: true,
         ariaLabel: 'Test arial label',
@@ -106,7 +105,7 @@ describe('UsaBanner', () => {
   })
 
   it('uses custom CSS classes', () => {
-    mount(UsaBanner, {
+    cy.mount(UsaBanner, {
       props: {
         customClasses: {
           accordion: ['test-banner-class'],
@@ -126,7 +125,7 @@ describe('UsaBanner', () => {
   })
 
   it('click button toggle banner open/close', () => {
-    mount(UsaBanner, {
+    cy.mount(UsaBanner, {
       props: {
         id: 'test-id',
       },
@@ -201,16 +200,20 @@ describe('UsaBanner', () => {
   })
 
   it('v-model binds to open prop and emits update event', () => {
-    const wrapper = mount(UsaBanner, {
-      props: {
-        open: false,
-        'onUpdate:open': async open => {
-          await wrapper.vue().then(vm => {
-            vm.setProps({ open: open })
-          })
+    // eslint-disable-next-line cypress/no-assigning-return-values
+    const wrapper = cy
+      .mount(UsaBanner, {
+        props: {
+          open: false,
+          'onUpdate:open': async open => {
+            await wrapper.vue().then(vm => {
+              vm.setProps({ open: open })
+            })
+          },
         },
-      },
-    }).as('wrapper')
+      })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-banner__button').as('button').click()
 
@@ -236,7 +239,7 @@ describe('UsaBanner', () => {
   })
 
   it('uses custom slot content', () => {
-    mount(UsaBanner, {
+    cy.mount(UsaBanner, {
       props: {
         open: true,
         actionText: 'Scoped slot button action text',
@@ -272,7 +275,7 @@ describe('UsaBanner', () => {
   })
 
   it('uses injected prop values', () => {
-    mount(UsaBanner, {
+    cy.mount(UsaBanner, {
       props: {},
       global: {
         provide: {

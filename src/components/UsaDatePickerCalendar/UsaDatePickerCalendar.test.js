@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { ref } from 'vue'
 import {
   MONTH_LABELS,
@@ -59,13 +58,15 @@ describe('UsaDatePickerCalendar', () => {
       ></UsaDatePickerCalendar>`,
     }
 
-    mount(wrapperComponent, {
+    cy.mount(wrapperComponent, {
       global: {
         provide: {
           inputHighlightedDate: ref(''),
         },
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-date-picker__calendar')
       .should('have.attr', 'role', 'dialog')
@@ -398,7 +399,7 @@ describe('UsaDatePickerCalendar', () => {
       ></UsaDatePickerCalendar>`,
     }
 
-    mount(wrapperComponent, {
+    cy.mount(wrapperComponent, {
       global: {
         provide: {
           inputHighlightedDate: ref(''),
@@ -414,58 +415,62 @@ describe('UsaDatePickerCalendar', () => {
   })
 
   it('events are emitted with correct values', () => {
-    const wrapper = mount(UsaDatePickerCalendar, {
-      props: {
-        open: false,
-        selectorMode: 'day',
-        selectedDate: '1997-07-03',
-        activeDate: '1997-07-03',
-        highlightedDate: '',
-        minDate: '1997-06-03',
-        maxDate: '2020-06-03',
-        monthLabels: MONTH_LABELS,
-        dayOfWeekLabels: DAY_OF_WEEK_LABELS,
-        dayOfWeekAbbreviationLabels: DAY_OF_WEEK_ABBREVIATION_LABELS,
-        previousYearButtonLabel: 'Navigate back one year',
-        nextYearButtonLabel: 'Navigate forward one year',
-        previousMonthButtonLabel: 'Navigate back one month',
-        nextMonthButtonLabel: 'Navigate forward one month',
-        yearSelectionButtonLabel: '%s. Click to select year',
-        monthSelectionButtonLabel: '%s. Click to select month',
-        previousYearsButtonLabel: 'Navigate back 12 years',
-        nextYearsButtonLabel: 'Navigate forward 12 years',
-        'onUpdate:open': async open => {
-          await wrapper.vue().then(vm => {
-            vm.setProps({ open: open })
-          })
+    // eslint-disable-next-line cypress/no-assigning-return-values
+    const wrapper = cy
+      .mount(UsaDatePickerCalendar, {
+        props: {
+          open: false,
+          selectorMode: 'day',
+          selectedDate: '1997-07-03',
+          activeDate: '1997-07-03',
+          highlightedDate: '',
+          minDate: '1997-06-03',
+          maxDate: '2020-06-03',
+          monthLabels: MONTH_LABELS,
+          dayOfWeekLabels: DAY_OF_WEEK_LABELS,
+          dayOfWeekAbbreviationLabels: DAY_OF_WEEK_ABBREVIATION_LABELS,
+          previousYearButtonLabel: 'Navigate back one year',
+          nextYearButtonLabel: 'Navigate forward one year',
+          previousMonthButtonLabel: 'Navigate back one month',
+          nextMonthButtonLabel: 'Navigate forward one month',
+          yearSelectionButtonLabel: '%s. Click to select year',
+          monthSelectionButtonLabel: '%s. Click to select month',
+          previousYearsButtonLabel: 'Navigate back 12 years',
+          nextYearsButtonLabel: 'Navigate forward 12 years',
+          'onUpdate:open': async open => {
+            await wrapper.vue().then(vm => {
+              vm.setProps({ open: open })
+            })
+          },
+          'onUpdate:selectorMode': async mode => {
+            await wrapper.vue().then(vm => {
+              vm.setProps({ selectorMode: mode })
+            })
+          },
+          'onUpdate:selectedDate': async selectedDate => {
+            await wrapper.vue().then(vm => {
+              vm.setProps({ selectedDate: selectedDate })
+            })
+          },
+          'onUpdate:activeDate': async activeDate => {
+            await wrapper.vue().then(vm => {
+              vm.setProps({ activeDate: activeDate })
+            })
+          },
+          'onUpdate:highlightedDate': async highlightedDate => {
+            await wrapper.vue().then(vm => {
+              vm.setProps({ highlightedDate: highlightedDate })
+            })
+          },
         },
-        'onUpdate:selectorMode': async mode => {
-          await wrapper.vue().then(vm => {
-            vm.setProps({ selectorMode: mode })
-          })
+        global: {
+          provide: {
+            inputHighlightedDate: ref(''),
+          },
         },
-        'onUpdate:selectedDate': async selectedDate => {
-          await wrapper.vue().then(vm => {
-            vm.setProps({ selectedDate: selectedDate })
-          })
-        },
-        'onUpdate:activeDate': async activeDate => {
-          await wrapper.vue().then(vm => {
-            vm.setProps({ activeDate: activeDate })
-          })
-        },
-        'onUpdate:highlightedDate': async highlightedDate => {
-          await wrapper.vue().then(vm => {
-            vm.setProps({ highlightedDate: highlightedDate })
-          })
-        },
-      },
-      global: {
-        provide: {
-          inputHighlightedDate: ref(''),
-        },
-      },
-    }).as('wrapper')
+      })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-date-picker__calendar__date-picker').should('not.exist')
     cy.get('.usa-date-picker__calendar__month-picker').should('not.exist')

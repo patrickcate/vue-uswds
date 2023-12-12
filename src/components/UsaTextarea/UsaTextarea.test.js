@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaTextarea from './UsaTextarea.vue'
 
 describe('UsaTextarea', () => {
   it('renders the component', () => {
-    mount(UsaTextarea, {
+    cy.mount(UsaTextarea, {
       props: {
         label: 'Test label',
       },
@@ -32,7 +31,7 @@ describe('UsaTextarea', () => {
   })
 
   it('displays `label`, `hint`, and `error-message` slot content', () => {
-    mount(UsaTextarea, {
+    cy.mount(UsaTextarea, {
       props: {
         label: 'Test label',
         id: 'custom-id',
@@ -42,7 +41,9 @@ describe('UsaTextarea', () => {
         hint: () => 'Test hint slot',
         'error-message': () => 'Test error slot',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-form-group').should('not.have.class', 'usa-form-group--error')
 
@@ -81,7 +82,7 @@ describe('UsaTextarea', () => {
   })
 
   it('empty error message slot does not display if error prop is true', () => {
-    mount(UsaTextarea, {
+    cy.mount(UsaTextarea, {
       props: {
         label: 'Test label',
         error: true,
@@ -96,7 +97,7 @@ describe('UsaTextarea', () => {
   })
 
   it('add required attribute if `required` prop is true', () => {
-    mount(UsaTextarea, {
+    cy.mount(UsaTextarea, {
       props: {
         label: 'Test label',
         required: true,
@@ -128,12 +129,14 @@ describe('UsaTextarea', () => {
       '2xl': 'usa-input--2xl',
     }
 
-    mount(UsaTextarea, {
+    cy.mount(UsaTextarea, {
       props: {
         label: 'Test label',
         width: '',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-textarea').as('textarea')
 
@@ -148,12 +151,14 @@ describe('UsaTextarea', () => {
   })
 
   it('emits update event when value changes', () => {
-    mount(UsaTextarea, {
+    cy.mount(UsaTextarea, {
       props: {
         label: 'Test label',
         modelValue: 'This is some test text.',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-textarea')
       .as('textarea')
@@ -179,7 +184,7 @@ describe('UsaTextarea', () => {
   })
 
   it('uses custom CSS classes', () => {
-    mount(UsaTextarea, {
+    cy.mount(UsaTextarea, {
       props: {
         label: 'Test label',
         customClasses: {
@@ -199,7 +204,7 @@ describe('UsaTextarea', () => {
   it('warns in console invalid `width` prop value', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaTextarea, {
+    cy.mount(UsaTextarea, {
       props: {
         width: 'invalidwidth',
       },

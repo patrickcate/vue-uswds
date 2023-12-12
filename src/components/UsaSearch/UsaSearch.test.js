@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaSearch from './UsaSearch.vue'
 import { h } from 'vue'
 
 describe('UsaSearch', () => {
   it('renders the component', () => {
-    mount(UsaSearch, {})
+    cy.mount(UsaSearch, {})
 
     cy.get('form.usa-search')
       .should('have.class', 'usa-search--medium')
@@ -50,7 +49,7 @@ describe('UsaSearch', () => {
   })
 
   it('displays each variant size type', () => {
-    mount(UsaSearch, {}).as('wrapper')
+    cy.mount(UsaSearch, {}).its('wrapper').as('wrapper')
 
     cy.get('.usa-search').should('have.class', 'usa-search--medium')
 
@@ -80,7 +79,7 @@ describe('UsaSearch', () => {
   })
 
   it('uses custom `id`, `label`, `inputAttrs`, and `buttonLabel` prop values', () => {
-    mount(UsaSearch, {
+    cy.mount(UsaSearch, {
       props: {
         label: 'Test label',
         id: 'custom-id',
@@ -103,7 +102,7 @@ describe('UsaSearch', () => {
   })
 
   it('uses `icon` slot', () => {
-    mount(UsaSearch, {
+    cy.mount(UsaSearch, {
       props: {
         // Icon only displays with small variant.
         variant: 'small',
@@ -122,7 +121,7 @@ describe('UsaSearch', () => {
   })
 
   it('icon image path uses custom injected `imagePath` value', () => {
-    mount(UsaSearch, {
+    cy.mount(UsaSearch, {
       props: {},
       global: {
         provide: {
@@ -137,11 +136,13 @@ describe('UsaSearch', () => {
   })
 
   it('emits input event when changed', () => {
-    mount(UsaSearch, {
+    cy.mount(UsaSearch, {
       props: {
         modelValue: 'Test',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-input').as('input').should('have.value', 'Test')
 
@@ -166,7 +167,7 @@ describe('UsaSearch', () => {
   })
 
   it('uses custom CSS classes', () => {
-    mount(UsaSearch, {
+    cy.mount(UsaSearch, {
       props: {
         customClasses: {
           label: ['test-label-class'],
@@ -190,7 +191,7 @@ describe('UsaSearch', () => {
   it('warns in console invalid `variant` prop value', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaSearch, {
+    cy.mount(UsaSearch, {
       props: {
         variant: 'invalidvariant',
       },

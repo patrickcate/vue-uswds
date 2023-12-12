@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaIdentifierRequiredLinks from './UsaIdentifierRequiredLinks.vue'
 
 describe('UsaIdentifierRequiredLinks', () => {
@@ -18,7 +17,7 @@ describe('UsaIdentifierRequiredLinks', () => {
     ]
   })
   it('renders the component', () => {
-    mount(UsaIdentifierRequiredLinks, {})
+    cy.mount(UsaIdentifierRequiredLinks, {})
 
     cy.get('.usa-identifier__section--required-links')
       .should('have.class', 'usa-identifier__section')
@@ -32,7 +31,7 @@ describe('UsaIdentifierRequiredLinks', () => {
   })
 
   it('renders list of required links', () => {
-    mount(UsaIdentifierRequiredLinks, {
+    cy.mount(UsaIdentifierRequiredLinks, {
       props: {
         ariaLabel: 'Test aria label',
         items: testLinks,

@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaTextInput from './UsaTextInput.vue'
 
 describe('UsaTextInput', () => {
@@ -38,7 +37,7 @@ describe('UsaTextInput', () => {
   })
 
   it('renders the component', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
       },
@@ -71,7 +70,7 @@ describe('UsaTextInput', () => {
   })
 
   it('displays `label`, `hint`, and `error-message` slot content', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
         id: 'custom-id',
@@ -84,7 +83,9 @@ describe('UsaTextInput', () => {
         hint: () => 'Test hint slot',
         'error-message': () => 'Test error slot',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-form-group').should('not.have.class', 'usa-form-group--error')
 
@@ -123,7 +124,7 @@ describe('UsaTextInput', () => {
   })
 
   it('empty error message slot does not display if error prop is true', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
         error: true,
@@ -137,13 +138,13 @@ describe('UsaTextInput', () => {
   })
 
   it('does not display label element if `label` prop and slot are not used', () => {
-    mount(UsaTextInput, {})
+    cy.mount(UsaTextInput, {})
 
     cy.get('.usa-label').should('not.exist')
   })
 
   it('group input elements if `group` prop is true', () => {
-    mount(UsaTextInput, {}).as('wrapper')
+    cy.mount(UsaTextInput, {}).its('wrapper').as('wrapper')
 
     cy.get('.usa-form-group').should('not.exist')
 
@@ -153,7 +154,7 @@ describe('UsaTextInput', () => {
   })
 
   it('set `input` type prop for non-grouped input', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
         type: 'number',
@@ -165,7 +166,7 @@ describe('UsaTextInput', () => {
   })
 
   it('set `input` type prop for prefix/suffix grouped input', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
         type: 'number',
@@ -182,7 +183,7 @@ describe('UsaTextInput', () => {
   })
 
   it('add required attribute to non-prefix/non-suffix input if `required` prop is true', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
         required: true,
@@ -204,7 +205,7 @@ describe('UsaTextInput', () => {
   })
 
   it('add required attribute to prefix/suffix grouped input if `required` prop is true', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
         required: true,
@@ -228,7 +229,7 @@ describe('UsaTextInput', () => {
   })
 
   it('when prefix or suffix is used, input is grouped with them', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
         width: 'sm',
@@ -237,7 +238,9 @@ describe('UsaTextInput', () => {
         'input-prefix': () => '@',
         'input-suffix': () => '%',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-form-group > .usa-input').should('not.exist')
 
@@ -279,7 +282,7 @@ describe('UsaTextInput', () => {
   })
 
   it('clicking prefix or suffix sets focus on input', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
       },
@@ -288,7 +291,9 @@ describe('UsaTextInput', () => {
         'input-suffix': () => '%',
       },
       customClasses: {},
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     // Insert focusable element so focus can be moved to it.
     Cypress.$('body').append(
@@ -320,12 +325,14 @@ describe('UsaTextInput', () => {
   })
 
   it('emits update event when non-prefix/non-suffix input value changes', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
         modelValue: 'This is some test text.',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-input')
       .as('input')
@@ -351,7 +358,7 @@ describe('UsaTextInput', () => {
   })
 
   it('emits update event when prefix/suffix input value changes', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
         modelValue: 'This is some test text.',
@@ -359,7 +366,9 @@ describe('UsaTextInput', () => {
       slots: {
         'input-prefix': () => '@',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-input')
       .as('input')
@@ -385,7 +394,7 @@ describe('UsaTextInput', () => {
   })
 
   it('masked inputs are registered and unregistered', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test input',
         id: 'test-id',
@@ -396,7 +405,9 @@ describe('UsaTextInput', () => {
           unregisterInput: cy.stub().as('unregisterInput'),
         },
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@registerInput').should('be.calledWith', 'test-id')
 
@@ -406,12 +417,14 @@ describe('UsaTextInput', () => {
   })
 
   it('adds correct CSS class to input for `width` prop value', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
         width: '',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-input').as('input')
 
@@ -442,7 +455,7 @@ describe('UsaTextInput', () => {
       '2xl': 'usa-input-group--2xl',
     }
 
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
         width: '',
@@ -451,7 +464,9 @@ describe('UsaTextInput', () => {
       slots: {
         'input-suffix': () => '%',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-input-group').as('inputGroup')
 
@@ -473,7 +488,7 @@ describe('UsaTextInput', () => {
   })
 
   it('uses custom CSS classes', () => {
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         label: 'Test label',
         customClasses: {
@@ -501,7 +516,7 @@ describe('UsaTextInput', () => {
   it('warns in console invalid `width` prop value', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaTextInput, {
+    cy.mount(UsaTextInput, {
       props: {
         width: 'invalidwidth',
       },

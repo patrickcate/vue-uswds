@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaSelect from './UsaSelect.vue'
 
@@ -51,7 +50,7 @@ const testOptions = [
 
 describe('UsaSelect', () => {
   it('renders the component', () => {
-    mount(UsaSelect, {
+    cy.mount(UsaSelect, {
       props: {
         label: 'Test label',
       },
@@ -78,7 +77,7 @@ describe('UsaSelect', () => {
   })
 
   it('displays `label`, `hint`, and `error-message` slot content', () => {
-    mount(UsaSelect, {
+    cy.mount(UsaSelect, {
       props: {
         label: 'Test label',
         id: 'custom-id',
@@ -88,7 +87,9 @@ describe('UsaSelect', () => {
         hint: () => 'Test hint slot',
         'error-message': () => 'Test error slot',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-form-group').should('not.have.class', 'usa-form-group--error')
 
@@ -127,7 +128,7 @@ describe('UsaSelect', () => {
   })
 
   it('wraps component in form group if error message is displayed', () => {
-    mount(UsaSelect, {
+    cy.mount(UsaSelect, {
       props: {
         error: true,
       },
@@ -141,7 +142,7 @@ describe('UsaSelect', () => {
   })
 
   it('renders all select options from `options` prop', () => {
-    mount(UsaSelect, {
+    cy.mount(UsaSelect, {
       props: {
         label: 'Test label',
         options: testOptions,
@@ -243,7 +244,7 @@ describe('UsaSelect', () => {
   })
 
   it('add required attribute if `required` prop is true', () => {
-    mount(UsaSelect, {
+    cy.mount(UsaSelect, {
       props: {
         label: 'Test label',
         required: true,
@@ -263,7 +264,7 @@ describe('UsaSelect', () => {
   })
 
   it('renders default slot with bound `options` prop', () => {
-    mount(UsaSelect, {
+    cy.mount(UsaSelect, {
       props: {
         label: 'Test label',
         options: testOptions,
@@ -288,13 +289,15 @@ describe('UsaSelect', () => {
   })
 
   it('emits update event when selection changes', () => {
-    mount(UsaSelect, {
+    cy.mount(UsaSelect, {
       props: {
         label: 'Test label',
         options: testOptions,
         modelValue: 2,
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-select > option:nth-of-type(3)').should('be.selected')
     cy.get('@wrapper')
@@ -344,7 +347,7 @@ describe('UsaSelect', () => {
   })
 
   it('uses custom CSS classes', () => {
-    mount(UsaSelect, {
+    cy.mount(UsaSelect, {
       props: {
         label: 'Test label',
         customClasses: {
@@ -362,7 +365,7 @@ describe('UsaSelect', () => {
   })
 
   it('use group wrapper if `group` prop is true', () => {
-    mount(UsaSelect, {
+    cy.mount(UsaSelect, {
       props: {
         group: true,
       },

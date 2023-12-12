@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaCollectionMetaItem from './UsaCollectionMetaItem.vue'
 
 describe('UsaCollectionMetaItem', () => {
   it('renders the component', () => {
-    mount(UsaCollectionMetaItem, {
+    cy.mount(UsaCollectionMetaItem, {
       slots: {
         default: () => 'Test collection meta item',
       },

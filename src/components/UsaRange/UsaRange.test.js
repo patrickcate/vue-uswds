@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaRange from './UsaRange.vue'
 
 describe('UsaRange', () => {
   it('renders the component', () => {
-    mount(UsaRange, {
+    cy.mount(UsaRange, {
       props: {
         label: 'Test label',
       },
@@ -36,7 +35,7 @@ describe('UsaRange', () => {
   })
 
   it('displays `label`, `hint`, and `error-message` slot content', () => {
-    mount(UsaRange, {
+    cy.mount(UsaRange, {
       props: {
         label: 'Test label',
         id: 'custom-id',
@@ -46,7 +45,9 @@ describe('UsaRange', () => {
         hint: () => 'Test hint slot',
         'error-message': () => 'Test error slot',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-form-group').should('not.have.class', 'usa-form-group--error')
 
@@ -85,7 +86,7 @@ describe('UsaRange', () => {
   })
 
   it('add required attribute if `required` prop is true', () => {
-    mount(UsaRange, {
+    cy.mount(UsaRange, {
       props: {
         required: true,
       },
@@ -107,7 +108,7 @@ describe('UsaRange', () => {
   })
 
   it('wraps component in form group if error message is displayed', () => {
-    mount(UsaRange, {
+    cy.mount(UsaRange, {
       props: {
         error: true,
       },
@@ -121,12 +122,14 @@ describe('UsaRange', () => {
   })
 
   it('emits update event when selection changes', () => {
-    mount(UsaRange, {
+    cy.mount(UsaRange, {
       props: {
         label: 'Test label',
         modelValue: 50,
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-range').as('range').should('have.value', 50)
     cy.get('@wrapper')
@@ -159,7 +162,7 @@ describe('UsaRange', () => {
   })
 
   it('uses custom CSS classes', () => {
-    mount(UsaRange, {
+    cy.mount(UsaRange, {
       props: {
         label: 'Test label',
         customClasses: {
