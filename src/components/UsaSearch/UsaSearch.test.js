@@ -101,6 +101,19 @@ describe('UsaSearch', () => {
     cy.get('.usa-search__submit-text').should('contain', 'Test button label')
   })
 
+  it('`name` prop value overrides any set by `inputAttrs` prop', () => {
+    cy.mount(UsaSearch, {
+      props: {
+        name: 'test-used-input-name',
+        inputAttrs: {
+          name: 'not-used-input-name',
+        },
+      },
+    })
+
+    cy.get('.usa-input').should('have.attr', 'name', 'test-used-input-name')
+  })
+
   it('uses `icon` slot', () => {
     cy.mount(UsaSearch, {
       props: {

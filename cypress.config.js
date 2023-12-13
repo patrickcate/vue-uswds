@@ -6,7 +6,8 @@ const istanbul = require('vite-plugin-istanbul')
 
 module.exports = defineConfig({
   video: false,
-  numTestsKeptInMemory: 5,
+  numTestsKeptInMemory: 0,
+  experimentalMemoryManagement: true,
   retries: {
     runMode: 1,
     openMode: 0,
