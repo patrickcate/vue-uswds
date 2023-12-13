@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaNavSecondary from './UsaNavSecondary.vue'
 
@@ -20,7 +19,7 @@ describe('UsaNavSecondary', () => {
   })
 
   it('renders the component', () => {
-    mount(UsaNavSecondary, {
+    cy.mount(UsaNavSecondary, {
       slots: {
         search: () => h('span', {}, 'Test search slot'),
       },
@@ -35,13 +34,13 @@ describe('UsaNavSecondary', () => {
   })
 
   it('displays nothing if search slot is not used or header is not `extended` variant', () => {
-    mount(UsaNavSecondary, {})
+    cy.mount(UsaNavSecondary, {})
 
     cy.get('[data-v-app]').children().should('not.exist')
   })
 
   it('displays list of links', () => {
-    mount(UsaNavSecondary, {
+    cy.mount(UsaNavSecondary, {
       props: {
         items: testLinks,
       },

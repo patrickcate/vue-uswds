@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaGraphicList from './UsaGraphicList.vue'
 import UsaGraphicListRow from '@/components/UsaGraphicListRow'
@@ -45,7 +44,7 @@ describe('UsaGraphicList', () => {
   }
 
   it('renders the component', () => {
-    mount(UsaGraphicList, {
+    cy.mount(UsaGraphicList, {
       slots: {
         default: () => h(GraphicListRows),
       },
@@ -55,14 +54,16 @@ describe('UsaGraphicList', () => {
   })
 
   it('add variant CSS class', () => {
-    mount(UsaGraphicList, {
+    cy.mount(UsaGraphicList, {
       props: {
         variant: 'light',
       },
       slots: {
         default: () => h(GraphicListRows),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-graphic-list').and('have.class', 'usa-section--light')
     cy.get('@wrapper').invoke('setProps', { variant: 'dark' })
@@ -70,7 +71,7 @@ describe('UsaGraphicList', () => {
   })
 
   it('uses custom CSS Classes', () => {
-    mount(UsaGraphicList, {
+    cy.mount(UsaGraphicList, {
       props: {
         customClasses: {
           container: ['test-container-class'],
@@ -85,14 +86,16 @@ describe('UsaGraphicList', () => {
   })
 
   it('`variant` prop is available in scoped slot', () => {
-    mount(UsaGraphicList, {
+    cy.mount(UsaGraphicList, {
       props: {
         variant: 'light',
       },
       slots: {
         default: props => h('span', {}, `variant is: ${props.variant}`),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-graphic-list').should('contain', 'variant is: light')
     cy.get('@wrapper').invoke('setProps', { variant: 'dark' })
@@ -102,7 +105,7 @@ describe('UsaGraphicList', () => {
   it('warns in console about invalid variant prop', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaGraphicList, {
+    cy.mount(UsaGraphicList, {
       props: {
         variant: 'notvariant',
       },

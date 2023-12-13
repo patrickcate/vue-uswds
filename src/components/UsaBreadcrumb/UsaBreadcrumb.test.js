@@ -1,6 +1,5 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
-import { mount } from '@cypress/vue'
 import UsaBreadcrumb from './UsaBreadcrumb.vue'
 
 describe('UsaBreadcrumb', () => {
@@ -29,11 +28,13 @@ describe('UsaBreadcrumb', () => {
   })
 
   it('renders the component', () => {
-    mount(UsaBreadcrumb, {
+    cy.mount(UsaBreadcrumb, {
       props: {
         items: testBreadcrumbs,
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('nav.usa-breadcrumb')
       .should('have.attr', 'aria-label')
@@ -90,7 +91,7 @@ describe('UsaBreadcrumb', () => {
   it('adds correct `current` item markup if explicity set', () => {
     testBreadcrumbs[1].current = true
 
-    mount(UsaBreadcrumb, {
+    cy.mount(UsaBreadcrumb, {
       props: {
         items: testBreadcrumbs,
       },
@@ -114,7 +115,7 @@ describe('UsaBreadcrumb', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaBreadcrumb, {
+    cy.mount(UsaBreadcrumb, {
       props: {
         items: testBreadcrumbs,
         customClasses: {
@@ -133,7 +134,7 @@ describe('UsaBreadcrumb', () => {
   })
 
   it('uses the `default` slot content', () => {
-    mount(UsaBreadcrumb, {
+    cy.mount(UsaBreadcrumb, {
       props: {
         items: testBreadcrumbs,
       },
@@ -148,7 +149,7 @@ describe('UsaBreadcrumb', () => {
   })
 
   it('does not render list if no items', () => {
-    mount(UsaBreadcrumb, {})
+    cy.mount(UsaBreadcrumb, {})
 
     cy.get('ol').as('list').should('exist')
 

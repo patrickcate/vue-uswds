@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaModalCloseButton from './UsaModalCloseButton.vue'
 
 describe('UsaModalCloseButton', () => {
   it('renders the component', () => {
-    mount(UsaModalCloseButton, {
+    cy.mount(UsaModalCloseButton, {
       props: {
         ariaLabel: 'Close Modal',
       },
@@ -32,7 +31,7 @@ describe('UsaModalCloseButton', () => {
   })
 
   it('shows scoped slot content', () => {
-    mount(UsaModalCloseButton, {
+    cy.mount(UsaModalCloseButton, {
       props: {
         ariaLabel: 'Close Modal',
       },
@@ -52,7 +51,7 @@ describe('UsaModalCloseButton', () => {
   it('warns in console about required `aria-label` prop', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaModalCloseButton, {})
+    cy.mount(UsaModalCloseButton, {})
 
     cy.get('@consoleWarn').should(
       'be.calledWith',

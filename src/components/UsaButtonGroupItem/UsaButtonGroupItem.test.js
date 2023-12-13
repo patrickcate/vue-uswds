@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
-import { mount } from '@cypress/vue'
 import UsaButtonGroupItem from './UsaButtonGroupItem.vue'
 
 describe('UsaButtonGroupItem', () => {
   it('renders the component', () => {
-    mount(UsaButtonGroupItem, {
+    cy.mount(UsaButtonGroupItem, {
       slots: {
         default: () => h('button', { class: 'usa-button' }, 'Test button'),
       },

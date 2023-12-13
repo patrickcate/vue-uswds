@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaLink from './UsaLink.vue'
 
 describe('UsaLink', () => {
   it('renders the component with the correct CSS classes', () => {
-    mount(UsaLink, {
+    cy.mount(UsaLink, {
       props: {
         to: '/test-page',
         alt: true,
@@ -37,7 +36,7 @@ describe('UsaLink', () => {
   })
 
   it('renders as a static `a` tag', () => {
-    mount(UsaLink, {
+    cy.mount(UsaLink, {
       props: {
         href: '/test-page',
       },

@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
-import { mount } from '@cypress/vue'
 import UsaCollectionMeta from './UsaCollectionMeta.vue'
 
 describe('UsaCollectionMeta', () => {
   it('renders the component', () => {
-    mount(UsaCollectionMeta, {
+    cy.mount(UsaCollectionMeta, {
       props: {
         ariaLabel: 'Test aria label',
       },

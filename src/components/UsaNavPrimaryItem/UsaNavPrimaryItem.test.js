@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaNavPrimaryItem from './UsaNavPrimaryItem.vue'
 
 describe('UsaNavPrimaryItem', () => {
   it('renders the component', () => {
-    mount(UsaNavPrimaryItem, {
+    cy.mount(UsaNavPrimaryItem, {
       props: {
         href: '#',
       },
@@ -46,7 +45,7 @@ describe('UsaNavPrimaryItem', () => {
   })
 
   it('renders as vue router link', () => {
-    mount(UsaNavPrimaryItem, {
+    cy.mount(UsaNavPrimaryItem, {
       props: {
         to: '/test',
         'router-component-name': 'router-link',

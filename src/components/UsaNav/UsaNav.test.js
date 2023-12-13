@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h, ref } from 'vue'
 import UsaNav from './UsaNav.vue'
 import UsaNavbar from '@/components/UsaNavbar'
@@ -41,7 +40,8 @@ describe('UsaNav', () => {
   it('renders the component', () => {
     cy.viewport('iphone-6')
 
-    const wrapper = mount(wrapperComponent, {
+    // eslint-disable-next-line cypress/no-assigning-return-values
+    const wrapper = cy.mount(wrapperComponent, {
       props: {
         customClasses: {
           button: ['test-button-class'],
@@ -217,7 +217,7 @@ describe('UsaNav', () => {
   it('slot positions change on mobile screens', () => {
     cy.viewport('iphone-6')
 
-    mount(wrapperComponent, {
+    cy.mount(wrapperComponent, {
       props: {
         ariaLabel: 'Custom aria label',
         closeButtonLabel: 'Custom close button label',
@@ -291,7 +291,7 @@ describe('UsaNav', () => {
   })
 
   it('add extended header inner element and uses custom image path', () => {
-    mount(UsaNav, {
+    cy.mount(UsaNav, {
       global: {
         provide: {
           isExtendedHeader: ref(true),
@@ -315,7 +315,7 @@ describe('UsaNav', () => {
   it('uses custom global mobile breakpoint', () => {
     cy.viewport('iphone-6')
 
-    mount(wrapperComponent, {
+    cy.mount(wrapperComponent, {
       global: {
         provide: {
           'vueUswds.imagePath': '/test',
@@ -349,7 +349,7 @@ describe('UsaNav', () => {
   it('mobile menu is closed when unmounted', () => {
     cy.viewport('iphone-6')
 
-    mount(UsaNav, {
+    cy.mount(UsaNav, {
       global: {
         provide: {
           mobileMenuId: 'test-mobile-menu-id',
@@ -357,7 +357,9 @@ describe('UsaNav', () => {
           isMobileMenuOpen: ref(true),
         },
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-nav').should('exist')
 
@@ -367,7 +369,7 @@ describe('UsaNav', () => {
   })
 
   it('uses custom button slot', () => {
-    mount(UsaNav, {
+    cy.mount(UsaNav, {
       props: {
         closeButtonLabel: 'Custom close button slot',
       },

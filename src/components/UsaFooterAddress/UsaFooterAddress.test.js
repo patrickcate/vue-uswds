@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaFooterAddress from './UsaFooterAddress.vue'
 
 describe('UsaFooterAddress', () => {
   it('renders the component in a non-slim footer', () => {
-    mount(UsaFooterAddress, {
+    cy.mount(UsaFooterAddress, {
       props: {
         heading: 'Test header',
         email: 'example@example.com',
@@ -49,7 +48,7 @@ describe('UsaFooterAddress', () => {
   })
 
   it('renders the component in a `slim` footer variant', () => {
-    mount(UsaFooterAddress, {
+    cy.mount(UsaFooterAddress, {
       props: {
         heading: 'Test header',
         email: 'example@example.com',
@@ -107,7 +106,7 @@ describe('UsaFooterAddress', () => {
   })
 
   it('does not render missing prop markup in a non-slim footer', () => {
-    mount(UsaFooterAddress, {})
+    cy.mount(UsaFooterAddress, {})
 
     cy.get('p.usa-footer__contact-heading').should('not.exist')
 
@@ -121,7 +120,7 @@ describe('UsaFooterAddress', () => {
   })
 
   it('does not render missing prop markup in a `slim` footer variant', () => {
-    mount(UsaFooterAddress, {
+    cy.mount(UsaFooterAddress, {
       global: {
         provide: { footerVariant: 'slim' },
       },
@@ -139,7 +138,7 @@ describe('UsaFooterAddress', () => {
   })
 
   it('CSS classes use custom grid prefix and separator in a non-slim footer', () => {
-    mount(UsaFooterAddress, {
+    cy.mount(UsaFooterAddress, {
       props: {
         heading: 'Test header',
         email: 'example@example.com',
@@ -173,7 +172,7 @@ describe('UsaFooterAddress', () => {
   })
 
   it('CSS classes use custom grid prefix and separator in a `slim` footer variant', () => {
-    mount(UsaFooterAddress, {
+    cy.mount(UsaFooterAddress, {
       props: {
         heading: 'Test header',
         email: 'example@example.com',
@@ -205,7 +204,7 @@ describe('UsaFooterAddress', () => {
   })
 
   it('uses default slot', () => {
-    mount(UsaFooterAddress, {
+    cy.mount(UsaFooterAddress, {
       slots: {
         default: () => 'Custom slot content',
       },

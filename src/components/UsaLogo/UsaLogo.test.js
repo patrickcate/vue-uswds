@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaLogo from './UsaLogo.vue'
 
 describe('UsaLogo', () => {
   it('renders the component', () => {
-    mount(UsaLogo, {
+    cy.mount(UsaLogo, {
       props: {
         title: 'Project Title',
         customClasses: {
@@ -24,7 +23,7 @@ describe('UsaLogo', () => {
   })
 
   it('uses slot content', () => {
-    mount(UsaLogo, {
+    cy.mount(UsaLogo, {
       slots: {
         default: () => 'Custom Title',
       },
@@ -34,7 +33,7 @@ describe('UsaLogo', () => {
   })
 
   it('renders the custom router link tag and props', () => {
-    mount(UsaLogo, {
+    cy.mount(UsaLogo, {
       props: {
         title: 'Project Title',
         to: '/test-page',

@@ -1,6 +1,6 @@
 import { ref, computed, readonly } from 'vue'
 
-export default (_currentPage, totalPages, _unbounded, emit) => {
+export function usePagination(_currentPage, totalPages, _unbounded, emit) {
   const currentPage = ref(_currentPage)
   const unbounded = ref(_unbounded)
 

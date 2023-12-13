@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaBreadcrumbItem from './UsaBreadcrumbItem.vue'
 
 describe('UsaBreadcrumbItem', () => {
   it('renders the component', () => {
-    mount(UsaBreadcrumbItem, {
+    cy.mount(UsaBreadcrumbItem, {
       props: {
         href: '/test-page',
       },
@@ -25,7 +24,7 @@ describe('UsaBreadcrumbItem', () => {
   })
 
   it('adds correct `current` item markup if explicity set', () => {
-    mount(UsaBreadcrumbItem, {
+    cy.mount(UsaBreadcrumbItem, {
       props: {
         href: '/test-page',
         current: true,
@@ -45,7 +44,7 @@ describe('UsaBreadcrumbItem', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaBreadcrumbItem, {
+    cy.mount(UsaBreadcrumbItem, {
       props: {
         props: {
           href: '/test-page',

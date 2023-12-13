@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaNavPrimary from './UsaNavPrimary.vue'
 
 describe('UsaNavPrimary', () => {
@@ -82,7 +81,7 @@ describe('UsaNavPrimary', () => {
   ]
 
   it('renders the component', () => {
-    mount(UsaNavPrimary, {
+    cy.mount(UsaNavPrimary, {
       props: {
         items: [
           {
@@ -106,7 +105,7 @@ describe('UsaNavPrimary', () => {
   })
 
   it('non-megamenu from items', () => {
-    mount(UsaNavPrimary, {
+    cy.mount(UsaNavPrimary, {
       props: {
         items: testItems,
       },
@@ -285,7 +284,7 @@ describe('UsaNavPrimary', () => {
   })
 
   it('megamenu from items', () => {
-    mount(UsaNavPrimary, {
+    cy.mount(UsaNavPrimary, {
       props: {
         items: testItems,
       },
@@ -526,7 +525,7 @@ describe('UsaNavPrimary', () => {
   })
 
   it('escape key and clicking outside closes all dropdowns', () => {
-    mount(UsaNavPrimary, {
+    cy.mount(UsaNavPrimary, {
       props: {
         items: testItems,
       },
@@ -576,7 +575,7 @@ describe('UsaNavPrimary', () => {
   it('dropdowns are multiselectable on mobile screens', () => {
     cy.viewport('iphone-6')
 
-    mount(UsaNavPrimary, {
+    cy.mount(UsaNavPrimary, {
       props: {
         items: testItems,
       },
@@ -673,7 +672,7 @@ describe('UsaNavPrimary', () => {
   })
 
   it('clicking dropdown emits items in event', () => {
-    mount(UsaNavPrimary, {
+    cy.mount(UsaNavPrimary, {
       props: {
         items: testItems,
       },
@@ -682,7 +681,9 @@ describe('UsaNavPrimary', () => {
           closeMobileMenu: () => {},
         },
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-nav__primary > .usa-nav__primary-item:nth-of-type(3)').as(
       'dropdown'

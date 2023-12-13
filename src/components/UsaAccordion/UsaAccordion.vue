@@ -1,6 +1,6 @@
 <script setup>
 import { computed, provide, reactive, watch, toRef } from 'vue'
-import useAccordion from '@/composables/useAccordion.js'
+import { useAccordion } from '@/composables/useAccordion.js'
 
 const emit = defineEmits(['update:accordionItems'])
 

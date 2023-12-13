@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaAccordionItem from './UsaAccordionItem.vue'
 import UsaAccordion from '@/components/UsaAccordion'
 
@@ -16,7 +15,7 @@ describe('UsaAccordionItem', () => {
       `,
     }
 
-    mount(AccordionWrapper, {})
+    cy.mount(AccordionWrapper, {})
 
     cy.get('.usa-accordion__button').should('contain', 'Test Accordion Label')
     cy.get('.usa-accordion__content').should(
@@ -37,7 +36,7 @@ describe('UsaAccordionItem', () => {
       `,
     }
 
-    mount(AccordionWrapper, {})
+    cy.mount(AccordionWrapper, {})
 
     cy.get('.usa-accordion__button')
       .should('have.attr', 'aria-controls')
@@ -61,7 +60,7 @@ describe('UsaAccordionItem', () => {
       `,
     }
 
-    mount(AccordionWrapper, {})
+    cy.mount(AccordionWrapper, {})
 
     cy.get('.usa-accordion__button').should(
       'contain',
@@ -88,7 +87,7 @@ describe('UsaAccordionItem', () => {
       `,
     }
 
-    mount(AccordionWrapper, {})
+    cy.mount(AccordionWrapper, {})
 
     cy.get('.test-heading-class').should('exist')
     cy.get('.test-button-class').should('exist')

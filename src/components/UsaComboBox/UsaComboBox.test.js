@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import {
   testData,
   falsyTestData,
@@ -19,7 +18,7 @@ describe('UsaComboBox', () => {
       template: `<UsaComboBox v-model="selectedOption" :options="options" label="ComboBox"></UsaComboBox>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('label')
       .should('have.class', 'usa-label')
@@ -286,7 +285,7 @@ describe('UsaComboBox', () => {
       template: `<UsaComboBox v-model="selectedOption" :options="options" :id="id" label="ComboBox"></UsaComboBox>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('.usa-combo-box')
       .as('comboBox')
@@ -415,7 +414,7 @@ describe('UsaComboBox', () => {
       template: `<UsaComboBox v-model="selectedOption" :options="options" :id="id" label="ComboBox"></UsaComboBox>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('.usa-combo-box')
       .as('comboBox')
@@ -519,7 +518,7 @@ describe('UsaComboBox', () => {
       template: `<UsaComboBox v-model="selectedOption" :options="options" :id="id" label="ComboBox"></UsaComboBox>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('.usa-combo-box')
       .as('comboBox')
@@ -581,7 +580,7 @@ describe('UsaComboBox', () => {
       template: `<UsaComboBox v-model="selectedOption" :options="options" :id="id" label="ComboBox" :custom-classes="customClasses"></UsaComboBox>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('.usa-combo-box')
       .as('comboBox')
@@ -730,7 +729,7 @@ describe('UsaComboBox', () => {
       template: `<UsaComboBox v-model="selectedOption" :options="options"  :id="id" label="ComboBox"></UsaComboBox>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('.usa-combo-box')
       .as('comboBox')
@@ -775,7 +774,7 @@ describe('UsaComboBox', () => {
       template: `<UsaComboBox v-model="selectedOption" :options="options" :id="id" label="ComboBox"></UsaComboBox>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('.usa-combo-box')
       .as('comboBox')
@@ -958,7 +957,7 @@ describe('UsaComboBox', () => {
   })
 
   it('clear and toggle buttons use custom aria-label attribute values', () => {
-    mount(UsaComboBox, {
+    cy.mount(UsaComboBox, {
       props: {
         options: testData,
         clearButtonAriaLabel: 'Test clear button aria label',
@@ -976,7 +975,7 @@ describe('UsaComboBox', () => {
   })
 
   it('uses custom id prop value to generate element ids', () => {
-    mount(UsaComboBox, {
+    cy.mount(UsaComboBox, {
       props: {
         options: falsyTestData,
         id: 'test-combo-box-id',
@@ -987,7 +986,9 @@ describe('UsaComboBox', () => {
         hint: () => 'Test hint slot',
         'error-message': () => 'Test error slot',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-form-group').should('exist')
 
@@ -1042,7 +1043,7 @@ describe('UsaComboBox', () => {
   })
 
   it('displays error message even if no hint set', () => {
-    mount(UsaComboBox, {
+    cy.mount(UsaComboBox, {
       props: {
         options: testData,
         error: true,
@@ -1050,7 +1051,9 @@ describe('UsaComboBox', () => {
       slots: {
         'error-message': () => 'Test error slot',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-form-group').should('exist')
     cy.get('label').should('not.exist')
@@ -1081,7 +1084,7 @@ describe('UsaComboBox', () => {
       template: `<UsaComboBox v-model="selectedOption" :options="options" label="Disabled ComboBox" :disabled="disabled"></UsaComboBox>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('input').should('not.have.focus').and('have.attr', 'disabled')
     cy.get('input').click({ force: true })
@@ -1115,7 +1118,7 @@ describe('UsaComboBox', () => {
       template: `<UsaComboBox v-model="selectedOption" :options="options" label="Readonly ComboBox" :readonly="readonly"></UsaComboBox>`,
     }
 
-    mount(wrapperComponent, {}).as('wrapper')
+    cy.mount(wrapperComponent, {}).its('wrapper').as('wrapper')
 
     cy.get('input').should('not.have.focus').and('have.attr', 'readonly')
     cy.get('input').should('have.value', 'Persimmon')
@@ -1136,7 +1139,7 @@ describe('UsaComboBox', () => {
   })
 
   it('uses custom CSS classes', () => {
-    mount(UsaComboBox, {
+    cy.mount(UsaComboBox, {
       props: {
         label: 'Custom ComboBox',
         options: testData,
@@ -1172,7 +1175,7 @@ describe('UsaComboBox', () => {
   })
 
   it('custom empty and assistive hint slot text', () => {
-    mount(UsaComboBox, {
+    cy.mount(UsaComboBox, {
       slots: {
         'no-results': () => 'Test no results text',
         'assistive-hint': () => 'Test assistive hint',
@@ -1191,7 +1194,7 @@ describe('UsaComboBox', () => {
   })
 
   it('uses status scoped slot content', () => {
-    mount(UsaComboBox, {
+    cy.mount(UsaComboBox, {
       props: {
         options: testData,
       },
@@ -1229,7 +1232,7 @@ describe('UsaComboBox', () => {
   })
 
   it('shows required field indicators', () => {
-    mount(UsaComboBox, {
+    cy.mount(UsaComboBox, {
       props: {
         label: 'Is Required',
         options: testData,
@@ -1245,7 +1248,7 @@ describe('UsaComboBox', () => {
   })
 
   it('adds correct aria-describedby ids', () => {
-    mount(UsaComboBox, {
+    cy.mount(UsaComboBox, {
       props: {
         label: 'aria-describedby',
         options: testData,
@@ -1255,7 +1258,9 @@ describe('UsaComboBox', () => {
         hint: () => 'Test hint',
         'error-message': () => 'Test error message',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('input')
       .as('input')
@@ -1289,7 +1294,7 @@ describe('UsaComboBox', () => {
       template: `<UsaComboBox v-model="selectedOption" :options="options" label="Default value" :id="id"></UsaComboBox>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('input').should('have.value', 'Nectarine')
     cy.get(
@@ -1300,12 +1305,14 @@ describe('UsaComboBox', () => {
   })
 
   it('component emits v-model event', () => {
-    mount(UsaComboBox, {
+    cy.mount(UsaComboBox, {
       props: {
         label: 'Emitted',
         options: testData,
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@wrapper')
       .vue()

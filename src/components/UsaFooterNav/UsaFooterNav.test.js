@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h } from 'vue'
 import UsaFooterNav from './UsaFooterNav.vue'
 
@@ -20,7 +19,7 @@ describe('UsaFooterNav', () => {
   })
 
   it('renders the component', () => {
-    mount(UsaFooterNav, {})
+    cy.mount(UsaFooterNav, {})
 
     cy.get('nav')
       .should('have.class', 'usa-footer__nav')
@@ -29,7 +28,7 @@ describe('UsaFooterNav', () => {
   })
 
   it('uses custom aria label and scoped default slot', () => {
-    mount(UsaFooterNav, {
+    cy.mount(UsaFooterNav, {
       props: {
         ariaLabel: 'Test aria label',
         items: testItems,
@@ -49,7 +48,7 @@ describe('UsaFooterNav', () => {
   })
 
   it('renders `medium` footer menu', () => {
-    mount(UsaFooterNav, {
+    cy.mount(UsaFooterNav, {
       props: {
         items: testItems,
       },
@@ -73,7 +72,7 @@ describe('UsaFooterNav', () => {
   })
 
   it('renders `slim` footer menu', () => {
-    mount(UsaFooterNav, {
+    cy.mount(UsaFooterNav, {
       props: {
         items: testItems,
       },
@@ -102,7 +101,7 @@ describe('UsaFooterNav', () => {
   })
 
   it('renders `big` footer menu', () => {
-    mount(UsaFooterNav, {
+    cy.mount(UsaFooterNav, {
       props: {
         items: testItems,
       },
@@ -130,7 +129,7 @@ describe('UsaFooterNav', () => {
   })
 
   it('menu for invalid footer variant is not rendered', () => {
-    mount(UsaFooterNav, {
+    cy.mount(UsaFooterNav, {
       props: {
         items: testItems,
       },
@@ -145,7 +144,7 @@ describe('UsaFooterNav', () => {
   })
 
   it('`big` menu uses custom heading tag', () => {
-    mount(UsaFooterNav, {
+    cy.mount(UsaFooterNav, {
       props: {
         collapsibleHeadingTag: 'h2',
         items: testItems,
@@ -161,7 +160,7 @@ describe('UsaFooterNav', () => {
   })
 
   it('`medium/slim` menu uses custom grid classes', () => {
-    mount(UsaFooterNav, {
+    cy.mount(UsaFooterNav, {
       props: {
         items: testItems,
         customClasses: {
@@ -180,7 +179,7 @@ describe('UsaFooterNav', () => {
   })
 
   it('`big` menu uses custom grid classes', () => {
-    mount(UsaFooterNav, {
+    cy.mount(UsaFooterNav, {
       props: {
         items: testItems,
         customClasses: {
@@ -204,7 +203,7 @@ describe('UsaFooterNav', () => {
   })
 
   it('`medium/slim` menu uses custom grid prefix and separator', () => {
-    mount(UsaFooterNav, {
+    cy.mount(UsaFooterNav, {
       props: {
         items: testItems,
       },
@@ -226,7 +225,7 @@ describe('UsaFooterNav', () => {
   })
 
   it('`big` menu uses custom grid prefix and separator', () => {
-    mount(UsaFooterNav, {
+    cy.mount(UsaFooterNav, {
       props: {
         items: testItems,
       },

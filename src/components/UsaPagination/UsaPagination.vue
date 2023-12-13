@@ -1,6 +1,6 @@
 <script setup>
 import { computed, toRef, useSlots } from 'vue'
-import usePagination from '@/composables/usePagination.js'
+import { usePagination } from '@/composables/usePagination.js'
 import UsaPaginationArrow from '@/components/UsaPaginationArrow'
 import UsaPaginationItem from '@/components/UsaPaginationItem'
 

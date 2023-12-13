@@ -1,17 +1,16 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { ref } from 'vue'
 import UsaChecklist from './UsaChecklist.vue'
 
 describe('UsaChecklist', () => {
   it('renders the component', () => {
-    mount(UsaChecklist, {})
+    cy.mount(UsaChecklist, {})
 
     cy.get('ul.usa-checklist').should('be.empty')
   })
 
   it('shows slot content', () => {
-    mount(UsaChecklist, {
+    cy.mount(UsaChecklist, {
       slots: {
         default: () => 'Test slot content',
       },
@@ -41,7 +40,7 @@ describe('UsaChecklist', () => {
       },
     ])
 
-    mount(UsaChecklist, {
+    cy.mount(UsaChecklist, {
       props: {
         items: testItems.value,
       },

@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaLabel from './UsaLabel.vue'
 
 describe('UsaLabel', () => {
   it('renders the component', () => {
-    mount(UsaLabel, {
+    cy.mount(UsaLabel, {
       props: {
         for: 'test-id',
       },
@@ -20,7 +19,7 @@ describe('UsaLabel', () => {
   })
 
   it('adds CSS class when error prop is true', () => {
-    mount(UsaLabel, {
+    cy.mount(UsaLabel, {
       props: {
         for: 'test-id',
         error: true,
@@ -34,7 +33,7 @@ describe('UsaLabel', () => {
   })
 
   it('shows required label and title attribute', () => {
-    mount(UsaLabel, {
+    cy.mount(UsaLabel, {
       props: {
         for: 'test-id',
         required: true,
@@ -51,7 +50,7 @@ describe('UsaLabel', () => {
   })
 
   it('render custom require slot content', () => {
-    mount(UsaLabel, {
+    cy.mount(UsaLabel, {
       props: {
         for: 'test-id',
         required: true,

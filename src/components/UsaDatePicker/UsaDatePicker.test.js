@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { addMonths, subDays } from 'date-fns'
 import { today, formatIsoDate, formatUsaDate } from '@/utils/dates.js'
 import UsaDatePicker from './UsaDatePicker.vue'
@@ -22,7 +21,7 @@ describe('UsaDatePicker', () => {
       ></UsaDatePicker>`,
     }
 
-    mount(wrapperComponent, {}).as('wrapper')
+    cy.mount(wrapperComponent, {}).its('wrapper').as('wrapper')
 
     cy.get('div.usa-date-picker').should(
       'have.class',
@@ -217,7 +216,7 @@ describe('UsaDatePicker', () => {
   })
 
   it('displays label, hint, and error messages', () => {
-    mount(UsaDatePicker, {
+    cy.mount(UsaDatePicker, {
       props: {
         modelValue: '2022-09-04',
         minDate: '2022-05-25',
@@ -233,7 +232,9 @@ describe('UsaDatePicker', () => {
         hint: () => 'Test hint slot',
         'error-message': () => 'Test error slot',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('button.usa-date-picker__button').click()
 
@@ -290,7 +291,7 @@ describe('UsaDatePicker', () => {
       ></UsaDatePicker>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('button.usa-date-picker__button').click()
 
@@ -324,7 +325,7 @@ describe('UsaDatePicker', () => {
       ></UsaDatePicker>`,
     }
 
-    mount(wrapperComponent, {}).as('wrapper')
+    cy.mount(wrapperComponent, {}).its('wrapper').as('wrapper')
 
     cy.get('button.usa-date-picker__button').click()
 
@@ -395,7 +396,7 @@ describe('UsaDatePicker', () => {
       </UsaDatePicker>`,
     }
 
-    mount(wrapperComponent, {}).as('wrapper')
+    cy.mount(wrapperComponent, {}).its('wrapper').as('wrapper')
 
     cy.get('[data-test-is-open]')
       .as('isOpen')
@@ -546,7 +547,7 @@ describe('UsaDatePicker', () => {
   })
 
   it('`required`, `disabled` and `readonly` props are passed to input', () => {
-    mount(UsaDatePicker, {
+    cy.mount(UsaDatePicker, {
       props: {
         label: 'Test label',
         required: true,
@@ -573,7 +574,7 @@ describe('UsaDatePicker', () => {
   })
 
   it('picker uses custom button labels', () => {
-    mount(UsaDatePicker, {
+    cy.mount(UsaDatePicker, {
       props: {
         modelValue: '2022-09-04',
         monthLabels: [
@@ -625,7 +626,9 @@ describe('UsaDatePicker', () => {
         label: () => 'Test label slot',
         'error-message': () => 'Test error slot',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('button.usa-date-picker__button').click()
 
@@ -773,7 +776,7 @@ describe('UsaDatePicker', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaDatePicker, {
+    cy.mount(UsaDatePicker, {
       props: {
         label: 'Test label',
         customClasses: {
@@ -787,7 +790,9 @@ describe('UsaDatePicker', () => {
       slots: {
         hint: () => 'Test hint slot',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-form-group').should('have.class', 'test-form-group-class')
     cy.get('.usa-date-picker').should('have.class', 'test-component-class')
@@ -811,7 +816,7 @@ describe('UsaDatePicker', () => {
   it('warns in console about invalid number of day of week abbreviation labels', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaDatePicker, {
+    cy.mount(UsaDatePicker, {
       props: {
         modelValue: '2022-06-15',
         dayOfWeekLabels: ['1', '2', '3', '4', '5', '6', '7', '8'],
@@ -827,7 +832,7 @@ describe('UsaDatePicker', () => {
   it('warns in console about invalid number of day of week labels', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaDatePicker, {
+    cy.mount(UsaDatePicker, {
       props: {
         modelValue: '2022-06-15',
         dayOfWeekLabels: ['1', '2', '3', '4', '5', '6'],
@@ -843,7 +848,7 @@ describe('UsaDatePicker', () => {
   it('warns in console about invalid number of month labels', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaDatePicker, {
+    cy.mount(UsaDatePicker, {
       props: {
         selectedDate: '2022-06-15',
         monthLabels: [
@@ -871,7 +876,7 @@ describe('UsaDatePicker', () => {
   it('warns in console about invalid range type value', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaDatePicker, {
+    cy.mount(UsaDatePicker, {
       props: {
         rangeType: 'noarange',
       },

@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { ref, reactive } from 'vue'
 import UsaNavSubmenu from './UsaNavSubmenu.vue'
 
 describe('UsaNavSubmenu', () => {
   it('renders the component', () => {
-    mount(UsaNavSubmenu, {
+    cy.mount(UsaNavSubmenu, {
       slots: {
         default: () => 'Test submenu',
       },
@@ -29,7 +28,7 @@ describe('UsaNavSubmenu', () => {
   })
 
   it('`hidden` attribute is not added when submenu is open', () => {
-    mount(UsaNavSubmenu, {
+    cy.mount(UsaNavSubmenu, {
       slots: {
         default: () => 'Test submenu',
       },
@@ -47,7 +46,7 @@ describe('UsaNavSubmenu', () => {
   })
 
   it('megamenu displays single column', () => {
-    mount(UsaNavSubmenu, {
+    cy.mount(UsaNavSubmenu, {
       props: {
         customClasses: {
           gridRow: ['test-grid-row'],
@@ -91,7 +90,7 @@ describe('UsaNavSubmenu', () => {
   })
 
   it('megamenu displays multiple columns', () => {
-    mount(UsaNavSubmenu, {
+    cy.mount(UsaNavSubmenu, {
       props: {
         cols: 3,
         customClasses: {
@@ -163,7 +162,7 @@ describe('UsaNavSubmenu', () => {
   it('warns in console about invalid megamenu column number', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaNavSubmenu, {
+    cy.mount(UsaNavSubmenu, {
       props: {
         cols: 0,
         customClasses: {},

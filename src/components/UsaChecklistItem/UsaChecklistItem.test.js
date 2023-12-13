@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaChecklistItem from './UsaChecklistItem.vue'
 
 describe('UsaChecklistItem', () => {
   it('renders the component', () => {
-    mount(UsaChecklistItem, {
+    cy.mount(UsaChecklistItem, {
       props: {
         checked: false,
         ariaLabel: 'invalid',
@@ -12,7 +11,9 @@ describe('UsaChecklistItem', () => {
       slots: {
         default: () => 'Test item 1',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('li.usa-checklist__item')
       .as('item1')

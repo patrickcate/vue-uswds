@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaFooterLogo from './UsaFooterLogo.vue'
 
 describe('UsaFooterLogo', () => {
   it('renders the component', () => {
-    mount(UsaFooterLogo, {})
+    cy.mount(UsaFooterLogo, {})
 
     cy.get('div.usa-footer__logo').should('exist')
 
@@ -22,7 +21,7 @@ describe('UsaFooterLogo', () => {
   })
 
   it('logo and heading text match prop values', () => {
-    mount(UsaFooterLogo, {
+    cy.mount(UsaFooterLogo, {
       props: {
         src: 'https://designsystem.digital.gov/assets/img/logo-img.png',
         alt: 'Test footer logo',
@@ -60,7 +59,7 @@ describe('UsaFooterLogo', () => {
   })
 
   it('renders custom logo and heading slot content', () => {
-    mount(UsaFooterLogo, {
+    cy.mount(UsaFooterLogo, {
       slots: {
         logo: () => 'Test logo slot',
         heading: () => 'Test heading slot',

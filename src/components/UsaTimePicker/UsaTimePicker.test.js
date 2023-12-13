@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaTimePicker from './UsaTimePicker.vue'
 import { defaultData, testData } from './UsaTimePicker.fixtures.js'
 
 describe('UsaTimePicker', () => {
   it('renders the component', () => {
-    mount(UsaTimePicker, {})
+    cy.mount(UsaTimePicker, {})
 
     cy.get('div.usa-form-group').should('not.exist')
     cy.get('label.usa-label').should('not.exist')
@@ -121,7 +120,7 @@ describe('UsaTimePicker', () => {
   })
 
   it('the available options match the min/max time and step', () => {
-    mount(UsaTimePicker, {
+    cy.mount(UsaTimePicker, {
       props: {
         label: 'Time Picker',
         minTime: '11:00',
@@ -171,7 +170,7 @@ describe('UsaTimePicker', () => {
   })
 
   it('custom empty and assistive hint slot text', () => {
-    mount(UsaTimePicker, {
+    cy.mount(UsaTimePicker, {
       props: {
         minTime: '07:00',
         maxTime: '07:00',
@@ -204,7 +203,7 @@ describe('UsaTimePicker', () => {
       template: `<UsaTimePicker v-model="selectedOption"></UsaTimePicker>`,
     }
 
-    mount(wrapperComponent, {})
+    cy.mount(wrapperComponent, {})
 
     cy.get('input').should('have.value', '1:00pm')
     cy.get(
@@ -215,7 +214,7 @@ describe('UsaTimePicker', () => {
   })
 
   it('uses status scoped slot content', () => {
-    mount(UsaTimePicker, {
+    cy.mount(UsaTimePicker, {
       slots: {
         status: ({ filteredOptions }) => `total: ${filteredOptions.length}`,
       },
@@ -250,7 +249,7 @@ describe('UsaTimePicker', () => {
   })
 
   it('uses custom CSS classes', () => {
-    mount(UsaTimePicker, {
+    cy.mount(UsaTimePicker, {
       props: {
         label: 'Custom Time Picker',
         error: true,
@@ -322,11 +321,13 @@ describe('UsaTimePicker', () => {
   })
 
   it('component emits v-model event', () => {
-    mount(UsaTimePicker, {
+    cy.mount(UsaTimePicker, {
       props: {
         label: 'Emitted',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@wrapper')
       .vue()
@@ -353,7 +354,7 @@ describe('UsaTimePicker', () => {
   it('warns in console invalid `minTime`, `maxTime`, and `step` prop values', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaTimePicker, {
+    cy.mount(UsaTimePicker, {
       props: {
         label: 'Time Picker',
         minTime: '00-00',

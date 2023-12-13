@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaDateInput from './UsaDateInput.vue'
 
 describe('UsaDateInput', () => {
   it('renders the component', () => {
-    mount(UsaDateInput, {
+    cy.mount(UsaDateInput, {
       props: {
         label: 'Test label',
       },
@@ -96,7 +95,7 @@ describe('UsaDateInput', () => {
   })
 
   it('inputs are displayed in the correct custom order using custom labels', () => {
-    mount(UsaDateInput, {
+    cy.mount(UsaDateInput, {
       props: {
         label: 'Test label',
         dateOrder: ['year', 'month', 'day'],
@@ -160,7 +159,7 @@ describe('UsaDateInput', () => {
   })
 
   it('displays `label`, `hint`, and `error-message` slot content', () => {
-    mount(UsaDateInput, {
+    cy.mount(UsaDateInput, {
       props: {
         label: 'Test label',
         id: 'custom-id',
@@ -170,7 +169,9 @@ describe('UsaDateInput', () => {
         hint: () => 'Test hint slot',
         'error-message': () => 'Test error slot',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('legend').should('contain', 'Test label slot')
 
@@ -237,7 +238,7 @@ describe('UsaDateInput', () => {
   })
 
   it('labels and inputs are marked as required', () => {
-    mount(UsaDateInput, {
+    cy.mount(UsaDateInput, {
       props: {
         label: 'Test label',
         required: true,
@@ -285,14 +286,16 @@ describe('UsaDateInput', () => {
   })
 
   it('inputs start with default values and emit updated values', () => {
-    mount(UsaDateInput, {
+    cy.mount(UsaDateInput, {
       props: {
         label: 'Test label',
         month: 1,
         day: 2,
         year: 20,
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('.usa-form-group:nth-child(1)').as('firstFormGroup')
     cy.get('.usa-form-group:nth-child(2)').as('secondFormGroup')
@@ -346,7 +349,7 @@ describe('UsaDateInput', () => {
   })
 
   it('inputs not in `dateOrder` prop are not displayed', () => {
-    mount(UsaDateInput, {
+    cy.mount(UsaDateInput, {
       props: {
         dateOrder: ['month', 'year'],
       },
@@ -376,18 +379,20 @@ describe('UsaDateInput', () => {
   })
 
   it('label/fieldset legend is not shown because label prop and slot are not used', () => {
-    mount(UsaDateInput, {})
+    cy.mount(UsaDateInput, {})
 
     cy.get('legend').should('not.exist')
   })
 
   it('uses select element for month', () => {
-    mount(UsaDateInput, {
+    cy.mount(UsaDateInput, {
       props: {
         monthAsSelect: true,
         id: 'custom-id',
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@wrapper')
       .vue()
@@ -487,7 +492,7 @@ describe('UsaDateInput', () => {
   })
 
   it('uses custom month select options', () => {
-    mount(UsaDateInput, {
+    cy.mount(UsaDateInput, {
       props: {
         monthAsSelect: true,
         id: 'custom-id',
@@ -637,11 +642,11 @@ describe('UsaDateInput', () => {
   it('console prints deprecation warning if `monthAsSelect` is false', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaDateInput, {
+    cy.mount(UsaDateInput, {
       props: {
         monthAsSelect: false,
       },
-    }).as('wrapper')
+    })
 
     cy.get('@consoleWarn').should(
       'be.calledOnceWith',

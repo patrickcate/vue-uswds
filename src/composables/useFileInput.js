@@ -2,14 +2,14 @@ import { ref, computed, readonly } from 'vue'
 import { nextId } from '@/utils/unique-id.js'
 import { escapeRegExp } from '@/utils/common.js'
 
-export default (
+export function useFileInput(
   _id,
   _loadedFiles,
   _acceptedFileFormats,
   _multiple,
   _disabled,
   emit
-) => {
+) {
   const id = ref(_id)
   const allowMultiple = ref(_multiple)
   const isDisabled = ref(_disabled)

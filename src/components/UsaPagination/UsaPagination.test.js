@@ -1,6 +1,5 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
-import { mount } from '@cypress/vue'
 import UsaPagination from './UsaPagination.vue'
 import UsaPaginationArrow from '@/components/UsaPaginationArrow'
 
@@ -32,7 +31,7 @@ describe('UsaPagination', () => {
   })
 
   it('renders the component', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 2,
         items: generateTestItems(8, {}),
@@ -127,12 +126,14 @@ describe('UsaPagination', () => {
   })
 
   it('does not show the previous/next links on the first/last pages', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 1,
         items: generateTestItems(8, {}),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('li.usa-pagination__item:nth-child(1)').as('itemPrevious')
     cy.get('li.usa-pagination__item:nth-child(9)').as('itemNext')
@@ -162,13 +163,15 @@ describe('UsaPagination', () => {
   })
 
   it('when `unbound` prop is true, the last slot is always a overflow item unless on the last page', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         unbounded: true,
         currentPage: 10,
         items: generateTestItems(20, {}),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('li.usa-pagination__item:nth-child(8)').as('item7')
 
@@ -203,7 +206,7 @@ describe('UsaPagination', () => {
   })
 
   it('shows custom aria label', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 1,
         items: generateTestItems(1, {}),
@@ -219,7 +222,7 @@ describe('UsaPagination', () => {
   })
 
   it('shows custom item labels', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 2,
         items: generateTestItems(10, {}),
@@ -270,7 +273,7 @@ describe('UsaPagination', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 2,
         items: generateTestItems(8, {}),
@@ -284,7 +287,7 @@ describe('UsaPagination', () => {
   })
 
   it('renders custom content in previous and next icon/label slots', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 2,
         items: generateTestItems(8, {}),
@@ -307,12 +310,14 @@ describe('UsaPagination', () => {
   })
 
   it('all items show if there are <= to 7 items total', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 1,
         items: generateTestItems(1, {}),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     for (let i = 1; i <= 7; i++) {
       for (let j = 1; j <= i; j++) {
@@ -330,20 +335,24 @@ describe('UsaPagination', () => {
   })
 
   it('correct items show when clicking through available `bounded` pages', () => {
-    const wrapper = mount(UsaPagination, {
-      props: {
-        currentPage: 1,
-        items: generateTestItems(12, {}),
-        'onUpdate:current-page': async currentPage => {
-          await wrapper.vue().then(vm => {
-            vm.setProps({ currentPage: currentPage })
-          })
+    // eslint-disable-next-line cypress/no-assigning-return-values
+    const wrapper = cy
+      .mount(UsaPagination, {
+        props: {
+          currentPage: 1,
+          items: generateTestItems(12, {}),
+          'onUpdate:current-page': async currentPage => {
+            await wrapper.vue().then(vm => {
+              vm.setProps({ currentPage: currentPage })
+            })
+          },
         },
-      },
-    }).as('wrapper')
+      })
+      .its('wrapper')
+      .as('wrapper')
 
     // Pages 1-4
-    for (let i = 1; i <= 4; i++) {
+    cy.wrap([1, 2, 3, 4]).each(i => {
       cy.get('li.usa-pagination__item:nth-child(1)')
         .as('itemPrevious')
         .should('exist')
@@ -416,15 +425,16 @@ describe('UsaPagination', () => {
           expect(currentPageEvent).to.have.length(i)
         })
 
-      cy.get(`@item${i + 1}`)
-        .should('have.class', 'usa-current')
-        .should('contain', `${i + 1}`)
-
-      cy.get(`@item${i}`).should('not.have.class', 'usa-current')
-    }
+      if (i != 4) {
+        cy.get(`@item${i + 1}`)
+          .should('contain', `${i + 1}`)
+          .and('have.class', 'usa-current')
+        cy.get(`@item${i}`).should('not.have.class', 'usa-current')
+      }
+    })
 
     // Pages 5-8
-    for (let i = 5; i < 9; i++) {
+    cy.wrap([5, 6, 7, 8]).each(i => {
       cy.get(`li.usa-pagination__item:nth-child(5) > *`)
         .should('contain', `${i}`)
         .and('have.class', 'usa-current')
@@ -503,10 +513,10 @@ describe('UsaPagination', () => {
               expect(currentPageEvent).to.have.length(i)
             })
         })
-    }
+    })
 
     // Pages 9-12
-    for (let i = 9; i < 12; i++) {
+    cy.wrap([9, 10, 11]).each(i => {
       cy.get(`li.usa-pagination__item:nth-child(${i - 4}) > *`)
         .should('have.class', 'usa-current')
         .then(() => {
@@ -562,16 +572,18 @@ describe('UsaPagination', () => {
             'usa-current'
           )
         })
-    }
+    })
   })
 
   it('the total pages always matches the `total-pages` prop value', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 1,
         items: generateTestItems(2, {}),
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('li.usa-pagination__item:nth-last-child(2)')
       .children()
@@ -594,7 +606,7 @@ describe('UsaPagination', () => {
   })
 
   it('shows `previous` and `next` arrow slot content', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 4,
         items: generateTestItems(7, {}),
@@ -633,7 +645,8 @@ describe('UsaPagination', () => {
   })
 
   it('clicking next/previous link goes to the next/previous page', () => {
-    const wrapper = mount(UsaPagination, {
+    // eslint-disable-next-line cypress/no-assigning-return-values
+    const wrapper = cy.mount(UsaPagination, {
       props: {
         currentPage: 1,
         items: generateTestItems(6, {}),
@@ -664,7 +677,7 @@ describe('UsaPagination', () => {
   })
 
   it('page links renders as `router-link` if vue-router is detected', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 2,
         items: generateTestItems(6, {
@@ -682,7 +695,7 @@ describe('UsaPagination', () => {
   })
 
   it('page links renders as `nuxt-link` if nuxt is detected', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 2,
         items: generateTestItems(6, {
@@ -700,7 +713,7 @@ describe('UsaPagination', () => {
   })
 
   it('page links renders as `a` tags if `href` prop is used`', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 2,
         items: generateTestItems(6, {
@@ -713,7 +726,7 @@ describe('UsaPagination', () => {
   })
 
   it('page links renders as `button` tags if no `BaseLink` props are provided', () => {
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 2,
         items: generateTestItems(6, {}),
@@ -724,7 +737,8 @@ describe('UsaPagination', () => {
   })
 
   it('props are bound to scoped slots', () => {
-    const wrapper = mount(UsaPagination, {
+    // eslint-disable-next-line cypress/no-assigning-return-values
+    const wrapper = cy.mount(UsaPagination, {
       props: {
         currentPage: 4,
         items: generateTestItems(6, {}),
@@ -781,7 +795,7 @@ describe('UsaPagination', () => {
   it('warns in console of deprecated placeholder character and slots', () => {
     cy.stub(window.console, 'warn').as('consoleWarn')
 
-    mount(UsaPagination, {
+    cy.mount(UsaPagination, {
       props: {
         currentPage: 2,
         items: generateTestItems(8, {}),

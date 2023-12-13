@@ -1,6 +1,5 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
-import { mount } from '@cypress/vue'
 import UsaCollectionItem from './UsaCollectionItem.vue'
 import UsaCollectionMeta from '@/components/UsaCollectionMeta'
 import UsaCollectionMetaItem from '@/components/UsaCollectionMetaItem'
@@ -33,7 +32,7 @@ describe('UsaCollectionItem', () => {
   })
 
   it('renders the component', () => {
-    mount(UsaCollectionItem, {
+    cy.mount(UsaCollectionItem, {
       props: {
         href: testHref,
         heading: testHeadingText,
@@ -95,7 +94,7 @@ describe('UsaCollectionItem', () => {
   })
 
   it('`media` slot wrapper markup should not render if `media` slot is not used', () => {
-    mount(UsaCollectionItem, {
+    cy.mount(UsaCollectionItem, {
       props: {
         header: testHeadingText,
       },
@@ -108,7 +107,7 @@ describe('UsaCollectionItem', () => {
   })
 
   it('`default` slot wrapper markup should not render if `default` slot is not used', () => {
-    mount(UsaCollectionItem, {
+    cy.mount(UsaCollectionItem, {
       props: {
         header: testHeadingText,
       },
@@ -118,7 +117,7 @@ describe('UsaCollectionItem', () => {
   })
 
   it('`description` slot overrides default slot content', () => {
-    mount(UsaCollectionItem, {
+    cy.mount(UsaCollectionItem, {
       props: {
         header: testHeadingText,
       },
@@ -132,7 +131,7 @@ describe('UsaCollectionItem', () => {
   })
 
   it('uses the `heading` slot content', () => {
-    mount(UsaCollectionItem, {
+    cy.mount(UsaCollectionItem, {
       props: {
         href: testHref,
         heading: testHeadingText,
@@ -148,7 +147,7 @@ describe('UsaCollectionItem', () => {
   })
 
   it('uses the `calendar` slot content', () => {
-    mount(UsaCollectionItem, {
+    cy.mount(UsaCollectionItem, {
       props: {
         href: testHref,
         heading: testHeadingText,
@@ -171,7 +170,7 @@ describe('UsaCollectionItem', () => {
   })
 
   it('renders custom heading tag', () => {
-    mount(UsaCollectionItem, {
+    cy.mount(UsaCollectionItem, {
       props: {
         heading: 'Test header text',
         headingTag: 'h4',
@@ -186,7 +185,7 @@ describe('UsaCollectionItem', () => {
   })
 
   it('adds custom CSS classes', () => {
-    mount(UsaCollectionItem, {
+    cy.mount(UsaCollectionItem, {
       props: {
         heading: 'Test header text',
         customClasses: {
@@ -209,7 +208,7 @@ describe('UsaCollectionItem', () => {
   })
 
   it('renders the custom router link tag and props', () => {
-    mount(UsaCollectionItem, {
+    cy.mount(UsaCollectionItem, {
       props: {
         heading: 'Test header text',
         to: '/test-page',

@@ -1,12 +1,11 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { h, toRaw } from 'vue'
 import UsaAccordion from './UsaAccordion.vue'
 import UsaAccordionItem from '@/components/UsaAccordionItem'
 
 describe('UsaAccordion', () => {
   it('renders the component', () => {
-    mount(UsaAccordion, {
+    cy.mount(UsaAccordion, {
       slots: {
         default: () => [
           h(UsaAccordionItem, { label: 'Accordion 1' }, () =>
@@ -58,7 +57,7 @@ describe('UsaAccordion', () => {
   })
 
   it('add bordered CSS class', () => {
-    mount(UsaAccordion, {
+    cy.mount(UsaAccordion, {
       props: {
         bordered: true,
       },
@@ -68,7 +67,7 @@ describe('UsaAccordion', () => {
   })
 
   it('add `aria-multiselectable` attribute', () => {
-    mount(UsaAccordion, {
+    cy.mount(UsaAccordion, {
       props: {
         multiselectable: true,
       },
@@ -80,7 +79,7 @@ describe('UsaAccordion', () => {
   })
 
   it('toggle accordion items when clicked', () => {
-    mount(UsaAccordion, {
+    cy.mount(UsaAccordion, {
       props: {},
       slots: {
         default: () => [
@@ -137,7 +136,7 @@ describe('UsaAccordion', () => {
   })
 
   it('items stay open when `multiselectable` prop is used', () => {
-    mount(UsaAccordion, {
+    cy.mount(UsaAccordion, {
       props: { multiselectable: true },
       slots: {
         default: () => [
@@ -194,7 +193,7 @@ describe('UsaAccordion', () => {
   })
 
   it('items with `open` prop are open by default', () => {
-    mount(UsaAccordion, {
+    cy.mount(UsaAccordion, {
       slots: {
         default: () => [
           h(UsaAccordionItem, { label: 'Accordion 1' }, () =>
@@ -232,7 +231,7 @@ describe('UsaAccordion', () => {
   })
 
   it('only last default open item allowed if not `multiselectable`', () => {
-    mount(UsaAccordion, {
+    cy.mount(UsaAccordion, {
       slots: {
         default: () => [
           h(UsaAccordionItem, { label: 'Accordion 1', open: true }, () =>
@@ -283,7 +282,7 @@ describe('UsaAccordion', () => {
   })
 
   it('custom heading tag is used', () => {
-    mount(UsaAccordion, {
+    cy.mount(UsaAccordion, {
       props: {
         headingTag: 'h4',
       },
@@ -306,7 +305,7 @@ describe('UsaAccordion', () => {
   })
 
   it('emits accordion item changes', () => {
-    mount(UsaAccordion, {
+    cy.mount(UsaAccordion, {
       slots: {
         default: () => [
           h(UsaAccordionItem, { label: 'Accordion 1' }, () =>
@@ -320,7 +319,9 @@ describe('UsaAccordion', () => {
           ),
         ],
       },
-    }).as('wrapper')
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('@wrapper')
       .vue()

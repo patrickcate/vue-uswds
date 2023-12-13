@@ -1,10 +1,9 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaTableHeaderCell from './UsaTableHeaderCell.vue'
 
 describe('UsaTableHeaderCell', () => {
   it('renders the component', () => {
-    mount(UsaTableHeaderCell, {
+    cy.mount(UsaTableHeaderCell, {
       props: {
         id: 'test-header-id',
         label: 'Test header',
@@ -78,37 +77,7 @@ describe('UsaTableHeaderCell', () => {
       </table>`,
     }
 
-    // const wrapper = mount(UsaTableHeaderCell, {
-    //   props: {
-    //     id: 'test-header-id',
-    //     label: 'Test header',
-    //     sortable: true,
-    //   },
-    //   global: {
-    //     mocks: {
-    //       // toggleTableSort: async headerId => {
-    //       //   console.log(headerId)
-    //       //   await wrapper.vue().then(vm => {
-    //       //     console.log(vm)
-    //       //     const { currentSortDirection } = vm.componentVM
-    //       //     const reverseDirections = {
-    //       //       ascending: 'descending',
-    //       //       descending: 'ascending',
-    //       //     }
-    //       //     wrapper.invoke('setProps', {
-    //       //       currentSortedHeader: headerId,
-    //       //       currentSortDirection:
-    //       //         reverseDirections[currentSortDirection] || 'ascending',
-    //       //     })
-    //       //   })
-    //       // },
-    //     },
-    //     provide: {
-    //       updateCurrentSortedHeader: cy.stub().as('updateCurrentSortedHeader'),
-    //       toggleSortDirection: cy.stub().as('toggleSortDirection'),
-    //     },
-    //   },
-    mount(wrapperComponent, {}).as('wrapper')
+    cy.mount(wrapperComponent, {}).its('wrapper').as('wrapper')
 
     cy.get('th').should('have.attr', 'data-sortable').and('equal', 'true')
     cy.get('th')
@@ -145,7 +114,7 @@ describe('UsaTableHeaderCell', () => {
   })
 
   it('provided update methods are invoked', () => {
-    mount(UsaTableHeaderCell, {
+    cy.mount(UsaTableHeaderCell, {
       props: {
         id: 'test-header-id',
         label: 'Test header',
@@ -174,7 +143,7 @@ describe('UsaTableHeaderCell', () => {
   })
 
   it('default sort props are used as initial values', () => {
-    mount(UsaTableHeaderCell, {
+    cy.mount(UsaTableHeaderCell, {
       props: {
         id: 'test-header-id',
         label: 'Test header',
@@ -197,7 +166,7 @@ describe('UsaTableHeaderCell', () => {
   })
 
   it('uses default slot content', () => {
-    mount(UsaTableHeaderCell, {
+    cy.mount(UsaTableHeaderCell, {
       props: {
         id: 1,
         label: 'Test header',

@@ -1,5 +1,4 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import UsaFooterCollapsibleMenu from './UsaFooterCollapsibleMenu.vue'
 
 describe('UsaFooterCollapsibleMenu', () => {
@@ -64,7 +63,7 @@ describe('UsaFooterCollapsibleMenu', () => {
   })
 
   it('renders the component', () => {
-    mount(UsaFooterCollapsibleMenu, {
+    cy.mount(UsaFooterCollapsibleMenu, {
       props: {
         items: testItems,
       },
@@ -119,7 +118,7 @@ describe('UsaFooterCollapsibleMenu', () => {
   it('starts as collapsible at small screens', () => {
     cy.viewport(480, 600)
 
-    mount(UsaFooterCollapsibleMenu, {
+    cy.mount(UsaFooterCollapsibleMenu, {
       props: {
         items: testItems,
       },
@@ -134,7 +133,7 @@ describe('UsaFooterCollapsibleMenu', () => {
   })
 
   it('headings use custom `h3` size', () => {
-    mount(UsaFooterCollapsibleMenu, {
+    cy.mount(UsaFooterCollapsibleMenu, {
       props: {
         items: testItems,
         headingTag: 'h3',
@@ -150,7 +149,7 @@ describe('UsaFooterCollapsibleMenu', () => {
   it('uses custom grid prefix and separator and nav breakpoint', () => {
     cy.viewport('macbook-15')
 
-    mount(UsaFooterCollapsibleMenu, {
+    cy.mount(UsaFooterCollapsibleMenu, {
       props: {
         items: testItems,
       },
@@ -197,7 +196,7 @@ describe('UsaFooterCollapsibleMenu', () => {
   })
 
   it('has custom grid CSS classes', () => {
-    mount(UsaFooterCollapsibleMenu, {
+    cy.mount(UsaFooterCollapsibleMenu, {
       props: {
         items: testItems,
         customClasses: {

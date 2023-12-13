@@ -3,7 +3,14 @@ import { onKeyStroke, onClickOutside, useActiveElement } from '@vueuse/core'
 import { nextId } from '@/utils/unique-id.js'
 import { escapeRegExp } from '@/utils/common.js'
 
-export default (_id, _selectedOption, _options, _disabled, _readonly, emit) => {
+export function useComboBox(
+  _id,
+  _selectedOption,
+  _options,
+  _disabled,
+  _readonly,
+  emit
+) {
   const id = ref(_id)
   const options = ref(_options)
   const isDisabled = ref(_disabled)

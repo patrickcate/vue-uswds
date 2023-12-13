@@ -1,11 +1,10 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { mount } from '@cypress/vue'
 import { ref, reactive } from 'vue'
 import UsaNavDropdownButton from './UsaNavDropdownButton.vue'
 
 describe('UsaNavDropdownButton', () => {
   it('renders the component', () => {
-    mount(UsaNavDropdownButton, {
+    cy.mount(UsaNavDropdownButton, {
       attrs: {
         'data-test': 'test-attr',
       },
@@ -60,7 +59,7 @@ describe('UsaNavDropdownButton', () => {
         '<slot :isActive="isActive" :isExactActive="isExactActive"></slot>',
     }
 
-    mount(UsaNavDropdownButton, {
+    cy.mount(UsaNavDropdownButton, {
       attrs: {
         'data-test': 'test-attr',
       },
@@ -117,7 +116,7 @@ describe('UsaNavDropdownButton', () => {
         '<slot :isActive="isActive" :isExactActive="isExactActive"></slot>',
     }
 
-    mount(UsaNavDropdownButton, {
+    cy.mount(UsaNavDropdownButton, {
       slots: {
         default: () => 'Test dropdown button',
       },
