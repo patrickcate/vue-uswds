@@ -26,6 +26,9 @@ jobs:
       - name: Lint files
         run: npm run lint
 
+      - name: Test that components are tree shakable.
+        run: npm run lint:tree-shaking
+
   # This job runs all Cypress tests.
   cypress-test:
     if: contains(github.event.head_commit.message, 'skip ci') == false
@@ -40,7 +43,6 @@ jobs:
           # - macos-latest
           # - windows-latest
         node:
-          - 16
           - 18
           - 20
 
@@ -53,6 +55,9 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: 'npm'
+
+      - name: Clear Vite cache
+        run: rm -rf node_modules/.vite/deps
 
       - name: E2E tests on Node v${{ matrix.node }}
         if: github.actor == 'dependabot[bot]'
