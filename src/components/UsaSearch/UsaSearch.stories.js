@@ -8,6 +8,7 @@ const defaultProps = {
   buttonLabel: UsaSearch.props.buttonLabel.default,
   inputAttrs: UsaSearch.props.inputAttrs.default(),
   id: UsaSearch.props.id.default,
+  name: UsaSearch.props.name.default,
   customClasses: UsaSearch.props.customClasses.default(),
 }
 
@@ -36,6 +37,9 @@ export default {
     id: {
       control: { type: 'text' },
     },
+    name: {
+      control: { type: 'text' },
+    },
     customClasses: {
       control: { type: 'object' },
     },
@@ -50,6 +54,7 @@ export default {
     buttonLabel: defaultProps.buttonLabel,
     inputAttrs: defaultProps.inputAttrs,
     id: defaultProps.id,
+    name: defaultProps.name,
     customClasses: defaultProps.customClasses,
     icon: '',
   },
@@ -69,6 +74,7 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :buttonLabel="buttonLabel"
     :inputAttrs="inputAttrs"
     :id="id"
+    :name="name"
     :customClasses="customClasses"
   >
     <template v-if="${!!args.icon}" #icon>${args.icon}</template>
@@ -115,6 +121,13 @@ CustomButtonLabelSearch.args = {
   buttonLabel: 'Submit',
 }
 CustomButtonLabelSearch.storyName = 'Custom Button Label'
+
+export const CustomNameSearch = DefaultTemplate.bind({})
+CustomNameSearch.args = {
+  ...defaultProps,
+  name: 'custom-name-attribute',
+}
+CustomNameSearch.storyName = 'Custom Name Attribute'
 
 export const InputAttrsSearch = DefaultTemplate.bind({})
 InputAttrsSearch.args = {

@@ -43,6 +43,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  name: {
+    type: String,
+    default: 'search',
+  },
   customClasses: {
     type: Object,
     default: () => {
@@ -82,8 +86,8 @@ const searchValue = computed({
       v-bind="inputAttrs"
       :id="computedId"
       v-model="searchValue"
-      name="search"
       type="search"
+      :name="name"
       :label="label"
       :class="customClasses?.input"
       :custom-classes="customClasses"
