@@ -50,6 +50,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set Timezone
+        uses: szenius/set-timezone@v1.2
+        with:
+          timezoneLinux: 'America/New_York'
+          timezoneMacos: 'America/New_York'
+          timezoneWindows: 'Eastern Standard Time'
+
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
@@ -65,6 +72,8 @@ jobs:
         with:
           command: npm run test:e2e
           record: false
+        env:
+          TZ: America/New_York
 
       - name: Component tests on Node v${{ matrix.node }}
         if: github.actor == 'dependabot[bot]'
@@ -74,6 +83,8 @@ jobs:
           install: false
           command: npm run test:component
           record: false
+        env:
+          TZ: America/New_York
 
       - name: Cypress.io E2E tests on Node v${{ matrix.node }}
         if: github.actor != 'dependabot[bot]'
@@ -86,6 +97,7 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TZ: America/New_York
 
       - name: Cypress.io component tests on Node v${{ matrix.node }}
         if: github.actor != 'dependabot[bot]'
@@ -100,6 +112,7 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TZ: America/New_York
 
       - name: Upload coverage to Codecov
         if: github.actor != 'dependabot[bot]'
