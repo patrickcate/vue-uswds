@@ -189,7 +189,10 @@ watch(selectedDate, newSelectedDate => {
   const maximumDate = parseIsoDate(props.maxDate)
 
   if (isDateInRange(newDate, minimumDate, maximumDate)) {
-    activeDate.value = formatIsoDate(newDate)
+    const newFormattedDate = formatIsoDate(newDate)
+
+    activeDate.value = newFormattedDate
+    highlightedDate.value = newFormattedDate
   }
 })
 
