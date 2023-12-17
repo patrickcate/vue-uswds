@@ -1,5 +1,13 @@
 Changelog
 
+# [1.5.0](https://github.com/patrickcate/vue-uswds/compare/v1.4.1...v1.5.0) (2023-12-13)
+
+
+### Features
+
+* **UsaSearch:** add `name` prop ([62f8a4b](https://github.com/patrickcate/vue-uswds/commit/62f8a4b543db5e03180ec48f3c2b91821de47cb7))
+* **vite:** update to Vite 3 to improve component tree shaking ([55c16db](https://github.com/patrickcate/vue-uswds/commit/55c16dbdf8a1bc8311c2c976a9189cc03ff84baf))
+
 ## [1.4.1](https://github.com/patrickcate/vue-uswds/compare/v1.4.0...v1.4.1) (2023-12-06)
 
 
