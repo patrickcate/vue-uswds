@@ -1,5 +1,12 @@
 Changelog
 
+## [1.5.1](https://github.com/patrickcate/vue-uswds/compare/v1.5.0...v1.5.1) (2023-12-17)
+
+
+### Bug Fixes
+
+* **UsaDatePickerCalendar:** set correct highlighted date when clicked ([b32620f](https://github.com/patrickcate/vue-uswds/commit/b32620fc052e111c4e9ad7eb959a29f03dcc59d0))
+
 # [1.5.0](https://github.com/patrickcate/vue-uswds/compare/v1.4.1...v1.5.0) (2023-12-13)
 
 
