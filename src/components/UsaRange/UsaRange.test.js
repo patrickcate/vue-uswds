@@ -19,19 +19,13 @@ describe('UsaRange', () => {
     cy.get('div.usa-form-group').should('not.have.attr', 'name')
     cy.get('label.usa-label').should('have.attr', 'for')
 
-    cy.get('input.usa-range').as('range').should('have.attr', 'id')
-    cy.get('@range')
-      .should('have.attr', 'name')
-      .and('contain', 'test-dropdown-name')
-    cy.get('@range').should('have.attr', 'type').and('contain', 'range')
-    cy.get('@range').should('have.attr', 'role').and('contain', 'slider')
-    cy.get('@range').should('have.attr', 'min').and('contain', 0)
-    cy.get('@range').should('have.attr', 'aria-valuemin').and('contain', 0)
-    cy.get('@range').should('have.attr', 'max').and('contain', 100)
-    cy.get('@range').should('have.attr', 'aria-valuemax').and('contain', 100)
-    cy.get('@range').should('have.attr', 'aria-valuenow').and('contain', '')
-
-    cy.get('@range').should('have.attr', 'aria-describedby')
+    cy.get('input.usa-range').should('have.attr', 'id')
+    cy.get('input.usa-range')
+      .should('have.attr', 'name', 'test-dropdown-name')
+      .and('have.attr', 'type', 'range')
+      .and('have.attr', 'min', 0)
+      .and('have.attr', 'max', 100)
+      .and('have.attr', 'aria-describedby')
   })
 
   it('displays `label`, `hint`, and `error-message` slot content', () => {

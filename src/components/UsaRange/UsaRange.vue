@@ -118,12 +118,8 @@ const ariaDescribedby = computed(() => {
       class="usa-range"
       :class="classes"
       type="range"
-      role="slider"
       :min="min"
       :max="max"
-      :aria-valuemin="min"
-      :aria-valuemax="max"
-      :aria-valuenow="rangeValue"
       :required="required"
       :aria-describedby="ariaDescribedby"
     />
