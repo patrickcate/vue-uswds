@@ -1709,18 +1709,18 @@ describe('UsaDatePickerCalendarDay', () => {
     })
 
     // Make sure the next tab element has been initially rendered.
-    // cy.get('.usa-date-picker__calendar__previous-year').should('not.have.focus')
-    // cy.get('.usa-date-picker__calendar__previous-month').should(
-    //   'not.have.focus'
-    // )
-    // cy.get('.usa-date-picker__calendar__month-selection').should(
-    //   'not.have.focus'
-    // )
-    // cy.get('.usa-date-picker__calendar__year-selection').should(
-    //   'not.have.focus'
-    // )
-    // cy.get('.usa-date-picker__calendar__next-month').should('not.have.focus')
-    // cy.get('.usa-date-picker__calendar__next-year').should('not.have.focus')
+    cy.get('.usa-date-picker__calendar__previous-year').should('not.have.focus')
+    cy.get('.usa-date-picker__calendar__previous-month').should(
+      'not.have.focus'
+    )
+    cy.get('.usa-date-picker__calendar__month-selection').should(
+      'not.have.focus'
+    )
+    cy.get('.usa-date-picker__calendar__year-selection').should(
+      'not.have.focus'
+    )
+    cy.get('.usa-date-picker__calendar__next-month').should('not.have.focus')
+    cy.get('.usa-date-picker__calendar__next-year').should('not.have.focus')
 
     // Should start on selected date: 2022-07-13.
     cy.get('button[data-value="2022-07-13"]')
