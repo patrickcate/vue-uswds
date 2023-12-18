@@ -42,9 +42,15 @@ describe('UsaDatePickerCalendarYear', () => {
       '-1'
     )
 
-    cy.get('.usa-date-picker__calendar__year-picker > table')
-      .should('have.attr', 'role', 'presentation')
-      .and('have.class', 'usa-date-picker__calendar__table')
+    cy.get('.usa-date-picker__calendar__year-picker > table').should(
+      'have.class',
+      'usa-date-picker__calendar__table'
+    )
+
+    cy.get('.usa-date-picker__calendar__year-picker > table').should(
+      'not.have.attr',
+      'role'
+    )
 
     cy.get('.usa-date-picker__calendar__year-picker > table > tbody').should(
       'exist'
