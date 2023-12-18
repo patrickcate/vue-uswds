@@ -4,6 +4,8 @@ import UsaRange from './UsaRange.vue'
 const defaultProps = {
   min: UsaRange.props.min.default,
   max: UsaRange.props.max.default,
+  unit: UsaRange.props.unit.default,
+  preposition: UsaRange.props.preposition.default,
   modelValue: UsaRange.props.modelValue.default,
   label: UsaRange.props.label.default,
   required: UsaRange.props.required.default,
@@ -21,6 +23,12 @@ export default {
     },
     max: {
       control: { type: 'number' },
+    },
+    unit: {
+      control: { type: 'text' },
+    },
+    preposition: {
+      control: { type: 'text' },
     },
     modelValue: {
       control: { type: 'text' },
@@ -60,6 +68,8 @@ export default {
   args: {
     min: defaultProps.min,
     max: defaultProps.max,
+    unit: defaultProps.unit,
+    preposition: defaultProps.preposition,
     modelValue: defaultProps.modelValue,
     label: defaultProps.label,
     required: defaultProps.required,
@@ -88,6 +98,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
     v-bind="$attrs"
     :min="min"
     :max="max"
+    :unit="unit"
+    :preposition="preposition"
     :label="label"
     :required="required"
     :error="error"
@@ -119,6 +131,16 @@ DefaultValueRange.args = {
   modelValue: '75',
 }
 DefaultValueRange.storyName = 'Default Value'
+
+export const CustomUnitAndPrepositionRange = DefaultTemplate.bind({})
+CustomUnitAndPrepositionRange.args = {
+  ...defaultProps,
+  label: 'Range label',
+  modelValue: '75',
+  unit: 'degrees',
+  preposition: 'out of a total',
+}
+CustomUnitAndPrepositionRange.storyName = 'Custom Unit and Preposition'
 
 export const HintRange = DefaultTemplate.bind({})
 HintRange.args = {

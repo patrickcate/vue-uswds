@@ -69,7 +69,7 @@ describe('UsaDatePickerCalendar', () => {
       .as('wrapper')
 
     cy.get('.usa-date-picker__calendar')
-      .should('have.attr', 'role', 'dialog')
+      .should('have.attr', 'role', 'application')
       .and('have.attr', 'data-value', '2022-07-13')
       .and('not.have.attr', 'hidden', 'true')
 

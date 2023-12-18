@@ -51,11 +51,11 @@ describe('UsaDatePicker', () => {
 
     cy.get('div.usa-date-picker__calendar')
       .as('calendar')
-      .should('have.attr', 'role', 'dialog')
-      .and('have.attr', 'aria-modal', 'true')
+      .should('have.attr', 'role', 'application')
       .and('have.attr', 'data-value', '')
       .and('have.attr', 'hidden', 'hidden')
       .and('have.attr', 'style')
+    cy.get('@calendar').should('not.have.attr', 'aria-modal')
 
     cy.get('div.usa-date-picker__status')
       .as('status')
