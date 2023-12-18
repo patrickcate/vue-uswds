@@ -151,16 +151,15 @@ describe('UsaDatePickerCalendarDay', () => {
       .and('be.empty')
 
     cy.get('table.usa-date-picker__calendar__table').should(
-      'have.attr',
-      'role',
-      'presentation'
+      'not.have.attr',
+      'role'
     )
 
     cy.get('.usa-date-picker__calendar__table > thead > tr')
       .children()
       .should('have.length', 7)
       .and('have.class', 'usa-date-picker__calendar__day-of-week')
-      .and('have.attr', 'scope', 'presentation')
+      .and('have.attr', 'scope', 'col')
 
     cy.get('.usa-date-picker__calendar__table th:nth-of-type(1)')
       .should('have.attr', 'aria-label', 'Sunday')

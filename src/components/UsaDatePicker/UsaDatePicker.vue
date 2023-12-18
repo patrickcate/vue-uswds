@@ -179,11 +179,11 @@ const props = defineProps({
   },
   yearSelectionButtonLabel: {
     type: String,
-    default: '%s. Click to select year',
+    default: '%s. Select year',
   },
   monthSelectionButtonLabel: {
     type: String,
-    default: '%s. Click to select month',
+    default: '%s. Select month',
   },
   previousYearsButtonLabel: {
     type: String,

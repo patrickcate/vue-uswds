@@ -495,14 +495,14 @@ onBeforeUnmount(() => {
       </div>
     </div>
 
-    <table class="usa-date-picker__calendar__table" role="presentation">
+    <table class="usa-date-picker__calendar__table">
       <thead>
         <tr>
           <th
             v-for="(dayLabel, index) in dayOfWeekLabels"
             :key="dayLabel"
             class="usa-date-picker__calendar__day-of-week"
-            scope="presentation"
+            scope="col"
             :aria-label="dayLabel"
             >{{ dayOfWeekAbbreviationLabels[index] }}
           </th>

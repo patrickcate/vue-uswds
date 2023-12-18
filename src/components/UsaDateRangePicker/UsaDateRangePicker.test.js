@@ -118,7 +118,7 @@ describe('UsaDateRangePicker', () => {
     )
       .as('monthSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${month}. Click to select month`)
+      .and('have.attr', 'aria-label', `${month}. Select month`)
       .and('have.class', 'usa-date-picker__calendar__month-selection')
       .and('contain', month)
 
@@ -127,7 +127,7 @@ describe('UsaDateRangePicker', () => {
     )
       .as('yearSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${year}. Click to select year`)
+      .and('have.attr', 'aria-label', `${year}. Select year`)
       .and('have.class', 'usa-date-picker__calendar__year-selection')
       .and('contain', year)
 
@@ -209,13 +209,13 @@ describe('UsaDateRangePicker', () => {
 
     cy.get('@monthSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${month}. Click to select month`)
+      .and('have.attr', 'aria-label', `${month}. Select month`)
       .and('have.class', 'usa-date-picker__calendar__month-selection')
       .and('contain', month)
 
     cy.get('@yearSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${year}. Click to select year`)
+      .and('have.attr', 'aria-label', `${year}. Select year`)
       .and('have.class', 'usa-date-picker__calendar__year-selection')
       .and('contain', year)
 
@@ -400,13 +400,13 @@ describe('UsaDateRangePicker', () => {
 
     cy.get('@monthSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${month}. Click to select month`)
+      .and('have.attr', 'aria-label', `${month}. Select month`)
       .and('have.class', 'usa-date-picker__calendar__month-selection')
       .and('contain', month)
 
     cy.get('@yearSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${year}. Click to select year`)
+      .and('have.attr', 'aria-label', `${year}. Select year`)
       .and('have.class', 'usa-date-picker__calendar__year-selection')
       .and('contain', year)
 
@@ -555,13 +555,13 @@ describe('UsaDateRangePicker', () => {
 
     cy.get('@monthSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${month}. Click to select month`)
+      .and('have.attr', 'aria-label', `${month}. Select month`)
       .and('have.class', 'usa-date-picker__calendar__month-selection')
       .and('contain', month)
 
     cy.get('@yearSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${year}. Click to select year`)
+      .and('have.attr', 'aria-label', `${year}. Select year`)
       .and('have.class', 'usa-date-picker__calendar__year-selection')
       .and('contain', year)
 
@@ -718,13 +718,13 @@ describe('UsaDateRangePicker', () => {
 
     cy.get('@monthSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${month}. Click to select month`)
+      .and('have.attr', 'aria-label', `${month}. Select month`)
       .and('have.class', 'usa-date-picker__calendar__month-selection')
       .and('contain', month)
 
     cy.get('@yearSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${year}. Click to select year`)
+      .and('have.attr', 'aria-label', `${year}. Select year`)
       .and('have.class', 'usa-date-picker__calendar__year-selection')
       .and('contain', year)
 
@@ -775,13 +775,13 @@ describe('UsaDateRangePicker', () => {
 
     cy.get('@monthSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${month}. Click to select month`)
+      .and('have.attr', 'aria-label', `${month}. Select month`)
       .and('have.class', 'usa-date-picker__calendar__month-selection')
       .and('contain', month)
 
     cy.get('@yearSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${year}. Click to select year`)
+      .and('have.attr', 'aria-label', `${year}. Select year`)
       .and('have.class', 'usa-date-picker__calendar__year-selection')
       .and('contain', year)
 
@@ -1028,7 +1028,7 @@ describe('UsaDateRangePicker', () => {
     )
       .as('monthSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${month}. Click to select month`)
+      .and('have.attr', 'aria-label', `${month}. Select month`)
       .and('have.class', 'usa-date-picker__calendar__month-selection')
       .and('contain', month)
 
@@ -1037,7 +1037,7 @@ describe('UsaDateRangePicker', () => {
     )
       .as('yearSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${year}. Click to select year`)
+      .and('have.attr', 'aria-label', `${year}. Select year`)
       .and('have.class', 'usa-date-picker__calendar__year-selection')
       .and('contain', year)
 
@@ -1130,13 +1130,13 @@ describe('UsaDateRangePicker', () => {
 
     cy.get('@monthSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${month}. Click to select month`)
+      .and('have.attr', 'aria-label', `${month}. Select month`)
       .and('have.class', 'usa-date-picker__calendar__month-selection')
       .and('contain', month)
 
     cy.get('@yearSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${year}. Click to select year`)
+      .and('have.attr', 'aria-label', `${year}. Select year`)
       .and('have.class', 'usa-date-picker__calendar__year-selection')
       .and('contain', year)
 
@@ -1321,13 +1321,13 @@ describe('UsaDateRangePicker', () => {
 
     cy.get('@monthSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${month}. Click to select month`)
+      .and('have.attr', 'aria-label', `${month}. Select month`)
       .and('have.class', 'usa-date-picker__calendar__month-selection')
       .and('contain', month)
 
     cy.get('@yearSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${year}. Click to select year`)
+      .and('have.attr', 'aria-label', `${year}. Select year`)
       .and('have.class', 'usa-date-picker__calendar__year-selection')
       .and('contain', year)
 
@@ -1474,13 +1474,13 @@ describe('UsaDateRangePicker', () => {
 
     cy.get('@monthSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${month}. Click to select month`)
+      .and('have.attr', 'aria-label', `${month}. Select month`)
       .and('have.class', 'usa-date-picker__calendar__month-selection')
       .and('contain', month)
 
     cy.get('@yearSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${year}. Click to select year`)
+      .and('have.attr', 'aria-label', `${year}. Select year`)
       .and('have.class', 'usa-date-picker__calendar__year-selection')
       .and('contain', year)
 
@@ -1635,13 +1635,13 @@ describe('UsaDateRangePicker', () => {
 
     cy.get('@monthSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${month}. Click to select month`)
+      .and('have.attr', 'aria-label', `${month}. Select month`)
       .and('have.class', 'usa-date-picker__calendar__month-selection')
       .and('contain', month)
 
     cy.get('@yearSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${year}. Click to select year`)
+      .and('have.attr', 'aria-label', `${year}. Select year`)
       .and('have.class', 'usa-date-picker__calendar__year-selection')
       .and('contain', year)
 
@@ -1690,13 +1690,13 @@ describe('UsaDateRangePicker', () => {
 
     cy.get('@monthSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${month}. Click to select month`)
+      .and('have.attr', 'aria-label', `${month}. Select month`)
       .and('have.class', 'usa-date-picker__calendar__month-selection')
       .and('contain', month)
 
     cy.get('@yearSelectorButton')
       .should('have.attr', 'type', 'button')
-      .and('have.attr', 'aria-label', `${year}. Click to select year`)
+      .and('have.attr', 'aria-label', `${year}. Select year`)
       .and('have.class', 'usa-date-picker__calendar__year-selection')
       .and('contain', year)
 
