@@ -22,6 +22,14 @@ const props = defineProps({
     type: Number,
     default: 100,
   },
+  unit: {
+    type: String,
+    default: '',
+  },
+  preposition: {
+    type: String,
+    default: 'of',
+  },
   modelValue: {
     type: [String, Number],
     default: '',
@@ -83,6 +91,18 @@ const ariaDescribedby = computed(() => {
 
   return ids.length ? ids.join(' ') : null
 })
+
+const callout = computed(() => {
+  if (!rangeValue.value && rangeValue.value !== 0) {
+    return null
+  }
+
+  if (props.unit) {
+    return `${rangeValue.value} ${props.unit} ${props.preposition} ${props.max}`
+  }
+
+  return `${rangeValue.value} ${props.preposition} ${props.max}`
+})
 </script>
 
 <template>
@@ -120,6 +140,7 @@ const ariaDescribedby = computed(() => {
       type="range"
       :min="min"
       :max="max"
+      :aria-valuetext="callout"
       :required="required"
       :aria-describedby="ariaDescribedby"
     />

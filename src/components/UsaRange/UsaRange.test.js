@@ -15,6 +15,8 @@ describe('UsaRange', () => {
         hint: () => 'Test hint',
       },
     })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('div.usa-form-group').should('not.have.attr', 'name')
     cy.get('label.usa-label').should('have.attr', 'for')
@@ -26,6 +28,14 @@ describe('UsaRange', () => {
       .and('have.attr', 'min', 0)
       .and('have.attr', 'max', 100)
       .and('have.attr', 'aria-describedby')
+    cy.get('input.usa-range').should('not.have.attr', 'aria-valuetext')
+
+    // Check for correct default preposition prop value.
+    cy.get('@wrapper')
+      .vue()
+      .then(({ vm }) => {
+        expect(vm.props.preposition).to.equal('of')
+      })
   })
 
   it('displays `label`, `hint`, and `error-message` slot content', () => {
@@ -77,6 +87,25 @@ describe('UsaRange', () => {
       .should('have.class', 'usa-input--error')
       .and('have.attr', 'aria-describedby')
       .and('contain', 'custom-id-hint custom-id-error-message')
+  })
+
+  it('`aria-valuetext` attribute has correct text', () => {
+    cy.mount(UsaRange, {
+      props: {
+        modelValue: 10,
+      },
+    })
+      .its('wrapper')
+      .as('wrapper')
+
+    cy.get('input').should('have.attr', 'aria-valuetext', '10 of 100')
+
+    cy.get('@wrapper').invoke('setProps', {
+      unit: 'degrees',
+      preposition: 'at',
+    })
+
+    cy.get('input').should('have.attr', 'aria-valuetext', '10 degrees at 100')
   })
 
   it('add required attribute if `required` prop is true', () => {
