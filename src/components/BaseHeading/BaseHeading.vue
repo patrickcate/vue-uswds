@@ -1,5 +1,7 @@
 <script setup>
-defineProps({
+// Un-used `props` variable needed for code coverage to be instrumented.
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
   tag: {
     type: String,
     default: 'h2',

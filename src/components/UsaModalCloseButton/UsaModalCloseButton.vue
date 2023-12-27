@@ -4,7 +4,9 @@ import { SVG_SPRITE_PATH } from '@/utils/constants.js'
 
 const svgSpritePath = inject('vueUswds.svgSpritePath', SVG_SPRITE_PATH)
 
-defineProps({
+// Un-used `props` variable needed for code coverage to be instrumented.
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
   ariaLabel: {
     type: String,
     required: true,
