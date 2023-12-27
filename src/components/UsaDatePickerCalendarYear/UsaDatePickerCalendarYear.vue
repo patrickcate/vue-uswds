@@ -254,7 +254,7 @@ onBeforeUnmount(() => {
     tabindex="-1"
     class="usa-date-picker__calendar__year-picker"
   >
-    <table role="presentation" class="usa-date-picker__calendar__table">
+    <table class="usa-date-picker__calendar__table">
       <tbody>
         <tr>
           <td>

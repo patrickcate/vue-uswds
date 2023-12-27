@@ -205,8 +205,7 @@ onMounted(() => {
   <div
     ref="calendarPickerRef"
     class="usa-date-picker__calendar"
-    role="dialog"
-    aria-modal="true"
+    role="application"
     :data-value="highlightedDate"
     :hidden="!open"
   >

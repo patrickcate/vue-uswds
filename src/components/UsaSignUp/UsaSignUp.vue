@@ -1,7 +1,9 @@
 <script setup>
 import BaseHeading from '@/components/BaseHeading'
 
-defineProps({
+// Un-used `props` variable needed for code coverage to be instrumented.
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
   heading: {
     type: String,
     default: 'Sign up',
