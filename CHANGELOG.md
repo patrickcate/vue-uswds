@@ -1,5 +1,19 @@
 Changelog
 
+# [1.6.0](https://github.com/patrickcate/vue-uswds/compare/v1.5.1...v1.6.0) (2023-12-27)
+
+
+### Bug Fixes
+
+* **UsaRange:** remove redundant ARIA attributes ([f1650d6](https://github.com/patrickcate/vue-uswds/commit/f1650d6e2409e1200fba598abb04fb7798207e92))
+
+
+### Features
+
+* incorporate date picker a11y improvements from USWDS 3.7.0 ([3fe0c9f](https://github.com/patrickcate/vue-uswds/commit/3fe0c9ffa1b41615dbfc2a1aa919ea8a77e36a25))
+* incorporate date picker a11y improvements from USWDS 3.7.0 ([42ea002](https://github.com/patrickcate/vue-uswds/commit/42ea002ace5154e003f9f0d22f538a5ca5383501))
+* **UsaRange:** add `unit` and `preposition` props ([dc2bc92](https://github.com/patrickcate/vue-uswds/commit/dc2bc9223172c3c87317deef3f28a7391cb9bc50))
+
 ## [1.5.1](https://github.com/patrickcate/vue-uswds/compare/v1.5.0...v1.5.1) (2023-12-17)
 
 
