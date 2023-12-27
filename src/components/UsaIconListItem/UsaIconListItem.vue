@@ -2,7 +2,9 @@
 import BaseHeading from '@/components/BaseHeading'
 import UsaIcon from '@/components/UsaIcon'
 
-defineProps({
+// Un-used `props` variable needed for code coverage to be instrumented.
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
   icon: {
     type: String,
     required: true,

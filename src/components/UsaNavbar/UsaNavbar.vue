@@ -4,7 +4,9 @@ import { useMobileMenu } from '@/composables/useMobileMenu.js'
 
 const emit = defineEmits(['mobileMenuOpen'])
 
-defineProps({
+// Un-used `props` variable needed for code coverage to be instrumented.
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
   menuButtonLabel: {
     type: String,
     default: 'Menu',
