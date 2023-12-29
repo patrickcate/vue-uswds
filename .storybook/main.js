@@ -7,12 +7,21 @@ module.exports = {
     '../stories/**/*.stories.mdx',
     '../src/**/*.stories.@(js|jsx|ts|tsx)',
   ],
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-mdx-gfm'
+  ],
+
   core: {
-    builder: '@storybook/builder-vite',
-    disableTelemetry: true,
+    disableTelemetry: true
   },
-  framework: '@storybook/vue3',
+
+  framework: {
+    name: '@storybook/vue3-vite',
+    options: {}
+  },
 
   async viteFinal(config, { configType }) {
     const { config: userConfig } = await loadConfigFromFile(
@@ -25,4 +34,8 @@ module.exports = {
       plugins: [],
     })
   },
+
+  docs: {
+    autodocs: true
+  }
 }
