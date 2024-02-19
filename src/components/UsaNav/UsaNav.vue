@@ -1,5 +1,14 @@
 <script setup>
-import { computed, ref, watch, onBeforeUnmount, nextTick, inject, h } from 'vue'
+import {
+  computed,
+  ref,
+  watch,
+  onMounted,
+  onBeforeUnmount,
+  nextTick,
+  inject,
+  h,
+} from 'vue'
 import { IMAGE_PATH, MOBILE_MENU_BREAKPOINT } from '@/utils/constants.js'
 import { onKeyStroke, onClickOutside, useMediaQuery } from '@vueuse/core'
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
@@ -38,7 +47,13 @@ const props = defineProps({
 
 const nav = ref(null)
 const { activate, deactivate } = useFocusTrap(nav)
-const largeScreen = useMediaQuery(`(min-width: ${mobileMenuBreakpoint})`)
+const isMounted = ref(false)
+const largeScreenMediaQuery = useMediaQuery(
+  `(min-width: ${mobileMenuBreakpoint})`
+)
+const largeScreen = computed(() =>
+  isMounted.value ? largeScreenMediaQuery.value : true
+)
 
 watch(isMobileMenuOpen, async isMenuOpen => {
   if (isMenuOpen) {
@@ -54,6 +69,10 @@ watch(largeScreen, isLargeScreen => {
   if (isLargeScreen) {
     closeMobileMenu()
   }
+})
+
+onMounted(() => {
+  isMounted.value = true
 })
 
 onBeforeUnmount(() => {
