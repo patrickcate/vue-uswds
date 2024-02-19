@@ -1,5 +1,5 @@
 <script setup>
-import { computed, watch, ref, useSlots, onBeforeUnmount } from 'vue'
+import { computed, watch, ref, useSlots, onMounted, onBeforeUnmount } from 'vue'
 import { onKeyStroke, onClickOutside } from '@vueuse/core'
 import { UseFocusTrap } from '@vueuse/integrations/useFocusTrap/component'
 import { nextId } from '@/utils/unique-id.js'
@@ -72,9 +72,10 @@ const props = defineProps({
 })
 
 const modal = ref(null)
+const isMounted = ref(false)
 
 const isVisible = computed({
-  get: () => props.visible,
+  get: () => isMounted.value && props.visible,
   set: currentlyVisibility => emit('update:visible', currentlyVisibility),
 })
 const classes = computed(() => {
@@ -94,6 +95,10 @@ const focusTrapClass = 'js-focus-trap-wrapper'
 watch(
   () => isVisible,
   currentlyVisible => {
+    if (!isMounted.value) {
+      return
+    }
+
     if (currentlyVisible.value) {
       document.body.classList.add(modalBodyClass)
 
@@ -122,6 +127,10 @@ watch(
   }
 )
 
+onMounted(() => {
+  isMounted.value = true
+})
+
 onBeforeUnmount(() => {
   document.body.classList.remove(modalBodyClass)
 
@@ -148,7 +157,7 @@ onClickOutside(modal, () => {
 </script>
 
 <template>
-  <teleport to="body">
+  <Teleport to="body" :disabled="!isVisible">
     <UseFocusTrap
       v-if="isVisible"
       :class="[`${focusTrapClass}`, customClasses?.focusTrap]"
@@ -212,5 +221,5 @@ onClickOutside(modal, () => {
         </div>
       </div>
     </UseFocusTrap>
-  </teleport>
+  </Teleport>
 </template>
