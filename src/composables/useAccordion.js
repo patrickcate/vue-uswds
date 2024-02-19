@@ -1,6 +1,7 @@
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 
-export function useAccordion(_accordionItems, multiselectable = false) {
+export function useAccordion(_accordionItems, _multiselectable = false) {
+  const multiselectable = ref(_multiselectable)
   const accordionItems = reactive(_accordionItems)
 
   const registerAccordionItem = (id, isOpen) => {
