@@ -1,5 +1,14 @@
 Changelog
 
+## [1.6.1](https://github.com/patrickcate/vue-uswds/compare/v1.6.0...v1.6.1) (2024-02-19)
+
+
+### Bug Fixes
+
+* **UsaFooterCollapsibleMenu:** add ssr support by delaying collapse until component is mounted ([3df9591](https://github.com/patrickcate/vue-uswds/commit/3df95919c6b1ff7c30ab29a2ae0aa279c752e1a5))
+* **UsaModal:** delay visibility until component is mounted for ssr support ([399093c](https://github.com/patrickcate/vue-uswds/commit/399093c2b303e2a7ae31f14fc2506fed51aa9964))
+* **UsaNav:** support ssr by adding mounted check to media query evaluation ([aefd68f](https://github.com/patrickcate/vue-uswds/commit/aefd68f94fb686aa547e47b3438439f239b73971))
+
 # [1.6.0](https://github.com/patrickcate/vue-uswds/compare/v1.5.1...v1.6.0) (2023-12-27)
 
 
