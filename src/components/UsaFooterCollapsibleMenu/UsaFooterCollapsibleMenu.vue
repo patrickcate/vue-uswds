@@ -1,5 +1,5 @@
 <script setup>
-import { computed, inject, reactive, watch, provide } from 'vue'
+import { ref, computed, inject, reactive, watch, provide, onMounted } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 import {
   PREFIX_SEPARATOR,
@@ -34,8 +34,14 @@ const props = defineProps({
   },
 })
 
-const isCollapsible = useMediaQuery(`(max-width: ${footerNavBigBreakpoint})`)
+const isMounted = ref(false)
 const menuSections = reactive({})
+const isCollapsibleMediaQuery = useMediaQuery(
+  `(max-width: ${footerNavBigBreakpoint})`
+)
+const isCollapsible = computed(() =>
+  isMounted.value ? isCollapsibleMediaQuery.value : false
+)
 
 const {
   registerAccordionItem,
@@ -46,6 +52,10 @@ const {
 } = useAccordion(menuSections)
 
 watch(isCollapsible, closeAllItems)
+
+onMounted(() => {
+  isMounted.value = true
+})
 
 const gridRowClasses = computed(() => {
   if (props.customClasses?.gridRow?.length) {

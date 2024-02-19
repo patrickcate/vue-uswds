@@ -10,7 +10,8 @@ export function nextId(componentName = '') {
   const vm = getCurrentInstance()
   const route = vm.appContext.config.globalProperties?.$route
 
-  const pathPrefix = route?.path ? kebabCase(route.path) : 'global'
+  const pathPrefix =
+    route?.path && kebabCase(route.path) ? kebabCase(route.path) : 'global'
 
   if (!idRegistry[pathPrefix]) {
     idRegistry[pathPrefix] = 0
