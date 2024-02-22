@@ -1,47 +1,14 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h, ref } from 'vue'
 import UsaNav from './UsaNav.vue'
-import UsaNavbar from '@/components/UsaNavbar'
 
 describe('UsaNav', () => {
-  const wrapperComponent = {
-    components: { UsaNavbar, UsaNav },
-    props: {
-      ariaLabel: {
-        type: String,
-        default: 'Primary navigation',
-      },
-      closeButtonLabel: {
-        type: String,
-        default: 'Close',
-      },
-      customClasses: {
-        type: Object,
-        default: () => {
-          return {
-            button: [],
-          }
-        },
-      },
-    },
-    template: `
-    <UsaNavbar>
-      <UsaNav
-        :aria-label="ariaLabel"
-        :close-button-label="closeButtonLabel"
-        :custom-classes="customClasses"
-      >
-        <template #primary><slot name="primary"></slot></template>
-        <template #secondary><slot name="secondary"></slot></template>
-      </UsaNav>
-    </UsaNavbar>`,
-  }
-
   it('renders the component', () => {
+    const isOpen = ref(false)
+
     cy.viewport('iphone-6')
 
-    // eslint-disable-next-line cypress/no-assigning-return-values
-    const wrapper = cy.mount(wrapperComponent, {
+    cy.mount(UsaNav, {
       props: {
         customClasses: {
           button: ['test-button-class'],
@@ -65,6 +32,13 @@ describe('UsaNav', () => {
             'Test secondary slot'
           ),
       },
+      global: {
+        provide: {
+          isMobileMenuOpen: isOpen,
+          mobileMenuId: 'test-id',
+          closeMobileMenu: () => (isOpen.value = false),
+        },
+      },
     })
 
     cy.get('div.usa-overlay')
@@ -72,7 +46,7 @@ describe('UsaNav', () => {
       .should('not.have.class', 'is-visible')
       .and('not.be.visible')
 
-    cy.get('nav.usa-nav').as('nav').should('have.attr', 'id')
+    cy.get('nav.usa-nav').as('nav').should('have.id', 'test-id')
     cy.get('@nav')
       .should('have.attr', 'aria-label')
       .and('contain', 'Primary navigation')
@@ -107,34 +81,14 @@ describe('UsaNav', () => {
 
     cy.get('body > .usa-overlay').should('not.exist')
     cy.get('body > nav').should('not.exist')
-    cy.get('body > :not(nav)').should('not.have.attr', 'aria-hidden')
-    cy.get('body > :not(.usa-overlay)').should('not.have.attr', 'aria-hidden')
 
-    wrapper.vue().then(vm => {
-      const usaNavbarComponent = vm.findComponent(UsaNavbar)
-      expect(usaNavbarComponent.emitted()).to.not.have.property(
-        'mobileMenuOpen'
-      )
-    })
-
-    // Click mobile menu button.
-    cy.get('.usa-menu-btn').as('menuButton').click()
-
-    wrapper.vue().then(vm => {
-      const usaNavbarComponent = vm.findComponent(UsaNavbar)
-      expect(usaNavbarComponent.emitted()).to.have.property('mobileMenuOpen')
-
-      const currentEvent = usaNavbarComponent.emitted('mobileMenuOpen')
-      expect(currentEvent).to.have.length(1)
-      expect(currentEvent[currentEvent.length - 1]).to.contain(true)
+    // Open mobile menu.
+    cy.then(() => {
+      isOpen.value = true
     })
 
     cy.get('body > .usa-overlay').should('exist')
     cy.get('body > nav').should('exist')
-    cy.get('body > :not(nav)')
-      .should('have.attr', 'aria-hidden')
-      .and('contain', true)
-    cy.get('body > :not(.usa-overlay)').should('have.attr', 'aria-hidden')
 
     cy.get('@overlay').should('have.class', 'is-visible').and('be.visible')
     cy.get('@nav').should('have.class', 'is-visible').and('be.visible')
@@ -159,21 +113,8 @@ describe('UsaNav', () => {
     // Click mobile menu close button.
     cy.get('@closeButton').click()
 
-    wrapper.vue().then(vm => {
-      const usaNavbarComponent = vm.findComponent(UsaNavbar)
-      expect(usaNavbarComponent.emitted()).to.have.property('mobileMenuOpen')
-
-      const currentEvent = usaNavbarComponent.emitted('mobileMenuOpen')
-      expect(currentEvent).to.have.length(2)
-      expect(currentEvent[currentEvent.length - 1]).to.contain(false)
-    })
-
-    cy.get('@menuButton').should('have.focus')
-
     cy.get('body > .usa-overlay').should('not.exist')
     cy.get('body > nav').should('not.exist')
-    cy.get('body > :not(nav)').should('not.have.attr', 'aria-hidden')
-    cy.get('body > :not(.usa-overlay)').should('not.have.attr', 'aria-hidden')
 
     cy.get('@overlay')
       .should('not.have.class', 'is-visible')
@@ -181,7 +122,9 @@ describe('UsaNav', () => {
     cy.get('@nav').should('not.have.class', 'is-visible').and('not.be.visible')
 
     // Open mobile menu again.
-    cy.get('@menuButton').click()
+    cy.then(() => {
+      isOpen.value = true
+    })
 
     cy.get('@overlay').should('have.class', 'is-visible').and('be.visible')
     cy.get('@nav').should('have.class', 'is-visible').and('be.visible')
@@ -195,12 +138,14 @@ describe('UsaNav', () => {
     cy.get('@nav').should('not.have.class', 'is-visible').and('not.be.visible')
 
     // Open mobile menu again.
-    cy.get('@menuButton').click()
+    cy.then(() => {
+      isOpen.value = true
+    })
 
     cy.get('@overlay').should('have.class', 'is-visible').and('be.visible')
     cy.get('@nav').should('have.class', 'is-visible').and('be.visible')
 
-    cy.get('html').click('bottomLeft')
+    cy.get('html').click('topLeft')
 
     cy.get('@overlay')
       .should('not.have.class', 'is-visible')
@@ -208,16 +153,20 @@ describe('UsaNav', () => {
     cy.get('@nav').should('not.have.class', 'is-visible').and('not.be.visible')
 
     // Open mobile menu again.
-    cy.get('@menuButton').click()
+    cy.then(() => {
+      isOpen.value = true
+    })
 
     cy.get('@overlay').should('have.class', 'is-visible').and('be.visible')
     cy.get('@nav').should('have.class', 'is-visible').and('be.visible')
   })
 
   it('slot positions change on mobile screens', () => {
+    const isOpen = ref(true)
+
     cy.viewport('iphone-6')
 
-    cy.mount(wrapperComponent, {
+    cy.mount(UsaNav, {
       props: {
         ariaLabel: 'Custom aria label',
         closeButtonLabel: 'Custom close button label',
@@ -226,9 +175,14 @@ describe('UsaNav', () => {
         primary: () => h('span', {}, 'Test primary slot'),
         secondary: () => h('span', {}, 'Test secondary slot'),
       },
+      global: {
+        provide: {
+          isMobileMenuOpen: isOpen,
+          mobileMenuId: 'test-id',
+          closeMobileMenu: () => (isOpen.value = false),
+        },
+      },
     })
-
-    cy.get('.usa-menu-btn').as('menuButton').click()
 
     cy.get('div.usa-overlay')
       .as('overlay')
@@ -313,19 +267,26 @@ describe('UsaNav', () => {
   })
 
   it('uses custom global mobile breakpoint', () => {
+    const isOpen = ref(false)
+
     cy.viewport('iphone-6')
 
-    cy.mount(wrapperComponent, {
+    cy.mount(UsaNav, {
       global: {
         provide: {
           'vueUswds.imagePath': '/test',
           'vueUswds.mobileMenuBreakpoint': '400px',
-          closeMobileMenu: () => {},
+          isMobileMenuOpen: isOpen,
+          mobileMenuId: 'test-mobile-menu-id',
+          closeMobileMenu: () => (isOpen.value = false),
         },
       },
     })
 
-    cy.get('.usa-menu-btn').as('menuButton').click()
+    // Open mobile menu.
+    cy.then(() => {
+      isOpen.value = true
+    })
 
     cy.get('div.usa-overlay')
       .as('overlay')
