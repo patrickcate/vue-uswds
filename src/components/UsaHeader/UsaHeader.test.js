@@ -1,6 +1,8 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import { h } from 'vue'
 import UsaHeader from './UsaHeader.vue'
+import UsaNavbar from '@/components/UsaNavbar'
+import UsaNav from '@/components/UsaNav'
 
 describe('UsaHeader', () => {
   it('renders the component', () => {
@@ -86,6 +88,114 @@ describe('UsaHeader', () => {
     cy.get('@wrapper').invoke('setProps', { megamenu: false })
 
     cy.get('span').should('contain', 'Megamenu: false')
+  })
+
+  it('provide reactive values to `UsaNav` and `UsaNavbar` components', () => {
+    const childComponent = {
+      components: { UsaNavbar, UsaNav },
+      template: `
+        <UsaNavbar>Test Navbar</UsaNavbar>
+        <UsaNav>
+          <template #primary><div>Primary slot</div></template>
+          <template #secondary><div>Secondary slot</div></template>
+        </UsaNav>
+      `,
+    }
+
+    // eslint-disable-next-line cypress/no-assigning-return-values
+    const wrapper = cy
+      .mount(UsaHeader, {
+        slots: {
+          default: () => h(childComponent),
+        },
+      })
+      .its('wrapper')
+      .as('wrapper')
+
+    cy.get('div.usa-overlay')
+      .as('overlay')
+      .should('not.have.class', 'is-visible')
+      .and('not.be.visible')
+
+    cy.get('.usa-navbar').should('contain', 'Test Navbar')
+
+    cy.get('button.usa-menu-btn')
+      .as('menuButton')
+      .should(
+        'have.attr',
+        'aria-controls',
+        '__vuswds-id-global-mobile-header-menu'
+      )
+
+    cy.get('nav.usa-nav')
+      .as('nav')
+      .should('have.id', '__vuswds-id-global-mobile-header-menu')
+
+    cy.get('@nav').should('not.have.class', 'is-visible').and('not.be.visible')
+    cy.get('@nav').find('> div.usa-nav__inner').should('not.exist')
+
+    cy.get('@nav').find('> button.usa-nav__close').as('closeButton')
+
+    cy.get('body > .usa-overlay').should('not.exist')
+    cy.get('body > nav').should('not.exist')
+    cy.get('body > :not(nav)').should('not.have.attr', 'aria-hidden')
+    cy.get('body > :not(.usa-overlay)').should('not.have.attr', 'aria-hidden')
+
+    wrapper.vue().then(vm => {
+      const usaHeaderComponent = vm.findComponent(UsaHeader)
+      expect(usaHeaderComponent.emitted()).to.not.have.property(
+        'mobileMenuOpen'
+      )
+
+      // Click mobile menu button.
+      cy.get('@menuButton').click()
+
+      wrapper.vue().then(vm => {
+        const usaHeaderComponent = vm.findComponent(UsaHeader)
+
+        expect(usaHeaderComponent.emitted()).to.have.property('mobileMenuOpen')
+
+        const currentEvent = usaHeaderComponent.emitted('mobileMenuOpen')
+        expect(currentEvent).to.have.length(1)
+        expect(currentEvent[currentEvent.length - 1]).to.contain(true)
+      })
+    })
+
+    cy.get('body > .usa-overlay').should('exist')
+    cy.get('body > nav').should('exist')
+    cy.get('body > :not(nav)')
+      .should('have.attr', 'aria-hidden')
+      .and('contain', true)
+    cy.get('body > :not(.usa-overlay)').should('have.attr', 'aria-hidden')
+
+    cy.get('@overlay').should('have.class', 'is-visible').and('be.visible')
+    cy.get('@nav').should('have.class', 'is-visible').and('be.visible')
+
+    cy.get('@closeButton').should('have.focus')
+
+    // Click mobile menu close button.
+    cy.get('@closeButton').click()
+
+    wrapper.vue().then(vm => {
+      const usaHeaderComponent = vm.findComponent(UsaHeader)
+      expect(usaHeaderComponent.emitted()).to.have.property('mobileMenuOpen')
+
+      const currentEvent = usaHeaderComponent.emitted('mobileMenuOpen')
+      expect(currentEvent).to.have.length(2)
+      expect(currentEvent[currentEvent.length - 1]).to.contain(false)
+    })
+
+    cy.get('@menuButton').should('have.focus')
+
+    cy.get('body > .usa-overlay').should('not.exist')
+    cy.get('body > nav').should('not.exist')
+    cy.get('body > :not(nav)').should('not.have.attr', 'aria-hidden')
+    cy.get('body > :not(.usa-overlay)').should('not.have.attr', 'aria-hidden')
+
+    cy.get('@overlay')
+      .should('not.have.class', 'is-visible')
+      .and('not.be.visible')
+    cy.get('@nav').should('not.have.class', 'is-visible').and('not.be.visible')
   })
 
   it('adds custom CSS classes', () => {
