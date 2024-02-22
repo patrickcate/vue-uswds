@@ -104,6 +104,7 @@ watch(isSet, currentlySet => {
       isVisible.value = currentlySet
       // May be able to be removed once:
       // https://github.com/uswds/uswds/issues/4458 is fixed.
+      // @deprecated if issue is fixed.
       currentCoordinates.value.opacity = currentlySet ? 1 : 0
     })
   })
@@ -113,7 +114,8 @@ onMounted(() => {
   // `isSet` needs to be `true` until floating UI has initialized and has
   // calculated it's initial position.
   // May be able to be removed once:
-  //  https://github.com/uswds/uswds/issues/4458 is fixed.
+  // https://github.com/uswds/uswds/issues/4458 is fixed.
+  // @deprecated if issue is fixed.
   isSet.value = true
 
   cleanupFloatingUi = autoUpdate(

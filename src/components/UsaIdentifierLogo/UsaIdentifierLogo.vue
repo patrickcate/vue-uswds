@@ -13,7 +13,7 @@ const props = defineProps({
     default: '',
   },
   routerComponentName: {
-    type: String,
+    type: [String, Object],
     default: '',
   },
   src: {

@@ -20,7 +20,7 @@ export default {
       default: '',
     },
     routerComponentName: {
-      type: String,
+      type: [String, Object],
       default: '',
     },
   },

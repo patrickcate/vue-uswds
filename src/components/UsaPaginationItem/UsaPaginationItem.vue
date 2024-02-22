@@ -27,7 +27,7 @@ const props = defineProps({
     default: undefined,
   },
   routerComponentName: {
-    type: String,
+    type: [String, Object],
     default: undefined,
   },
 })
