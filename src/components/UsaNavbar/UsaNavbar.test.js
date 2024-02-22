@@ -1,10 +1,28 @@
 import '@module/@uswds/uswds/dist/css/uswds.min.css'
-import { h } from 'vue'
+import { h, ref } from 'vue'
 import UsaNavbar from './UsaNavbar.vue'
 
 describe('UsaNavbar', () => {
   it('renders the component', () => {
-    cy.mount(UsaNavbar, {}).its('wrapper').as('wrapper')
+    const isOpen = ref(false)
+
+    cy.mount(UsaNavbar, {
+      global: {
+        provide: {
+          isMobileMenuOpen: isOpen,
+          mobileMenuId: 'test-id',
+          toggleMobileMenu: () => {
+            if (isOpen.value) {
+              isOpen.value = false
+            } else {
+              isOpen.value = true
+            }
+          },
+        },
+      },
+    })
+      .its('wrapper')
+      .as('wrapper')
 
     cy.get('div.usa-navbar').should('exist')
     cy.get('button.usa-menu-btn')
@@ -35,6 +53,13 @@ describe('UsaNavbar', () => {
         'menu-button': ({ menuButtonLabel }) =>
           `Test button slot content: ${menuButtonLabel}`,
       },
+      global: {
+        provide: {
+          isMobileMenuOpen: ref(false),
+          mobileMenuId: 'test-id',
+          toggleMobileMenu: () => {},
+        },
+      },
     })
 
     cy.get('.usa-navbar > span').should('contain', 'Test default slot content')
@@ -46,6 +71,13 @@ describe('UsaNavbar', () => {
       props: {
         menuButtonLabel: 'Custom Menu',
       },
+      global: {
+        provide: {
+          isMobileMenuOpen: ref(false),
+          mobileMenuId: 'test-id',
+          toggleMobileMenu: () => {},
+        },
+      },
     })
 
     cy.get('button.usa-menu-btn').should('contain', 'Custom Menu')
@@ -56,6 +88,13 @@ describe('UsaNavbar', () => {
       props: {
         customClasses: {
           button: ['test-button-class'],
+        },
+      },
+      global: {
+        provide: {
+          isMobileMenuOpen: ref(false),
+          mobileMenuId: 'test-id',
+          toggleMobileMenu: () => {},
         },
       },
     })

@@ -1,5 +1,8 @@
 <script setup>
 import { computed, provide } from 'vue'
+import { useMobileMenu } from '@/composables/useMobileMenu.js'
+
+const emit = defineEmits(['mobileMenuOpen'])
 
 const props = defineProps({
   variant: {
@@ -29,6 +32,14 @@ const props = defineProps({
   },
 })
 
+const {
+  isMobileMenuOpen,
+  mobileMenuId,
+  closeMobileMenu,
+  openMobileMenu,
+  toggleMobileMenu,
+} = useMobileMenu(emit)
+
 const classes = computed(() => [
   {
     'usa-header--basic': props.variant === 'basic',
@@ -45,6 +56,11 @@ provide(
   'isMegamenu',
   computed(() => props.megamenu)
 )
+provide('isMobileMenuOpen', isMobileMenuOpen)
+provide('mobileMenuId', mobileMenuId)
+provide('closeMobileMenu', closeMobileMenu)
+provide('openMobileMenu', openMobileMenu)
+provide('toggleMobileMenu', toggleMobileMenu)
 </script>
 
 <template>

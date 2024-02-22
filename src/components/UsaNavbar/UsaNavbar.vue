@@ -1,6 +1,9 @@
 <script setup>
-import { provide } from 'vue'
-import { useMobileMenu } from '@/composables/useMobileMenu.js'
+import { watch, inject } from 'vue'
+
+const mobileMenuId = inject('mobileMenuId')
+const isMobileMenuOpen = inject('isMobileMenuOpen')
+const toggleMobileMenu = inject('toggleMobileMenu')
 
 const emit = defineEmits(['mobileMenuOpen'])
 
@@ -21,19 +24,9 @@ const props = defineProps({
   },
 })
 
-const {
-  isMobileMenuOpen,
-  mobileMenuId,
-  closeMobileMenu,
-  openMobileMenu,
-  toggleMobileMenu,
-} = useMobileMenu(emit)
-
-provide('isMobileMenuOpen', isMobileMenuOpen)
-provide('mobileMenuId', mobileMenuId)
-provide('closeMobileMenu', closeMobileMenu)
-provide('openMobileMenu', openMobileMenu)
-provide('toggleMobileMenu', toggleMobileMenu)
+watch(isMobileMenuOpen, isOpen => {
+  emit('mobileMenuOpen', isOpen)
+})
 </script>
 
 <template>
