@@ -1,5 +1,17 @@
 Changelog
 
+# [1.7.0](https://github.com/patrickcate/vue-uswds/compare/v1.6.1...v1.7.0) (2024-02-22)
+
+
+### Bug Fixes
+
+* **UsaNav:** move mobile menu functionality to `UsaHeader` component ([9e6a103](https://github.com/patrickcate/vue-uswds/commit/9e6a1031f18261e9d5d95ca22fb4b32c21db69d8))
+
+
+### Features
+
+* allow component level `routerComponentName` prop to be an object ([5ddadab](https://github.com/patrickcate/vue-uswds/commit/5ddadab3750ef39e2fc32b96150c080361a3438f))
+
 ## [1.6.1](https://github.com/patrickcate/vue-uswds/compare/v1.6.0...v1.6.1) (2024-02-19)
 
 
