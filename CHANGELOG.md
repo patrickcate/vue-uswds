@@ -1,5 +1,12 @@
 Changelog
 
+## [1.7.1](https://github.com/patrickcate/vue-uswds/compare/v1.7.0...v1.7.1) (2024-02-24)
+
+
+### Bug Fixes
+
+* **UsaNavDropdownButton:** add router link props to fix active class not being applied to button ([92222e7](https://github.com/patrickcate/vue-uswds/commit/92222e7585111713729713520627af54bd84e4df))
+
 # [1.7.0](https://github.com/patrickcate/vue-uswds/compare/v1.6.1...v1.7.0) (2024-02-22)
 
 
