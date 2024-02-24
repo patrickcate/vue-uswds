@@ -65,12 +65,16 @@ onClickOutside(nav, closeAllItems)
           v-if="item?.children?.length"
           :key="item?.id || item.text"
         >
-          <UsaNavDropdownButton v-bind="item?.attrs">{{
-            item.text
-          }}</UsaNavDropdownButton>
+          <UsaNavDropdownButton
+            v-bind="item?.attrs"
+            :href="item?.href"
+            :to="item?.to"
+            :router-component-name="item?.routerComponentName"
+            >{{ item.text }}</UsaNavDropdownButton
+          >
           <UsaNavSubmenu
             v-if="item?.cols > 1 && isMegamenu"
-            :key="item.children.map(item => item?.id || item.text)"
+            :key="item.children.map(item => item?.id || item.text).join('-')"
             :cols="item.cols"
           >
             <template v-for="n in item.cols" :key="n" #[`col-${n}`]>
@@ -89,7 +93,7 @@ onClickOutside(nav, closeAllItems)
           </UsaNavSubmenu>
           <template v-else>
             <UsaNavSubmenu
-              :key="item.children.map(item => item?.id || item.text)"
+              :key="item.children.map(item => item?.id || item.text).join('-')"
             >
               <UsaNavSubmenuItem
                 v-for="submenuItem in item.children"
