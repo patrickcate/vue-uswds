@@ -91,11 +91,6 @@ export const formatUsaDate = dateObject => {
   return `${month}/${day}/${year}`
 }
 
-export const UsaToIsoString = usaDateString => {
-  const [month, day, year] = usaDateString.split('/')
-  return `${year}-${month}-${day}`
-}
-
 export const isDateBefore = (date, dateToCompare) =>
   date.getTime() < dateToCompare.getTime()
 
