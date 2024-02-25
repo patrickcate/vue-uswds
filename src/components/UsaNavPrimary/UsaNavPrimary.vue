@@ -63,6 +63,7 @@ onClickOutside(nav, closeAllItems)
       <template v-for="item in items">
         <UsaNavDropdown
           v-if="item?.children?.length"
+          :id="item?.id"
           :key="item?.id || item.text"
         >
           <UsaNavDropdownButton

@@ -1,16 +1,17 @@
 import { ref, readonly } from 'vue'
+import { ID_PREFIX } from '@/utils/constants.js'
 
 export const isMobileMenuOpen = /*#__PURE__*/ ref(false)
-export const menuId = /*#__PURE__*/ ref('__vuswds-id-global-mobile-header-menu')
 
 export function useMobileMenu(emit) {
+  const menuId = ref(`${ID_PREFIX}global-mobile-header-menu`)
   const mobileMenuOpenClass = 'usa-js-mobile-nav--active'
 
   const closeMobileMenu = () => {
     isMobileMenuOpen.value = false
 
     if (emit) {
-      emit('mobileMenuOpen', false)
+      emit('mobileMenuOpen', isMobileMenuOpen.value)
     }
 
     document.body.classList.remove(mobileMenuOpenClass)
@@ -23,7 +24,7 @@ export function useMobileMenu(emit) {
     isMobileMenuOpen.value = true
 
     if (emit) {
-      emit('mobileMenuOpen', true)
+      emit('mobileMenuOpen', isMobileMenuOpen.value)
     }
 
     document.body.classList.add(mobileMenuOpenClass)

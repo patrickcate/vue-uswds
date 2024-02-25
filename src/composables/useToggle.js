@@ -9,10 +9,18 @@ export function useToggle(_id, idPrefix = '', defaultOpen = false, emit) {
 
   const closeContent = () => {
     isOpen.value = false
+
+    if (emit) {
+      emit('update:open', isOpen.value)
+    }
   }
 
   const openContent = () => {
     isOpen.value = true
+
+    if (emit) {
+      emit('update:open', isOpen.value)
+    }
   }
 
   const toggleContent = () => {
@@ -22,12 +30,6 @@ export function useToggle(_id, idPrefix = '', defaultOpen = false, emit) {
       openContent()
     }
   }
-
-  watch(isOpen, newValue => {
-    if (emit) {
-      emit('update:open', newValue)
-    }
-  })
 
   watch(propValue, newValue => {
     if (propValue.value !== newValue) {
