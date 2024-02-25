@@ -124,12 +124,12 @@ describe('UsaHeader', () => {
       .should(
         'have.attr',
         'aria-controls',
-        '__vuswds-id-global-mobile-header-menu'
+        'vuswds-id-global-mobile-header-menu'
       )
 
     cy.get('nav.usa-nav')
       .as('nav')
-      .should('have.id', '__vuswds-id-global-mobile-header-menu')
+      .should('have.id', 'vuswds-id-global-mobile-header-menu')
 
     cy.get('@nav').should('not.have.class', 'is-visible').and('not.be.visible')
     cy.get('@nav').find('> div.usa-nav__inner').should('not.exist')
