@@ -11,7 +11,7 @@ export function useMobileMenu(emit) {
     isMobileMenuOpen.value = false
 
     if (emit) {
-      emit('mobileMenuOpen', false)
+      emit('mobileMenuOpen', isMobileMenuOpen.value)
     }
 
     document.body.classList.remove(mobileMenuOpenClass)
@@ -24,7 +24,7 @@ export function useMobileMenu(emit) {
     isMobileMenuOpen.value = true
 
     if (emit) {
-      emit('mobileMenuOpen', true)
+      emit('mobileMenuOpen', isMobileMenuOpen.value)
     }
 
     document.body.classList.add(mobileMenuOpenClass)
