@@ -1,5 +1,12 @@
 Changelog
 
+## [1.7.2-beta.1](https://github.com/patrickcate/vue-uswds/compare/v1.7.1...v1.7.2-beta.1) (2024-02-25)
+
+
+### Bug Fixes
+
+* **useMobileMenu:** remove invalid underscores from id and use global id prefix ([6ed0dc8](https://github.com/patrickcate/vue-uswds/commit/6ed0dc87248a5397b1562099b6831c22931cce0c))
+
 ## [1.7.1](https://github.com/patrickcate/vue-uswds/compare/v1.7.0...v1.7.1) (2024-02-24)
 
 

@@ -1,7 +1,7 @@
 {
   "name": "vue-uswds",
   "description": "Vue 3 implementation of the USWDS (U.S. Web Design System) component library",
-  "version": "1.7.1",
+  "version": "1.7.2-beta.1",
   "author": "Patrick Cate",
   "license": "MIT",
   "keywords": [
