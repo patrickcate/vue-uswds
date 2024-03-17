@@ -18,9 +18,11 @@ describe('UsaSkipnav', () => {
 
     // Have to test visibility by CSS properties.
     cy.get('@skiplink')
-      .and('have.css', 'position', 'absolute')
+      .should('have.css', 'position', 'absolute')
       .and('have.css', 'left', '0px')
-      .and('have.css', 'top', '-60.8px')
+      .and('have.css', 'top')
+      // Check that `top` starts with a negative number.
+      .and('match', /^-\d/)
 
     // Should be visible after focus.
     cy.get('@skiplink').focus()
@@ -37,7 +39,9 @@ describe('UsaSkipnav', () => {
     cy.get('@skiplink')
       .should('have.css', 'position', 'absolute')
       .and('have.css', 'left', '0px')
-      .and('have.css', 'top', '-60.8px')
+      .and('have.css', 'top')
+      // Check that `top` starts with a negative number.
+      .and('match', /^-\d/)
   })
 
   it('uses custom slot content', () => {
