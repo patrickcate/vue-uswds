@@ -14,7 +14,8 @@ export default defineConfig({
     lib: {
       formats: ['es', 'cjs'],
       entry: resolve(__dirname, '../src/components/index.js'),
-      fileName: format => `vue-uswds.components.${format}.js`,
+      fileName: format =>
+        `vue-uswds.components.${format === 'es' ? 'mjs' : 'cjs'}`,
     },
     rollupOptions: {
       // Externalize dependencies that should not be bundled with library.
