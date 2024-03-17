@@ -1,5 +1,7 @@
 Changelog
 
+## [1.7.2-beta.2](https://github.com/patrickcate/vue-uswds/compare/v1.7.2-beta.1...v1.7.2-beta.2) (2024-03-17)
+
 ## [1.7.2-beta.1](https://github.com/patrickcate/vue-uswds/compare/v1.7.1...v1.7.2-beta.1) (2024-02-25)
 
 
