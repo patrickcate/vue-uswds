@@ -1,4 +1,4 @@
-const { scopes } = require('./scripts/git-commit-scope-names.js')
+const { scopes } = require('./scripts/git-commit-scope-names.cjs')
 
 module.exports = {
   types: [
