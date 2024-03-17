@@ -12,6 +12,11 @@ module.exports = {
       '@semantic-release/commit-analyzer',
       {
         config: '@commitlint/config-conventional',
+        releaseRules: [
+          { type: 'refactor', release: 'patch' },
+          { type: 'build', release: 'patch' },
+          { scope: 'no-release', release: false },
+        ],
       },
     ],
     '@semantic-release/release-notes-generator',
