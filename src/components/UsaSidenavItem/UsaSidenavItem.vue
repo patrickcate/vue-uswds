@@ -24,11 +24,11 @@ const props = defineProps({
 <template>
   <li class="usa-sidenav__item" :class="customClasses?.item">
     <BaseLink
+      v-bind="item?.attrs"
       :href="item?.href"
       :to="item?.to"
       :router-component-name="item?.routerComponentName"
       :class="customClasses?.link"
-      v-bind="item?.attrs"
       ><slot :item="item">{{ item?.text }}</slot></BaseLink
     >
     <ul
