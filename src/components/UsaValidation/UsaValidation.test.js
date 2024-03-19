@@ -73,7 +73,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Use at least one number status incomplete'
+        'Use at least one number status incomplete',
       )
       .and('contain', 'Use at least one number')
 
@@ -82,7 +82,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Use at least one uppercase character status incomplete'
+        'Use at least one uppercase character status incomplete',
       )
       .and('contain', 'Use at least one uppercase character')
 
@@ -91,7 +91,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Minimum length of 6 characters status incomplete'
+        'Minimum length of 6 characters status incomplete',
       )
       .and('contain', 'Minimum length of 6 characters')
 
@@ -114,7 +114,7 @@ describe('UsaValidation', () => {
       .and('have.id', 'test-id-status-message')
       .and(
         'contain',
-        'Use at least one number status incomplete. Use at least one uppercase character status incomplete. Minimum length of 6 characters status incomplete. Always true status complete. Always false status incomplete.'
+        'Use at least one number status incomplete. Use at least one uppercase character status incomplete. Minimum length of 6 characters status incomplete. Always true status complete. Always false status incomplete.',
       )
 
     // Type characters that don't validate.
@@ -124,7 +124,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Use at least one number status incomplete'
+        'Use at least one number status incomplete',
       )
       .and('not.have.class', 'usa-checklist__item--checked')
       .and('contain', 'Use at least one number')
@@ -133,7 +133,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Use at least one uppercase character status incomplete'
+        'Use at least one uppercase character status incomplete',
       )
       .and('not.have.class', 'usa-checklist__item--checked')
       .and('contain', 'Use at least one uppercase character')
@@ -142,7 +142,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Minimum length of 6 characters status incomplete'
+        'Minimum length of 6 characters status incomplete',
       )
       .and('not.have.class', 'usa-checklist__item--checked')
       .and('contain', 'Minimum length of 6 characters')
@@ -164,7 +164,7 @@ describe('UsaValidation', () => {
       .and('have.id', 'test-id-status-message')
       .and(
         'contain',
-        'Use at least one number status incomplete. Use at least one uppercase character status incomplete. Minimum length of 6 characters status incomplete. Always true status complete. Always false status incomplete.'
+        'Use at least one number status incomplete. Use at least one uppercase character status incomplete. Minimum length of 6 characters status incomplete. Always true status complete. Always false status incomplete.',
       )
 
     // Validate uppercase character.
@@ -174,7 +174,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Use at least one number status incomplete'
+        'Use at least one number status incomplete',
       )
       .and('not.have.class', 'usa-checklist__item--checked')
       .and('contain', 'Use at least one number')
@@ -183,7 +183,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Use at least one uppercase character status complete'
+        'Use at least one uppercase character status complete',
       )
       .and('have.class', 'usa-checklist__item--checked')
       .and('contain', 'Use at least one uppercase character')
@@ -192,7 +192,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Minimum length of 6 characters status incomplete'
+        'Minimum length of 6 characters status incomplete',
       )
       .and('not.have.class', 'usa-checklist__item--checked')
       .and('contain', 'Minimum length of 6 characters')
@@ -214,7 +214,7 @@ describe('UsaValidation', () => {
       .and('have.id', 'test-id-status-message')
       .and(
         'contain',
-        'Use at least one number status incomplete. Use at least one uppercase character status complete. Minimum length of 6 characters status incomplete. Always true status complete. Always false status incomplete.'
+        'Use at least one number status incomplete. Use at least one uppercase character status complete. Minimum length of 6 characters status incomplete. Always true status complete. Always false status incomplete.',
       )
 
     // Validate at least 1 number used.
@@ -224,7 +224,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Use at least one number status complete'
+        'Use at least one number status complete',
       )
       .and('have.class', 'usa-checklist__item--checked')
       .and('contain', 'Use at least one number')
@@ -233,7 +233,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Use at least one uppercase character status complete'
+        'Use at least one uppercase character status complete',
       )
       .and('have.class', 'usa-checklist__item--checked')
       .and('contain', 'Use at least one uppercase character')
@@ -242,7 +242,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Minimum length of 6 characters status incomplete'
+        'Minimum length of 6 characters status incomplete',
       )
       .and('not.have.class', 'usa-checklist__item--checked')
       .and('contain', 'Minimum length of 6 characters')
@@ -264,7 +264,7 @@ describe('UsaValidation', () => {
       .and('have.id', 'test-id-status-message')
       .and(
         'contain',
-        'Use at least one number status complete. Use at least one uppercase character status complete. Minimum length of 6 characters status incomplete. Always true status complete. Always false status incomplete.'
+        'Use at least one number status complete. Use at least one uppercase character status complete. Minimum length of 6 characters status incomplete. Always true status complete. Always false status incomplete.',
       )
 
     // Validate min length.
@@ -274,7 +274,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Use at least one number status complete'
+        'Use at least one number status complete',
       )
       .and('have.class', 'usa-checklist__item--checked')
       .and('contain', 'Use at least one number')
@@ -283,7 +283,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Use at least one uppercase character status complete'
+        'Use at least one uppercase character status complete',
       )
       .and('have.class', 'usa-checklist__item--checked')
       .and('contain', 'Use at least one uppercase character')
@@ -292,7 +292,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Minimum length of 6 characters status complete'
+        'Minimum length of 6 characters status complete',
       )
       .and('have.class', 'usa-checklist__item--checked')
       .and('contain', 'Minimum length of 6 characters')
@@ -314,19 +314,19 @@ describe('UsaValidation', () => {
       .and('have.id', 'test-id-status-message')
       .and(
         'contain',
-        'Use at least one number status complete. Use at least one uppercase character status complete. Minimum length of 6 characters status complete. Always true status complete. Always false status incomplete.'
+        'Use at least one number status complete. Use at least one uppercase character status complete. Minimum length of 6 characters status complete. Always true status complete. Always false status incomplete.',
       )
 
     // Delete input characters to test that validations re-evaluate.
     cy.get('input').type(
-      '{backspace}{backspace}{backspace}{backspace}{backspace}'
+      '{backspace}{backspace}{backspace}{backspace}{backspace}',
     )
 
     cy.get('@item1')
       .should(
         'have.attr',
         'aria-label',
-        'Use at least one number status incomplete'
+        'Use at least one number status incomplete',
       )
       .and('not.have.class', 'usa-checklist__item--checked')
       .and('contain', 'Use at least one number')
@@ -335,7 +335,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Use at least one uppercase character status incomplete'
+        'Use at least one uppercase character status incomplete',
       )
       .and('not.have.class', 'usa-checklist__item--checked')
       .and('contain', 'Use at least one uppercase character')
@@ -344,7 +344,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'Minimum length of 6 characters status incomplete'
+        'Minimum length of 6 characters status incomplete',
       )
       .and('not.have.class', 'usa-checklist__item--checked')
       .and('contain', 'Minimum length of 6 characters')
@@ -366,7 +366,7 @@ describe('UsaValidation', () => {
       .and('have.id', 'test-id-status-message')
       .and(
         'contain',
-        'Use at least one number status incomplete. Use at least one uppercase character status incomplete. Minimum length of 6 characters status incomplete. Always true status complete. Always false status incomplete.'
+        'Use at least one number status incomplete. Use at least one uppercase character status incomplete. Minimum length of 6 characters status incomplete. Always true status complete. Always false status incomplete.',
       )
   })
 
@@ -405,7 +405,7 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'test status Use at least one number: invalid'
+        'test status Use at least one number: invalid',
       )
       .and('not.have.class', 'usa-checklist__item--checked')
       .and('contain', 'Use at least one number')
@@ -425,12 +425,12 @@ describe('UsaValidation', () => {
 
         const [currentValidationId] = vm.emitted('update:validationId')
         expect(
-          currentValidationId[currentValidationId.length - 1].value
+          currentValidationId[currentValidationId.length - 1].value,
         ).to.contain('vuswds-id-global-usa-validation-1')
 
         const [currentStatusMessageId] = vm.emitted('update:statusMessageId')
         expect(
-          currentStatusMessageId[currentStatusMessageId.length - 1].value
+          currentStatusMessageId[currentStatusMessageId.length - 1].value,
         ).to.contain('vuswds-id-global-usa-validation-1-status-message')
       })
 
@@ -442,14 +442,14 @@ describe('UsaValidation', () => {
       .should(
         'have.attr',
         'aria-label',
-        'test status Use at least one number: valid'
+        'test status Use at least one number: valid',
       )
       .and('have.class', 'usa-checklist__item--checked')
       .and('contain', 'Use at least one number')
 
     cy.get('span[data-validation-status]').should(
       'contain',
-      'test status Use at least one number: valid.'
+      'test status Use at least one number: valid.',
     )
   })
 })

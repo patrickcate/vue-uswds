@@ -33,7 +33,7 @@ describe('UsaCollectionHeading', () => {
 
     cy.get('.usa-collection__heading').should(
       'contain',
-      'Custom slot heading text'
+      'Custom slot heading text',
     )
   })
 

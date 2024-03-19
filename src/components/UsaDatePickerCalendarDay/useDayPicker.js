@@ -46,14 +46,14 @@ export const useDayPicker = ({
 
   watch(
     activeDate,
-    newActiveDate => (activeDateObject.value = parseIsoDate(newActiveDate))
+    newActiveDate => (activeDateObject.value = parseIsoDate(newActiveDate)),
   )
 
   const activeDateStart = computed(() =>
-    startOfWeek(startOfMonth(activeDateObject.value))
+    startOfWeek(startOfMonth(activeDateObject.value)),
   )
   const activeDateEnd = computed(() =>
-    endOfWeek(endOfMonth(activeDateObject.value))
+    endOfWeek(endOfMonth(activeDateObject.value)),
   )
 
   const activeMonthIndex = computed(() => activeDateObject.value.getMonth())
@@ -145,7 +145,7 @@ export const useDayPicker = ({
       ? formatIsoDate(addMonths(currentDateObject, 1))
       : findClosestFutureDate(
           addMonths(currentDateObject, 1),
-          currentDateObject
+          currentDateObject,
         )
   }
 
@@ -157,7 +157,7 @@ export const useDayPicker = ({
       return formatIsoDate(previousYearDateObject)
     }
     const nextAvailableDate = parseIsoDate(
-      findClosestPastDate(previousYearDateObject, currentDateObject)
+      findClosestPastDate(previousYearDateObject, currentDateObject),
     )
 
     const nextDateOnSameDay = setDate(nextAvailableDate, currentDay)
@@ -182,7 +182,7 @@ export const useDayPicker = ({
     }
 
     const nextAvailableDate = parseIsoDate(
-      findClosestFutureDate(nextYearDateObject, currentDateObject)
+      findClosestFutureDate(nextYearDateObject, currentDateObject),
     )
 
     const nextDateOnSameDay = setDate(nextAvailableDate, currentDay)
@@ -199,16 +199,16 @@ export const useDayPicker = ({
   }
 
   const hasPastYear = computed(
-    () => !isSameMonth(activeDateObject.value, minDateObject.value)
+    () => !isSameMonth(activeDateObject.value, minDateObject.value),
   )
   const hasFutureYear = computed(
-    () => !isSameMonth(activeDateObject.value, maxDateObject.value)
+    () => !isSameMonth(activeDateObject.value, maxDateObject.value),
   )
   const hasPastMonth = computed(
-    () => !isSameMonth(activeDateObject.value, minDateObject.value)
+    () => !isSameMonth(activeDateObject.value, minDateObject.value),
   )
   const hasFutureMonth = computed(
-    () => !isSameMonth(activeDateObject.value, maxDateObject.value)
+    () => !isSameMonth(activeDateObject.value, maxDateObject.value),
   )
 
   const todaysDate = formatIsoDate(today())
@@ -217,7 +217,7 @@ export const useDayPicker = ({
     const dates = []
     const totalDays = differenceInCalendarDays(
       activeDateEnd.value,
-      activeDateStart.value
+      activeDateStart.value,
     )
 
     let index = 0
@@ -270,7 +270,7 @@ export const useDayPicker = ({
   })
 
   const groupedVisibleDateRange = computed(() =>
-    splitArray(visibleDateRange.value, 7)
+    splitArray(visibleDateRange.value, 7),
   )
 
   const dates = computed(() => {

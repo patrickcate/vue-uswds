@@ -81,7 +81,7 @@ describe('UsaSidenavItem', () => {
 
     cy.get('[data-v-app] > .usa-sidenav__item > a span').should(
       'contain',
-      'path is: /page-1'
+      'path is: /page-1',
     )
 
     cy.get('.usa-sidenav__sublist li').should('contain', 'path is: /page-1-1')
@@ -94,7 +94,7 @@ describe('UsaSidenavItem', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `[Vue warn]: Missing required prop: "item"`
+      `[Vue warn]: Missing required prop: "item"`,
     )
   })
 })

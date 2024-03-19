@@ -297,7 +297,7 @@ describe('UsaTextInput', () => {
 
     // Insert focusable element so focus can be moved to it.
     Cypress.$('body').append(
-      '<button type="button" class="test-button">Test Button</button>'
+      '<button type="button" class="test-button">Test Button</button>',
     )
 
     cy.get('.usa-input-group')
@@ -352,7 +352,7 @@ describe('UsaTextInput', () => {
         const currentInputEvent = vm.emitted('update:modelValue')
         expect(currentInputEvent).to.have.length(24)
         expect(currentInputEvent[currentInputEvent.length - 1]).to.contain(
-          'This is some test text. This is some more text.'
+          'This is some test text. This is some more text.',
         )
       })
   })
@@ -388,7 +388,7 @@ describe('UsaTextInput', () => {
         const currentInputEvent = vm.emitted('update:modelValue')
         expect(currentInputEvent).to.have.length(24)
         expect(currentInputEvent[currentInputEvent.length - 1]).to.contain(
-          'This is some test text. This is some more text.'
+          'This is some test text. This is some more text.',
         )
       })
   })
@@ -473,7 +473,7 @@ describe('UsaTextInput', () => {
     for (const width in inputGroupWidthClasses) {
       cy.get('@inputGroup').should(
         'not.have.class',
-        inputGroupWidthClasses[width]
+        inputGroupWidthClasses[width],
       )
 
       Object.values(widthClasses).forEach(widthClass => {
@@ -524,7 +524,7 @@ describe('UsaTextInput', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'invalidwidth' is not a valid text input width`
+      `'invalidwidth' is not a valid text input width`,
     )
   })
 })

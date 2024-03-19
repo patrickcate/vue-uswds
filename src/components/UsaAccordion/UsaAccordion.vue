@@ -36,7 +36,7 @@ watch(accordionItems, () => {
 
 provide(
   'accordionHeadingTag',
-  computed(() => props.headingTag)
+  computed(() => props.headingTag),
 )
 provide('registerAccordionItem', registerAccordionItem)
 provide('unregisterAccordionItem', unregisterAccordionItem)

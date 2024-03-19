@@ -122,8 +122,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
   >
     <template #heading v-if="${!!args['slot:heading']}">${
-    args['slot:heading']
-  }</template>
+      args['slot:heading']
+    }</template>
     <template #media v-if="${!!args.media}">${args.media}</template>
     <template #default v-if="${!!args.default}">${args.default}</template>
     <template #footer v-if="${!!args.footer}">${args.footer}</template>

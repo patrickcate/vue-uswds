@@ -157,7 +157,7 @@ describe('UsaTooltip', () => {
 
       cy.get('.usa-tooltip__body').and(
         'have.class',
-        `usa-tooltip__body--${position}`
+        `usa-tooltip__body--${position}`,
       )
 
       cy.get('@wrapper').invoke('unmount')
@@ -176,7 +176,7 @@ describe('UsaTooltip', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'notavalidposition' is not a valid tooltip position`
+      `'notavalidposition' is not a valid tooltip position`,
     )
   })
 })

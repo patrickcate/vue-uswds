@@ -16,7 +16,7 @@ const props = defineProps({
 const containerClasses = computed(() =>
   props.customClasses?.container?.length
     ? props.customClasses.container
-    : [`${gridNamespace}container`]
+    : [`${gridNamespace}container`],
 )
 </script>
 

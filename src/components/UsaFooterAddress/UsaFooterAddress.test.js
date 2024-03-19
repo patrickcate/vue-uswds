@@ -22,7 +22,7 @@ describe('UsaFooterAddress', () => {
     cy.get('address.usa-footer__address').should(
       'have.attr',
       'data-test',
-      'test-attr'
+      'test-attr',
     )
 
     cy.get('.usa-footer__contact-info')
@@ -31,11 +31,11 @@ describe('UsaFooterAddress', () => {
 
     cy.get('.usa-footer__contact-info > div:nth-of-type(1)').should(
       'have.class',
-      'grid-col-auto'
+      'grid-col-auto',
     )
     cy.get('.usa-footer__contact-info > div:nth-of-type(2)').should(
       'have.class',
-      'grid-col-auto'
+      'grid-col-auto',
     )
 
     cy.get('.usa-footer__contact-info > div:nth-of-type(1) a')
@@ -68,7 +68,7 @@ describe('UsaFooterAddress', () => {
     cy.get('address.usa-footer__address').should(
       'have.attr',
       'data-test',
-      'test-attr'
+      'test-attr',
     )
 
     cy.get('.usa-footer__address > div')
@@ -86,20 +86,20 @@ describe('UsaFooterAddress', () => {
       .and('have.class', 'desktop:grid-col-auto')
 
     cy.get(
-      '.usa-footer__address > div > div:nth-of-type(1) .usa-footer__contact-info'
+      '.usa-footer__address > div > div:nth-of-type(1) .usa-footer__contact-info',
     ).should('exist')
     cy.get(
-      '.usa-footer__address > div > div:nth-of-type(2) .usa-footer__contact-info'
+      '.usa-footer__address > div > div:nth-of-type(2) .usa-footer__contact-info',
     ).should('exist')
 
     cy.get(
-      '.usa-footer__address > div > div:nth-of-type(1) > .usa-footer__contact-info a'
+      '.usa-footer__address > div > div:nth-of-type(1) > .usa-footer__contact-info a',
     )
       .should('have.attr', 'href', 'tel:+1-555-555-5555')
       .and('contain', '(555) 555-5555')
 
     cy.get(
-      '.usa-footer__address > div > div:nth-of-type(2) > .usa-footer__contact-info a'
+      '.usa-footer__address > div > div:nth-of-type(2) > .usa-footer__contact-info a',
     )
       .should('have.attr', 'href', 'mailto:example@example.com')
       .and('contain', 'example@example.com')
@@ -163,11 +163,11 @@ describe('UsaFooterAddress', () => {
 
     cy.get('.usa-footer__contact-info > div:nth-of-type(1)').should(
       'have.class',
-      'test-grid-namespace-col-auto'
+      'test-grid-namespace-col-auto',
     )
     cy.get('.usa-footer__contact-info > div:nth-of-type(2)').should(
       'have.class',
-      'test-grid-namespace-col-auto'
+      'test-grid-namespace-col-auto',
     )
   })
 

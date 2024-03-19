@@ -15,7 +15,7 @@ const props = defineProps({
 
       if (!isValidTime) {
         console.warn(
-          `'${minTime}' is not a valid minimum time. It must be a string in the HH:MM 24 hour format.`
+          `'${minTime}' is not a valid minimum time. It must be a string in the HH:MM 24 hour format.`,
         )
       }
 
@@ -30,7 +30,7 @@ const props = defineProps({
 
       if (!isValidTime) {
         console.warn(
-          `'${maxTime}' is not a valid maximum time. It must be a string in the HH:MM 24 hour format.`
+          `'${maxTime}' is not a valid maximum time. It must be a string in the HH:MM 24 hour format.`,
         )
       }
 

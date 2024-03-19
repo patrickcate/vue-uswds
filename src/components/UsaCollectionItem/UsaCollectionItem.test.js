@@ -11,7 +11,7 @@ describe('UsaCollectionItem', () => {
       src: 'https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg',
       alt: 'A placeholder image',
     },
-    null
+    null,
   )
 
   const testHref =
@@ -44,7 +44,7 @@ describe('UsaCollectionItem', () => {
           h(
             'div',
             { class: 'test-calendar-slot' },
-            'Custom calendar slot content'
+            'Custom calendar slot content',
           ),
         default: () => testContent,
         meta: () => testMetaItems,
@@ -60,7 +60,7 @@ describe('UsaCollectionItem', () => {
       .should('have.attr', 'src')
       .and(
         'contain',
-        'https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg'
+        'https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg',
       )
     cy.get('.usa-collection__img img')
       .should('have.attr', 'alt')
@@ -85,11 +85,11 @@ describe('UsaCollectionItem', () => {
     cy.get('ul.usa-collection__meta').should('exist')
     cy.get('li.usa-collection__meta-item:nth-child(1)').should(
       'contain',
-      'Meta 1'
+      'Meta 1',
     )
     cy.get('li.usa-collection__meta-item:nth-child(2)').should(
       'contain',
-      'Meta 2'
+      'Meta 2',
     )
   })
 
@@ -157,7 +157,7 @@ describe('UsaCollectionItem', () => {
           h(
             'div',
             { class: 'test-calendar-slot' },
-            'Custom calendar slot content'
+            'Custom calendar slot content',
           ),
         default: () => testContent,
       },
@@ -165,7 +165,7 @@ describe('UsaCollectionItem', () => {
 
     cy.get('div.test-calendar-slot').should(
       'contain',
-      'Custom calendar slot content'
+      'Custom calendar slot content',
     )
   })
 

@@ -29,7 +29,7 @@ const reverseSortDirection = computed(() => {
 
 const title = computed(
   () =>
-    `Click to sort by ${props.headerLabel} in ${reverseSortDirection.value} order.`
+    `Click to sort by ${props.headerLabel} in ${reverseSortDirection.value} order.`,
 )
 </script>
 

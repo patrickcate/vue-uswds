@@ -25,7 +25,7 @@ describe('UsaDatePicker', () => {
 
     cy.get('div.usa-date-picker').should(
       'have.class',
-      'usa-date-picker--initialized'
+      'usa-date-picker--initialized',
     )
 
     cy.get('div.usa-form-group').should('not.exist')
@@ -71,7 +71,7 @@ describe('UsaDatePicker', () => {
 
     cy.get('@status').should(
       'contain',
-      `Selected date. You can navigate by day using left and right arrows. Weeks by using up and down arrows. Months by using page up and page down keys. Years by using shift plus page up and shift plus page down. Home and end keys navigate to the beginning and end of a week.`
+      `Selected date. You can navigate by day using left and right arrows. Weeks by using up and down arrows. Months by using page up and page down keys. Years by using shift plus page up and shift plus page down. Home and end keys navigate to the beginning and end of a week.`,
     )
 
     cy.get('button[data-value="2022-09-04"]').should('have.focus')
@@ -87,7 +87,7 @@ describe('UsaDatePicker', () => {
 
     cy.get('button[data-value="2022-10-05"]').should(
       'have.class',
-      'usa-date-picker__calendar__date--focused'
+      'usa-date-picker__calendar__date--focused',
     )
 
     cy.get('@status').should('contain', 'October 2022')
@@ -99,7 +99,7 @@ describe('UsaDatePicker', () => {
 
     cy.get('button[data-value="2023-10-05"]').should(
       'have.class',
-      'usa-date-picker__calendar__date--focused'
+      'usa-date-picker__calendar__date--focused',
     )
 
     cy.get('@calendar').should('have.attr', 'data-value', '2023-10-05')
@@ -117,7 +117,7 @@ describe('UsaDatePicker', () => {
 
     cy.get('button[data-value="2023-11-05"]').should(
       'have.class',
-      'usa-date-picker__calendar__date--focused'
+      'usa-date-picker__calendar__date--focused',
     )
 
     cy.get('@calendar').should('have.attr', 'data-value', '2023-11-05')
@@ -127,14 +127,14 @@ describe('UsaDatePicker', () => {
 
     cy.get('@status').should(
       'contain',
-      'Showing years 2022 to 2024. Select a year.'
+      'Showing years 2022 to 2024. Select a year.',
     )
 
     cy.get('button[data-value="2022"').click()
 
     cy.get('button[data-value="2022-11-05"]').should(
       'have.class',
-      'usa-date-picker__calendar__date--focused'
+      'usa-date-picker__calendar__date--focused',
     )
 
     // Select a date.
@@ -241,7 +241,7 @@ describe('UsaDatePicker', () => {
     cy.get('div.usa-form-group').should(
       'not.have.attr',
       'name',
-      'test-date-picker-name'
+      'test-date-picker-name',
     )
 
     cy.get('label.usa-label')
@@ -270,7 +270,7 @@ describe('UsaDatePicker', () => {
     cy.get('input.usa-date-picker__external-input').should(
       'have.attr',
       'aria-describedby',
-      'test-id-hint test-id-error-message'
+      'test-id-hint test-id-error-message',
     )
   })
 
@@ -440,7 +440,7 @@ describe('UsaDatePicker', () => {
     cy.get('@highlightedDate').should(
       'have.attr',
       'data-test-highlighted-date',
-      '2022-09-04'
+      '2022-09-04',
     )
 
     cy.get('button[data-value="2022-09-12"]').trigger('mouseover')
@@ -449,7 +449,7 @@ describe('UsaDatePicker', () => {
     cy.get('@highlightedDate').should(
       'have.attr',
       'data-test-highlighted-date',
-      '2022-09-12'
+      '2022-09-12',
     )
 
     cy.get('.usa-date-picker__calendar__month-selection').click()
@@ -457,7 +457,7 @@ describe('UsaDatePicker', () => {
     cy.get('@selectorMode').should(
       'have.attr',
       'data-test-selector-mode',
-      'month'
+      'month',
     )
 
     cy.get('button[data-label="October"]').click()
@@ -465,17 +465,17 @@ describe('UsaDatePicker', () => {
     cy.get('@activeMonthLabel').should(
       'have.attr',
       'data-test-active-month-label',
-      'October'
+      'October',
     )
     cy.get('@highlightedDate').should(
       'have.attr',
       'data-test-highlighted-date',
-      '2022-10-12'
+      '2022-10-12',
     )
     cy.get('@selectorMode').should(
       'have.attr',
       'data-test-selector-mode',
-      'day'
+      'day',
     )
 
     cy.get('.usa-date-picker__calendar__year-selection').click()
@@ -483,17 +483,17 @@ describe('UsaDatePicker', () => {
     cy.get('@selectorMode').should(
       'have.attr',
       'data-test-selector-mode',
-      'year'
+      'year',
     )
     cy.get('@yearRangeStart').should(
       'have.attr',
       'data-test-year-range-start',
-      '2016'
+      '2016',
     )
     cy.get('@yearRangeStop').should(
       'have.attr',
       'data-test-year-range-stop',
-      '2025'
+      '2025',
     )
 
     cy.get('button[data-value="2016"').click()
@@ -501,17 +501,17 @@ describe('UsaDatePicker', () => {
     cy.get('@highlightedDate').should(
       'have.attr',
       'data-test-highlighted-date',
-      '2016-10-12'
+      '2016-10-12',
     )
     cy.get('@highlightedDate').should(
       'have.attr',
       'data-test-highlighted-date',
-      '2016-10-12'
+      '2016-10-12',
     )
     cy.get('@selectorMode').should(
       'have.attr',
       'data-test-selector-mode',
-      'day'
+      'day',
     )
 
     cy.get('@activeYear').should('have.attr', 'data-test-active-year', '2016')
@@ -523,24 +523,24 @@ describe('UsaDatePicker', () => {
     cy.get('@selectedDate').should(
       'have.attr',
       'data-test-selected-date',
-      '2016-10-13'
+      '2016-10-13',
     )
 
     cy.get('@highlightedDate').should(
       'have.attr',
       'data-test-highlighted-date',
-      '2016-10-13'
+      '2016-10-13',
     )
 
     cy.get('@yearRangeStart').should(
       'have.attr',
       'data-test-year-range-start',
-      ''
+      '',
     )
     cy.get('@yearRangeStop').should(
       'have.attr',
       'data-test-year-range-stop',
-      ''
+      '',
     )
 
     cy.get('@isPristine').should('have.attr', 'data-test-is-pristine', 'true')
@@ -569,7 +569,7 @@ describe('UsaDatePicker', () => {
     cy.get('.usa-date-picker__button').should(
       'have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
   })
 
@@ -636,23 +636,23 @@ describe('UsaDatePicker', () => {
     cy.get('input.usa-date-picker__external-input').should(
       'have.attr',
       'aria-describedby',
-      'test-id-error-message'
+      'test-id-error-message',
     )
 
     cy.get('.usa-date-picker__button').should(
       'have.attr',
       'aria-label',
-      'Test toggle button'
+      'Test toggle button',
     )
     cy.get('.usa-date-picker__calendar__previous-year').should(
       'have.attr',
       'aria-label',
-      'Custom test back one year'
+      'Custom test back one year',
     )
     cy.get('.usa-date-picker__calendar__previous-month').should(
       'have.attr',
       'aria-label',
-      'Custom test back one month'
+      'Custom test back one month',
     )
     cy.get('.usa-date-picker__calendar__month-selection')
       .as('monthSelector')
@@ -665,13 +665,13 @@ describe('UsaDatePicker', () => {
     cy.get('.usa-date-picker__calendar__next-month').should(
       'have.attr',
       'aria-label',
-      'Custom test forward one month'
+      'Custom test forward one month',
     )
 
     cy.get('.usa-date-picker__calendar__next-year').should(
       'have.attr',
       'aria-label',
-      'Custom test forward one year'
+      'Custom test forward one year',
     )
 
     cy.get('.usa-date-picker__calendar__day-of-week:nth-of-type(1)')
@@ -699,62 +699,62 @@ describe('UsaDatePicker', () => {
     cy.get('@monthSelector').click()
 
     cy.get(
-      '.usa-date-picker__calendar__table tr:nth-of-type(1) td:nth-of-type(1) button'
+      '.usa-date-picker__calendar__table tr:nth-of-type(1) td:nth-of-type(1) button',
     )
       .should('have.attr', 'data-label', 'Jan1')
       .and('contain', 'Jan1')
     cy.get(
-      '.usa-date-picker__calendar__table tr:nth-of-type(1) td:nth-of-type(2) button'
+      '.usa-date-picker__calendar__table tr:nth-of-type(1) td:nth-of-type(2) button',
     )
       .should('have.attr', 'data-label', 'Feb2')
       .and('contain', 'Feb2')
     cy.get(
-      '.usa-date-picker__calendar__table tr:nth-of-type(1) td:nth-of-type(3) button'
+      '.usa-date-picker__calendar__table tr:nth-of-type(1) td:nth-of-type(3) button',
     )
       .should('have.attr', 'data-label', 'Mar3')
       .and('contain', 'Mar3')
     cy.get(
-      '.usa-date-picker__calendar__table tr:nth-of-type(2) td:nth-of-type(1) button'
+      '.usa-date-picker__calendar__table tr:nth-of-type(2) td:nth-of-type(1) button',
     )
       .should('have.attr', 'data-label', 'Apr4')
       .and('contain', 'Apr4')
     cy.get(
-      '.usa-date-picker__calendar__table tr:nth-of-type(2) td:nth-of-type(2) button'
+      '.usa-date-picker__calendar__table tr:nth-of-type(2) td:nth-of-type(2) button',
     )
       .should('have.attr', 'data-label', 'May5')
       .and('contain', 'May5')
     cy.get(
-      '.usa-date-picker__calendar__table tr:nth-of-type(2) td:nth-of-type(3) button'
+      '.usa-date-picker__calendar__table tr:nth-of-type(2) td:nth-of-type(3) button',
     )
       .should('have.attr', 'data-label', 'Jun6')
       .and('contain', 'Jun6')
     cy.get(
-      '.usa-date-picker__calendar__table tr:nth-of-type(3) td:nth-of-type(1) button'
+      '.usa-date-picker__calendar__table tr:nth-of-type(3) td:nth-of-type(1) button',
     )
       .should('have.attr', 'data-label', 'Jul7')
       .and('contain', 'Jul7')
     cy.get(
-      '.usa-date-picker__calendar__table tr:nth-of-type(3) td:nth-of-type(2) button'
+      '.usa-date-picker__calendar__table tr:nth-of-type(3) td:nth-of-type(2) button',
     )
       .should('have.attr', 'data-label', 'Aug8')
       .and('contain', 'Aug8')
     cy.get(
-      '.usa-date-picker__calendar__table tr:nth-of-type(3) td:nth-of-type(3) button'
+      '.usa-date-picker__calendar__table tr:nth-of-type(3) td:nth-of-type(3) button',
     )
       .should('have.attr', 'data-label', 'Sep9')
       .and('contain', 'Sep9')
     cy.get(
-      '.usa-date-picker__calendar__table tr:nth-of-type(4) td:nth-of-type(1) button'
+      '.usa-date-picker__calendar__table tr:nth-of-type(4) td:nth-of-type(1) button',
     )
       .should('have.attr', 'data-label', 'Oct10')
       .and('contain', 'Oct10')
     cy.get(
-      '.usa-date-picker__calendar__table tr:nth-of-type(4) td:nth-of-type(2) button'
+      '.usa-date-picker__calendar__table tr:nth-of-type(4) td:nth-of-type(2) button',
     )
       .should('have.attr', 'data-label', 'Nov11')
       .and('contain', 'Nov11')
     cy.get(
-      '.usa-date-picker__calendar__table tr:nth-of-type(4) td:nth-of-type(3) button'
+      '.usa-date-picker__calendar__table tr:nth-of-type(4) td:nth-of-type(3) button',
     )
       .should('have.attr', 'data-label', 'Dec12')
       .and('contain', 'Dec12')
@@ -766,12 +766,12 @@ describe('UsaDatePicker', () => {
     cy.get('.usa-date-picker__calendar__previous-year-chunk').should(
       'have.attr',
       'aria-label',
-      'Custom test back 12 years'
+      'Custom test back 12 years',
     )
     cy.get('.usa-date-picker__calendar__next-year-chunk').should(
       'have.attr',
       'aria-label',
-      'Custom test forward 12 years'
+      'Custom test forward 12 years',
     )
   })
 
@@ -798,7 +798,7 @@ describe('UsaDatePicker', () => {
     cy.get('.usa-date-picker').should('have.class', 'test-component-class')
     cy.get('.usa-date-picker__external-input').should(
       'have.class',
-      'test-input-class'
+      'test-input-class',
     )
     cy.get('.usa-label').should('have.class', 'test-label-class')
 
@@ -808,7 +808,7 @@ describe('UsaDatePicker', () => {
     cy.get('.usa-date-picker').should('not.have.class', 'test-component-class')
     cy.get('.usa-date-picker__external-input').should(
       'not.have.class',
-      'test-input-class'
+      'test-input-class',
     )
     cy.get('.usa-label').should('not.have.class', 'test-label-class')
   })
@@ -825,7 +825,7 @@ describe('UsaDatePicker', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      'Missing labels, there must be a label for each day of the week. 7 total are needed but only 8 were given.'
+      'Missing labels, there must be a label for each day of the week. 7 total are needed but only 8 were given.',
     )
   })
 
@@ -841,7 +841,7 @@ describe('UsaDatePicker', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      'Missing labels, there must be a label for each day of the week. 7 total are needed but only 6 were given.'
+      'Missing labels, there must be a label for each day of the week. 7 total are needed but only 6 were given.',
     )
   })
 
@@ -869,7 +869,7 @@ describe('UsaDatePicker', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      'Missing labels, there must be a label for each month of the year. 12 total are needed but only 11 were given.'
+      'Missing labels, there must be a label for each month of the year. 12 total are needed but only 11 were given.',
     )
   })
 
@@ -884,7 +884,7 @@ describe('UsaDatePicker', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'noarange' is an invalid range type. Range must be empty, 'start', or 'end'.`
+      `'noarange' is an invalid range type. Range must be empty, 'start', or 'end'.`,
     )
   })
 })

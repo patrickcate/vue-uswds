@@ -105,7 +105,7 @@ describe('UsaDatePickerCalendar', () => {
     cy.get('.usa-date-picker__calendar').should(
       'have.attr',
       'data-value',
-      '2022-07-13'
+      '2022-07-13',
     )
 
     cy.get('button[data-label="September"]').trigger('mouseover')
@@ -133,7 +133,7 @@ describe('UsaDatePickerCalendar', () => {
     cy.get('.usa-date-picker__calendar').should(
       'have.attr',
       'data-value',
-      '2022-09-13'
+      '2022-09-13',
     )
 
     cy.get('@monthSelectorButton').should('contain', 'September')
@@ -166,7 +166,7 @@ describe('UsaDatePickerCalendar', () => {
     cy.get('.usa-date-picker__calendar').should(
       'have.attr',
       'data-value',
-      '2022-09-13'
+      '2022-09-13',
     )
 
     cy.get('button[data-value="2023"]').trigger('mouseover')
@@ -194,7 +194,7 @@ describe('UsaDatePickerCalendar', () => {
     cy.get('.usa-date-picker__calendar').should(
       'have.attr',
       'data-value',
-      '2023-01-09'
+      '2023-01-09',
     )
 
     cy.get('@yearSelectorButton').should('contain', '2023')
@@ -223,7 +223,7 @@ describe('UsaDatePickerCalendar', () => {
     cy.get('.usa-date-picker__calendar').should(
       'have.attr',
       'data-value',
-      '2023-01-09'
+      '2023-01-09',
     )
 
     cy.get('button[data-value="2022"]').trigger('mouseover')
@@ -251,7 +251,7 @@ describe('UsaDatePickerCalendar', () => {
     cy.get('.usa-date-picker__calendar').should(
       'have.attr',
       'data-value',
-      '2022-05-25'
+      '2022-05-25',
     )
 
     cy.get('@yearSelectorButton').should('contain', '2022')
@@ -280,7 +280,7 @@ describe('UsaDatePickerCalendar', () => {
     cy.get('.usa-date-picker__calendar').should(
       'have.attr',
       'data-value',
-      '2022-05-25'
+      '2022-05-25',
     )
 
     cy.get('button[data-value="2022"]').click()
@@ -292,7 +292,7 @@ describe('UsaDatePickerCalendar', () => {
     cy.get('.usa-date-picker__calendar').should(
       'have.attr',
       'data-value',
-      '2022-05-25'
+      '2022-05-25',
     )
 
     cy.get('@yearSelectorButton').should('contain', '2022')
@@ -310,7 +310,7 @@ describe('UsaDatePickerCalendar', () => {
     cy.get('.usa-date-picker__calendar').should(
       'have.attr',
       'data-value',
-      '2022-05-26'
+      '2022-05-26',
     )
 
     cy.get('.usa-date-picker__calendar__date-picker').should('not.exist')
@@ -322,7 +322,7 @@ describe('UsaDatePickerCalendar', () => {
     cy.get('.usa-date-picker__calendar').should(
       'have.attr',
       'data-value',
-      '2022-05-26'
+      '2022-05-26',
     )
 
     cy.get('button[data-value="2022-05-26"')
@@ -337,7 +337,7 @@ describe('UsaDatePickerCalendar', () => {
     cy.get('.usa-date-picker__calendar').should(
       'have.attr',
       'data-value',
-      '2022-06-26'
+      '2022-06-26',
     )
 
     cy.get('button[data-value="2022-06-26"')
@@ -495,13 +495,13 @@ describe('UsaDatePickerCalendar', () => {
         const currentActiveDateEvent = vm.emitted('update:activeDate')
         expect(currentActiveDateEvent).to.have.length(1)
         expect(
-          currentActiveDateEvent[currentActiveDateEvent.length - 1]
+          currentActiveDateEvent[currentActiveDateEvent.length - 1],
         ).to.contain('1997-07-03')
 
         const currentHighlightedDateEvent = vm.emitted('update:highlightedDate')
         expect(currentHighlightedDateEvent).to.have.length(1)
         expect(
-          currentHighlightedDateEvent[currentHighlightedDateEvent.length - 1]
+          currentHighlightedDateEvent[currentHighlightedDateEvent.length - 1],
         ).to.contain('1997-07-03')
       })
 
@@ -509,7 +509,7 @@ describe('UsaDatePickerCalendar', () => {
 
     cy.get('.usa-date-picker__calendar__month-selection').should(
       'contain',
-      'August'
+      'August',
     )
 
     cy.get('@wrapper')
@@ -529,19 +529,19 @@ describe('UsaDatePickerCalendar', () => {
         const currentActiveDateEvent = vm.emitted('update:activeDate')
         expect(currentActiveDateEvent).to.have.length(2)
         expect(
-          currentActiveDateEvent[currentActiveDateEvent.length - 1]
+          currentActiveDateEvent[currentActiveDateEvent.length - 1],
         ).to.contain('1997-08-03')
 
         const currentHighlightedDateEvent = vm.emitted('update:highlightedDate')
         expect(currentHighlightedDateEvent).to.have.length(2)
         expect(
-          currentHighlightedDateEvent[currentHighlightedDateEvent.length - 1]
+          currentHighlightedDateEvent[currentHighlightedDateEvent.length - 1],
         ).to.contain('1997-08-03')
 
         const currentIsPristineEvent = vm.emitted('update:isPristine')
         expect(currentIsPristineEvent).to.have.length(1)
         expect(
-          currentIsPristineEvent[currentIsPristineEvent.length - 1]
+          currentIsPristineEvent[currentIsPristineEvent.length - 1],
         ).to.contain(false)
       })
 
@@ -568,7 +568,7 @@ describe('UsaDatePickerCalendar', () => {
         const currentSelectorModeEvent = vm.emitted('update:selectorMode')
         expect(currentSelectorModeEvent).to.have.length(1)
         expect(
-          currentSelectorModeEvent[currentSelectorModeEvent.length - 1]
+          currentSelectorModeEvent[currentSelectorModeEvent.length - 1],
         ).to.contain('year')
 
         expect(vm.emitted('update:highlightedDate')).to.have.length(2)
@@ -576,19 +576,19 @@ describe('UsaDatePickerCalendar', () => {
         const currentIsPristineDateEvent = vm.emitted('update:isPristine')
         expect(currentIsPristineDateEvent).to.have.length(2)
         expect(
-          currentIsPristineDateEvent[currentIsPristineDateEvent.length - 1]
+          currentIsPristineDateEvent[currentIsPristineDateEvent.length - 1],
         ).to.contain(true)
 
         const currentYearStartDateEvent = vm.emitted('update:activeYearStart')
         expect(currentYearStartDateEvent).to.have.length(1)
         expect(
-          currentYearStartDateEvent[currentYearStartDateEvent.length - 1]
+          currentYearStartDateEvent[currentYearStartDateEvent.length - 1],
         ).to.contain(1997)
 
         const currentYearEndDateEvent = vm.emitted('update:activeYearEnd')
         expect(currentYearEndDateEvent).to.have.length(1)
         expect(
-          currentYearEndDateEvent[currentYearEndDateEvent.length - 1]
+          currentYearEndDateEvent[currentYearEndDateEvent.length - 1],
         ).to.contain(2003)
       })
 
@@ -618,13 +618,13 @@ describe('UsaDatePickerCalendar', () => {
         const currentYearStartDateEvent = vm.emitted('update:activeYearStart')
         expect(currentYearStartDateEvent).to.have.length(2)
         expect(
-          currentYearStartDateEvent[currentYearStartDateEvent.length - 1]
+          currentYearStartDateEvent[currentYearStartDateEvent.length - 1],
         ).to.contain(2004)
 
         const currentYearEndDateEvent = vm.emitted('update:activeYearEnd')
         expect(currentYearEndDateEvent).to.have.length(2)
         expect(
-          currentYearEndDateEvent[currentYearEndDateEvent.length - 1]
+          currentYearEndDateEvent[currentYearEndDateEvent.length - 1],
         ).to.contain(2015)
       })
 
@@ -651,31 +651,31 @@ describe('UsaDatePickerCalendar', () => {
         const currentActiveDateEvent = vm.emitted('update:activeDate')
         expect(currentActiveDateEvent).to.have.length(3)
         expect(
-          currentActiveDateEvent[currentActiveDateEvent.length - 1]
+          currentActiveDateEvent[currentActiveDateEvent.length - 1],
         ).to.contain('2015-08-03')
 
         const currentSelectorModeEvent = vm.emitted('update:selectorMode')
         expect(currentSelectorModeEvent).to.have.length(2)
         expect(
-          currentSelectorModeEvent[currentSelectorModeEvent.length - 1]
+          currentSelectorModeEvent[currentSelectorModeEvent.length - 1],
         ).to.contain('day')
 
         const currentHighlightedDateEvent = vm.emitted('update:highlightedDate')
         expect(currentHighlightedDateEvent).to.have.length(3)
         expect(
-          currentHighlightedDateEvent[currentHighlightedDateEvent.length - 1]
+          currentHighlightedDateEvent[currentHighlightedDateEvent.length - 1],
         ).to.contain('2015-08-03')
 
         const currentYearStartDateEvent = vm.emitted('update:activeYearStart')
         expect(vm.emitted('update:activeYearStart')).to.have.length(3)
         expect(
-          currentYearStartDateEvent[currentYearStartDateEvent.length - 1]
+          currentYearStartDateEvent[currentYearStartDateEvent.length - 1],
         ).to.contain('')
 
         const currentYearEndDateEvent = vm.emitted('update:activeYearEnd')
         expect(currentYearEndDateEvent).to.have.length(3)
         expect(
-          currentYearEndDateEvent[currentYearEndDateEvent.length - 1]
+          currentYearEndDateEvent[currentYearEndDateEvent.length - 1],
         ).to.contain('')
       })
 
@@ -705,13 +705,13 @@ describe('UsaDatePickerCalendar', () => {
         const currentSelectorModeEvent = vm.emitted('update:selectorMode')
         expect(currentSelectorModeEvent).to.have.length(3)
         expect(
-          currentSelectorModeEvent[currentSelectorModeEvent.length - 1]
+          currentSelectorModeEvent[currentSelectorModeEvent.length - 1],
         ).to.contain('month')
 
         const currentIsPristineDateEvent = vm.emitted('update:isPristine')
         expect(currentIsPristineDateEvent).to.have.length(3)
         expect(
-          currentIsPristineDateEvent[currentIsPristineDateEvent.length - 1]
+          currentIsPristineDateEvent[currentIsPristineDateEvent.length - 1],
         ).to.contain(true)
       })
 
@@ -738,19 +738,19 @@ describe('UsaDatePickerCalendar', () => {
         const currentActiveDateEvent = vm.emitted('update:activeDate')
         expect(currentActiveDateEvent).to.have.length(4)
         expect(
-          currentActiveDateEvent[currentActiveDateEvent.length - 1]
+          currentActiveDateEvent[currentActiveDateEvent.length - 1],
         ).to.contain('2015-11-03')
 
         const currentSelectorModeEvent = vm.emitted('update:selectorMode')
         expect(currentSelectorModeEvent).to.have.length(4)
         expect(
-          currentSelectorModeEvent[currentSelectorModeEvent.length - 1]
+          currentSelectorModeEvent[currentSelectorModeEvent.length - 1],
         ).to.contain('day')
 
         const currentHighlightedDateEvent = vm.emitted('update:highlightedDate')
         expect(currentHighlightedDateEvent).to.have.length(4)
         expect(
-          currentHighlightedDateEvent[currentHighlightedDateEvent.length - 1]
+          currentHighlightedDateEvent[currentHighlightedDateEvent.length - 1],
         ).to.contain('2015-11-03')
       })
 
@@ -779,7 +779,7 @@ describe('UsaDatePickerCalendar', () => {
         const currentIsPristineEvent = vm.emitted('update:isPristine')
         expect(currentIsPristineEvent).to.have.length(3)
         expect(
-          currentIsPristineEvent[currentIsPristineEvent.length - 1]
+          currentIsPristineEvent[currentIsPristineEvent.length - 1],
         ).to.contain(true)
 
         const currentOpenEvent = vm.emitted('update:open')
@@ -789,7 +789,7 @@ describe('UsaDatePickerCalendar', () => {
         const currentSelectedDateEvent = vm.emitted('update:selectedDate')
         expect(currentSelectedDateEvent).to.have.length(1)
         expect(
-          currentSelectedDateEvent[currentSelectedDateEvent.length - 1]
+          currentSelectedDateEvent[currentSelectedDateEvent.length - 1],
         ).to.contain('2015-11-03')
       })
   })

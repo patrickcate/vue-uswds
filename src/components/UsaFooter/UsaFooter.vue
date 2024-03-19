@@ -43,12 +43,12 @@ const classes = computed(() => [
 const containerClasses = computed(() =>
   props.customClasses?.container?.length
     ? props.customClasses.container
-    : [`${gridNamespace}container`]
+    : [`${gridNamespace}container`],
 )
 
 provide(
   'footerVariant',
-  computed(() => props.variant)
+  computed(() => props.variant),
 )
 </script>
 

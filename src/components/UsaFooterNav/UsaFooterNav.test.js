@@ -41,7 +41,7 @@ describe('UsaFooterNav', () => {
     cy.get('.usa-footer__nav').should(
       'have.attr',
       'aria-label',
-      'Test aria label'
+      'Test aria label',
     )
     cy.get('.usa-footer__nav > span').should('have.contain', 'Test Item 1')
     cy.get('h4').should('not.exist')
@@ -174,7 +174,7 @@ describe('UsaFooterNav', () => {
 
     cy.get('.usa-footer__nav > ul > li').should(
       'have.class',
-      'test-grid-col-class'
+      'test-grid-col-class',
     )
   })
 
@@ -198,7 +198,7 @@ describe('UsaFooterNav', () => {
 
     cy.get('.usa-footer__nav > div > div').should(
       'have.class',
-      'test-grid-col-class'
+      'test-grid-col-class',
     )
   })
 

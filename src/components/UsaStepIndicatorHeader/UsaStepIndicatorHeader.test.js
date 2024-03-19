@@ -21,7 +21,7 @@ describe('UsaStepIndicatorHeader', () => {
     cy.get('.usa-step-indicator__current-step').should('contain', 1)
     cy.get('.usa-step-indicator__total-steps').should(
       'contain',
-      testSteps.length
+      testSteps.length,
     )
     cy.get('.usa-step-indicator__heading-text').should('contain', testSteps[0])
   })
@@ -69,7 +69,7 @@ describe('UsaStepIndicatorHeader', () => {
       cy.get('.usa-step-indicator__current-step').should('contain', currentStep)
       cy.get('.usa-step-indicator__total-steps').should(
         'contain',
-        testSteps.length
+        testSteps.length,
       )
       cy.get('.usa-step-indicator__heading-text').should('contain', step)
 
@@ -105,7 +105,7 @@ describe('UsaStepIndicatorHeader', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `[Vue warn]: Invalid prop: custom validator check failed for prop "currentStepNumber".`
+      `[Vue warn]: Invalid prop: custom validator check failed for prop "currentStepNumber".`,
     )
 
     cy.get('.usa-step-indicator__current-step').should('contain', 1)

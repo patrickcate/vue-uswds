@@ -48,7 +48,7 @@ export const parseIsoDate = dateString => {
     0,
     0,
     0,
-    0
+    0,
   ).setFullYear(parseInt(year, 10), parseInt(month, 10) - 1, parseInt(day, 10))
 
   return new Date(newDate)
@@ -69,7 +69,7 @@ export const parseUsaDate = date => {
     0,
     0,
     0,
-    0
+    0,
   ).setFullYear(parseInt(year, 10), parseInt(month, 10) - 1, parseInt(day, 10))
 
   return new Date(newDate)

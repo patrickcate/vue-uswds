@@ -274,14 +274,14 @@ describe('UsaSelect', () => {
           h(
             'option',
             { value: options[1].value },
-            `Options slot: ${options[1].text}`
+            `Options slot: ${options[1].text}`,
           ),
       },
     })
 
     cy.get('.usa-select > option:nth-of-type(2)').should(
       'contain',
-      'Options slot: Item 2'
+      'Options slot: Item 2',
     )
     cy.get('.usa-select > option:nth-of-type(2)')
       .should('have.attr', 'value')
@@ -315,7 +315,7 @@ describe('UsaSelect', () => {
         const currentSelectedEvent = vm.emitted('update:modelValue')
         expect(currentSelectedEvent).to.have.length(1)
         expect(
-          currentSelectedEvent[currentSelectedEvent.length - 1]
+          currentSelectedEvent[currentSelectedEvent.length - 1],
         ).to.contain(3.1)
       })
 
@@ -328,7 +328,7 @@ describe('UsaSelect', () => {
         const currentSelectedEvent = vm.emitted('update:modelValue')
         expect(currentSelectedEvent).to.have.length(2)
         expect(
-          currentSelectedEvent[currentSelectedEvent.length - 1]
+          currentSelectedEvent[currentSelectedEvent.length - 1],
         ).to.contain(4)
       })
 
@@ -341,7 +341,7 @@ describe('UsaSelect', () => {
         const currentSelectedEvent = vm.emitted('update:modelValue')
         expect(currentSelectedEvent).to.have.length(3)
         expect(
-          currentSelectedEvent[currentSelectedEvent.length - 1]
+          currentSelectedEvent[currentSelectedEvent.length - 1],
         ).to.contain('')
       })
   })

@@ -104,7 +104,7 @@ describe('UsaTable', () => {
         sortDirection: 'ascending',
         nextButton: 1,
         data: naturalSort(testRows).asc(
-          row => row.alphabetical?.sortValue || row.alphabetical
+          row => row.alphabetical?.sortValue || row.alphabetical,
         ),
       },
       {
@@ -112,7 +112,7 @@ describe('UsaTable', () => {
         sortDirection: 'descending',
         nextButton: 2,
         data: naturalSort(testRows).desc(
-          row => row.alphabetical?.sortValue || row.alphabetical
+          row => row.alphabetical?.sortValue || row.alphabetical,
         ),
       },
       {
@@ -120,7 +120,7 @@ describe('UsaTable', () => {
         sortDirection: 'ascending',
         nextButton: 2,
         data: naturalSort(testRows).asc(
-          row => row.month?.sortValue || row.month
+          row => row.month?.sortValue || row.month,
         ),
       },
       {
@@ -128,7 +128,7 @@ describe('UsaTable', () => {
         sortDirection: 'descending',
         nextButton: 3,
         data: naturalSort(testRows).desc(
-          row => row.month?.sortValue || row.month
+          row => row.month?.sortValue || row.month,
         ),
       },
       {
@@ -136,7 +136,7 @@ describe('UsaTable', () => {
         sortDirection: 'ascending',
         nextButton: 3,
         data: naturalSort(testRows).asc(
-          row => row.percent?.sortValue || row.percent
+          row => row.percent?.sortValue || row.percent,
         ),
       },
       {
@@ -144,7 +144,7 @@ describe('UsaTable', () => {
         sortDirection: 'descending',
         nextButton: 4,
         data: naturalSort(testRows).desc(
-          row => row.percent?.sortValue || row.percent
+          row => row.percent?.sortValue || row.percent,
         ),
       },
       {
@@ -152,7 +152,7 @@ describe('UsaTable', () => {
         sortDirection: 'ascending',
         nextButton: 4,
         data: naturalSort(testRows).asc(
-          row => row.count?.sortValue || row.count
+          row => row.count?.sortValue || row.count,
         ),
       },
       {
@@ -160,7 +160,7 @@ describe('UsaTable', () => {
         sortDirection: 'descending',
         nextButton: null,
         data: naturalSort(testRows).desc(
-          row => row.count?.sortValue || row.count
+          row => row.count?.sortValue || row.count,
         ),
       },
     ]
@@ -197,10 +197,10 @@ describe('UsaTable', () => {
 
     cy.wrap(testHeaders).each((header, headerIndex) => {
       cy.get(`.usa-table thead th:nth-of-type(${headerIndex + 1})`).as(
-        `header${headerIndex + 1}`
+        `header${headerIndex + 1}`,
       )
       cy.get(`.usa-table thead th:nth-of-type(${headerIndex + 1}) button`).as(
-        `header${headerIndex + 1}Button`
+        `header${headerIndex + 1}Button`,
       )
     })
 
@@ -215,7 +215,7 @@ describe('UsaTable', () => {
               expect($th.eq(headerIndex).attr('data-sortable')).to.equal('true')
               expect($th.eq(headerIndex).attr('role')).to.equal('columnheader')
               expect($th.eq(headerIndex).attr('aria-label')).to.equal(
-                `${header.label}, sortable column, currently unsorted`
+                `${header.label}, sortable column, currently unsorted`,
               )
               expect($th.eq(headerIndex).text()).to.equal(header.label)
             })
@@ -226,7 +226,7 @@ describe('UsaTable', () => {
             expect($button.eq(headerIndex).attr('tabindex')).to.equal('0')
 
             expect($button.eq(headerIndex).attr('title')).to.equal(
-              `Click to sort by ${header.label} in ascending order.`
+              `Click to sort by ${header.label} in ascending order.`,
             )
           })
         })
@@ -246,7 +246,7 @@ describe('UsaTable', () => {
               .each(($td, cellIndex) => {
                 const headerLabel = $td.attr('data-label')
                 const header = testHeaders.find(
-                  headerItem => headerItem.label === headerLabel
+                  headerItem => headerItem.label === headerLabel,
                 )
                 const cell = test.data[rowIndex][header.id]
 
@@ -273,11 +273,11 @@ describe('UsaTable', () => {
 
                 expect($td).to.have.attr(
                   'data-sort-value',
-                  cell?.sortValue ? cell.sortValue : cell
+                  cell?.sortValue ? cell.sortValue : cell,
                 )
 
                 expect($td).to.have.text(
-                  cell?.displayValue ? cell.displayValue : cell
+                  cell?.displayValue ? cell.displayValue : cell,
                 )
               })
           })
@@ -290,16 +290,16 @@ describe('UsaTable', () => {
           if (test.sortDirection) {
             const nextTest = testData[testIndex + 1]
             const header = testHeaders.find(
-              headerItem => nextTest.sortHeader === headerItem.id
+              headerItem => nextTest.sortHeader === headerItem.id,
             )
             cy.get(`@header${test.nextButton}`).should(
               'have.attr',
               'aria-sort',
-              nextTest.sortDirection
+              nextTest.sortDirection,
             )
 
             cy.get('@announcementRegion').contains(
-              `The table is now sorted by "${header.label}" in ${nextTest.sortDirection} order.`
+              `The table is now sorted by "${header.label}" in ${nextTest.sortDirection} order.`,
             )
           }
         }
@@ -326,11 +326,11 @@ describe('UsaTable', () => {
     cy.get('.usa-table caption').should('contain', 'Test caption slot.')
     cy.get('.usa-table thead > tr > th').should(
       'contain',
-      'Test header slot content.'
+      'Test header slot content.',
     )
     cy.get('.usa-table tbody > tr > td').should(
       'contain',
-      'Test default slot content.'
+      'Test default slot content.',
     )
 
     cy.get('.usa-table__announcement-region').should('not.exist')
@@ -357,18 +357,18 @@ describe('UsaTable', () => {
     cy.get('div.usa-table-container--scrollable').should(
       'have.attr',
       'tabindex',
-      '0'
+      '0',
     )
     cy.get('div.usa-table-container--scrollable').should(
       'not.have.attr',
       'data-test',
-      'test'
+      'test',
     )
 
     cy.get('.usa-table-container--scrollable > table').should(
       'have.attr',
       'data-test',
-      'test'
+      'test',
     )
 
     cy.get('.usa-table caption').should('contain', 'Test caption')
@@ -398,7 +398,7 @@ describe('UsaTable', () => {
 
   it('uses default sort column and direction', () => {
     const testData = naturalSort(testRows).desc(
-      row => row.percent?.sortValue || row.percent
+      row => row.percent?.sortValue || row.percent,
     )
 
     cy.mount(UsaTable, {
@@ -422,14 +422,14 @@ describe('UsaTable', () => {
 
             if (headerIndex === 2) {
               expect($th.eq(headerIndex).attr('aria-sort')).to.equal(
-                'descending'
+                'descending',
               )
               expect($th.eq(headerIndex).attr('aria-label')).to.equal(
-                `${header.label}, sortable column, currently sorted descending`
+                `${header.label}, sortable column, currently sorted descending`,
               )
             } else {
               expect($th.eq(headerIndex).attr('aria-label')).to.equal(
-                `${header.label}, sortable column, currently unsorted`
+                `${header.label}, sortable column, currently unsorted`,
               )
             }
           })
@@ -446,7 +446,7 @@ describe('UsaTable', () => {
             .each(($td, cellIndex) => {
               const headerLabel = $td.attr('data-label')
               const header = testHeaders.find(
-                headerItem => headerItem.label === headerLabel
+                headerItem => headerItem.label === headerLabel,
               )
               const cell = testData[rowIndex][header.id]
 
@@ -458,11 +458,11 @@ describe('UsaTable', () => {
 
               expect($td).to.have.attr(
                 'data-sort-value',
-                cell?.sortValue ? cell.sortValue : cell
+                cell?.sortValue ? cell.sortValue : cell,
               )
 
               expect($td).to.have.text(
-                cell?.displayValue ? cell.displayValue : cell
+                cell?.displayValue ? cell.displayValue : cell,
               )
             })
         })
@@ -472,7 +472,7 @@ describe('UsaTable', () => {
 
     cy.get('.usa-table__announcement-region').should(
       'contain',
-      'The table named "Test caption" is now sorted by "Percent" in descending order.'
+      'The table named "Test caption" is now sorted by "Percent" in descending order.',
     )
     cy.get('.usa-table__announcement-region span').should('not.exist')
   })
@@ -505,29 +505,29 @@ describe('UsaTable', () => {
 
     cy.get('.usa-table thead th:nth-of-type(1)').should(
       'not.have.attr',
-      'data-sortable'
+      'data-sortable',
     )
     cy.get('.usa-table thead th:nth-of-type(1)').should('not.have.attr', 'role')
     cy.get('.usa-table thead th:nth-of-type(1)').should(
       'not.have.attr',
-      'aria-label'
+      'aria-label',
     )
     cy.get('.usa-table thead th:nth-of-type(1) button').should('not.exist')
 
     cy.get('.usa-table thead th:nth-of-type(2)').should(
       'have.attr',
       'data-sortable',
-      'true'
+      'true',
     )
     cy.get('.usa-table thead th:nth-of-type(2)').should(
       'have.attr',
       'role',
-      'columnheader'
+      'columnheader',
     )
     cy.get('.usa-table thead th:nth-of-type(2)').should(
       'have.attr',
       'aria-label',
-      'Age, sortable column, currently unsorted'
+      'Age, sortable column, currently unsorted',
     )
 
     cy.get('.usa-table tbody th').should('not.exist')
@@ -537,14 +537,14 @@ describe('UsaTable', () => {
     cy.get('.usa-table thead th:nth-of-type(2)').should(
       'have.attr',
       'aria-label',
-      'Age, sortable column, currently sorted ascending'
+      'Age, sortable column, currently sorted ascending',
     )
 
     cy.get('.usa-table caption').should('contain', 'Test Table')
 
     cy.get('.usa-table__announcement-region').should(
       'contain',
-      'The table named "Test Table" is now sorted by "Age" in ascending order.'
+      'The table named "Test Table" is now sorted by "Age" in ascending order.',
     )
   })
 
@@ -575,7 +575,7 @@ describe('UsaTable', () => {
           h(
             'a',
             { href: `/user/${props.row['user-id'].sortValue}` },
-            props.row.first_name.displayValue
+            props.row.first_name.displayValue,
           ),
         'table-announcement': () => 'Test table announcement slot',
       },
@@ -591,7 +591,7 @@ describe('UsaTable', () => {
 
     cy.get('.usa-table__announcement-region').should(
       'contain',
-      'Test table announcement slot'
+      'Test table announcement slot',
     )
   })
 })

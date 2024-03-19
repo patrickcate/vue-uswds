@@ -116,7 +116,7 @@ describe('UsaGraphicList', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'notvariant' is not a valid graphic list variant`
+      `'notvariant' is not a valid graphic list variant`,
     )
   })
 })

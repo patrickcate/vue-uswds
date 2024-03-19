@@ -7,7 +7,7 @@ describe('UsaFooterSecondarySection', () => {
 
     cy.get('div.usa-footer__secondary-section').should('exist')
     cy.get('div.usa-footer__secondary-section .grid-container').should(
-      'be.empty'
+      'be.empty',
     )
   })
 

@@ -37,7 +37,7 @@ const props = defineProps({
     default: 'top',
     validator(position) {
       const isValidPosition = ['top', 'bottom', 'left', 'right'].includes(
-        position
+        position,
       )
 
       if (!isValidPosition) {
@@ -121,7 +121,7 @@ onMounted(() => {
   cleanupFloatingUi = autoUpdate(
     referenceElement.value,
     floatingElement.value,
-    updatePosition
+    updatePosition,
   )
 
   nextTick(() => {

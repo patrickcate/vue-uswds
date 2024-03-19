@@ -13,7 +13,7 @@ describe('UsaIdentiferMoreInfo', () => {
     cy.get('.usa-identifier__container').should('exist')
     cy.get('.usa-identifier__usagov-description').should(
       'contain',
-      'Looking for U.S. government information and services?'
+      'Looking for U.S. government information and services?',
     )
 
     cy.get('.usa-identifier__container .usa-link')
@@ -22,7 +22,7 @@ describe('UsaIdentiferMoreInfo', () => {
 
     cy.get('.usa-identifier__container .usa-link').should(
       'contain',
-      'Visit USA.gov'
+      'Visit USA.gov',
     )
   })
 
@@ -42,7 +42,7 @@ describe('UsaIdentiferMoreInfo', () => {
 
     cy.get('.usa-identifier__usagov-description').should(
       'contain',
-      'Test description'
+      'Test description',
     )
 
     cy.get('.usa-identifier__container .usa-link')
@@ -51,7 +51,7 @@ describe('UsaIdentiferMoreInfo', () => {
 
     cy.get('.usa-identifier__container .usa-link').should(
       'contain',
-      'Test link text'
+      'Test link text',
     )
   })
 })

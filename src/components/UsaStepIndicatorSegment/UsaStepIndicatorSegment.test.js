@@ -18,13 +18,13 @@ describe('UsaStepIndicatorSegment', () => {
     cy.get('@wrapper').invoke('setProps', { status: 'current' })
     cy.get('.usa-step-indicator__segment').should(
       'have.class',
-      'usa-step-indicator__segment--current'
+      'usa-step-indicator__segment--current',
     )
 
     cy.get('@wrapper').invoke('setProps', { status: 'completed' })
     cy.get('.usa-step-indicator__segment').should(
       'have.class',
-      'usa-step-indicator__segment--complete'
+      'usa-step-indicator__segment--complete',
     )
   })
 
@@ -44,7 +44,7 @@ describe('UsaStepIndicatorSegment', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `[Vue warn]: Invalid prop: custom validator check failed for prop "status".`
+      `[Vue warn]: Invalid prop: custom validator check failed for prop "status".`,
     )
   })
 })

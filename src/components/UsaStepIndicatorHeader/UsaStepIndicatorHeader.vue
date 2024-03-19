@@ -40,7 +40,7 @@ const props = defineProps({
 const calculatedStepNumber = computed(() =>
   props.currentStepNumber > 0
     ? Math.min(props.currentStepNumber, props.totalSteps)
-    : 1
+    : 1,
 )
 </script>
 

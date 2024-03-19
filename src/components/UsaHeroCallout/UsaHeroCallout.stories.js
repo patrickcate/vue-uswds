@@ -83,14 +83,14 @@ const DefaultTemplate = (args, { argTypes }) => ({
       :custom-classes="customClasses"
     >
       <template v-if="${!!args['heading-alt']}" #heading-alt>${
-    args['heading-alt']
-  }</template>
+        args['heading-alt']
+      }</template>
       <template v-else-if="${!!args['slot:heading-alt']}" #headingAlt>${
-    args['slot:heading-alt']
-  }</template>
+        args['slot:heading-alt']
+      }</template>
       <template v-if="${!!args['slot:heading']}" #heading>${
-    args['slot:heading']
-  }</template>
+        args['slot:heading']
+      }</template>
       <template v-if="${!!args.default}" #default>${args.default}</template>
     </UsaHeroCallout>
   </UsaHero>`,

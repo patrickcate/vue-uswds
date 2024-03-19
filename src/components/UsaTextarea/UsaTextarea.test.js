@@ -178,7 +178,7 @@ describe('UsaTextarea', () => {
         const currentTextareaEvent = vm.emitted('update:modelValue')
         expect(currentTextareaEvent).to.have.length(24)
         expect(
-          currentTextareaEvent[currentTextareaEvent.length - 1]
+          currentTextareaEvent[currentTextareaEvent.length - 1],
         ).to.contain('This is some test text. This is some more text.')
       })
   })
@@ -212,7 +212,7 @@ describe('UsaTextarea', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'invalidwidth' is not a valid textarea width`
+      `'invalidwidth' is not a valid textarea width`,
     )
   })
 })

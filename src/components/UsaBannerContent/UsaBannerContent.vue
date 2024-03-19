@@ -14,7 +14,7 @@ if (slots?.tldIcon) {
 
 if (slots?.tldDescription) {
   console.warn(
-    `The 'tldDescription' slot is deprecated, use 'tld-description' instead.`
+    `The 'tldDescription' slot is deprecated, use 'tld-description' instead.`,
   )
 }
 
@@ -24,7 +24,7 @@ if (slots?.httpsIcon) {
 
 if (slots?.httpsDescription) {
   console.warn(
-    `The 'httpsDescription' slot is deprecated, use 'https-description' instead.`
+    `The 'httpsDescription' slot is deprecated, use 'https-description' instead.`,
   )
 }
 

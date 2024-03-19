@@ -54,13 +54,13 @@ const DefaultTemplate = (args, { argTypes }) => ({
     <template v-if="${!!args[
       'remaining-message'
     ]}" #remaining-message="{ maxlength, charactersRemaining }">${
-    args['remaining-message']
-  }</template>
+      args['remaining-message']
+    }</template>
     <template v-if="${!!args[
       'over-message'
     ]}" #over-message="{ maxlength, charactersOver }">${
-    args['over-message']
-  }</template>
+      args['over-message']
+    }</template>
   </UsaCharacterCount>`,
 })
 
