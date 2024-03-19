@@ -9,8 +9,16 @@ const testItem = {
     {
       href: '/page-1-1',
       text: 'Page 1.1',
+      attrs: {
+        href: '/test-page',
+      },
     },
   ],
+  attrs: {
+    class: ['test-attrs-class'],
+    id: 'test-id',
+    href: '/test-page',
+  },
 }
 
 describe('UsaSidenavItem', () => {
@@ -37,9 +45,11 @@ describe('UsaSidenavItem', () => {
 
     cy.get('@item')
       .find('> a')
-      .should('have.class', 'test-link-class')
-      .and('have.attr', 'to')
-      .and('contain', '/page-1')
+      .should('have.id', 'test-id')
+      .and('have.class', 'test-link-class')
+      .and('have.class', 'test-attrs-class')
+      .and('have.attr', 'to', '/page-1')
+      .and('not.have.attr', 'href')
 
     cy.get('@item').find('> a').should('contain', 'Page 1')
 
@@ -58,13 +68,14 @@ describe('UsaSidenavItem', () => {
     cy.get('@sublist').find('a').should('contain', 'Page 1.1')
   })
 
-  it('`item` prop is available in scoped slot', () => {
+  it('`item` and `children` props are available in scoped slots', () => {
     cy.mount(UsaSidenavItem, {
       props: {
         item: testItem,
       },
       slots: {
-        default: props => h('span', {}, `path is: ${props.item.to}`),
+        default: ({ item }) => h('span', {}, `path is: ${item.to}`),
+        sublist: ({ sublist }) => h('li', {}, `path is: ${sublist[0].href}`),
       },
     })
 
@@ -72,6 +83,8 @@ describe('UsaSidenavItem', () => {
       'contain',
       'path is: /page-1'
     )
+
+    cy.get('.usa-sidenav__sublist li').should('contain', 'path is: /page-1-1')
   })
 
   it('warns in console about required `item` prop', () => {
