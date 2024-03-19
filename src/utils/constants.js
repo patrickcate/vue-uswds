@@ -45,3 +45,4 @@ export const DAY_OF_WEEK_ABBREVIATION_LABELS = [
   'S',
 ]
 export const YEAR_GROUP = 12
+export const ID_PREFIX = 'vuswds-id-'

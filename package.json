@@ -1,7 +1,7 @@
 {
   "name": "vue-uswds",
   "description": "Vue 3 implementation of the USWDS (U.S. Web Design System) component library",
-  "version": "1.7.1",
+  "version": "1.7.2-beta.2",
   "author": "Patrick Cate",
   "license": "MIT",
   "keywords": [
@@ -21,6 +21,7 @@
     "dist"
   ],
   "sideEffects": false,
+  "type": "module",
   "main": "./dist/vue-uswds.umd.js",
   "module": "./dist/vue-uswds.es.js",
   "unpkg": "./dist/vue-uswds.umd.js",
@@ -35,8 +36,8 @@
       "import": "./dist/vue-uswds.core.es.js"
     },
     "./components": {
-      "require": "./dist/vue-uswds.components.cjs.js",
-      "import": "./dist/vue-uswds.components.es.js"
+      "require": "./dist/vue-uswds.components.cjs",
+      "import": "./dist/vue-uswds.components.mjs"
     }
   },
   "scripts": {
@@ -49,7 +50,7 @@
     "commit": "cz",
     "new": "cross-env HYGEN_TMPLS=./.hygen hygen new",
     "lint": "eslint --ext .js,.vue --fix .",
-    "lint:tree-shaking": "npm run build && npx agadoo dist/vue-uswds.components.es.js",
+    "lint:tree-shaking": "npm run build && npx agadoo dist/vue-uswds.components.mjs",
     "cypress:open": "cross-env TZ=America/New_York cypress open",
     "cypress:open-ct": "cross-env TZ=America/New_York cypress open --component",
     "pretest:component": "rm -rf .nyc_output coverage || true",
@@ -104,7 +105,7 @@
     "eslint-plugin-storybook": "^0.5.6",
     "eslint-plugin-vue": "^9.1.1",
     "husky": "^8.0.1",
-    "hygen": "^6.1.0",
+    "hygen-neo": "^6.3.0",
     "lint-staged": "^15.2.0",
     "prettier": "^2.8.8",
     "semantic-release": "^19.0.5",
@@ -120,6 +121,9 @@
   "config": {
     "commitizen": {
       "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.cjs"
     }
   },
   "lint-staged": {
