@@ -37,6 +37,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  // @TODO: v2 switch to `modelValue`.
   currentPage: {
     type: Number,
     default: 1,
