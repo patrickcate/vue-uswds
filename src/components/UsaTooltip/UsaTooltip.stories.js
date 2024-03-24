@@ -82,8 +82,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
   >
     <template v-if="${!!args.default}" #default>${args.default}</template>
     <template v-if="${!!args['slot:label']}" #label>${
-    args['slot:label']
-  }</template>
+      args['slot:label']
+    }</template>
  </UsaTooltip>`,
 })
 

@@ -65,8 +65,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
   >
     <template v-if="${!!args.logo}" #logo>${args.logo}</template>
     <template v-if="${!!args['slot:heading']}" #heading>${
-    args['slot:heading']
-  }</template>
+      args['slot:heading']
+    }</template>
   </UsaFooterLogo>`,
 })
 

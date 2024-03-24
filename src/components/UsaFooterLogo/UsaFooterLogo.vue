@@ -32,12 +32,12 @@ const props = defineProps({
 const logoGridClasses = computed(() =>
   props.customClasses?.logoGridCol?.length
     ? props.customClasses.logoGridCol
-    : [`mobile-lg${prefixSeparator}${gridNamespace}col-auto`]
+    : [`mobile-lg${prefixSeparator}${gridNamespace}col-auto`],
 )
 const headingGridClasses = computed(() =>
   props.customClasses?.headingGridCol?.length
     ? props.customClasses.headingGridCol
-    : [`mobile-lg${prefixSeparator}${gridNamespace}col-auto`]
+    : [`mobile-lg${prefixSeparator}${gridNamespace}col-auto`],
 )
 </script>
 

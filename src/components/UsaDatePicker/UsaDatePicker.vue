@@ -78,7 +78,7 @@ const props = defineProps({
 
       if (!isValidRangeType) {
         console.warn(
-          `'${rangeType}' is an invalid range type. Range must be empty, 'start', or 'end'.`
+          `'${rangeType}' is an invalid range type. Range must be empty, 'start', or 'end'.`,
         )
       }
 
@@ -118,7 +118,7 @@ const props = defineProps({
 
       if (!isValidDayLabelsLength) {
         console.warn(
-          `Missing labels, there must be a label for each day of the week. 7 total are needed but only ${totalLabels} were given.`
+          `Missing labels, there must be a label for each day of the week. 7 total are needed but only ${totalLabels} were given.`,
         )
       }
 
@@ -134,7 +134,7 @@ const props = defineProps({
 
       if (!isValidDayLabelsLength) {
         console.warn(
-          `Missing labels, there must be a label for each day of the week. 7 total are needed but only ${totalLabels} were given.`
+          `Missing labels, there must be a label for each day of the week. 7 total are needed but only ${totalLabels} were given.`,
         )
       }
 
@@ -150,7 +150,7 @@ const props = defineProps({
 
       if (!isValidMonthLength) {
         console.warn(
-          `Missing labels, there must be a label for each month of the year. 12 total are needed but only ${totalLabels} were given.`
+          `Missing labels, there must be a label for each month of the year. 12 total are needed but only ${totalLabels} were given.`,
         )
       }
 
@@ -247,7 +247,7 @@ const initialDate = () => {
     isDateInRange(
       parseIsoDate(selectedDate.value),
       parseIsoDate(minDate.value),
-      parseIsoDate(maxDate.value)
+      parseIsoDate(maxDate.value),
     )
   ) {
     return selectedDate.value
@@ -275,7 +275,7 @@ const initialDate = () => {
     isDateInRange(
       today(),
       parseIsoDate(minDate.value),
-      parseIsoDate(maxDate.value)
+      parseIsoDate(maxDate.value),
     )
   ) {
     return formatIsoDate(today())
@@ -287,7 +287,7 @@ const initialDate = () => {
 const datePickerWrapperRef = ref(null)
 
 const textInputValue = ref(
-  selectedDate.value ? formatUsaDate(parseIsoDate(selectedDate.value)) : ''
+  selectedDate.value ? formatUsaDate(parseIsoDate(selectedDate.value)) : '',
 )
 
 const open = ref(false)
@@ -306,11 +306,11 @@ watch(activeDate, newActiveDate => {
 const activeMonthLabel = computed(() =>
   activeDate.value
     ? props.monthLabels[getMonthIndex(activeDateObject.value)]
-    : ''
+    : '',
 )
 
 const activeYear = computed(() =>
-  activeDate.value ? getYear(activeDateObject.value) : ''
+  activeDate.value ? getYear(activeDateObject.value) : '',
 )
 
 const closeCalendar = () => {
@@ -334,7 +334,7 @@ const toggleCalendar = () => {
 const computedId = computed(() => props.id || nextId('usa-date-picker'))
 const computedLabelId = computed(() => `${computedId.value}-label`)
 const computedErrorMessageId = computed(
-  () => `${computedId.value}-error-message`
+  () => `${computedId.value}-error-message`,
 )
 const computedHintId = computed(() => `${computedId.value}-hint`)
 
@@ -424,7 +424,7 @@ watch(selectedDate, newSelectedDate => {
 
 provide(
   'inputHighlightedDate',
-  computed(() => highlightedDate.value)
+  computed(() => highlightedDate.value),
 )
 
 provide('rangeType', toRef(props, 'rangeType'))

@@ -23,7 +23,7 @@ describe('UsaNavDropdown', () => {
     cy.get('@registerDropdown').should(
       'be.calledWith',
       'test-dropdown-id',
-      false
+      false,
     )
 
     cy.get('li.usa-nav__primary-item')
@@ -54,7 +54,7 @@ describe('UsaNavDropdown', () => {
     cy.get('@registerDropdown').should(
       'be.calledWithMatch',
       'vuswds-id-global-usa-nav-dropdown',
-      true
+      true,
     )
   })
 })

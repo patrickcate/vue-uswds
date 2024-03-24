@@ -132,19 +132,19 @@ const DefaultTemplate = (args, { argTypes }) => ({
     v-model="modelValue"
   >
     <template v-if="${!!args['slot:label']}" #label>${
-    args['slot:label']
-  }</template>
+      args['slot:label']
+    }</template>
     <template v-if="${!!args.hint}" #hint>${args.hint}</template>
     <template v-if="${!!args['error-message']}" #error-message>${
-    args['error-message']
-  }</template>
+      args['error-message']
+    }</template>
     <template v-if="${!!args['no-results']}" #no-results>${
-    args['no-results']
-  }</template>
+      args['no-results']
+    }</template>
     <template v-if="${!!args.status}" #status>${args.status}</template>
     <template v-if="${!!args['assistive-hint']}" #assistive-hint>${
-    args['assistive-hint']
-  }</template>
+      args['assistive-hint']
+    }</template>
   </UsaTimePicker>`,
 })
 

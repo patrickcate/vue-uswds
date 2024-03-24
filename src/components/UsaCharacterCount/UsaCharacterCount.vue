@@ -28,7 +28,7 @@ const srOnlyStatusMessage = ref('')
 
 const charactersRemaining = ref(props.maxlength)
 const charactersOver = computed(() =>
-  charactersRemaining.value < 0 ? charactersRemaining.value * -1 : 0
+  charactersRemaining.value < 0 ? charactersRemaining.value * -1 : 0,
 )
 const countStatus = computed(() => {
   if (charactersRemaining.value === props.maxlength) {
@@ -54,17 +54,17 @@ watchDebounced(
   () => {
     srOnlyStatusMessage.value = statusMessageRef.value?.textContent
   },
-  { debounce: 1000, immediate: true }
+  { debounce: 1000, immediate: true },
 )
 
 provide('updateCharacterCount', updateCharacterCount)
 provide(
   'characterCountMaxlength',
-  computed(() => props.maxlength)
+  computed(() => props.maxlength),
 )
 provide(
   'characterCountMessageId',
-  computed(() => computedId.value)
+  computed(() => computedId.value),
 )
 </script>
 

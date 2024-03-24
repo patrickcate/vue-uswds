@@ -109,7 +109,7 @@ describe('BaseLink', () => {
 
     cy.get('test-global-router-component').should(
       'contain',
-      'Test Global Component Link'
+      'Test Global Component Link',
     )
     cy.get('test-global-router-component')
       .should('have.attr', 'to')

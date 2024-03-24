@@ -50,11 +50,11 @@ const classes = computed(() => [
 
 provide(
   'isExtendedHeader',
-  computed(() => props.variant === 'extended')
+  computed(() => props.variant === 'extended'),
 )
 provide(
   'isMegamenu',
-  computed(() => props.megamenu)
+  computed(() => props.megamenu),
 )
 provide('isMobileMenuOpen', isMobileMenuOpen)
 provide('mobileMenuId', mobileMenuId)

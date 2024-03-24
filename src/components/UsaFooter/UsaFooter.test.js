@@ -48,7 +48,7 @@ describe('UsaFooter', () => {
 
     cy.get('.usa-footer__return-to-top').should(
       'contain',
-      'Test jump link slot'
+      'Test jump link slot',
     )
   })
 
@@ -61,7 +61,7 @@ describe('UsaFooter', () => {
 
     cy.get('.usa-footer__return-to-top').should(
       'contain',
-      'Custom return to top'
+      'Custom return to top',
     )
   })
 
@@ -94,7 +94,7 @@ describe('UsaFooter', () => {
 
     cy.get('.usa-footer__return-to-top').should(
       'have.class',
-      'test-container-class'
+      'test-container-class',
     )
   })
 
@@ -109,7 +109,7 @@ describe('UsaFooter', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'notvariant' is not a valid footer variant`
+      `'notvariant' is not a valid footer variant`,
     )
   })
 })

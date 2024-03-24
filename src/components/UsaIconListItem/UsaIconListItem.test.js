@@ -18,7 +18,7 @@ describe('UsaIconListItem', () => {
     cy.get('h2.usa-icon-list__title').should('not.exist')
     cy.get('div.usa-icon-list__content > p').should(
       'contain',
-      'Test item content'
+      'Test item content',
     )
   })
 
@@ -38,7 +38,7 @@ describe('UsaIconListItem', () => {
 
     cy.get('.usa-icon-list__icon > span.test-icon-slot').should(
       'contain',
-      'Test icon slot'
+      'Test icon slot',
     )
     cy.get('h3.usa-icon-list__title').should('contain', 'Test item title slot')
   })

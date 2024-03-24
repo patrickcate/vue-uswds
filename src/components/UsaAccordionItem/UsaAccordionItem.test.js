@@ -20,7 +20,7 @@ describe('UsaAccordionItem', () => {
     cy.get('.usa-accordion__button').should('contain', 'Test Accordion Label')
     cy.get('.usa-accordion__content').should(
       'contain',
-      'Test Accordion Content'
+      'Test Accordion Content',
     )
   })
 
@@ -43,7 +43,7 @@ describe('UsaAccordionItem', () => {
       .and('contain', 'test-accordion-item-id')
     cy.get('.usa-accordion__content').should(
       'have.id',
-      'test-accordion-item-id'
+      'test-accordion-item-id',
     )
   })
 
@@ -64,7 +64,7 @@ describe('UsaAccordionItem', () => {
 
     cy.get('.usa-accordion__button').should(
       'contain',
-      'Custom Accordion Slot Label'
+      'Custom Accordion Slot Label',
     )
   })
 

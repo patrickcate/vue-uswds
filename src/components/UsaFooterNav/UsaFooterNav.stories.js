@@ -125,8 +125,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
   >
     <template v-if="${!!args.default}" #default="{ items }">${
-    args.default
-  }</template>
+      args.default
+    }</template>
   </UsaFooterNav>`,
 })
 

@@ -161,35 +161,35 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
   >
     <template v-if="${!!args.previous}" #previous="{ isFirstPage, toPreviousPage }">${
-    args.previous
-  }</template>
+      args.previous
+    }</template>
     <template v-if="${!!args['previous-icon']}" #previous-icon>${
-    args['previous-icon']
-  }</template>
+      args['previous-icon']
+    }</template>
     <template v-else-if="${!!args.previousIcon}" #previousIcon>${
-    args.previousIcon
-  }</template>
+      args.previousIcon
+    }</template>
     <template v-if="${!!args['previous-label']}" #previous-label>${
-    args['previous-label']
-  }</template>
+      args['previous-label']
+    }</template>
     <template v-else-if="${!!args.previousLabel}" #previousLabel>${
-    args.previousLabel
-  }</template>
+      args.previousLabel
+    }</template>
     <template v-if="${!!args.next}" #next="{ isLastPage, toNextPage }">${
-    args.next
-  }</template>
+      args.next
+    }</template>
     <template v-if="${!!args['next-icon']}" #next-icon>${
-    args['next-icon']
-  }</template>
+      args['next-icon']
+    }</template>
     <template v-else-if="${!!args.nextIcon}" #nextIcon>${
-    args.nextIcon
-  }</template>
+      args.nextIcon
+    }</template>
     <template v-if="${!!args['next-label']}" #next-label>${
-    args['next-label']
-  }</template>
+      args['next-label']
+    }</template>
     <template v-else-if="${!!args.nextLabel}" #nextLabel>${
-    args.nextLabel
-  }</template>
+      args.nextLabel
+    }</template>
   </UsaPagination>`,
 })
 

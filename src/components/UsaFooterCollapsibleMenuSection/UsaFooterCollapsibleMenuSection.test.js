@@ -41,7 +41,7 @@ describe('UsaFooterCollapsibleMenuSection', () => {
 
     cy.get('section.usa-footer__primary-content--collapsible').should(
       'have.class',
-      'usa-footer__primary-content'
+      'usa-footer__primary-content',
     )
 
     cy.get('section > h4')
@@ -201,7 +201,7 @@ describe('UsaFooterCollapsibleMenuSection', () => {
 
     cy.get('section.usa-footer__primary-content--collapsible').should(
       'have.class',
-      'usa-footer__primary-content'
+      'usa-footer__primary-content',
     )
 
     cy.get('section > ul').should('have.id', 'test-item-1')

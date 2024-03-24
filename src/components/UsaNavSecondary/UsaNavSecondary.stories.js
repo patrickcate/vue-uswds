@@ -45,8 +45,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
   },
   template: `<UsaNavSecondary :items="items">
     <template v-if="${!!args.default}" #default :items="items">${
-    args.default
-  }</template>
+      args.default
+    }</template>
     <template v-if="${!!args.search}" #search>${args.search}</template>
   </UsaNavSecondary>`,
 })

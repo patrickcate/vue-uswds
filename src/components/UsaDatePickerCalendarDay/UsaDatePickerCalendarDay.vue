@@ -136,7 +136,7 @@ watch(activeDate, newActiveDate => {
 
 const activeMonthIndex = computed(() => getMonthIndex(activeDateObject.value))
 const activeMonthLabel = computed(
-  () => props.monthLabels[activeMonthIndex.value]
+  () => props.monthLabels[activeMonthIndex.value],
 )
 const activeYear = computed(() => getYear(activeDateObject.value))
 
@@ -207,7 +207,7 @@ const toPreviousMonth = () => {
   const previousMonth = isDateInRange(
     subMonths(activeDateObject.value, 1),
     parseIsoDate(props.minDate),
-    parseIsoDate(props.maxDate)
+    parseIsoDate(props.maxDate),
   )
     ? subMonths(activeDateObject.value, 1)
     : parseIsoDate(props.minDate)
@@ -219,7 +219,7 @@ const toNextMonth = () => {
   const nextMonth = isDateInRange(
     addMonths(activeDateObject.value, 1),
     parseIsoDate(props.minDate),
-    parseIsoDate(props.maxDate)
+    parseIsoDate(props.maxDate),
   )
     ? addMonths(activeDateObject.value, 1)
     : parseIsoDate(props.maxDate)
@@ -231,7 +231,7 @@ const toPreviousYear = () => {
   const previousYear = isDateInRange(
     subYears(activeDateObject.value, 1),
     parseIsoDate(props.minDate),
-    parseIsoDate(props.maxDate)
+    parseIsoDate(props.maxDate),
   )
     ? subYears(activeDateObject.value, 1)
     : parseIsoDate(props.minDate)
@@ -243,7 +243,7 @@ const toNextYear = () => {
   const nextYear = isDateInRange(
     addYears(activeDateObject.value, 1),
     parseIsoDate(props.minDate),
-    parseIsoDate(props.maxDate)
+    parseIsoDate(props.maxDate),
   )
     ? addYears(activeDateObject.value, 1)
     : parseIsoDate(props.maxDate)
@@ -283,7 +283,7 @@ const handlePreviousYear = () => {
     if (
       isSameMonth(
         parseIsoDate(highlightedDate.value),
-        parseIsoDate(props.minDate)
+        parseIsoDate(props.minDate),
       )
     ) {
       setButtonFocusByDate(highlightedDate.value)
@@ -304,7 +304,7 @@ const handleNextYear = () => {
     if (
       isSameMonth(
         parseIsoDate(highlightedDate.value),
-        parseIsoDate(props.maxDate)
+        parseIsoDate(props.maxDate),
       )
     ) {
       setButtonFocusByDate(highlightedDate.value)
@@ -381,20 +381,20 @@ watch(
     nextTick(() => {
       if (
         visibleDateRange.value.some(
-          item => item.date === newHighlightedDate && item.isCurrentMonth
+          item => item.date === newHighlightedDate && item.isCurrentMonth,
         ) &&
         isDateInRange(
           parseIsoDate(newHighlightedDate),
           parseIsoDate(props.minDate),
-          parseIsoDate(props.maxDate)
+          parseIsoDate(props.maxDate),
         )
       ) {
         const newRowIndex = dates.value.findIndex(row =>
-          row.find(({ date }) => date === newHighlightedDate)
+          row.find(({ date }) => date === newHighlightedDate),
         )
 
         const newButtonIndex = dates.value[newRowIndex].findIndex(
-          ({ date }) => date === newHighlightedDate
+          ({ date }) => date === newHighlightedDate,
         )
 
         highlightedRowIndex.value = newRowIndex
@@ -402,7 +402,7 @@ watch(
       }
     })
   },
-  { immediate: true }
+  { immediate: true },
 )
 
 watch(inputHighlightedDate, newHighlightedDate => {

@@ -11,7 +11,7 @@ import UsaNavSubmenuItem from '@/components/UsaNavSubmenuItem'
 
 const mobileMenuBreakpoint = inject(
   'vueUswds.mobileMenuBreakpoint',
-  MOBILE_MENU_BREAKPOINT
+  MOBILE_MENU_BREAKPOINT,
 )
 const isMegamenu = inject('isMegamenu', ref(false))
 

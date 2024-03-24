@@ -8,13 +8,13 @@ const slots = useSlots()
 
 if (slots?.previousIcon) {
   console.warn(
-    `The 'previousIcon' slot is deprecated, use 'previous-icon' instead.`
+    `The 'previousIcon' slot is deprecated, use 'previous-icon' instead.`,
   )
 }
 
 if (slots?.previousLabel) {
   console.warn(
-    `The 'previousLabel' slot is deprecated, use 'previous-label' instead.`
+    `The 'previousLabel' slot is deprecated, use 'previous-label' instead.`,
   )
 }
 
@@ -37,6 +37,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  // @TODO: v2 switch to `modelValue`.
   currentPage: {
     type: Number,
     default: 1,
@@ -108,7 +109,7 @@ const {
   toRef(props, 'currentPage'),
   totalItems,
   toRef(props, 'unbounded'),
-  emit
+  emit,
 )
 
 function getAriaLabel(pageNumber) {

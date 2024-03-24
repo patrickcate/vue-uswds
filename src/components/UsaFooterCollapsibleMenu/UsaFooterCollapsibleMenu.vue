@@ -13,7 +13,7 @@ const prefixSeparator = inject('vueUswds.prefixSeparator', PREFIX_SEPARATOR)
 const gridNamespace = inject('vueUswds.gridNamespace', GRID_NAMESPACE)
 const footerNavBigBreakpoint = inject(
   'vueUswds.footerNavBigBreakpoint',
-  FOOTER_NAV_COLLAPSIBLE_BREAKPOINT
+  FOOTER_NAV_COLLAPSIBLE_BREAKPOINT,
 )
 
 const props = defineProps({
@@ -37,10 +37,10 @@ const props = defineProps({
 const isMounted = ref(false)
 const menuSections = reactive({})
 const isCollapsibleMediaQuery = useMediaQuery(
-  `(max-width: ${footerNavBigBreakpoint})`
+  `(max-width: ${footerNavBigBreakpoint})`,
 )
 const isCollapsible = computed(() =>
-  isMounted.value ? isCollapsibleMediaQuery.value : false
+  isMounted.value ? isCollapsibleMediaQuery.value : false,
 )
 
 const {

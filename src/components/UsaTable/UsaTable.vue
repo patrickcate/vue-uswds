@@ -73,7 +73,7 @@ const {
   toRef(props, 'headers'),
   toRef(props, 'rows'),
   props.defaultSortHeader,
-  props.defaultSortDirection
+  props.defaultSortDirection,
 )
 
 const classes = computed(() => [
@@ -87,7 +87,7 @@ const classes = computed(() => [
 ])
 
 const tableIsSortable = computed(
-  () => hasSortableHeaders.value && !slots?.default && !slots?.headers
+  () => hasSortableHeaders.value && !slots?.default && !slots?.headers,
 )
 
 const tableCaption = computed(() => {
@@ -116,7 +116,7 @@ const UsaTableContainerComponent = {
         ? h(
             'div',
             { class: 'usa-table-container--scrollable', tabindex: 0 },
-            slots.default()
+            slots.default(),
           )
         : slots.default()
   },

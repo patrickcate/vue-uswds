@@ -180,7 +180,7 @@ describe('UsaNavSubmenu', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      'Column count must be greater than or equal to 1'
+      'Column count must be greater than or equal to 1',
     )
   })
 })

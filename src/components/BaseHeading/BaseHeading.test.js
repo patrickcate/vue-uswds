@@ -49,7 +49,7 @@ describe('BaseHeading', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'notheading' is not a valid HTML heading element`
+      `'notheading' is not a valid HTML heading element`,
     )
   })
 })

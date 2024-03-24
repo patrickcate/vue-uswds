@@ -9,7 +9,7 @@ export function useComboBox(
   _options,
   _disabled,
   _readonly,
-  emit
+  emit,
 ) {
   const id = ref(_id)
   const options = ref(_options)
@@ -37,7 +37,7 @@ export function useComboBox(
     }
 
     const foundOption = options.value.find(
-      option => option.value === selectedOption.value
+      option => option.value === selectedOption.value,
     )
 
     return foundOption?.label || ''
@@ -79,11 +79,11 @@ export function useComboBox(
   const computedId = computed(() => id.value || nextId('usa-combo-box'))
   const computedLabelId = computed(() => `${computedId.value}-label`)
   const computedErrorMessageId = computed(
-    () => `${computedId.value}-error-message`
+    () => `${computedId.value}-error-message`,
   )
   const computedHintId = computed(() => `${computedId.value}-hint`)
   const computedAssistiveHintId = computed(
-    () => `${computedId.value}-assistive-hint`
+    () => `${computedId.value}-assistive-hint`,
   )
   const computedListId = computed(() => `${computedId.value}-list`)
 
@@ -121,7 +121,7 @@ export function useComboBox(
     }
 
     const foundItemRef = listItemElements.value.find(
-      itemRef => itemRef.dataset.value === selectedOption.value
+      itemRef => itemRef.dataset.value === selectedOption.value,
     )
 
     return foundItemRef ? foundItemRef : null
@@ -141,7 +141,7 @@ export function useComboBox(
 
   const isFirstOption = computed(() => {
     const optionIndex = filteredOptions.value.findIndex(
-      item => item.value === highlightedOption.value
+      item => item.value === highlightedOption.value,
     )
 
     return optionIndex === 0
@@ -149,7 +149,7 @@ export function useComboBox(
 
   const isLastOption = computed(() => {
     const optionIndex = filteredOptions.value.findIndex(
-      item => item.value === highlightedOption.value
+      item => item.value === highlightedOption.value,
     )
 
     return optionIndex === totalFilteredOptions.value - 1
@@ -245,7 +245,7 @@ export function useComboBox(
     }
 
     const highlightedOptionIndex = filteredOptions.value.findIndex(
-      option => option.value === highlightedOption.value
+      option => option.value === highlightedOption.value,
     )
 
     return getListItemIdByIndex(highlightedOptionIndex)
@@ -256,7 +256,7 @@ export function useComboBox(
       selectedOption.value !== '' &&
       searchTerm.value === selectedLabel.value &&
       !isDisabled.value &&
-      !isReadonly.value
+      !isReadonly.value,
   )
 
   const handleFilterOnInput = () => {
@@ -273,7 +273,7 @@ export function useComboBox(
 
   const handleEnterOnInput = () => {
     const foundItem = filteredOptions.value.find(
-      item => item.label === searchTerm.value
+      item => item.label === searchTerm.value,
     )
 
     if (searchTerm.value !== '' && foundItem.value) {

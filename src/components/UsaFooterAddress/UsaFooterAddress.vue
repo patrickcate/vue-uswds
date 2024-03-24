@@ -54,7 +54,7 @@ const phoneHref = computed(() => {
     class="usa-footer__contact-heading"
     >{{ heading }}</p
   >
-  <address class="usa-footer__address" v-bind="$attrs">
+  <address v-bind="$attrs" class="usa-footer__address">
     <slot>
       <div
         v-if="footerVariant === 'slim'"

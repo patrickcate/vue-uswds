@@ -78,7 +78,7 @@ export const useMonthPicker = ({
   }
 
   const monthsOfYear = computed(() =>
-    Object.keys(monthLabels.value).map(index => parseInt(index, 10) + 1)
+    Object.keys(monthLabels.value).map(index => parseInt(index, 10) + 1),
   )
 
   const groupedMonthRange = computed(() => splitArray(monthsOfYear.value, 3))
@@ -96,13 +96,13 @@ export const useMonthPicker = ({
           up: isMonthInRange(monthValue - 3)
             ? monthValue - 3
             : isMonthInRange(monthValue - 1)
-            ? monthValue - 1
-            : null,
+              ? monthValue - 1
+              : null,
           down: isMonthInRange(monthValue + 3)
             ? monthValue + 3
             : isMonthInRange(monthValue + 1)
-            ? monthValue + 1
-            : null,
+              ? monthValue + 1
+              : null,
           home: row.find(monthValue => isMonthInRange(monthValue)) || null,
           end:
             [...row].reverse().find(monthValue => isMonthInRange(monthValue)) ||
@@ -110,13 +110,13 @@ export const useMonthPicker = ({
           pageUp: findClosestPastMonth(1, monthValue),
           pageDown: findClosestFutureMonth(12, monthValue),
         }
-      })
-    )
+      }),
+    ),
   )
 
   const findRowIndexByMonth = (months, monthToFind) => {
     const rowIndex = months.value.findIndex(row =>
-      row.find(({ month }) => month === monthToFind)
+      row.find(({ month }) => month === monthToFind),
     )
 
     return rowIndex
@@ -124,7 +124,7 @@ export const useMonthPicker = ({
 
   const findButtonIndexByMonth = (months, rowIndex, monthToFind) => {
     const buttonIndex = months.value[rowIndex].findIndex(
-      ({ month }) => month === monthToFind
+      ({ month }) => month === monthToFind,
     )
 
     return buttonIndex

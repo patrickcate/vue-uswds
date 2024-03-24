@@ -54,7 +54,7 @@ describe('UsaDateRangePicker', () => {
       .should('have.class', 'usa-label')
       .and('contain', 'Start Date')
     cy.get(
-      '.usa-date-range-picker__range-start .usa-date-picker__external-input'
+      '.usa-date-range-picker__range-start .usa-date-picker__external-input',
     )
       .as('startDateInput')
       .should('have.class', 'usa-input')
@@ -83,7 +83,7 @@ describe('UsaDateRangePicker', () => {
 
     // Check navigation buttons.
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(1) button'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(1) button',
     )
       .as('previousYearButton')
       .should('have.attr', 'type', 'button')
@@ -93,11 +93,11 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(2)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(2)',
     ).should('have.class', 'usa-date-picker__calendar__cell--center-items')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(2) button'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(2) button',
     )
       .as('previousMonthButton')
       .should('have.attr', 'type', 'button')
@@ -107,14 +107,14 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3)',
     )
       .should('have.class', 'usa-date-picker__calendar__month-label')
       .children()
       .should('have.length', 2)
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3) > button:nth-of-type(1)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3) > button:nth-of-type(1)',
     )
       .as('monthSelectorButton')
       .should('have.attr', 'type', 'button')
@@ -123,7 +123,7 @@ describe('UsaDateRangePicker', () => {
       .and('contain', month)
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3) > button:nth-of-type(2)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3) > button:nth-of-type(2)',
     )
       .as('yearSelectorButton')
       .should('have.attr', 'type', 'button')
@@ -132,11 +132,11 @@ describe('UsaDateRangePicker', () => {
       .and('contain', year)
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(4)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(4)',
     ).should('have.class', 'usa-date-picker__calendar__cell--center-items')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(4) button'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(4) button',
     )
       .as('nextMonthButton')
       .should('have.attr', 'type', 'button')
@@ -146,11 +146,11 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(5)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(5)',
     ).should('have.class', 'usa-date-picker__calendar__cell--center-items')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(5) button'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(5) button',
     )
       .as('nextYearButton')
       .should('have.attr', 'type', 'button')
@@ -160,17 +160,17 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      '.usa-date-range-picker__range-start .usa-date-picker__calendar__date'
+      '.usa-date-range-picker__range-start .usa-date-picker__calendar__date',
     )
       .should('not.have.class', 'usa-date-picker__calendar__date--within-range')
       .and(
         'not.have.class',
-        'usa-date-picker__calendar__date--range-date-start'
+        'usa-date-picker__calendar__date--range-date-start',
       )
       .and('not.have.class', 'usa-date-picker__calendar__date--range-date-end')
 
     cy.get(
-      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${todaysIsoDate}"`
+      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${todaysIsoDate}"`,
     )
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -178,7 +178,7 @@ describe('UsaDateRangePicker', () => {
 
     // Select range start date.
     cy.get(
-      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStart}"`
+      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStart}"`,
     ).click()
 
     cy.get('@startToggleButton').should('have.focus')
@@ -186,7 +186,7 @@ describe('UsaDateRangePicker', () => {
     // Check range start input matches range start date.
     cy.get('@startDateInput').should(
       'have.value',
-      formatUsaDate(parseIsoDate(rangeStart))
+      formatUsaDate(parseIsoDate(rangeStart)),
     )
 
     // Open range end calendar.
@@ -234,7 +234,7 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${todaysIsoDate}"`
+      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${todaysIsoDate}"`,
     )
       .should('not.have.class', 'usa-date-picker__calendar__date--focused')
       .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -243,38 +243,38 @@ describe('UsaDateRangePicker', () => {
     cy.wrap(days).each(day => {
       if (day.isBeforeRangeStart) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeStart) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('have.class', 'usa-date-picker__calendar__date--focused')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -282,57 +282,57 @@ describe('UsaDateRangePicker', () => {
           .and('have.focus')
       } else if (day.isInRange) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeEnd) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.isAfterRangeEnd) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -343,33 +343,33 @@ describe('UsaDateRangePicker', () => {
     // Test in range dates are highlighted when hovering over data in range.
     cy.get(
       `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${formatIsoDate(
-        addDays(parseIsoDate(rangeStart), 3)
-      )}"`
+        addDays(parseIsoDate(rangeStart), 3),
+      )}"`,
     ).trigger('mouseover')
 
     cy.get(
       `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${formatIsoDate(
-        addDays(parseIsoDate(rangeStart), 3)
-      )}"`
+        addDays(parseIsoDate(rangeStart), 3),
+      )}"`,
     )
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('have.focus')
 
     cy.get(
       `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${formatIsoDate(
-        addDays(parseIsoDate(rangeStart), 2)
-      )}"`
+        addDays(parseIsoDate(rangeStart), 2),
+      )}"`,
     ).should('have.class', 'usa-date-picker__calendar__date--within-range')
 
     cy.get(
       `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${formatIsoDate(
-        addDays(parseIsoDate(rangeStart), 1)
-      )}"`
+        addDays(parseIsoDate(rangeStart), 1),
+      )}"`,
     ).should('have.class', 'usa-date-picker__calendar__date--within-range')
 
     // Select range end date.
     cy.get(
-      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEnd}"`
+      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEnd}"`,
     ).click()
 
     cy.get('@endToggleButton').should('have.focus')
@@ -377,7 +377,7 @@ describe('UsaDateRangePicker', () => {
     // Check range end input matches range end date.
     cy.get('@endDateInput').should(
       'have.value',
-      formatUsaDate(parseIsoDate(rangeEnd))
+      formatUsaDate(parseIsoDate(rangeEnd)),
     )
 
     // Open range start calendar.
@@ -425,7 +425,7 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStart}"`
+      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStart}"`,
     )
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('have.class', 'usa-date-picker__calendar__date--selected')
@@ -435,38 +435,38 @@ describe('UsaDateRangePicker', () => {
     cy.wrap(days).each(day => {
       if (day.isBeforeRangeStart) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeStart) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('have.class', 'usa-date-picker__calendar__date--selected')
@@ -474,35 +474,35 @@ describe('UsaDateRangePicker', () => {
           .and('have.attr', 'aria-selected', 'true')
       } else if (day.isInRange) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('have.class', 'usa-date-picker__calendar__date--within-range')
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeEnd) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -510,19 +510,19 @@ describe('UsaDateRangePicker', () => {
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.isAfterRangeEnd) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -580,7 +580,7 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEnd}"`
+      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEnd}"`,
     )
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('have.class', 'usa-date-picker__calendar__date--selected')
@@ -590,38 +590,38 @@ describe('UsaDateRangePicker', () => {
     cy.wrap(days).each(day => {
       if (day.isBeforeRangeStart) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeStart) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -629,35 +629,35 @@ describe('UsaDateRangePicker', () => {
           .and('not.have.attr', 'aria-selected', 'true')
       } else if (day.isInRange) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('have.class', 'usa-date-picker__calendar__date--within-range')
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeEnd) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('have.class', 'usa-date-picker__calendar__date--selected')
@@ -665,19 +665,19 @@ describe('UsaDateRangePicker', () => {
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.isAfterRangeEnd) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -687,7 +687,7 @@ describe('UsaDateRangePicker', () => {
 
     // Select end range alternative date.
     cy.get(
-      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEndAlternative}"`
+      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEndAlternative}"`,
     ).click()
 
     cy.get('@endToggleButton').should('have.focus')
@@ -695,7 +695,7 @@ describe('UsaDateRangePicker', () => {
     // Check range end input matches alternative range start date.
     cy.get('@endDateInput').should(
       'have.value',
-      formatUsaDate(parseIsoDate(rangeEndAlternative))
+      formatUsaDate(parseIsoDate(rangeEndAlternative)),
     )
 
     // Open date range start calendar.
@@ -744,7 +744,7 @@ describe('UsaDateRangePicker', () => {
 
     // Select end range alternative date.
     cy.get(
-      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStartAlternative}"`
+      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStartAlternative}"`,
     ).click()
 
     cy.get('@startToggleButton').should('have.focus')
@@ -752,7 +752,7 @@ describe('UsaDateRangePicker', () => {
     // Check range end input matches alternative range start date.
     cy.get('@startDateInput').should(
       'have.value',
-      formatUsaDate(parseIsoDate(rangeStartAlternative))
+      formatUsaDate(parseIsoDate(rangeStartAlternative)),
     )
 
     // Open date range start calendar.
@@ -800,7 +800,7 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStartAlternative}"`
+      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStartAlternative}"`,
     )
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('have.class', 'usa-date-picker__calendar__date--selected')
@@ -810,38 +810,38 @@ describe('UsaDateRangePicker', () => {
     cy.wrap(days).each(day => {
       if (day.isBeforeRangeStartAlternative) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeStartAlternative) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('have.class', 'usa-date-picker__calendar__date--selected')
@@ -849,35 +849,35 @@ describe('UsaDateRangePicker', () => {
           .and('have.attr', 'aria-selected', 'true')
       } else if (day.isInAlternativeRange) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('have.class', 'usa-date-picker__calendar__date--within-range')
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeEndAlternative) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -885,19 +885,19 @@ describe('UsaDateRangePicker', () => {
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.isAfterRangeEndAlternative) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -913,12 +913,12 @@ describe('UsaDateRangePicker', () => {
     // Check range start input matches alternative range start date.
     cy.get('@startDateInput').should(
       'have.value',
-      formatUsaDate(parseIsoDate(rangeStartAlternative))
+      formatUsaDate(parseIsoDate(rangeStartAlternative)),
     )
     // Check range end input matches alternative range end date.
     cy.get('@endDateInput').should(
       'have.value',
-      formatUsaDate(parseIsoDate(rangeEndAlternative))
+      formatUsaDate(parseIsoDate(rangeEndAlternative)),
     )
   })
 
@@ -964,7 +964,7 @@ describe('UsaDateRangePicker', () => {
       .should('have.class', 'usa-label')
       .and('contain', 'Start Date')
     cy.get(
-      '.usa-date-range-picker__range-start .usa-date-picker__external-input'
+      '.usa-date-range-picker__range-start .usa-date-picker__external-input',
     )
       .as('startDateInput')
       .should('have.class', 'usa-input')
@@ -993,7 +993,7 @@ describe('UsaDateRangePicker', () => {
 
     // Check navigation buttons.
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(1) button'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(1) button',
     )
       .as('previousYearButton')
       .should('have.attr', 'type', 'button')
@@ -1003,11 +1003,11 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(2)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(2)',
     ).should('have.class', 'usa-date-picker__calendar__cell--center-items')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(2) button'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(2) button',
     )
       .as('previousMonthButton')
       .should('have.attr', 'type', 'button')
@@ -1017,14 +1017,14 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3)',
     )
       .should('have.class', 'usa-date-picker__calendar__month-label')
       .children()
       .should('have.length', 2)
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3) > button:nth-of-type(1)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3) > button:nth-of-type(1)',
     )
       .as('monthSelectorButton')
       .should('have.attr', 'type', 'button')
@@ -1033,7 +1033,7 @@ describe('UsaDateRangePicker', () => {
       .and('contain', month)
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3) > button:nth-of-type(2)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3) > button:nth-of-type(2)',
     )
       .as('yearSelectorButton')
       .should('have.attr', 'type', 'button')
@@ -1042,11 +1042,11 @@ describe('UsaDateRangePicker', () => {
       .and('contain', year)
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(4)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(4)',
     ).should('have.class', 'usa-date-picker__calendar__cell--center-items')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(4) button'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(4) button',
     )
       .as('nextMonthButton')
       .should('have.attr', 'type', 'button')
@@ -1056,11 +1056,11 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(5)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(5)',
     ).should('have.class', 'usa-date-picker__calendar__cell--center-items')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(5) button'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(5) button',
     )
       .as('nextYearButton')
       .should('have.attr', 'type', 'button')
@@ -1074,11 +1074,11 @@ describe('UsaDateRangePicker', () => {
       .and('not.have.class', 'usa-date-picker__calendar__date--range-date-end')
       .and(
         'not.have.class',
-        'usa-date-picker__calendar__date--range-date-start'
+        'usa-date-picker__calendar__date--range-date-start',
       )
 
     cy.get(
-      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${todaysIsoDate}"`
+      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${todaysIsoDate}"`,
     )
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -1088,12 +1088,12 @@ describe('UsaDateRangePicker', () => {
       .should('not.have.class', 'usa-date-picker__calendar__date--within-range')
       .and(
         'not.have.class',
-        'usa-date-picker__calendar__date--range-date-start'
+        'usa-date-picker__calendar__date--range-date-start',
       )
       .and('not.have.class', 'usa-date-picker__calendar__date--range-date-end')
 
     cy.get(
-      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${todaysIsoDate}"`
+      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${todaysIsoDate}"`,
     )
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -1101,13 +1101,13 @@ describe('UsaDateRangePicker', () => {
 
     // Select range end date.
     cy.get(
-      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEnd}"`
+      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEnd}"`,
     ).click()
 
     // Check range end input matches range end date.
     cy.get('@endDateInput').should(
       'have.value',
-      formatUsaDate(parseIsoDate(rangeEnd))
+      formatUsaDate(parseIsoDate(rangeEnd)),
     )
 
     // Open range start calendar.
@@ -1155,7 +1155,7 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${todaysIsoDate}"`
+      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${todaysIsoDate}"`,
     )
       .should('not.have.class', 'usa-date-picker__calendar__date--focused')
       .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -1164,38 +1164,38 @@ describe('UsaDateRangePicker', () => {
     cy.wrap(days).each(day => {
       if (day.isBeforeRangeStart) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeStart) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--focused')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -1203,38 +1203,38 @@ describe('UsaDateRangePicker', () => {
           .and('not.have.focus')
       } else if (day.isInRange) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeEnd) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('have.class', 'usa-date-picker__calendar__date--range-date')
           .and('have.class', 'usa-date-picker__calendar__date--focused')
@@ -1243,19 +1243,19 @@ describe('UsaDateRangePicker', () => {
           .and('have.focus')
       } else if (day.isAfterRangeEnd) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -1266,39 +1266,39 @@ describe('UsaDateRangePicker', () => {
     // Test in range dates are highlighted when hovering over data in range.
     cy.get(
       `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${formatIsoDate(
-        subDays(parseIsoDate(rangeEnd), 3)
-      )}"`
+        subDays(parseIsoDate(rangeEnd), 3),
+      )}"`,
     ).trigger('mouseover')
 
     cy.get(
       `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${formatIsoDate(
-        subDays(parseIsoDate(rangeEnd), 3)
-      )}"`
+        subDays(parseIsoDate(rangeEnd), 3),
+      )}"`,
     )
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('have.focus')
 
     cy.get(
       `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${formatIsoDate(
-        subDays(parseIsoDate(rangeEnd), 2)
-      )}"`
+        subDays(parseIsoDate(rangeEnd), 2),
+      )}"`,
     ).should('have.class', 'usa-date-picker__calendar__date--within-range')
 
     cy.get(
       `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${formatIsoDate(
-        subDays(parseIsoDate(rangeEnd), 1)
-      )}"`
+        subDays(parseIsoDate(rangeEnd), 1),
+      )}"`,
     ).should('have.class', 'usa-date-picker__calendar__date--within-range')
 
     // Select range start date.
     cy.get(
-      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStart}"`
+      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStart}"`,
     ).click()
 
     // Check range start input matches range start date.
     cy.get('@startDateInput').should(
       'have.value',
-      formatUsaDate(parseIsoDate(rangeStart))
+      formatUsaDate(parseIsoDate(rangeStart)),
     )
 
     // Open range end calendar.
@@ -1346,7 +1346,7 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEnd}"`
+      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEnd}"`,
     )
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('have.class', 'usa-date-picker__calendar__date--selected')
@@ -1356,38 +1356,38 @@ describe('UsaDateRangePicker', () => {
     cy.wrap(days).each(day => {
       if (day.isBeforeRangeStart) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeStart) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -1395,35 +1395,35 @@ describe('UsaDateRangePicker', () => {
           .and('not.have.attr', 'aria-selected', 'true')
       } else if (day.isInRange) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('have.class', 'usa-date-picker__calendar__date--within-range')
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeEnd) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('have.class', 'usa-date-picker__calendar__date--selected')
@@ -1431,19 +1431,19 @@ describe('UsaDateRangePicker', () => {
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.isAfterRangeEnd) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -1499,7 +1499,7 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStart}"`
+      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStart}"`,
     )
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('have.class', 'usa-date-picker__calendar__date--selected')
@@ -1509,38 +1509,38 @@ describe('UsaDateRangePicker', () => {
     cy.wrap(days).each(day => {
       if (day.isBeforeRangeStart) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeStart) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('have.class', 'usa-date-picker__calendar__date--selected')
@@ -1548,35 +1548,35 @@ describe('UsaDateRangePicker', () => {
           .and('have.attr', 'aria-selected', 'true')
       } else if (day.isInRange) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('have.class', 'usa-date-picker__calendar__date--within-range')
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeEnd) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -1584,19 +1584,19 @@ describe('UsaDateRangePicker', () => {
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.isAfterRangeEnd) {
         cy.get(
-          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -1606,13 +1606,13 @@ describe('UsaDateRangePicker', () => {
 
     // Select start range alternative date.
     cy.get(
-      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStartAlternative}"`
+      `.usa-date-range-picker__range-start .usa-date-picker__calendar__date[data-value="${rangeStartAlternative}"`,
     ).click()
 
     // Check range end input matches alternative range start date.
     cy.get('@startDateInput').should(
       'have.value',
-      formatUsaDate(parseIsoDate(rangeStartAlternative))
+      formatUsaDate(parseIsoDate(rangeStartAlternative)),
     )
 
     // Open date range end calendar.
@@ -1661,13 +1661,13 @@ describe('UsaDateRangePicker', () => {
 
     // Select end range alternative date.
     cy.get(
-      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEndAlternative}"`
+      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEndAlternative}"`,
     ).click()
 
     // Check range end input matches alternative range start date.
     cy.get('@endDateInput').should(
       'have.value',
-      formatUsaDate(parseIsoDate(rangeEndAlternative))
+      formatUsaDate(parseIsoDate(rangeEndAlternative)),
     )
 
     // Open date range end calendar.
@@ -1715,7 +1715,7 @@ describe('UsaDateRangePicker', () => {
       .and('be.empty')
 
     cy.get(
-      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEndAlternative}"`
+      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeEndAlternative}"`,
     )
       .should('have.class', 'usa-date-picker__calendar__date--focused')
       .and('have.class', 'usa-date-picker__calendar__date--selected')
@@ -1725,38 +1725,38 @@ describe('UsaDateRangePicker', () => {
     cy.wrap(days).each(day => {
       if (day.isBeforeRangeStartAlternative) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeStartAlternative) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -1764,35 +1764,35 @@ describe('UsaDateRangePicker', () => {
           .and('not.have.attr', 'aria-selected', 'true')
       } else if (day.isInAlternativeRange) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('have.class', 'usa-date-picker__calendar__date--within-range')
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.date === rangeEndAlternative) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('have.class', 'usa-date-picker__calendar__date--selected')
@@ -1800,19 +1800,19 @@ describe('UsaDateRangePicker', () => {
           .and('not.have.attr', 'disabled', 'disabled')
       } else if (day.isAfterRangeEndAlternative) {
         cy.get(
-          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`
+          `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${day.date}"`,
         )
           .should(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-start'
+            'usa-date-picker__calendar__date--range-date-start',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--within-range'
+            'usa-date-picker__calendar__date--within-range',
           )
           .and(
             'not.have.class',
-            'usa-date-picker__calendar__date--range-date-end'
+            'usa-date-picker__calendar__date--range-date-end',
           )
           .and('not.have.class', 'usa-date-picker__calendar__date--range-date')
           .and('not.have.class', 'usa-date-picker__calendar__date--selected')
@@ -1826,12 +1826,12 @@ describe('UsaDateRangePicker', () => {
     // Check range start input matches alternative range start date.
     cy.get('@startDateInput').should(
       'have.value',
-      formatUsaDate(parseIsoDate(rangeStartAlternative))
+      formatUsaDate(parseIsoDate(rangeStartAlternative)),
     )
     // Check range end input matches alternative range end date.
     cy.get('@endDateInput').should(
       'have.value',
-      formatUsaDate(parseIsoDate(rangeEndAlternative))
+      formatUsaDate(parseIsoDate(rangeEndAlternative)),
     )
   })
 
@@ -1862,7 +1862,7 @@ describe('UsaDateRangePicker', () => {
     cy.mount(wrapperComponent, {})
 
     cy.get(
-      '.usa-date-range-picker__range-start .usa-date-picker__external-input'
+      '.usa-date-range-picker__range-start .usa-date-picker__external-input',
     )
       .as('startDateInput')
       .should('have.class', 'usa-input')
@@ -1884,7 +1884,7 @@ describe('UsaDateRangePicker', () => {
     // Check range start input matches range start date.
     cy.get('@startDateInput').should(
       'have.value',
-      formatUsaDate(parseIsoDate(rangeStart))
+      formatUsaDate(parseIsoDate(rangeStart)),
     )
     // Check range end input matches range end date.
     cy.get('@endDateInput').should('not.have.value')
@@ -1893,11 +1893,11 @@ describe('UsaDateRangePicker', () => {
     cy.get('@endToggleButton').click()
 
     cy.get(
-      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeStart}"`
+      `.usa-date-range-picker__range-end .usa-date-picker__calendar__date[data-value="${rangeStart}"`,
     )
       .should(
         'not.have.class',
-        'usa-date-picker__calendar__date--range-date-end'
+        'usa-date-picker__calendar__date--range-date-end',
       )
       .and('not.have.class', 'usa-date-picker__calendar__date--within-range')
       .and('have.class', 'usa-date-picker__calendar__date--range-date-start')

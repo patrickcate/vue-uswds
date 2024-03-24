@@ -6,7 +6,7 @@ export function useTableSort(
   _headers = [],
   _rows = [],
   _defaultSortHeader = '',
-  _defaultSortDirection = ''
+  _defaultSortDirection = '',
 ) {
   const currentSortedHeader = ref(_defaultSortHeader)
   const currentSortDirection = ref(_defaultSortDirection)
@@ -51,7 +51,7 @@ export function useTableSort(
     }
 
     const [sortedHeader] = headers.value.filter(
-      header => header.id === currentSortedHeader.value
+      header => header.id === currentSortedHeader.value,
     )
 
     return sortedHeader.label
@@ -90,11 +90,11 @@ export function useTableSort(
   const rows = computed(() => {
     if (currentSortDirection.value === 'ascending') {
       return naturalSort(normalizedRows.value).asc(
-        row => row[currentSortedHeader.value].sortValue
+        row => row[currentSortedHeader.value].sortValue,
       )
     } else if (currentSortDirection.value === 'descending') {
       return naturalSort(normalizedRows.value).desc(
-        row => row[currentSortedHeader.value].sortValue
+        row => row[currentSortedHeader.value].sortValue,
       )
     }
 

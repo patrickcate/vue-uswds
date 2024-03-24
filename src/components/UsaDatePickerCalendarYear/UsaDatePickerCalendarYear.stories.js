@@ -88,7 +88,7 @@ MaxYearDatePickerCalendarYear.args = {
 MaxYearDatePickerCalendarYear.storyName = 'Max Date'
 
 export const PreviousButtonLabelDatePickerCalendarYear = DefaultTemplate.bind(
-  {}
+  {},
 )
 PreviousButtonLabelDatePickerCalendarYear.args = {
   ...defaultProps,

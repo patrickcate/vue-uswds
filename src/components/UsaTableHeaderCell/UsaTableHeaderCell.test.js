@@ -137,7 +137,7 @@ describe('UsaTableHeaderCell', () => {
 
     cy.get('@updateCurrentSortedHeader').should(
       'be.calledWith',
-      'test-header-id'
+      'test-header-id',
     )
     cy.get('@toggleSortDirection').should('be.called')
   })

@@ -24,7 +24,7 @@ const props = defineProps({
 })
 
 const computedHeadingTag = computed(
-  () => listHeadingTag.value || props.headingTag
+  () => listHeadingTag.value || props.headingTag,
 )
 </script>
 

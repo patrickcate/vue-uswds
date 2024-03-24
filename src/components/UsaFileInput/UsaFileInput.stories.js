@@ -103,20 +103,20 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :error="error"
   >
     <template v-if="${!!args['slot:label']}" #label>${
-    args['slot:label']
-  }</template>
+      args['slot:label']
+    }</template>
     <template v-if="${!!args.hint}" #hint>${args.hint}</template>
     <template v-if="${!!args['error-message']}" #error-message>${
-    args['error-message']
-  }</template>
+      args['error-message']
+    }</template>
     <template v-if="${!!args[
       'slot:status'
     ]}" #status="{ multiple, loadedFiles, hasInvalidFiles }">${
-    args['slot:status']
-  }</template>
+      args['slot:status']
+    }</template>
     <template v-if="${!!args.instructions}" #instructions="{ multiple }">${
-    args.instructions
-  }</template>
+      args.instructions
+    }</template>
     <template v-if="${!!args[
       'preview-heading'
     ]}" #preview-heading="{ loadedFiles }">${args['preview-heading']}</template>

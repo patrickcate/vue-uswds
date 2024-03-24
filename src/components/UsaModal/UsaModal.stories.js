@@ -116,16 +116,16 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
   >
     <template v-if="${!!args['slot:heading']}" #heading>${
-    args['slot:heading']
-  }</template>
+      args['slot:heading']
+    }</template>
     <template v-if="${!!args.default}" #default>${args.default}</template>
     <template v-if="${!!args.footer}" #footer>${args.footer}</template>
     <template v-if="${!!args['close-button']}" #close-button>${
-    args['close-button']
-  }</template>
+      args['close-button']
+    }</template>
     <template v-else-if="${!!args.closeButton}" #close-button>${
-    args.closeButton
-  }</template>
+      args.closeButton
+    }</template>
   </UsaModal>`,
 })
 
