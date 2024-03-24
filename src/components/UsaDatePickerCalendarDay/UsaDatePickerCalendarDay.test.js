@@ -61,7 +61,7 @@ describe('UsaDatePickerCalendarDay', () => {
     cy.get('div.usa-date-picker__calendar__date-picker').should(
       'have.attr',
       'tabindex',
-      '-1'
+      '-1',
     )
 
     cy.get('div.usa-date-picker__calendar__row')
@@ -70,11 +70,11 @@ describe('UsaDatePickerCalendarDay', () => {
       .should('have.class', 'usa-date-picker__calendar__cell')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(1)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(1)',
     ).should('have.class', 'usa-date-picker__calendar__cell--center-items')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(1) button'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(1) button',
     )
       .as('previousYearButton')
       .should('have.attr', 'type', 'button')
@@ -84,11 +84,11 @@ describe('UsaDatePickerCalendarDay', () => {
       .and('be.empty')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(2)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(2)',
     ).should('have.class', 'usa-date-picker__calendar__cell--center-items')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(2) button'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(2) button',
     )
       .as('previousMonthButton')
       .should('have.attr', 'type', 'button')
@@ -98,14 +98,14 @@ describe('UsaDatePickerCalendarDay', () => {
       .and('be.empty')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3)',
     )
       .should('have.class', 'usa-date-picker__calendar__month-label')
       .children()
       .should('have.length', 2)
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3) > button:nth-of-type(1)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3) > button:nth-of-type(1)',
     )
       .as('monthSelectorButton')
       .should('have.attr', 'type', 'button')
@@ -114,7 +114,7 @@ describe('UsaDatePickerCalendarDay', () => {
       .and('contain', 'July')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3) > button:nth-of-type(2)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(3) > button:nth-of-type(2)',
     )
       .as('yearSelectorButton')
       .should('have.attr', 'type', 'button')
@@ -123,11 +123,11 @@ describe('UsaDatePickerCalendarDay', () => {
       .and('contain', '2022')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(4)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(4)',
     ).should('have.class', 'usa-date-picker__calendar__cell--center-items')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(4) button'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(4) button',
     )
       .as('nextMonthButton')
       .should('have.attr', 'type', 'button')
@@ -137,11 +137,11 @@ describe('UsaDatePickerCalendarDay', () => {
       .and('be.empty')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(5)'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(5)',
     ).should('have.class', 'usa-date-picker__calendar__cell--center-items')
 
     cy.get(
-      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(5) button'
+      '.usa-date-picker__calendar__row > .usa-date-picker__calendar__cell:nth-of-type(5) button',
     )
       .as('nextYearButton')
       .should('have.attr', 'type', 'button')
@@ -152,7 +152,7 @@ describe('UsaDatePickerCalendarDay', () => {
 
     cy.get('table.usa-date-picker__calendar__table').should(
       'not.have.attr',
-      'role'
+      'role',
     )
 
     cy.get('.usa-date-picker__calendar__table > thead > tr')
@@ -197,7 +197,7 @@ describe('UsaDatePickerCalendarDay', () => {
             cy.get(
               `.usa-date-picker__calendar__table tr:nth-of-type(${
                 rowIndex + 1
-              }) td:nth-of-type(${buttonIndex + 1}) button`
+              }) td:nth-of-type(${buttonIndex + 1}) button`,
             )
               .should('have.attr', 'type', 'button')
               .and('have.class', 'usa-date-picker__calendar__date')
@@ -212,13 +212,13 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('have.attr', 'disabled', 'disabled')
             } else {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('not.have.attr', 'disabled', 'disabled')
             }
 
@@ -226,10 +226,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--previous-month'
+                'usa-date-picker__calendar__date--previous-month',
               )
             }
 
@@ -237,10 +237,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--current-month'
+                'usa-date-picker__calendar__date--current-month',
               )
             }
 
@@ -248,10 +248,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--next-month'
+                'usa-date-picker__calendar__date--next-month',
               )
             }
 
@@ -259,7 +259,7 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               )
                 .should('have.attr', 'tabindex', '0')
                 .and('have.attr', 'aria-selected', 'true')
@@ -269,7 +269,7 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               )
                 .should('have.attr', 'tabindex', '-1')
                 .and('have.attr', 'aria-selected', 'false')
@@ -287,7 +287,7 @@ describe('UsaDatePickerCalendarDay', () => {
             cy.get(
               `.usa-date-picker__calendar__table tr:nth-of-type(${
                 rowIndex + 1
-              }) td:nth-of-type(${buttonIndex + 1}) button`
+              }) td:nth-of-type(${buttonIndex + 1}) button`,
             )
               .should('have.attr', 'type', 'button')
               .and('have.class', 'usa-date-picker__calendar__date')
@@ -302,13 +302,13 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('have.attr', 'disabled', 'disabled')
             } else {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('not.have.attr', 'disabled', 'disabled')
             }
 
@@ -316,10 +316,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--previous-month'
+                'usa-date-picker__calendar__date--previous-month',
               )
             }
 
@@ -327,10 +327,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--current-month'
+                'usa-date-picker__calendar__date--current-month',
               )
             }
 
@@ -338,10 +338,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--next-month'
+                'usa-date-picker__calendar__date--next-month',
               )
             }
 
@@ -349,20 +349,20 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               )
                 .should('have.attr', 'tabindex', '0')
                 .and('not.have.attr', 'aria-selected', 'true')
                 .and(
                   'not.have.class',
-                  'usa-date-picker__calendar__date--selected'
+                  'usa-date-picker__calendar__date--selected',
                 )
                 .and('have.class', 'usa-date-picker__calendar__date--focused')
             } else {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               )
                 .should('have.attr', 'tabindex', '-1')
                 .and('have.attr', 'aria-selected', 'false')
@@ -383,7 +383,7 @@ describe('UsaDatePickerCalendarDay', () => {
             cy.get(
               `.usa-date-picker__calendar__table tr:nth-of-type(${
                 rowIndex + 1
-              }) td:nth-of-type(${buttonIndex + 1}) button`
+              }) td:nth-of-type(${buttonIndex + 1}) button`,
             )
               .should('have.attr', 'type', 'button')
               .and('have.class', 'usa-date-picker__calendar__date')
@@ -398,13 +398,13 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('have.attr', 'disabled', 'disabled')
             } else {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('not.have.attr', 'disabled', 'disabled')
             }
 
@@ -412,10 +412,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--previous-month'
+                'usa-date-picker__calendar__date--previous-month',
               )
             }
 
@@ -423,10 +423,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--current-month'
+                'usa-date-picker__calendar__date--current-month',
               )
             }
 
@@ -434,10 +434,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--next-month'
+                'usa-date-picker__calendar__date--next-month',
               )
             }
 
@@ -445,20 +445,20 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               )
                 .should('have.attr', 'tabindex', '0')
                 .and('not.have.attr', 'aria-selected', 'true')
                 .and(
                   'not.have.class',
-                  'usa-date-picker__calendar__date--selected'
+                  'usa-date-picker__calendar__date--selected',
                 )
                 .and('have.class', 'usa-date-picker__calendar__date--focused')
             } else {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               )
                 .should('have.attr', 'tabindex', '-1')
                 .and('have.attr', 'aria-selected', 'false')
@@ -474,12 +474,12 @@ describe('UsaDatePickerCalendarDay', () => {
         cy.get('@nextMonthButton').should(
           'not.have.attr',
           'disabled',
-          'disabled'
+          'disabled',
         )
         cy.get('@nextYearButton').should(
           'not.have.attr',
           'disabled',
-          'disabled'
+          'disabled',
         )
 
         cy.wrap(defaultData.december).each((row, rowIndex) => {
@@ -487,7 +487,7 @@ describe('UsaDatePickerCalendarDay', () => {
             cy.get(
               `.usa-date-picker__calendar__table tr:nth-of-type(${
                 rowIndex + 1
-              }) td:nth-of-type(${buttonIndex + 1}) button`
+              }) td:nth-of-type(${buttonIndex + 1}) button`,
             )
               .should('have.attr', 'type', 'button')
               .and('have.class', 'usa-date-picker__calendar__date')
@@ -502,13 +502,13 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('have.attr', 'disabled', 'disabled')
             } else {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('not.have.attr', 'disabled', 'disabled')
             }
 
@@ -516,10 +516,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--previous-month'
+                'usa-date-picker__calendar__date--previous-month',
               )
             }
 
@@ -527,10 +527,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--current-month'
+                'usa-date-picker__calendar__date--current-month',
               )
             }
 
@@ -538,10 +538,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--next-month'
+                'usa-date-picker__calendar__date--next-month',
               )
             }
 
@@ -549,20 +549,20 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               )
                 .should('have.attr', 'tabindex', '0')
                 .and('not.have.attr', 'aria-selected', 'true')
                 .and(
                   'not.have.class',
-                  'usa-date-picker__calendar__date--selected'
+                  'usa-date-picker__calendar__date--selected',
                 )
                 .and('have.class', 'usa-date-picker__calendar__date--focused')
             } else {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               )
                 .should('have.attr', 'tabindex', '-1')
                 .and('have.attr', 'aria-selected', 'false')
@@ -577,12 +577,12 @@ describe('UsaDatePickerCalendarDay', () => {
         cy.get('@previousMonthButton').should(
           'have.attr',
           'disabled',
-          'disabled'
+          'disabled',
         )
         cy.get('@previousYearButton').should(
           'have.attr',
           'disabled',
-          'disabled'
+          'disabled',
         )
 
         cy.wrap(defaultData.may).each((row, rowIndex) => {
@@ -590,7 +590,7 @@ describe('UsaDatePickerCalendarDay', () => {
             cy.get(
               `.usa-date-picker__calendar__table tr:nth-of-type(${
                 rowIndex + 1
-              }) td:nth-of-type(${buttonIndex + 1}) button`
+              }) td:nth-of-type(${buttonIndex + 1}) button`,
             )
               .should('have.attr', 'type', 'button')
               .and('have.class', 'usa-date-picker__calendar__date')
@@ -605,13 +605,13 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('have.attr', 'disabled', 'disabled')
             } else {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('not.have.attr', 'disabled', 'disabled')
             }
 
@@ -619,10 +619,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--previous-month'
+                'usa-date-picker__calendar__date--previous-month',
               )
             }
 
@@ -630,10 +630,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--current-month'
+                'usa-date-picker__calendar__date--current-month',
               )
             }
 
@@ -641,10 +641,10 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should(
                 'have.class',
-                'usa-date-picker__calendar__date--next-month'
+                'usa-date-picker__calendar__date--next-month',
               )
             }
 
@@ -652,20 +652,20 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               )
                 .should('have.attr', 'tabindex', '0')
                 .and('not.have.attr', 'aria-selected', 'true')
                 .and(
                   'not.have.class',
-                  'usa-date-picker__calendar__date--selected'
+                  'usa-date-picker__calendar__date--selected',
                 )
                 .and('have.class', 'usa-date-picker__calendar__date--focused')
             } else {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               )
                 .should('have.attr', 'tabindex', '-1')
                 .and('have.attr', 'aria-selected', 'false')
@@ -952,13 +952,13 @@ describe('UsaDatePickerCalendarDay', () => {
     cy.get('.usa-date-picker__calendar__previous-month').should(
       'have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('.usa-date-picker__calendar__previous-year').should(
       'have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('button[data-value="2022-05-25"]')
@@ -990,13 +990,13 @@ describe('UsaDatePickerCalendarDay', () => {
     cy.get('.usa-date-picker__calendar__previous-month').should(
       'not.have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('.usa-date-picker__calendar__previous-year').should(
       'not.have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('button[data-value="2022-06-25"]')
@@ -1028,13 +1028,13 @@ describe('UsaDatePickerCalendarDay', () => {
     cy.get('.usa-date-picker__calendar__previous-month').should(
       'have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('.usa-date-picker__calendar__previous-year').should(
       'have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('button[data-value="2022-06-28"]').should('not.exist')
@@ -1056,13 +1056,13 @@ describe('UsaDatePickerCalendarDay', () => {
     cy.get('.usa-date-picker__calendar__next-month').should(
       'have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('.usa-date-picker__calendar__next-year').should(
       'have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('button[data-value="2023-01-09"]')
@@ -1118,13 +1118,13 @@ describe('UsaDatePickerCalendarDay', () => {
     cy.get('.usa-date-picker__calendar__next-month').should(
       'not.have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('.usa-date-picker__calendar__next-year').should(
       'not.have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('button[data-value="2022-12-01"]')
@@ -1147,13 +1147,13 @@ describe('UsaDatePickerCalendarDay', () => {
     cy.get('.usa-date-picker__calendar__next-month').should(
       'have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('.usa-date-picker__calendar__next-year').should(
       'have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('button[data-value="2023-01-01"]')
@@ -1212,13 +1212,13 @@ describe('UsaDatePickerCalendarDay', () => {
     cy.get('.usa-date-picker__calendar__previous-month').should(
       'have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('.usa-date-picker__calendar__previous-year').should(
       'have.attr',
       'disabled',
-      'disabled'
+      'disabled',
     )
 
     cy.get('button[data-value="2022-05-31"]')
@@ -1237,7 +1237,7 @@ describe('UsaDatePickerCalendarDay', () => {
 
     cy.get('button[data-value="2022-05-31"]').should(
       'have.class',
-      'usa-date-picker__calendar__date--previous-month'
+      'usa-date-picker__calendar__date--previous-month',
     )
 
     cy.get('button[data-value="2022-06-01"]')
@@ -1263,7 +1263,7 @@ describe('UsaDatePickerCalendarDay', () => {
 
     cy.get('button[data-value="2022-06-01"]').should(
       'have.class',
-      'usa-date-picker__calendar__date--next-month'
+      'usa-date-picker__calendar__date--next-month',
     )
 
     // Down Arrow
@@ -1298,7 +1298,7 @@ describe('UsaDatePickerCalendarDay', () => {
 
     cy.get('button[data-value="2022-06-01"]').should(
       'have.class',
-      'usa-date-picker__calendar__date--next-month'
+      'usa-date-picker__calendar__date--next-month',
     )
 
     // Home Key
@@ -1330,7 +1330,7 @@ describe('UsaDatePickerCalendarDay', () => {
 
     cy.get('button[data-value="2022-05-29"]').should(
       'have.class',
-      'usa-date-picker__calendar__date--previous-month'
+      'usa-date-picker__calendar__date--previous-month',
     )
 
     // End Key
@@ -1354,7 +1354,7 @@ describe('UsaDatePickerCalendarDay', () => {
 
     cy.get('button[data-value="2022-06-04"]').should(
       'have.class',
-      'usa-date-picker__calendar__date--next-month'
+      'usa-date-picker__calendar__date--next-month',
     )
     // HERE
     cy.get('button[data-value="2022-05-25"]')
@@ -1711,13 +1711,13 @@ describe('UsaDatePickerCalendarDay', () => {
     // Make sure the next tab element has been initially rendered.
     cy.get('.usa-date-picker__calendar__previous-year').should('not.have.focus')
     cy.get('.usa-date-picker__calendar__previous-month').should(
-      'not.have.focus'
+      'not.have.focus',
     )
     cy.get('.usa-date-picker__calendar__month-selection').should(
-      'not.have.focus'
+      'not.have.focus',
     )
     cy.get('.usa-date-picker__calendar__year-selection').should(
-      'not.have.focus'
+      'not.have.focus',
     )
     cy.get('.usa-date-picker__calendar__next-month').should('not.have.focus')
     cy.get('.usa-date-picker__calendar__next-year').should('not.have.focus')
@@ -2013,25 +2013,25 @@ describe('UsaDatePickerCalendarDay', () => {
     cy.get('.usa-date-picker__calendar__previous-year').should(
       'have.attr',
       'aria-label',
-      'Test previous year button label'
+      'Test previous year button label',
     )
 
     cy.get('.usa-date-picker__calendar__previous-month').should(
       'have.attr',
       'aria-label',
-      'Test previous month button label'
+      'Test previous month button label',
     )
 
     cy.get('.usa-date-picker__calendar__next-month').should(
       'have.attr',
       'aria-label',
-      'Test next month button label'
+      'Test next month button label',
     )
 
     cy.get('.usa-date-picker__calendar__next-year').should(
       'have.attr',
       'aria-label',
-      'Test next year button label'
+      'Test next year button label',
     )
 
     cy.get('.usa-date-picker__calendar__table > thead th:nth-of-type(1)')
@@ -2141,13 +2141,13 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('have.attr', 'disabled', 'disabled')
             } else {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('not.have.attr', 'disabled', 'disabled')
             }
 
@@ -2155,7 +2155,7 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               )
                 .should('have.attr', 'tabindex', '0')
                 .and('have.attr', 'aria-selected', 'true')
@@ -2165,7 +2165,7 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               )
                 .should('have.attr', 'tabindex', '-1')
                 .and('have.attr', 'aria-selected', 'false')
@@ -2188,13 +2188,13 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('have.attr', 'disabled', 'disabled')
             } else {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               ).should('not.have.attr', 'disabled', 'disabled')
             }
 
@@ -2203,17 +2203,17 @@ describe('UsaDatePickerCalendarDay', () => {
                 cy.get(
                   `.usa-date-picker__calendar__table tr:nth-of-type(${
                     rowIndex + 1
-                  }) td:nth-of-type(${buttonIndex + 1}) button`
+                  }) td:nth-of-type(${buttonIndex + 1}) button`,
                 )
                   .should('have.attr', 'tabindex', '-1')
                   .and('not.have.attr', 'aria-selected', 'true')
                   .and(
                     'not.have.class',
-                    'usa-date-picker__calendar__date--selected'
+                    'usa-date-picker__calendar__date--selected',
                   )
                   .and(
                     'not.have.class',
-                    'usa-date-picker__calendar__date--focused'
+                    'usa-date-picker__calendar__date--focused',
                   )
               }
 
@@ -2221,13 +2221,13 @@ describe('UsaDatePickerCalendarDay', () => {
                 cy.get(
                   `.usa-date-picker__calendar__table tr:nth-of-type(${
                     rowIndex + 1
-                  }) td:nth-of-type(${buttonIndex + 1}) button`
+                  }) td:nth-of-type(${buttonIndex + 1}) button`,
                 )
                   .should('have.attr', 'tabindex', '0')
                   .and('have.attr', 'aria-selected', 'true')
                   .and(
                     'have.class',
-                    'usa-date-picker__calendar__date--selected'
+                    'usa-date-picker__calendar__date--selected',
                   )
                   .and('have.class', 'usa-date-picker__calendar__date--focused')
               }
@@ -2235,7 +2235,7 @@ describe('UsaDatePickerCalendarDay', () => {
               cy.get(
                 `.usa-date-picker__calendar__table tr:nth-of-type(${
                   rowIndex + 1
-                }) td:nth-of-type(${buttonIndex + 1}) button`
+                }) td:nth-of-type(${buttonIndex + 1}) button`,
               )
                 .should('have.attr', 'tabindex', '-1')
                 .and('have.attr', 'aria-selected', 'false')

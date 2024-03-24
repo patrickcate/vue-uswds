@@ -9,16 +9,16 @@ describe('UsaAccordion', () => {
       slots: {
         default: () => [
           h(UsaAccordionItem, { label: 'Accordion 1' }, () =>
-            h('p', 'Accordion 1')
+            h('p', 'Accordion 1'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 2' }, () =>
-            h('p', 'Accordion 2')
+            h('p', 'Accordion 2'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 3' }, () =>
-            h('p', 'Accordion 3')
+            h('p', 'Accordion 3'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 4' }, () =>
-            h('p', 'Accordion 4')
+            h('p', 'Accordion 4'),
           ),
         ],
       },
@@ -35,14 +35,14 @@ describe('UsaAccordion', () => {
 
       cy.get(`h2.usa-accordion__heading:nth-of-type(${item})`).should('exist')
       cy.get(
-        `h2.usa-accordion__heading:nth-of-type(${item}) button.usa-accordion__button`
+        `h2.usa-accordion__heading:nth-of-type(${item}) button.usa-accordion__button`,
       )
         .should('contain', `Accordion ${item}`)
         .and('have.attr', 'aria-expanded')
         .and('contain', 'false')
 
       cy.get(
-        `h2.usa-accordion__heading:nth-of-type(${item}) button.usa-accordion__button`
+        `h2.usa-accordion__heading:nth-of-type(${item}) button.usa-accordion__button`,
       )
         .should('have.attr', 'aria-controls')
         .and('contain', id)
@@ -84,16 +84,16 @@ describe('UsaAccordion', () => {
       slots: {
         default: () => [
           h(UsaAccordionItem, { label: 'Accordion 1' }, () =>
-            h('p', 'Accordion 1')
+            h('p', 'Accordion 1'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 2' }, () =>
-            h('p', 'Accordion 2')
+            h('p', 'Accordion 2'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 3' }, () =>
-            h('p', 'Accordion 3')
+            h('p', 'Accordion 3'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 4' }, () =>
-            h('p', 'Accordion 4')
+            h('p', 'Accordion 4'),
           ),
         ],
       },
@@ -102,22 +102,22 @@ describe('UsaAccordion', () => {
     const items = ['first', 'second', 'third', 'fourth']
 
     cy.get('.usa-accordion__heading:nth-of-type(1) .usa-accordion__button').as(
-      'firstButton'
+      'firstButton',
     )
     cy.get('.usa-accordion__content:nth-of-type(1)').as('firstContent')
 
     cy.get('.usa-accordion__heading:nth-of-type(2) .usa-accordion__button').as(
-      'secondButton'
+      'secondButton',
     )
     cy.get('.usa-accordion__content:nth-of-type(2)').as('secondContent')
 
     cy.get('.usa-accordion__heading:nth-of-type(3) .usa-accordion__button').as(
-      'thirdButton'
+      'thirdButton',
     )
     cy.get('.usa-accordion__content:nth-of-type(3)').as('thirdContent')
 
     cy.get('.usa-accordion__heading:nth-of-type(4) .usa-accordion__button').as(
-      'fourthButton'
+      'fourthButton',
     )
     cy.get('.usa-accordion__content:nth-of-type(4)').as('fourthContent')
 
@@ -141,16 +141,16 @@ describe('UsaAccordion', () => {
       slots: {
         default: () => [
           h(UsaAccordionItem, { label: 'Accordion 1' }, () =>
-            h('p', 'Accordion 1')
+            h('p', 'Accordion 1'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 2' }, () =>
-            h('p', 'Accordion 2')
+            h('p', 'Accordion 2'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 3' }, () =>
-            h('p', 'Accordion 3')
+            h('p', 'Accordion 3'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 4' }, () =>
-            h('p', 'Accordion 4')
+            h('p', 'Accordion 4'),
           ),
         ],
       },
@@ -159,22 +159,22 @@ describe('UsaAccordion', () => {
     const items = ['first', 'second', 'third', 'fourth']
 
     cy.get('.usa-accordion__heading:nth-of-type(1) .usa-accordion__button').as(
-      'firstButton'
+      'firstButton',
     )
     cy.get('.usa-accordion__content:nth-of-type(1)').as('firstContent')
 
     cy.get('.usa-accordion__heading:nth-of-type(2) .usa-accordion__button').as(
-      'secondButton'
+      'secondButton',
     )
     cy.get('.usa-accordion__content:nth-of-type(2)').as('secondContent')
 
     cy.get('.usa-accordion__heading:nth-of-type(3) .usa-accordion__button').as(
-      'thirdButton'
+      'thirdButton',
     )
     cy.get('.usa-accordion__content:nth-of-type(3)').as('thirdContent')
 
     cy.get('.usa-accordion__heading:nth-of-type(4) .usa-accordion__button').as(
-      'fourthButton'
+      'fourthButton',
     )
     cy.get('.usa-accordion__content:nth-of-type(4)').as('fourthContent')
 
@@ -197,16 +197,16 @@ describe('UsaAccordion', () => {
       slots: {
         default: () => [
           h(UsaAccordionItem, { label: 'Accordion 1' }, () =>
-            h('p', 'Accordion 1')
+            h('p', 'Accordion 1'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 2', open: true }, () =>
-            h('p', 'Accordion 2')
+            h('p', 'Accordion 2'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 3' }, () =>
-            h('p', 'Accordion 3')
+            h('p', 'Accordion 3'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 4' }, () =>
-            h('p', 'Accordion 4')
+            h('p', 'Accordion 4'),
           ),
         ],
       },
@@ -235,13 +235,13 @@ describe('UsaAccordion', () => {
       slots: {
         default: () => [
           h(UsaAccordionItem, { label: 'Accordion 1', open: true }, () =>
-            h('p', 'Accordion 1')
+            h('p', 'Accordion 1'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 2', open: true }, () =>
-            h('p', 'Accordion 2')
+            h('p', 'Accordion 2'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 3', open: true }, () =>
-            h('p', 'Accordion 3')
+            h('p', 'Accordion 3'),
           ),
         ],
       },
@@ -250,17 +250,17 @@ describe('UsaAccordion', () => {
     const items = ['first', 'second', 'third']
 
     cy.get('.usa-accordion__heading:nth-of-type(1) .usa-accordion__button').as(
-      'firstButton'
+      'firstButton',
     )
     cy.get('.usa-accordion__content:nth-of-type(1)').as('firstContent')
 
     cy.get('.usa-accordion__heading:nth-of-type(2) .usa-accordion__button').as(
-      'secondButton'
+      'secondButton',
     )
     cy.get('.usa-accordion__content:nth-of-type(2)').as('secondContent')
 
     cy.get('.usa-accordion__heading:nth-of-type(3) .usa-accordion__button').as(
-      'thirdButton'
+      'thirdButton',
     )
     cy.get('.usa-accordion__content:nth-of-type(3)').as('thirdContent')
 
@@ -289,13 +289,13 @@ describe('UsaAccordion', () => {
       slots: {
         default: () => [
           h(UsaAccordionItem, { label: 'Accordion 1' }, () =>
-            h('p', 'Accordion 1')
+            h('p', 'Accordion 1'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 2' }, () =>
-            h('p', 'Accordion 2')
+            h('p', 'Accordion 2'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 3' }, () =>
-            h('p', 'Accordion 3')
+            h('p', 'Accordion 3'),
           ),
         ],
       },
@@ -309,13 +309,13 @@ describe('UsaAccordion', () => {
       slots: {
         default: () => [
           h(UsaAccordionItem, { label: 'Accordion 1' }, () =>
-            h('p', 'Accordion 1')
+            h('p', 'Accordion 1'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 2', open: true }, () =>
-            h('p', 'Accordion 2')
+            h('p', 'Accordion 2'),
           ),
           h(UsaAccordionItem, { label: 'Accordion 3' }, () =>
-            h('p', 'Accordion 3')
+            h('p', 'Accordion 3'),
           ),
         ],
       },
@@ -341,7 +341,7 @@ describe('UsaAccordion', () => {
       })
 
     cy.get(
-      '.usa-accordion__heading:nth-of-type(1) .usa-accordion__button'
+      '.usa-accordion__heading:nth-of-type(1) .usa-accordion__button',
     ).click()
 
     cy.get('@wrapper')

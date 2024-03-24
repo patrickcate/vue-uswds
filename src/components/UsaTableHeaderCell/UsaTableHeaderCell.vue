@@ -35,7 +35,7 @@ const ariaLabel = computed(() =>
         props.currentSortDirection
           ? `sorted ${props.currentSortDirection}`
           : 'unsorted'
-      }`
+      }`,
 )
 
 const ariaSort = computed(() => {

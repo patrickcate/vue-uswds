@@ -21,12 +21,12 @@ describe('UsaTimePicker', () => {
       .and(
         'have.attr',
         'aria-controls',
-        'vuswds-id-global-usa-time-picker-1-list'
+        'vuswds-id-global-usa-time-picker-1-list',
       )
       .and(
         'have.attr',
         'aria-describedby',
-        'vuswds-id-global-usa-time-picker-1-assistive-hint'
+        'vuswds-id-global-usa-time-picker-1-assistive-hint',
       )
       .and('have.attr', 'aria-expanded', 'false')
       .and('have.attr', 'autocapitalize', 'off')
@@ -38,11 +38,11 @@ describe('UsaTimePicker', () => {
     cy.get('span.usa-combo-box__clear-input__wrapper').should(
       'have.attr',
       'tabindex',
-      '-1'
+      '-1',
     )
 
     cy.get(
-      '.usa-combo-box__clear-input__wrapper > button.usa-combo-box__clear-input'
+      '.usa-combo-box__clear-input__wrapper > button.usa-combo-box__clear-input',
     )
       .as('clearButton')
       .should('have.attr', 'type', 'button')
@@ -52,17 +52,17 @@ describe('UsaTimePicker', () => {
 
     cy.get('span.usa-combo-box__input-button-separator').should(
       'contain',
-      '\u00a0'
+      '\u00a0',
     )
 
     cy.get('span.usa-combo-box__toggle-list__wrapper').should(
       'have.attr',
       'tabindex',
-      '-1'
+      '-1',
     )
 
     cy.get(
-      '.usa-combo-box__toggle-list__wrapper > button.usa-combo-box__toggle-list'
+      '.usa-combo-box__toggle-list__wrapper > button.usa-combo-box__toggle-list',
     )
       .as('toggleButton')
       .should('have.attr', 'type', 'button')
@@ -78,7 +78,7 @@ describe('UsaTimePicker', () => {
       .and(
         'have.attr',
         'aria-labelledby',
-        'vuswds-id-global-usa-time-picker-1-label'
+        'vuswds-id-global-usa-time-picker-1-label',
       )
       .and('have.attr', 'hidden')
 
@@ -98,7 +98,7 @@ describe('UsaTimePicker', () => {
       cy.get(`li.usa-combo-box__list-option:nth-of-type(${index + 1})`)
         .should(
           'have.id',
-          `vuswds-id-global-usa-time-picker-1-list-option-${index}`
+          `vuswds-id-global-usa-time-picker-1-list-option-${index}`,
         )
         .and('have.attr', 'aria-posinset', index + 1)
         .and('have.attr', 'data-value', option.value)
@@ -115,7 +115,7 @@ describe('UsaTimePicker', () => {
       .should('have.class', 'usa-sr-only')
       .and(
         'contain',
-        'When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures.'
+        'When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures.',
       )
   })
 
@@ -183,12 +183,12 @@ describe('UsaTimePicker', () => {
 
     cy.get('.usa-combo-box__list-option--no-results').should(
       'contain',
-      'Test no results text'
+      'Test no results text',
     )
 
     cy.get('.usa-combo-box__status + span.usa-sr-only').should(
       'contain',
-      'Test assistive hint'
+      'Test assistive hint',
     )
   })
 
@@ -207,7 +207,7 @@ describe('UsaTimePicker', () => {
 
     cy.get('input').should('have.value', '1:00pm')
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="13:00"]'
+      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="13:00"]',
     )
       .should('have.class', 'usa-combo-box__list-option--selected')
       .and('have.attr', 'aria-selected', 'true')
@@ -289,7 +289,7 @@ describe('UsaTimePicker', () => {
 
     cy.get('.usa-error-message').should(
       'have.id',
-      'test-time-picker-id-error-message'
+      'test-time-picker-id-error-message',
     )
 
     cy.get('input')
@@ -306,17 +306,17 @@ describe('UsaTimePicker', () => {
 
     cy.get('.usa-combo-box__list-option--no-results').should(
       'contain',
-      'No results found'
+      'No results found',
     )
 
     cy.get('.usa-combo-box__status + span.usa-sr-only').should(
       'have.id',
-      'test-time-picker-id-assistive-hint'
+      'test-time-picker-id-assistive-hint',
     )
 
     cy.get('.usa-error-message').should(
       'have.id',
-      'test-time-picker-id-error-message'
+      'test-time-picker-id-error-message',
     )
   })
 
@@ -346,7 +346,7 @@ describe('UsaTimePicker', () => {
         const currentValueEvent = vm.emitted('update:modelValue')
         expect(currentValueEvent).to.have.length(1)
         expect(currentValueEvent[currentValueEvent.length - 1]).to.contain(
-          '00:30'
+          '00:30',
         )
       })
   })
@@ -365,15 +365,15 @@ describe('UsaTimePicker', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'00-00' is not a valid minimum time. It must be a string in the HH:MM 24 hour format.`
+      `'00-00' is not a valid minimum time. It must be a string in the HH:MM 24 hour format.`,
     )
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'24:00' is not a valid maximum time. It must be a string in the HH:MM 24 hour format.`
+      `'24:00' is not a valid maximum time. It must be a string in the HH:MM 24 hour format.`,
     )
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'-1' is not a valid time step increment.`
+      `'-1' is not a valid time step increment.`,
     )
   })
 })

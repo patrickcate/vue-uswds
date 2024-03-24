@@ -109,7 +109,7 @@ const {
   toRef(props, 'options'),
   toRef(props, 'disabled'),
   toRef(props, 'readonly'),
-  emit
+  emit,
 )
 
 const ariaDescribedby = computed(() => {

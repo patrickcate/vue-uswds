@@ -16,7 +16,7 @@ describe('UsaSignUp', () => {
       .and('contain', 'Sign up')
     cy.get('.usa-sign-up > strong').should(
       'contain',
-      'Test default slot content'
+      'Test default slot content',
     )
   })
 
@@ -32,7 +32,7 @@ describe('UsaSignUp', () => {
 
     cy.get('.usa-sign-up__heading').should(
       'contain',
-      'Custom slot test heading'
+      'Custom slot test heading',
     )
   })
 

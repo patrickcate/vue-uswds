@@ -78,8 +78,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
   >
     <template v-if="${!!args.default}" #default>${args.default}</template>
     <template v-if="${!!args['slot:description']}" #description>${
-    args['slot:description']
-  }</template>
+      args['slot:description']
+    }</template>
   </UsaRadio>`,
 })
 

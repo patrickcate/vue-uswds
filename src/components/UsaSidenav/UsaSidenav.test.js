@@ -118,12 +118,12 @@ describe('UsaSidenav', () => {
       .and('contain', '/home')
     cy.get('ul.usa-sidenav > li.usa-sidenav__item:nth-of-type(1) a').should(
       'contain',
-      'Home'
+      'Home',
     )
 
     // Section 1
     cy.get('ul.usa-sidenav > li.usa-sidenav__item:nth-of-type(2)').as(
-      'section1'
+      'section1',
     )
 
     cy.get('@section1')
@@ -139,43 +139,43 @@ describe('UsaSidenav', () => {
 
     cy.get('@section1')
       .find(
-        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(1) > router-link'
+        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(1) > router-link',
       )
       .should('have.attr', 'to')
       .and('contain', '/section-1/page-1')
     cy.get('@section1')
       .find(
-        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(1) > router-link'
+        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(1) > router-link',
       )
       .should('contain', 'Section 1 - Page 1')
 
     cy.get('@section1')
       .find(
-        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(2) > nuxt-link'
+        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(2) > nuxt-link',
       )
       .should('have.attr', 'to')
       .and('contain', '/section-1/page-2')
     cy.get('@section1')
       .find(
-        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(2) > nuxt-link'
+        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(2) > nuxt-link',
       )
       .should('contain', 'Section 1 - Page 2')
 
     cy.get('@section1')
       .find(
-        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(3) > g-link'
+        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(3) > g-link',
       )
       .should('have.attr', 'to')
       .and('contain', '/section-1/page-3')
     cy.get('@section1')
       .find(
-        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(3) > g-link'
+        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(3) > g-link',
       )
       .should('contain', 'Section 1 - Page 3')
 
     cy.get('@section1')
       .find(
-        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(2) > ul.usa-sidenav__sublist'
+        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(2) > ul.usa-sidenav__sublist',
       )
       .as('section1-sublist')
 
@@ -235,7 +235,7 @@ describe('UsaSidenav', () => {
 
     // Section 2
     cy.get('ul.usa-sidenav > li.usa-sidenav__item:nth-of-type(3)').as(
-      'section2'
+      'section2',
     )
 
     cy.get('@section2')
@@ -251,20 +251,20 @@ describe('UsaSidenav', () => {
 
     cy.get('@section2')
       .find(
-        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:only-of-type > a'
+        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:only-of-type > a',
       )
       .should('have.attr', 'to')
       .and('contain', '/section-2/page-1')
     cy.get('@section2')
       .find(
-        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(1) > a'
+        ' > ul.usa-sidenav__sublist > li.usa-sidenav__item:nth-of-type(1) > a',
       )
       .should('contain', 'Section 2 - Page 1')
 
     // Subsection 2
     cy.get('@section2')
       .find(
-        '> ul.usa-sidenav__sublist > li.usa-sidenav__item:only-of-type > ul.usa-sidenav__sublist'
+        '> ul.usa-sidenav__sublist > li.usa-sidenav__item:only-of-type > ul.usa-sidenav__sublist',
       )
       .as('sub-section-2')
 
@@ -305,7 +305,7 @@ describe('UsaSidenav', () => {
       .and('contain', '_blank')
     cy.get('ul.usa-sidenav > li.usa-sidenav__item:nth-of-type(4) a').should(
       'contain',
-      'Google'
+      'Google',
     )
   })
 
@@ -356,7 +356,7 @@ describe('UsaSidenav', () => {
               'v-slot:items': 'props',
               class: 'test-class',
             },
-            `${props.items[0].to} - ${props.items[0].text}`
+            `${props.items[0].to} - ${props.items[0].text}`,
           ),
       },
     })

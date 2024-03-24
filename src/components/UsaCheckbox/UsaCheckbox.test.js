@@ -34,7 +34,7 @@ describe('UsaCheckbox', () => {
 
     cy.get('span.usa-checkbox__label-description').should(
       'contain',
-      'Test description'
+      'Test description',
     )
 
     cy.get('@wrapper')
@@ -52,7 +52,7 @@ describe('UsaCheckbox', () => {
         const currentCheckedEvent = vm.emitted('update:modelValue')
         expect(currentCheckedEvent).to.have.length(1)
         expect(currentCheckedEvent[currentCheckedEvent.length - 1]).to.contain(
-          true
+          true,
         )
       })
 
@@ -80,7 +80,7 @@ describe('UsaCheckbox', () => {
 
     cy.get('.usa-checkbox__input').should(
       'have.class',
-      'usa-checkbox__input--tile'
+      'usa-checkbox__input--tile',
     )
   })
 
@@ -126,7 +126,7 @@ describe('UsaCheckbox', () => {
     cy.get('.usa-checkbox__label').should('contain', 'Test label')
     cy.get('.usa-checkbox__label-description').should(
       'contain',
-      'Test description slot'
+      'Test description slot',
     )
   })
 
@@ -174,7 +174,7 @@ describe('UsaCheckbox', () => {
     cy.get('.usa-checkbox__label').should('have.class', 'test-label-class')
     cy.get('.usa-checkbox__label-description').should(
       'have.class',
-      'test-description-class'
+      'test-description-class',
     )
   })
 })

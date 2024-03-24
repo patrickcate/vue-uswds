@@ -39,21 +39,21 @@ describe('UsaDatePickerCalendarYear', () => {
     cy.get('div.usa-date-picker__calendar__year-picker').should(
       'have.attr',
       'tabindex',
-      '-1'
+      '-1',
     )
 
     cy.get('.usa-date-picker__calendar__year-picker > table').should(
       'have.class',
-      'usa-date-picker__calendar__table'
+      'usa-date-picker__calendar__table',
     )
 
     cy.get('.usa-date-picker__calendar__year-picker > table').should(
       'not.have.attr',
-      'role'
+      'role',
     )
 
     cy.get('.usa-date-picker__calendar__year-picker > table > tbody').should(
-      'exist'
+      'exist',
     )
 
     cy.get('.usa-date-picker__calendar__year-picker > table > tbody > tr')
@@ -81,7 +81,7 @@ describe('UsaDatePickerCalendarYear', () => {
 
     cy.get('@table')
       .find(
-        '> td:nth-of-type(2) > table.usa-date-picker__calendar__table > tbody'
+        '> td:nth-of-type(2) > table.usa-date-picker__calendar__table > tbody',
       )
       .as('buttonTable')
       .should('exist')
@@ -893,7 +893,7 @@ describe('UsaDatePickerCalendarYear', () => {
 
     cy.get('@table')
       .find(
-        '> td:nth-of-type(2) > table.usa-date-picker__calendar__table > tbody'
+        '> td:nth-of-type(2) > table.usa-date-picker__calendar__table > tbody',
       )
       .as('buttonTable')
       .should('exist')
@@ -1164,13 +1164,13 @@ describe('UsaDatePickerCalendarYear', () => {
     cy.get('.usa-date-picker__calendar__previous-year-chunk').should(
       'have.attr',
       'aria-label',
-      'Test previous button aria label'
+      'Test previous button aria label',
     )
 
     cy.get('.usa-date-picker__calendar__next-year-chunk').should(
       'have.attr',
       'aria-label',
-      'Test next button aria label'
+      'Test next button aria label',
     )
   })
 
@@ -1200,13 +1200,13 @@ describe('UsaDatePickerCalendarYear', () => {
         const currentYearStartEvent = vm.emitted('update:activeYearStart')
         expect(currentYearStartEvent).to.have.length(1)
         expect(
-          currentYearStartEvent[currentYearStartEvent.length - 1]
+          currentYearStartEvent[currentYearStartEvent.length - 1],
         ).to.contain(2016)
 
         const currentYearEndEvent = vm.emitted('update:activeYearEnd')
         expect(currentYearEndEvent).to.have.length(1)
         expect(currentYearEndEvent[currentYearEndEvent.length - 1]).to.contain(
-          2027
+          2027,
         )
       })
 
@@ -1222,13 +1222,13 @@ describe('UsaDatePickerCalendarYear', () => {
         const currentYearStartEvent = vm.emitted('update:activeYearStart')
         expect(currentYearStartEvent).to.have.length(2)
         expect(
-          currentYearStartEvent[currentYearStartEvent.length - 1]
+          currentYearStartEvent[currentYearStartEvent.length - 1],
         ).to.contain(2004)
 
         const currentYearEndEvent = vm.emitted('update:activeYearEnd')
         expect(currentYearEndEvent).to.have.length(2)
         expect(currentYearEndEvent[currentYearEndEvent.length - 1]).to.contain(
-          2015
+          2015,
         )
       })
 
@@ -1244,13 +1244,13 @@ describe('UsaDatePickerCalendarYear', () => {
         const currentYearStartEvent = vm.emitted('update:activeYearStart')
         expect(currentYearStartEvent).to.have.length(3)
         expect(
-          currentYearStartEvent[currentYearStartEvent.length - 1]
+          currentYearStartEvent[currentYearStartEvent.length - 1],
         ).to.contain(2016)
 
         const currentYearEndEvent = vm.emitted('update:activeYearEnd')
         expect(currentYearEndEvent).to.have.length(3)
         expect(currentYearEndEvent[currentYearEndEvent.length - 1]).to.contain(
-          2027
+          2027,
         )
       })
 
@@ -1266,13 +1266,13 @@ describe('UsaDatePickerCalendarYear', () => {
         const currentYearStartEvent = vm.emitted('update:activeYearStart')
         expect(currentYearStartEvent).to.have.length(4)
         expect(
-          currentYearStartEvent[currentYearStartEvent.length - 1]
+          currentYearStartEvent[currentYearStartEvent.length - 1],
         ).to.contain(2028)
 
         const currentYearEndEvent = vm.emitted('update:activeYearEnd')
         expect(currentYearEndEvent).to.have.length(4)
         expect(currentYearEndEvent[currentYearEndEvent.length - 1]).to.contain(
-          2039
+          2039,
         )
       })
 
@@ -1290,12 +1290,12 @@ describe('UsaDatePickerCalendarYear', () => {
 
         expect(currentSelectorModeEvent).to.have.length(1)
         expect(
-          currentSelectorModeEvent[currentSelectorModeEvent.length - 1]
+          currentSelectorModeEvent[currentSelectorModeEvent.length - 1],
         ).to.contain('day')
 
         expect(currentSelectedYearEvent).to.have.length(1)
         expect(
-          currentSelectedYearEvent[currentSelectedYearEvent.length - 1]
+          currentSelectedYearEvent[currentSelectedYearEvent.length - 1],
         ).to.contain(2032)
       })
   })

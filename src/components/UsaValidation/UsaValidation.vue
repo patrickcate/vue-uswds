@@ -49,7 +49,7 @@ const props = defineProps({
 
 const computedId = computed(() => props.id || nextId('usa-validation'))
 const computedStatusMessageId = computed(
-  () => `${computedId.value}-status-message`
+  () => `${computedId.value}-status-message`,
 )
 
 const validatedItems = computed(() =>
@@ -84,14 +84,14 @@ const validatedItems = computed(() =>
     acc.push(validatedItem)
 
     return acc
-  }, [])
+  }, []),
 )
 
 const statusMessage = refDebounced(
   computed(() =>
-    validatedItems.value.map(item => `${item.ariaLabel}.`).join(' ')
+    validatedItems.value.map(item => `${item.ariaLabel}.`).join(' '),
   ),
-  1000
+  1000,
 )
 
 watch(computedId, () => emit('update:validationId', computedId), {
@@ -100,7 +100,7 @@ watch(computedId, () => emit('update:validationId', computedId), {
 watch(
   computedStatusMessageId,
   () => emit('update:statusMessageId', computedStatusMessageId),
-  { immediate: true }
+  { immediate: true },
 )
 </script>
 

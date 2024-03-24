@@ -167,7 +167,7 @@ const highlightedDate = computed({
 
 const selectMonth = newMonth => {
   activeDate.value = formatIsoDate(
-    setMonth(parseIsoDate(highlightedDate.value), newMonth)
+    setMonth(parseIsoDate(highlightedDate.value), newMonth),
   )
 }
 

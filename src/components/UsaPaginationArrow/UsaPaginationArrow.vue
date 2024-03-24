@@ -45,7 +45,7 @@ const props = defineProps({
 })
 
 const componentTag = computed(() =>
-  props.routerComponentName || props.to || props.href ? BaseLink : 'button'
+  props.routerComponentName || props.to || props.href ? BaseLink : 'button',
 )
 
 const classes = computed(() => [

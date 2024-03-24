@@ -59,7 +59,7 @@ describe('UsaTableSortButton', () => {
         const currentToggleEvent = vm.emitted('update:tableSort')
         expect(currentToggleEvent).to.have.length(1)
         expect(currentToggleEvent[currentToggleEvent.length - 1]).to.contain(
-          'test-header-id'
+          'test-header-id',
         )
       })
 

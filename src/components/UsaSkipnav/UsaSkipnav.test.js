@@ -71,7 +71,7 @@ describe('UsaSkipnav', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The anchor prop is required and must start with a "#" symbol`
+      `The anchor prop is required and must start with a "#" symbol`,
     )
   })
 })

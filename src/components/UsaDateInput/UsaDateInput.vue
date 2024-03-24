@@ -116,13 +116,13 @@ const props = defineProps({
 
 if (!props.monthAsSelect) {
   console.warn(
-    `The 'monthAsSelect' prop is deprecated. Starting with vue-uswds 2.0 the month will always use a select form element. You can set the 'monthAsSelect' prop value to true to minimize changes.`
+    `The 'monthAsSelect' prop is deprecated. Starting with vue-uswds 2.0 the month will always use a select form element. You can set the 'monthAsSelect' prop value to true to minimize changes.`,
   )
 }
 
 const computedId = computed(() => props.id || nextId('usa-date-input'))
 const computedErrorMessageId = computed(
-  () => `${computedId.value}-error-message`
+  () => `${computedId.value}-error-message`,
 )
 const computedHintId = computed(() => `${computedId.value}-hint`)
 

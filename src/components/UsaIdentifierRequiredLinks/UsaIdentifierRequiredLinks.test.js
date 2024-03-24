@@ -47,7 +47,7 @@ describe('UsaIdentifierRequiredLinks', () => {
     cy.get('.usa-identifier__required-links-item').should('have.length', 2)
 
     cy.get(
-      '.usa-identifier__required-links-item:nth-of-type(1) .usa-identifier__required-link'
+      '.usa-identifier__required-links-item:nth-of-type(1) .usa-identifier__required-link',
     )
       .as('firstLink')
       .should('have.attr', 'to')
@@ -57,7 +57,7 @@ describe('UsaIdentifierRequiredLinks', () => {
       .and('contain', 'Test link 1')
 
     cy.get(
-      '.usa-identifier__required-links-item:nth-of-type(2) .usa-identifier__required-link'
+      '.usa-identifier__required-links-item:nth-of-type(2) .usa-identifier__required-link',
     )
       .as('secondLink')
       .should('have.attr', 'href')

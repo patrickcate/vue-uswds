@@ -49,17 +49,17 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
   >
     <template v-if="${args.cols <= 1 && !!args.default}" #default>${
-    args.default
-  }</template>
+      args.default
+    }</template>
     <template v-if="${args.cols > 1 && !!args.col1}" #col-1>${
-    args.col1
-  }</template>
+      args.col1
+    }</template>
     <template v-if="${args.cols > 1 && !!args.col2}" #col-2>${
-    args.col2
-  }</template>
+      args.col2
+    }</template>
     <template v-if="${args.cols > 1 && !!args.col3}" #col-3>${
-    args.col3
-  }</template>
+      args.col3
+    }</template>
   </UsaNavSubmenu>`,
 })
 

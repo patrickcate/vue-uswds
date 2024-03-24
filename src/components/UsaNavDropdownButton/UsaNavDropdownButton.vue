@@ -10,7 +10,7 @@ import { ROUTER_COMPONENT_NAME } from '@/utils/constants.js'
 
 const globalRouterComponentName = inject(
   'vueUswds.routerComponentName',
-  ROUTER_COMPONENT_NAME
+  ROUTER_COMPONENT_NAME,
 )
 const dropdownId = inject('dropdownId')
 const toggleDropdown = inject('toggleDropdown')
@@ -34,7 +34,7 @@ const props = defineProps({
 const isOpen = toRef(dropdownItems, dropdownId.value)
 
 const localRouterComponentName = computed(
-  () => props.routerComponentName || globalRouterComponentName
+  () => props.routerComponentName || globalRouterComponentName,
 )
 
 const routeLocation = computed(() => props.to || props.href)

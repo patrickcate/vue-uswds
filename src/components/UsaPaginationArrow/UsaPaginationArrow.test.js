@@ -185,7 +185,7 @@ describe('UsaPaginationArrow', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `[Vue warn]: Invalid prop: custom validator check failed for prop "direction".`
+      `[Vue warn]: Invalid prop: custom validator check failed for prop "direction".`,
     )
   })
 
@@ -201,7 +201,7 @@ describe('UsaPaginationArrow', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `[Vue warn]: Missing required prop: "ariaLabel"`
+      `[Vue warn]: Missing required prop: "ariaLabel"`,
     )
   })
 
@@ -218,7 +218,7 @@ describe('UsaPaginationArrow', () => {
 
     cy.get('.usa-pagination__arrow button').should(
       'have.class',
-      'usa-button--unstyled'
+      'usa-button--unstyled',
     )
 
     cy.get('@wrapper').invoke('setProps', {
@@ -227,7 +227,7 @@ describe('UsaPaginationArrow', () => {
 
     cy.get('.usa-pagination__arrow a').should(
       'not.have.class',
-      'usa-button--unstyled'
+      'usa-button--unstyled',
     )
   })
 

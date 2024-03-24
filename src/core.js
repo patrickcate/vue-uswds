@@ -39,15 +39,15 @@ export default {
     app.provide('vueUswds.svgSpritePath', vueUswdsOptions.svgSpritePath)
     app.provide(
       'vueUswds.routerComponentName',
-      vueUswdsOptions.routerComponentName
+      vueUswdsOptions.routerComponentName,
     )
     app.provide(
       'vueUswds.mobileMenuBreakpoint',
-      vueUswdsOptions.mobileMenuBreakpoint
+      vueUswdsOptions.mobileMenuBreakpoint,
     )
     app.provide(
       'vueUswds.footerNavBigBreakpoint',
-      vueUswdsOptions.footerNavBigBreakpoint
+      vueUswdsOptions.footerNavBigBreakpoint,
     )
     app.provide('vueUswds.version', vueUswdsOptions.version)
     app.provide('nextId', nextId)

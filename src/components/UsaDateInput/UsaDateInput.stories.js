@@ -123,12 +123,12 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :id="id"
   >
     <template v-if="${!!args['slot:label']}" #label>${
-    args['slot:label']
-  }</template>
+      args['slot:label']
+    }</template>
     <template v-if="${!!args.hint}" #hint>${args.hint}</template>
     <template v-if="${!!args['error-message']}" #error-message>${
-    args['error-message']
-  }</template>
+      args['error-message']
+    }</template>
   </UsaDateInput>`,
 })
 

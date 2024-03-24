@@ -22,7 +22,7 @@ const props = defineProps({
 
       if (typeof size === 'object') {
         isValidSize = Object.values(size).some(breakpointSize =>
-          validSizes.includes(breakpointSize)
+          validSizes.includes(breakpointSize),
         )
       }
 
@@ -43,7 +43,7 @@ const sizeClasses = computed(() => {
   if (typeof props.size === 'object' && Object.keys(props.size).length) {
     return Object.keys(props.size).reduce((acc, breakpoint) => {
       acc.push(
-        `${breakpoint}${prefixSeparator}usa-icon-list--size-${props.size[breakpoint]}`
+        `${breakpoint}${prefixSeparator}usa-icon-list--size-${props.size[breakpoint]}`,
       )
 
       return acc

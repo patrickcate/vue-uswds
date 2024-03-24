@@ -153,15 +153,15 @@ const DefaultTemplate = (args, { argTypes }) => ({
     v-model="modelValue"
   >
     <template v-if="${!!args['slot:label']}" #label>${
-    args['slot:label']
-  }</template>
+      args['slot:label']
+    }</template>
     <template v-if="${!!args.default}" #default="{ options }">${
-    args.default
-  }</template>
+      args.default
+    }</template>
     <template v-if="${!!args.hint}" #hint>${args.hint}</template>
     <template v-if="${!!args['error-message']}" #error-message>${
-    args['error-message']
-  }</template>
+      args['error-message']
+    }</template>
   </UsaSelect>`,
 })
 

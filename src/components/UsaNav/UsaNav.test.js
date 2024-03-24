@@ -21,7 +21,7 @@ describe('UsaNav', () => {
             {
               href: '#',
             },
-            'Test primary slot'
+            'Test primary slot',
           ),
         secondary: () =>
           h(
@@ -29,7 +29,7 @@ describe('UsaNav', () => {
             {
               href: '#',
             },
-            'Test secondary slot'
+            'Test secondary slot',
           ),
       },
       global: {

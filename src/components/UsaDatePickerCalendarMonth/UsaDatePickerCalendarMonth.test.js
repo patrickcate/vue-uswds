@@ -64,13 +64,13 @@ describe('UsaDatePickerCalendarMonth', () => {
     cy.get('div.usa-date-picker__calendar__month-picker').should(
       'have.attr',
       'tabindex',
-      '-1'
+      '-1',
     )
 
     cy.get('table.usa-date-picker__calendar__table').should(
       'have.attr',
       'role',
-      'presentation'
+      'presentation',
     )
 
     cy.get('.usa-date-picker__calendar__table > tbody')

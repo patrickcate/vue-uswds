@@ -9,13 +9,13 @@ describe('UsaCard', () => {
       src: 'https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg',
       alt: 'A placeholder image',
     },
-    null
+    null,
   )
 
   const testContent = h(
     'p',
     null,
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.'
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.',
   )
 
   const testFooter = h('div', null, [

@@ -30,7 +30,7 @@ export default ({ minDate, maxDate, activeYear }) => {
   }
 
   const yearToGroup = computed(() =>
-    Math.max(0, activeYear.value - (activeYear.value % YEAR_GROUP))
+    Math.max(0, activeYear.value - (activeYear.value % YEAR_GROUP)),
   )
 
   const visibleYearRange = computed(() => {
@@ -47,7 +47,7 @@ export default ({ minDate, maxDate, activeYear }) => {
   })
 
   const groupedVisibleYearRange = computed(() =>
-    splitArray(visibleYearRange.value, 3)
+    splitArray(visibleYearRange.value, 3),
   )
 
   const years = computed(() =>
@@ -66,24 +66,24 @@ export default ({ minDate, maxDate, activeYear }) => {
           pageUp: findClosestPastYear(year - YEAR_GROUP, year),
           pageDown: findClosestFutureYear(year + YEAR_GROUP, year),
         }
-      })
-    )
+      }),
+    ),
   )
 
   const firstVisibleYear = computed(() => visibleYearRange.value[0])
   const lastVisibleYear = computed(
-    () => visibleYearRange.value[visibleYearRange.value.length - 1]
+    () => visibleYearRange.value[visibleYearRange.value.length - 1],
   )
 
   const hasPastYear = computed(() => isYearInRange(firstVisibleYear.value - 1))
   const hasFutureYear = computed(() => isYearInRange(lastVisibleYear.value + 1))
 
   const firstAvailableVisibleYear = computed(() =>
-    findClosestPastYear(firstVisibleYear.value, lastVisibleYear.value)
+    findClosestPastYear(firstVisibleYear.value, lastVisibleYear.value),
   )
 
   const lastAvailableVisibleYear = computed(() =>
-    findClosestFutureYear(lastVisibleYear.value, firstVisibleYear.value)
+    findClosestFutureYear(lastVisibleYear.value, firstVisibleYear.value),
   )
 
   const isYearAvailable = year => {
@@ -95,7 +95,7 @@ export default ({ minDate, maxDate, activeYear }) => {
 
   const findRowIndexByYear = (years, yearToFind) => {
     const rowIndex = years.value.findIndex(row =>
-      row.find(({ year }) => year === yearToFind)
+      row.find(({ year }) => year === yearToFind),
     )
 
     return rowIndex
@@ -103,7 +103,7 @@ export default ({ minDate, maxDate, activeYear }) => {
 
   const findButtonIndexByYear = (years, rowIndex, yearToFind) => {
     const buttonIndex = years.value[rowIndex].findIndex(
-      ({ year }) => year === yearToFind
+      ({ year }) => year === yearToFind,
     )
 
     return buttonIndex

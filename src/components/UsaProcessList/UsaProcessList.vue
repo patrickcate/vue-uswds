@@ -10,7 +10,7 @@ const props = defineProps({
 
 provide(
   'listHeadingTag',
-  computed(() => props.headingTag)
+  computed(() => props.headingTag),
 )
 </script>
 

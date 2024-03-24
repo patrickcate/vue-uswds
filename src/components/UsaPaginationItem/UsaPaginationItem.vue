@@ -33,7 +33,7 @@ const props = defineProps({
 })
 
 const componentTag = computed(() =>
-  props.routerComponentName || props.to || props.href ? BaseLink : 'button'
+  props.routerComponentName || props.to || props.href ? BaseLink : 'button',
 )
 
 const ariaCurrent = computed(() => (props.isCurrentPage ? 'page' : null))

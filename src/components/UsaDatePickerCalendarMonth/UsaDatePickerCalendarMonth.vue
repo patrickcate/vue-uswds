@@ -47,7 +47,7 @@ const activeDateObject = shallowRef(parseIsoDate(props.activeDate))
 
 watch(
   toRef(props, 'activeDate'),
-  newActiveDate => (activeDateObject.value = parseIsoDate(newActiveDate))
+  newActiveDate => (activeDateObject.value = parseIsoDate(newActiveDate)),
 )
 
 const activeMonth = computed(() => getMonth(activeDateObject.value))
@@ -79,7 +79,7 @@ const tabIndex = (month, rowIndex, buttonIndex) => {
 
 const getButtonByMonth = month =>
   monthButtonRefs.value.find(
-    button => parseInt(button.dataset.value, 10) === month
+    button => parseInt(button.dataset.value, 10) === month,
   )
 
 const setButtonFocusByMonth = month => {
@@ -126,13 +126,13 @@ watch(
     const newButtonIndex = findButtonIndexByMonth(
       months,
       newRowIndex,
-      newHighlightedMonth
+      newHighlightedMonth,
     )
 
     highlightedRowIndex.value = newRowIndex
     highlightedButtonIndex.value = newButtonIndex
   },
-  { immediate: true }
+  { immediate: true },
 )
 
 onMounted(() => {

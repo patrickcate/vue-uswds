@@ -11,7 +11,7 @@ describe('UsaFooterPrimarySection', () => {
 
     cy.get('div.usa-footer__primary-section').should(
       'contain',
-      'Test primary slot content'
+      'Test primary slot content',
     )
   })
 })

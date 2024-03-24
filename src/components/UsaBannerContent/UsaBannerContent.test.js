@@ -77,36 +77,36 @@ describe('UsaBannerContent', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'tldIcon' slot is deprecated, use 'tld-icon' instead.`
+      `The 'tldIcon' slot is deprecated, use 'tld-icon' instead.`,
     )
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'tldDescription' slot is deprecated, use 'tld-description' instead.`
+      `The 'tldDescription' slot is deprecated, use 'tld-description' instead.`,
     )
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'httpsIcon' slot is deprecated, use 'https-icon' instead.`
+      `The 'httpsIcon' slot is deprecated, use 'https-icon' instead.`,
     )
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'httpsDescription' slot is deprecated, use 'https-description' instead.`
+      `The 'httpsDescription' slot is deprecated, use 'https-description' instead.`,
     )
 
     cy.get('.usa-banner__guidance').should(
       'contain',
-      'deprecated test tld icon'
+      'deprecated test tld icon',
     )
     cy.get('.usa-media-block__body').should(
       'contain',
-      'deprecated test tld description'
+      'deprecated test tld description',
     )
     cy.get('.usa-banner__guidance').should(
       'contain',
-      'deprecated test https icon'
+      'deprecated test https icon',
     )
     cy.get('.usa-media-block__body').should(
       'contain',
-      'deprecated test https description'
+      'deprecated test https description',
     )
   })
 })

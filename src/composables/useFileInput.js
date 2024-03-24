@@ -8,7 +8,7 @@ export function useFileInput(
   _acceptedFileFormats,
   _multiple,
   _disabled,
-  emit
+  emit,
 ) {
   const id = ref(_id)
   const allowMultiple = ref(_multiple)
@@ -21,7 +21,7 @@ export function useFileInput(
 
   const computedId = computed(() => id.value || nextId('usa-file-input'))
   const computedErrorMessageId = computed(
-    () => `${computedId.value}-error-message`
+    () => `${computedId.value}-error-message`,
   )
   const computedHintId = computed(() => `${computedId.value}-hint`)
 
@@ -119,7 +119,7 @@ export function useFileInput(
   })
 
   const loadedFileNames = computed(() =>
-    loadedFiles.value.map(file => file.name).join(', ')
+    loadedFiles.value.map(file => file.name).join(', '),
   )
 
   const generatePreviews = (event, index) => {
@@ -169,7 +169,7 @@ export function useFileInput(
       reader.addEventListener(
         'loadend',
         event => generatePreviews(event, index),
-        false
+        false,
       )
 
       reader.readAsDataURL(file)

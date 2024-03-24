@@ -51,7 +51,7 @@ describe('UsaTag', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'notasize' is not a valid tag size`
+      `'notasize' is not a valid tag size`,
     )
   })
 })

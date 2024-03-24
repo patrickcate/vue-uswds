@@ -125,7 +125,7 @@ describe('UsaSearch', () => {
           h(
             'strong',
             { className: 'usa-search__submit-icon' },
-            'Custom icon slot'
+            'Custom icon slot',
           ),
       },
     })
@@ -174,7 +174,7 @@ describe('UsaSearch', () => {
         const currentValueEvent = vm.emitted('update:modelValue')
         expect(currentValueEvent).to.have.length(12)
         expect(currentValueEvent[currentValueEvent.length - 1]).to.contain(
-          'Test search term'
+          'Test search term',
         )
       })
   })
@@ -212,7 +212,7 @@ describe('UsaSearch', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'invalidvariant' is not a valid search variant`
+      `'invalidvariant' is not a valid search variant`,
     )
   })
 })

@@ -107,11 +107,11 @@ const DefaultTemplate = (args, { argTypes }) => ({
     <template #media v-if="${!!args.media}">${args.media}</template>
     <template #calendar v-if="${!!args.calendar}">${args.calendar}</template>
     <template #heading v-if="${!!args['slot:heading']}">${
-    args['slot:heading']
-  }</template>
+      args['slot:heading']
+    }</template>
     <template #description v-if="${!!args.description}">${
-    args.description
-  }</template>
+      args.description
+    }</template>
     <template #default v-if="${!!args.default}">${args.default}</template>
     <template #meta v-if="${!!args.meta}">${args.meta}</template>
   </UsaCollectionItem>`,
