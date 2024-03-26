@@ -20,28 +20,41 @@ export default {
     ariaLabel: defaultProps.ariaLabel,
     default: '',
   },
+  render: args => ({
+    components: { UsaModalCloseButton },
+    props: Object.keys(UsaModalCloseButton.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaModalCloseButton :aria-label="args.ariaLabel"><template v-if="!!args.default" #default="svgSpritePath">${args.default}</template></UsaModalCloseButton>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaModalCloseButton },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultModalCloseButton = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaModalCloseButton :aria-label="ariaLabel"><template v-if="${!!args.default}" #default="svgSpritePath">${
-    args.default
-  }</template></UsaModalCloseButton>`,
-})
-
-export const DefaultModalCloseButton = DefaultTemplate.bind({})
-DefaultModalCloseButton.args = {
-  ...defaultProps,
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaModalCloseButton :aria-label="Close Modal"></UsaModalCloseButton>`,
+      },
+    },
+  },
 }
-DefaultModalCloseButton.storyName = 'Default'
 
-export const CustomIconModalCloseButton = DefaultTemplate.bind({})
-CustomIconModalCloseButton.args = {
-  ...defaultProps,
-  default: 'x',
+export const CustomIconModalCloseButton = {
+  args: {
+    ...defaultProps,
+    default: 'x',
+  },
+  name: 'Custom Icon',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaModalCloseButton :aria-label="Close Modal">x</UsaModalCloseButton>`,
+      },
+    },
+  },
 }
-CustomIconModalCloseButton.storyName = 'Custom Icon'

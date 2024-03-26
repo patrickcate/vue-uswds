@@ -47,34 +47,49 @@ export default {
         '<div class="usa-footer"><div class="usa-footer__nav"><story /></div></div>',
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaFooterMenu },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaFooterMenu
-    :items="items"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaFooterMenu },
+    props: Object.keys(UsaFooterMenu.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaFooterMenu
+    :items="args.items"
+    :custom-classes="args.customClasses"
   ></UsaFooterMenu>`,
-})
-
-export const DefaultFooterMenu = DefaultTemplate.bind({})
-DefaultFooterMenu.args = {
-  ...defaultProps,
-  items: testItems,
+  }),
 }
-DefaultFooterMenu.storyName = 'Default'
 
-export const CustomClassesFooterMenu = DefaultTemplate.bind({})
-CustomClassesFooterMenu.args = {
-  ...defaultProps,
-  items: testItems,
-  customClasses: {
-    gridRow: ['test-grid-row-class'],
-    gridCol: ['test-grid-col-class'],
+export const DefaultFooterMenu = {
+  args: {
+    ...defaultProps,
+    items: testItems,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterMenu :items="${(JSON.stringify(testItems), null, '\t')}"></UsaFooterMenu>`,
+      },
+    },
   },
 }
-CustomClassesFooterMenu.storyName = 'Custom Classes'
+
+export const CustomClassesFooterMenu = {
+  args: {
+    ...defaultProps,
+    items: testItems,
+    customClasses: {
+      gridRow: ['test-grid-row-class'],
+      gridCol: ['test-grid-col-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterMenu :custom-classes="{ gridRow: ['test-grid-row-class'], gridCol: ['test-grid-col-class'] }" :items="${(JSON.stringify(testItems), null, '\t')}"></UsaFooterMenu>`,
+      },
+    },
+  },
+}

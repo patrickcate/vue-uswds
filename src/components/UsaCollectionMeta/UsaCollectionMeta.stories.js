@@ -19,20 +19,27 @@ export default {
     ariaLabel: defaultProps.ariaLabel,
     default: '<li class="usa-collection__meta-item">Test meta item</li>',
   },
+  render: args => ({
+    components: { UsaCollectionMeta },
+    props: Object.keys(UsaCollectionMeta.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaCollectionMeta :aria-label="args.ariaLabel">${args.default}</UsaCollectionMeta>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaCollectionMeta },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultCollectionMeta = {
+  args: {
+    ...defaultProps,
+    ariaLabel: 'Test aria label',
   },
-  template: `<UsaCollectionMeta :aria-label="ariaLabel">${args.default}</UsaCollectionMeta>`,
-})
-
-export const DefaultCollectionMeta = DefaultTemplate.bind({})
-DefaultCollectionMeta.args = {
-  ...defaultProps,
-  ariaLabel: 'Test aria label',
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionMeta aria-label="Test aria label"><li class="usa-collection__meta-item">Test meta item</li></UsaCollectionMeta>`,
+      },
+    },
+  },
 }
-DefaultCollectionMeta.storyName = 'Default'

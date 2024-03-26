@@ -51,31 +51,46 @@ export default {
       },
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaFooterCollapsibleMenuSection },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaFooterCollapsibleMenuSection
-    :item="item"
-    :heading-tag="headingTag"
+  render: args => ({
+    components: { UsaFooterCollapsibleMenuSection },
+    props: Object.keys(UsaFooterCollapsibleMenuSection.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaFooterCollapsibleMenuSection
+    :item="args.item"
+    :heading-tag="args.headingTag"
   ></UsaFooterCollapsibleMenuSection>`,
-})
-
-export const DefaultFooterCollapsibleMenuItem = DefaultTemplate.bind({})
-DefaultFooterCollapsibleMenuItem.args = {
-  ...defaultProps,
-  item: testItem,
+  }),
 }
-DefaultFooterCollapsibleMenuItem.storyName = 'Default'
 
-export const HeadingTagFooterCollapsibleMenuItem = DefaultTemplate.bind({})
-HeadingTagFooterCollapsibleMenuItem.args = {
-  ...defaultProps,
-  item: testItem,
-  headingTag: 'h3',
+export const DefaultFooterCollapsibleMenuItem = {
+  args: {
+    ...defaultProps,
+    item: testItem,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterCollapsibleMenuSection :item="${JSON.stringify(testItem, null, '\t')}"></UsaFooterCollapsibleMenuSection>`,
+      },
+    },
+  },
 }
-HeadingTagFooterCollapsibleMenuItem.storyName = 'Custom Heading Tag'
+
+export const HeadingTagFooterCollapsibleMenuItem = {
+  args: {
+    ...defaultProps,
+    item: testItem,
+    headingTag: 'h3',
+  },
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterCollapsibleMenuSection :item="${JSON.stringify(testItem, null, '\t')}" heading-tag="h3"></UsaFooterCollapsibleMenuSection>`,
+      },
+    },
+  },
+}

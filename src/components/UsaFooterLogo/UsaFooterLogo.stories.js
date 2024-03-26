@@ -8,7 +8,7 @@ const defaultProps = {
 }
 
 const testLogoImageUrl =
-  'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.app.cloud.gov/preview/uswds/uswds/develop/img/circle-gray-20.svg'
+  'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.sites.pages.cloud.gov/preview/uswds/uswds/develop/img/circle-gray-20.svg'
 
 export default {
   component: UsaFooterLogo,
@@ -48,54 +48,75 @@ export default {
     logo: '',
     'slot:heading': '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaFooterLogo },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaFooterLogo
-    :src="src"
-    :alt="alt"
-    :heading="heading"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaFooterLogo },
+    props: Object.keys(UsaFooterLogo.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaFooterLogo
+    :src="args.src"
+    :alt="args.alt"
+    :heading="args.heading"
+    :custom-classes="args.customClasses"
     class="grid-row mobile-lg:grid-col-6 mobile-lg:grid-gap-2"
   >
-    <template v-if="${!!args.logo}" #logo>${args.logo}</template>
-    <template v-if="${!!args['slot:heading']}" #heading>${
-      args['slot:heading']
-    }</template>
+    <template v-if="!!args.logo" #logo>${args.logo}</template>
+    <template v-if="!!args['slot:heading']" #heading>${args['slot:heading']}</template>
   </UsaFooterLogo>`,
-})
-
-export const DefaultFooterLogo = DefaultTemplate.bind({})
-DefaultFooterLogo.args = {
-  ...defaultProps,
-  src: testLogoImageUrl,
-  alt: 'Test footer logo',
-  heading: 'Test footer heading',
+  }),
 }
-DefaultFooterLogo.storyName = 'Default'
 
-export const SlotsFooterLogo = DefaultTemplate.bind({})
-SlotsFooterLogo.args = {
-  ...defaultProps,
-  logo: 'Logo slot content here...',
-  'slot:heading': 'Heading slot content here...',
-}
-SlotsFooterLogo.storyName = 'Slots'
-
-export const CustomClassesFooterLogo = DefaultTemplate.bind({})
-CustomClassesFooterLogo.args = {
-  ...defaultProps,
-  src: testLogoImageUrl,
-  alt: 'Test footer logo',
-  heading: 'Test footer heading',
-  customClasses: {
-    logoGridCol: ['test-logo-grid-col-class'],
-    headingGridCol: ['test-heading-grid-col-class'],
+export const DefaultFooterLogo = {
+  args: {
+    ...defaultProps,
+    src: testLogoImageUrl,
+    alt: 'Test footer logo',
+    heading: 'Test footer heading',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterLogo :src="${testLogoImageUrl}" alt="Test footer logo" heading="Test footer heading"></UsaFooterLogo>`,
+      },
+    },
   },
 }
-CustomClassesFooterLogo.storyName = 'Custom Classes'
+
+export const SlotsFooterLogo = {
+  args: {
+    ...defaultProps,
+    logo: 'Logo slot content here...',
+    'slot:heading': 'Heading slot content here...',
+  },
+  name: 'Slots',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterLogo :src="${testLogoImageUrl}" alt="Test footer logo" heading="Test footer heading">\n\t<template #logo>Logo slot content here...</template>\n\t<template #heading>Heading slot content here...</template>\n</UsaFooterLogo>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesFooterLogo = {
+  args: {
+    ...defaultProps,
+    src: testLogoImageUrl,
+    alt: 'Test footer logo',
+    heading: 'Test footer heading',
+    customClasses: {
+      logoGridCol: ['test-logo-grid-col-class'],
+      headingGridCol: ['test-heading-grid-col-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterLogo :src="${testLogoImageUrl}" alt="Test footer logo" heading="Test footer heading" :custom-classes="{ \n\tlogoGridCol: ['test-logo-grid-col-class'], \n\theadingGridCol: ['test-heading-grid-col-class'] \n}"></UsaFooterLogo>`,
+      },
+    },
+  },
+}

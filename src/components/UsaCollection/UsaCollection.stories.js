@@ -28,26 +28,41 @@ export default {
     condensed: defaultProps.condensed,
     default: testCollectionItem,
   },
+  render: args => ({
+    components: { UsaCollection, UsaCollectionItem, UsaCollectionHeading },
+    props: Object.keys(UsaCollection.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaCollection :condensed="args.condensed">${args.default}</UsaCollection>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaCollection, UsaCollectionItem, UsaCollectionHeading },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultCollection = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaCollection :condensed="condensed">${args.default}</UsaCollection>`,
-})
-
-export const DefaultCollection = DefaultTemplate.bind({})
-DefaultCollection.args = {
-  ...defaultProps,
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollection>${testCollectionItem}</UsaCollection>`,
+      },
+    },
+  },
 }
-DefaultCollection.storyName = 'Default'
 
-export const CondensedCollection = DefaultTemplate.bind({})
-CondensedCollection.args = {
-  ...defaultProps,
-  condensed: true,
+export const CondensedCollection = {
+  args: {
+    ...defaultProps,
+    condensed: true,
+  },
+  name: 'Condensed',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollection :condensed="true">${testCollectionItem}</UsaCollection>`,
+      },
+    },
+  },
 }
-CondensedCollection.storyName = 'Condensed'

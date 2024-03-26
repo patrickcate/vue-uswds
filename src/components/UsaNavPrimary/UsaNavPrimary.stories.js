@@ -105,45 +105,77 @@ export default {
       },
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaNavPrimary },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaNavPrimary
-    :items="items">
+  render: args => ({
+    components: { UsaNavPrimary },
+    props: Object.keys(UsaNavPrimary.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaNavPrimary
+    :items="args.items">
       <template #default="{ items }">${args.default}</template>
     </UsaNavPrimary>`,
-})
-
-export const DefaultNavPrimary = DefaultTemplate.bind({})
-DefaultNavPrimary.args = {
-  ...defaultProps,
-  items: testItems,
+  }),
 }
-DefaultNavPrimary.storyName = 'Default'
 
-export const ScopedDefaultSlotNavPrimary = DefaultTemplate.bind({})
-ScopedDefaultSlotNavPrimary.args = {
-  ...defaultProps,
-  items: [
-    {
-      href: '#',
-      text: 'Test nav link 1',
+export const DefaultNavPrimary = {
+  args: {
+    ...defaultProps,
+    items: testItems,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaNavPrimary :items="${(JSON.stringify(testItems), null, '\t')}"></UsaNavPrimary>`,
+      },
     },
-    {
-      href: '#',
-      text: 'Test nav link 2',
-    },
-    {
-      href: '#',
-      text: 'Test nav link 3',
-    },
-  ],
-  default:
-    '<a v-for="item in items" :href="item.href" :key="item.text" class="usa-nav__primary-item">{{ item.text }}</a>',
+  },
 }
-ScopedDefaultSlotNavPrimary.storyName = 'Scoped Slot'
+
+export const ScopedDefaultSlotNavPrimary = {
+  args: {
+    ...defaultProps,
+    items: [
+      {
+        href: '#',
+        text: 'Test nav link 1',
+      },
+      {
+        href: '#',
+        text: 'Test nav link 2',
+      },
+      {
+        href: '#',
+        text: 'Test nav link 3',
+      },
+    ],
+    default:
+      '<a v-for="item in items" :href="item.href" :key="item.text" class="usa-nav__primary-item">{{ item.text }}</a>',
+  },
+  name: 'Scoped Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaNavPrimary :items="${
+          (JSON.stringify([
+            {
+              href: '#',
+              text: 'Test nav link 1',
+            },
+            {
+              href: '#',
+              text: 'Test nav link 2',
+            },
+            {
+              href: '#',
+              text: 'Test nav link 3',
+            },
+          ]),
+          null,
+          '\t')
+        }"><template #default="{ items }"><a v-for="item in items" :href="item.href" :key="item.text" class="usa-nav__primary-item">{{ item.text }}</a></template></UsaNavPrimary>`,
+      },
+    },
+  },
+}

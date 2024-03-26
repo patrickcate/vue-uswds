@@ -99,166 +99,259 @@ export default {
     footer:
       '<div><button type="button" class="usa-button">Visit Florida Keys</button></div>',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaCard },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaCard
-    :card-tag="cardTag"
-    :heading="heading"
-    :heading-tag="headingTag"
-    :flag="flag"
-    :header-first="headerFirst"
-    :inset-media="insetMedia"
-    :media-position="mediaPosition"
-    :header-exdent="headerExdent"
-    :media-exdent="mediaExdent"
-    :body-exdent="bodyExdent"
-    :footer-exdent="footerExdent"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaCard },
+    props: Object.keys(UsaCard.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaCard
+    :card-tag="args.cardTag"
+    :heading="args.heading"
+    :heading-tag="args.headingTag"
+    :flag="args.flag"
+    :header-first="args.headerFirst"
+    :inset-media="args.insetMedia"
+    :media-position="args.mediaPosition"
+    :header-exdent="args.headerExdent"
+    :media-exdent="args.mediaExdent"
+    :body-exdent="args.bodyExdent"
+    :footer-exdent="args.footerExdent"
+    :custom-classes="args.customClasses"
   >
-    <template #heading v-if="${!!args['slot:heading']}">${
-      args['slot:heading']
-    }</template>
-    <template #media v-if="${!!args.media}">${args.media}</template>
-    <template #default v-if="${!!args.default}">${args.default}</template>
-    <template #footer v-if="${!!args.footer}">${args.footer}</template>
+    <template #heading v-if="!!args['slot:heading']">${args['slot:heading']}</template>
+    <template #media v-if="!!args.media">${args.media}</template>
+    <template #default v-if="!!args.default">${args.default}</template>
+    <template #footer v-if="!!args.footer">${args.footer}</template>
   </UsaCard>`,
-})
-
-export const DefaultCard = DefaultTemplate.bind({})
-DefaultCard.args = {
-  ...defaultProps,
-  heading: 'Card',
+  }),
 }
-DefaultCard.decorators = [
-  () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
-]
-DefaultCard.storyName = 'Default'
 
-export const HeaderFirstTagCard = DefaultTemplate.bind({})
-HeaderFirstTagCard.args = {
-  ...defaultProps,
-  headerFirst: true,
-  heading: 'Card',
-}
-HeaderFirstTagCard.decorators = [
-  () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
-]
-HeaderFirstTagCard.storyName = 'Header First'
-
-export const NoMediaCard = DefaultTemplate.bind({})
-NoMediaCard.args = {
-  ...defaultProps,
-  media: '',
-  heading: 'Card',
-}
-NoMediaCard.decorators = [
-  () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
-]
-NoMediaCard.storyName = 'No Media'
-
-export const NoHeaderCard = DefaultTemplate.bind({})
-NoHeaderCard.args = {
-  ...defaultProps,
-  heading: '',
-  'slot:heading': '',
-}
-NoHeaderCard.decorators = [
-  () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
-]
-NoHeaderCard.storyName = 'No Header'
-
-export const NoFooterCard = DefaultTemplate.bind({})
-NoFooterCard.args = {
-  ...defaultProps,
-  footer: '',
-  heading: 'Card',
-}
-NoFooterCard.decorators = [
-  () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
-]
-NoFooterCard.storyName = 'No Footer'
-
-export const CustomCardTagCard = DefaultTemplate.bind({})
-CustomCardTagCard.args = {
-  ...defaultProps,
-  cardTag: 'section',
-  heading: 'Card',
-}
-CustomCardTagCard.decorators = [
-  () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
-]
-CustomCardTagCard.storyName = 'Custom Card Tag'
-
-export const InsetMediaCard = DefaultTemplate.bind({})
-InsetMediaCard.args = {
-  ...defaultProps,
-  insetMedia: true,
-  heading: 'Card',
-}
-InsetMediaCard.decorators = [
-  () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
-]
-InsetMediaCard.storyName = 'Inset Media'
-
-export const CustomHeadingTagCard = DefaultTemplate.bind({})
-CustomHeadingTagCard.args = {
-  ...defaultProps,
-  headingTag: 'h4',
-  heading: 'Card',
-}
-CustomHeadingTagCard.decorators = [
-  () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
-]
-CustomHeadingTagCard.storyName = 'Custom Heading Tag'
-
-export const HeadingSlotCard = DefaultTemplate.bind({})
-HeadingSlotCard.args = {
-  ...defaultProps,
-  'slot:heading': 'Custom header slot',
-}
-HeadingSlotCard.decorators = [
-  () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
-]
-HeadingSlotCard.storyName = 'Header Slot'
-
-export const CustomClassesCard = DefaultTemplate.bind({})
-CustomClassesCard.args = {
-  ...defaultProps,
-  heading: 'Card',
-  customClasses: {
-    container: ['test-container-class'],
-    header: ['test-header-class'],
-    heading: ['test-heading-class'],
-    media: ['test-media-class'],
-    img: ['test-img-class'],
-    body: ['test-body-class'],
-    footer: ['test-footer-class'],
+export const DefaultCard = {
+  args: {
+    ...defaultProps,
+    heading: 'Card',
+  },
+  decorators: [
+    () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
+  ],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCard heading="Card">\n\t<template #media><img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image"></template>\n\t<template #default><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p></template>\n\t<template #footer><div><button type="button" class="usa-button">Visit Florida Keys</button></div></template>\n</UsaCard>`,
+      },
+    },
   },
 }
-CustomClassesCard.decorators = [
-  () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
-]
-CustomClassesCard.storyName = 'Custom Classes'
 
-export const FlagLayoutCard = DefaultTemplate.bind({})
-FlagLayoutCard.args = {
-  ...defaultProps,
-  flag: true,
-  heading: 'Card',
+export const HeaderFirstTagCard = {
+  args: {
+    ...defaultProps,
+    headerFirst: true,
+    heading: 'Card',
+  },
+  decorators: [
+    () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
+  ],
+  name: 'Header First',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCard :header-first="true" heading="Card">\n\t<template #media><img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image"></template>\n\t<template #default><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p></template>\n\t<template #footer><div><button type="button" class="usa-button">Visit Florida Keys</button></div></template>\n</UsaCard>`,
+      },
+    },
+  },
 }
-FlagLayoutCard.storyName = 'Flag Layout'
 
-export const FlagLayoutMediaRightCard = DefaultTemplate.bind({})
-FlagLayoutMediaRightCard.args = {
-  ...defaultProps,
-  flag: true,
-  mediaPosition: 'right',
-  heading: 'Card',
+export const NoMediaCard = {
+  args: {
+    ...defaultProps,
+    media: '',
+    heading: 'Card',
+  },
+  decorators: [
+    () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
+  ],
+  name: 'No Media',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCard heading="Card">\n\t<template #default><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p></template>\n\t<template #footer><div><button type="button" class="usa-button">Visit Florida Keys</button></div></template>\n</UsaCard>`,
+      },
+    },
+  },
 }
-FlagLayoutMediaRightCard.storyName = 'Flag Layout w/ Media Right'
+
+export const NoHeaderCard = {
+  args: {
+    ...defaultProps,
+    heading: '',
+    'slot:heading': '',
+  },
+  decorators: [
+    () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
+  ],
+  name: 'No Header',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCard>\n\t<template #media><img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image"></template>\n\t<template #default><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p></template>\n\t<template #footer><div><button type="button" class="usa-button">Visit Florida Keys</button></div></template>\n</UsaCard>`,
+      },
+    },
+  },
+}
+
+export const NoFooterCard = {
+  args: {
+    ...defaultProps,
+    footer: '',
+    heading: 'Card',
+  },
+  decorators: [
+    () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
+  ],
+  name: 'No Footer',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCard heading="Card">\n\t<template #media><img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image"></template>\n\t<template #default><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p></template>\n</UsaCard>`,
+      },
+    },
+  },
+}
+
+export const CustomCardTagCard = {
+  args: {
+    ...defaultProps,
+    cardTag: 'section',
+    heading: 'Card',
+  },
+  decorators: [
+    () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
+  ],
+  name: 'Custom Card Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCard heading="Card" card-tag="section">\n\t<template #media><img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image"></template>\n\t<template #default><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p></template>\n\t<template #footer><div><button type="button" class="usa-button">Visit Florida Keys</button></div></template>\n</UsaCard>`,
+      },
+    },
+  },
+}
+
+export const InsetMediaCard = {
+  args: {
+    ...defaultProps,
+    insetMedia: true,
+    heading: 'Card',
+  },
+  decorators: [
+    () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
+  ],
+  name: 'Inset Media',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCard heading="Card" :inset-media="true">\n\t<template #media><img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image"></template>\n\t<template #default><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p></template>\n\t<template #footer><div><button type="button" class="usa-button">Visit Florida Keys</button></div></template>\n</UsaCard>`,
+      },
+    },
+  },
+}
+
+export const CustomHeadingTagCard = {
+  args: {
+    ...defaultProps,
+    headingTag: 'h4',
+    heading: 'Card',
+  },
+  decorators: [
+    () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
+  ],
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCard heading="Card" heading-tag="h4">\n\t<template #media><img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image"></template>\n\t<template #default><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p></template>\n\t<template #footer><div><button type="button" class="usa-button">Visit Florida Keys</button></div></template>\n</UsaCard>`,
+      },
+    },
+  },
+}
+
+export const HeadingSlotCard = {
+  args: {
+    ...defaultProps,
+    'slot:heading': 'Custom header slot',
+  },
+  decorators: [
+    () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
+  ],
+  name: 'Header Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCard>\n\t<template #heading>Custom header slot</template>\n\t<template #media><img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image"></template>\n\t<template #default><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p></template>\n\t<template #footer><div><button type="button" class="usa-button">Visit Florida Keys</button></div></template>\n</UsaCard>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesCard = {
+  args: {
+    ...defaultProps,
+    heading: 'Card',
+    customClasses: {
+      container: ['test-container-class'],
+      header: ['test-header-class'],
+      heading: ['test-heading-class'],
+      media: ['test-media-class'],
+      img: ['test-img-class'],
+      body: ['test-body-class'],
+      footer: ['test-footer-class'],
+    },
+  },
+  decorators: [
+    () => ({ template: '<div style="max-width: 50%;"><story /></div>' }),
+  ],
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCard heading="Card" :custom-classes="{ container: ['test-container-class'], header: ['test-header-class'], heading: ['test-heading-class'], media: ['test-media-class'], img: ['test-img-class'], body: ['test-body-class'], footer: ['test-footer-class'] }">\n\t<template #media><img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image"></template>\n\t<template #default><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p></template>\n\t<template #footer><div><button type="button" class="usa-button">Visit Florida Keys</button></div></template>\n</UsaCard>`,
+      },
+    },
+  },
+}
+
+export const FlagLayoutCard = {
+  args: {
+    ...defaultProps,
+    flag: true,
+    heading: 'Card',
+  },
+  name: 'Flag Layout',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCard heading="Card" :flag="true">\n\t<template #media><img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image"></template>\n\t<template #default><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p></template>\n\t<template #footer><div><button type="button" class="usa-button">Visit Florida Keys</button></div></template>\n</UsaCard>`,
+      },
+    },
+  },
+}
+
+export const FlagLayoutMediaRightCard = {
+  args: {
+    ...defaultProps,
+    flag: true,
+    mediaPosition: 'right',
+    heading: 'Card',
+  },
+  name: 'Flag Layout w/ Media Right',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCard heading="Card" :flag="true" media-position="right">\n\t<template #media><img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image"></template>\n\t<template #default><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis earum tenetur quo cupiditate, eaque qui officia recusandae.</p></template>\n\t<template #footer><div><button type="button" class="usa-button">Visit Florida Keys</button></div></template>\n</UsaCard>`,
+      },
+    },
+  },
+}

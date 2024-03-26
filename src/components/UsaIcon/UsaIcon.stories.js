@@ -43,41 +43,64 @@ export default {
     focusable: defaultProps.focusable,
     title: '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaIcon },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaIcon
-    :name="name"
-    :size="size"
-    :aria-hidden="ariaHidden"
-    :role="role"
-    :focusable="focusable"
+  render: args => ({
+    components: { UsaIcon },
+    props: Object.keys(UsaIcon.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaIcon
+    :name="args.name"
+    :size="args.size"
+    :aria-hidden="args.ariaHidden"
+    :role="args.role"
+    :focusable="args.focusable"
   >
-    <template v-if="${!!args.title}" #title>${args.title}</template>
+    <template v-if="!!args.title" #title>${args.title}</template>
   </UsaIcon>`,
-})
-
-export const DefaultIcon = DefaultTemplate.bind({})
-DefaultIcon.args = {
-  ...defaultProps,
+  }),
 }
-DefaultIcon.storyName = 'Default'
 
-export const CustomSizeIcon = DefaultTemplate.bind({})
-CustomSizeIcon.args = {
-  ...defaultProps,
-  size: '9',
+export const DefaultIcon = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIcon name="flag"></UsaIcon>`,
+      },
+    },
+  },
 }
-CustomSizeIcon.storyName = 'Custom Size'
 
-export const TitleSlotIcon = DefaultTemplate.bind({})
-TitleSlotIcon.args = {
-  ...defaultProps,
-  title: '<title>Flag icon</title>',
+export const CustomSizeIcon = {
+  args: {
+    ...defaultProps,
+    size: '9',
+  },
+  name: 'Custom Size',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIcon name="flag" size="9"></UsaIcon>`,
+      },
+    },
+  },
 }
-TitleSlotIcon.storyName = 'Title Slot'
+
+export const TitleSlotIcon = {
+  args: {
+    ...defaultProps,
+    title: '<em>Flag icon</em>',
+  },
+  name: 'Title Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIcon name="flag"><template #title><em>Flag icon</em></template></UsaIcon>`,
+      },
+    },
+  },
+}

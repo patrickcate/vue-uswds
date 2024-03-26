@@ -46,66 +46,108 @@ export default {
     'slot:label': '',
     default: '',
   },
+  render: args => ({
+    components: { UsaAccordion, UsaAccordionItem },
+    props: Object.keys(UsaAccordionItem.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaAccordionItem :id="args.id" :label="args.label" :open="args.open" :custom-classes="args.customClasses">
+      <template #label>{{ args['slot:label'] }}</template>
+      <template #default>{{ args.default }}</template>
+    </UsaAccordionItem>`,
+  }),
+  decorators: [
+    story => ({
+      components: { story, UsaAccordion },
+      template: '<UsaAccordion><story /></UsaAccordion>',
+    }),
+  ],
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaAccordion, UsaAccordionItem },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultAccordionItem = {
+  args: {
+    ...defaultProps,
+    label: 'Accordion 1',
+    default: 'Accordion 1 Content',
   },
-  template: `<UsaAccordion>
-    <UsaAccordionItem :id="id" :label="label" :open="open" :custom-classes="customClasses">
-      <template v-if="${!!args['slot:label']}" #label>${
-        args['slot:label']
-      }</template>
-      <template v-if="${!!args.default}" #default>${args.default}</template>
-    </UsaAccordionItem>
-  </UsaAccordion>`,
-})
-
-export const DefaultAccordionItem = DefaultTemplate.bind({})
-DefaultAccordionItem.args = {
-  ...defaultProps,
-  label: 'Accordion 1',
-  default: 'Accordion 1 Content',
-}
-DefaultAccordionItem.storyName = 'Default'
-
-export const LabelSlotAccordionItem = DefaultTemplate.bind({})
-LabelSlotAccordionItem.args = {
-  ...defaultProps,
-  'slot:label': 'Custom Label',
-  default: 'Accordion 1 Content',
-}
-LabelSlotAccordionItem.storyName = 'Label Slot'
-
-export const DefaultOpenAccordionItem = DefaultTemplate.bind({})
-DefaultOpenAccordionItem.args = {
-  ...defaultProps,
-  open: true,
-  label: 'Accordion 1',
-  default: 'Accordion 1 Content',
-}
-DefaultOpenAccordionItem.storyName = 'Open by Default'
-
-export const CustomIdAccordionItem = DefaultTemplate.bind({})
-CustomIdAccordionItem.args = {
-  ...defaultProps,
-  id: 'custom-id',
-  label: 'Accordion 1',
-}
-CustomIdAccordionItem.storyName = 'Custom ID'
-
-export const CustomClassesAccordionItem = DefaultTemplate.bind({})
-CustomClassesAccordionItem.args = {
-  ...defaultProps,
-  customClasses: {
-    heading: ['custom-heading-class'],
-    button: ['custom-button-class'],
-    content: ['custom-content-class'],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAccordion>\n\t<UsaAccordionItem label="Accordion 1">Accordion 1 Content</UsaAccordionItem>\n</UsaAccordion>`,
+      },
+    },
   },
-  label: 'Accordion 1',
-  default: 'Accordion 1 Content',
 }
-CustomClassesAccordionItem.storyName = 'Custom Classes'
+
+export const LabelSlotAccordionItem = {
+  args: {
+    ...defaultProps,
+    'slot:label': 'Custom Label',
+    default: 'Accordion 1 Content',
+  },
+  name: 'Label Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAccordion>\n\t<UsaAccordionItem>\n\t\t<template #label>Custom Label</template>\n\t\t<template #default>Accordion 1 Content</template>\n\t</UsaAccordionItem>\n</UsaAccordion>`,
+      },
+    },
+  },
+}
+
+export const DefaultOpenAccordionItem = {
+  args: {
+    ...defaultProps,
+    open: true,
+    label: 'Accordion 1',
+    default: 'Accordion 1 Content',
+  },
+  name: 'Open by Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAccordion>\n\t<UsaAccordionItem :open="true" label="Accordion 1">Accordion 1 Content</UsaAccordionItem>\n</UsaAccordion>`,
+      },
+    },
+  },
+}
+
+export const CustomIdAccordionItem = {
+  args: {
+    ...defaultProps,
+    id: 'custom-id',
+    label: 'Accordion 1',
+    default: 'Accordion 1 Content',
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAccordion>\n\t<UsaAccordionItem id="custom-id" label="Accordion 1">Accordion 1 Content</UsaAccordionItem>\n</UsaAccordion>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesAccordionItem = {
+  args: {
+    ...defaultProps,
+    customClasses: {
+      heading: ['custom-heading-class'],
+      button: ['custom-button-class'],
+      content: ['custom-content-class'],
+    },
+    label: 'Accordion 1',
+    default: 'Accordion 1 Content',
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAccordion>\n\t<UsaAccordionItem :custom-classes="{ heading: ['custom-heading-class'] }" label="Accordion 1">Accordion 1 Content</UsaAccordionItem>\n</UsaAccordion>`,
+      },
+    },
+  },
+}

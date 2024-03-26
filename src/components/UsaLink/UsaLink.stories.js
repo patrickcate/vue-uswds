@@ -36,42 +36,65 @@ export default {
     external: defaultProps.external,
     default: 'Test',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaLink },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaLink
-    :alt="alt"
-    :external="external"
-    :href="href"
-    :to="to"
-    :router-component-name="routerComponentName"
+  render: args => ({
+    components: { UsaLink },
+    props: Object.keys(UsaLink.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaLink
+    :alt="args.alt"
+    :external="args.external"
+    :href="args.href"
+    :to="args.to"
+    :router-component-name="args.routerComponentName"
    >${args.default}</UsaLink>`,
-})
-
-export const DefaultLink = DefaultTemplate.bind({})
-DefaultLink.args = {
-  ...defaultProps,
+  }),
 }
-DefaultLink.storyName = 'Default'
 
-export const AltLink = DefaultTemplate.bind({})
-AltLink.args = {
-  ...defaultProps,
-  alt: true,
+export const DefaultLink = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaLink href="/test-page">Test</UsaLink>`,
+      },
+    },
+  },
 }
-AltLink.decorators = [
-  () => ({ template: '<div class="usa-dark-background"><story /></div>' }),
-]
-AltLink.storyName = 'Alt'
 
-export const ExternalLink = DefaultTemplate.bind({})
-ExternalLink.args = {
-  ...defaultProps,
-  external: true,
+export const AltLink = {
+  args: {
+    ...defaultProps,
+    alt: true,
+  },
+  decorators: [
+    () => ({ template: '<div class="usa-dark-background"><story /></div>' }),
+  ],
+  name: 'Alt',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaLink :alt="true" href="/test-page">Test</UsaLink>`,
+      },
+    },
+  },
 }
-ExternalLink.storyName = 'External'
+
+export const ExternalLink = {
+  args: {
+    ...defaultProps,
+    external: true,
+  },
+  name: 'External',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaLink :external="true" href="/test-page">Test</UsaLink>`,
+      },
+    },
+  },
+}

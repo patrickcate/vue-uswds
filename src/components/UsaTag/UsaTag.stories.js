@@ -28,34 +28,57 @@ export default {
     tag: defaultProps.tag,
     default: 'Test',
   },
+  render: args => ({
+    components: { UsaTag },
+    props: Object.keys(UsaTag.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaTag :tag="args.tag" :size="args.size">${args.default}</UsaTag>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaTag },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultTag = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaTag :tag="tag" :size="size">${args.default}</UsaTag>`,
-})
-
-export const DefaultTag = DefaultTemplate.bind({})
-DefaultTag.args = {
-  ...defaultProps,
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTag>Test</UsaTag>`,
+      },
+    },
+  },
 }
-DefaultTag.storyName = 'Default'
 
-export const BigTag = DefaultTemplate.bind({})
-BigTag.args = {
-  ...defaultProps,
-  size: 'big',
+export const BigTag = {
+  args: {
+    ...defaultProps,
+    size: 'big',
+  },
+  name: 'Big',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTag size="big">Test</UsaTag>`,
+      },
+    },
+  },
 }
-BigTag.storyName = 'Big'
 
-export const CustomElementTag = DefaultTemplate.bind({})
-CustomElementTag.args = {
-  ...defaultProps,
-  tag: 'div',
-  default: 'Test (div)',
+export const CustomElementTag = {
+  args: {
+    ...defaultProps,
+    tag: 'div',
+    default: 'Test (div)',
+  },
+  name: 'Custom Element',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTag tag="div">Test (div)</UsaTag>`,
+      },
+    },
+  },
 }
-CustomElementTag.storyName = 'Custom Element'

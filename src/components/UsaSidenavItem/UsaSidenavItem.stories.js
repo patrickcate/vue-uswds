@@ -32,96 +32,140 @@ export default {
     sublist: '',
   },
   decorators: [() => ({ template: '<ul class="usa-sidenav"><story /></ul>' })],
+  render: args => ({
+    components: { UsaSidenavItem },
+    props: Object.keys(UsaSidenavItem.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaSidenavItem :item="args.item" :custom-classes="args.customClasses"><template v-if="!!args.default" #default="{ item }">${args.default}</template><template v-if="!!args.sublist" #sublist="{ sublist }">${args.sublist}</template></UsaSidenavItem>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaSidenavItem },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultSidenavItem = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaSidenavItem :item="item" :custom-classes="customClasses"><template v-if="${!!args.default}" #default="{ item }">${
-    args.default
-  }</template><template v-if="${!!args.sublist}" #sublist="{ sublist }">${
-    args.sublist
-  }</template></UsaSidenavItem>`,
-})
-
-export const DefaultSidenavItem = DefaultTemplate.bind({})
-DefaultSidenavItem.args = {
-  ...defaultProps,
-}
-DefaultSidenavItem.storyName = 'Default'
-
-export const CustomClassesSidenavItem = DefaultTemplate.bind({})
-CustomClassesSidenavItem.args = {
-  ...defaultProps,
-  item: {
-    to: '/test-page-1',
-    text: 'Test Page 1',
-    children: [
-      {
-        to: '/test-page-1-1',
-        text: 'Test Page 1.1',
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSidenavItem :item="item"></UsaSidenavItem>`,
       },
-      {
-        to: '/test-page-1-2',
-        text: 'Test Page 1.2',
-      },
-      {
-        to: '/test-page-1-3',
-        text: 'Test Page 1.3',
-      },
-    ],
-  },
-  customClasses: {
-    item: ['test-item-class'],
-    link: ['test-link-class'],
-    sublist: ['test-sublist-class'],
+    },
   },
 }
-CustomClassesSidenavItem.storyName = 'Custom Classes'
 
-export const SublistSidenavItem = DefaultTemplate.bind({})
-SublistSidenavItem.args = {
-  ...defaultProps,
-  item: {
-    to: '/parent-page',
-    text: 'Parent page',
-    children: [
-      {
-        to: '/parent-page/sublist',
-        text: 'Sublist',
+export const CustomClassesSidenavItem = {
+  args: {
+    ...defaultProps,
+    item: {
+      to: '/test-page-1',
+      text: 'Test Page 1',
+      children: [
+        {
+          to: '/test-page-1-1',
+          text: 'Test Page 1.1',
+        },
+        {
+          to: '/test-page-1-2',
+          text: 'Test Page 1.2',
+        },
+        {
+          to: '/test-page-1-3',
+          text: 'Test Page 1.3',
+        },
+      ],
+    },
+    customClasses: {
+      item: ['test-item-class'],
+      link: ['test-link-class'],
+      sublist: ['test-sublist-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSidenavItem :item="item" :custom-classes="{ item: 'test-item-class', link: 'test-link-class', sublist: 'test-sublist-class' }"></UsaSidenavItem>`,
       },
-    ],
+    },
   },
 }
-SublistSidenavItem.storyName = 'With Sublist'
 
-export const ScopedDefaultSlotSidenavItem = DefaultTemplate.bind({})
-ScopedDefaultSlotSidenavItem.args = {
-  ...defaultProps,
-  item: {
-    to: '/parent-page',
-    text: 'Parent page',
+export const SublistSidenavItem = {
+  args: {
+    ...defaultProps,
+    item: {
+      to: '/parent-page',
+      text: 'Parent page',
+      children: [
+        {
+          to: '/parent-page/sublist',
+          text: 'Sublist',
+        },
+      ],
+    },
   },
-  default: `<strong>{{ item.to }} &rarr;</strong>`,
-}
-ScopedDefaultSlotSidenavItem.storyName = 'Scoped Default Slot'
-
-export const ScopedSublistSlotSidenavItem = DefaultTemplate.bind({})
-ScopedSublistSlotSidenavItem.args = {
-  ...defaultProps,
-  item: {
-    to: '/parent-page',
-    text: 'Parent page',
-    children: [
-      {
-        to: '/parent-page/sublist',
-        text: 'Sublist',
+  name: 'With Sublist',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSidenavItem :item="{
+            to: '/parent-page',
+            text: 'Parent page',
+            children: [
+                {
+                to: '/parent-page/sublist',
+                text: 'Sublist',
+                },
+            ],
+        }"></UsaSidenavItem>`,
       },
-    ],
+    },
   },
-  sublist: `<li>{{ sublist[0].text }} &rarr;</li>`,
 }
-ScopedSublistSlotSidenavItem.storyName = 'Scoped Sublist Slot'
+
+export const ScopedDefaultSlotSidenavItem = {
+  args: {
+    ...defaultProps,
+    item: {
+      to: '/parent-page',
+      text: 'Parent page',
+    },
+    default: `<strong>{{ item.to }} &rarr;</strong>`,
+  },
+  name: 'Scoped Default Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSidenavItem :item="{ to: '/parent-page', text: 'Parent page' }"><template #default="{ item }"><strong>{{ item.to }} &rarr;</strong></template></UsaSidenavItem>`,
+      },
+    },
+  },
+}
+
+export const ScopedSublistSlotSidenavItem = {
+  args: {
+    ...defaultProps,
+    item: {
+      to: '/parent-page',
+      text: 'Parent page',
+      children: [
+        {
+          to: '/parent-page/sublist',
+          text: 'Sublist',
+        },
+      ],
+    },
+    sublist: `<li>{{ sublist[0].text }} &rarr;</li>`,
+  },
+  name: 'Scoped Sublist Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSidenavItem :item="{ to: '/parent-page', text: 'Parent page', children: [{ to: '/parent-page/sublist', text: 'Sublist' }]}"><template #sublist="{ sublist }"><li>{{ sublist[0].text }} &rarr;</li></template></UsaSidenavItem>`,
+      },
+    },
+  },
+}

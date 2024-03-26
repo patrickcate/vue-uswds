@@ -29,36 +29,51 @@ export default {
       template: '<form class="usa-form usa-form--large"><story /></form>',
     }),
   ],
+  render: args => ({
+    components: { UsaPasswordMask, UsaTextInput },
+    props: Object.keys(UsaPasswordMask.props),
+    setup() {
+      const modelValue = ref(args.modelValue)
+      return { args, modelValue }
+    },
+    template: `<UsaPasswordMask
+      :show-text="args.showText"
+      :hide-text="args.hideText"
+      v-slot="{ type }"
+    >${args.default}</UsaPasswordMask>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaPasswordMask, UsaTextInput },
-  props: Object.keys(argTypes),
-  setup() {
-    const modelValue = ref(args.modelValue)
-    return { ...args, modelValue }
+export const DefaultPasswordMask = {
+  args: {
+    ...defaultProps,
+    default:
+      '<UsaTextInput v-model="modelValue" label="Password" :type="type"></UsaTextInput>',
   },
-  template: `<UsaPasswordMask
-    :show-text="showText"
-    :hide-text="hideText"
-    v-slot="{ type }"
-  >${args.default}</UsaPasswordMask>`,
-})
-
-export const DefaultPasswordMask = DefaultTemplate.bind({})
-DefaultPasswordMask.args = {
-  ...defaultProps,
-  default:
-    '<UsaTextInput v-model="modelValue" label="Password" :type="type"></UsaTextInput>',
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPasswordMask><UsaTextInput v-model="modelValue" label="Password" :type="type"></UsaTextInput></UsaPasswordMask>`,
+      },
+    },
+  },
 }
-DefaultPasswordMask.storyName = 'Default'
 
-export const CustomShowHideTextPasswordMask = DefaultTemplate.bind({})
-CustomShowHideTextPasswordMask.args = {
-  ...defaultProps,
-  showText: 'Show typing',
-  hideText: 'Hide typing',
-  default:
-    '<UsaTextInput v-model="modelValue" label="Password" :type="type"></UsaTextInput>',
+export const CustomShowHideTextPasswordMask = {
+  args: {
+    ...defaultProps,
+    showText: 'Show typing',
+    hideText: 'Hide typing',
+    default:
+      '<UsaTextInput v-model="modelValue" label="Password" :type="type"></UsaTextInput>',
+  },
+  name: 'Custom Show/Hide Text',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPasswordMask :show-text="showText" :hide-text="hideText"><UsaTextInput v-model="modelValue" label="Password" :type="type"></UsaTextInput></UsaPasswordMask>`,
+      },
+    },
+  },
 }
-CustomShowHideTextPasswordMask.storyName = 'Custom Show/Hide Text'

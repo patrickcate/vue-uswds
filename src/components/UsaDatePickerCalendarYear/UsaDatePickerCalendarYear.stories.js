@@ -42,64 +42,108 @@ export default {
     previousYearsButtonLabel: defaultProps.previousYearsButtonLabel,
     nextYearsButtonLabel: defaultProps.nextYearsButtonLabel,
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaDatePickerCalendarYear },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaDatePickerCalendarYear
-    :selected-year="selectedYear"
-    :active-date="activeDate"
-    :min-date="minDate"
-    :max-date="maxDate"
-    :previous-years-button-label="previousYearsButtonLabel"
-    :next-years-button-label="nextYearsButtonLabel"
+  render: args => ({
+    components: { UsaDatePickerCalendarYear },
+    props: Object.keys(UsaDatePickerCalendarYear.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaDatePickerCalendarYear
+    :selected-year="args.selectedYear"
+    :active-date="args.activeDate"
+    :min-date="args.minDate"
+    :max-date="args.maxDate"
+    :previous-years-button-label="args.previousYearsButtonLabel"
+    :next-years-button-label="args.nextYearsButtonLabel"
     ></UsaDatePickerCalendarYear>`,
-})
-
-export const DefaultDatePickerCalendarYear = DefaultTemplate.bind({})
-DefaultDatePickerCalendarYear.args = {
-  ...defaultProps,
+  }),
 }
-DefaultDatePickerCalendarYear.storyName = 'Default'
 
-export const SelectedYearDatePickerCalendarYear = DefaultTemplate.bind({})
-SelectedYearDatePickerCalendarYear.args = {
-  ...defaultProps,
-  selectedYear: 2020,
+export const DefaultDatePickerCalendarYear = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendarYear />`,
+      },
+    },
+  },
 }
-SelectedYearDatePickerCalendarYear.storyName = 'Selected Year'
 
-export const MinYearDatePickerCalendarYear = DefaultTemplate.bind({})
-MinYearDatePickerCalendarYear.args = {
-  ...defaultProps,
-  minDate: '2020-01-01',
+export const SelectedYearDatePickerCalendarYear = {
+  args: {
+    ...defaultProps,
+    selectedYear: 2020,
+  },
+  name: 'Selected Year',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendarYear :selected-year="2020" />`,
+      },
+    },
+  },
 }
-MinYearDatePickerCalendarYear.storyName = 'Min Date'
 
-export const MaxYearDatePickerCalendarYear = DefaultTemplate.bind({})
-MaxYearDatePickerCalendarYear.args = {
-  ...defaultProps,
-  maxDate: '2023-12-31',
+export const MinYearDatePickerCalendarYear = {
+  args: {
+    ...defaultProps,
+    minDate: '2020-01-01',
+  },
+  name: 'Min Date',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendarYear min-date="2020-01-01" />`,
+      },
+    },
+  },
 }
-MaxYearDatePickerCalendarYear.storyName = 'Max Date'
 
-export const PreviousButtonLabelDatePickerCalendarYear = DefaultTemplate.bind(
-  {},
-)
-PreviousButtonLabelDatePickerCalendarYear.args = {
-  ...defaultProps,
-  previousButtonLabel: 'Test previous button',
+export const MaxYearDatePickerCalendarYear = {
+  args: {
+    ...defaultProps,
+    maxDate: '2023-12-31',
+  },
+  name: 'Max Date',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendarYear max-date="2023-12-31" />`,
+      },
+    },
+  },
 }
-PreviousButtonLabelDatePickerCalendarYear.storyName =
-  'Previous Years Button Label'
 
-export const NextButtonLabelDatePickerCalendarYear = DefaultTemplate.bind({})
-NextButtonLabelDatePickerCalendarYear.args = {
-  ...defaultProps,
-  nextButtonLabel: 'Test next button',
+export const PreviousButtonLabelDatePickerCalendarYear = {
+  args: {
+    ...defaultProps,
+    previousButtonLabel: 'Test previous button',
+  },
+  name: 'Previous Years Button Label',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendarYear previous-button-label="Test previous button" />`,
+      },
+    },
+  },
 }
-NextButtonLabelDatePickerCalendarYear.storyName = 'Next Years Button Label'
+
+export const NextButtonLabelDatePickerCalendarYear = {
+  args: {
+    ...defaultProps,
+    nextButtonLabel: 'Test next button',
+  },
+  name: 'Next Years Button Label',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendarYear next-button-label="Test next button" />`,
+      },
+    },
+  },
+}

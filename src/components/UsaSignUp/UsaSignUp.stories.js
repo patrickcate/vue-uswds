@@ -45,6 +45,21 @@ export default {
     default: '',
     'slot:heading': '',
   },
+  render: args => ({
+    components: { UsaSignUp, UsaTextInput, UsaButton },
+    props: Object.keys(UsaSignUp.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaSignUp
+    :heading="args.heading"
+    :heading-tag="args.headingTag"
+    :custom-classes="args.customClasses"
+  >
+    <template #heading v-if="!!args['slot:heading']">${args['slot:heading']}</template>
+    <template #default v-if="!!args.default">${args.default}</template>
+  </UsaSignUp>`,
+  }),
 }
 
 const defaultContent = `<form class="usa-form" @submit.prevent>
@@ -52,68 +67,113 @@ const defaultContent = `<form class="usa-form" @submit.prevent>
 <UsaButton type="submit">Sign up</UsaButton>
 </form>`
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaSignUp, UsaTextInput, UsaButton },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultSignUp = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaSignUp
-    :heading="heading"
-    :heading-tag="headingTag"
-    :custom-classes="customClasses"
-  >
-    <template #heading v-if="${!!args['slot:heading']}">${
-      args['slot:heading']
-    }</template>
-    <template #default v-if="${!!args.default}">${args.default}</template>
-  </UsaSignUp>`,
-})
-
-export const DefaultSignUp = DefaultTemplate.bind({})
-DefaultSignUp.args = {
-  ...defaultProps,
-}
-DefaultSignUp.storyName = 'Default'
-
-export const DefaultSlotSignUp = DefaultTemplate.bind({})
-DefaultSlotSignUp.args = {
-  ...defaultProps,
-  default: defaultContent,
-}
-DefaultSlotSignUp.storyName = 'Default Slot'
-
-export const CustomHeadingSignUp = DefaultTemplate.bind({})
-CustomHeadingSignUp.args = {
-  ...defaultProps,
-  heading: 'Custom Heading',
-  default: defaultContent,
-}
-CustomHeadingSignUp.storyName = 'Custom Heading'
-
-export const CustomHeadingTagSignUp = DefaultTemplate.bind({})
-CustomHeadingTagSignUp.args = {
-  ...defaultProps,
-  heading: 'Custom Heading Tag',
-  headingTag: 'h4',
-  default: defaultContent,
-}
-CustomHeadingTagSignUp.storyName = 'Custom Heading Tag'
-
-export const HeadingSlotSignUp = DefaultTemplate.bind({})
-HeadingSlotSignUp.args = {
-  ...defaultProps,
-  'slot:heading': '<em>Custom Heading Slot</em>',
-  default: defaultContent,
-}
-HeadingSlotSignUp.storyName = 'Heading Slot'
-
-export const CustomClassesSignUp = DefaultTemplate.bind({})
-CustomClassesSignUp.args = {
-  ...defaultProps,
-  default: defaultContent,
-  customClasses: {
-    heading: ['test-heading-class'],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSignUp></UsaSignUp>`,
+      },
+    },
   },
 }
-CustomClassesSignUp.storyName = 'Custom Classes'
+
+export const DefaultSlotSignUp = {
+  args: {
+    ...defaultProps,
+    default: defaultContent,
+  },
+  name: 'Default Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSignUp><form class="usa-form" @submit.prevent>
+<UsaTextInput label="Your email address" type="email"></UsaTextInput>
+<UsaButton type="submit">Sign up</UsaButton>
+</form></UsaSignUp>`,
+      },
+    },
+  },
+}
+
+export const CustomHeadingSignUp = {
+  args: {
+    ...defaultProps,
+    heading: 'Custom Heading',
+    default: defaultContent,
+  },
+  name: 'Custom Heading',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSignUp heading="Custom Heading"><form class="usa-form" @submit.prevent>
+<UsaTextInput label="Your email address" type="email"></UsaTextInput>
+<UsaButton type="submit">Sign up</UsaButton>
+</form></UsaSignUp>`,
+      },
+    },
+  },
+}
+
+export const CustomHeadingTagSignUp = {
+  args: {
+    ...defaultProps,
+    heading: 'Custom Heading Tag',
+    headingTag: 'h4',
+    default: defaultContent,
+  },
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSignUp heading="Custom Heading Tag" heading-tag="h4"><form class="usa-form" @submit.prevent>
+<UsaTextInput label="Your email address" type="email"></UsaTextInput>
+<UsaButton type="submit">Sign up</UsaButton>
+</form></UsaSignUp>`,
+      },
+    },
+  },
+}
+
+export const HeadingSlotSignUp = {
+  args: {
+    ...defaultProps,
+    'slot:heading': '<em>Custom Heading Slot</em>',
+    default: defaultContent,
+  },
+  name: 'Heading Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSignUp><template #heading><em>Custom Heading Slot</em></template><template #default><form class="usa-form" @submit.prevent>
+<UsaTextInput label="Your email address" type="email"></UsaTextInput>
+<UsaButton type="submit">Sign up</UsaButton>
+</form></template></UsaSignUp>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesSignUp = {
+  args: {
+    ...defaultProps,
+    default: defaultContent,
+    customClasses: {
+      heading: ['test-heading-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSignUp :custom-classes="{heading: ['test-heading-class']}"><form class="usa-form" @submit.prevent>
+<UsaTextInput label="Your email address" type="email"></UsaTextInput>
+<UsaButton type="submit">Sign up</UsaButton>
+</form></UsaSignUp>`,
+      },
+    },
+  },
+}

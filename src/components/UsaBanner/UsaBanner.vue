@@ -1,5 +1,5 @@
 <script setup>
-import { computed, toRef, inject } from 'vue'
+import { computed, inject } from 'vue'
 import {
   PREFIX_SEPARATOR,
   GRID_NAMESPACE,

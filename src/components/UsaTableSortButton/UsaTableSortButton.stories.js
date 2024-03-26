@@ -29,6 +29,20 @@ export default {
     currentSortDirection: defaultProps.currentSortDirection,
     default: '',
   },
+  render: args => ({
+    components: { UsaTableSortButton },
+    props: Object.keys(UsaTableSortButton.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaTableSortButton
+      :header-id="args.headerId"
+      :header-label="args.headerLabel"
+      :current-sort-direction="args.currentSortDirection"
+    >
+      <template v-if="!!args.default" #default>${args.default}</template>
+    </UsaTableSortButton>`,
+  }),
   decorators: [
     () => ({
       template:
@@ -37,67 +51,69 @@ export default {
   ],
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaTableSortButton },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultTableSortButton = {
+  args: {
+    ...defaultProps,
+    headerId: 'test-header-id',
+    headerLabel: 'Test header',
   },
-  template: `<UsaTableSortButton
-    :header-id="headerId"
-    :header-label="headerLabel"
-    :current-sort-direction="currentSortDirection"
-  >
-    <template v-if="${!!args.default}" #default>${args.default}</template>
-  </UsaTableSortButton>`,
-})
-
-export const DefaultTableSortButton = DefaultTemplate.bind({})
-DefaultTableSortButton.args = {
-  ...defaultProps,
-  headerId: 'test-header-id',
-  headerLabel: 'Test header',
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTableSortButton header-id="test-header-id" header-label="Test header"></UsaTableSortButton>`,
+      },
+    },
+  },
 }
-DefaultTableSortButton.decorators = [
-  () => ({
-    template: `<th data-sortable="true">${DefaultTableSortButton.args.headerLabel}<story /></th>`,
-  }),
-]
-DefaultTableSortButton.storyName = 'Default'
 
-export const AscendingTableSortButton = DefaultTemplate.bind({})
-AscendingTableSortButton.args = {
-  ...defaultProps,
-  headerId: 'test-header-id',
-  headerLabel: 'Test header',
-  currentSortDirection: 'ascending',
+export const AscendingTableSortButton = {
+  args: {
+    ...defaultProps,
+    headerId: 'test-header-id',
+    headerLabel: 'Test header',
+    currentSortDirection: 'ascending',
+  },
+  name: 'Ascending',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTableSortButton header-id="test-header-id" header-label="Test header" current-sort-direction="ascending"></UsaTableSortButton>`,
+      },
+    },
+  },
 }
-AscendingTableSortButton.decorators = [
-  () => ({
-    template: `<th data-sortable="true" aria-sort="ascending">${DefaultTableSortButton.args.headerLabel}<story /></th>`,
-  }),
-]
-AscendingTableSortButton.storyName = 'Ascending'
 
-export const DescendingTableSortButton = DefaultTemplate.bind({})
-DescendingTableSortButton.args = {
-  ...defaultProps,
-  headerId: 'test-header-id',
-  headerLabel: 'Test header',
-  currentSortDirection: 'descending',
+export const DescendingTableSortButton = {
+  args: {
+    ...defaultProps,
+    headerId: 'test-header-id',
+    headerLabel: 'Test header',
+    currentSortDirection: 'descending',
+  },
+  name: 'Descending',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTableSortButton header-id="test-header-id" header-label="Test header" current-sort-direction="descending"></UsaTableSortButton>`,
+      },
+    },
+  },
 }
-DescendingTableSortButton.decorators = [
-  () => ({
-    template: `<th data-sortable="true" aria-sort="descending">${DefaultTableSortButton.args.headerLabel}<story /></th>`,
-  }),
-]
-DescendingTableSortButton.storyName = 'Descending'
 
-export const CustomSlotTableSortButton = DefaultTemplate.bind({})
-CustomSlotTableSortButton.args = {
-  ...defaultProps,
-  headerId: 'test-header-id',
-  headerLabel: 'Test header',
-  default: '<em>Custom icon here...</em>',
+export const CustomSlotTableSortButton = {
+  args: {
+    ...defaultProps,
+    headerId: 'test-header-id',
+    headerLabel: 'Test header',
+    default: '<em>Custom icon here...</em>',
+  },
+  name: 'Custom Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTableSortButton header-id="test-header-id" header-label="Test header"><em>Custom icon here...</em></UsaTableSortButton>`,
+      },
+    },
+  },
 }
-CustomSlotTableSortButton.storyName = 'Custom Slot'

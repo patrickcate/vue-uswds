@@ -30,41 +30,60 @@ export default {
     day: defaultProps.day,
     customClasses: defaultProps.customClasses,
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaCollectionCalendar },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaCollectionCalendar
-    :datetime="datetime"
-    :month="month"
-    :day="${args.day + ''}"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaCollectionCalendar },
+    props: Object.keys(UsaCollectionCalendar.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaCollectionCalendar
+    :datetime="args.datetime"
+    :month="args.month"
+    :day="args.day"
+    :custom-classes="args.customClasses"
   />`,
-})
-
-export const DefaultCollectionCalendar = DefaultTemplate.bind({})
-DefaultCollectionCalendar.args = {
-  ...defaultProps,
-  datetime: '2021-01-01',
-  month: 'Jan',
-  day: 1,
+  }),
 }
-DefaultCollectionCalendar.storyName = 'Default'
 
-export const CustomClassesCollectionCalendar = DefaultTemplate.bind({})
-CustomClassesCollectionCalendar.args = {
-  ...defaultProps,
-  datetime: '2021-01-01',
-  month: 'Jan',
-  day: 1,
-  customClasses: {
-    datetime: ['test-datetime-class'],
-    month: ['test-month-class'],
-    day: ['test-day-class'],
+export const DefaultCollectionCalendar = {
+  args: {
+    ...defaultProps,
+    datetime: '2021-01-01',
+    month: 'Jan',
+    day: 1,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionCalendar datetime="2021-01-01" month="Jan" :day="1"></UsaCollectionCalendar>`,
+      },
+    },
   },
 }
-CustomClassesCollectionCalendar.storyName = 'Custom Classes'
+
+export const CustomClassesCollectionCalendar = {
+  args: {
+    ...defaultProps,
+    datetime: '2021-01-01',
+    month: 'Jan',
+    day: 1,
+    customClasses: {
+      datetime: ['test-datetime-class'],
+      month: ['test-month-class'],
+      day: ['test-day-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionCalendar datetime="2021-01-01" month="Jan" :day="1" :custom-classes="{
+      datetime: ['test-datetime-class'],
+      month: ['test-month-class'],
+      day: ['test-day-class'],
+    }"></UsaCollectionCalendar>`,
+      },
+    },
+  },
+}

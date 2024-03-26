@@ -45,26 +45,33 @@ export default {
       },
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaNavDropdownButton },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<div class="usa-header usa-header--basic">
+  render: args => ({
+    components: { UsaNavDropdownButton },
+    props: Object.keys(UsaNavDropdownButton.props),
+    setup() {
+      return { args }
+    },
+    template: `<div class="usa-header usa-header--basic">
     <ul class="usa-nav__primary usa-accordion">
       <li class="usa-nav__primary-item">
         <UsaNavDropdownButton
-          :href="href"
-          :to="to"
-          :router-component-name="routerComponentName">${args.default}</UsaNavDropdownButton>
+          :href="args.href"
+          :to="args.to"
+          :router-component-name="args.routerComponentName">${args.default}</UsaNavDropdownButton>
       </li>
     </ul>
   </div>`,
-})
+  }),
+}
 
-export const DefaultNavDropdownButton = DefaultTemplate.bind({})
-DefaultNavDropdownButton.args = {}
-DefaultNavDropdownButton.storyName = 'Default'
+export const DefaultNavDropdownButton = {
+  args: {},
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaNavDropdownButton>Test dropdown button</UsaNavDropdownButton>`,
+      },
+    },
+  },
+}

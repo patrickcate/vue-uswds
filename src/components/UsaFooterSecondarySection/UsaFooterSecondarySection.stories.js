@@ -19,30 +19,45 @@ export default {
     customClasses: defaultProps.customClasses,
     default: '',
   },
+  render: args => ({
+    components: { UsaFooterSecondarySection },
+    props: Object.keys(UsaFooterSecondarySection.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaFooterSecondarySection :custom-classes="args.customClasses">${args.default}</UsaFooterSecondarySection>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaFooterSecondarySection },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultFooterSecondarySection = {
+  args: {
+    ...defaultProps,
+    default: 'Footer secondary content here',
   },
-  template: `<UsaFooterSecondarySection :custom-classes="customClasses">${args.default}</UsaFooterSecondarySection>`,
-})
-
-export const DefaultFooterSecondarySection = DefaultTemplate.bind({})
-DefaultFooterSecondarySection.args = {
-  ...defaultProps,
-  default: 'Footer secondary content here',
-}
-DefaultFooterSecondarySection.storyName = 'Default'
-
-export const CustomClassesFooterSecondarySection = DefaultTemplate.bind({})
-CustomClassesFooterSecondarySection.args = {
-  ...defaultProps,
-  default: 'Footer secondary content here',
-  customClasses: {
-    container: ['test-container-class'],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterSecondarySection>Footer secondary content here</UsaFooterSecondarySection>`,
+      },
+    },
   },
 }
-CustomClassesFooterSecondarySection.storyName = 'Custom CSS Classes'
+
+export const CustomClassesFooterSecondarySection = {
+  args: {
+    ...defaultProps,
+    default: 'Footer secondary content here',
+    customClasses: {
+      container: ['test-container-class'],
+    },
+  },
+  name: 'Custom CSS Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterSecondarySection :custom-classes="{ container: ['test-container-class'] }">Footer secondary content here</UsaFooterSecondarySection>`,
+      },
+    },
+  },
+}

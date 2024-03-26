@@ -11,19 +11,26 @@ export default {
   args: {
     default: '',
   },
+  render: args => ({
+    components: { UsaFooterPrimarySection },
+    props: [],
+    setup() {
+      return { args }
+    },
+    template: `<UsaFooterPrimarySection>${args.default}</UsaFooterPrimarySection>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaFooterPrimarySection },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultFooterPrimarySection = {
+  args: {
+    default: 'Test primary footer content',
   },
-  template: `<UsaFooterPrimarySection>${args.default}</UsaFooterPrimarySection>`,
-})
-
-export const DefaultFooterPrimarySection = DefaultTemplate.bind({})
-DefaultFooterPrimarySection.args = {
-  default: 'Test primary footer content',
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterPrimarySection>Test primary footer content</UsaFooterPrimarySection>`,
+      },
+    },
+  },
 }
-DefaultFooterPrimarySection.storyName = 'Default'

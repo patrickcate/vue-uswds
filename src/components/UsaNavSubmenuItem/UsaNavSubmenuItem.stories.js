@@ -40,25 +40,32 @@ export default {
       },
     }),
   ],
+  render: args => ({
+    components: { UsaNavSubmenuItem },
+    props: Object.keys(UsaNavSubmenuItem.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaNavSubmenuItem
+      v-bind="args.$attrs"
+      :href="args.href"
+      :to="args.to"
+      :router-component-name="args.routerComponentName"
+    >${args.default}</UsaNavSubmenuItem>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaNavSubmenuItem },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultNavSubmenuItem = {
+  args: {
+    ...defaultProps,
+    href: '/test-page',
   },
-  template: `<UsaNavSubmenuItem
-    v-bind="$attrs"
-    :href="href"
-    :to="to"
-    :router-component-name="routerComponentName"
-  >${args.default}</UsaNavSubmenuItem>`,
-})
-
-export const DefaultNavSubmenuItem = DefaultTemplate.bind({})
-DefaultNavSubmenuItem.args = {
-  ...defaultProps,
-  href: '/test-page',
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaNavSubmenuItem href="/test-page">Test</UsaNavSubmenuItem>`,
+      },
+    },
+  },
 }
-DefaultNavSubmenuItem.storyName = 'Default'

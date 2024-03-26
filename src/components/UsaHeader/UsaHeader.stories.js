@@ -32,58 +32,97 @@ export default {
     customClasses: defaultProps.customClasses,
     default: 'Header content',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaHeader },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaHeader
-      :variant="variant"
-      :megamenu="megamenu"
-      :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaHeader },
+    props: Object.keys(UsaHeader.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaHeader
+      :variant="args.variant"
+      :megamenu="args.megamenu"
+      :custom-classes="args.customClasses"
     >${args.default}</UsaHeader>`,
-})
-
-export const BasicHeader = DefaultTemplate.bind({})
-BasicHeader.args = {
-  ...defaultProps,
-  default: 'Basic header',
+  }),
 }
-BasicHeader.storyName = 'Basic'
 
-export const BasicMegamenuHeader = DefaultTemplate.bind({})
-BasicMegamenuHeader.args = {
-  ...defaultProps,
-  megamenu: true,
-  default: 'Basic header with megamenu',
-}
-BasicMegamenuHeader.storyName = 'Basic w/ Megamenu'
-
-export const ExtendedHeader = DefaultTemplate.bind({})
-ExtendedHeader.args = {
-  ...defaultProps,
-  variant: 'extended',
-  default: 'Extended header',
-}
-ExtendedHeader.storyName = 'Extended'
-
-export const ExtendedMegamenuHeader = DefaultTemplate.bind({})
-ExtendedMegamenuHeader.args = {
-  ...defaultProps,
-  variant: 'extended',
-  megamenu: true,
-  default: 'Extended header with Megamenu',
-}
-ExtendedMegamenuHeader.storyName = 'Extended w/ Megamenu'
-
-export const CustomClassesHeader = DefaultTemplate.bind({})
-CustomClassesHeader.args = {
-  ...defaultProps,
-  customClasses: {
-    navContainer: ['test-nav-container-class'],
+export const BasicHeader = {
+  args: {
+    ...defaultProps,
+    default: 'Basic header',
+  },
+  name: 'Basic',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaHeader>Basic header</UsaHeader>`,
+      },
+    },
   },
 }
-CustomClassesHeader.storyName = 'Custom Classes'
+
+export const BasicMegamenuHeader = {
+  args: {
+    ...defaultProps,
+    megamenu: true,
+    default: 'Basic header with megamenu',
+  },
+  name: 'Basic w/ Megamenu',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaHeader :megamenu="true">Basic header with megamenu</UsaHeader>`,
+      },
+    },
+  },
+}
+
+export const ExtendedHeader = {
+  args: {
+    ...defaultProps,
+    variant: 'extended',
+    default: 'Extended header',
+  },
+  name: 'Extended',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaHeader variant="extended">Extended header</UsaHeader>`,
+      },
+    },
+  },
+}
+
+export const ExtendedMegamenuHeader = {
+  args: {
+    ...defaultProps,
+    variant: 'extended',
+    megamenu: true,
+    default: 'Extended header with Megamenu',
+  },
+  name: 'Extended w/ Megamenu',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaHeader variant="extended" :megamenu="true">Extended header with Megamenu</UsaHeader>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesHeader = {
+  args: {
+    ...defaultProps,
+    customClasses: {
+      navContainer: ['test-nav-container-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaHeader :custom-classes="{ navContainer: ['test-nav-container-class'] }">Custom classes</UsaHeader>`,
+      },
+    },
+  },
+}
