@@ -17,7 +17,7 @@ import UsaOverlay from '@/components/UsaOverlay'
 const imagePath = inject('vueUswds.imagePath', IMAGE_PATH)
 const mobileMenuBreakpoint = inject(
   'vueUswds.mobileMenuBreakpoint',
-  MOBILE_MENU_BREAKPOINT
+  MOBILE_MENU_BREAKPOINT,
 )
 const isExtendedHeader = inject('isExtendedHeader', ref(false))
 const isMobileMenuOpen = inject('isMobileMenuOpen', ref(false))
@@ -49,10 +49,10 @@ const nav = ref(null)
 const { activate, deactivate } = useFocusTrap(nav)
 const isMounted = ref(false)
 const largeScreenMediaQuery = useMediaQuery(
-  `(min-width: ${mobileMenuBreakpoint})`
+  `(min-width: ${mobileMenuBreakpoint})`,
 )
 const largeScreen = computed(() =>
-  isMounted.value ? largeScreenMediaQuery.value : true
+  isMounted.value ? largeScreenMediaQuery.value : true,
 )
 
 watch(isMobileMenuOpen, async isMenuOpen => {

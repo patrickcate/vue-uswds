@@ -33,7 +33,7 @@ describe('UsaBanner', () => {
 
     cy.get('.usa-banner__header-text').should(
       'contain',
-      'An official website of the United States government'
+      'An official website of the United States government',
     )
 
     // Check that the default grid classes exist.
@@ -43,7 +43,7 @@ describe('UsaBanner', () => {
 
     cy.get('p.usa-banner__header-action').should(
       'contain',
-      "Here's how you know"
+      "Here's how you know",
     )
     cy.get('button.usa-banner__button')
       .as('button')
@@ -61,7 +61,7 @@ describe('UsaBanner', () => {
 
     cy.get('span.usa-banner__button-text').should(
       'contain',
-      "Here's how you know"
+      "Here's how you know",
     )
 
     cy.get('.usa-banner__content')
@@ -92,7 +92,7 @@ describe('UsaBanner', () => {
 
     cy.get('.usa-banner__header').should(
       'have.class',
-      'usa-banner__header--expanded'
+      'usa-banner__header--expanded',
     )
 
     cy.get('.usa-banner__header-text').should('contain', 'Test header text')
@@ -134,7 +134,7 @@ describe('UsaBanner', () => {
     // Should be closed.
     cy.get('.usa-banner__header').should(
       'not.have.class',
-      'usa-banner__header--expanded'
+      'usa-banner__header--expanded',
     )
 
     cy.get('.usa-banner__button')
@@ -157,7 +157,7 @@ describe('UsaBanner', () => {
 
     cy.get('.usa-banner__header').should(
       'have.class',
-      'usa-banner__header--expanded'
+      'usa-banner__header--expanded',
     )
 
     // Should now be open.
@@ -180,7 +180,7 @@ describe('UsaBanner', () => {
 
     cy.get('.usa-banner__header').should(
       'not.have.class',
-      'usa-banner__header--expanded'
+      'usa-banner__header--expanded',
     )
 
     cy.get('.usa-banner__button')
@@ -254,7 +254,7 @@ describe('UsaBanner', () => {
             },
             `${props.isOpen ? 'open' : 'closed'} - ${
               props.actionText
-            } - Test button slot content`
+            } - Test button slot content`,
           ),
         default: () => 'Test default slot content',
       },
@@ -262,15 +262,15 @@ describe('UsaBanner', () => {
 
     cy.get('.usa-banner__inner > div:first-child').should(
       'contain',
-      'Test flag slot content'
+      'Test flag slot content',
     )
     cy.get('.usa-accordion__button').should(
       'contain',
-      'open - Scoped slot button action text - Test button slot content'
+      'open - Scoped slot button action text - Test button slot content',
     )
     cy.get('.usa-banner__content').should(
       'contain',
-      'Test default slot content'
+      'Test default slot content',
     )
   })
 

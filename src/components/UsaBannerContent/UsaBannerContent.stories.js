@@ -45,27 +45,27 @@ const DefaultTemplate = (args, { argTypes }) => ({
   },
   template: `<UsaBannerContent>
     <template v-if="${!!args['tld-icon']}" #tld-icon>${
-    args['tld-icon']
-  }</template>
+      args['tld-icon']
+    }</template>
     <template v-else-if="${!!args.tldIcon}" #tldIcon>${args.tldIcon}</template>
     <template v-if="${!!args['tld-description']}" #tld-description>${
-    args['tld-description']
-  }</template>
+      args['tld-description']
+    }</template>
     <template v-else-if="${!!args.tldDescription}" #tldDescription>${
-    args.tldDescription
-  }</template>
+      args.tldDescription
+    }</template>
     <template v-if="${!!args['https-icon']}" #https-icon>${
-    args['https-icon']
-  }</template>
+      args['https-icon']
+    }</template>
     <template v-else-if="${!!args.httpsIcon}" #httpsIcon>${
-    args.httpsIcon
-  }</template>
+      args.httpsIcon
+    }</template>
     <template v-if="${!!args['https-description']}" #https-description>${
-    args['https-description']
-  }</template>
+      args['https-description']
+    }</template>
     <template v-else-if="${!!args.httpsDescription}" #httpsDescription>${
-    args.httpsDescription
-  }</template>
+      args.httpsDescription
+    }</template>
   </UsaBannerContent>`,
 })
 

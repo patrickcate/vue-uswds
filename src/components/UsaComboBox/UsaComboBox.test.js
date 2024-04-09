@@ -39,12 +39,12 @@ describe('UsaComboBox', () => {
       .and(
         'have.attr',
         'aria-controls',
-        'vuswds-id-global-usa-combo-box-1-list'
+        'vuswds-id-global-usa-combo-box-1-list',
       )
       .and(
         'have.attr',
         'aria-describedby',
-        'vuswds-id-global-usa-combo-box-1-assistive-hint'
+        'vuswds-id-global-usa-combo-box-1-assistive-hint',
       )
       .and('have.attr', 'aria-expanded', 'false')
       .and('have.attr', 'autocapitalize', 'off')
@@ -56,11 +56,11 @@ describe('UsaComboBox', () => {
     cy.get('span.usa-combo-box__clear-input__wrapper').should(
       'have.attr',
       'tabindex',
-      '-1'
+      '-1',
     )
 
     cy.get(
-      '.usa-combo-box__clear-input__wrapper > button.usa-combo-box__clear-input'
+      '.usa-combo-box__clear-input__wrapper > button.usa-combo-box__clear-input',
     )
       .as('clearButton')
       .should('have.attr', 'type', 'button')
@@ -70,17 +70,17 @@ describe('UsaComboBox', () => {
 
     cy.get('span.usa-combo-box__input-button-separator').should(
       'contain',
-      '\u00a0'
+      '\u00a0',
     )
 
     cy.get('span.usa-combo-box__toggle-list__wrapper').should(
       'have.attr',
       'tabindex',
-      '-1'
+      '-1',
     )
 
     cy.get(
-      '.usa-combo-box__toggle-list__wrapper > button.usa-combo-box__toggle-list'
+      '.usa-combo-box__toggle-list__wrapper > button.usa-combo-box__toggle-list',
     )
       .as('toggleButton')
       .should('have.attr', 'type', 'button')
@@ -96,7 +96,7 @@ describe('UsaComboBox', () => {
       .and(
         'have.attr',
         'aria-labelledby',
-        'vuswds-id-global-usa-combo-box-1-label'
+        'vuswds-id-global-usa-combo-box-1-label',
       )
       .and('have.attr', 'hidden')
 
@@ -116,7 +116,7 @@ describe('UsaComboBox', () => {
       cy.get(`li.usa-combo-box__list-option:nth-of-type(${index + 1})`)
         .should(
           'have.id',
-          `vuswds-id-global-usa-combo-box-1-list-option-${index}`
+          `vuswds-id-global-usa-combo-box-1-list-option-${index}`,
         )
         .and('have.attr', 'aria-posinset', index + 1)
         .and('have.attr', 'data-value', option.value)
@@ -133,7 +133,7 @@ describe('UsaComboBox', () => {
       .should('have.class', 'usa-sr-only')
       .and(
         'contain',
-        'When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures.'
+        'When autocomplete results are available use up and down arrows to review and enter to select. Touch device users, explore by touch or with swipe gestures.',
       )
 
     cy.get('@input').click()
@@ -146,7 +146,7 @@ describe('UsaComboBox', () => {
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child',
     ).should('have.class', 'usa-combo-box__list-option--focused')
 
     cy.get('@status').should('contain', `${testData.length} results available.`)
@@ -177,7 +177,7 @@ describe('UsaComboBox', () => {
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child',
     ).should('have.class', 'usa-combo-box__list-option--focused')
 
     cy.get('@status').should('contain', `${testData.length} results available.`)
@@ -201,7 +201,7 @@ describe('UsaComboBox', () => {
       .and(
         'have.attr',
         'aria-activedescendant',
-        'vuswds-id-global-usa-combo-box-1-list-option-0'
+        'vuswds-id-global-usa-combo-box-1-list-option-0',
       )
 
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
@@ -212,7 +212,7 @@ describe('UsaComboBox', () => {
 
     // Close with up arrow.
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)',
     ).type('{upArrow}')
 
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)')
@@ -236,7 +236,7 @@ describe('UsaComboBox', () => {
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)',
     ).should('have.class', 'usa-combo-box__list-option--focused')
 
     cy.get('@status').should('contain', `${testData.length} results available.`)
@@ -252,7 +252,7 @@ describe('UsaComboBox', () => {
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)',
     ).should('have.class', 'usa-combo-box__list-option--focused')
 
     // Open again.
@@ -266,7 +266,7 @@ describe('UsaComboBox', () => {
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)',
     ).should('have.class', 'usa-combo-box__list-option--focused')
 
     cy.get('@status').should('contain', `${testData.length} results available.`)
@@ -316,13 +316,13 @@ describe('UsaComboBox', () => {
 
     // Highlight second option.
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)',
     ).type('{downArrow}')
 
     cy.get('@input').should(
       'have.attr',
       'aria-activedescendant',
-      'arrow-key-list-option-1'
+      'arrow-key-list-option-1',
     )
 
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)')
@@ -335,13 +335,13 @@ describe('UsaComboBox', () => {
 
     // Highlight third option.
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(2)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(2)',
     ).type('{downArrow}')
 
     cy.get('@input').should(
       'have.attr',
       'aria-activedescendant',
-      'arrow-key-list-option-2'
+      'arrow-key-list-option-2',
     )
 
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(2)')
@@ -354,7 +354,7 @@ describe('UsaComboBox', () => {
 
     // Highlight second option again.
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)',
     ).type('{upArrow}')
 
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)')
@@ -367,7 +367,7 @@ describe('UsaComboBox', () => {
 
     // Highlight third option with mouseover.
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)',
     ).trigger('mouseover')
 
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)')
@@ -380,7 +380,7 @@ describe('UsaComboBox', () => {
 
     // Highlight last option with mouseover.
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)',
     ).trigger('mouseover')
 
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)')
@@ -393,7 +393,7 @@ describe('UsaComboBox', () => {
 
     // Can't highlight past last item.
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)',
     ).type('{downArrow}')
 
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)')
@@ -435,7 +435,7 @@ describe('UsaComboBox', () => {
 
     // Highlight last option with mouseover.
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(64)',
     ).trigger('mouseover')
 
     // Select option by pressing spacebar.
@@ -483,7 +483,7 @@ describe('UsaComboBox', () => {
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child',
     ).should('have.class', 'usa-combo-box__list-option--focused')
 
     cy.get('@status').should('contain', `${testData.length} results available.`)
@@ -501,7 +501,7 @@ describe('UsaComboBox', () => {
     cy.get('@list').should('be.hidden').and('have.attr', 'hidden')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child',
     ).should('not.have.class', 'usa-combo-box__list-option--focused')
   })
 
@@ -547,22 +547,22 @@ describe('UsaComboBox', () => {
     cy.get('@list').children().should('have.length', 4)
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child',
     ).should('have.class', 'usa-combo-box__list-option--focused')
 
     cy.get('@status').should('contain', '4 results available.')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)',
     ).should('contain', 'Apple')
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(2)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(2)',
     ).should('contain', 'Crab apple')
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)',
     ).should('contain', 'Custard apple')
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(4)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(4)',
     ).should('contain', 'Pineapple')
   })
 
@@ -608,26 +608,26 @@ describe('UsaComboBox', () => {
     cy.get('@list').children().should('have.length', 4)
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child',
     ).should('have.class', 'usa-combo-box__list-option--focused')
 
     cy.get('@status').should('contain', '4 results available.')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(1)',
     ).should('contain', 'Apple')
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(2)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(2)',
     ).should('contain', 'Crab apple')
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)',
     ).should('contain', 'Custard apple')
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(4)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(4)',
     ).should('contain', 'Pineapple')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:nth-child(3)',
     ).click()
 
     cy.get('@input')
@@ -642,7 +642,7 @@ describe('UsaComboBox', () => {
 
     cy.get('.usa-combo-box__list > li.usa-combo-box__list-option').should(
       'not.have.class',
-      'usa-combo-box__list-option--focused'
+      'usa-combo-box__list-option--focused',
     )
 
     cy.get('@input').type(' ')
@@ -665,13 +665,13 @@ describe('UsaComboBox', () => {
     cy.get('@list').children().should('have.length', 1)
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child'
+      '.usa-combo-box__list > li.usa-combo-box__list-option:first-child',
     ).should('have.class', 'usa-combo-box__list-option--focused')
 
     cy.get('@status').should('contain', '1 result available.')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="custard apple"]'
+      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="custard apple"]',
     )
       .should('not.have.focus')
       .and('have.class', 'usa-combo-box__list-option--focused')
@@ -697,7 +697,7 @@ describe('UsaComboBox', () => {
     cy.get('@list').should('be.visible').and('not.have.attr', 'hidden')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="custard apple"]'
+      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="custard apple"]',
     )
       .should('not.have.focus')
       .and('have.class', 'usa-combo-box__list-option--focused')
@@ -705,11 +705,11 @@ describe('UsaComboBox', () => {
       .and('have.attr', 'aria-selected', 'true')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="cherry"]'
+      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="cherry"]',
     ).trigger('mouseover')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="custard apple"]'
+      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="custard apple"]',
     )
       .should('not.have.focus')
       .and('not.have.class', 'usa-combo-box__list-option--focused')
@@ -755,7 +755,7 @@ describe('UsaComboBox', () => {
 
     cy.realPress('Tab')
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="strawberry"]'
+      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="strawberry"]',
     )
       .should('be.visible')
       .and('have.focus')
@@ -801,7 +801,7 @@ describe('UsaComboBox', () => {
     cy.get('@status').should('contain', '64 results available.')
 
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="cherry"]'
+      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="cherry"]',
     )
       .as('cherryOption')
       .trigger('mouseover')
@@ -811,7 +811,7 @@ describe('UsaComboBox', () => {
     cy.get('@input').should(
       'have.attr',
       'aria-activedescendant',
-      'enter-key-list-option-14'
+      'enter-key-list-option-14',
     )
 
     cy.get('@comboBox').should('not.have.class', 'usa-combo-box--pristine')
@@ -966,11 +966,11 @@ describe('UsaComboBox', () => {
     })
 
     cy.get(
-      '.usa-combo-box__clear-input__wrapper > button.usa-combo-box__clear-input'
+      '.usa-combo-box__clear-input__wrapper > button.usa-combo-box__clear-input',
     ).should('have.attr', 'aria-label', 'Test clear button aria label')
 
     cy.get(
-      '.usa-combo-box__toggle-list__wrapper > button.usa-combo-box__toggle-list'
+      '.usa-combo-box__toggle-list__wrapper > button.usa-combo-box__toggle-list',
     ).should('have.attr', 'aria-label', 'Test toggle button aria label')
   })
 
@@ -1006,39 +1006,39 @@ describe('UsaComboBox', () => {
 
     cy.get('li:nth-of-type(1)').should(
       'have.id',
-      'test-combo-box-id-list-option-0'
+      'test-combo-box-id-list-option-0',
     )
     cy.get('li:nth-of-type(2)').should(
       'have.id',
-      'test-combo-box-id-list-option-1'
+      'test-combo-box-id-list-option-1',
     )
     cy.get('li:nth-of-type(3)').should(
       'have.id',
-      'test-combo-box-id-list-option-2'
+      'test-combo-box-id-list-option-2',
     )
     cy.get('li:nth-of-type(4)').should(
       'have.id',
-      'test-combo-box-id-list-option-3'
+      'test-combo-box-id-list-option-3',
     )
     cy.get('li:nth-of-type(5)').should(
       'have.id',
-      'test-combo-box-id-list-option-4'
+      'test-combo-box-id-list-option-4',
     )
     cy.get('li:nth-of-type(6)').should(
       'have.id',
-      'test-combo-box-id-list-option-5'
+      'test-combo-box-id-list-option-5',
     )
 
     cy.get('.usa-combo-box__status + span.usa-sr-only').should(
       'have.id',
-      'test-combo-box-id-assistive-hint'
+      'test-combo-box-id-assistive-hint',
     )
 
     cy.get('@wrapper').invoke('setProps', { error: true })
 
     cy.get('.usa-error-message').should(
       'have.id',
-      'test-combo-box-id-error-message'
+      'test-combo-box-id-error-message',
     )
   })
 
@@ -1184,12 +1184,12 @@ describe('UsaComboBox', () => {
 
     cy.get('.usa-combo-box__list-option--no-results').should(
       'contain',
-      'Test no results text'
+      'Test no results text',
     )
 
     cy.get('.usa-combo-box__status + span.usa-sr-only').should(
       'contain',
-      'Test assistive hint'
+      'Test assistive hint',
     )
   })
 
@@ -1267,7 +1267,7 @@ describe('UsaComboBox', () => {
       .should(
         'have.attr',
         'aria-describedby',
-        'custom-test-id-assistive-hint custom-test-id-hint'
+        'custom-test-id-assistive-hint custom-test-id-hint',
       )
 
     cy.get('@wrapper').invoke('setProps', { error: true })
@@ -1277,7 +1277,7 @@ describe('UsaComboBox', () => {
       .should(
         'have.attr',
         'aria-describedby',
-        'custom-test-id-assistive-hint custom-test-id-hint custom-test-id-error-message'
+        'custom-test-id-assistive-hint custom-test-id-hint custom-test-id-error-message',
       )
   })
 
@@ -1298,7 +1298,7 @@ describe('UsaComboBox', () => {
 
     cy.get('input').should('have.value', 'Nectarine')
     cy.get(
-      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="nectarine"]'
+      '.usa-combo-box__list > li.usa-combo-box__list-option[data-value="nectarine"]',
     )
       .should('have.class', 'usa-combo-box__list-option--selected')
       .and('have.attr', 'aria-selected', 'true')
@@ -1331,7 +1331,7 @@ describe('UsaComboBox', () => {
         const currentSelectedEvent = vm.emitted('update:modelValue')
         expect(currentSelectedEvent).to.have.length(1)
         expect(
-          currentSelectedEvent[currentSelectedEvent.length - 1]
+          currentSelectedEvent[currentSelectedEvent.length - 1],
         ).to.contain('apple')
       })
   })

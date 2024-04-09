@@ -18,7 +18,7 @@ describe('UsaIcon', () => {
     cy.get('svg > use').should(
       'have.attr',
       'xlink:href',
-      '/assets/img/sprite.svg#flag'
+      '/assets/img/sprite.svg#flag',
     )
   })
 
@@ -72,7 +72,7 @@ describe('UsaIcon', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'10' is not a valid icon size`
+      `'10' is not a valid icon size`,
     )
   })
 })

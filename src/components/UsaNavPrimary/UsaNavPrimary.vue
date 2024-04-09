@@ -11,7 +11,7 @@ import UsaNavSubmenuItem from '@/components/UsaNavSubmenuItem'
 
 const mobileMenuBreakpoint = inject(
   'vueUswds.mobileMenuBreakpoint',
-  MOBILE_MENU_BREAKPOINT
+  MOBILE_MENU_BREAKPOINT,
 )
 const isMegamenu = inject('isMegamenu', ref(false))
 
@@ -63,6 +63,7 @@ onClickOutside(nav, closeAllItems)
       <template v-for="item in items">
         <UsaNavDropdown
           v-if="item?.children?.length"
+          :id="item?.id"
           :key="item?.id || item.text"
         >
           <UsaNavDropdownButton

@@ -30,7 +30,7 @@ describe('UsaCollectionCalendar', () => {
     cy.get('.usa-collection__calendar-date time').should('not.exist')
     cy.get('.usa-collection__calendar-date > div').should(
       'not.have.attr',
-      'datetime'
+      'datetime',
     )
   })
 

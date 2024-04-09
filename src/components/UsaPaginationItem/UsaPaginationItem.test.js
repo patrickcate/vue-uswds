@@ -12,7 +12,7 @@ describe('UsaPaginationItem', () => {
 
     cy.get('li.usa-pagination__item').should(
       'have.class',
-      'usa-pagination__page-no'
+      'usa-pagination__page-no',
     )
 
     cy.get('.usa-pagination__item button')
@@ -54,7 +54,7 @@ describe('UsaPaginationItem', () => {
 
     cy.get('.usa-pagination__item button').should(
       'have.class',
-      'usa-button--unstyled'
+      'usa-button--unstyled',
     )
 
     cy.get('@wrapper').invoke('setProps', {
@@ -63,7 +63,7 @@ describe('UsaPaginationItem', () => {
 
     cy.get('.usa-pagination__item a').should(
       'not.have.class',
-      'usa-button--unstyled'
+      'usa-button--unstyled',
     )
   })
 
@@ -112,7 +112,7 @@ describe('UsaPaginationItem', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `[Vue warn]: Missing required prop: "ariaLabel"`
+      `[Vue warn]: Missing required prop: "ariaLabel"`,
     )
   })
 
@@ -128,7 +128,7 @@ describe('UsaPaginationItem', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `[Vue warn]: Invalid prop: custom validator check failed for prop "pageNumber".`
+      `[Vue warn]: Invalid prop: custom validator check failed for prop "pageNumber".`,
     )
   })
 })

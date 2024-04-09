@@ -650,7 +650,7 @@ describe('UsaDateInput', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledOnceWith',
-      `The 'monthAsSelect' prop is deprecated. Starting with vue-uswds 2.0 the month will always use a select form element. You can set the 'monthAsSelect' prop value to true to minimize changes.`
+      `The 'monthAsSelect' prop is deprecated. Starting with vue-uswds 2.0 the month will always use a select form element. You can set the 'monthAsSelect' prop value to true to minimize changes.`,
     )
   })
 })

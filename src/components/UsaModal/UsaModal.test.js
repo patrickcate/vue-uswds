@@ -27,7 +27,7 @@ describe('UsaModal', () => {
 
     cy.get('.js-focus-trap-wrapper').should(
       'have.class',
-      'test-focus-trap-class'
+      'test-focus-trap-class',
     )
     cy.get('.usa-modal-wrapper')
       .should('have.class', 'is-visible')
@@ -94,7 +94,7 @@ describe('UsaModal', () => {
     cy.get('body').should('not.have.class', 'usa-js-modal--active')
     cy.get('body > :not(.js-focus-trap-class)').should(
       'not.have.attr',
-      'aria-hidden'
+      'aria-hidden',
     )
 
     // Trigger model open with prop change.
@@ -130,7 +130,7 @@ describe('UsaModal', () => {
     cy.get('body').should('not.have.class', 'usa-js-modal--active')
     cy.get('body > :not(.js-focus-trap-class)').should(
       'not.have.attr',
-      'aria-hidden'
+      'aria-hidden',
     )
 
     // Open modal again.
@@ -161,7 +161,7 @@ describe('UsaModal', () => {
     cy.get('body').should('not.have.class', 'usa-js-modal--active')
     cy.get('body > :not(.js-focus-trap-class)').should(
       'not.have.attr',
-      'aria-hidden'
+      'aria-hidden',
     )
 
     // Open modal again.
@@ -192,7 +192,7 @@ describe('UsaModal', () => {
     cy.get('body').should('not.have.class', 'usa-js-modal--active')
     cy.get('body > :not(.js-focus-trap-class)').should(
       'not.have.attr',
-      'aria-hidden'
+      'aria-hidden',
     )
   })
 
@@ -220,7 +220,7 @@ describe('UsaModal', () => {
                   })
                 },
               },
-              'Close Modal'
+              'Close Modal',
             ),
         },
       })
@@ -236,7 +236,7 @@ describe('UsaModal', () => {
     cy.get('body').should('not.have.class', 'usa-js-no-click')
     cy.get('body > :not(.js-focus-trap-class)').should(
       'not.have.attr',
-      'aria-hidden'
+      'aria-hidden',
     )
 
     // Open modal.
@@ -299,7 +299,7 @@ describe('UsaModal', () => {
     cy.get('body').should('not.have.class', 'usa-js-no-click')
     cy.get('body > :not(.js-focus-trap-class)').should(
       'not.have.attr',
-      'aria-hidden'
+      'aria-hidden',
     )
   })
 
@@ -322,14 +322,14 @@ describe('UsaModal', () => {
               {
                 class: 'test-close-button',
               },
-              'Close Modal'
+              'Close Modal',
             ),
             h(
               'button',
               {
                 class: 'test-close-button-2',
               },
-              'Also Close Modal'
+              'Also Close Modal',
             ),
           ],
         },
@@ -414,7 +414,7 @@ describe('UsaModal', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'notasize' is not a valid modal size`
+      `'notasize' is not a valid modal size`,
     )
   })
 
@@ -476,7 +476,7 @@ describe('UsaModal', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'closeButton' slot is deprecated, use 'close-button' instead.`
+      `The 'closeButton' slot is deprecated, use 'close-button' instead.`,
     )
   })
 })

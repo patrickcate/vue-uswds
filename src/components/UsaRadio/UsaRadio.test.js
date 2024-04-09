@@ -32,7 +32,7 @@ describe('UsaRadio', () => {
 
     cy.get('span.usa-radio__label-description').should(
       'contain',
-      'Test description'
+      'Test description',
     )
 
     cy.get('@wrapper')
@@ -50,7 +50,7 @@ describe('UsaRadio', () => {
         const currentCheckedEvent = vm.emitted('update:modelValue')
         expect(currentCheckedEvent).to.have.length(1)
         expect(currentCheckedEvent[currentCheckedEvent.length - 1]).to.contain(
-          'test-radio-value'
+          'test-radio-value',
         )
       })
 
@@ -121,7 +121,7 @@ describe('UsaRadio', () => {
     cy.get('.usa-radio__label').should('contain', 'Test label')
     cy.get('.usa-radio__label-description').should(
       'contain',
-      'Test description slot'
+      'Test description slot',
     )
   })
 
@@ -169,7 +169,7 @@ describe('UsaRadio', () => {
     cy.get('.usa-radio__label').should('have.class', 'test-label-class')
     cy.get('.usa-radio__label-description').should(
       'have.class',
-      'test-description-class'
+      'test-description-class',
     )
   })
 })

@@ -55,7 +55,7 @@ describe('UsaModalCloseButton', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `[Vue warn]: Missing required prop: "ariaLabel"`
+      `[Vue warn]: Missing required prop: "ariaLabel"`,
     )
   })
 })

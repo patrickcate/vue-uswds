@@ -50,8 +50,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
   >
     <template v-if="${!!args['jump-link']}" #jump-link>${
-    args['jump-link']
-  }</template>
+      args['jump-link']
+    }</template>
     <template v-if="${!!args.default}" #default>${args.default}</template>
   </UsaFooter>`,
 })

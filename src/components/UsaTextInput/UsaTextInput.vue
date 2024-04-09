@@ -101,7 +101,7 @@ const props = defineProps({
 
 const computedId = computed(() => props.id || nextId('usa-text-input'))
 const computedErrorMessageId = computed(
-  () => `${computedId.value}-error-message`
+  () => `${computedId.value}-error-message`,
 )
 const computedHintId = computed(() => `${computedId.value}-hint`)
 
@@ -204,7 +204,8 @@ const ariaDescribedby = computed(() => {
 })
 
 const groupElements = computed(
-  () => props.group || !!slots.hint || (props.error && !!slots['error-message'])
+  () =>
+    props.group || !!slots.hint || (props.error && !!slots['error-message']),
 )
 </script>
 

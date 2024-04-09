@@ -62,7 +62,7 @@ const activeDateObject = shallowRef(parseIsoDate(props.activeDate))
 
 watch(
   toRef(props, 'activeDate'),
-  newActiveDate => (activeDateObject.value = parseIsoDate(newActiveDate))
+  newActiveDate => (activeDateObject.value = parseIsoDate(newActiveDate)),
 )
 
 const activeYear = computed({
@@ -95,14 +95,14 @@ watch(
   () => emit('update:activeYearStart', firstAvailableVisibleYear.value),
   {
     immediate: true,
-  }
+  },
 )
 watch(
   lastAvailableVisibleYear,
   () => emit('update:activeYearEnd', lastAvailableVisibleYear.value),
   {
     immediate: true,
-  }
+  },
 )
 
 const currentSelectedYear = computed({
@@ -133,7 +133,7 @@ const tabIndex = (year, rowIndex, buttonIndex) => {
 
 const getButtonByYear = year =>
   yearButtonRefs.value.find(
-    button => parseInt(button.dataset.value, 10) === year
+    button => parseInt(button.dataset.value, 10) === year,
   )
 
 const setButtonFocusByYear = year => {
@@ -204,14 +204,14 @@ watch(
       const newButtonIndex = findButtonIndexByYear(
         years,
         newRowIndex,
-        newHighlightedYear
+        newHighlightedYear,
       )
 
       highlightedRowIndex.value = newRowIndex
       highlightedButtonIndex.value = newButtonIndex
     }
   },
-  { immediate: true }
+  { immediate: true },
 )
 
 watch(years, (newVisibleYears, oldVisibleYear) => {

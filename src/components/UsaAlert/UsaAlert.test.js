@@ -207,7 +207,7 @@ describe('UsaAlert', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'notvariant' is not a valid alert variant`
+      `'notvariant' is not a valid alert variant`,
     )
   })
 })

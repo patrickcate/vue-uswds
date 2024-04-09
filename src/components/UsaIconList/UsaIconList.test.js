@@ -79,7 +79,7 @@ describe('UsaIconList', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'invalidsize' is not a valid icon list size`
+      `'invalidsize' is not a valid icon list size`,
     )
   })
 })

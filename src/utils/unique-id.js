@@ -1,12 +1,12 @@
 import { getCurrentInstance } from 'vue'
 import { kebabCase } from '@/utils/common.js'
+import { ID_PREFIX } from '@/utils/constants.js'
 
 const idRegistry = {}
 
 // Adapted from:
 // https://github.com/wearebraid/vue-formulate/blob/master/src/Formulate.js
 export function nextId(componentName = '') {
-  const idPrefix = 'vuswds-id-'
   const vm = getCurrentInstance()
   const route = vm?.appContext?.config?.globalProperties?.$route
 
@@ -17,7 +17,7 @@ export function nextId(componentName = '') {
     idRegistry[pathPrefix] = 0
   }
 
-  return `${idPrefix}${pathPrefix}-${kebabCase(componentName)}-${++idRegistry[
+  return `${ID_PREFIX}${pathPrefix}-${kebabCase(componentName)}-${++idRegistry[
     pathPrefix
   ]}`
 }

@@ -71,6 +71,7 @@ describe('UsaNavPrimary', () => {
         path: '/section-3',
       },
       text: 'Section 3',
+      id: 'section-3',
       children: [
         {
           href: '/section-3/page-1',
@@ -118,7 +119,7 @@ describe('UsaNavPrimary', () => {
 
     cy.get('.usa-nav__primary > li.usa-nav__primary-item').should(
       'have.length',
-      4
+      4,
     )
 
     // Item 1
@@ -251,9 +252,7 @@ describe('UsaNavPrimary', () => {
 
     cy.get('@dropdownButton2').should('not.have.attr', 'to')
     cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownButton2')
-      .should('have.attr', 'aria-controls')
-      .and('contain', 'vuswds-id-global-usa-nav-dropdown-')
+    cy.get('@dropdownButton2').should('have.attr', 'aria-controls', 'section-3')
 
     cy.get('@dropdownButton2').find('> span').should('contain', 'Section 3')
 
@@ -262,8 +261,7 @@ describe('UsaNavPrimary', () => {
       .find('> ul')
       .as('submenu2')
       .should('have.class', 'usa-nav__submenu')
-      .and('have.attr', 'id')
-      .and('contain', 'vuswds-id-global-usa-nav-dropdown-')
+      .and('have.attr', 'id', 'section-3')
     cy.get('@submenu2').should('have.attr', 'hidden')
 
     // Item 4-1
@@ -298,7 +296,7 @@ describe('UsaNavPrimary', () => {
 
     cy.get('.usa-nav__primary > li.usa-nav__primary-item').should(
       'have.length',
-      4
+      4,
     )
 
     // Item 1
@@ -475,9 +473,7 @@ describe('UsaNavPrimary', () => {
 
     cy.get('@dropdownButton2').should('not.have.attr', 'to')
     cy.get('@dropdownButton2').should('have.attr', 'aria-expanded', 'false')
-    cy.get('@dropdownButton2')
-      .should('have.attr', 'aria-controls')
-      .and('contain', 'vuswds-id-global-usa-nav-dropdown-')
+    cy.get('@dropdownButton2').should('have.attr', 'aria-controls', 'section-3')
 
     cy.get('@dropdownButton2').find('> span').should('contain', 'Section 3')
 
@@ -487,8 +483,7 @@ describe('UsaNavPrimary', () => {
       .should('have.attr', 'hidden')
     cy.get('@item4')
       .find('> div.usa-nav__submenu')
-      .should('have.attr', 'id')
-      .and('contain', 'vuswds-id-global-usa-nav-dropdown-')
+      .should('have.attr', 'id', 'section-3')
 
     cy.get('@item4')
       .find('> div.usa-nav__submenu > div')
@@ -537,7 +532,7 @@ describe('UsaNavPrimary', () => {
     })
 
     cy.get('.usa-nav__primary > .usa-nav__primary-item:nth-of-type(3)').as(
-      'dropdown'
+      'dropdown',
     )
 
     cy.get('@dropdown').find('> button').as('dropdownButton')
@@ -587,23 +582,23 @@ describe('UsaNavPrimary', () => {
     })
 
     cy.get('.usa-nav__primary > .usa-nav__primary-item:nth-of-type(3)').as(
-      'dropdown1'
+      'dropdown1',
     )
     cy.get(
-      '.usa-nav__primary > .usa-nav__primary-item:nth-of-type(3) > button'
+      '.usa-nav__primary > .usa-nav__primary-item:nth-of-type(3) > button',
     ).as('dropdownButton1')
     cy.get('.usa-nav__primary > .usa-nav__primary-item:nth-of-type(3) > ul').as(
-      'dropdownMenu1'
+      'dropdownMenu1',
     )
 
     cy.get('.usa-nav__primary > .usa-nav__primary-item:nth-of-type(4)').as(
-      'dropdown2'
+      'dropdown2',
     )
     cy.get(
-      '.usa-nav__primary > .usa-nav__primary-item:nth-of-type(4) > button'
+      '.usa-nav__primary > .usa-nav__primary-item:nth-of-type(4) > button',
     ).as('dropdownButton2')
     cy.get('.usa-nav__primary > .usa-nav__primary-item:nth-of-type(4) > ul').as(
-      'dropdownMenu2'
+      'dropdownMenu2',
     )
 
     cy.get('@dropdownButton1').should('have.attr', 'aria-expanded', 'false')
@@ -686,7 +681,7 @@ describe('UsaNavPrimary', () => {
       .as('wrapper')
 
     cy.get('.usa-nav__primary > .usa-nav__primary-item:nth-of-type(3)').as(
-      'dropdown'
+      'dropdown',
     )
     cy.get('@dropdown').find('> button').as('dropdownButton')
 
@@ -698,7 +693,7 @@ describe('UsaNavPrimary', () => {
         expect(currentEvent).to.have.length(1)
 
         const dropdownIds = Object.keys(
-          currentEvent[currentEvent.length - 1][0]
+          currentEvent[currentEvent.length - 1][0],
         )
         expect(currentEvent[currentEvent.length - 1][0]).to.contain({
           [dropdownIds[0]]: false,
@@ -716,7 +711,7 @@ describe('UsaNavPrimary', () => {
         expect(currentEvent).to.have.length(2)
 
         const dropdownIds = Object.keys(
-          currentEvent[currentEvent.length - 1][0]
+          currentEvent[currentEvent.length - 1][0],
         )
         expect(currentEvent[currentEvent.length - 1][0]).to.contain({
           [dropdownIds[0]]: true,

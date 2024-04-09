@@ -11,7 +11,7 @@ describe('UsaIdentifierMasthead', () => {
       .and('contain', 'Agency identifier')
 
     cy.get(
-      '.usa-identifier__section--masthead > .usa-identifier__container'
+      '.usa-identifier__section--masthead > .usa-identifier__container',
     ).should('exist')
 
     cy.get('.usa-identifier__identity').should('not.exist')
@@ -28,7 +28,7 @@ describe('UsaIdentifierMasthead', () => {
     cy.get('.usa-identifier__section--masthead').should('exist')
 
     cy.get(
-      '.usa-identifier__section--masthead > .usa-identifier__container'
+      '.usa-identifier__section--masthead > .usa-identifier__container',
     ).and('contain', 'Test default slot')
 
     cy.get('.usa-identifier__logos').should('not.exist')
@@ -50,7 +50,7 @@ describe('UsaIdentifierMasthead', () => {
 
     cy.get('p.usa-identifier__identity-domain').should(
       'contain',
-      'www.test.com'
+      'www.test.com',
     )
 
     cy.get('p.usa-identifier__identity-disclaimer').should('not.exist')
@@ -65,7 +65,7 @@ describe('UsaIdentifierMasthead', () => {
 
     cy.get('p.usa-identifier__identity-disclaimer').should(
       'contain',
-      'Test disclaimer'
+      'Test disclaimer',
     )
 
     cy.get('.usa-identifier__identity-domain').should('not.exist')
@@ -106,12 +106,12 @@ describe('UsaIdentifierMasthead', () => {
 
     cy.get('p.usa-identifier__identity-domain').should(
       'contain',
-      'www.test.com'
+      'www.test.com',
     )
 
     cy.get('p.usa-identifier__identity-disclaimer').should(
       'contain',
-      'Test disclaimer'
+      'Test disclaimer',
     )
   })
 })

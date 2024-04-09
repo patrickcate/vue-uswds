@@ -43,7 +43,7 @@ describe('UsaFooterLogo', () => {
       .should('have.attr', 'src')
       .and(
         'contain',
-        'https://designsystem.digital.gov/assets/img/logo-img.png'
+        'https://designsystem.digital.gov/assets/img/logo-img.png',
       )
     cy.get('@logoImg')
       .should('have.attr', 'alt')
@@ -68,7 +68,7 @@ describe('UsaFooterLogo', () => {
 
     cy.get('.usa-footer__logo > div:nth-of-type(1)').should(
       'contain',
-      'Test logo slot'
+      'Test logo slot',
     )
 
     cy.get('.usa-footer__logo > div:nth-of-type(2)').as('headingCol')

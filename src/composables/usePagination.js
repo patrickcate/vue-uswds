@@ -34,7 +34,7 @@ export function usePagination(_currentPage, totalPages, _unbounded, emit) {
     if (currentPage.value + 3 >= totalPages.value) {
       const range = pageRange.value.slice(
         totalPages.value - 7,
-        totalPages.value
+        totalPages.value,
       )
 
       // Always set the first slot to show the first page.
@@ -47,7 +47,7 @@ export function usePagination(_currentPage, totalPages, _unbounded, emit) {
     // the current page.
     const range = pageRange.value.slice(
       currentPage.value - 4,
-      currentPage.value + 3
+      currentPage.value + 3,
     )
 
     // If in bounded mode, always set the last slot to show the last page.

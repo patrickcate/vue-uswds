@@ -81,11 +81,11 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses"
   >
     <template v-if="${!!args['slot:icon']}" #icon>${
-    args['slot:icon']
-  }</template>
+      args['slot:icon']
+    }</template>
     <template v-if="${!!args['slot:title']}" #title>${
-    args['slot:title']
-  }</template>
+      args['slot:title']
+    }</template>
     <template v-if="${!!args.default}" #default>${args.default}</template>
   </UsaIconListItem>`,
 })

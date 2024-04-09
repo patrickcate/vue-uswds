@@ -12,7 +12,7 @@ const props = defineProps({
 
       if (!isValidAnchor) {
         console.warn(
-          `The anchor prop is required and must start with a "#" symbol`
+          `The anchor prop is required and must start with a "#" symbol`,
         )
       }
 

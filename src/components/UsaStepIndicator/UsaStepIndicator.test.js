@@ -21,27 +21,27 @@ describe('UsaStepIndicator', () => {
 
     cy.get('ol.usa-step-indicator__segments').should(
       'not.have.attr',
-      'aria-hidden'
+      'aria-hidden',
     )
 
     // Make sure the segment text is printed and is visible.
     cy.get(
-      'li.usa-step-indicator__segment:nth-child(1) .usa-step-indicator__segment-label'
+      'li.usa-step-indicator__segment:nth-child(1) .usa-step-indicator__segment-label',
     )
       .should('contain', testSteps[0])
       .and('be.visible')
     cy.get(
-      'li.usa-step-indicator__segment:nth-child(2) .usa-step-indicator__segment-label'
+      'li.usa-step-indicator__segment:nth-child(2) .usa-step-indicator__segment-label',
     )
       .should('contain', testSteps[1])
       .and('be.visible')
     cy.get(
-      'li.usa-step-indicator__segment:nth-child(3) .usa-step-indicator__segment-label'
+      'li.usa-step-indicator__segment:nth-child(3) .usa-step-indicator__segment-label',
     )
       .should('contain', testSteps[2])
       .and('be.visible')
     cy.get(
-      'li.usa-step-indicator__segment:nth-child(4) .usa-step-indicator__segment-label'
+      'li.usa-step-indicator__segment:nth-child(4) .usa-step-indicator__segment-label',
     )
       .should('contain', testSteps[3])
       .and('be.visible')
@@ -50,16 +50,16 @@ describe('UsaStepIndicator', () => {
     cy.viewport('iphone-5')
 
     cy.get(
-      'li.usa-step-indicator__segment:nth-child(1) .usa-step-indicator__segment-label'
+      'li.usa-step-indicator__segment:nth-child(1) .usa-step-indicator__segment-label',
     ).should('not.be.visible')
     cy.get(
-      'li.usa-step-indicator__segment:nth-child(2) .usa-step-indicator__segment-label'
+      'li.usa-step-indicator__segment:nth-child(2) .usa-step-indicator__segment-label',
     ).should('not.be.visible')
     cy.get(
-      'li.usa-step-indicator__segment:nth-child(3) .usa-step-indicator__segment-label'
+      'li.usa-step-indicator__segment:nth-child(3) .usa-step-indicator__segment-label',
     ).should('not.be.visible')
     cy.get(
-      'li.usa-step-indicator__segment:nth-child(4) .usa-step-indicator__segment-label'
+      'li.usa-step-indicator__segment:nth-child(4) .usa-step-indicator__segment-label',
     ).should('not.be.visible')
   })
 
@@ -307,7 +307,7 @@ describe('UsaStepIndicator', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `[Vue warn]: Invalid prop: custom validator check failed for prop "currentStepNumber".`
+      `[Vue warn]: Invalid prop: custom validator check failed for prop "currentStepNumber".`,
     )
   })
 })

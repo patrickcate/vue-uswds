@@ -21,11 +21,15 @@ export default {
     default: {
       control: { type: 'text' },
     },
+    sublist: {
+      control: { type: 'text' },
+    },
   },
   args: {
     item: defaultProps.item,
     customClasses: defaultProps.customClasses,
     default: '',
+    sublist: '',
   },
   decorators: [() => ({ template: '<ul class="usa-sidenav"><story /></ul>' })],
 }
@@ -38,6 +42,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
   },
   template: `<UsaSidenavItem :item="item" :custom-classes="customClasses"><template v-if="${!!args.default}" #default="{ item }">${
     args.default
+  }</template><template v-if="${!!args.sublist}" #sublist="{ sublist }">${
+    args.sublist
   }</template></UsaSidenavItem>`,
 })
 
@@ -92,8 +98,8 @@ SublistSidenavItem.args = {
 }
 SublistSidenavItem.storyName = 'With Sublist'
 
-export const ScopedSlotSidenavItem = DefaultTemplate.bind({})
-ScopedSlotSidenavItem.args = {
+export const ScopedDefaultSlotSidenavItem = DefaultTemplate.bind({})
+ScopedDefaultSlotSidenavItem.args = {
   ...defaultProps,
   item: {
     to: '/parent-page',
@@ -101,4 +107,21 @@ ScopedSlotSidenavItem.args = {
   },
   default: `<strong>{{ item.to }} &rarr;</strong>`,
 }
-ScopedSlotSidenavItem.storyName = 'Scoped Slot'
+ScopedDefaultSlotSidenavItem.storyName = 'Scoped Default Slot'
+
+export const ScopedSublistSlotSidenavItem = DefaultTemplate.bind({})
+ScopedSublistSlotSidenavItem.args = {
+  ...defaultProps,
+  item: {
+    to: '/parent-page',
+    text: 'Parent page',
+    children: [
+      {
+        to: '/parent-page/sublist',
+        text: 'Sublist',
+      },
+    ],
+  },
+  sublist: `<li>{{ sublist[0].text }} &rarr;</li>`,
+}
+ScopedSublistSlotSidenavItem.storyName = 'Scoped Sublist Slot'

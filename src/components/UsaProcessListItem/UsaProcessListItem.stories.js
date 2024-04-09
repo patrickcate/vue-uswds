@@ -55,8 +55,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
     <UsaProcessList>
       <UsaProcessListItem :heading="heading" :heading-tag="headingTag" :custom-classes="customClasses">
         <template v-if="${!!args['slot:heading']}" #heading>${
-    args['slot:heading']
-  }</template>
+          args['slot:heading']
+        }</template>
         <template v-if="${!!args.default}" #default>${args.default}</template>
       </UsaProcessListItem>
     </UsaProcessList>

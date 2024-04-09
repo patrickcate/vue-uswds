@@ -57,8 +57,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
     <template v-if="${!!args.logos}" #logos>${args.logos}</template>
     <template v-if="${!!args.domain}" #domain>${args.domain}</template>
     <template v-if="${!!args.disclaimer}" #disclaimer>${
-    args.disclaimer
-  }</template>
+      args.disclaimer
+    }</template>
   </UsaIdentifierMasthead>`,
 })
 

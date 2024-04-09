@@ -70,7 +70,7 @@ describe('UsaPagination', () => {
       .should(
         'have.attr',
         'xlink:href',
-        '/assets/img/sprite.svg#navigate_before'
+        '/assets/img/sprite.svg#navigate_before',
       )
 
     cy.get('@itemPrevious').find('span').should('contain', 'Previous')
@@ -199,7 +199,7 @@ describe('UsaPagination', () => {
       .and(
         'not.have.attr',
         'aria-label',
-        'ellipsis indicating non-visible pages'
+        'ellipsis indicating non-visible pages',
       )
       .children()
       .should('contain', '20')
@@ -217,7 +217,7 @@ describe('UsaPagination', () => {
     cy.get('nav.usa-pagination').should(
       'have.attr',
       'aria-label',
-      'Test aria label'
+      'Test aria label',
     )
   })
 
@@ -303,7 +303,7 @@ describe('UsaPagination', () => {
     cy.get('.usa-pagination__list').should('contain', 'Test previous icon slot')
     cy.get('.usa-pagination__list').should(
       'contain',
-      'Test previous label slot'
+      'Test previous label slot',
     )
     cy.get('.usa-pagination__list').should('contain', 'Test next icon slot')
     cy.get('.usa-pagination__list').should('contain', 'Test next label slot')
@@ -384,12 +384,12 @@ describe('UsaPagination', () => {
       if (i > 1) {
         cy.get('@itemPrevious').should(
           'not.have.class',
-          'usa-pagination__item--hidden'
+          'usa-pagination__item--hidden',
         )
       } else {
         cy.get('@itemPrevious').should(
           'have.class',
-          'usa-pagination__item--hidden'
+          'usa-pagination__item--hidden',
         )
       }
 
@@ -408,7 +408,7 @@ describe('UsaPagination', () => {
 
       cy.get('@itemNext').should(
         'not.have.class',
-        'usa-pagination__item--hidden'
+        'usa-pagination__item--hidden',
       )
 
       // Click on next item
@@ -420,7 +420,7 @@ describe('UsaPagination', () => {
           expect(vm.emitted()).to.have.property('update:currentPage')
           const currentPageEvent = vm.emitted('update:currentPage')
           expect(currentPageEvent[currentPageEvent.length - 1]).to.contain(
-            i + 1
+            i + 1,
           )
           expect(currentPageEvent).to.have.length(i)
         })
@@ -469,7 +469,7 @@ describe('UsaPagination', () => {
 
           cy.get('@itemPrevious').should(
             'not.have.class',
-            'usa-pagination__item--hidden'
+            'usa-pagination__item--hidden',
           )
 
           cy.get('@item1')
@@ -496,7 +496,7 @@ describe('UsaPagination', () => {
 
           cy.get('@itemNext').should(
             'not.have.class',
-            'usa-pagination__item--hidden'
+            'usa-pagination__item--hidden',
           )
 
           // Click on next item
@@ -508,7 +508,7 @@ describe('UsaPagination', () => {
               expect(vm.emitted()).to.have.property('update:currentPage')
               const currentPageEvent = vm.emitted('update:currentPage')
               expect(currentPageEvent[currentPageEvent.length - 1]).to.contain(
-                i + 1
+                i + 1,
               )
               expect(currentPageEvent).to.have.length(i)
             })
@@ -532,19 +532,19 @@ describe('UsaPagination', () => {
             .and('not.have.class', 'usa-current')
           cy.get('li.usa-pagination__item:nth-child(5) > *').should(
             'contain',
-            '9'
+            '9',
           )
           cy.get('li.usa-pagination__item:nth-child(6) > *').should(
             'contain',
-            '10'
+            '10',
           )
           cy.get('li.usa-pagination__item:nth-child(7) > *').should(
             'contain',
-            '11'
+            '11',
           )
           cy.get('li.usa-pagination__item:nth-child(8) > *').should(
             'contain',
-            '12'
+            '12',
           )
           cy.get('li.usa-pagination__item:nth-child(9)').should('exist')
 
@@ -557,7 +557,7 @@ describe('UsaPagination', () => {
               expect(vm.emitted()).to.have.property('update:currentPage')
               const currentPageEvent = vm.emitted('update:currentPage')
               expect(currentPageEvent[currentPageEvent.length - 1]).to.contain(
-                i + 1
+                i + 1,
               )
               expect(currentPageEvent).to.have.length(i)
             })
@@ -565,11 +565,11 @@ describe('UsaPagination', () => {
           // Add guard to make sure DOM has been updated before moving on.
           cy.get(`li.usa-pagination__item:nth-child(${i - 3}) > *`).should(
             'have.class',
-            'usa-current'
+            'usa-current',
           )
           cy.get(`li.usa-pagination__item:nth-child(${i - 4}) > *`).should(
             'not.have.class',
-            'usa-current'
+            'usa-current',
           )
         })
     })
@@ -618,7 +618,7 @@ describe('UsaPagination', () => {
             {
               ariaLabel: 'Test aria label previous',
             },
-            () => 'Test Previous Slot'
+            () => 'Test Previous Slot',
           ),
         next: () =>
           h(
@@ -626,7 +626,7 @@ describe('UsaPagination', () => {
             {
               ariaLabel: 'Test aria label next',
             },
-            () => 'Test Next Slot'
+            () => 'Test Next Slot',
           ),
       },
     })
@@ -757,7 +757,7 @@ describe('UsaPagination', () => {
             },
             `${props.isFirstPage ? 'true' : 'false'} - ${
               props.toPreviousPage ? 'true' : 'false'
-            }`
+            }`,
           ),
         next: props =>
           h(
@@ -767,7 +767,7 @@ describe('UsaPagination', () => {
             },
             `${props.isLastPage ? 'true' : 'false'} - ${
               props.toNextPage ? 'true' : 'false'
-            } `
+            } `,
           ),
       },
     })
@@ -808,13 +808,13 @@ describe('UsaPagination', () => {
           h(
             'span',
             { class: 'test-previous-label' },
-            'deprecated previous label slot'
+            'deprecated previous label slot',
           ),
         previousIcon: () =>
           h(
             'span',
             { class: 'test-previous-icon' },
-            'deprecated previous icon slot'
+            'deprecated previous icon slot',
           ),
         nextIcon: () =>
           h('span', { class: 'test-next-label' }, 'deprecated next label slot'),
@@ -829,43 +829,43 @@ describe('UsaPagination', () => {
 
     cy.get('span.test-previous-icon').should(
       'contain',
-      'deprecated previous icon slot'
+      'deprecated previous icon slot',
     )
 
     cy.get('span.test-previous-label').should(
       'contain',
-      'deprecated previous label slot'
+      'deprecated previous label slot',
     )
 
     cy.get('span.test-next-label').should(
       'contain',
-      'deprecated next label slot'
+      'deprecated next label slot',
     )
 
     cy.get('span.test-next-icon').should('contain', 'deprecated next icon slot')
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'previousIcon' slot is deprecated, use 'previous-icon' instead.`
+      `The 'previousIcon' slot is deprecated, use 'previous-icon' instead.`,
     )
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'previousLabel' slot is deprecated, use 'previous-label' instead.`
+      `The 'previousLabel' slot is deprecated, use 'previous-label' instead.`,
     )
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'nextIcon' slot is deprecated, use 'next-icon' instead.`
+      `The 'nextIcon' slot is deprecated, use 'next-icon' instead.`,
     )
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'nextLabel' slot is deprecated, use 'next-label' instead.`
+      `The 'nextLabel' slot is deprecated, use 'next-label' instead.`,
     )
 
     cy.get('span.test-next-label').should(
       'contain',
-      'deprecated next label slot'
+      'deprecated next label slot',
     )
 
     cy.get('@itemFirst')
@@ -882,7 +882,7 @@ describe('UsaPagination', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The '#' placeholder is deprecated, use '%s' instead.`
+      `The '#' placeholder is deprecated, use '%s' instead.`,
     )
   })
 })

@@ -23,7 +23,7 @@ const props = defineProps({
 const gridColClasses = computed(() =>
   props.customClasses?.gridCol?.length
     ? props.customClasses.gridCol
-    : [`${gridNamespace}col-auto`]
+    : [`${gridNamespace}col-auto`],
 )
 </script>
 

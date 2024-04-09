@@ -40,12 +40,12 @@ describe('UsaHeroCallout', () => {
 
     cy.get('.usa-hero__heading').should(
       'contain',
-      'Custom heading slot content'
+      'Custom heading slot content',
     )
 
     cy.get('.usa-hero__heading--alt').should(
       'contain',
-      'Custom heading alt slot content'
+      'Custom heading alt slot content',
     )
   })
 
@@ -60,12 +60,12 @@ describe('UsaHeroCallout', () => {
 
     cy.get('.usa-hero__heading').should(
       'contain',
-      'Custom heading slot content'
+      'Custom heading slot content',
     )
 
     cy.get('.usa-hero__heading--alt').should(
       'contain',
-      'Custom heading alt slot content'
+      'Custom heading alt slot content',
     )
   })
 
@@ -81,7 +81,7 @@ describe('UsaHeroCallout', () => {
 
     cy.get('.usa-hero__heading--alt').should(
       'contain',
-      'Custom heading alt slot content'
+      'Custom heading alt slot content',
     )
   })
 
@@ -134,12 +134,12 @@ describe('UsaHeroCallout', () => {
 
     cy.get('.usa-hero__heading--alt').should(
       'contain',
-      'deprecated heading alt slot content'
+      'deprecated heading alt slot content',
     )
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `The 'headingAlt' slot is deprecated, use 'heading-alt' instead.`
+      `The 'headingAlt' slot is deprecated, use 'heading-alt' instead.`,
     )
   })
 })

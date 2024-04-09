@@ -200,17 +200,17 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :defaultSortHeader="defaultSortHeader"
   >
     <template v-if="${!!args['slot:caption']}" #caption>${
-    args['slot:caption']
-  }</template>
+      args['slot:caption']
+    }</template>
     <template v-if="${!!args['slot:headers']}" #headers="{ headers }">${
-    args['slot:headers']
-  }</template>
+      args['slot:headers']
+    }</template>
     <template v-if="${!!args.default}" #default>${args.default}</template>
     <template v-if="${!!args[
       'table-announcement'
     ]}" #table-announcement="{ currentSortedHeader, currentSortDirection, currentSortedHeaderLabel, tableCaption }">${
-    args['table-announcement']
-  }</template>
+      args['table-announcement']
+    }</template>
   </UsaTable>`,
 })
 

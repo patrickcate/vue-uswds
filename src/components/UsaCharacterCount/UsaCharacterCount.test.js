@@ -38,7 +38,7 @@ describe('UsaCharacterCount', () => {
 
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage').should('contain', '10 characters allowed')
     cy.get('@srOnlyStatusMessage').should('contain', '10 characters allowed')
@@ -52,7 +52,7 @@ describe('UsaCharacterCount', () => {
     cy.get('@input').type('12345')
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage').should('contain', '5 characters left')
     cy.get('@srOnlyStatusMessage').should('contain', '5 characters left')
@@ -60,7 +60,7 @@ describe('UsaCharacterCount', () => {
     cy.get('@input').type('6789')
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage').should('contain', '1 character left')
     cy.get('@srOnlyStatusMessage').should('contain', '1 character left')
@@ -68,7 +68,7 @@ describe('UsaCharacterCount', () => {
     cy.get('@input').type('1')
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage').should('contain', '0 characters left')
     cy.get('@srOnlyStatusMessage').should('contain', '0 characters left')
@@ -76,7 +76,7 @@ describe('UsaCharacterCount', () => {
     cy.get('@input').type('0')
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage').should('contain', '0 characters left')
     cy.get('@srOnlyStatusMessage').should('contain', '0 characters left')
@@ -84,7 +84,7 @@ describe('UsaCharacterCount', () => {
     cy.get('@input').invoke('val', 12345678912).trigger('input')
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage')
       .should('have.class', 'usa-character-count__message--invalid')
@@ -94,7 +94,7 @@ describe('UsaCharacterCount', () => {
     cy.get('@input').invoke('val', 123456789123).trigger('input')
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage')
       .should('have.class', 'usa-character-count__message--invalid')
@@ -135,7 +135,7 @@ describe('UsaCharacterCount', () => {
 
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage').should('contain', '10 characters allowed')
     cy.get('@srOnlyStatusMessage').should('contain', '10 characters allowed')
@@ -149,7 +149,7 @@ describe('UsaCharacterCount', () => {
     cy.get('@textarea').type('12345')
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage').should('contain', '5 characters left')
     cy.get('@srOnlyStatusMessage').should('contain', '5 characters left')
@@ -157,7 +157,7 @@ describe('UsaCharacterCount', () => {
     cy.get('@textarea').type('6789')
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage').should('contain', '1 character left')
     cy.get('@srOnlyStatusMessage').should('contain', '1 character left')
@@ -166,7 +166,7 @@ describe('UsaCharacterCount', () => {
     cy.get('@textarea').type('6789')
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage').should('contain', '0 characters left')
     cy.get('@srOnlyStatusMessage').should('contain', '0 characters left')
@@ -174,7 +174,7 @@ describe('UsaCharacterCount', () => {
     cy.get('@textarea').type('0')
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage').should('contain', '0 characters left')
     cy.get('@srOnlyStatusMessage').should('contain', '0 characters left')
@@ -183,7 +183,7 @@ describe('UsaCharacterCount', () => {
     cy.get('@textarea').invoke('val', 12345678912).trigger('input')
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage')
       .should('have.class', 'usa-character-count__message--invalid')
@@ -194,7 +194,7 @@ describe('UsaCharacterCount', () => {
     cy.get('@textarea').invoke('val', 123456789123).trigger('input')
     cy.get('@defaultMessage').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('@statusMessage')
       .should('have.class', 'usa-character-count__message--invalid')
@@ -217,11 +217,11 @@ describe('UsaCharacterCount', () => {
     cy.get('.usa-input').should('have.value', 12345)
     cy.get('.usa-character-count__message').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('.usa-character-count__status').should(
       'contain',
-      '5 characters left'
+      '5 characters left',
     )
   })
 
@@ -240,11 +240,11 @@ describe('UsaCharacterCount', () => {
     cy.get('.usa-textarea').should('have.value', 12345)
     cy.get('.usa-character-count__message').should(
       'contain',
-      'You can enter up to 10 characters'
+      'You can enter up to 10 characters',
     )
     cy.get('.usa-character-count__status').should(
       'contain',
-      '5 characters left'
+      '5 characters left',
     )
   })
 
@@ -293,19 +293,19 @@ describe('UsaCharacterCount', () => {
           h(
             'span',
             { class: 'equal-message' },
-            `equal, maxlength: ${maxlength}`
+            `equal, maxlength: ${maxlength}`,
           ),
         'remaining-message': ({ maxlength, charactersRemaining }) =>
           h(
             'span',
             { class: 'remaining-message' },
-            `under, maxlength: ${maxlength}, charactersRemaining: ${charactersRemaining}`
+            `under, maxlength: ${maxlength}, charactersRemaining: ${charactersRemaining}`,
           ),
         'over-message': ({ maxlength, charactersOver }) =>
           h(
             'span',
             { class: 'over-message' },
-            `over, maxlength: ${maxlength}, charactersOver: ${charactersOver}`
+            `over, maxlength: ${maxlength}, charactersOver: ${charactersOver}`,
           ),
       },
     })
@@ -331,7 +331,7 @@ describe('UsaCharacterCount', () => {
 
     cy.get('span.over-message').should(
       'contain',
-      'over, maxlength: 5, charactersOver: 1'
+      'over, maxlength: 5, charactersOver: 1',
     )
   })
 

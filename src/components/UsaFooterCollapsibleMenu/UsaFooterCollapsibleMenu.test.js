@@ -164,7 +164,7 @@ describe('UsaFooterCollapsibleMenu', () => {
 
     cy.get('.test-grid-namespace-row').should(
       'have.class',
-      'test-grid-namespace-gap-4'
+      'test-grid-namespace-gap-4',
     )
     cy.get('.test-grid-namespace-row > div')
       .should('have.class', 'mobile-lg@test-grid-namespace-col-6')
@@ -209,7 +209,7 @@ describe('UsaFooterCollapsibleMenu', () => {
     cy.get('div:first-of-type').should('have.class', 'test-grid-row-class')
     cy.get('div:first-of-type > div').should(
       'have.class',
-      'test-grid-col-class'
+      'test-grid-col-class',
     )
   })
 })

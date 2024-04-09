@@ -74,8 +74,8 @@ const DefaultTemplate = (args, { argTypes }) => ({
     :custom-classes="customClasses">
       <template v-if="${!!args.before}" #before>${args.before}</template>
       <template v-if="${!!args.default}" #default="{ items }">${
-    args.default
-  }</template>
+        args.default
+      }</template>
       <template v-if="${!!args.after}" #after>${args.after}</template>
     </UsaSidenav>`,
 })

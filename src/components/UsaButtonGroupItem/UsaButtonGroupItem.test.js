@@ -14,7 +14,7 @@ describe('UsaButtonGroupItem', () => {
 
     cy.get('li.usa-button-group__item button.usa-button').should(
       'contain',
-      'Test button'
+      'Test button',
     )
   })
 })

@@ -11,7 +11,7 @@ describe('UsaCollectionMetaItem', () => {
 
     cy.get('li.usa-collection__meta-item').should(
       'contain',
-      'Test collection meta item'
+      'Test collection meta item',
     )
   })
 })

@@ -124,12 +124,12 @@ describe('UsaHeader', () => {
       .should(
         'have.attr',
         'aria-controls',
-        '__vuswds-id-global-mobile-header-menu'
+        'vuswds-id-global-mobile-header-menu',
       )
 
     cy.get('nav.usa-nav')
       .as('nav')
-      .should('have.id', '__vuswds-id-global-mobile-header-menu')
+      .should('have.id', 'vuswds-id-global-mobile-header-menu')
 
     cy.get('@nav').should('not.have.class', 'is-visible').and('not.be.visible')
     cy.get('@nav').find('> div.usa-nav__inner').should('not.exist')
@@ -144,7 +144,7 @@ describe('UsaHeader', () => {
     wrapper.vue().then(vm => {
       const usaHeaderComponent = vm.findComponent(UsaHeader)
       expect(usaHeaderComponent.emitted()).to.not.have.property(
-        'mobileMenuOpen'
+        'mobileMenuOpen',
       )
 
       // Click mobile menu button.
@@ -209,7 +209,7 @@ describe('UsaHeader', () => {
 
     cy.get('.usa-nav-container').should(
       'have.class',
-      'test-nav-container-class'
+      'test-nav-container-class',
     )
   })
 
@@ -224,7 +224,7 @@ describe('UsaHeader', () => {
 
     cy.get('@consoleWarn').should(
       'be.calledWith',
-      `'notvariant' is not a valid header variant`
+      `'notvariant' is not a valid header variant`,
     )
   })
 })

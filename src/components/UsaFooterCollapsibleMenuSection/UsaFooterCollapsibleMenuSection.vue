@@ -22,7 +22,7 @@ const props = defineProps({
 })
 
 const menuSectionId = computed(
-  () => props.item?.id || nextId('usa-footer-collapsible-menu-section')
+  () => props.item?.id || nextId('usa-footer-collapsible-menu-section'),
 )
 
 registerMenuSection(menuSectionId.value, false)

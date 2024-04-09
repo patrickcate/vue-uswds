@@ -74,7 +74,7 @@ const {
   toRef(props, 'accept'),
   toRef(props, 'multiple'),
   toRef(props, 'disabled'),
-  emit
+  emit,
 )
 
 watch(hasInvalidFiles, invalid => {
