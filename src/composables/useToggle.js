@@ -2,8 +2,7 @@ import { ref, computed, readonly, watch } from 'vue'
 import { nextId } from '@/utils/unique-id.js'
 
 export function useToggle(_id, idPrefix = '', defaultOpen = false, emit) {
-  const propValue = ref(defaultOpen)
-  const isOpen = ref(propValue.value)
+  const isOpen = ref(defaultOpen)
 
   const toggleId = computed(() => _id || nextId(idPrefix))
 
@@ -31,8 +30,8 @@ export function useToggle(_id, idPrefix = '', defaultOpen = false, emit) {
     }
   }
 
-  watch(propValue, newValue => {
-    if (propValue.value !== newValue) {
+  watch(isOpen, newValue => {
+    if (isOpen.value !== newValue) {
       toggleContent()
     }
   })

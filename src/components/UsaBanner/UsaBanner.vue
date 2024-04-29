@@ -50,7 +50,7 @@ const props = defineProps({
 })
 
 const { isOpen, toggleId, openContent, closeContent, toggleContent } =
-  useToggle(props.id, 'usa-banner', toRef(props, 'open'), emit)
+  useToggle(props.id, 'usa-banner', props.open, emit)
 
 const headerClasses = computed(() => [
   { 'usa-banner__header--expanded': isOpen.value },
