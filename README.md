@@ -7,6 +7,8 @@
 
 A Vue 3 implementation of the [USWDS](https://designsystem.digital.gov). If you need Vue 2 support, check out the [USWDS-Vue](https://github.com/thepipster/uswds-vue) library.
 
+A [Nuxt 3 integration module](https://github.com/patrickcate/nuxt-uswds) is available.
+
 ## [Documentation](https://patrickcate.github.io/vue-uswds/)
 
 ## Installation
