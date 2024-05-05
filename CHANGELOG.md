@@ -1,5 +1,19 @@
 Changelog
 
+# [1.8.0](https://github.com/patrickcate/vue-uswds/compare/v1.7.1...v1.8.0) (2024-04-09)
+
+
+### Bug Fixes
+
+* **UsaFooterAddress:** move order of `v-bind=\"\\$attrs\"` to prevent overriding CSS classes ([f75efd0](https://github.com/patrickcate/vue-uswds/commit/f75efd031dde1ff4c18f3a16e9ce10faffb6c26b))
+* **UsaSidenavItem:** move order of `v-bind=\"\\$attrs\"` to prevent overriding other props ([238ca28](https://github.com/patrickcate/vue-uswds/commit/238ca280556a7b4aa666ec2d9fa58bb626f31dfe))
+* **useMobileMenu:** remove invalid underscores from id and use global id prefix ([6ed0dc8](https://github.com/patrickcate/vue-uswds/commit/6ed0dc87248a5397b1562099b6831c22931cce0c))
+
+
+### Features
+
+* **UsaSidenavItem:** add `sublist` scoped slot ([51a6ac7](https://github.com/patrickcate/vue-uswds/commit/51a6ac7a244ae3dcf96bd53e4f1ca4d40220df24))
+
 # [1.8.0-beta.1](https://github.com/patrickcate/vue-uswds/compare/v1.7.2-beta.2...v1.8.0-beta.1) (2024-03-19)
 
 
