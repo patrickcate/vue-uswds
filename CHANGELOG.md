@@ -1,5 +1,17 @@
 Changelog
 
+# [1.9.0](https://github.com/patrickcate/vue-uswds/compare/v1.8.0...v1.9.0) (2024-05-05)
+
+
+### Bug Fixes
+
+* **UsaBanner:** pass default open prop as static value ([361d9bf](https://github.com/patrickcate/vue-uswds/commit/361d9bf39f5175fa8fe8de711eb757124f7a314c))
+
+
+### Features
+
+* **UsaSearch:** set `selected` attribute for better ssr support ([288e5f9](https://github.com/patrickcate/vue-uswds/commit/288e5f9bd6c6a74aa2156ea036934014cd4c727a))
+
 # [1.8.0](https://github.com/patrickcate/vue-uswds/compare/v1.7.1...v1.8.0) (2024-04-09)
 
 
