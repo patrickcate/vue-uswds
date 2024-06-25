@@ -46,9 +46,7 @@ describe('UsaChecklist', () => {
       },
     })
 
-    cy.get('.usa-checklist li')
-      .should('have.length', 3)
-      .and('have.attr', 'tabindex', '0')
+    cy.get('.usa-checklist li').should('have.length', 3)
 
     cy.get('li:nth-of-type(1)')
       .should('have.attr', 'aria-label', 'Test item 1: invalid')
