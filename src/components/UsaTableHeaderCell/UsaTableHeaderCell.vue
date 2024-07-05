@@ -74,6 +74,6 @@ const toggleTableSort = headerId => {
       :header-id="id"
       :header-label="label"
       @update:table-sort="toggleTableSort"
-    ></UsaTableSortButton>
+    />
   </th>
 </template>

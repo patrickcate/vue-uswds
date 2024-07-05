@@ -118,7 +118,7 @@ const UsaNavInnerComponent = {
 
 <template>
   <Teleport to="body" :disabled="!isMobileMenuOpen">
-    <UsaOverlay :visible="isMobileMenuOpen"></UsaOverlay>
+    <UsaOverlay :visible="isMobileMenuOpen" />
     <nav
       :id="mobileMenuId"
       ref="nav"

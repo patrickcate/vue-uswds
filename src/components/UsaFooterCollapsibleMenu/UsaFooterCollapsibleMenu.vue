@@ -93,7 +93,7 @@ provide('footerMenuIsCollapsible', isCollapsible)
         :key="item?.id || item.text"
         :item="item"
         :heading-tag="headingTag"
-      ></UsaFooterCollapsibleMenuSection>
+      />
     </div>
   </div>
 </template>

@@ -106,7 +106,7 @@ defineExpose({
         class="usa-banner__content usa-accordion__content"
         :class="customClasses?.bannerContent"
       >
-        <slot><UsaBannerContent></UsaBannerContent></slot>
+        <slot><UsaBannerContent /></slot>
       </div>
     </div>
   </section>

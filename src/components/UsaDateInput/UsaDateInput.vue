@@ -186,7 +186,7 @@ const ariaDescribedby = computed(() => {
             :required="required"
             :aria-describedby="ariaDescribedby"
             :custom-classes="{ component: ['usa-form-group--month'] }"
-          ></UsaSelect>
+          />
           <UsaTextInput
             v-else
             :id="`${computedId}-${name}-month`"
@@ -200,7 +200,7 @@ const ariaDescribedby = computed(() => {
             inputmode="numeric"
             :aria-describedby="ariaDescribedby"
             :custom-classes="{ component: ['usa-form-group--month'] }"
-          ></UsaTextInput>
+          />
         </template>
         <UsaTextInput
           v-else-if="date === 'day'"
@@ -215,7 +215,7 @@ const ariaDescribedby = computed(() => {
           inputmode="numeric"
           :aria-describedby="ariaDescribedby"
           :custom-classes="{ component: ['usa-form-group--day'] }"
-        ></UsaTextInput>
+        />
         <UsaTextInput
           v-else-if="date === 'year'"
           :id="`${computedId}-${name}-year`"
@@ -230,7 +230,7 @@ const ariaDescribedby = computed(() => {
           inputmode="numeric"
           :aria-describedby="ariaDescribedby"
           :custom-classes="{ component: ['usa-form-group--year'] }"
-        ></UsaTextInput>
+        />
       </template>
     </div>
   </fieldset>
