@@ -33,7 +33,7 @@ const props = defineProps({
 <template>
   <li class="usa-icon-list__item">
     <div class="usa-icon-list__icon" :class="customClasses?.icon">
-      <slot name="icon"><UsaIcon :name="icon"></UsaIcon></slot>
+      <slot name="icon"><UsaIcon :name="icon" /></slot>
     </div>
     <div class="usa-icon-list__content" :class="customClasses?.content">
       <BaseHeading

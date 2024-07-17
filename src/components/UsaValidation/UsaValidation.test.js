@@ -64,9 +64,7 @@ describe('UsaValidation', () => {
     cy.get('.usa-alert__heading').should('not.exist')
 
     cy.get('ul.usa-checklist').should('have.id', 'test-id')
-    cy.get('ul.usa-checklist li.usa-checklist__item')
-      .should('have.length', 6)
-      .and('have.attr', 'tabindex', '0')
+    cy.get('ul.usa-checklist li.usa-checklist__item').should('have.length', 6)
 
     cy.get('.usa-checklist__item:nth-of-type(1)')
       .as('item1')

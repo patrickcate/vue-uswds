@@ -214,7 +214,7 @@ onClickOutside(modal, () => {
                   v-if="!forceAction"
                   :aria-label="closeButtonLabel"
                   @click="isVisible = false"
-                ></UsaModalCloseButton>
+                />
               </template>
             </div>
           </div>

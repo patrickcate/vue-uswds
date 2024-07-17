@@ -18,11 +18,7 @@ const classes = computed(() => [
 </script>
 
 <template>
-  <li
-    class="usa-checklist__item"
-    :aria-label="ariaLabel"
-    :class="classes"
-    tabindex="0"
+  <li class="usa-checklist__item" :aria-label="ariaLabel" :class="classes"
     ><slot></slot
   ></li>
 </template>
