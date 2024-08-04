@@ -91,7 +91,7 @@ const searchValue = computed({
       :label="label"
       :class="customClasses?.input"
       :custom-classes="customClasses"
-    ></UsaTextInput>
+    />
     <UsaButton type="submit" :class="customClasses?.button">
       <span
         v-if="variant === 'medium' || variant === 'big'"
