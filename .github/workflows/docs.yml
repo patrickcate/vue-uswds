@@ -32,7 +32,7 @@ jobs:
         run: touch ./storybook-static/.nojekyll
 
       - name: Publish documentation
-        uses: JamesIves/github-pages-deploy-action@v4.6.4
+        uses: JamesIves/github-pages-deploy-action@v4.6.8
         with:
           branch: gh-pages
           folder: storybook-static
