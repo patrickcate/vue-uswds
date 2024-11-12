@@ -25,37 +25,60 @@ export default {
     default:
       '<label for="test-id">Test Input</label><input id="test-id" type="text" class="usa-input" />',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaFormGroup },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaFormGroup
-    :group="group"
-    :error="error"
+  render: args => ({
+    components: { UsaFormGroup },
+    props: Object.keys(UsaFormGroup.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaFormGroup
+    :group="args.group"
+    :error="args.error"
   >${args.default}</UsaFormGroup>`,
-})
-
-export const DefaultFormGroup = DefaultTemplate.bind({})
-DefaultFormGroup.args = {
-  ...defaultProps,
+  }),
 }
-DefaultFormGroup.storyName = 'Default'
 
-export const GroupedFormGroup = DefaultTemplate.bind({})
-GroupedFormGroup.args = {
-  ...defaultProps,
-  group: true,
+export const DefaultFormGroup = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFormGroup><label for="test-id">Test Input</label><input id="test-id" type="text" class="usa-input" /></UsaFormGroup>`,
+      },
+    },
+  },
 }
-GroupedFormGroup.storyName = 'Grouped'
 
-export const ErrorFormGroup = DefaultTemplate.bind({})
-ErrorFormGroup.args = {
-  ...defaultProps,
-  group: true,
-  error: true,
+export const GroupedFormGroup = {
+  args: {
+    ...defaultProps,
+    group: true,
+  },
+  name: 'Grouped',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFormGroup :group="true"><label for="test-id">Test Input</label><input id="test-id" type="text" class="usa-input" /></UsaFormGroup>`,
+      },
+    },
+  },
 }
-ErrorFormGroup.storyName = 'Error'
+
+export const ErrorFormGroup = {
+  args: {
+    ...defaultProps,
+    group: true,
+    error: true,
+  },
+  name: 'Error',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFormGroup :group="true" :error="true"><label for="test-id">Test Input</label><input id="test-id" type="text" class="usa-input" /></UsaFormGroup>`,
+      },
+    },
+  },
+}

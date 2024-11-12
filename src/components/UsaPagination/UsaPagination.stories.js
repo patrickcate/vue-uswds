@@ -136,144 +136,202 @@ export default {
     'next-icon': '',
     'next-label': '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaPagination },
-  props: Object.keys(argTypes),
-  setup() {
-    const currentPage = ref(args.currentPage)
-    return { ...args, currentPage }
-  },
-  template: `<UsaPagination
-    :items="items"
-    :unbounded="unbounded"
-    v-model:current-page="currentPage"
-    :aria-label="ariaLabel"
-    :previous-link-text="previousLinkText"
-    :next-link-text="nextLinkText"
-    :first-page-aria-label="firstPageAriaLabel"
-    :previous-page-aria-label="previousPageAriaLabel"
-    :number-page-aria-label="numberPageAriaLabel"
-    :next-page-aria-label="nextPageAriaLabel"
-    :last-page-aria-label="lastPageAriaLabel"
-    :overflow-aria-label="overflowAriaLabel"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaPagination },
+    props: Object.keys(UsaPagination.props),
+    setup() {
+      const currentPage = ref(args.currentPage)
+      return { args, currentPage }
+    },
+    template: `<UsaPagination
+    :items="args.items"
+    :unbounded="args.unbounded"
+    v-model:current-page="args.currentPage"
+    :aria-label="args.ariaLabel"
+    :previous-link-text="args.previousLinkText"
+    :next-link-text="args.nextLinkText"
+    :first-page-aria-label="args.firstPageAriaLabel"
+    :previous-page-aria-label="args.previousPageAriaLabel"
+    :number-page-aria-label="args.numberPageAriaLabel"
+    :next-page-aria-label="args.nextPageAriaLabel"
+    :last-page-aria-label="args.lastPageAriaLabel"
+    :overflow-aria-label="args.overflowAriaLabel"
+    :custom-classes="args.customClasses"
   >
-    <template v-if="${!!args.previous}" #previous="{ isFirstPage, toPreviousPage }">${
-      args.previous
-    }</template>
-    <template v-if="${!!args['previous-icon']}" #previous-icon>${
-      args['previous-icon']
-    }</template>
-    <template v-else-if="${!!args.previousIcon}" #previousIcon>${
-      args.previousIcon
-    }</template>
-    <template v-if="${!!args['previous-label']}" #previous-label>${
-      args['previous-label']
-    }</template>
-    <template v-else-if="${!!args.previousLabel}" #previousLabel>${
-      args.previousLabel
-    }</template>
-    <template v-if="${!!args.next}" #next="{ isLastPage, toNextPage }">${
-      args.next
-    }</template>
-    <template v-if="${!!args['next-icon']}" #next-icon>${
-      args['next-icon']
-    }</template>
-    <template v-else-if="${!!args.nextIcon}" #nextIcon>${
-      args.nextIcon
-    }</template>
-    <template v-if="${!!args['next-label']}" #next-label>${
-      args['next-label']
-    }</template>
-    <template v-else-if="${!!args.nextLabel}" #nextLabel>${
-      args.nextLabel
-    }</template>
+    <template v-if="!!args.previous" #previous="{ isFirstPage, toPreviousPage }">${args.previous}</template>
+    <template v-if="!!args['previous-icon']" #previous-icon>${args['previous-icon']}</template>
+    <template v-else-if="!!args.previousIcon" #previousIcon>${args.previousIcon}</template>
+    <template v-if="!!args['previous-label']" #previous-label>${args['previous-label']}</template>
+    <template v-else-if="!!args.previousLabel" #previousLabel>${args.previousLabel}</template>
+    <template v-if="!!args.next" #next="{ isLastPage, toNextPage }">${args.next}</template>
+    <template v-if="!!args['next-icon']" #next-icon>${args['next-icon']}</template>
+    <template v-else-if="!!args.nextIcon" #nextIcon>${args.nextIcon}</template>
+    <template v-if="!!args['next-label']" #next-label>${args['next-label']}</template>
+    <template v-else-if="!!args.nextLabel" #nextLabel>${args.nextLabel}</template>
   </UsaPagination>`,
-})
-
-export const DefaultPagination = DefaultTemplate.bind({})
-DefaultPagination.args = {
-  ...defaultProps,
+  }),
 }
-DefaultPagination.storyName = 'Default'
 
-export const MiddlePagePagination = DefaultTemplate.bind({})
-MiddlePagePagination.args = {
-  ...defaultProps,
-  items: generateTestItems(12, {}),
-  currentPage: 6,
-}
-MiddlePagePagination.storyName = 'Middle Page'
-
-export const LastPagePagination = DefaultTemplate.bind({})
-LastPagePagination.args = {
-  ...defaultProps,
-  currentPage: 8,
-}
-LastPagePagination.storyName = 'Last Page'
-
-export const LessThanSevenSlotsPagination = DefaultTemplate.bind({})
-LessThanSevenSlotsPagination.args = {
-  ...defaultProps,
-  items: generateTestItems(7, {}),
-}
-LessThanSevenSlotsPagination.storyName = 'Less Than 7 Slots'
-
-export const UnboundedPagination = DefaultTemplate.bind({})
-UnboundedPagination.args = {
-  ...defaultProps,
-  unbounded: true,
-}
-UnboundedPagination.storyName = 'Unbounded'
-
-export const CustomLinkTextPagination = DefaultTemplate.bind({})
-CustomLinkTextPagination.args = {
-  ...defaultProps,
-  items: generateTestItems(12, {}),
-  currentPage: 6,
-  previousLinkText: 'Back',
-  nextLinkText: 'Forward',
-}
-CustomLinkTextPagination.storyName = 'Custom Link Text'
-
-export const CustomClassPagination = DefaultTemplate.bind({})
-CustomClassPagination.args = {
-  ...defaultProps,
-  customClasses: {
-    list: ['custom-list-class'],
+export const DefaultPagination = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPagination :items="items"></UsaPagination>`,
+      },
+    },
   },
 }
-CustomClassPagination.storyName = 'Custom Class'
 
-export const CustomSlotContentPagination = DefaultTemplate.bind({})
-CustomSlotContentPagination.args = {
-  ...defaultProps,
-  items: generateTestItems(12, {}),
-  currentPage: 6,
-  previous: 'Test Previous Slot',
-  next: 'Test Next Slot',
+export const MiddlePagePagination = {
+  args: {
+    ...defaultProps,
+    items: generateTestItems(12, {}),
+    currentPage: 6,
+  },
+  name: 'Middle Page',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPagination :items="${JSON.stringify(generateTestItems(12, {}), null, '\t')}" :current-page="6"></UsaPagination>`,
+      },
+    },
+  },
 }
-CustomSlotContentPagination.storyName = 'Custom Prev/Next Slot Content'
 
-export const CustomIconLabelSlotContentPagination = DefaultTemplate.bind({})
-CustomIconLabelSlotContentPagination.args = {
-  ...defaultProps,
-  items: generateTestItems(12, {}),
-  currentPage: 6,
-  'previous-icon': '&lt;',
-  'previous-label': 'Test Label Slot',
-  'next-label': 'Test Label Slot',
-  'next-icon': '&gt;',
+export const LastPagePagination = {
+  args: {
+    ...defaultProps,
+    currentPage: 8,
+  },
+  name: 'Last Page',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPagination :items="${JSON.stringify(generateTestItems(12, {}), null, '\t')}" :current-page="8"></UsaPagination>`,
+      },
+    },
+  },
 }
-CustomIconLabelSlotContentPagination.storyName =
-  'Custom Icon/Label Slot Content'
 
-export const ScopedSlotPagination = DefaultTemplate.bind({})
-ScopedSlotPagination.args = {
-  ...defaultProps,
-  previous: 'is first page: {{ isFirstPage }}',
-  next: 'is last page: {{ isLastPage }}',
+export const LessThanSevenSlotsPagination = {
+  args: {
+    ...defaultProps,
+    items: generateTestItems(7, {}),
+  },
+  name: 'Less Than 7 Slots',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPagination :items="${JSON.stringify(generateTestItems(7, {}), null, '\t')}"></UsaPagination>`,
+      },
+    },
+  },
 }
-ScopedSlotPagination.storyName = 'Scoped Slot'
+
+export const UnboundedPagination = {
+  args: {
+    ...defaultProps,
+    unbounded: true,
+  },
+  name: 'Unbounded',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPagination :items="items" :unbounded="true"></UsaPagination>`,
+      },
+    },
+  },
+}
+
+export const CustomLinkTextPagination = {
+  args: {
+    ...defaultProps,
+    items: generateTestItems(12, {}),
+    currentPage: 6,
+    previousLinkText: 'Back',
+    nextLinkText: 'Forward',
+  },
+  name: 'Custom Link Text',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPagination :items="${JSON.stringify(generateTestItems(12, {}), null, '\t')}" :current-page="6" previous-link-text="Back" next-link-text="Forward"></UsaPagination>`,
+      },
+    },
+  },
+}
+
+export const CustomClassPagination = {
+  args: {
+    ...defaultProps,
+    customClasses: {
+      list: ['custom-list-class'],
+    },
+  },
+  name: 'Custom Class',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPagination :items="items" :custom-classes="{ list: ['custom-list-class'] }"></UsaPagination>`,
+      },
+    },
+  },
+}
+
+export const CustomSlotContentPagination = {
+  args: {
+    ...defaultProps,
+    items: generateTestItems(12, {}),
+    currentPage: 6,
+    previous: 'Test Previous Slot',
+    next: 'Test Next Slot',
+  },
+  name: 'Custom Prev/Next Slot Content',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPagination :items="${JSON.stringify(generateTestItems(12, {}), null, '\t')}" :current-page="6"><template #previous>Test Previous Slot</template><template #next>Test Next Slot</template></UsaPagination>`,
+      },
+    },
+  },
+}
+
+export const CustomIconLabelSlotContentPagination = {
+  args: {
+    ...defaultProps,
+    items: generateTestItems(12, {}),
+    currentPage: 6,
+    'previous-icon': '&lt;',
+    'previous-label': 'Test Label Slot',
+    'next-label': 'Test Label Slot',
+    'next-icon': '&gt;',
+  },
+  name: 'Custom Icon/Label Slot Content',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPagination :items="${JSON.stringify(generateTestItems(12, {}), null, '\t')}" :current-page="6"><template #previous-icon>&lt;</template><template #previous-label>Test Label Slot</template><template #next-label>Test Label Slot</template><template #next-icon>&gt;</template></UsaPagination>`,
+      },
+    },
+  },
+}
+
+export const ScopedSlotPagination = {
+  args: {
+    ...defaultProps,
+    previous: 'is first page: {{ isFirstPage }}',
+    next: 'is last page: {{ isLastPage }}',
+  },
+  name: 'Scoped Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPagination :items="items"><template #previous="{ isFirstPage }">is first page: {{ isFirstPage }}</template><template #next="{ isLastPage }">is last page: {{ isLastPage }}</template></UsaPagination>`,
+      },
+    },
+  },
+}

@@ -542,7 +542,7 @@ describe('UsaNavPrimary', () => {
 
     cy.get('@dropdownMenu').should('be.hidden').and('have.attr', 'hidden')
 
-    cy.get('@dropdownButton').click()
+    cy.get('@dropdownButton').click('bottomRight')
 
     cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'true')
 
@@ -554,13 +554,13 @@ describe('UsaNavPrimary', () => {
 
     cy.get('@dropdownMenu').should('be.hidden').and('have.attr', 'hidden')
 
-    cy.get('@dropdownButton').click()
+    cy.get('@dropdownButton').click('bottomRight')
 
     cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'true')
 
     cy.get('@dropdownMenu').should('be.visible').and('not.have.attr', 'hidden')
 
-    cy.get('html').click('topLeft')
+    cy.get('html').click('bottomRight', { force: true })
 
     cy.get('@dropdownButton').should('have.attr', 'aria-expanded', 'false')
 

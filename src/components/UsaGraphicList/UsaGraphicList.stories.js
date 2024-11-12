@@ -6,7 +6,7 @@ const defaultProps = {
   customClasses: UsaGraphicList.props.customClasses.default(),
 }
 
-const GraphicListRows = `
+const graphicListRows = `
   <UsaGraphicListRow class="grid-row grid-gap">
     <div class="usa-media-block tablet:grid-col">
       <img class="usa-media-block__img" src="/assets/img/circle-124.png" alt="">
@@ -62,37 +62,60 @@ export default {
   args: {
     variant: defaultProps.variant,
     customClasses: defaultProps.customClasses,
-    default: GraphicListRows,
+    default: graphicListRows,
+  },
+  render: args => ({
+    components: { UsaGraphicList, UsaGraphicListRow },
+    props: Object.keys(UsaGraphicList.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaGraphicList :variant="args.variant" :custom-classes="args.customClasses">${args.default}</UsaGraphicList>`,
+  }),
+}
+
+export const DefaultGraphicList = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaGraphicList>${graphicListRows}</UsaGraphicList>`,
+      },
+    },
   },
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaGraphicList, UsaGraphicListRow },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const LightGraphicList = {
+  args: {
+    ...defaultProps,
+    variant: 'light',
   },
-  template: `<UsaGraphicList :variant="variant" :custom-classes="customClasses">${args.default}</UsaGraphicList>`,
-})
-
-export const DefaultGraphicList = DefaultTemplate.bind({})
-DefaultGraphicList.args = {
-  ...defaultProps,
-}
-DefaultGraphicList.storyName = 'Default'
-
-export const LightGraphicList = DefaultTemplate.bind({})
-LightGraphicList.args = {
-  ...defaultProps,
-  variant: 'light',
-}
-LightGraphicList.storyName = 'Light'
-
-export const CustomClassesGraphicList = DefaultTemplate.bind({})
-CustomClassesGraphicList.args = {
-  ...defaultProps,
-  customClasses: {
-    container: ['custom-container-class'],
+  name: 'Light',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaGraphicList variant="light">${graphicListRows}</UsaGraphicList>`,
+      },
+    },
   },
 }
-CustomClassesGraphicList.storyName = 'Custom Classes'
+
+export const CustomClassesGraphicList = {
+  args: {
+    ...defaultProps,
+    customClasses: {
+      container: ['custom-container-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaGraphicList :custom-classes="{ container: ['custom-container-class'] }">${graphicListRows}</UsaGraphicList>`,
+      },
+    },
+  },
+}

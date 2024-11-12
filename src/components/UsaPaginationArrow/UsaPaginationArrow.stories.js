@@ -62,74 +62,113 @@ export default {
       template: '<ul class="usa-pagination__list"><story /></ul>',
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaPaginationArrow },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaPaginationArrow
-    :direction="direction"
-    :label="label"
-    :aria-label="ariaLabel"
-    :href="href"
-    :to="to"
-    :router-component-name="routerComponentName"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaPaginationArrow },
+    props: Object.keys(UsaPaginationArrow.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaPaginationArrow
+    :direction="args.direction"
+    :label="args.label"
+    :aria-label="args.ariaLabel"
+    :href="args.href"
+    :to="args.to"
+    :router-component-name="args.routerComponentName"
+    :custom-classes="args.customClasses"
   >
-    <template v-if="${!!args.before}" #before>${args.before}</template>
-    <template v-if="${!!args.default}" #default>${args.default}</template>
-    <template v-if="${!!args.after}" #after>${args.after}</template>
+    <template v-if="!!args.before" #before>${args.before}</template>
+    <template v-if="!!args.default" #default>${args.default}</template>
+    <template v-if="!!args.after" #after>${args.after}</template>
   </UsaPaginationArrow>`,
-})
-
-export const PreviousPaginationArrow = DefaultTemplate.bind({})
-PreviousPaginationArrow.args = {
-  ...defaultProps,
-  label: 'Previous',
+  }),
 }
-PreviousPaginationArrow.storyName = 'Previous'
 
-export const NextPaginationArrow = DefaultTemplate.bind({})
-NextPaginationArrow.args = {
-  ...defaultProps,
-  direction: 'next',
-  label: 'Next',
-  ariaLabel: 'Next page',
-  default: 'Next',
-}
-NextPaginationArrow.storyName = 'Next'
-
-export const BeforeSlotPaginationArrow = DefaultTemplate.bind({})
-BeforeSlotPaginationArrow.args = {
-  ...defaultProps,
-  direction: 'previous',
-  label: 'Previous',
-  ariaLabel: 'Previous page',
-  default: 'Previous',
-  before: '&lt;&nbsp;',
-}
-BeforeSlotPaginationArrow.storyName = 'Before Slot'
-
-export const AfterSlotPaginationArrow = DefaultTemplate.bind({})
-AfterSlotPaginationArrow.args = {
-  ...defaultProps,
-  direction: 'next',
-  label: 'Next',
-  ariaLabel: 'Next page',
-  default: 'Next',
-  after: '&nbsp;&gt;',
-}
-AfterSlotPaginationArrow.storyName = 'After Slot'
-
-export const CustomClassesPaginationArrow = DefaultTemplate.bind({})
-CustomClassesPaginationArrow.args = {
-  ...defaultProps,
-  customClasses: {
-    link: ['test-link-class'],
-    text: ['test-text-class'],
+export const PreviousPaginationArrow = {
+  args: {
+    ...defaultProps,
+    label: 'Previous',
+  },
+  name: 'Previous',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPaginationArrow label="Previous"></UsaPaginationArrow>`,
+      },
+    },
   },
 }
-CustomClassesPaginationArrow.storyName = 'Custom Classes'
+
+export const NextPaginationArrow = {
+  args: {
+    ...defaultProps,
+    direction: 'next',
+    label: 'Next',
+    ariaLabel: 'Next page',
+    default: 'Next',
+  },
+  name: 'Next',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPaginationArrow direction="next" aria-label="Next page" label="Next">Next</UsaPaginationArrow>`,
+      },
+    },
+  },
+}
+
+export const BeforeSlotPaginationArrow = {
+  args: {
+    ...defaultProps,
+    direction: 'previous',
+    label: 'Previous',
+    ariaLabel: 'Previous page',
+    default: 'Previous',
+    before: '&lt;&nbsp;',
+  },
+  name: 'Before Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPaginationArrow direction="previous" aria-label="Previous page" label="Previous"><template #before>&lt;&nbsp;</template><template #default>Previous</template></UsaPaginationArrow>`,
+      },
+    },
+  },
+}
+
+export const AfterSlotPaginationArrow = {
+  args: {
+    ...defaultProps,
+    direction: 'next',
+    label: 'Next',
+    ariaLabel: 'Next page',
+    default: 'Next',
+    after: '&nbsp;&gt;',
+  },
+  name: 'After Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPaginationArrow direction="next" aria-label="Next page" label="Next"><template #default>Next</template><template #after>&nbsp;&gt;</template></UsaPaginationArrow>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesPaginationArrow = {
+  args: {
+    ...defaultProps,
+    customClasses: {
+      link: ['test-link-class'],
+      text: ['test-text-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPaginationArrow :custom-classes="{ link: ['test-link-class'], text: ['test-text-class'] }"></UsaPaginationArrow>`,
+      },
+    },
+  },
+}

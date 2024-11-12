@@ -56,65 +56,102 @@ export default {
     ariaLabel: defaultProps.ariaLabel,
     items: defaultProps.items,
     customClasses: defaultProps.customClasses,
-    beforebefore: '',
+    before: '',
     default: '',
     after: '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaSidenav },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaSidenav
-    :aria-label="ariaLabel"
-    :items="items"
-    :custom-classes="customClasses">
-      <template v-if="${!!args.before}" #before>${args.before}</template>
-      <template v-if="${!!args.default}" #default="{ items }">${
-        args.default
-      }</template>
-      <template v-if="${!!args.after}" #after>${args.after}</template>
+  render: args => ({
+    components: { UsaSidenav },
+    props: Object.keys(UsaSidenav.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaSidenav
+    :aria-label="args.ariaLabel"
+    :items="args.items"
+    :custom-classes="args.customClasses">
+      <template v-if="!!args.before" #before>${args.before}</template>
+      <template v-if="!!args.default" #default="{ items }">${args.default}</template>
+      <template v-if="!!args.after" #after>${args.after}</template>
     </UsaSidenav>`,
-})
-
-export const DefaultSidenav = DefaultTemplate.bind({})
-DefaultSidenav.args = {
-  ...defaultProps,
+  }),
 }
-DefaultSidenav.storyName = 'Default'
 
-export const BeforeSlotSidenav = DefaultTemplate.bind({})
-BeforeSlotSidenav.args = {
-  ...defaultProps,
-  before: 'Above Sidenav',
-}
-BeforeSlotSidenav.storyName = 'Before Slot'
-
-export const AfterSlotSidenav = DefaultTemplate.bind({})
-AfterSlotSidenav.args = {
-  ...defaultProps,
-  after: 'Below Sidenav',
-}
-AfterSlotSidenav.storyName = 'After Slot'
-
-export const ScopedSlotSidenav = DefaultTemplate.bind({})
-ScopedSlotSidenav.args = {
-  ...defaultProps,
-  default: `<li v-for="item in items" :key="item.text">{{ item.to }}</li>`,
-}
-ScopedSlotSidenav.storyName = 'Scoped Slot'
-
-export const CustomClassesSidenav = DefaultTemplate.bind({})
-CustomClassesSidenav.args = {
-  ...defaultProps,
-  customClasses: {
-    list: ['test-list-class'],
-    item: ['test-item-class'],
-    link: ['test-link-class'],
-    sublist: ['test-sublist-class'],
+export const DefaultSidenav = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSidenav :items="items"></UsaSidenav>`,
+      },
+    },
   },
 }
-CustomClassesSidenav.storyName = 'Custom Classes'
+
+export const BeforeSlotSidenav = {
+  args: {
+    ...defaultProps,
+    before: 'Before Sidenav',
+  },
+  name: 'Before Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSidenav :items="items"><template #before>Before Sidenav</template></UsaSidenav>`,
+      },
+    },
+  },
+}
+
+export const AfterSlotSidenav = {
+  args: {
+    ...defaultProps,
+    after: 'After Sidenav',
+  },
+  name: 'After Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSidenav :items="items"><template #after>After Sidenav</template></UsaSidenav>`,
+      },
+    },
+  },
+}
+
+export const ScopedSlotSidenav = {
+  args: {
+    ...defaultProps,
+    default: `<li v-for="item in items" :key="item.text">{{ item.to }}</li>`,
+  },
+  name: 'Scoped Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSidenav :items="items"><template #default="{ items }"><li v-for="item in items" :key="item.text">{{ item.to }}</li></template></UsaSidenav>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesSidenav = {
+  args: {
+    ...defaultProps,
+    customClasses: {
+      list: ['test-list-class'],
+      item: ['test-item-class'],
+      link: ['test-link-class'],
+      sublist: ['test-sublist-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSidenav :items="items" :custom-classes="{ list: ['test-list-class'], item: ['test-item-class'], link: ['test-link-class'], sublist: ['test-sublist-class'] }"></UsaSidenav>`,
+      },
+    },
+  },
+}

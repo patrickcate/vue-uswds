@@ -60,110 +60,205 @@ export default {
     default: 'Button',
     after: '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaButton },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaButton
-    :variant="variant"
-    :size="size"
-    :type="type"
-    :disabled="disabled"
+  render: args => ({
+    components: { UsaButton },
+    props: Object.keys(UsaButton.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaButton
+    :variant="args.variant"
+    :size="args.size"
+    :type="args.type"
+    :disabled="args.disabled"
   >
-    <template v-if="${!!args.before}" #before>${args.before}</template>
-    <template v-if="${!!args.default}" #default>${args.default}</template>
-    <template v-if="${!!args.after}" #after>${args.after}</template>
+    <template v-if="!!args.before" #before>${args.before}</template>
+    <template v-if="!!args.default" #default>${args.default}</template>
+    <template v-if="!!args.after" #after>${args.after}</template>
   </UsaButton>`,
-})
-
-export const DefaultButton = DefaultTemplate.bind({})
-DefaultButton.args = {
-  ...defaultProps,
-}
-DefaultButton.storyName = 'Default'
-
-export const SecondaryButton = DefaultTemplate.bind({})
-SecondaryButton.args = {
-  ...defaultProps,
-  variant: 'secondary',
-}
-SecondaryButton.storyName = 'Secondary'
-
-export const AccentCoolButton = DefaultTemplate.bind({})
-AccentCoolButton.args = {
-  ...defaultProps,
-  variant: 'accent-cool',
-}
-AccentCoolButton.storyName = 'Accent Cool'
-
-export const AccentWarmButton = DefaultTemplate.bind({})
-AccentWarmButton.args = {
-  ...defaultProps,
-  variant: 'accent-warm',
-}
-AccentWarmButton.storyName = 'Accent Warm'
-
-export const BaseButton = DefaultTemplate.bind({})
-BaseButton.args = {
-  ...defaultProps,
-  variant: 'base',
-}
-BaseButton.storyName = 'Base'
-
-export const OutlineButton = DefaultTemplate.bind({})
-OutlineButton.args = {
-  ...defaultProps,
-  variant: 'outline',
-}
-OutlineButton.storyName = 'Outline'
-
-export const InverseButton = DefaultTemplate.bind({})
-InverseButton.args = {
-  ...defaultProps,
-  variant: 'inverse',
-}
-InverseButton.decorators = [
-  () => ({
-    template: '<div class="usa-dark-background"><story /></div>',
   }),
-]
-InverseButton.storyName = 'Inverse'
-
-export const UnstyledButton = DefaultTemplate.bind({})
-UnstyledButton.args = {
-  ...defaultProps,
-  variant: 'unstyled',
 }
-UnstyledButton.storyName = 'Unstyled'
 
-export const BigButton = DefaultTemplate.bind({})
-BigButton.args = {
-  ...defaultProps,
-  size: 'big',
+export const DefaultButton = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButton>Button</UsaButton>`,
+      },
+    },
+  },
 }
-BigButton.storyName = 'Big'
 
-export const DisabledButton = DefaultTemplate.bind({})
-DisabledButton.args = {
-  ...defaultProps,
-  disabled: true,
+export const SecondaryButton = {
+  args: {
+    ...defaultProps,
+    variant: 'secondary',
+  },
+  name: 'Secondary',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButton variant="secondary">Button</UsaButton>`,
+      },
+    },
+  },
 }
-DisabledButton.storyName = 'Disabled'
 
-export const BeforeSlotButton = DefaultTemplate.bind({})
-BeforeSlotButton.args = {
-  ...defaultProps,
-  before: '⨂ ',
+export const AccentCoolButton = {
+  args: {
+    ...defaultProps,
+    variant: 'accent-cool',
+  },
+  name: 'Accent Cool',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButton variant="accent-cool">Button</UsaButton>`,
+      },
+    },
+  },
 }
-BeforeSlotButton.storyName = 'Before Slot'
 
-export const AfterSlotButton = DefaultTemplate.bind({})
-AfterSlotButton.args = {
-  ...defaultProps,
-  after: ' ⨁',
+export const AccentWarmButton = {
+  args: {
+    ...defaultProps,
+    variant: 'accent-warm',
+  },
+  name: 'Accent Warm',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButton variant="accent-warm">Button</UsaButton>`,
+      },
+    },
+  },
 }
-AfterSlotButton.storyName = 'After Slot'
+
+export const BaseButton = {
+  args: {
+    ...defaultProps,
+    variant: 'base',
+  },
+  name: 'Base',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButton variant="base">Button</UsaButton>`,
+      },
+    },
+  },
+}
+
+export const OutlineButton = {
+  args: {
+    ...defaultProps,
+    variant: 'outline',
+  },
+  name: 'Outline',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButton variant="outline">Button</UsaButton>`,
+      },
+    },
+  },
+}
+
+export const InverseButton = {
+  args: {
+    ...defaultProps,
+    variant: 'inverse',
+  },
+  decorators: [
+    () => ({
+      template: '<div class="usa-dark-background"><story /></div>',
+    }),
+  ],
+  name: 'Inverse',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButton variant="inverse">Button</UsaButton>`,
+      },
+    },
+  },
+}
+
+export const UnstyledButton = {
+  args: {
+    ...defaultProps,
+    variant: 'unstyled',
+  },
+  name: 'Unstyled',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButton variant="unstyled">Button</UsaButton>`,
+      },
+    },
+  },
+}
+
+export const BigButton = {
+  args: {
+    ...defaultProps,
+    size: 'big',
+  },
+  name: 'Big',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButton size="big">Button</UsaButton>`,
+      },
+    },
+  },
+}
+
+export const DisabledButton = {
+  args: {
+    ...defaultProps,
+    disabled: true,
+  },
+  name: 'Disabled',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButton :disabled="true">Button</UsaButton>`,
+      },
+    },
+  },
+}
+
+export const BeforeSlotButton = {
+  args: {
+    ...defaultProps,
+    before: '⨂ ',
+  },
+  name: 'Before Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButton><template #before>⨂ </template><template #default>Button</template></UsaButton>`,
+      },
+    },
+  },
+}
+
+export const AfterSlotButton = {
+  args: {
+    ...defaultProps,
+    after: ' ⨁',
+  },
+  name: 'After Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButton><template #default>Button</template><template #after> ⨁</template></UsaButton>`,
+      },
+    },
+  },
+}

@@ -27,6 +27,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  modelModifiers: {
+    type: Object,
+    default: () => {},
+  },
   label: {
     type: String,
     default: 'Search',
@@ -86,6 +90,7 @@ const searchValue = computed({
       v-bind="inputAttrs"
       :id="computedId"
       v-model="searchValue"
+      :model-modifiers="modelModifiers"
       type="search"
       :name="name"
       :label="label"

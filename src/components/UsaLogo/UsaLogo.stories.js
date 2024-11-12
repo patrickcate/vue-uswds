@@ -39,47 +39,70 @@ export default {
     customClasses: defaultProps.customClasses,
     default: '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaLogo },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaLogo
-    :title="title"
-    :href="href"
-    :to="to"
-    :router-component-name="routerComponentName"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaLogo },
+    props: Object.keys(UsaLogo.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaLogo
+    :title="args.title"
+    :href="args.href"
+    :to="args.to"
+    :router-component-name="args.routerComponentName"
+    :custom-classes="args.customClasses"
   >${args.default}</UsaLogo>`,
-})
-
-export const DefaultLogo = DefaultTemplate.bind({})
-DefaultLogo.args = {
-  ...defaultProps,
-  title: 'Project Title',
-  href: '/test-page',
+  }),
 }
-DefaultLogo.storyName = 'Default'
 
-export const CustomClassesLogo = DefaultTemplate.bind({})
-CustomClassesLogo.args = {
-  ...defaultProps,
-  title: 'Project Title',
-  href: '/test-page',
-  customClasses: {
-    text: ['test-text-class'],
-    link: ['test-link-class'],
+export const DefaultLogo = {
+  args: {
+    ...defaultProps,
+    title: 'Project Title',
+    href: '/test-page',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaLogo title="Project Title" href="/test-page"></UsaLogo>`,
+      },
+    },
   },
 }
-CustomClassesLogo.storyName = 'Custom Classes'
 
-export const DefaultSlotLogo = DefaultTemplate.bind({})
-DefaultSlotLogo.args = {
-  ...defaultProps,
-  href: '/test-page',
-  default: 'Test Title',
+export const CustomClassesLogo = {
+  args: {
+    ...defaultProps,
+    title: 'Project Title',
+    href: '/test-page',
+    customClasses: {
+      text: ['test-text-class'],
+      link: ['test-link-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaLogo title="Project Title" href="/test-page" :custom-classes="{ text: ['test-text-class'], link: ['test-link-class'] }"></UsaLogo>`,
+      },
+    },
+  },
 }
-DefaultSlotLogo.storyName = 'Default Slot'
+
+export const DefaultSlotLogo = {
+  args: {
+    ...defaultProps,
+    href: '/test-page',
+    default: 'Test Title',
+  },
+  name: 'Default Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaLogo href="/test-page">Test Title</UsaLogo>`,
+      },
+    },
+  },
+}

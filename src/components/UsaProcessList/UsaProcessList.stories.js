@@ -22,22 +22,37 @@ export default {
     default:
       '<UsaProcessListItem heading="Test step 1"><p>Test body.</p></UsaProcessListItem>',
   },
+  render: args => ({
+    components: { UsaProcessList, UsaProcessListItem },
+    props: Object.keys(UsaProcessList.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaProcessList :heading-tag="args.headingTag">${args.default}</UsaProcessList>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaProcessList, UsaProcessListItem },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultProcessList = {
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaProcessList><UsaProcessListItem heading="Test step 1"><p>Test body.</p></UsaProcessListItem></UsaProcessList>`,
+      },
+    },
   },
-  template: `<UsaProcessList :heading-tag="headingTag">${args.default}</UsaProcessList>`,
-})
-
-export const DefaultProcessList = DefaultTemplate.bind({})
-DefaultProcessList.storyName = 'Default'
-
-export const CustomHeadingTagProcessList = DefaultTemplate.bind()
-CustomHeadingTagProcessList.args = {
-  headingTag: 'h4',
 }
-CustomHeadingTagProcessList.storyName = 'Custom Heading Tag'
+
+export const CustomHeadingTagProcessList = {
+  args: {
+    headingTag: 'h4',
+  },
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaProcessList heading-tag="h4"><UsaProcessListItem heading="Test step 1"><p>Test body.</p></UsaProcessListItem></UsaProcessList>`,
+      },
+    },
+  },
+}

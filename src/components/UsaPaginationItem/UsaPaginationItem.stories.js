@@ -49,33 +49,48 @@ export default {
         '<nav class="usa-pagination"><ul class="usa-pagination__list"><story /></ul></nav>',
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaPaginationItem },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaPaginationItem
-    :page-number="pageNumber"
-    :is-current-page="isCurrentPage"
-    :aria-label="ariaLabel"
-    :href="href"
-    :to="to"
-    :router-component-name="routerComponentName"
+  render: args => ({
+    components: { UsaPaginationItem },
+    props: Object.keys(UsaPaginationItem.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaPaginationItem
+    :page-number="args.pageNumber"
+    :is-current-page="args.isCurrentPage"
+    :aria-label="args.ariaLabel"
+    :href="args.href"
+    :to="args.to"
+    :router-component-name="args.routerComponentName"
   >${args.default}</UsaPaginationItem>`,
-})
-
-export const DefaultPaginationItem = DefaultTemplate.bind({})
-DefaultPaginationItem.args = {
-  ...defaultProps,
+  }),
 }
-DefaultPaginationItem.storyName = 'Default'
 
-export const CurrentPagePaginationItem = DefaultTemplate.bind({})
-CurrentPagePaginationItem.args = {
-  ...defaultProps,
-  isCurrentPage: true,
+export const DefaultPaginationItem = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPaginationItem href="/test-page"></UsaPaginationItem>`,
+      },
+    },
+  },
 }
-CurrentPagePaginationItem.storyName = 'Current Page'
+
+export const CurrentPagePaginationItem = {
+  args: {
+    ...defaultProps,
+    isCurrentPage: true,
+  },
+  name: 'Current Page',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaPaginationItem href="/test-page" :is-current-page="true"></UsaPaginationItem>`,
+      },
+    },
+  },
+}

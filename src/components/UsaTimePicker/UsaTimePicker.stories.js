@@ -107,198 +107,334 @@ export default {
     status: '',
     'assistive-hint': '',
   },
+  render: args => ({
+    components: { UsaTimePicker },
+    props: Object.keys(UsaTimePicker.props),
+    setup() {
+      const modelValue = ref(args.modelValue)
+      return { args, modelValue }
+    },
+    template: `<UsaTimePicker
+      :min-time="args.minTime"
+      :max-time="args.maxTime"
+      :step="args.step"
+      :label="args.label"
+      :required="args.required"
+      :disabled="args.disabled"
+      :readonly="args.readonly"
+      :error="args.error"
+      :id="args.id"
+      :clear-button-aria-label="args.clearButtonAriaLabel"
+      :toggle-button-aria-label="args.toggleButtonAriaLabel"
+      :custom-classes="args.customClasses"
+      v-model="args.modelValue"
+    >
+      <template v-if="!!args['slot:label']" #label>${args['slot:label']}</template>
+      <template v-if="!!args.hint" #hint>${args.hint}</template>
+      <template v-if="!!args['error-message']" #error-message>${args['error-message']}</template>
+      <template v-if="!!args['no-results']" #no-results>${args['no-results']}</template>
+      <template v-if="!!args.status" #status>${args.status}</template>
+      <template v-if="!!args['assistive-hint']" #assistive-hint>${args['assistive-hint']}</template>
+    </UsaTimePicker>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaTimePicker },
-  props: Object.keys(argTypes),
-  setup() {
-    const modelValue = ref(args.modelValue)
-    return { ...args, modelValue }
+export const DefaultTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Time',
   },
-  template: `<UsaTimePicker
-    :min-time="minTime"
-    :max-time="maxTime"
-    :step="step"
-    :label="label"
-    :required="required"
-    :disabled="disabled"
-    :readonly="readonly"
-    :error="error"
-    :id="id"
-    :clear-button-aria-label="clearButtonAriaLabel"
-    :toggle-button-aria-label="toggleButtonAriaLabel"
-    :custom-classes="customClasses"
-    v-model="modelValue"
-  >
-    <template v-if="${!!args['slot:label']}" #label>${
-      args['slot:label']
-    }</template>
-    <template v-if="${!!args.hint}" #hint>${args.hint}</template>
-    <template v-if="${!!args['error-message']}" #error-message>${
-      args['error-message']
-    }</template>
-    <template v-if="${!!args['no-results']}" #no-results>${
-      args['no-results']
-    }</template>
-    <template v-if="${!!args.status}" #status>${args.status}</template>
-    <template v-if="${!!args['assistive-hint']}" #assistive-hint>${
-      args['assistive-hint']
-    }</template>
-  </UsaTimePicker>`,
-})
-
-export const DefaultTimePicker = DefaultTemplate.bind({})
-DefaultTimePicker.args = {
-  ...defaultProps,
-  label: 'Time',
-}
-DefaultTimePicker.storyName = 'Default'
-
-export const DefaultValueTimePicker = DefaultTemplate.bind({})
-DefaultValueTimePicker.args = {
-  ...defaultProps,
-  label: 'Time',
-  modelValue: '09:00',
-}
-DefaultValueTimePicker.storyName = 'Default Value'
-
-export const MinMaxTimePicker = DefaultTemplate.bind({})
-MinMaxTimePicker.args = {
-  ...defaultProps,
-  label: 'Custom time range',
-  minTime: '09:00',
-  maxTime: '13:00',
-}
-MinMaxTimePicker.storyName = 'Min/Max Time'
-
-export const StepTimePicker = DefaultTemplate.bind({})
-StepTimePicker.args = {
-  ...defaultProps,
-  label: 'Custom step',
-  step: 15,
-}
-StepTimePicker.storyName = 'Step'
-
-export const HintTimePicker = DefaultTemplate.bind({})
-HintTimePicker.args = {
-  ...defaultProps,
-  label: 'Hint',
-  hint: 'Choose wisely',
-}
-HintTimePicker.storyName = 'Hint'
-
-export const ErrorTimePicker = DefaultTemplate.bind({})
-ErrorTimePicker.args = {
-  ...defaultProps,
-  label: 'Error',
-  error: true,
-}
-ErrorTimePicker.storyName = 'Error'
-
-export const ErrorMessageTimePicker = DefaultTemplate.bind({})
-ErrorMessageTimePicker.args = {
-  ...defaultProps,
-  label: 'Error',
-  error: true,
-  'error-message': 'Error message here',
-}
-ErrorMessageTimePicker.storyName = 'Error Message'
-
-export const RequiredTimePicker = DefaultTemplate.bind({})
-RequiredTimePicker.args = {
-  ...defaultProps,
-  label: 'Required',
-  required: true,
-}
-RequiredTimePicker.storyName = 'Required'
-
-export const DisabledTimePicker = DefaultTemplate.bind({})
-DisabledTimePicker.args = {
-  ...defaultProps,
-  label: 'Disabled',
-  disabled: true,
-  modelValue: '15:00',
-}
-DisabledTimePicker.storyName = 'Disabled'
-
-export const ReadonlyTimePicker = DefaultTemplate.bind({})
-ReadonlyTimePicker.args = {
-  ...defaultProps,
-  label: 'Readonly time',
-  readonly: true,
-  modelValue: '15:00',
-}
-ReadonlyTimePicker.storyName = 'Readonly'
-
-export const CustomIdTimePicker = DefaultTemplate.bind({})
-CustomIdTimePicker.args = {
-  ...defaultProps,
-  label: 'Time',
-  id: 'custom-id',
-}
-CustomIdTimePicker.storyName = 'Custom ID'
-
-export const ClearButtonAriaLabelTimePicker = DefaultTemplate.bind({})
-ClearButtonAriaLabelTimePicker.args = {
-  ...defaultProps,
-  label: 'Time',
-  modelValue: '15:00',
-  clearButtonAriaLabel: 'Custom clear aria label',
-}
-ClearButtonAriaLabelTimePicker.storyName = 'Custom Clear Button Aria Label'
-
-export const ToggleButtonAriaLabelTimePicker = DefaultTemplate.bind({})
-ToggleButtonAriaLabelTimePicker.args = {
-  ...defaultProps,
-  label: 'Time',
-  toggleButtonAriaLabel: 'Custom toggle aria label',
-}
-ToggleButtonAriaLabelTimePicker.storyName = 'Custom Toggle Button Aria Label'
-
-export const LabelSlotTimePicker = DefaultTemplate.bind({})
-LabelSlotTimePicker.args = {
-  ...defaultProps,
-  label: 'Time',
-  'slot:label': `<em>Label slot content</em>`,
-}
-LabelSlotTimePicker.storyName = 'Label Slot'
-
-export const NoResultsSlotTimePicker = DefaultTemplate.bind({})
-NoResultsSlotTimePicker.args = {
-  ...defaultProps,
-  label: 'Time',
-  'no-results': `<em>Sorry, didn't find that.</em>`,
-}
-NoResultsSlotTimePicker.storyName = 'No Results Slot'
-
-export const StatusScopedSlotTimePicker = DefaultTemplate.bind({})
-StatusScopedSlotTimePicker.args = {
-  ...defaultProps,
-  label: 'Time',
-  status: 'Total options available: {{ filteredOptions.length }}',
-}
-StatusScopedSlotTimePicker.storyName = 'Status Scoped Slot'
-
-export const AssistiveHintSlotTimePicker = DefaultTemplate.bind({})
-AssistiveHintSlotTimePicker.args = {
-  ...defaultProps,
-  label: 'Time',
-  'assistive-hint': `<em>Some custom hint text for screenreaders.</em>`,
-}
-AssistiveHintSlotTimePicker.storyName = 'Assistive Hint Slot'
-
-export const CustomClassesTimePicker = DefaultTemplate.bind({})
-CustomClassesTimePicker.args = {
-  ...defaultProps,
-  label: 'Time',
-  hint: 'Choose wisely',
-  customClasses: {
-    formGroup: ['test-form-group-class'],
-    component: ['test-component-class'],
-    label: ['test-label-class'],
-    input: ['test-input-class'],
-    list: ['test-list-class'],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Time" />`,
+      },
+    },
   },
 }
-CustomClassesTimePicker.storyName = 'Custom CSS Classes'
+
+export const DefaultValueTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Time',
+    modelValue: '09:00',
+  },
+  name: 'Default Value',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Time" v-model="ref('09:00')" />`,
+      },
+    },
+  },
+}
+
+export const MinMaxTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Custom time range',
+    minTime: '09:00',
+    maxTime: '13:00',
+  },
+  name: 'Min/Max Time',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Custom time range" min-time="09:00" max-time="13:00" />`,
+      },
+    },
+  },
+}
+
+export const StepTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Custom step',
+    step: 15,
+  },
+  name: 'Step',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Custom step" step="15" />`,
+      },
+    },
+  },
+}
+
+export const HintTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Hint',
+    hint: 'Choose wisely',
+  },
+  name: 'Hint',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Hint"><template #hint>Choose wisely</template></UsaTimePicker>`,
+      },
+    },
+  },
+}
+
+export const ErrorTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Error',
+    error: true,
+  },
+  name: 'Error',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Error" :error="true" />`,
+      },
+    },
+  },
+}
+
+export const ErrorMessageTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Error',
+    error: true,
+    'error-message': 'Error message here',
+  },
+  name: 'Error Message',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Error" :error="true"><template #error-message>Error message here</template></UsaTimePicker>`,
+      },
+    },
+  },
+}
+
+export const RequiredTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Required',
+    required: true,
+  },
+  name: 'Required',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Required" :required="true" />`,
+      },
+    },
+  },
+}
+
+export const DisabledTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Disabled',
+    disabled: true,
+    modelValue: '15:00',
+  },
+  name: 'Disabled',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Disabled" :disabled="true" v-model="ref('15:00')" />`,
+      },
+    },
+  },
+}
+
+export const ReadonlyTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Readonly time',
+    readonly: true,
+    modelValue: '15:00',
+  },
+  name: 'Readonly',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Readonly time" :readonly="true" v-model="ref('15:00')" />`,
+      },
+    },
+  },
+}
+
+export const CustomIdTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Time',
+    id: 'custom-id',
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Time" id="custom-id" />`,
+      },
+    },
+  },
+}
+
+export const ClearButtonAriaLabelTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Time',
+    modelValue: '15:00',
+    clearButtonAriaLabel: 'Custom clear aria label',
+  },
+  name: 'Custom Clear Button Aria Label',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Time" v-model="ref('15:00')" :clear-button-aria-label="Custom clear aria label" />`,
+      },
+    },
+  },
+}
+
+export const ToggleButtonAriaLabelTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Time',
+    toggleButtonAriaLabel: 'Custom toggle aria label',
+  },
+  name: 'Custom Toggle Button Aria Label',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Time" :toggle-button-aria-label="Custom toggle aria label" />`,
+      },
+    },
+  },
+}
+
+export const LabelSlotTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Time',
+    'slot:label': `<em>Label slot content</em>`,
+  },
+  name: 'Label Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker><template #label><em>Label slot content</em></template></UsaTimePicker>`,
+      },
+    },
+  },
+}
+
+export const NoResultsSlotTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Time',
+    'no-results': `<em>Sorry, didn't find that.</em>`,
+  },
+  name: 'No Results Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Time"><template #no-results><em>Sorry, didn't find that.</em></template></UsaTimePicker>`,
+      },
+    },
+  },
+}
+
+export const StatusScopedSlotTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Time',
+    status: 'Total options available: {{ filteredOptions.length }}',
+  },
+  name: 'Status Scoped Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Time"><template #status="{ filteredOptions }">Total options available: {{ filteredOptions.length }}</template></UsaTimePicker>`,
+      },
+    },
+  },
+}
+
+export const AssistiveHintSlotTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Time',
+    'assistive-hint': `<em>Some custom hint text for screenreaders.</em>`,
+  },
+  name: 'Assistive Hint Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Time"><template #assistive-hint><em>Some custom hint text for screenreaders.</em></template></UsaTimePicker>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesTimePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Time',
+    hint: 'Choose wisely',
+    customClasses: {
+      formGroup: ['test-form-group-class'],
+      component: ['test-component-class'],
+      label: ['test-label-class'],
+      input: ['test-input-class'],
+      list: ['test-list-class'],
+    },
+  },
+  name: 'Custom CSS Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTimePicker label="Time" hint="Choose wisely" :custom-classes="{ \n\tformGroup: ['test-form-group-class'], \n\tcomponent: ['test-component-class'], \n\tlabel: ['test-label-class'], \n\tinput: ['test-input-class'], \n\tlist: ['test-list-class'],
+      \n}" />`,
+      },
+    },
+  },
+}

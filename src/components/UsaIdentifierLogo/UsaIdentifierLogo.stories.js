@@ -48,48 +48,71 @@ export default {
       template: '<div class="usa-identifier"><story /></div>',
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaIdentifierLogo },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaIdentifierLogo
-    :href="href"
-    :to="to"
-    :router-component-name="routerComponentName"
-    :src="src"
-    :alt="alt"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaIdentifierLogo },
+    props: Object.keys(UsaIdentifierLogo.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaIdentifierLogo
+    :href="args.href"
+    :to="args.to"
+    :router-component-name="args.routerComponentName"
+    :src="args.src"
+    :alt="args.alt"
+    :custom-classes="args.customClasses"
   >${args.default}</UsaIdentifierLogo>`,
-})
-
-export const DefaultIdentifierLogo = DefaultTemplate.bind({})
-DefaultIdentifierLogo.args = {
-  ...defaultProps,
-  src: '/assets/img/circle-gray-20.svg',
-  alt: 'Parent agency logo',
-  href: '#',
+  }),
 }
-DefaultIdentifierLogo.storyName = 'Default'
 
-export const DefaultSlotIdentifierLogo = DefaultTemplate.bind({})
-DefaultSlotIdentifierLogo.args = {
-  ...defaultProps,
-  default: `Your logo here`,
-}
-DefaultSlotIdentifierLogo.storyName = 'Default Slot'
-
-export const CustomClassesIdentifierLogo = DefaultTemplate.bind({})
-CustomClassesIdentifierLogo.args = {
-  ...defaultProps,
-  src: '/assets/img/circle-gray-20.svg',
-  alt: 'Parent agency logo',
-  to: '#',
-  customClasses: {
-    image: ['custom-image-class'],
+export const DefaultIdentifierLogo = {
+  args: {
+    ...defaultProps,
+    src: '/assets/img/circle-gray-20.svg',
+    alt: 'Parent agency logo',
+    href: '#',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIdentifierLogo src="/assets/img/circle-gray-20.svg" alt="Parent agency logo" href="#"></UsaIdentifierLogo>`,
+      },
+    },
   },
 }
-CustomClassesIdentifierLogo.storyName = 'Custom Classes'
+
+export const DefaultSlotIdentifierLogo = {
+  args: {
+    ...defaultProps,
+    default: `Your logo here`,
+  },
+  name: 'Default Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIdentifierLogo>Your logo here</UsaIdentifierLogo>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesIdentifierLogo = {
+  args: {
+    ...defaultProps,
+    src: '/assets/img/circle-gray-20.svg',
+    alt: 'Parent agency logo',
+    to: '#',
+    customClasses: {
+      image: ['custom-image-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIdentifierLogo :custom-classes="{ image: ['custom-image-class'] }" src="/assets/img/circle-gray-20.svg" alt="Parent agency logo" to="#"></UsaIdentifierLogo>`,
+      },
+    },
+  },
+}

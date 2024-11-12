@@ -21,40 +21,63 @@ export default {
   args: {
     status: defaultProps.status,
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaStepIndicator, UsaStepIndicatorSegment },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `
+  render: args => ({
+    components: { UsaStepIndicator, UsaStepIndicatorSegment },
+    props: Object.keys(UsaStepIndicatorSegment.props),
+    setup() {
+      return { args }
+    },
+    template: `
     <UsaStepIndicator counters>
-      <UsaStepIndicatorSegment :status="status" :label="label"></UsaStepIndicatorSegment>
-      <template #header>&nbsp</template>
-  </UsaStepIndicator>`,
-})
-
-export const DefaultStepIndicatorSegment = DefaultTemplate.bind({})
-DefaultStepIndicatorSegment.args = {
-  ...defaultProps,
-  label: 'Test Step 1',
+        <UsaStepIndicatorSegment :status="args.status" :label="args.label"></UsaStepIndicatorSegment>
+        <template #header>&nbsp</template>
+    </UsaStepIndicator>`,
+  }),
 }
-DefaultStepIndicatorSegment.storyName = 'Default'
 
-export const CurrentStepIndicatorSegment = DefaultTemplate.bind({})
-CurrentStepIndicatorSegment.args = {
-  ...defaultProps,
-  status: 'current',
-  label: 'Test Current Step 1',
+export const DefaultStepIndicatorSegment = {
+  args: {
+    ...defaultProps,
+    label: 'Test Step 1',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicatorSegment label="Test Step 1"></UsaStepIndicatorSegment>`,
+      },
+    },
+  },
 }
-CurrentStepIndicatorSegment.storyName = 'Current'
 
-export const CompletedStepIndicatorSegment = DefaultTemplate.bind({})
-CompletedStepIndicatorSegment.args = {
-  ...defaultProps,
-  status: 'completed',
-  label: 'Test Completed Step 1',
+export const CurrentStepIndicatorSegment = {
+  args: {
+    ...defaultProps,
+    status: 'current',
+    label: 'Test Current Step 1',
+  },
+  name: 'Current',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicatorSegment status="current" label="Test Current Step 1"></UsaStepIndicatorSegment>`,
+      },
+    },
+  },
 }
-CompletedStepIndicatorSegment.storyName = 'Completed'
+
+export const CompletedStepIndicatorSegment = {
+  args: {
+    ...defaultProps,
+    status: 'completed',
+    label: 'Test Completed Step 1',
+  },
+  name: 'Completed',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicatorSegment status="completed" label="Test Completed Step 1"></UsaStepIndicatorSegment>`,
+      },
+    },
+  },
+}

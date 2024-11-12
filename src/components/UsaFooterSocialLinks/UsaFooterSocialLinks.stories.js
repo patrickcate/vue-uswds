@@ -51,36 +51,51 @@ export default {
   },
   items: defaultProps.cols,
   customClasses: defaultProps.customClasses,
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaFooterSocialLinks },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaFooterSocialLinks
+  render: args => ({
+    components: { UsaFooterSocialLinks },
+    props: Object.keys(UsaFooterSocialLinks.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaFooterSocialLinks
     class="grid-row grid-gap-1"
-    :items="items"
-    :custom-classes="customClasses"
+    :items="args.items"
+    :custom-classes="args.customClasses"
   ></UsaFooterSocialLinks>`,
-})
-
-export const DefaultFooterSocialLinks = DefaultTemplate.bind({})
-DefaultFooterSocialLinks.args = {
-  ...defaultProps,
-  items: testItems,
+  }),
 }
-DefaultFooterSocialLinks.storyName = 'Default'
 
-export const CustomClassesFooterSocialLinks = DefaultTemplate.bind({})
-CustomClassesFooterSocialLinks.args = {
-  ...defaultProps,
-  items: testItems,
-  customClasses: {
-    gridCol: ['grid-col-auto', 'test-grid-col-class'],
-    link: ['test-link-class'],
-    icon: ['test-icon-class'],
+export const DefaultFooterSocialLinks = {
+  args: {
+    ...defaultProps,
+    items: testItems,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterSocialLinks :items="${JSON.stringify(testItems, null, '\t')}"></UsaFooterSocialLinks>`,
+      },
+    },
   },
 }
-CustomClassesFooterSocialLinks.storyName = 'Custom Classes'
+
+export const CustomClassesFooterSocialLinks = {
+  args: {
+    ...defaultProps,
+    items: testItems,
+    customClasses: {
+      gridCol: ['grid-col-auto', 'test-grid-col-class'],
+      link: ['test-link-class'],
+      icon: ['test-icon-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterSocialLinks :items="${JSON.stringify(testItems, null, '\t')}" :custom-classes="{ gridCol: ['grid-col-auto', 'test-grid-col-class'], link: ['test-link-class'], icon: ['test-icon-class'] }"></UsaFooterSocialLinks>`,
+      },
+    },
+  },
+}

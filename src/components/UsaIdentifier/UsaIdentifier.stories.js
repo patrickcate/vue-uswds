@@ -11,17 +11,26 @@ export default {
   args: {
     default: 'Test',
   },
+  render: args => ({
+    components: { UsaIdentifier },
+    props: [],
+    setup() {
+      return { args }
+    },
+    template: `<UsaIdentifier>${args.default}</UsaIdentifier>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaIdentifier },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultIdentifier = {
+  args: {
+    default: 'Test',
   },
-  template: `<UsaIdentifier>${args.default}</UsaIdentifier>`,
-})
-
-export const DefaultIdentifier = DefaultTemplate.bind({})
-DefaultIdentifier.args = {}
-DefaultIdentifier.storyName = 'Default'
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIdentifier>Test</UsaIdentifier>`,
+      },
+    },
+  },
+}

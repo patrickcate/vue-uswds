@@ -51,114 +51,191 @@ export default {
       template: '<div class="usa-form usa-form--large"><story /></div>',
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaCheckbox },
-  props: Object.keys(argTypes),
-  setup() {
-    const modelValue = ref(args.modelValue)
-    return { ...args, modelValue }
-  },
-  template: `<UsaCheckbox
-    v-bind="$attrs"
-    :tile="tile"
-    :label="label"
-    :description="description"
-    :id="id"
-    :custom-classes="customClasses"
-    v-model="modelValue"
+  render: args => ({
+    components: { UsaCheckbox },
+    props: Object.keys(UsaCheckbox.props),
+    setup() {
+      const modelValue = ref(args.modelValue)
+      return { args, modelValue }
+    },
+    template: `<UsaCheckbox
+    v-bind="args.$attrs"
+    :tile="args.tile"
+    :label="args.label"
+    :description="args.description"
+    :id="args.id"
+    :custom-classes="args.customClasses"
+    v-model="args.modelValue"
   >
-    <template v-if="${!!args.default}" #default>${args.default}</template>
-    <template v-if="${!!args['slot:description']}" #description>${
-      args['slot:description']
-    }</template>
+    <template v-if="!!args.default" #default>${args.default}</template>
+    <template v-if="!!args['slot:description']" #description>${args['slot:description']}</template>
   </UsaCheckbox>`,
-})
-
-export const DefaultCheckbox = DefaultTemplate.bind({})
-DefaultCheckbox.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
+  }),
 }
-DefaultCheckbox.storyName = 'Default'
 
-export const WithDescriptionCheckbox = DefaultTemplate.bind({})
-WithDescriptionCheckbox.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  description:
-    'This is optional text that can be used to describe the label in more detail.',
-}
-WithDescriptionCheckbox.storyName = 'Default w/ Description'
-
-export const CheckedByDefaultCheckbox = DefaultTemplate.bind({})
-CheckedByDefaultCheckbox.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  modelValue: true,
-}
-CheckedByDefaultCheckbox.storyName = 'Checked by Default'
-
-export const TileCheckbox = DefaultTemplate.bind({})
-TileCheckbox.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  tile: true,
-}
-TileCheckbox.storyName = 'Tile'
-
-export const TileWithDescriptionCheckbox = DefaultTemplate.bind({})
-TileWithDescriptionCheckbox.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  tile: true,
-  description:
-    'This is optional text that can be used to describe the label in more detail.',
-}
-TileWithDescriptionCheckbox.storyName = 'Tile w/ Description'
-
-export const TileCheckedByDefaultCheckbox = DefaultTemplate.bind({})
-TileCheckedByDefaultCheckbox.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  tile: true,
-  modelValue: true,
-}
-TileCheckedByDefaultCheckbox.storyName = 'Tile Checked by Default'
-
-export const LabelSlotCheckbox = DefaultTemplate.bind({})
-LabelSlotCheckbox.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  default: 'Custom label slot content',
-}
-LabelSlotCheckbox.storyName = 'Label Slot'
-
-export const DescriptionSlotCheckbox = DefaultTemplate.bind({})
-DescriptionSlotCheckbox.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  'slot:description': '<em>Custom description slot content</em>',
-}
-DescriptionSlotCheckbox.storyName = 'Description Slot'
-
-export const CustomIdCheckbox = DefaultTemplate.bind({})
-CustomIdCheckbox.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  id: 'custom-id',
-}
-CustomIdCheckbox.storyName = 'Custom ID'
-
-export const CustomClassesCheckbox = DefaultTemplate.bind({})
-CustomClassesCheckbox.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  customClasses: {
-    component: ['test-component-class'],
-    label: ['test-label-class'],
-    description: ['test-description-class'],
+export const DefaultCheckbox = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCheckbox label="Sojourner Truth"></UsaCheckbox>`,
+      },
+    },
   },
 }
-CustomClassesCheckbox.storyName = 'Custom CSS Classes'
+
+export const WithDescriptionCheckbox = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    description:
+      'This is optional text that can be used to describe the label in more detail.',
+  },
+  name: 'Default w/ Description',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCheckbox label="Sojourner Truth" description="This is optional text that can be used to describe the label in more detail."></UsaCheckbox>`,
+      },
+    },
+  },
+}
+
+export const CheckedByDefaultCheckbox = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    modelValue: true,
+  },
+  name: 'Checked by Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCheckbox label="Sojourner Truth" v-model="ref(true)"></UsaCheckbox>`,
+      },
+    },
+  },
+}
+
+export const TileCheckbox = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    tile: true,
+  },
+  name: 'Tile',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCheckbox label="Sojourner Truth" :tile="true"></UsaCheckbox>`,
+      },
+    },
+  },
+}
+
+export const TileWithDescriptionCheckbox = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    tile: true,
+    description:
+      'This is optional text that can be used to describe the label in more detail.',
+  },
+  name: 'Tile w/ Description',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCheckbox label="Sojourner Truth" :tile="true" description="This is optional text that can be used to describe the label in more detail."></UsaCheckbox>`,
+      },
+    },
+  },
+}
+
+export const TileCheckedByDefaultCheckbox = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    tile: true,
+    modelValue: true,
+  },
+  name: 'Tile Checked by Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCheckbox label="Sojourner Truth" :tile="true" v-model="ref(true)"></UsaCheckbox>`,
+      },
+    },
+  },
+}
+
+export const LabelSlotCheckbox = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    default: 'Custom label slot content',
+  },
+  name: 'Label Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCheckbox>Custom label slot content</UsaCheckbox>`,
+      },
+    },
+  },
+}
+
+export const DescriptionSlotCheckbox = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    'slot:description': '<em>Custom description slot content</em>',
+  },
+  name: 'Description Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCheckbox label="Sojourner Truth"><template #description><em>Custom description slot content</em></template></UsaCheckbox>`,
+      },
+    },
+  },
+}
+
+export const CustomIdCheckbox = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    id: 'custom-id',
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCheckbox label="Sojourner Truth" id="custom-id"></UsaCheckbox>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesCheckbox = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    customClasses: {
+      component: ['test-component-class'],
+      label: ['test-label-class'],
+      description: ['test-description-class'],
+    },
+  },
+  name: 'Custom CSS Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCheckbox label="Sojourner Truth" :custom-classes="{ component: ['test-component-class'], label: ['test-label-class'], description:  ['test-description-class'] }"></UsaCheckbox>`,
+      },
+    },
+  },
+}

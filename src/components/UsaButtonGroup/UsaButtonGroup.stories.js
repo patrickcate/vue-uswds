@@ -5,8 +5,11 @@ const defaultProps = {
   segmented: UsaButtonGroup.props.segmented.default,
 }
 
+const defaultButtonGroupCodeSnippet = `\n\t<UsaButtonGroupItem>\n\t\t<button type="button" class="usa-button">Test button 1</button>\n\t</UsaButtonGroupItem>\n\t<UsaButtonGroupItem>\n\t\t<button type="button" class="usa-button usa-button--outline">Test button 2</button>\n\t</UsaButtonGroupItem>\n\t<UsaButtonGroupItem>\n\t\t<button type="button" class="usa-button usa-button--outline">Test button 3</button>\n\t</UsaButtonGroupItem>\n`
+
 export default {
   component: UsaButtonGroup,
+  subcomponents: { UsaButtonGroupItem },
   title: 'Components/UsaButtonGroup',
   argTypes: {
     segmented: {
@@ -18,36 +21,43 @@ export default {
   },
   args: {
     segmented: defaultProps.segmented,
-    default: `<UsaButtonGroupItem>
-      <button type="button" class="usa-button">Test button 1</button>
-    </UsaButtonGroupItem>
-    <UsaButtonGroupItem>
-      <button type="button" class="usa-button usa-button--outline">Test button 2</button>
-    </UsaButtonGroupItem>
-    <UsaButtonGroupItem>
-      <button type="button" class="usa-button usa-button--outline">Test button 3</button>
-    </UsaButtonGroupItem>`,
+    default: defaultButtonGroupCodeSnippet,
+  },
+  render: args => ({
+    components: { UsaButtonGroup, UsaButtonGroupItem },
+    props: Object.keys(UsaButtonGroup.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaButtonGroup :segmented="args.segmented">${args.default}</UsaButtonGroup>`,
+  }),
+}
+
+export const DefaultButtonGroup = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButtonGroup>${defaultButtonGroupCodeSnippet}</UsaButtonGroup>`,
+      },
+    },
   },
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaButtonGroup, UsaButtonGroupItem },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const SegmentedButtonGroup = {
+  args: {
+    ...defaultProps,
+    segmented: true,
   },
-  template: `<UsaButtonGroup :segmented="segmented">${args.default}</UsaButtonGroup>`,
-})
-
-export const DefaultButtonGroup = DefaultTemplate.bind({})
-DefaultButtonGroup.args = {
-  ...defaultProps,
+  name: 'Segmented',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaButtonGroup :segmented="true">${defaultButtonGroupCodeSnippet}</UsaButtonGroup>`,
+      },
+    },
+  },
 }
-DefaultButtonGroup.storyName = 'Default'
-
-export const SegmentedButtonGroup = DefaultTemplate.bind({})
-SegmentedButtonGroup.args = {
-  ...defaultProps,
-  segmented: true,
-}
-SegmentedButtonGroup.storyName = 'Segmented'

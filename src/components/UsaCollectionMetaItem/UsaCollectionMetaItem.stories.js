@@ -16,19 +16,26 @@ export default {
   decorators: [
     () => ({ template: '<ul class="usa-collection__meta"><story /></ul>' }),
   ],
+  render: args => ({
+    components: { UsaCollectionMetaItem },
+    props: [],
+    setup() {
+      return { args }
+    },
+    template: `<UsaCollectionMetaItem>${args.default}</UsaCollectionMetaItem>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaCollectionMetaItem },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultCollectionMetaItem = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaCollectionMetaItem>${args.default}</UsaCollectionMetaItem>`,
-})
-
-export const DefaultCollectionMetaItem = DefaultTemplate.bind({})
-DefaultCollectionMetaItem.args = {
-  ...defaultProps,
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionMetaItem>Test collection meta item</UsaCollectionMetaItem>`,
+      },
+    },
+  },
 }
-DefaultCollectionMetaItem.storyName = 'Default'

@@ -51,67 +51,152 @@ export default {
       <li>Gather emergency supplies for your <a class="usa-summary-box__link" href="#">home</a> and your <a class="usa-summary-box__link" href="#">car</a>.</li>
     </ul>`,
   },
+  render: args => ({
+    components: { UsaSummaryBox },
+    props: Object.keys(UsaSummaryBox.props),
+    setup() {
+      return { args }
+    },
+    template: `
+      <UsaSummaryBox :id="args.id" :heading="args.heading" :heading-tag="args.headingTag" :custom-classes="args.customClasses">
+        <template v-if="!!args['slot:heading']" #heading>${args['slot:heading']}</template>
+        <template v-if="!!args.default" #default>${args.default}</template>
+      </UsaSummaryBox>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaSummaryBox },
-  props: Object.keys(argTypes),
-  setup() {
-    return {
-      ...args,
-    }
+export const DefaultSummaryBox = {
+  args: {
+    ...defaultProps,
   },
-  template: `
-  <UsaSummaryBox :id="id" :heading="heading" :heading-tag="headingTag" :custom-classes="customClasses">
-    <template v-if="${!!args['slot:heading']}" #heading>${
-      args['slot:heading']
-    }</template>
-    <template v-if="${!!args.default}" #default>${args.default}</template>
-  </UsaSummaryBox>`,
-})
-
-export const DefaultSummaryBox = DefaultTemplate.bind({})
-DefaultSummaryBox.args = {
-  ...defaultProps,
-}
-DefaultSummaryBox.storyName = 'Default'
-
-export const CustomHeadingSummaryBox = DefaultTemplate.bind({})
-CustomHeadingSummaryBox.args = {
-  ...defaultProps,
-  heading: 'Custom Heading',
-}
-CustomHeadingSummaryBox.storyName = 'Custom Heading'
-
-export const HeadingSlotSummaryBox = DefaultTemplate.bind({})
-HeadingSlotSummaryBox.args = {
-  ...defaultProps,
-  'slot:heading': '<em>Custom Heading Slot</em>',
-}
-HeadingSlotSummaryBox.storyName = 'Heading Slot'
-
-export const CustomHeadingTagSummaryBox = DefaultTemplate.bind({})
-CustomHeadingTagSummaryBox.args = {
-  ...defaultProps,
-  heading: 'Custom Heading Tag',
-  headingTag: 'h4',
-}
-CustomHeadingTagSummaryBox.storyName = 'Custom Heading Tag'
-
-export const CustomIdSummaryBox = DefaultTemplate.bind({})
-CustomIdSummaryBox.args = {
-  ...defaultProps,
-  id: 'custom-id',
-}
-CustomIdSummaryBox.storyName = 'Custom ID'
-
-export const CustomClassesSummaryBox = DefaultTemplate.bind({})
-CustomClassesSummaryBox.args = {
-  ...defaultProps,
-  customClasses: {
-    body: ['test-body-class'],
-    heading: ['test-heading-class'],
-    text: ['test-text-class'],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSummaryBox>
+        <ul class="usa-list">
+          <li>If you are under a winter storm warning, <a class="usa-summary-box__link" href="#">find shelter</a> right away.</li>
+          <li>Sign up for <a class="usa-summary-box__link" href="#">your community's warning system</a>.</li>
+          <li>Learn the signs of, and basic treatments for, <a class="usa-summary-box__link" href="#">frostbite</a> and <a class="usa-summary-box__link" href="#">hypothermia</a>.</li>
+          <li>Gather emergency supplies for your <a class="usa-summary-box__link" href="#">home</a> and your <a class="usa-summary-box__link" href="#">car</a>.</li>
+        </ul>
+        </UsaSummaryBox>`,
+      },
+    },
   },
 }
-CustomClassesSummaryBox.storyName = 'Custom Classes'
+
+export const CustomHeadingSummaryBox = {
+  args: {
+    ...defaultProps,
+    heading: 'Custom Heading',
+  },
+  name: 'Custom Heading',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSummaryBox heading="Custom Heading">
+        <ul class="usa-list">
+          <li>If you are under a winter storm warning, <a class="usa-summary-box__link" href="#">find shelter</a> right away.</li>
+          <li>Sign up for <a class="usa-summary-box__link" href="#">your community's warning system</a>.</li>
+          <li>Learn the signs of, and basic treatments for, <a class="usa-summary-box__link" href="#">frostbite</a> and <a class="usa-summary-box__link" href="#">hypothermia</a>.</li>
+          <li>Gather emergency supplies for your <a class="usa-summary-box__link" href="#">home</a> and your <a class="usa-summary-box__link" href="#">car</a>.</li>
+        </ul>
+        </UsaSummaryBox>`,
+      },
+    },
+  },
+}
+
+export const HeadingSlotSummaryBox = {
+  args: {
+    ...defaultProps,
+    'slot:heading': '<em>Custom Heading Slot</em>',
+  },
+  name: 'Heading Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSummaryBox><template #heading><em>Custom Heading Slot</em></template><template #default>
+        <ul class="usa-list">
+          <li>If you are under a winter storm warning, <a class="usa-summary-box__link" href="#">find shelter</a> right away.</li>
+          <li>Sign up for <a class="usa-summary-box__link" href="#">your community's warning system</a>.</li>
+          <li>Learn the signs of, and basic treatments for, <a class="usa-summary-box__link" href="#">frostbite</a> and <a class="usa-summary-box__link" href="#">hypothermia</a>.</li>
+          <li>Gather emergency supplies for your <a class="usa-summary-box__link" href="#">home</a> and your <a class="usa-summary-box__link" href="#">car</a>.</li>
+        </ul></template>
+      </UsaSummaryBox>`,
+      },
+    },
+  },
+}
+
+export const CustomHeadingTagSummaryBox = {
+  args: {
+    ...defaultProps,
+    heading: 'Custom Heading Tag',
+    headingTag: 'h4',
+  },
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSummaryBox heading="Custom Heading" heading-tag="h4">
+        <ul class="usa-list">
+          <li>If you are under a winter storm warning, <a class="usa-summary-box__link" href="#">find shelter</a> right away.</li>
+          <li>Sign up for <a class="usa-summary-box__link" href="#">your community's warning system</a>.</li>
+          <li>Learn the signs of, and basic treatments for, <a class="usa-summary-box__link" href="#">frostbite</a> and <a class="usa-summary-box__link" href="#">hypothermia</a>.</li>
+          <li>Gather emergency supplies for your <a class="usa-summary-box__link" href="#">home</a> and your <a class="usa-summary-box__link" href="#">car</a>.</li>
+        </ul>
+      </UsaSummaryBox>`,
+      },
+    },
+  },
+}
+
+export const CustomIdSummaryBox = {
+  args: {
+    ...defaultProps,
+    id: 'custom-id',
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSummaryBox id="custom-id">
+        <ul class="usa-list">
+          <li>If you are under a winter storm warning, <a class="usa-summary-box__link" href="#">find shelter</a> right away.</li>
+          <li>Sign up for <a class="usa-summary-box__link" href="#">your community's warning system</a>.</li>
+          <li>Learn the signs of, and basic treatments for, <a class="usa-summary-box__link" href="#">frostbite</a> and <a class="usa-summary-box__link" href="#">hypothermia</a>.</li>
+          <li>Gather emergency supplies for your <a class="usa-summary-box__link" href="#">home</a> and your <a class="usa-summary-box__link" href="#">car</a>.</li>
+        </ul>
+      </UsaSummaryBox>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesSummaryBox = {
+  args: {
+    ...defaultProps,
+    customClasses: {
+      body: ['test-body-class'],
+      heading: ['test-heading-class'],
+      text: ['test-text-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSummaryBox :custom-classes="{ body: ['test-body-class'], heading: ['test-heading-class'], text: ['test-text-class'] }">
+        <ul class="usa-list">
+          <li>If you are under a winter storm warning, <a class="usa-summary-box__link" href="#">find shelter</a> right away.</li>
+          <li>Sign up for <a class="usa-summary-box__link" href="#">your community's warning system</a>.</li>
+          <li>Learn the signs of, and basic treatments for, <a class="usa-summary-box__link" href="#">frostbite</a> and <a class="usa-summary-box__link" href="#">hypothermia</a>.</li>
+          <li>Gather emergency supplies for your <a class="usa-summary-box__link" href="#">home</a> and your <a class="usa-summary-box__link" href="#">car</a>.</li>
+        </ul>
+      </UsaSummaryBox>`,
+      },
+    },
+  },
+}

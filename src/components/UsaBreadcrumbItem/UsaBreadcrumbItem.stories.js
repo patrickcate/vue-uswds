@@ -40,47 +40,70 @@ export default {
     customClasses: defaultProps.customClasses,
     default: 'Test breadcrumb',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaBreadcrumb, UsaBreadcrumbItem },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaBreadcrumb>
+  render: args => ({
+    components: { UsaBreadcrumb, UsaBreadcrumbItem },
+    props: Object.keys(UsaBreadcrumbItem.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaBreadcrumb>
     <UsaBreadcrumbItem
-      :href="href"
-      :to="to"
-      :router-component-name="routerComponentName"
-      :current="current"
-      :custom-classes="customClasses"
-    >${args.default}</UsaBreadcrumbItem>
+      :href="args.href"
+      :to="args.to"
+      :router-component-name="args.routerComponentName"
+      :current="args.current"
+      :custom-classes="args.customClasses"
+    >{{ args.default }}</UsaBreadcrumbItem>
   </UsaBreadcrumb>`,
-})
-
-export const DefaultBreadcrumbItem = DefaultTemplate.bind({})
-DefaultBreadcrumbItem.args = {
-  ...defaultProps,
-  href: '/test-page',
+  }),
 }
-DefaultBreadcrumbItem.storyName = 'Default'
 
-export const CurrentBreadcrumbItem = DefaultTemplate.bind({})
-CurrentBreadcrumbItem.args = {
-  ...defaultProps,
-  href: '/test-page',
-  current: true,
-}
-CurrentBreadcrumbItem.storyName = 'Current'
-
-export const CustomClassesBreadcrumbItem = DefaultTemplate.bind({})
-CustomClassesBreadcrumbItem.args = {
-  ...defaultProps,
-  href: '/test-page',
-  customClasses: {
-    link: ['test-link-class'],
-    span: ['test-span-class'],
+export const DefaultBreadcrumbItem = {
+  args: {
+    ...defaultProps,
+    href: '/test-page',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBreadcrumbItem href="/test-page">Test breadcrumb</UsaBreadcrumbItem>`,
+      },
+    },
   },
 }
-CustomClassesBreadcrumbItem.storyName = 'Custom Classes'
+
+export const CurrentBreadcrumbItem = {
+  args: {
+    ...defaultProps,
+    href: '/test-page',
+    current: true,
+  },
+  name: 'Current',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBreadcrumbItem href="/test-page" :current="true">Test breadcrumb</UsaBreadcrumbItem>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesBreadcrumbItem = {
+  args: {
+    ...defaultProps,
+    href: '/test-page',
+    customClasses: {
+      link: ['test-link-class'],
+      span: ['test-span-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBreadcrumbItem href="/test-page" :custom-classes="{ link: ['test-link-class'], span: ['test-span-class'] }">Test breadcrumb</UsaBreadcrumbItem>`,
+      },
+    },
+  },
+}

@@ -58,109 +58,196 @@ export default {
     customClasses: defaultProps.customClasses,
     icon: '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaSearch },
-  props: Object.keys(argTypes),
-  setup() {
-    const modelValue = ref(args.modelValue)
-    return { ...args, modelValue }
-  },
-  template: `<UsaSearch
-    v-model="modelValue"
-    :variant="variant"
-    :label="label"
-    :buttonLabel="buttonLabel"
-    :inputAttrs="inputAttrs"
-    :id="id"
-    :name="name"
-    :customClasses="customClasses"
+  render: args => ({
+    components: { UsaSearch },
+    props: Object.keys(UsaSearch.props),
+    setup() {
+      const modelValue = ref(args.modelValue)
+      return { args, modelValue }
+    },
+    template: `<UsaSearch
+    v-model="args.modelValue"
+    :variant="args.variant"
+    :label="args.label"
+    :buttonLabel="args.buttonLabel"
+    :inputAttrs="args.inputAttrs"
+    :id="args.id"
+    :name="args.name"
+    :customClasses="args.customClasses"
   >
-    <template v-if="${!!args.icon}" #icon>${args.icon}</template>
+    <template v-if="!!args.icon" #icon>${args.icon}</template>
   </UsaSearch>`,
-})
-
-export const DefaultSearch = DefaultTemplate.bind({})
-DefaultSearch.args = {
-  ...defaultProps,
+  }),
 }
-DefaultSearch.storyName = 'Default'
 
-export const DefaultValueSearch = DefaultTemplate.bind({})
-DefaultValueSearch.args = {
-  ...defaultProps,
-  modelValue: 'Test search term',
-}
-DefaultValueSearch.storyName = 'Default Value'
-
-export const SmallVariantSearch = DefaultTemplate.bind({})
-SmallVariantSearch.args = {
-  ...defaultProps,
-  variant: 'small',
-}
-SmallVariantSearch.storyName = 'Small'
-
-export const BigVariantSearch = DefaultTemplate.bind({})
-BigVariantSearch.args = {
-  ...defaultProps,
-  variant: 'big',
-}
-BigVariantSearch.storyName = 'Big'
-
-export const CustomLabelSearch = DefaultTemplate.bind({})
-CustomLabelSearch.args = {
-  ...defaultProps,
-  label: 'Custom form label',
-}
-CustomLabelSearch.storyName = 'Custom Form Label'
-
-export const CustomButtonLabelSearch = DefaultTemplate.bind({})
-CustomButtonLabelSearch.args = {
-  ...defaultProps,
-  buttonLabel: 'Submit',
-}
-CustomButtonLabelSearch.storyName = 'Custom Button Label'
-
-export const CustomNameSearch = DefaultTemplate.bind({})
-CustomNameSearch.args = {
-  ...defaultProps,
-  name: 'custom-name-attribute',
-}
-CustomNameSearch.storyName = 'Custom Name Attribute'
-
-export const InputAttrsSearch = DefaultTemplate.bind({})
-InputAttrsSearch.args = {
-  ...defaultProps,
-  inputAttrs: {
-    placeholder: 'Enter search terms',
+export const DefaultSearch = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSearch />`,
+      },
+    },
   },
 }
-InputAttrsSearch.storyName = 'Custom Input Attributes'
 
-export const IconSlotSearch = DefaultTemplate.bind({})
-IconSlotSearch.args = {
-  ...defaultProps,
-  variant: 'small',
-  icon: '<strong>-></strong>',
-}
-IconSlotSearch.storyName = 'Icon Slot'
-
-export const CustomIdSearch = DefaultTemplate.bind({})
-CustomIdSearch.args = {
-  ...defaultProps,
-  id: 'custom-id',
-}
-CustomIdSearch.storyName = 'Custom ID'
-
-export const CustomClassesSearch = DefaultTemplate.bind({})
-CustomClassesSearch.args = {
-  ...defaultProps,
-  customClasses: {
-    label: ['test-label-class'],
-    input: ['test-input-class'],
-    button: ['test-button-class'],
-    icon: ['test-icon-class'],
+export const DefaultValueSearch = {
+  args: {
+    ...defaultProps,
+    modelValue: 'Test search term',
+  },
+  name: 'Default Value',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSearch v-model="ref('Test search term')"></UsaSearch>`,
+      },
+    },
   },
 }
-CustomClassesSearch.storyName = 'Custom CSS Classes'
+
+export const SmallVariantSearch = {
+  args: {
+    ...defaultProps,
+    variant: 'small',
+  },
+  name: 'Small',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSearch :variant="small"></UsaSearch>`,
+      },
+    },
+  },
+}
+
+export const BigVariantSearch = {
+  args: {
+    ...defaultProps,
+    variant: 'big',
+  },
+  name: 'Big',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSearch :variant="big"></UsaSearch>`,
+      },
+    },
+  },
+}
+
+export const CustomLabelSearch = {
+  args: {
+    ...defaultProps,
+    label: 'Custom form label',
+  },
+  name: 'Custom Form Label',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSearch label="Custom form label"></UsaSearch>`,
+      },
+    },
+  },
+}
+
+export const CustomButtonLabelSearch = {
+  args: {
+    ...defaultProps,
+    buttonLabel: 'Submit',
+  },
+  name: 'Custom Button Label',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSearch button-label="Submit"></UsaSearch>`,
+      },
+    },
+  },
+}
+
+export const CustomNameSearch = {
+  args: {
+    ...defaultProps,
+    name: 'custom-name-attribute',
+  },
+  name: 'Custom Name Attribute',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSearch name="custom-name-attribute"></UsaSearch>`,
+      },
+    },
+  },
+}
+
+export const InputAttrsSearch = {
+  args: {
+    ...defaultProps,
+    inputAttrs: {
+      placeholder: 'Enter search terms',
+    },
+  },
+  name: 'Custom Input Attributes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSearch :input-attrs="{ placeholder: 'Enter search terms'} "></UsaSearch>`,
+      },
+    },
+  },
+}
+
+export const IconSlotSearch = {
+  args: {
+    ...defaultProps,
+    variant: 'small',
+    icon: '<strong>-></strong>',
+  },
+  name: 'Icon Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSearch :variant="small"><template #icon><strong>-></strong></template></UsaSearch>`,
+      },
+    },
+  },
+}
+
+export const CustomIdSearch = {
+  args: {
+    ...defaultProps,
+    id: 'custom-id',
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSearch id="custom-id"></UsaSearch>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesSearch = {
+  args: {
+    ...defaultProps,
+    customClasses: {
+      label: ['test-label-class'],
+      input: ['test-input-class'],
+      button: ['test-button-class'],
+      icon: ['test-icon-class'],
+    },
+  },
+  name: 'Custom CSS Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSearch :custom-classes="{ label: ['test-label-class'], input: ['test-input-class'], button: ['test-button-class'], icon: ['test-icon-class'] }"></UsaSearch>`,
+      },
+    },
+  },
+}

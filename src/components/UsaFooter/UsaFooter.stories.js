@@ -36,71 +36,116 @@ export default {
     default: '',
     'jump-link': '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaFooter },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaFooter
-    :variant="variant"
-    :jump-link-text="jumpLinkText"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaFooter },
+    props: Object.keys(UsaFooter.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaFooter
+    :variant="args.variant"
+    :jump-link-text="args.jumpLinkText"
+    :custom-classes="args.customClasses"
   >
-    <template v-if="${!!args['jump-link']}" #jump-link>${
-      args['jump-link']
-    }</template>
-    <template v-if="${!!args.default}" #default>${args.default}</template>
+    <template v-if="!!args['jump-link']" #jump-link>${args['jump-link']}</template>
+    <template v-if="!!args.default" #default>${args.default}</template>
   </UsaFooter>`,
-})
-
-export const DefaultFooter = DefaultTemplate.bind({})
-DefaultFooter.args = {
-  ...defaultProps,
-  default: 'Footer content here',
+  }),
 }
-DefaultFooter.storyName = 'Default (Medium)'
 
-export const BigFooter = DefaultTemplate.bind({})
-BigFooter.args = {
-  ...defaultProps,
-  variant: 'big',
-  default: 'Footer content here',
-}
-BigFooter.storyName = 'Big'
-
-export const SlimFooter = DefaultTemplate.bind({})
-SlimFooter.args = {
-  ...defaultProps,
-  variant: 'slim',
-  default: 'Footer content here',
-}
-SlimFooter.storyName = 'Slim'
-
-export const JumpLinkTextFooter = DefaultTemplate.bind({})
-JumpLinkTextFooter.args = {
-  ...defaultProps,
-  jumpLinkText: 'Custom jump link text',
-  default: 'Footer content here',
-}
-JumpLinkTextFooter.storyName = 'Jump Link Text'
-
-export const JumpLinkFooterSlot = DefaultTemplate.bind({})
-JumpLinkFooterSlot.args = {
-  ...defaultProps,
-  default: 'Footer content here',
-  'jump-link': '<em>Jump link slot</em>',
-}
-JumpLinkFooterSlot.storyName = 'Jump Link Slot'
-
-export const CustomClassesFooter = DefaultTemplate.bind({})
-CustomClassesFooter.args = {
-  ...defaultProps,
-  default: 'Footer content here',
-  customClasses: {
-    container: ['custom-container-class'],
+export const DefaultFooter = {
+  args: {
+    ...defaultProps,
+    default: 'Footer content here',
+  },
+  name: 'Default (Medium)',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooter>Footer content here</UsaFooter>`,
+      },
+    },
   },
 }
-CustomClassesFooter.storyName = 'Custom Classes'
+
+export const BigFooter = {
+  args: {
+    ...defaultProps,
+    variant: 'big',
+    default: 'Footer content here',
+  },
+  name: 'Big',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooter variant="big">Footer content here</UsaFooter>`,
+      },
+    },
+  },
+}
+
+export const SlimFooter = {
+  args: {
+    ...defaultProps,
+    variant: 'slim',
+    default: 'Footer content here',
+  },
+  name: 'Slim',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooter variant="slim">Footer content here</UsaFooter>`,
+      },
+    },
+  },
+}
+
+export const JumpLinkTextFooter = {
+  args: {
+    ...defaultProps,
+    jumpLinkText: 'Custom jump link text',
+    default: 'Footer content here',
+  },
+  name: 'Jump Link Text',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooter jump-link-text="Custom jump link text">Footer content here</UsaFooter>`,
+      },
+    },
+  },
+}
+
+export const JumpLinkFooterSlot = {
+  args: {
+    ...defaultProps,
+    default: 'Footer content here',
+    'jump-link': '<em>Jump link slot</em>',
+  },
+  name: 'Jump Link Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooter><template #jump-link><em>Jump link slot</em></template><template #default>Footer content here</template></UsaFooter>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesFooter = {
+  args: {
+    ...defaultProps,
+    default: 'Footer content here',
+    customClasses: {
+      container: ['custom-container-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooter :custom-classes="{ container: ['custom-container-class'] }">Footer content here</UsaFooter>`,
+      },
+    },
+  },
+}

@@ -35,34 +35,49 @@ export default {
       template: '<div class="usa-identifier"><story /></div>',
     }),
   ],
+  render: args => ({
+    components: { UsaIdentiferMoreInfo },
+    props: Object.keys(UsaIdentiferMoreInfo.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaIdentiferMoreInfo
+      :aria-label="args.ariaLabel"
+      :description="args.description"
+      :link-text="args.linkText"
+      :link-url="args.linkUrl"
+    />`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaIdentiferMoreInfo },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultIdentiferMoreInfo = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaIdentiferMoreInfo
-    :aria-label="ariaLabel"
-    :description="description"
-    :link-text="linkText"
-    :link-url="linkUrl"
-  />`,
-})
-
-export const DefaultIdentiferMoreInfo = DefaultTemplate.bind({})
-DefaultIdentiferMoreInfo.args = {
-  ...defaultProps,
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIdentiferMoreInfo></UsaIdentiferMoreInfo>`,
+      },
+    },
+  },
 }
-DefaultIdentiferMoreInfo.storyName = 'Default'
 
-export const CustomTextIdentiferMoreInfo = DefaultTemplate.bind({})
-CustomTextIdentiferMoreInfo.args = {
-  ...defaultProps,
-  ariaLabel: 'Custom aria-label',
-  description: 'Custom description',
-  linkText: 'Custom link',
-  linkUrl: '/custom-url',
+export const CustomTextIdentiferMoreInfo = {
+  args: {
+    ...defaultProps,
+    ariaLabel: 'Custom aria-label',
+    description: 'Custom description',
+    linkText: 'Custom link',
+    linkUrl: '/custom-url',
+  },
+  name: 'Custom Text',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIdentiferMoreInfo aria-label="Custom aria-label" description="Custom description" link-text="Custom link" link-url="/custom-url"></UsaIdentiferMoreInfo>`,
+      },
+    },
+  },
 }
-CustomTextIdentiferMoreInfo.storyName = 'Custom Text'

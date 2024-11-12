@@ -85,170 +85,277 @@ export default {
     'preview-heading': '',
     'invalid-files-message': '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaFileInput },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaFileInput
-    :id="id"
-    :accept="accept"
-    :multiple="multiple"
-    :label="label"
-    :required="required"
-    :disabled="disabled"
-    :error="error"
+  render: args => ({
+    components: { UsaFileInput },
+    props: Object.keys(UsaFileInput.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaFileInput
+    :id="args.id"
+    :accept="args.accept"
+    :multiple="args.multiple"
+    :label="args.label"
+    :required="args.required"
+    :disabled="args.disabled"
+    :error="args.error"
   >
-    <template v-if="${!!args['slot:label']}" #label>${
-      args['slot:label']
-    }</template>
-    <template v-if="${!!args.hint}" #hint>${args.hint}</template>
-    <template v-if="${!!args['error-message']}" #error-message>${
-      args['error-message']
-    }</template>
-    <template v-if="${!!args[
-      'slot:status'
-    ]}" #status="{ multiple, loadedFiles, hasInvalidFiles }">${
-      args['slot:status']
-    }</template>
-    <template v-if="${!!args.instructions}" #instructions="{ multiple }">${
+    <template v-if="!!args['slot:label']" #label>${args['slot:label']}</template>
+    <template v-if="!!args.hint" #hint>${args.hint}</template>
+    <template v-if="!!args['error-message']" #error-message>${args['error-message']}</template>
+    <template v-if="!!args['slot:status']" #status="{ multiple, loadedFiles, hasInvalidFiles }">${args['slot:status']}</template>
+    <template v-if="!!args.instructions" #instructions="{ multiple }">{{
       args.instructions
-    }</template>
-    <template v-if="${!!args[
-      'preview-heading'
-    ]}" #preview-heading="{ loadedFiles }">${args['preview-heading']}</template>
-    <template v-if="${!!args[
-      'invalid-files-message'
-    ]}" #invalid-files-message>${args['invalid-files-message']}</template>
+    }}</template>
+    <template v-if="!!args['preview-heading']" #preview-heading="{ loadedFiles }">${args['preview-heading']}</template>
+    <template v-if="!!args['invalid-files-message']" #invalid-files-message>${args['invalid-files-message']}</template>
   </UsaFileInput>`,
-})
-
-export const DefaultFileInput = DefaultTemplate.bind({})
-DefaultFileInput.args = {
-  ...defaultProps,
-  label: 'File',
+  }),
 }
-DefaultFileInput.storyName = 'Default'
 
-export const MultipleFileInput = DefaultTemplate.bind({})
-MultipleFileInput.args = {
-  ...defaultProps,
-  label: 'Multiple Files Allowed',
-  multiple: true,
-}
-MultipleFileInput.storyName = 'Multiple Files'
-
-export const AcceptedFileInput = DefaultTemplate.bind({})
-AcceptedFileInput.args = {
-  ...defaultProps,
-  label: `Only images and PDF's allowed`,
-  accept: 'image/*,.pdf',
-}
-AcceptedFileInput.storyName = 'Accepted Files'
-
-export const HintFileInput = DefaultTemplate.bind({})
-HintFileInput.args = {
-  ...defaultProps,
-  label: 'File',
-  hint: 'Choose wisely',
-}
-HintFileInput.storyName = 'Hint'
-
-export const ErrorFileInput = DefaultTemplate.bind({})
-ErrorFileInput.args = {
-  ...defaultProps,
-  label: 'File',
-  error: true,
-}
-ErrorFileInput.storyName = 'Error'
-
-export const ErrorMessageFileInput = DefaultTemplate.bind({})
-ErrorMessageFileInput.args = {
-  ...defaultProps,
-  label: 'File',
-  error: true,
-  'error-message': 'Error message here',
-}
-ErrorMessageFileInput.storyName = 'Error Message'
-
-export const RequiredFileInput = DefaultTemplate.bind({})
-RequiredFileInput.args = {
-  ...defaultProps,
-  label: 'File',
-  required: true,
-}
-RequiredFileInput.storyName = 'Required'
-
-export const DisabledFileInput = DefaultTemplate.bind({})
-DisabledFileInput.args = {
-  ...defaultProps,
-  label: 'File',
-  disabled: true,
-}
-DisabledFileInput.storyName = 'Disabled'
-
-export const CustomIdFileInput = DefaultTemplate.bind({})
-CustomIdFileInput.args = {
-  ...defaultProps,
-  label: 'File',
-  id: 'custom-id',
-}
-CustomIdFileInput.storyName = 'Custom ID'
-
-export const InstructionsSlotFileInput = DefaultTemplate.bind({})
-InstructionsSlotFileInput.args = {
-  ...defaultProps,
-  label: 'File',
-  instructions:
-    'You can choose multiple files: <strong>{{ multiple }}</strong>',
-}
-InstructionsSlotFileInput.storyName = 'Instructions Slot'
-
-export const PreviewHeadingSlotFileInput = DefaultTemplate.bind({})
-PreviewHeadingSlotFileInput.args = {
-  ...defaultProps,
-  label: 'Load file to see preview heading',
-  'preview-heading': 'Total files: <strong>{{ loadedFiles.length }}</strong>',
-}
-PreviewHeadingSlotFileInput.storyName = 'Preview Heading Slot'
-
-export const InvalidFilesMessageSlotFileInput = DefaultTemplate.bind({})
-InvalidFilesMessageSlotFileInput.args = {
-  ...defaultProps,
-  label: 'Load file to see message',
-  'invalid-files-message': 'Not a valid file.',
-  accept: '.json',
-}
-InvalidFilesMessageSlotFileInput.storyName = 'Invalid Message Slot'
-
-export const CustomClassesFileInput = DefaultTemplate.bind({})
-CustomClassesFileInput.args = {
-  ...defaultProps,
-  label: 'File',
-  customClasses: {
-    formGroup: ['test-form-group-class'],
-    component: ['test-component-class'],
-    label: ['test-label-class'],
-    input: ['test-input-class'],
+export const DefaultFileInput = {
+  args: {
+    ...defaultProps,
+    label: 'File',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="File" />`,
+      },
+    },
   },
 }
-CustomClassesFileInput.storyName = 'Custom CSS Classes'
 
-export const LabelSlotFileInput = DefaultTemplate.bind({})
-LabelSlotFileInput.args = {
-  ...defaultProps,
-  'slot:label': `<em>Label slot content</em>`,
+export const MultipleFileInput = {
+  args: {
+    ...defaultProps,
+    label: 'Multiple Files Allowed',
+    multiple: true,
+  },
+  name: 'Multiple Files',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="Multiple Files Allowed" :multiple="true" />`,
+      },
+    },
+  },
 }
-LabelSlotFileInput.storyName = 'Label Slot'
 
-export const StatusSlotFileInput = DefaultTemplate.bind({})
-StatusSlotFileInput.args = {
-  ...defaultProps,
-  label: 'File',
-  'slot:status':
-    'Total files: <strong>{{ loadedFiles.length }}</strong>, multiple: {{ multiple }}, hasInvalidFiles: {{ hasInvalidFiles }}',
+export const AcceptedFileInput = {
+  args: {
+    ...defaultProps,
+    label: `Only images and PDF's allowed`,
+    accept: 'image/*,.pdf',
+  },
+  name: 'Accepted Files',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="Only images and PDF's allowed" accept="image/*,.pdf" />`,
+      },
+    },
+  },
 }
-StatusSlotFileInput.storyName = 'Status Slot'
+
+export const HintFileInput = {
+  args: {
+    ...defaultProps,
+    label: 'File',
+    hint: 'Choose wisely',
+  },
+  name: 'Hint',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="File" hint="Choose wisely" />`,
+      },
+    },
+  },
+}
+
+export const ErrorFileInput = {
+  args: {
+    ...defaultProps,
+    label: 'File',
+    error: true,
+  },
+  name: 'Error',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="File" :error="true" />`,
+      },
+    },
+  },
+}
+
+export const ErrorMessageFileInput = {
+  args: {
+    ...defaultProps,
+    label: 'File',
+    error: true,
+    'error-message': 'Error message here',
+  },
+  name: 'Error Message',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="File" :error="true" error-message="Error message here" />`,
+      },
+    },
+  },
+}
+
+export const RequiredFileInput = {
+  args: {
+    ...defaultProps,
+    label: 'File',
+    required: true,
+  },
+  name: 'Required',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="File" :required="true" />`,
+      },
+    },
+  },
+}
+
+export const DisabledFileInput = {
+  args: {
+    ...defaultProps,
+    label: 'File',
+    disabled: true,
+  },
+  name: 'Disabled',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="File" :disabled="true" />`,
+      },
+    },
+  },
+}
+
+export const CustomIdFileInput = {
+  args: {
+    ...defaultProps,
+    label: 'File',
+    id: 'custom-id',
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="File" id="custom-id" />`,
+      },
+    },
+  },
+}
+
+export const InstructionsSlotFileInput = {
+  args: {
+    ...defaultProps,
+    label: 'File',
+    instructions:
+      'You can choose multiple files: <strong>{{ multiple }}</strong>',
+  },
+  name: 'Instructions Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="File"><template #instructions="{ multiple }">You can choose multiple files: <strong>{{ multiple }}</strong></template></UsaFileInput>`,
+      },
+    },
+  },
+}
+
+export const PreviewHeadingSlotFileInput = {
+  args: {
+    ...defaultProps,
+    label: 'Load file to see preview heading',
+    'preview-heading': 'Total files: <strong>{{ loadedFiles.length }}</strong>',
+  },
+  name: 'Preview Heading Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="Load file to see preview heading"><template #preview-heading="{ loadedFiles }">Total files: <strong>{{ loadedFiles.length }}</strong></template></UsaFileInput>`,
+      },
+    },
+  },
+}
+
+export const InvalidFilesMessageSlotFileInput = {
+  args: {
+    ...defaultProps,
+    label: 'Load file to see message',
+    'invalid-files-message': 'Not a valid file.',
+    accept: '.json',
+  },
+  name: 'Invalid Message Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="Load file to see message" accept=".json"><template #invalid-files-message>Not a valid file.</template></UsaFileInput>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesFileInput = {
+  args: {
+    ...defaultProps,
+    label: 'File',
+    customClasses: {
+      formGroup: ['test-form-group-class'],
+      component: ['test-component-class'],
+      label: ['test-label-class'],
+      input: ['test-input-class'],
+    },
+  },
+  name: 'Custom CSS Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="File" :custom-classes="{ formGroup: ['test-form-group-class'], component: ['test-component-class'], label: ['test-label-class'], input: ['test-input-class'] }" />`,
+      },
+    },
+  },
+}
+
+export const LabelSlotFileInput = {
+  args: {
+    ...defaultProps,
+    'slot:label': `<em>Label slot content</em>`,
+  },
+  name: 'Label Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput><template #label><em>Label slot content</em></template></UsaFileInput>`,
+      },
+    },
+  },
+}
+
+export const StatusSlotFileInput = {
+  args: {
+    ...defaultProps,
+    label: 'File',
+    'slot:status':
+      'Total files: <strong>{{ loadedFiles.length }}</strong>, multiple: {{ multiple }}, hasInvalidFiles: {{ hasInvalidFiles }}',
+  },
+  name: 'Status Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFileInput label="file"><template #status="{ loadedFiles, multiple, hasInvalidFiles }">Total files: <strong>{{ loadedFiles.length }}</strong>, multiple: {{ multiple }}, hasInvalidFiles: {{ hasInvalidFiles }}</template></UsaFileInput>`,
+      },
+    },
+  },
+}

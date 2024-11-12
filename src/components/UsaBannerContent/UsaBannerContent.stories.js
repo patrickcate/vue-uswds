@@ -35,52 +35,54 @@ export default {
       name: 'httpsDescription (deprecated: use `https-description`)',
     },
   },
+  render: args => ({
+    components: { UsaBannerContent },
+    setup() {
+      return { args }
+    },
+    template: `
+    <UsaBannerContent>
+      <template v-if="!!args['tld-icon']" #tld-icon>${args['tld-icon']}</template>
+      <template v-else-if="!!args.tldIcon" #tldIcon>${args.tldIcon}</template>
+      <template v-if="!!args['tld-description']" #tld-description>${args['tld-description']}</template>
+      <template v-else-if="!!args.tldDescription" #tldDescription>${args.tldDescription}</template>
+      <template v-if="!!args['https-icon']" #https-icon>${args['https-icon']}</template>
+      <template v-else-if="!!args.httpsIcon" #httpsIcon>${args.httpsIcon}</template>
+      <template v-if="!!args['https-description']" #https-description>${args['https-description']}</template>
+      <template v-else-if="!!args.httpsDescription" #httpsDescription>${args.httpsDescription}</template>
+    </UsaBannerContent>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaBannerContent },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultBannerContent = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaBannerContent>
-    <template v-if="${!!args['tld-icon']}" #tld-icon>${
-      args['tld-icon']
-    }</template>
-    <template v-else-if="${!!args.tldIcon}" #tldIcon>${args.tldIcon}</template>
-    <template v-if="${!!args['tld-description']}" #tld-description>${
-      args['tld-description']
-    }</template>
-    <template v-else-if="${!!args.tldDescription}" #tldDescription>${
-      args.tldDescription
-    }</template>
-    <template v-if="${!!args['https-icon']}" #https-icon>${
-      args['https-icon']
-    }</template>
-    <template v-else-if="${!!args.httpsIcon}" #httpsIcon>${
-      args.httpsIcon
-    }</template>
-    <template v-if="${!!args['https-description']}" #https-description>${
-      args['https-description']
-    }</template>
-    <template v-else-if="${!!args.httpsDescription}" #httpsDescription>${
-      args.httpsDescription
-    }</template>
-  </UsaBannerContent>`,
-})
-
-export const DefaultBannerContent = DefaultTemplate.bind({})
-DefaultBannerContent.args = {
-  ...defaultProps,
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBannerContent></UsaBannerContent>`,
+      },
+    },
+  },
 }
-DefaultBannerContent.storyName = 'Default'
 
-export const CustomSlotBannerContent = DefaultTemplate.bind({})
-CustomSlotBannerContent.args = {
-  ...defaultProps,
-  'tld-icon': 'Custom TLD Icon',
-  'tld-description': 'Custom TLD Desciption',
-  'https-icon': 'Custom HTTPS Icon',
-  'https-description': 'Custom HTTPS Desciption',
+export const CustomSlotBannerContent = {
+  args: {
+    ...defaultProps,
+    'tld-icon': 'Custom TLD Icon',
+    'tld-description': 'Custom TLD Description',
+    'https-icon': 'Custom HTTPS Icon',
+    'https-description': 'Custom HTTPS Description',
+  },
+  name: 'Custom Slot Content',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBannerContent>\n\t<template #tld-icon>Custom TLD Icon</template>\n\t<template #tld-description>Custom TLD Description</template>\n\t<template #https-icon>Custom HTTPS Icon</template>\n\t<template #https-description>Custom HTTPS Description</template>\n</UsaBannerContent>
+`,
+      },
+    },
+  },
 }
-CustomSlotBannerContent.storyName = 'Custom Slot Content'

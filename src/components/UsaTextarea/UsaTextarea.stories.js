@@ -84,113 +84,188 @@ export default {
       template: '<div class="usa-form usa-form--large"><story /></div>',
     }),
   ],
+  render: args => ({
+    components: { UsaTextarea },
+    props: Object.keys(UsaTextarea.props),
+    setup() {
+      const modelValue = ref(args.modelValue)
+      return { args, modelValue }
+    },
+    template: `<UsaTextarea
+      v-bind="$attrs"
+      :width="args.width"
+      :label="args.label"
+      :required="args.required"
+      :error="args.error"
+      :id="args.id"
+      :custom-classes="args.customClasses"
+      v-model="args.modelValue"
+    >
+      <template v-if="!!args['slot:label']" #label>${args['slot:label']}</template>
+      <template v-if="!!args.hint" #hint>${args.hint}</template>
+      <template v-if="!!args['error-message']" #error-message>${args['error-message']}</template>
+    </UsaTextarea>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaTextarea },
-  props: Object.keys(argTypes),
-  setup() {
-    const modelValue = ref(args.modelValue)
-    return { ...args, modelValue }
+export const DefaultTextarea = {
+  args: {
+    ...defaultProps,
+    label: 'Textarea label',
   },
-  template: `<UsaTextarea
-    v-bind="$attrs"
-    :width="width"
-    :label="label"
-    :required="required"
-    :error="error"
-    :id="id"
-    :custom-classes="customClasses"
-    v-model="modelValue"
-  >
-    <template v-if="${!!args['slot:label']}" #label>${
-      args['slot:label']
-    }</template>
-    <template v-if="${!!args.hint}" #hint>${args.hint}</template>
-    <template v-if="${!!args['error-message']}" #error-message>${
-      args['error-message']
-    }</template>
-  </UsaTextarea>`,
-})
-
-export const DefaultTextarea = DefaultTemplate.bind({})
-DefaultTextarea.args = {
-  ...defaultProps,
-  label: 'Textarea label',
-}
-DefaultTextarea.storyName = 'Default'
-
-export const DefaultTextTextarea = DefaultTemplate.bind({})
-DefaultTextTextarea.args = {
-  ...defaultProps,
-  label: 'Textarea label',
-  modelValue: `I'm some default text.`,
-}
-DefaultTextTextarea.storyName = 'Default Text'
-
-export const WidthTextarea = DefaultTemplate.bind({})
-WidthTextarea.args = {
-  ...defaultProps,
-  label: 'Textarea label',
-  width: '2xl',
-}
-WidthTextarea.storyName = 'Width'
-
-export const HintTextarea = DefaultTemplate.bind({})
-HintTextarea.args = {
-  ...defaultProps,
-  label: 'Textarea label',
-  hint: 'Choose wisely',
-}
-HintTextarea.storyName = 'Hint'
-
-export const ErrorTextarea = DefaultTemplate.bind({})
-ErrorTextarea.args = {
-  ...defaultProps,
-  label: 'Textarea label',
-  error: true,
-}
-ErrorTextarea.storyName = 'Error'
-
-export const ErrorMessageTextarea = DefaultTemplate.bind({})
-ErrorMessageTextarea.args = {
-  ...defaultProps,
-  label: 'Textarea label',
-  error: true,
-  'error-message': 'Error message here',
-}
-ErrorMessageTextarea.storyName = 'Error Message'
-
-export const RequiredTextarea = DefaultTemplate.bind({})
-RequiredTextarea.args = {
-  ...defaultProps,
-  label: 'Textarea label',
-  required: true,
-}
-RequiredTextarea.storyName = 'Required'
-
-export const LabelSlotTextarea = DefaultTemplate.bind({})
-LabelSlotTextarea.args = {
-  ...defaultProps,
-  'slot:label': `<em>Label slot content</em>`,
-}
-LabelSlotTextarea.storyName = 'Label Slot'
-
-export const CustomIdTextarea = DefaultTemplate.bind({})
-CustomIdTextarea.args = {
-  ...defaultProps,
-  label: 'Textarea label',
-  id: 'custom-id',
-}
-CustomIdTextarea.storyName = 'Custom ID'
-
-export const CustomClassesTextarea = DefaultTemplate.bind({})
-CustomClassesTextarea.args = {
-  ...defaultProps,
-  label: 'Textarea label',
-  customClasses: {
-    component: ['test-component-class'],
-    label: ['test-label-class'],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: ``,
+      },
+    },
   },
 }
-CustomClassesTextarea.storyName = 'Custom CSS Classes'
+
+export const DefaultTextTextarea = {
+  args: {
+    ...defaultProps,
+    label: 'Textarea label',
+    modelValue: `I'm some default text.`,
+  },
+  name: 'Default Text',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextarea label="Textarea label" v-model="ref('I'm some default text.')" />`,
+      },
+    },
+  },
+}
+
+export const WidthTextarea = {
+  args: {
+    ...defaultProps,
+    label: 'Textarea label',
+    width: '2xl',
+  },
+  name: 'Width',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextarea label="Textarea label" width="2xl" />`,
+      },
+    },
+  },
+}
+
+export const HintTextarea = {
+  args: {
+    ...defaultProps,
+    label: 'Textarea label',
+    hint: 'Choose wisely',
+  },
+  name: 'Hint',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextarea label="Textarea label"><template #hint>Choose wisely</template></UsaTextarea>`,
+      },
+    },
+  },
+}
+
+export const ErrorTextarea = {
+  args: {
+    ...defaultProps,
+    label: 'Textarea label',
+    error: true,
+  },
+  name: 'Error',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextarea label="Textarea label" :error="true" />`,
+      },
+    },
+  },
+}
+
+export const ErrorMessageTextarea = {
+  args: {
+    ...defaultProps,
+    label: 'Textarea label',
+    error: true,
+    'error-message': 'Error message here',
+  },
+  name: 'Error Message',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextarea label="Textarea label" :error="true"><template #error-message>Error message here</template></UsaTextarea>`,
+      },
+    },
+  },
+}
+
+export const RequiredTextarea = {
+  args: {
+    ...defaultProps,
+    label: 'Textarea label',
+    required: true,
+  },
+  name: 'Required',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextarea label="Textarea label" :required="true" />`,
+      },
+    },
+  },
+}
+
+export const LabelSlotTextarea = {
+  args: {
+    ...defaultProps,
+    'slot:label': `<em>Label slot content</em>`,
+  },
+  name: 'Label Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextarea><template #label><em>Label slot content</em></template></UsaTextarea>`,
+      },
+    },
+  },
+}
+
+export const CustomIdTextarea = {
+  args: {
+    ...defaultProps,
+    label: 'Textarea label',
+    id: 'custom-id',
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextarea label="Textarea label" id="custom-id" />`,
+      },
+    },
+  },
+}
+
+export const CustomClassesTextarea = {
+  args: {
+    ...defaultProps,
+    label: 'Textarea label',
+    customClasses: {
+      component: ['test-component-class'],
+      label: ['test-label-class'],
+    },
+  },
+  name: 'Custom CSS Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextarea label="Textarea label" :custom-classes="{ component: 'test-component-class', label: 'test-label-class' }" />`,
+      },
+    },
+  },
+}

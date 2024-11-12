@@ -24,23 +24,41 @@ export default {
       range-type="end">
     </UsaDatePicker>`,
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaDateRangePicker, UsaDatePicker },
-  props: Object.keys(argTypes),
-  setup() {
-    const startDate = ref('')
-    const endDate = ref('')
-    return { ...args, startDate, endDate }
-  },
-  template: `<UsaDateRangePicker>
-    <template v-if="${!!args.default}" #default>${args.default}</template>
+  render: args => ({
+    components: { UsaDateRangePicker, UsaDatePicker },
+    props: [],
+    setup() {
+      const startDate = ref('')
+      const endDate = ref('')
+      return { args, startDate, endDate }
+    },
+    template: `<UsaDateRangePicker>
+    <template v-if="!!args.default" #default>${args.default}</template>
   </UsaDateRangePicker>`,
-})
-
-export const DefaultDateRangePicker = DefaultTemplate.bind({})
-DefaultDateRangePicker.args = {
-  ...defaultProps,
+  }),
 }
-DefaultDateRangePicker.storyName = 'Default'
+
+export const DefaultDateRangePicker = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDateRangePicker>
+        <UsaDatePicker
+          label="Start Date"
+          v-model="startDate"
+          range-type="start">
+        </UsaDatePicker>
+        <UsaDatePicker
+          label="End Date"
+          v-model="endDate"
+          range-type="end">
+        </UsaDatePicker>
+      </UsaDateRangePicker>`,
+      },
+    },
+  },
+}

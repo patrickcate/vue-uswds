@@ -67,76 +67,109 @@ export default {
     default:
       "<p>Support the callout with some short explanatory text. You don't need more than a couple of sentences.</p>",
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaHeroCallout, UsaHero },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaHero background-image="https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.app.cloud.gov/preview/uswds/uswds/develop/hero.png" aria-label="Introduction">
+  render: args => ({
+    components: { UsaHeroCallout, UsaHero },
+    props: Object.keys(UsaHeroCallout.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaHero background-image="https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.sites.pages.cloud.gov/preview/uswds/uswds/develop/hero.jpg" aria-label="Introduction">
     <UsaHeroCallout
-      :heading="heading"
-      :heading-alt="headingAlt"
-      :heading-tag="headingTag"
-      :custom-classes="customClasses"
+      :heading="args.heading"
+      :heading-alt="args.headingAlt"
+      :heading-tag="args.headingTag"
+      :custom-classes="args.customClasses"
     >
-      <template v-if="${!!args['heading-alt']}" #heading-alt>${
-        args['heading-alt']
-      }</template>
-      <template v-else-if="${!!args['slot:heading-alt']}" #headingAlt>${
-        args['slot:heading-alt']
-      }</template>
-      <template v-if="${!!args['slot:heading']}" #heading>${
-        args['slot:heading']
-      }</template>
-      <template v-if="${!!args.default}" #default>${args.default}</template>
+      <template v-if="!!args['heading-alt']" #heading-alt>${args['heading-alt']}</template>
+      <template v-else-if="!!args['slot:heading-alt']" #headingAlt>${args['slot:heading-alt']}</template>
+      <template v-if="!!args['slot:heading']" #heading>${args['slot:heading']}</template>
+      <template v-if="!!args.default" #default>${args.default}</template>
     </UsaHeroCallout>
   </UsaHero>`,
-})
-
-export const DefaultHeroCallout = DefaultTemplate.bind({})
-DefaultHeroCallout.args = {
-  ...defaultProps,
-  headingAlt: 'Hero callout:',
-  heading: 'Bring attention to a project priority',
+  }),
 }
-DefaultHeroCallout.storyName = 'Default'
 
-export const HeadingSlotHeroCallout = DefaultTemplate.bind({})
-HeadingSlotHeroCallout.args = {
-  ...defaultProps,
-  'slot:heading': 'Custom heading slot',
-  headingAlt: 'Hero callout:',
-}
-HeadingSlotHeroCallout.storyName = 'Heading Slot'
-
-export const HeadingAltSlotHeroCallout = DefaultTemplate.bind({})
-HeadingAltSlotHeroCallout.args = {
-  ...defaultProps,
-  heading: 'Bring attention to a project priority',
-  'heading-alt': 'Custom heading alt slot',
-}
-HeadingAltSlotHeroCallout.storyName = 'Heading Alt Slot'
-
-export const CustomHeadingTagHeroCallout = DefaultTemplate.bind({})
-CustomHeadingTagHeroCallout.args = {
-  ...defaultProps,
-  heading: 'Bring attention to a project priority',
-  headingAlt: 'Custom heading alt slot',
-  headingTag: 'h4',
-}
-CustomHeadingTagHeroCallout.storyName = 'Custom Heading Tag'
-
-export const CustomClassesHeroCallout = DefaultTemplate.bind({})
-CustomClassesHeroCallout.args = {
-  ...defaultProps,
-  heading: 'Bring attention to a project priority',
-  headingAlt: 'Custom heading alt slot',
-  customClasses: {
-    heading: ['test-heading-class'],
-    headingAlt: ['test-heading-alt-class'],
+export const DefaultHeroCallout = {
+  args: {
+    ...defaultProps,
+    headingAlt: 'Hero callout:',
+    heading: 'Bring attention to a project priority',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaHeroCallout heading="Bring attention to a project priority" heading-alt="Hero callout:"><p>Support the callout with some short explanatory text. You don't need more than a couple of sentences.</p></UsaHeroCallout>`,
+      },
+    },
   },
 }
-CustomClassesHeroCallout.storyName = 'Custom Classes'
+
+export const HeadingSlotHeroCallout = {
+  args: {
+    ...defaultProps,
+    'slot:heading': 'Custom heading slot',
+    headingAlt: 'Hero callout:',
+  },
+  name: 'Heading Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaHeroCallout heading-alt="Hero callout:"><template #heading>Custom heading slot</template><p>Support the callout with some short explanatory text. You don't need more than a couple of sentences.</p></UsaHeroCallout>`,
+      },
+    },
+  },
+}
+
+export const HeadingAltSlotHeroCallout = {
+  args: {
+    ...defaultProps,
+    heading: 'Bring attention to a project priority',
+    'heading-alt': 'Custom heading alt slot',
+  },
+  name: 'Heading Alt Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaHeroCallout heading="Bring attention to a project priority"><template #heading-alt>Custom heading alt slot</template><template #default><p>Support the callout with some short explanatory text. You don't need more than a couple of sentences.</p></template></UsaHeroCallout>`,
+      },
+    },
+  },
+}
+
+export const CustomHeadingTagHeroCallout = {
+  args: {
+    ...defaultProps,
+    heading: 'Bring attention to a project priority',
+    headingAlt: 'Custom heading alt slot',
+    headingTag: 'h4',
+  },
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaHeroCallout heading="Bring attention to a project priority" heading-alt="Custom heading alt slot" heading-tag="h4"><p>Support the callout with some short explanatory text. You don't need more than a couple of sentences.</p></UsaHeroCallout>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesHeroCallout = {
+  args: {
+    ...defaultProps,
+    heading: 'Bring attention to a project priority',
+    headingAlt: 'Custom heading alt slot',
+    customClasses: {
+      heading: ['test-heading-class'],
+      headingAlt: ['test-heading-alt-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaHeroCallout heading="Bring attention to a project priority" heading-alt="Custom heading alt slot" :custom-classes="{heading: ['test-heading-class'], headingAlt: ['test-heading-alt-class']}"><p>Support the callout with some short explanatory text. You don't need more than a couple of sentences.</p></UsaHeroCallout>`,
+      },
+    },
+  },
+}

@@ -58,114 +58,191 @@ export default {
       template: '<div class="usa-form usa-form--large"><story /></div>',
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaRadio },
-  props: Object.keys(argTypes),
-  setup() {
-    const modelValue = ref(args.modelValue)
-    return { ...args, modelValue }
-  },
-  template: `<UsaRadio
-    v-bind="$attrs"
-    :tile="tile"
-    :label="label"
-    :description="description"
-    :id="id"
-    :custom-classes="customClasses"
-    v-model="modelValue"
+  render: args => ({
+    components: { UsaRadio },
+    props: Object.keys(UsaRadio.props),
+    setup() {
+      const modelValue = ref(args.modelValue)
+      return { args, modelValue }
+    },
+    template: `<UsaRadio
+    v-bind="args.$attrs"
+    :tile="args.tile"
+    :label="args.label"
+    :description="args.description"
+    :id="args.id"
+    :custom-classes="args.customClasses"
+    v-model="args.modelValue"
   >
-    <template v-if="${!!args.default}" #default>${args.default}</template>
-    <template v-if="${!!args['slot:description']}" #description>${
-      args['slot:description']
-    }</template>
+    <template v-if="!!args.default" #default>${args.default}</template>
+    <template v-if="!!args['slot:description']" #description>${args['slot:description']}</template>
   </UsaRadio>`,
-})
-
-export const DefaultRadio = DefaultTemplate.bind({})
-DefaultRadio.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
+  }),
 }
-DefaultRadio.storyName = 'Default'
 
-export const WithDescriptionRadio = DefaultTemplate.bind({})
-WithDescriptionRadio.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  description:
-    'This is optional text that can be used to describe the label in more detail.',
-}
-WithDescriptionRadio.storyName = 'Default w/ Description'
-
-export const CheckedByDefaultRadio = DefaultTemplate.bind({})
-CheckedByDefaultRadio.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  checked: true,
-}
-CheckedByDefaultRadio.storyName = 'Checked by Default'
-
-export const TileRadio = DefaultTemplate.bind({})
-TileRadio.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  tile: true,
-}
-TileRadio.storyName = 'Tile'
-
-export const TileWithDescriptionRadio = DefaultTemplate.bind({})
-TileWithDescriptionRadio.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  tile: true,
-  description:
-    'This is optional text that can be used to describe the label in more detail.',
-}
-TileWithDescriptionRadio.storyName = 'Tile w/ Description'
-
-export const TileCheckedByDefaultRadio = DefaultTemplate.bind({})
-TileCheckedByDefaultRadio.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  tile: true,
-  checked: true,
-}
-TileCheckedByDefaultRadio.storyName = 'Tile Checked by Default'
-
-export const LabelSlotRadio = DefaultTemplate.bind({})
-LabelSlotRadio.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  default: 'Custom label slot content',
-}
-LabelSlotRadio.storyName = 'Label Slot'
-
-export const DescriptionSlotRadio = DefaultTemplate.bind({})
-DescriptionSlotRadio.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  'slot:description': 'Custom description slot content',
-}
-DescriptionSlotRadio.storyName = 'Description Slot'
-
-export const CustomIdRadio = DefaultTemplate.bind({})
-CustomIdRadio.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  id: 'custom-id',
-}
-CustomIdRadio.storyName = 'Custom ID'
-
-export const CustomClassesRadio = DefaultTemplate.bind({})
-CustomClassesRadio.args = {
-  ...defaultProps,
-  label: 'Sojourner Truth',
-  customClasses: {
-    component: ['test-component-class'],
-    label: ['test-label-class'],
-    description: ['test-description-class'],
+export const DefaultRadio = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaRadio label="Sojourner Truth"></UsaRadio>`,
+      },
+    },
   },
 }
-CustomClassesRadio.storyName = 'Custom CSS Classes'
+
+export const WithDescriptionRadio = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    description:
+      'This is optional text that can be used to describe the label in more detail.',
+  },
+  name: 'Default w/ Description',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaRadio label="Sojourner Truth" description="This is optional text that can be used to describe the label in more detail."></UsaRadio>`,
+      },
+    },
+  },
+}
+
+export const CheckedByDefaultRadio = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    modelValue: true,
+  },
+  name: 'Checked by Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaRadio label="Sojourner Truth" v-model="ref(true)"></UsaRadio>`,
+      },
+    },
+  },
+}
+
+export const TileRadio = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    tile: true,
+  },
+  name: 'Tile',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaRadio label="Sojourner Truth" :tile="true"></UsaRadio>`,
+      },
+    },
+  },
+}
+
+export const TileWithDescriptionRadio = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    tile: true,
+    description:
+      'This is optional text that can be used to describe the label in more detail.',
+  },
+  name: 'Tile w/ Description',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaRadio label="Sojourner Truth" :tile="true" description="This is optional text that can be used to describe the label in more detail."></UsaRadio>`,
+      },
+    },
+  },
+}
+
+export const TileCheckedByDefaultRadio = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    tile: true,
+    modelValue: true,
+  },
+  name: 'Tile Checked by Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaRadio label="Sojourner Truth" :tile="true" v-model="ref(true)"></UsaRadio>`,
+      },
+    },
+  },
+}
+
+export const LabelSlotRadio = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    default: 'Custom label slot content',
+  },
+  name: 'Label Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaRadio><template #label>Custom label slot content</template></UsaRadio>`,
+      },
+    },
+  },
+}
+
+export const DescriptionSlotRadio = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    'slot:description': 'Custom description slot content',
+  },
+  name: 'Description Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaRadio label="Sojourner Truth"><template #description>Custom description slot content</template></UsaRadio>`,
+      },
+    },
+  },
+}
+
+export const CustomIdRadio = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    id: 'custom-id',
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaRadio label="Sojourner Truth" id="custom-id"></UsaRadio>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesRadio = {
+  args: {
+    ...defaultProps,
+    label: 'Sojourner Truth',
+    customClasses: {
+      component: ['test-component-class'],
+      label: ['test-label-class'],
+      description: ['test-description-class'],
+    },
+  },
+  name: 'Custom CSS Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaRadio label="Sojourner Truth" :custom-classes="{'test-component-class': true, 'test-label-class': true, 'test-description-class': true}"></UsaRadio>`,
+      },
+    },
+  },
+}
