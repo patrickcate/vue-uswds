@@ -120,97 +120,139 @@ export default {
       },
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaDatePickerCalendarDay },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaDatePickerCalendarDay
-    :selected-date="selectedDate"
-    :active-date="activeDate"
-    :min-date="minDate"
-    :max-date="maxDate"
-    :month-labels="monthLabels"
-    :day-of-week-labels="dayOfWeekLabels"
-    :day-of-week-abbreviation-labels="dayOfWeekAbbreviationLabels"
-    :previous-year-button-label="previousYearButtonLabel"
-    :next-year-button-label="nextYearButtonLabel"
-    :previous-month-button-label="previousMonthButtonLabel"
-    :next-month-button-label="nextMonthButtonLabel"
-    :year-selection-button-label="yearSelectionButtonLabel"
-    :month-selection-button-label="monthSelectionButtonLabel"
-    :previous-years-button-label="previousYearsButtonLabel"
-    :next-years-button-label="nextYearsButtonLabel"
+  render: args => ({
+    components: { UsaDatePickerCalendarDay },
+    props: Object.keys(UsaDatePickerCalendarDay.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaDatePickerCalendarDay
+    :selected-date="args.selectedDate"
+    :active-date="args.activeDate"
+    :min-date="args.minDate"
+    :max-date="args.maxDate"
+    :month-labels="args.monthLabels"
+    :day-of-week-labels="args.dayOfWeekLabels"
+    :day-of-week-abbreviation-labels="args.dayOfWeekAbbreviationLabels"
+    :previous-year-button-label="args.previousYearButtonLabel"
+    :next-year-button-label="args.nextYearButtonLabel"
+    :previous-month-button-label="args.previousMonthButtonLabel"
+    :next-month-button-label="args.nextMonthButtonLabel"
+    :year-selection-button-label="args.yearSelectionButtonLabel"
+    :month-selection-button-label="args.monthSelectionButtonLabel"
+    :previous-years-button-label="args.previousYearsButtonLabel"
+    :next-years-button-label="args.nextYearsButtonLabel"
   ></UsaDatePickerCalendarDay>`,
-})
-
-export const DefaultDatePickerCalendarDay = DefaultTemplate.bind({})
-DefaultDatePickerCalendarDay.args = {
-  ...defaultProps,
+  }),
 }
-DefaultDatePickerCalendarDay.storyName = 'Default'
 
-export const SelectedDateDatePickerCalendarDay = DefaultTemplate.bind({})
-SelectedDateDatePickerCalendarDay.args = {
-  ...defaultProps,
-  selectedDate: '2001-04-09',
-  activeDate: '2001-04-09',
+export const DefaultDatePickerCalendarDay = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendarDay />`,
+      },
+    },
+  },
 }
-SelectedDateDatePickerCalendarDay.storyName = 'Selected Date'
 
-export const MinDateDatePickerCalendarDay = DefaultTemplate.bind({})
-MinDateDatePickerCalendarDay.args = {
-  ...defaultProps,
-  minDate: '2020-01-15',
-  activeDate: '2020-01-25',
+export const SelectedDateDatePickerCalendarDay = {
+  args: {
+    ...defaultProps,
+    selectedDate: '2001-04-09',
+    activeDate: '2001-04-09',
+  },
+  name: 'Selected Date',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendarDay selected-date="2001-04-09" active-date="2001-04-09" />`,
+      },
+    },
+  },
 }
-MinDateDatePickerCalendarDay.storyName = 'Min Date'
 
-export const MaxDateDatePickerCalendarDay = DefaultTemplate.bind({})
-MaxDateDatePickerCalendarDay.args = {
-  ...defaultProps,
-  maxDate: '2023-12-15',
-  activeDate: '2023-12-01',
+export const MinDateDatePickerCalendarDay = {
+  args: {
+    ...defaultProps,
+    minDate: '2020-01-15',
+    activeDate: '2020-01-25',
+  },
+  name: 'Min Date',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendarDay min-date="2020-01-15" active-date="2020-01-25" />`,
+      },
+    },
+  },
 }
-MaxDateDatePickerCalendarDay.storyName = 'Max Date'
 
-export const CustomLabelsDateDatePickerCalendarDay = DefaultTemplate.bind({})
-CustomLabelsDateDatePickerCalendarDay.args = {
-  ...defaultProps,
-  monthLabels: [
-    'Month 1',
-    'Month 2',
-    'Month 3',
-    'Month 4',
-    'Month 5',
-    'Month 6',
-    'Month 7',
-    'Month 8',
-    'Month 9',
-    'Month 10',
-    'Month 11',
-    'Month 12',
-  ],
-  dayOfWeekLabels: [
-    'Day A',
-    'Day B',
-    'Day C',
-    'Day D',
-    'Day E',
-    'Day F',
-    'Day G',
-  ],
-  dayOfWeekAbbreviationLabels: ['1', '2', '3', '4', '5', '6', '7'],
-  previousYearButtonLabel: 'Test previous year button label',
-  nextYearButtonLabel: 'Test next year button label',
-  previousMonthButtonLabel: 'Test previous month button label',
-  nextMonthButtonLabel: 'Test next month button label',
-  yearSelectionButtonLabel: 'Test year %s is selected',
-  monthSelectionButtonLabel: 'Test month %s is selected',
-  previousYearsButtonLabel: 'Test navigate back 12 years',
-  nextYearsButtonLabel: 'Test navigate forward 12 years',
+export const MaxDateDatePickerCalendarDay = {
+  args: {
+    ...defaultProps,
+    maxDate: '2023-12-15',
+    activeDate: '2023-12-01',
+  },
+  name: 'Max Date',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendarDay max-date="2023-12-15" active-date="2023-12-01" />`,
+      },
+    },
+  },
 }
-CustomLabelsDateDatePickerCalendarDay.storyName = 'Custom Labels'
+
+export const CustomLabelsDateDatePickerCalendarDay = {
+  args: {
+    ...defaultProps,
+    monthLabels: [
+      'Month 1',
+      'Month 2',
+      'Month 3',
+      'Month 4',
+      'Month 5',
+      'Month 6',
+      'Month 7',
+      'Month 8',
+      'Month 9',
+      'Month 10',
+      'Month 11',
+      'Month 12',
+    ],
+    dayOfWeekLabels: [
+      'Day A',
+      'Day B',
+      'Day C',
+      'Day D',
+      'Day E',
+      'Day F',
+      'Day G',
+    ],
+    dayOfWeekAbbreviationLabels: ['1', '2', '3', '4', '5', '6', '7'],
+    previousYearButtonLabel: 'Test previous year button label',
+    nextYearButtonLabel: 'Test next year button label',
+    previousMonthButtonLabel: 'Test previous month button label',
+    nextMonthButtonLabel: 'Test next month button label',
+    yearSelectionButtonLabel: 'Test year %s is selected',
+    monthSelectionButtonLabel: 'Test month %s is selected',
+    previousYearsButtonLabel: 'Test navigate back 12 years',
+    nextYearsButtonLabel: 'Test navigate forward 12 years',
+  },
+  name: 'Custom Labels',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendarDay :month-labels="['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6', 'Month 7', 'Month 8', 'Month 9', 'Month 10', 'Month 11', 'Month 12']" :day-of-week-labels="['Day A', 'Day B', 'Day C', 'Day D', 'Day E', 'Day F', 'Day G']" :day-of-week-abbreviation-labels="[1, 2, 3, 4, 5, 6, 7]" previous-year-button-label="Test previous year button label"
+        next-year-button-label="Test next year button label" previous-month-button-label="Test previous month button label"
+        next-month-button-label="Test next month button label" year-selection-button-label="Test year %s is selected"
+        month-selection-button-label="Test month %s is selected" previous-years-button-label="Test navigate back 12 years" next-years-button-label="Test navigate forward 12 years" />`,
+      },
+    },
+  },
+}

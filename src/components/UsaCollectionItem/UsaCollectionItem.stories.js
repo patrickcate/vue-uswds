@@ -83,109 +83,173 @@ export default {
   decorators: [
     () => ({ template: '<ul class="usa-collection"><story /></ul>' }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: {
-    UsaCollectionItem,
-    UsaCollectionCalendar,
-    UsaCollectionMeta,
-    UsaCollectionMetaItem,
-  },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaCollectionItem
-    :heading="heading"
-    :heading-tag="headingTag"
-    :href="href"
-    :to="to"
-    :router-component-name="routerComponentName"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: {
+      UsaCollectionItem,
+      UsaCollectionCalendar,
+      UsaCollectionMeta,
+      UsaCollectionMetaItem,
+    },
+    props: Object.keys(UsaCollectionItem.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaCollectionItem
+    :heading="args.heading"
+    :heading-tag="args.headingTag"
+    :href="args.href"
+    :to="args.to"
+    :router-component-name="args.routerComponentName"
+    :custom-classes="args.customClasses"
   >
-    <template #media v-if="${!!args.media}">${args.media}</template>
-    <template #calendar v-if="${!!args.calendar}">${args.calendar}</template>
-    <template #heading v-if="${!!args['slot:heading']}">${
-      args['slot:heading']
-    }</template>
-    <template #description v-if="${!!args.description}">${
+    <template #media v-if="!!args.media">${args.media}</template>
+    <template #calendar v-if="!!args.calendar">${args.calendar}</template>
+    <template #heading v-if="!!args['slot:heading']">${args['slot:heading']}</template>
+    <template #description v-if="!!args.description">{{
       args.description
-    }</template>
-    <template #default v-if="${!!args.default}">${args.default}</template>
-    <template #meta v-if="${!!args.meta}">${args.meta}</template>
+    }}</template>
+    <template #default v-if="!!args.default">${args.default}</template>
+    <template #meta v-if="!!args.meta">${args.meta}</template>
   </UsaCollectionItem>`,
-})
-
-export const DefaultCollectionItem = DefaultTemplate.bind({})
-DefaultCollectionItem.args = {
-  ...defaultProps,
-  heading: 'Collection Item',
+  }),
 }
-DefaultCollectionItem.storyName = 'Default'
 
-export const MediaCollectionItem = DefaultTemplate.bind({})
-MediaCollectionItem.args = {
-  ...defaultProps,
-  heading: 'Collection w/ Media',
-  media: testMedia,
-}
-MediaCollectionItem.storyName = 'Collection w/ Media'
-
-export const CalendarCollectionItem = DefaultTemplate.bind({})
-CalendarCollectionItem.args = {
-  ...defaultProps,
-  heading: 'Collection w/ Calendar',
-  media: '',
-  calendar:
-    '<UsaCollectionCalendar datetime="2021-01-01" month="Jan" day="1" />',
-}
-CalendarCollectionItem.storyName = 'Collection w/ Calendar'
-
-export const MetaItemsCollectionItem = DefaultTemplate.bind({})
-MetaItemsCollectionItem.args = {
-  ...defaultProps,
-  heading: 'Collection w/ Meta Items',
-  media: testMedia,
-  meta: `<UsaCollectionMeta aria-label="Topics">
-      <UsaCollectionMetaItem class="usa-tag">Meta 1</UsaCollectionMetaItem>
-      <UsaCollectionMetaItem class="usa-tag">Meta 2</UsaCollectionMetaItem>
-    </UsaCollectionMeta>`,
-}
-MetaItemsCollectionItem.storyName = 'Collection w/ Meta Items'
-
-export const CustomHeadingTagCollectionItem = DefaultTemplate.bind({})
-CustomHeadingTagCollectionItem.args = {
-  ...defaultProps,
-  headingTag: 'h4',
-  heading: 'Custom heading tag',
-}
-CustomHeadingTagCollectionItem.storyName = 'Custom Heading Tag'
-
-export const HeadingSlotCollectionItem = DefaultTemplate.bind({})
-HeadingSlotCollectionItem.args = {
-  ...defaultProps,
-  'slot:heading': 'Custom header slot',
-}
-HeadingSlotCollectionItem.storyName = 'Header Slot'
-
-export const DescriptionSlotCollectionItem = DefaultTemplate.bind({})
-DescriptionSlotCollectionItem.args = {
-  ...defaultProps,
-  'slot:heading': 'Custom header slot',
-  description: 'Custom description slot',
-}
-DescriptionSlotCollectionItem.storyName = 'Description Slot'
-
-export const CustomClassesCollectionItem = DefaultTemplate.bind({})
-CustomClassesCollectionItem.args = {
-  ...defaultProps,
-  heading: 'Collection Item',
-  customClasses: {
-    media: ['test-media-class'],
-    heading: ['test-heading-class'],
-    link: ['test-link-class'],
-    description: ['test-description-class'],
+export const DefaultCollectionItem = {
+  args: {
+    ...defaultProps,
+    heading: 'Collection Item',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionItem heading="Collection Item">Today, the Administration announces the winners of the Gears of Government President's Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.</UsaCollectionItem>`,
+      },
+    },
   },
 }
-CustomClassesCollectionItem.storyName = 'Custom Classes'
+
+export const MediaCollectionItem = {
+  args: {
+    ...defaultProps,
+    heading: 'Collection w/ Media',
+    media: testMedia,
+  },
+  name: 'Collection w/ Media',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionItem heading="Collection w/ Media"><template #media><img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image"></template><template #default>Today, the Administration announces the winners of the Gears of Government President's Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.</template></UsaCollectionItem>`,
+      },
+    },
+  },
+}
+
+export const CalendarCollectionItem = {
+  args: {
+    ...defaultProps,
+    heading: 'Collection w/ Calendar',
+    media: '',
+    calendar:
+      '<UsaCollectionCalendar datetime="2021-01-01" month="Jan" day="1" />',
+  },
+  name: 'Collection w/ Calendar',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionItem heading="Collection w/ Calendar">\n\t<template #calendar><UsaCollectionCalendar datetime="2021-01-01" month="Jan" day="1" /></template>\n\t<template #default>Today, the Administration announces the winners of the Gears of Government President's Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.</template>\n</UsaCollectionItem>`,
+      },
+    },
+  },
+}
+
+export const MetaItemsCollectionItem = {
+  args: {
+    ...defaultProps,
+    heading: 'Collection w/ Meta Items',
+    media: testMedia,
+    meta: `<UsaCollectionMeta aria-label="Topics">
+        <UsaCollectionMetaItem class="usa-tag">Meta 1</UsaCollectionMetaItem>
+        <UsaCollectionMetaItem class="usa-tag">Meta 2</UsaCollectionMetaItem>
+      </UsaCollectionMeta>`,
+  },
+  name: 'Collection w/ Meta Items',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionItem heading="Collection w/ Meta Items">\n\t<template #media><img src="https://designsystem.digital.gov/img/introducing-uswds-2-0/built-to-grow--alt.jpg" alt="A placeholder image"></template>\n\t<template #default>Today, the Administration announces the winners of the Gears of Government President's Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.</template>\n\t<template #meta>\n\t\t<UsaCollectionMeta aria-label="Topics">\n\t\t\t<UsaCollectionMetaItem class="usa-tag">Meta 1</UsaCollectionMetaItem>\n\t\t\t<UsaCollectionMetaItem class="usa-tag">Meta 2</UsaCollectionMetaItem>\n\t\t</UsaCollectionMeta>\n\t</template>\n</UsaCollectionItem>`,
+      },
+    },
+  },
+}
+
+export const CustomHeadingTagCollectionItem = {
+  args: {
+    ...defaultProps,
+    headingTag: 'h4',
+    heading: 'Custom heading tag',
+  },
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionItem heading="Custom heading tag" heading-tag="h4">Today, the Administration announces the winners of the Gears of Government President's Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.</UsaCollectionItem>`,
+      },
+    },
+  },
+}
+
+export const HeadingSlotCollectionItem = {
+  args: {
+    ...defaultProps,
+    'slot:heading': 'Custom header slot',
+  },
+  name: 'Header Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionItem heading-tag="h4"><template #heading>Custom header slot</template><template #default>Today, the Administration announces the winners of the Gears of Government President's Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.</template></UsaCollectionItem>`,
+      },
+    },
+  },
+}
+
+export const DescriptionSlotCollectionItem = {
+  args: {
+    ...defaultProps,
+    heading: 'Collection Item w/ description slot',
+    description: 'Custom description slot',
+  },
+  name: 'Description Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionItem heading="Collection Item w/ description slot"><template #heading>Custom header slot</template><template #description>Custom description slot</template><template #default>Today, the Administration announces the winners of the Gears of Government President's Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.</template></UsaCollectionItem>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesCollectionItem = {
+  args: {
+    ...defaultProps,
+    heading: 'Collection Item',
+    customClasses: {
+      media: ['test-media-class'],
+      heading: ['test-heading-class'],
+      link: ['test-link-class'],
+      description: ['test-description-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionItem heading="Collection Item" :custom-classes="{ media: ['test-media-class'],
+      heading: ['test-heading-class'],
+      link: ['test-link-class'],
+      description: ['test-description-class'] }">Today, the Administration announces the winners of the Gears of Government President's Award. This program recognizes the contributions of individuals and teams across the federal workforce who make a profound difference in the lives of the American people.</UsaCollectionItem>`,
+      },
+    },
+  },
+}

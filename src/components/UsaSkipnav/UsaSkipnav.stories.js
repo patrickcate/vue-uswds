@@ -20,17 +20,24 @@ export default {
     anchor: defaultProps.anchor,
     default: 'Test skip link',
   },
+  render: args => ({
+    components: { UsaSkipnav },
+    props: Object.keys(UsaSkipnav.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaSkipnav :anchor="args.anchor">${args.default}</UsaSkipnav>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaSkipnav },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultSkipnav = {
+  args: {},
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSkipnav anchor="#main-content">Test skip link</UsaSkipnav>`,
+      },
+    },
   },
-  template: `<UsaSkipnav :anchor="anchor">${args.default}</UsaSkipnav>`,
-})
-
-export const DefaultSkipnav = DefaultTemplate.bind({})
-DefaultSkipnav.args = {}
-DefaultSkipnav.storyName = 'Default'
+}

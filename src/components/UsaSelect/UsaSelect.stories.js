@@ -131,146 +131,235 @@ export default {
       template: '<div class="usa-form usa-form--large"><story /></div>',
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaSelect },
-  props: Object.keys(argTypes),
-  setup() {
-    const modelValue = ref(args.modelValue)
-    return { ...args, modelValue }
-  },
-  template: `<UsaSelect
-    v-bind="$attrs"
-    :options="options"
-    :empty-label="emptyLabel"
-    :group="group"
-    :label="label"
-    :required="required"
-    :error="error"
-    :id="id"
-    :custom-classes="customClasses"
-    v-model="modelValue"
+  render: args => ({
+    components: { UsaSelect },
+    props: Object.keys(UsaSelect.props),
+    setup() {
+      const modelValue = ref(args.modelValue)
+      return { args, modelValue }
+    },
+    template: `<UsaSelect
+    v-bind="args.$attrs"
+    :options="args.options"
+    :empty-label="args.emptyLabel"
+    :group="args.group"
+    :label="args.label"
+    :required="args.required"
+    :error="args.error"
+    :id="args.id"
+    :custom-classes="args.customClasses"
+    v-model="args.modelValue"
   >
-    <template v-if="${!!args['slot:label']}" #label>${
-      args['slot:label']
-    }</template>
-    <template v-if="${!!args.default}" #default="{ options }">${
-      args.default
-    }</template>
-    <template v-if="${!!args.hint}" #hint>${args.hint}</template>
-    <template v-if="${!!args['error-message']}" #error-message>${
-      args['error-message']
-    }</template>
+    <template v-if="!!args['slot:label']" #label>${args['slot:label']}</template>
+    <template v-if="!!args.default" #default="{ options }">${args.default}</template>
+    <template v-if="!!args.hint" #hint>${args.hint}</template>
+    <template v-if="!!args['error-message']" #error-message>${args['error-message']}</template>
   </UsaSelect>`,
-})
-
-export const DefaultSelect = DefaultTemplate.bind({})
-DefaultSelect.args = {
-  ...defaultProps,
-  label: 'Select label',
-  options: testOptions,
+  }),
 }
-DefaultSelect.storyName = 'Default'
 
-export const DefaultByDefaultSelect = DefaultTemplate.bind({})
-DefaultByDefaultSelect.args = {
-  ...defaultProps,
-  label: 'Select label',
-  options: testOptions,
-  modelValue: '2',
-}
-DefaultByDefaultSelect.storyName = 'Selected by Default'
-
-export const HintSelect = DefaultTemplate.bind({})
-HintSelect.args = {
-  ...defaultProps,
-  label: 'Select label',
-  options: testOptions,
-  hint: 'Choose wisely',
-}
-HintSelect.storyName = 'Hint'
-
-export const ErrorSelect = DefaultTemplate.bind({})
-ErrorSelect.args = {
-  ...defaultProps,
-  label: 'Select label',
-  options: testOptions,
-  error: true,
-}
-ErrorSelect.storyName = 'Error'
-
-export const ErrorMessageSelect = DefaultTemplate.bind({})
-ErrorMessageSelect.args = {
-  ...defaultProps,
-  label: 'Select label',
-  options: testOptions,
-  error: true,
-  'error-message': 'Error message here',
-}
-ErrorMessageSelect.storyName = 'Error Message'
-
-export const GroupedSelect = DefaultTemplate.bind({})
-GroupedSelect.args = {
-  ...defaultProps,
-  label: 'Select label',
-  options: testOptions,
-  group: true,
-}
-GroupedSelect.storyName = 'Group Elements'
-
-export const RequiredSelect = DefaultTemplate.bind({})
-RequiredSelect.args = {
-  ...defaultProps,
-  label: 'Select label',
-  options: testOptions,
-  required: true,
-}
-RequiredSelect.storyName = 'Required'
-
-export const CustomEmptyLabelSelect = DefaultTemplate.bind({})
-CustomEmptyLabelSelect.args = {
-  ...defaultProps,
-  label: 'Select label',
-  options: testOptions,
-  emptyLabel: 'Custom empty label',
-}
-CustomEmptyLabelSelect.storyName = 'Custom Empty Label'
-
-export const LabelSlotSelect = DefaultTemplate.bind({})
-LabelSlotSelect.args = {
-  ...defaultProps,
-  options: testOptions,
-  'slot:label': `<em>Label slot content</em>`,
-}
-LabelSlotSelect.storyName = 'Label Slot'
-
-export const ScopedSlotSelect = DefaultTemplate.bind({})
-ScopedSlotSelect.args = {
-  ...defaultProps,
-  label: 'Select label',
-  options: testOptions,
-  default: `<option :value="options[0].value">{{ options[0].value }}</option>`,
-}
-ScopedSlotSelect.storyName = 'Scoped Slot'
-
-export const CustomIdSelect = DefaultTemplate.bind({})
-CustomIdSelect.args = {
-  ...defaultProps,
-  label: 'Select label',
-  options: testOptions,
-  id: 'custom-id',
-}
-CustomIdSelect.storyName = 'Custom ID'
-
-export const CustomClassesSelect = DefaultTemplate.bind({})
-CustomClassesSelect.args = {
-  ...defaultProps,
-  label: 'Select label',
-  options: testOptions,
-  customClasses: {
-    component: ['test-component-class'],
-    label: ['test-label-class'],
+export const DefaultSelect = {
+  args: {
+    ...defaultProps,
+    label: 'Select label',
+    options: testOptions,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSelect label="Select label" :options="options"></UsaSelect>`,
+      },
+    },
   },
 }
-CustomClassesSelect.storyName = 'Custom CSS Classes'
+
+export const DefaultByDefaultSelect = {
+  args: {
+    ...defaultProps,
+    label: 'Select label',
+    options: testOptions,
+    modelValue: '2',
+  },
+  name: 'Selected by Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSelect label="Select label" :options="options" :model-value="2"></UsaSelect>`,
+      },
+    },
+  },
+}
+
+export const HintSelect = {
+  args: {
+    ...defaultProps,
+    label: 'Select label',
+    options: testOptions,
+    hint: 'Choose wisely',
+  },
+  name: 'Hint',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSelect label="Select label" :options="options" hint="Choose wisely"></UsaSelect>`,
+      },
+    },
+  },
+}
+
+export const ErrorSelect = {
+  args: {
+    ...defaultProps,
+    label: 'Select label',
+    options: testOptions,
+    error: true,
+  },
+  name: 'Error',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSelect label="Select label" :options="options" :error="true"></UsaSelect>`,
+      },
+    },
+  },
+}
+
+export const ErrorMessageSelect = {
+  args: {
+    ...defaultProps,
+    label: 'Select label',
+    options: testOptions,
+    error: true,
+    'error-message': 'Error message here',
+  },
+  name: 'Error Message',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSelect label="Select label" :options="options" :error="true"><template #error-message>Error message here</template></UsaSelect>`,
+      },
+    },
+  },
+}
+
+export const GroupedSelect = {
+  args: {
+    ...defaultProps,
+    label: 'Select label',
+    options: testOptions,
+    group: true,
+  },
+  name: 'Group Elements',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSelect label="Select label" :options="options" :group="true"></UsaSelect>`,
+      },
+    },
+  },
+}
+
+export const RequiredSelect = {
+  args: {
+    ...defaultProps,
+    label: 'Select label',
+    options: testOptions,
+    required: true,
+  },
+  name: 'Required',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSelect label="Select label" :options="options" :required="true"></UsaSelect>`,
+      },
+    },
+  },
+}
+
+export const CustomEmptyLabelSelect = {
+  args: {
+    ...defaultProps,
+    label: 'Select label',
+    options: testOptions,
+    emptyLabel: 'Custom empty label',
+  },
+  name: 'Custom Empty Label',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSelect label="Select label" :options="options" emptyLabel="Custom empty label"></UsaSelect>`,
+      },
+    },
+  },
+}
+
+export const LabelSlotSelect = {
+  args: {
+    ...defaultProps,
+    options: testOptions,
+    'slot:label': `<em>Label slot content</em>`,
+  },
+  name: 'Label Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSelect :options="options"><template #label><em>Label slot content</em></template></UsaSelect>`,
+      },
+    },
+  },
+}
+
+export const ScopedSlotSelect = {
+  args: {
+    ...defaultProps,
+    label: 'Select label',
+    options: testOptions,
+    default: `<option :value="options[0].value">{{ options[0].value }}</option>`,
+  },
+  name: 'Scoped Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSelect label="Select label" :options="options"><template #default><option :value="options[0].value">{{ options[0].value }}</option></template></UsaSelect>`,
+      },
+    },
+  },
+}
+
+export const CustomIdSelect = {
+  args: {
+    ...defaultProps,
+    label: 'Select label',
+    options: testOptions,
+    id: 'custom-id',
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSelect label="Select label" :options="options" id="custom-id"></UsaSelect>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesSelect = {
+  args: {
+    ...defaultProps,
+    label: 'Select label',
+    options: testOptions,
+    customClasses: {
+      component: ['test-component-class'],
+      label: ['test-label-class'],
+    },
+  },
+  name: 'Custom CSS Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaSelect label="Select label" :options="options" :custom-classes="{component: ['test-component-class'], label: ['test-label-class']}"></UsaSelect>`,
+      },
+    },
+  },
+}

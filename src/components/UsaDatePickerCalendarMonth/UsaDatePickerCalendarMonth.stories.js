@@ -32,58 +32,89 @@ export default {
     minDate: defaultProps.minMonth,
     maxDate: defaultProps.maxMonth,
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaDatePickerCalendarMonth },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaDatePickerCalendarMonth
-    :active-date="activeDate"
-    :month-labels="monthLabels"
-    :min-date="minDate"
-    :max-date="maxDate"
+  render: args => ({
+    components: { UsaDatePickerCalendarMonth },
+    props: Object.keys(UsaDatePickerCalendarMonth.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaDatePickerCalendarMonth
+    :active-date="args.activeDate"
+    :month-labels="args.monthLabels"
+    :min-date="args.minDate"
+    :max-date="args.maxDate"
   ></UsaDatePickerCalendarMonth>`,
-})
-
-export const DefaultDatePickerCalendarMonth = DefaultTemplate.bind({})
-DefaultDatePickerCalendarMonth.args = {
-  ...defaultProps,
+  }),
 }
-DefaultDatePickerCalendarMonth.storyName = 'Default'
 
-export const MinMonthDatePickerCalendarMonth = DefaultTemplate.bind({})
-MinMonthDatePickerCalendarMonth.args = {
-  ...defaultProps,
-  minDate: '2020-01-01',
+export const DefaultDatePickerCalendarMonth = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: ``,
+      },
+    },
+  },
 }
-MinMonthDatePickerCalendarMonth.storyName = 'Min Date'
 
-export const MaxMonthDatePickerCalendarMonth = DefaultTemplate.bind({})
-MaxMonthDatePickerCalendarMonth.args = {
-  ...defaultProps,
-  maxDate: '2024-12-31',
+export const MinMonthDatePickerCalendarMonth = {
+  args: {
+    ...defaultProps,
+    minDate: '2020-01-01',
+  },
+  name: 'Min Date',
+  parameters: {
+    docs: {
+      source: {
+        code: ``,
+      },
+    },
+  },
 }
-MaxMonthDatePickerCalendarMonth.storyName = 'Max Date'
 
-export const MonthLabelsDatePickerCalendarMonth = DefaultTemplate.bind({})
-MonthLabelsDatePickerCalendarMonth.args = {
-  ...defaultProps,
-  monthLabels: [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ],
+export const MaxMonthDatePickerCalendarMonth = {
+  args: {
+    ...defaultProps,
+    maxDate: '2024-12-31',
+  },
+  name: 'Max Date',
+  parameters: {
+    docs: {
+      source: {
+        code: ``,
+      },
+    },
+  },
 }
-MonthLabelsDatePickerCalendarMonth.storyName = 'Custom Month Labels'
+
+export const MonthLabelsDatePickerCalendarMonth = {
+  args: {
+    ...defaultProps,
+    monthLabels: [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ],
+  },
+  name: 'Custom Month Labels',
+  parameters: {
+    docs: {
+      source: {
+        code: ``,
+      },
+    },
+  },
+}

@@ -42,25 +42,32 @@ export default {
       },
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaNavPrimaryItem },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaNavPrimaryItem
-    v-bind="$attrs"
-    :href="href"
-    :to="to"
-    :router-component-name="routerComponentName"
+  render: args => ({
+    components: { UsaNavPrimaryItem },
+    props: Object.keys(UsaNavPrimaryItem.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaNavPrimaryItem
+    v-bind="args.$attrs"
+    :href="args.href"
+    :to="args.to"
+    :router-component-name="args.routerComponentName"
   >${args.default}</UsaNavPrimaryItem>`,
-})
-
-export const DefaultNavPrimaryItem = DefaultTemplate.bind({})
-DefaultNavPrimaryItem.args = {
-  ...defaultProps,
-  href: '/test-page',
+  }),
 }
-DefaultNavPrimaryItem.storyName = 'Default'
+
+export const DefaultNavPrimaryItem = {
+  args: {
+    ...defaultProps,
+    href: '/test-page',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaNavPrimaryItem href="/test-page">Test nav link</UsaNavPrimaryItem>`,
+      },
+    },
+  },
+}

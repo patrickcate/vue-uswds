@@ -68,71 +68,110 @@ export default {
     id: defaultProps.id,
     customClasses: defaultProps.customClasses,
   },
+  render: args => ({
+    components: { UsaValidation },
+    props: Object.keys(UsaValidation.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaValidation
+      :validations="args.validations"
+      :validationValue="args.validationValue"
+      :heading="args.heading"
+      :heading-tag="args.headingTag"
+      :validLabel="args.validLabel"
+      :invalidLabel="args.invalidLabel"
+      :id="args.id"
+      :custom-classes="args.customClasses"
+    />`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaValidation },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultValidation = {
+  args: {
+    ...defaultProps,
+    heading: 'Code requirements',
+    validations: testItems,
   },
-  template: `<UsaValidation
-    :validations="validations"
-    :validationValue="validationValue"
-    :heading="heading"
-    :heading-tag="headingTag"
-    :validLabel="validLabel"
-    :invalidLabel="invalidLabel"
-    :id="id"
-    :custom-classes="customClasses"
-    ></UsaValidation>`,
-})
-
-export const DefaultValidation = DefaultTemplate.bind({})
-DefaultValidation.args = {
-  ...defaultProps,
-  heading: 'Code requirements',
-  validations: testItems,
-}
-DefaultValidation.storyName = 'Default'
-
-export const HeadingTagValidation = DefaultTemplate.bind({})
-HeadingTagValidation.args = {
-  ...defaultProps,
-  heading: 'Custom Heading Tag',
-  headingTag: 'h4',
-  validations: testItems,
-}
-HeadingTagValidation.storyName = 'Custom Heading Tag'
-
-export const CustomIdValidation = DefaultTemplate.bind({})
-CustomIdValidation.args = {
-  ...defaultProps,
-  heading: 'Custom Heading Tag',
-  id: 'test-id',
-  validations: testItems,
-}
-CustomIdValidation.storyName = 'Custom ID'
-
-export const CustomValidityLabelsValidation = DefaultTemplate.bind({})
-CustomValidityLabelsValidation.args = {
-  ...defaultProps,
-  heading: 'Custom Heading Tag',
-  validLabel: 'is valid',
-  invalidLabel: 'is invalid',
-  validations: testItems,
-}
-CustomValidityLabelsValidation.storyName = 'Custom Validity Labels'
-
-export const CustomClassesValidation = DefaultTemplate.bind({})
-CustomClassesValidation.args = {
-  ...defaultProps,
-  heading: 'Custom CSS classes',
-  validations: testItems,
-  customClasses: {
-    body: ['test-body-class'],
-    heading: ['test-heading-class'],
-    checklist: ['test-checklist-class'],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaValidation heading="Code requirements" :validations="${JSON.stringify(testItems)}"></UsaValidation>`,
+      },
+    },
   },
 }
-CustomClassesValidation.storyName = 'Custom Classes'
+
+export const HeadingTagValidation = {
+  args: {
+    ...defaultProps,
+    heading: 'Custom Heading Tag',
+    headingTag: 'h4',
+    validations: testItems,
+  },
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaValidation heading="Custom Heading Tag" heading-tag="h4" :validations="${JSON.stringify(testItems)}"></UsaValidation>`,
+      },
+    },
+  },
+}
+
+export const CustomIdValidation = {
+  args: {
+    ...defaultProps,
+    heading: 'Custom Heading Tag',
+    id: 'test-id',
+    validations: testItems,
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaValidation heading="Custom Heading Tag" id="test-id" :validations="${JSON.stringify(testItems)}"></UsaValidation>`,
+      },
+    },
+  },
+}
+
+export const CustomValidityLabelsValidation = {
+  args: {
+    ...defaultProps,
+    heading: 'Custom Heading Tag',
+    validLabel: 'is valid',
+    invalidLabel: 'is invalid',
+    validations: testItems,
+  },
+  name: 'Custom Validity Labels',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaValidation heading="Custom Heading Tag" valid-label="is valid" invalid-label="is invalid" :validations="${JSON.stringify(testItems)}"></UsaValidation>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesValidation = {
+  args: {
+    ...defaultProps,
+    heading: 'Custom CSS classes',
+    validations: testItems,
+    customClasses: {
+      body: ['test-body-class'],
+      heading: ['test-heading-class'],
+      checklist: ['test-checklist-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaValidation heading="Custom CSS classes" :validations="${JSON.stringify(testItems)}" :custom-classes="{ \n\tbody: ['test-body-class'], \n\theading: ['test-heading-class'], \n\tchecklist: ['test-checklist-class'] }"></UsaValidation>`,
+      },
+    },
+  },
+}

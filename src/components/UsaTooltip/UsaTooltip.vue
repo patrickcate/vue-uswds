@@ -13,6 +13,7 @@ import {
   flip,
   inline,
 } from '@floating-ui/dom'
+import { onKeyStroke } from '@vueuse/core'
 import { nextId } from '@/utils/unique-id.js'
 
 const props = defineProps({
@@ -58,6 +59,7 @@ const props = defineProps({
   },
 })
 
+const wrapperElement = ref(null)
 const referenceElement = ref(null)
 const floatingElement = ref(null)
 const isSet = ref(false)
@@ -77,6 +79,10 @@ const labelClasses = computed(() => [
   },
   ...(props.customClasses?.label || []),
 ])
+
+onKeyStroke('Escape', () => {
+  isSet.value = false
+})
 
 let cleanupFloatingUi
 
@@ -139,8 +145,12 @@ onBeforeUnmount(() => {
 <template>
   <component
     :is="wrapperTag"
+    ref="wrapperElement"
     class="usa-tooltip"
     :class="customClasses?.component"
+    @mouseenter="isSet = true"
+    @mouseover="isSet = true"
+    @mouseout="isSet = false"
   >
     <component
       :is="tag"
@@ -149,12 +159,8 @@ onBeforeUnmount(() => {
       class="usa-tooltip__trigger"
       tabindex="0"
       :aria-describedby="computedId"
-      @mouseenter="isSet = true"
-      @mouseover="isSet = true"
-      @mouseout="isSet = false"
       @focus="isSet = true"
       @blur="isSet = false"
-      @keydown="isSet = false"
       ><slot></slot
     ></component>
     <span

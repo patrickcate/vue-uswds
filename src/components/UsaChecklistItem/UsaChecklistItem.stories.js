@@ -25,38 +25,61 @@ export default {
         '<ul class="usa-checklist" style="margin-left: 40px"><story /></ul>',
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaChecklistItem },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaChecklistItem :checked="checked" :aria-label="ariaLabel">
-    <template v-if="${!!args.default}" #default>${args.default}</template>
+  render: args => ({
+    components: { UsaChecklistItem },
+    props: Object.keys(UsaChecklistItem.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaChecklistItem :checked="args.checked" :aria-label="args.ariaLabel">
+    <template v-if="!!args.default" #default>${args.default}</template>
   </UsaChecklistItem>`,
-})
-
-export const DefaultChecklistItem = DefaultTemplate.bind({})
-DefaultChecklistItem.args = {
-  ...defaultProps,
-  default: 'Test item',
+  }),
 }
-DefaultChecklistItem.storyName = 'Default'
 
-export const CheckedChecklistItem = DefaultTemplate.bind({})
-CheckedChecklistItem.args = {
-  ...defaultProps,
-  default: 'Test item',
-  checked: true,
+export const DefaultChecklistItem = {
+  args: {
+    ...defaultProps,
+    default: 'Test item',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaChecklistItem>Test item</UsaChecklistItem>`,
+      },
+    },
+  },
 }
-CheckedChecklistItem.storyName = 'Checked'
 
-export const CustomAriaLabelChecklistItem = DefaultTemplate.bind({})
-CustomAriaLabelChecklistItem.args = {
-  ...defaultProps,
-  default: 'Test item',
-  ariaLabel: 'is invalid',
+export const CheckedChecklistItem = {
+  args: {
+    ...defaultProps,
+    default: 'Test item',
+    checked: true,
+  },
+  name: 'Checked',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaChecklistItem :checked="true">Test item</UsaChecklistItem>`,
+      },
+    },
+  },
 }
-CustomAriaLabelChecklistItem.storyName = 'Custom Aria Label'
+
+export const CustomAriaLabelChecklistItem = {
+  args: {
+    ...defaultProps,
+    default: 'Test item',
+    ariaLabel: 'is invalid',
+  },
+  name: 'Custom Aria Label',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaChecklistItem aria-label="is invalid">Test item</UsaChecklistItem>`,
+      },
+    },
+  },
+}

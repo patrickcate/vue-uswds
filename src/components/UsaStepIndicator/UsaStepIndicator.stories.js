@@ -23,6 +23,7 @@ const testSteps = [
 
 export default {
   component: UsaStepIndicator,
+  subcomponents: { UsaStepIndicatorHeader, UsaStepIndicatorSegment },
   title: 'Components/UsaStepIndicator',
   argTypes: {
     steps: {
@@ -69,147 +70,253 @@ export default {
     default: '',
     header: '',
   },
+  render: args => ({
+    components: {
+      UsaStepIndicator,
+      UsaStepIndicatorSegment,
+      UsaStepIndicatorHeader,
+    },
+    props: Object.keys(UsaStepIndicator.props),
+    setup() {
+      return { args }
+    },
+    template: `
+    <UsaStepIndicator
+      :steps="args.steps"
+      :current-step-number="args.currentStepNumber"
+      :counters="args.counters"
+      :small-counters="args.smallCounters"
+      :center="args.center"
+      :no-labels="args.noLabels"
+      :custom-classes="args.customClasses"
+      :heading-tag="args.headingTag"
+    >
+      <template v-if="!!args.default" #default>${args.default}</template>
+      <template v-if="!!args.header" #header>${args.header}</template>
+      </UsaStepIndicator>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: {
-    UsaStepIndicator,
-    UsaStepIndicatorSegment,
-    UsaStepIndicatorHeader,
+export const DefaultStepIndicator = {
+  args: {
+    ...defaultProps,
+    steps: testSteps,
   },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `
-  <UsaStepIndicator
-    :steps="steps"
-    :current-step-number="currentStepNumber"
-    :counters="counters"
-    :small-counters="smallCounters"
-    :center="center"
-    :no-labels="noLabels"
-    :custom-classes="customClasses"
-    :heading-tag="headingTag"
-  >
-    <template v-if="${!!args.default}" #default>${args.default}</template>
-    <template v-if="${!!args.header}" #header>${args.header}</template>
-  </UsaStepIndicator>`,
-})
-
-export const DefaultStepIndicator = DefaultTemplate.bind({})
-DefaultStepIndicator.args = {
-  ...defaultProps,
-  steps: testSteps,
-}
-DefaultStepIndicator.storyName = 'Default'
-
-export const CountersStepIndicator = DefaultTemplate.bind({})
-CountersStepIndicator.args = {
-  ...defaultProps,
-  steps: testSteps,
-  counters: true,
-}
-CountersStepIndicator.storyName = 'Counters'
-
-export const SmallCountersStepIndicator = DefaultTemplate.bind({})
-SmallCountersStepIndicator.args = {
-  ...defaultProps,
-  steps: testSteps,
-  smallCounters: true,
-}
-SmallCountersStepIndicator.storyName = 'Small Counters'
-
-export const CenteredStepIndicator = DefaultTemplate.bind({})
-CenteredStepIndicator.args = {
-  ...defaultProps,
-  steps: testSteps,
-  center: true,
-}
-CenteredStepIndicator.storyName = 'Centered'
-
-export const CountersCenteredStepIndicator = DefaultTemplate.bind({})
-CountersCenteredStepIndicator.args = {
-  ...defaultProps,
-  steps: testSteps,
-  counters: true,
-  center: true,
-}
-CountersCenteredStepIndicator.storyName = 'Centered Counters'
-
-export const SmallCountersCenteredStepIndicator = DefaultTemplate.bind({})
-SmallCountersCenteredStepIndicator.args = {
-  ...defaultProps,
-  steps: testSteps,
-  smallCounters: true,
-  center: true,
-}
-SmallCountersCenteredStepIndicator.storyName = 'Small Centered Counters'
-
-export const NoLabelsStepIndicator = DefaultTemplate.bind({})
-NoLabelsStepIndicator.args = {
-  ...defaultProps,
-  steps: testSteps,
-  noLabels: true,
-}
-NoLabelsStepIndicator.storyName = 'No Labels'
-
-export const InProgressStepIndicator = DefaultTemplate.bind({})
-InProgressStepIndicator.args = {
-  ...defaultProps,
-  steps: testSteps,
-  counters: true,
-  currentStepNumber: 3,
-}
-InProgressStepIndicator.storyName = 'In Progress'
-
-export const CustomHeadingTagStepIndicator = DefaultTemplate.bind({})
-CustomHeadingTagStepIndicator.args = {
-  ...defaultProps,
-  steps: testSteps,
-  counters: true,
-  currentStepNumber: 3,
-  headingTag: 'h4',
-}
-CustomHeadingTagStepIndicator.storyName = 'Custom Heading Tag'
-
-export const CustomClassesStepIndicator = DefaultTemplate.bind({})
-CustomClassesStepIndicator.args = {
-  ...defaultProps,
-  steps: testSteps,
-  counters: true,
-  customClasses: {
-    list: ['test-list-class'],
-    segment: ['test-segment-class'],
-    header: ['test-header-class'],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicator :steps="testSteps"></UsaStepIndicator>`,
+      },
+    },
   },
 }
-CustomClassesStepIndicator.storyName = 'Custom Classes'
 
-export const CustomSlotSegmentsStepIndicator = DefaultTemplate.bind({})
-CustomSlotSegmentsStepIndicator.args = {
-  ...defaultProps,
-  steps: [],
-  counters: true,
-  default: `
-    <UsaStepIndicatorSegment
-      status="completed"
-      label="Step 1"
-    ></UsaStepIndicatorSegment>
-    <UsaStepIndicatorSegment
-      status="current"
-      label="Step 2"
-    ></UsaStepIndicatorSegment>
-    <UsaStepIndicatorSegment
-      label="Step 3"
-    ></UsaStepIndicatorSegment>
-  `,
-  header: `
-    <UsaStepIndicatorHeader
-      :current-step-number="2"
-      current-step-label="Step 2"
-      :total-steps="3"
-    ></UsaStepIndicatorHeader>
-  `,
+export const CountersStepIndicator = {
+  args: {
+    ...defaultProps,
+    steps: testSteps,
+    counters: true,
+  },
+  name: 'Counters',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicator :steps="testSteps" :counters="true"></UsaStepIndicator>`,
+      },
+    },
+  },
 }
-CustomSlotSegmentsStepIndicator.storyName = 'Custom Slots'
+
+export const SmallCountersStepIndicator = {
+  args: {
+    ...defaultProps,
+    steps: testSteps,
+    smallCounters: true,
+  },
+  name: 'Small Counters',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicator :steps="testSteps" :small-counters="true"></UsaStepIndicator>`,
+      },
+    },
+  },
+}
+
+export const CenteredStepIndicator = {
+  args: {
+    ...defaultProps,
+    steps: testSteps,
+    center: true,
+  },
+  name: 'Centered',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicator :steps="testSteps" :center="true"></UsaStepIndicator>`,
+      },
+    },
+  },
+}
+
+export const CountersCenteredStepIndicator = {
+  args: {
+    ...defaultProps,
+    steps: testSteps,
+    counters: true,
+    center: true,
+  },
+  name: 'Centered Counters',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicator :steps="testSteps" :counters="true" :center="true"></UsaStepIndicator>`,
+      },
+    },
+  },
+}
+
+export const SmallCountersCenteredStepIndicator = {
+  args: {
+    ...defaultProps,
+    steps: testSteps,
+    smallCounters: true,
+    center: true,
+  },
+  name: 'Small Centered Counters',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicator :steps="testSteps" :small-counters="true" :center="true"></UsaStepIndicator>`,
+      },
+    },
+  },
+}
+
+export const NoLabelsStepIndicator = {
+  args: {
+    ...defaultProps,
+    steps: testSteps,
+    noLabels: true,
+  },
+  name: 'No Labels',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicator :steps="testSteps" :no-labels="true"></UsaStepIndicator>`,
+      },
+    },
+  },
+}
+
+export const InProgressStepIndicator = {
+  args: {
+    ...defaultProps,
+    steps: testSteps,
+    counters: true,
+    currentStepNumber: 3,
+  },
+  name: 'In Progress',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicator :steps="testSteps" :counters="true" :current-step-number="3"></UsaStepIndicator>`,
+      },
+    },
+  },
+}
+
+export const CustomHeadingTagStepIndicator = {
+  args: {
+    ...defaultProps,
+    steps: testSteps,
+    counters: true,
+    currentStepNumber: 3,
+    headingTag: 'h4',
+  },
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicator :steps="testSteps" :counters="true" :current-step-number="3" heading-tag="h4"></UsaStepIndicator>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesStepIndicator = {
+  args: {
+    ...defaultProps,
+    steps: testSteps,
+    counters: true,
+    customClasses: {
+      list: ['test-list-class'],
+      segment: ['test-segment-class'],
+      header: ['test-header-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicator :steps="testSteps" :counters="true" :custom-classes="{ list: ['test-list-class'], segment: ['test-segment-class'], header: ['test-header-class'] }"></UsaStepIndicator>`,
+      },
+    },
+  },
+}
+
+export const CustomSlotSegmentsStepIndicator = {
+  args: {
+    ...defaultProps,
+    steps: [],
+    counters: true,
+    default: `
+      <UsaStepIndicatorSegment
+        status="completed"
+        label="Step 1"
+      ></UsaStepIndicatorSegment>
+      <UsaStepIndicatorSegment
+        status="current"
+        label="Step 2"
+      ></UsaStepIndicatorSegment>
+      <UsaStepIndicatorSegment
+        label="Step 3"
+      ></UsaStepIndicatorSegment>
+    `,
+    header: `
+      <UsaStepIndicatorHeader
+        :current-step-number="2"
+        current-step-label="Step 2"
+        :total-steps="3"
+      ></UsaStepIndicatorHeader>
+    `,
+  },
+  name: 'Custom Slots',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicator>
+        <template #default>
+          <UsaStepIndicatorSegment
+            status="completed"
+            label="Step 1"
+          ></UsaStepIndicatorSegment>
+          <UsaStepIndicatorSegment
+            status="current"
+            label="Step 2"
+          ></UsaStepIndicatorSegment>
+          <UsaStepIndicatorSegment
+            label="Step 3"
+          ></UsaStepIndicatorSegment>
+        </template>
+        <template #header>
+          <UsaStepIndicatorHeader
+            :current-step-number="2"
+            current-step-label="Step 2"
+            :total-steps="3"
+          ></UsaStepIndicatorHeader>`,
+      },
+    },
+  },
+}

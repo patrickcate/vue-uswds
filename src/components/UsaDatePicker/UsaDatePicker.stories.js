@@ -154,48 +154,42 @@ export default {
     'error-message': '',
     status: '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaDatePicker },
-  props: Object.keys(argTypes),
-  setup() {
-    const modelValue = ref(args.modelValue)
-    return { ...args, modelValue }
-  },
-  template: `<UsaDatePicker
-    v-model="modelValue"
-    :min-date="minDate"
-    :max-date="maxDate"
-    :range-type="rangeType"
-    :month-labels="monthLabels"
-    :day-of-week-labels="dayOfWeekLabels"
-    :day-of-week-abbreviation-labels="dayOfWeekAbbreviationLabels"
-    :toggle-button-aria-label="toggleButtonAriaLabel"
-    :previous-year-button-label="previousYearButtonLabel"
-    :next-year-button-label="nextYearButtonLabel"
-    :previous-month-button-label="previousMonthButtonLabel"
-    :next-month-button-label="nextMonthButtonLabel"
-    :year-selection-button-label="yearSelectionButtonLabel"
-    :month-selection-button-label="monthSelectionButtonLabel"
-    :previous-years-button-label="previousYearsButtonLabel"
-    :next-years-button-label="nextYearsButtonLabel"
-    :label="label"
-    :required="required"
-    :disabled="disabled"
-    :readonly="readonly"
-    :error="error"
-    :id="id"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaDatePicker },
+    props: Object.keys(UsaDatePicker.props),
+    setup() {
+      const modelValue = ref(args.modelValue)
+      return { args, modelValue }
+    },
+    template: `<UsaDatePicker
+    v-model="args.modelValue"
+    :min-date="args.minDate"
+    :max-date="args.maxDate"
+    :range-type="args.rangeType"
+    :month-labels="args.monthLabels"
+    :day-of-week-labels="args.dayOfWeekLabels"
+    :day-of-week-abbreviation-labels="args.dayOfWeekAbbreviationLabels"
+    :toggle-button-aria-label="args.toggleButtonAriaLabel"
+    :previous-year-button-label="args.previousYearButtonLabel"
+    :next-year-button-label="args.nextYearButtonLabel"
+    :previous-month-button-label="args.previousMonthButtonLabel"
+    :next-month-button-label="args.nextMonthButtonLabel"
+    :year-selection-button-label="args.yearSelectionButtonLabel"
+    :month-selection-button-label="args.monthSelectionButtonLabel"
+    :previous-years-button-label="args.previousYearsButtonLabel"
+    :next-years-button-label="args.nextYearsButtonLabel"
+    :label="args.label"
+    :required="args.required"
+    :disabled="args.disabled"
+    :readonly="args.readonly"
+    :error="args.error"
+    :id="args.id"
+    :custom-classes="args.customClasses"
   >
-    <template v-if="${!!args['slot:label']}" #label>${
-      args['slot:label']
-    }</template>
-    <template v-if="${!!args.hint}" #hint>${args.hint}</template>
-    <template v-if="${!!args['error-message']}" #error-message>${
-      args['error-message']
-    }</template>
-    <template v-if="${!!args.status}" #status="{
+    <template v-if="!!args['slot:label']" #label>${args['slot:label']}</template>
+    <template v-if="!!args.hint" #hint>${args.hint}</template>
+    <template v-if="!!args['error-message']" #error-message>${args['error-message']}</template>
+    <template v-if="!!args.status" #status="{
       open,
       isPristine,
       selectorMode,
@@ -205,173 +199,335 @@ const DefaultTemplate = (args, { argTypes }) => ({
       activeYear,
       yearRangeStart,
       yearRangeStop
-    }">${args.status}</template>
+    }">{{ args.status }}</template>
   </UsaDatePicker>`,
-})
-
-export const DefaultDatePicker = DefaultTemplate.bind({})
-DefaultDatePicker.args = {
-  ...defaultProps,
+  }),
 }
-DefaultDatePicker.storyName = 'Default'
 
-export const SelectedDateDatePicker = DefaultTemplate.bind({})
-SelectedDateDatePicker.args = {
-  ...defaultProps,
-  modelValue: '2001-04-09',
-}
-SelectedDateDatePicker.storyName = 'Selected Date'
-
-export const MinDateDatePicker = DefaultTemplate.bind({})
-MinDateDatePicker.args = {
-  ...defaultProps,
-  minDate: '2020-01-15',
-}
-MinDateDatePicker.storyName = 'Min Date'
-
-export const MaxDateDatePicker = DefaultTemplate.bind({})
-MaxDateDatePicker.args = {
-  ...defaultProps,
-  maxDate: '2023-12-15',
-}
-MaxDateDatePicker.storyName = 'Max Date'
-
-export const RangeTypeDateDatePicker = DefaultTemplate.bind({})
-RangeTypeDateDatePicker.args = {
-  ...defaultProps,
-  rangeType: 'start',
-}
-RangeTypeDateDatePicker.storyName = 'Range Type'
-
-export const CustomLabelsDateDatePicker = DefaultTemplate.bind({})
-CustomLabelsDateDatePicker.args = {
-  ...defaultProps,
-  monthLabels: [
-    'Month 1',
-    'Month 2',
-    'Month 3',
-    'Month 4',
-    'Month 5',
-    'Month 6',
-    'Month 7',
-    'Month 8',
-    'Month 9',
-    'Month 10',
-    'Month 11',
-    'Month 12',
-  ],
-  dayOfWeekLabels: [
-    'Day A',
-    'Day B',
-    'Day C',
-    'Day D',
-    'Day E',
-    'Day F',
-    'Day G',
-  ],
-  dayOfWeekAbbreviationLabels: ['1', '2', '3', '4', '5', '6', '7'],
-  toggleButtonAriaLabel: 'Test toggle button',
-  previousYearButtonLabel: 'Test previous year button label',
-  nextYearButtonLabel: 'Test next year button label',
-  previousMonthButtonLabel: 'Test previous month button label',
-  nextMonthButtonLabel: 'Test next month button label',
-  yearSelectionButtonLabel: 'Test year %s is selected',
-  monthSelectionButtonLabel: 'Test month %s is selected',
-  previousYearsButtonLabel: 'Test navigate back 12 years',
-  nextYearsButtonLabel: 'Test navigate forward 12 years',
-}
-CustomLabelsDateDatePicker.storyName = 'Custom Labels'
-
-export const HintDatePicker = DefaultTemplate.bind({})
-HintDatePicker.args = {
-  ...defaultProps,
-  label: 'Hint date picker',
-  hint: 'Choose wisely',
-}
-HintDatePicker.storyName = 'Hint'
-
-export const ErrorDatePicker = DefaultTemplate.bind({})
-ErrorDatePicker.args = {
-  ...defaultProps,
-  label: 'Error date picker',
-  error: true,
-}
-ErrorDatePicker.storyName = 'Error'
-
-export const ErrorMessageDatePicker = DefaultTemplate.bind({})
-ErrorMessageDatePicker.args = {
-  ...defaultProps,
-  label: 'Error message date picker',
-  error: true,
-  'error-message': 'Error message here',
-}
-ErrorMessageDatePicker.storyName = 'Error Message'
-
-export const RequiredDatePicker = DefaultTemplate.bind({})
-RequiredDatePicker.args = {
-  ...defaultProps,
-  label: 'Required date picker',
-  required: true,
-}
-RequiredDatePicker.storyName = 'Required'
-
-export const DisabledDatePicker = DefaultTemplate.bind({})
-DisabledDatePicker.args = {
-  ...defaultProps,
-  label: 'Disabled date picker',
-  disabled: true,
-}
-DisabledDatePicker.storyName = 'Disabled'
-
-export const ReadOnlyDatePicker = DefaultTemplate.bind({})
-ReadOnlyDatePicker.args = {
-  ...defaultProps,
-  label: 'Readonly date picker',
-  readonly: true,
-}
-ReadOnlyDatePicker.storyName = 'Readonly'
-
-export const LabelSlotDatePicker = DefaultTemplate.bind({})
-LabelSlotDatePicker.args = {
-  ...defaultProps,
-  'slot:label': `<em>Label slot content</em>`,
-}
-LabelSlotDatePicker.storyName = 'Label Slot'
-
-export const ScreenReaderStatusSlotDatePicker = DefaultTemplate.bind({})
-ScreenReaderStatusSlotDatePicker.args = {
-  ...defaultProps,
-  label: 'Screen reader status slot',
-  status: `Is open: {{ open }}<br>
-    Is pristine: {{ isPristine }}<br>
-    Selector Mode: {{ selectorMode }}<br>
-    Selected Date: {{ selectedDate }}<br>
-    Highlighted Date: {{ highlightedDate }}<br>
-    Active Month Label: {{ activeMonthLabel }}<br>
-    Active Year: {{ activeYear }}<br>
-    Year Range Start: {{ yearRangeStart }}<br>
-    Year Range Stop: {{ yearRangeStop }}<br>
-  `,
-}
-ScreenReaderStatusSlotDatePicker.storyName = 'Screen Reader Status Slot'
-
-export const CustomIdDatePicker = DefaultTemplate.bind({})
-CustomIdDatePicker.args = {
-  ...defaultProps,
-  label: 'Custom ID date picker',
-  id: 'custom-id',
-}
-CustomIdDatePicker.storyName = 'Custom ID'
-
-export const CustomClassesDatePicker = DefaultTemplate.bind({})
-CustomClassesDatePicker.args = {
-  ...defaultProps,
-  label: 'Custom classes date picker',
-  customClasses: {
-    formGroup: ['test-form-group-class'],
-    component: ['test-component-class'],
-    label: ['test-label-class'],
-    input: ['test-input-class'],
+export const DefaultDatePicker = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker />`,
+      },
+    },
   },
 }
-CustomClassesDatePicker.storyName = 'Custom CSS Classes'
+
+export const SelectedDateDatePicker = {
+  args: {
+    ...defaultProps,
+    modelValue: '2001-04-09',
+  },
+  name: 'Selected Date',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker v-model="ref('2001-04-09')" />`,
+      },
+    },
+  },
+}
+
+export const MinDateDatePicker = {
+  args: {
+    ...defaultProps,
+    minDate: '2020-01-15',
+  },
+  name: 'Min Date',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker min-date="2020-01-15" />`,
+      },
+    },
+  },
+}
+
+export const MaxDateDatePicker = {
+  args: {
+    ...defaultProps,
+    maxDate: '2023-12-15',
+  },
+  name: 'Max Date',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker max-date="2023-12-15" />`,
+      },
+    },
+  },
+}
+
+export const RangeTypeDateDatePicker = {
+  args: {
+    ...defaultProps,
+    rangeType: 'start',
+  },
+  name: 'Range Type',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker range-type="start" />`,
+      },
+    },
+  },
+}
+
+export const CustomLabelsDateDatePicker = {
+  args: {
+    ...defaultProps,
+    monthLabels: [
+      'Month 1',
+      'Month 2',
+      'Month 3',
+      'Month 4',
+      'Month 5',
+      'Month 6',
+      'Month 7',
+      'Month 8',
+      'Month 9',
+      'Month 10',
+      'Month 11',
+      'Month 12',
+    ],
+    dayOfWeekLabels: [
+      'Day A',
+      'Day B',
+      'Day C',
+      'Day D',
+      'Day E',
+      'Day F',
+      'Day G',
+    ],
+    dayOfWeekAbbreviationLabels: ['1', '2', '3', '4', '5', '6', '7'],
+    toggleButtonAriaLabel: 'Test toggle button',
+    previousYearButtonLabel: 'Test previous year button label',
+    nextYearButtonLabel: 'Test next year button label',
+    previousMonthButtonLabel: 'Test previous month button label',
+    nextMonthButtonLabel: 'Test next month button label',
+    yearSelectionButtonLabel: 'Test year %s is selected',
+    monthSelectionButtonLabel: 'Test month %s is selected',
+    previousYearsButtonLabel: 'Test navigate back 12 years',
+    nextYearsButtonLabel: 'Test navigate forward 12 years',
+  },
+  name: 'Custom Labels',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker :month-labels="[
+        'Month 1',
+        'Month 2',
+        'Month 3',
+        'Month 4',
+        'Month 5',
+        'Month 6',
+        'Month 7',
+        'Month 8',
+        'Month 9',
+        'Month 10',
+        'Month 11',
+        'Month 12',
+      ]" :day-of-week-labels="[
+        'Day A',
+        'Day B',
+        'Day C',
+        'Day D',
+        'Day E',
+        'Day F',
+        'Day G',
+      ]" :day-of-week-abbreviation-labels="[1, 2, 3, 4, 5, 6, 7]" toggle-button-aria-label="Test toggle button"
+        previous-year-button-label="Test previous year button label" next-year-button-label="Test next year button label"
+        previous-month-button-label="Test previous month button label" next-month-button-label="Test next month button label"
+        year-selection-button-label="Test year %s is selected" month-selection-button-label="Test month %s is selected"
+        previous-years-button-label="Test navigate back 12 years" next-years-button-label="Test navigate forward 12 years" />`,
+      },
+    },
+  },
+}
+
+export const HintDatePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Hint date picker',
+    hint: 'Choose wisely',
+  },
+  name: 'Hint',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker label="Hint date picker" hint="Choose wisely" />`,
+      },
+    },
+  },
+}
+
+export const ErrorDatePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Error date picker',
+    error: true,
+  },
+  name: 'Error',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker label="Error date picker" :error="true" />`,
+      },
+    },
+  },
+}
+
+export const ErrorMessageDatePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Error message date picker',
+    error: true,
+    'error-message': 'Error message here',
+  },
+  name: 'Error Message',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker label="Error message date picker" :error="true" error-message="Error message here" />`,
+      },
+    },
+  },
+}
+
+export const RequiredDatePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Required date picker',
+    required: true,
+  },
+  name: 'Required',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker label="Required date picker" :required="true" />`,
+      },
+    },
+  },
+}
+
+export const DisabledDatePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Disabled date picker',
+    disabled: true,
+  },
+  name: 'Disabled',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker label="Disabled date picker" :disabled="true" />`,
+      },
+    },
+  },
+}
+
+export const ReadOnlyDatePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Readonly date picker',
+    readonly: true,
+  },
+  name: 'Readonly',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker label="Readonly date picker" :readonly="true" />`,
+      },
+    },
+  },
+}
+
+export const LabelSlotDatePicker = {
+  args: {
+    ...defaultProps,
+    'slot:label': `<em>Label slot content</em>`,
+  },
+  name: 'Label Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker><template #label><em>Label slot content</em></template></UsaDatePicker>`,
+      },
+    },
+  },
+}
+
+export const ScreenReaderStatusSlotDatePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Screen reader status slot',
+    status: `Is open: {{ open }}<br>
+      Is pristine: {{ isPristine }}<br>
+      Selector Mode: {{ selectorMode }}<br>
+      Selected Date: {{ selectedDate }}<br>
+      Highlighted Date: {{ highlightedDate }}<br>
+      Active Month Label: {{ activeMonthLabel }}<br>
+      Active Year: {{ activeYear }}<br>
+      Year Range Start: {{ yearRangeStart }}<br>
+      Year Range Stop: {{ yearRangeStop }}<br>
+    `,
+  },
+  name: 'Screen Reader Status Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker label="Screen reader status slot"><template #status="{ open, isPristine, selectorMode, selectedDate, highlightedDate, activeMonthLabel, activeYear, yearRangeStart, yearRangeStop }">Is open: {{ open }}<br>
+      Is pristine: {{ isPristine }}<br>
+      Selector Mode: {{ selectorMode }}<br>
+      Selected Date: {{ selectedDate }}<br>
+      Highlighted Date: {{ highlightedDate }}<br>
+      Active Month Label: {{ activeMonthLabel }}<br>
+      Active Year: {{ activeYear }}<br>
+      Year Range Start: {{ yearRangeStart }}<br>
+      Year Range Stop: {{ yearRangeStop }}<br></template></UsaDatePicker>`,
+      },
+    },
+  },
+}
+
+export const CustomIdDatePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Custom ID date picker',
+    id: 'custom-id',
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker label="Custom ID date picker" id="custom-id" />`,
+      },
+    },
+  },
+}
+
+export const CustomClassesDatePicker = {
+  args: {
+    ...defaultProps,
+    label: 'Custom classes date picker',
+    customClasses: {
+      formGroup: ['test-form-group-class'],
+      component: ['test-component-class'],
+      label: ['test-label-class'],
+      input: ['test-input-class'],
+    },
+  },
+  name: 'Custom CSS Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePicker label="Custom classes date picker" :custom-classes="{ formGroup: ['test-form-group-class'], component: ['test-component-class'], label: ['test-label-class'], input: ['test-input-class'] }" />`,
+      },
+    },
+  },
+}

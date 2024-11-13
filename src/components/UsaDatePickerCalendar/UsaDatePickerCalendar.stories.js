@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import UsaDatePickerCalendar from './UsaDatePickerCalendar.vue'
+import UsaDatePickerCalendarDay from '../UsaDatePickerCalendarDay/UsaDatePickerCalendarDay.vue'
 import {
   MONTH_LABELS,
   MIN_DATE,
@@ -32,6 +33,7 @@ const defaultProps = {
 
 export default {
   component: UsaDatePickerCalendar,
+  subcomponents: { UsaDatePickerCalendarDay },
   title: 'Components/UsaDatePickerCalendar',
   argTypes: {
     open: {
@@ -136,6 +138,45 @@ export default {
     previousYearsButtonLabel: defaultProps.previousYearsButtonLabel,
     nextYearsButtonLabel: defaultProps.nextYearsButtonLabel,
   },
+  render: args => ({
+    components: { UsaDatePickerCalendar },
+    props: Object.keys(UsaDatePickerCalendar.props),
+    setup() {
+      const open = ref(args.open)
+      const selectedDate = ref(args.selectedDate)
+      const activeDate = ref(args.activeDate)
+      const highlightedDate = ref(args.highlightedDate)
+      const selectorMode = ref(args.selectorMode)
+      return {
+        args,
+        open,
+        selectedDate,
+        activeDate,
+        highlightedDate,
+        selectorMode,
+      }
+    },
+    template: `<UsaDatePickerCalendar
+    v-model:open="args.open"
+    v-model:selected-date="args.selectedDate"
+    v-model:active-date="args.activeDate"
+    v-model:highlighted-date="args.highlightedDate"
+    v-model:selector-mode="args.selectorMode"
+    :min-date="args.minDate"
+    :max-date="args.maxDate"
+    :month-labels="args.monthLabels"
+    :day-of-week-labels="args.dayOfWeekLabels"
+    :day-of-week-abbreviation-labels="args.dayOfWeekAbbreviationLabels"
+    :previous-year-button-label="args.previousYearButtonLabel"
+    :next-year-button-label="args.nextYearButtonLabel"
+    :previous-month-button-label="args.previousMonthButtonLabel"
+    :next-month-button-label="args.nextMonthButtonLabel"
+    :year-selection-button-label="args.yearSelectionButtonLabel"
+    :month-selection-button-label="args.monthSelectionButtonLabel"
+    :previous-years-button-label="args.previousYearsButtonLabel"
+    :next-years-button-label="args.nextYearsButtonLabel"
+  ></UsaDatePickerCalendar>`,
+  }),
   decorators: [
     () => ({
       template: '<div><story /></div>',
@@ -146,124 +187,165 @@ export default {
   ],
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaDatePickerCalendar },
-  props: Object.keys(argTypes),
-  setup() {
-    const open = ref(args.open)
-    const selectedDate = ref(args.selectedDate)
-    const activeDate = ref(args.activeDate)
-    const highlightedDate = ref(args.highlightedDate)
-    const selectorMode = ref(args.selectorMode)
-    return {
-      ...args,
-      open,
-      selectedDate,
-      activeDate,
-      highlightedDate,
-      selectorMode,
-    }
+export const DefaultDatePickerCalendar = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaDatePickerCalendar
-    v-model:open="open"
-    v-model:selected-date="selectedDate"
-    v-model:active-date="activeDate"
-    v-model:highlighted-date="highlightedDate"
-    v-model:selector-mode="selectorMode"
-    :min-date="minDate"
-    :max-date="maxDate"
-    :month-labels="monthLabels"
-    :day-of-week-labels="dayOfWeekLabels"
-    :day-of-week-abbreviation-labels="dayOfWeekAbbreviationLabels"
-    :previous-year-button-label="previousYearButtonLabel"
-    :next-year-button-label="nextYearButtonLabel"
-    :previous-month-button-label="previousMonthButtonLabel"
-    :next-month-button-label="nextMonthButtonLabel"
-    :year-selection-button-label="yearSelectionButtonLabel"
-    :month-selection-button-label="monthSelectionButtonLabel"
-    :previous-years-button-label="previousYearsButtonLabel"
-    :next-years-button-label="nextYearsButtonLabel"
-  ></UsaDatePickerCalendar>`,
-})
-
-export const DefaultDatePickerCalendar = DefaultTemplate.bind({})
-DefaultDatePickerCalendar.args = {
-  ...defaultProps,
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendar />`,
+      },
+    },
+  },
 }
-DefaultDatePickerCalendar.storyName = 'Default'
 
-export const SelectedDateDatePickerCalendar = DefaultTemplate.bind({})
-SelectedDateDatePickerCalendar.args = {
-  ...defaultProps,
-  selectedDate: '2001-04-09',
-  activeDate: '2001-04-09',
+export const SelectedDateDatePickerCalendar = {
+  args: {
+    ...defaultProps,
+    selectedDate: '2001-04-09',
+    activeDate: '2001-04-09',
+  },
+  name: 'Selected Date',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendar v-model:selected-date="ref('2001-04-09')" v-model:active-date="ref('2001-04-09')" />`,
+      },
+    },
+  },
 }
-SelectedDateDatePickerCalendar.storyName = 'Selected Date'
 
-export const MinDateDatePickerCalendar = DefaultTemplate.bind({})
-MinDateDatePickerCalendar.args = {
-  ...defaultProps,
-  minDate: '2020-01-15',
-  activeDate: '2020-01-25',
+export const MinDateDatePickerCalendar = {
+  args: {
+    ...defaultProps,
+    minDate: '2020-01-15',
+    activeDate: '2020-01-25',
+  },
+  name: 'Min Date',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendar v-model:min-date="ref('2020-01-15')" v-model:active-date="ref('2020-01-25')" />`,
+      },
+    },
+  },
 }
-MinDateDatePickerCalendar.storyName = 'Min Date'
 
-export const MaxDateDatePickerCalendar = DefaultTemplate.bind({})
-MaxDateDatePickerCalendar.args = {
-  ...defaultProps,
-  maxDate: '2023-12-15',
-  activeDate: '2023-12-01',
+export const MaxDateDatePickerCalendar = {
+  args: {
+    ...defaultProps,
+    maxDate: '2023-12-15',
+    activeDate: '2023-12-01',
+  },
+  name: 'Max Date',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendar v-model:max-date="ref('2023-12-15')" v-model:active-date="ref('2023-12-01')" />`,
+      },
+    },
+  },
 }
-MaxDateDatePickerCalendar.storyName = 'Max Date'
 
-export const MonthSelectorDateDatePickerCalendar = DefaultTemplate.bind({})
-MonthSelectorDateDatePickerCalendar.args = {
-  ...defaultProps,
-  selectorMode: 'month',
+export const MonthSelectorDateDatePickerCalendar = {
+  args: {
+    ...defaultProps,
+    selectorMode: 'month',
+  },
+  name: 'Month Selector',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendar v-model:selector-mode="ref('month')" />`,
+      },
+    },
+  },
 }
-MonthSelectorDateDatePickerCalendar.storyName = 'Month Selector'
 
-export const YearSelectorDateDatePickerCalendar = DefaultTemplate.bind({})
-YearSelectorDateDatePickerCalendar.args = {
-  ...defaultProps,
-  selectorMode: 'year',
+export const YearSelectorDateDatePickerCalendar = {
+  args: {
+    ...defaultProps,
+    selectorMode: 'year',
+  },
+  name: 'Year Selector',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendar v-model:selector-mode="ref('year')" />`,
+      },
+    },
+  },
 }
-YearSelectorDateDatePickerCalendar.storyName = 'Year Selector'
 
-export const CustomLabelsDateDatePickerCalendar = DefaultTemplate.bind({})
-CustomLabelsDateDatePickerCalendar.args = {
-  ...defaultProps,
-  monthLabels: [
-    'Month 1',
-    'Month 2',
-    'Month 3',
-    'Month 4',
-    'Month 5',
-    'Month 6',
-    'Month 7',
-    'Month 8',
-    'Month 9',
-    'Month 10',
-    'Month 11',
-    'Month 12',
-  ],
-  dayOfWeekLabels: [
-    'Day A',
-    'Day B',
-    'Day C',
-    'Day D',
-    'Day E',
-    'Day F',
-    'Day G',
-  ],
-  dayOfWeekAbbreviationLabels: ['1', '2', '3', '4', '5', '6', '7'],
-  previousYearButtonLabel: 'Test previous year button label',
-  nextYearButtonLabel: 'Test next year button label',
-  previousMonthButtonLabel: 'Test previous month button label',
-  nextMonthButtonLabel: 'Test next month button label',
-  yearSelectionButtonLabel: 'Test year %s is selected',
-  monthSelectionButtonLabel: 'Test month %s is selected',
-  previousYearsButtonLabel: 'Test navigate back 12 years',
-  nextYearsButtonLabel: 'Test navigate forward 12 years',
+export const CustomLabelsDateDatePickerCalendar = {
+  args: {
+    ...defaultProps,
+    monthLabels: [
+      'Month 1',
+      'Month 2',
+      'Month 3',
+      'Month 4',
+      'Month 5',
+      'Month 6',
+      'Month 7',
+      'Month 8',
+      'Month 9',
+      'Month 10',
+      'Month 11',
+      'Month 12',
+    ],
+    dayOfWeekLabels: [
+      'Day A',
+      'Day B',
+      'Day C',
+      'Day D',
+      'Day E',
+      'Day F',
+      'Day G',
+    ],
+    dayOfWeekAbbreviationLabels: ['1', '2', '3', '4', '5', '6', '7'],
+    previousYearButtonLabel: 'Test previous year button label',
+    nextYearButtonLabel: 'Test next year button label',
+    previousMonthButtonLabel: 'Test previous month button label',
+    nextMonthButtonLabel: 'Test next month button label',
+    yearSelectionButtonLabel: 'Test year %s is selected',
+    monthSelectionButtonLabel: 'Test month %s is selected',
+    previousYearsButtonLabel: 'Test navigate back 12 years',
+    nextYearsButtonLabel: 'Test navigate forward 12 years',
+  },
+  name: 'Custom Labels',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaDatePickerCalendar :month-labels="[
+        'Month 1',
+        'Month 2',
+        'Month 3',
+        'Month 4',
+        'Month 5',
+        'Month 6',
+        'Month 7',
+        'Month 8',
+        'Month 9',
+        'Month 10',
+        'Month 11',
+        'Month 12',
+      ]" :day-of-week-labels="[
+        'Day A',
+        'Day B',
+        'Day C',
+        'Day D',
+        'Day E',
+        'Day F',
+        'Day G',
+      ]" :day-of-week-abbreviation-labels="[1, 2, 3, 4, 5, 6, 7]" previous-year-button-label="Test previous year button label"
+        next-year-button-label="Test next year button label" previous-month-button-label="Test previous month button label"
+        next-month-button-label="Test next month button label" year-selection-button-label="Test year %s is selected"
+        month-selection-button-label="Test month %s is selected" previous-years-button-label="Test navigate back 12 years"
+        next-years-button-label="Test navigate forward 12 years" />`,
+      },
+    },
+  },
 }
-CustomLabelsDateDatePickerCalendar.storyName = 'Custom Labels'

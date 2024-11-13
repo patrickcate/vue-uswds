@@ -110,121 +110,182 @@ export default {
     customClasses: defaultProps.customClasses,
     default: '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaFooterNav },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaFooterNav
-    :aria-label="ariaLabel"
-    :items="items"
-    :collapsible-heading-tag="collapsibleHeadingTag"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaFooterNav },
+    props: Object.keys(UsaFooterNav.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaFooterNav
+    :aria-label="args.ariaLabel"
+    :items="args.items"
+    :collapsible-heading-tag="args.collapsibleHeadingTag"
+    :custom-classes="args.customClasses"
   >
-    <template v-if="${!!args.default}" #default="{ items }">${
-      args.default
-    }</template>
+    <template v-if="!!args.default" #default="{ items }">${args.default}</template>
   </UsaFooterNav>`,
-})
-
-export const DefaultFooterNav = DefaultTemplate.bind({})
-DefaultFooterNav.args = {
-  ...defaultProps,
-  items: testItems,
+  }),
 }
-DefaultFooterNav.storyName = 'Default'
 
-export const BigFooterNav = DefaultTemplate.bind({})
-BigFooterNav.args = {
-  ...defaultProps,
-  items: testCollapsibleItems,
-}
-BigFooterNav.decorators = [
-  () => ({
-    template: '<div class="usa-footer usa-footer--big"><story /></div>',
-    provide: {
-      footerVariant: 'big',
+export const DefaultFooterNav = {
+  args: {
+    ...defaultProps,
+    items: testItems,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterNav :items="${JSON.stringify(testItems, null, '\t')}"></UsaFooterNav>`,
+      },
     },
-  }),
-]
-
-export const MediumFooterNav = DefaultTemplate.bind({})
-MediumFooterNav.args = {
-  ...defaultProps,
-  items: testItems,
-}
-MediumFooterNav.decorators = [
-  () => ({
-    template: '<div class="usa-footer"><story /></div>',
-  }),
-]
-
-export const SlimFooterNav = DefaultTemplate.bind({})
-SlimFooterNav.args = {
-  ...defaultProps,
-  items: testItems,
-}
-SlimFooterNav.decorators = [
-  () => ({
-    template: '<div class="usa-footer usa-footer--slim"><story /></div>',
-    provide: {
-      footerVariant: 'slim',
-    },
-  }),
-]
-
-export const AriaLabelFooterNav = DefaultTemplate.bind({})
-AriaLabelFooterNav.args = {
-  ...defaultProps,
-  ariaLabel: 'Custom aria label',
-  items: testItems,
-}
-AriaLabelFooterNav.storyName = 'Custom Aria Label'
-
-export const CollapsibleHeadingTagFooterNav = DefaultTemplate.bind({})
-CollapsibleHeadingTagFooterNav.args = {
-  ...defaultProps,
-  collapsibleHeadingTag: 'h2',
-  items: testCollapsibleItems,
-}
-CollapsibleHeadingTagFooterNav.decorators = [
-  () => ({
-    template: '<div class="usa-footer usa-footer--big"><story /></div>',
-    provide: {
-      footerVariant: 'big',
-    },
-  }),
-]
-CollapsibleHeadingTagFooterNav.storyName = 'Collapsible Heading Tag'
-
-export const DefaultScopedSlotFooterNav = DefaultTemplate.bind({})
-DefaultScopedSlotFooterNav.args = {
-  ...defaultProps,
-  items: testCollapsibleItems,
-  default: `<em>{{ items[0].text }}</em>`,
-}
-DefaultScopedSlotFooterNav.decorators = [
-  () => ({
-    template: '<div class="usa-footer"><story /></div>',
-  }),
-]
-DefaultScopedSlotFooterNav.storyName = 'Default Scoped Slot'
-
-export const CustomClassesFooterNav = DefaultTemplate.bind({})
-CustomClassesFooterNav.args = {
-  ...defaultProps,
-  items: testItems,
-  customClasses: {
-    gridRow: ['test-grid-row-class'],
-    gridCol: ['test-grid-col-class'],
   },
 }
-CustomClassesFooterNav.decorators = [
-  () => ({
-    template: '<div class="usa-footer"><story /></div>',
-  }),
-]
-CustomClassesFooterNav.storyName = 'Custom Classes'
+
+export const BigFooterNav = {
+  args: {
+    ...defaultProps,
+    items: testCollapsibleItems,
+  },
+  decorators: [
+    () => ({
+      template: '<div class="usa-footer usa-footer--big"><story /></div>',
+      provide: {
+        footerVariant: 'big',
+      },
+    }),
+  ],
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterNav :items="${JSON.stringify(testItems, null, '\t')}"></UsaFooterNav>`,
+      },
+    },
+  },
+}
+
+export const MediumFooterNav = {
+  args: {
+    ...defaultProps,
+    items: testItems,
+  },
+  decorators: [
+    () => ({
+      template: '<div class="usa-footer"><story /></div>',
+    }),
+  ],
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterNav :items="${JSON.stringify(testItems, null, '\t')}"></UsaFooterNav>`,
+      },
+    },
+  },
+}
+
+export const SlimFooterNav = {
+  args: {
+    ...defaultProps,
+    items: testItems,
+  },
+  decorators: [
+    () => ({
+      template: '<div class="usa-footer usa-footer--slim"><story /></div>',
+      provide: {
+        footerVariant: 'slim',
+      },
+    }),
+  ],
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterNav :items="${JSON.stringify(testItems, null, '\t')}"></UsaFooterNav>`,
+      },
+    },
+  },
+}
+
+export const AriaLabelFooterNav = {
+  args: {
+    ...defaultProps,
+    ariaLabel: 'Custom aria label',
+    items: testItems,
+  },
+  name: 'Custom Aria Label',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterNav aria-label="Custom aria label" :items="${JSON.stringify(testItems, null, '\t')}"></UsaFooterNav>`,
+      },
+    },
+  },
+}
+
+export const CollapsibleHeadingTagFooterNav = {
+  args: {
+    ...defaultProps,
+    collapsibleHeadingTag: 'h2',
+    items: testCollapsibleItems,
+  },
+  decorators: [
+    () => ({
+      template: '<div class="usa-footer usa-footer--big"><story /></div>',
+      provide: {
+        footerVariant: 'big',
+      },
+    }),
+  ],
+  name: 'Collapsible Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterNav collapsible-heading-tag="h2" :items="${JSON.stringify(testCollapsibleItems, null, '\t')}"></UsaFooterNav>`,
+      },
+    },
+  },
+}
+
+export const DefaultScopedSlotFooterNav = {
+  args: {
+    ...defaultProps,
+    items: testCollapsibleItems,
+    default: `<em>{{ items[0].text }}</em>`,
+  },
+  decorators: [
+    () => ({
+      template: '<div class="usa-footer"><story /></div>',
+    }),
+  ],
+  name: 'Default Scoped Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterNav :items="${JSON.stringify(testCollapsibleItems, null, '\t')}"><template #default="{ items }"><em>{{ items[0].text }}</em></template></UsaFooterNav>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesFooterNav = {
+  args: {
+    ...defaultProps,
+    items: testItems,
+    customClasses: {
+      gridRow: ['test-grid-row-class'],
+      gridCol: ['test-grid-col-class'],
+    },
+  },
+  decorators: [
+    () => ({
+      template: '<div class="usa-footer"><story /></div>',
+    }),
+  ],
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterNav :items="${JSON.stringify(testItems, null, '\t')}" :custom-classes="{ gridRow: ['test-grid-row-class'], gridCol: ['test-grid-col-class'] }"></UsaFooterNav>`,
+      },
+    },
+  },
+}

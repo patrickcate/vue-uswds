@@ -1,4 +1,5 @@
 import UsaChecklist from './UsaChecklist.vue'
+import UsaChecklistItem from '../UsaChecklistItem/UsaChecklistItem.vue'
 
 const testItems = [
   {
@@ -26,6 +27,7 @@ const defaultProps = {
 
 export default {
   component: UsaChecklist,
+  subcomponents: { UsaChecklistItem },
   title: 'Components/UsaChecklist',
   argTypes: {
     items: {
@@ -45,29 +47,62 @@ export default {
         '<ul class="usa-checklist" style="margin-left: 40px"><story /></ul>',
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaChecklist },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaChecklist :items="items">
-    <template v-if="${!!args.default}" #default>${args.default}</template>
+  render: args => ({
+    components: { UsaChecklist },
+    props: Object.keys(UsaChecklist.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaChecklist :items="args.items">
+    <template v-if="!!args.default" #default>${args.default}</template>
   </UsaChecklist>`,
-})
-
-export const DefaultChecklist = DefaultTemplate.bind({})
-DefaultChecklist.args = {
-  ...defaultProps,
-  items: testItems,
+  }),
 }
-DefaultChecklist.storyName = 'Default'
 
-export const CustomSlotContentChecklist = DefaultTemplate.bind({})
-CustomSlotContentChecklist.args = {
-  ...defaultProps,
-  default: '<li>A custom item</li>',
+export const DefaultChecklist = {
+  args: {
+    ...defaultProps,
+    items: testItems,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaChecklist :items="[
+  {
+    id: 'item1',
+    text: 'Use at least one uppercase character',
+    checked: false,
+    ariaLabel: 'is valid',
+  },
+  {
+    id: 'item2',
+    text: 'Use at least one number',
+    checked: true,
+    ariaLabel: 'is valid',
+  },
+  {
+    text: 'Use at least one symbol',
+    checked: false,
+    ariaLabel: 'is invalid',
+  },
+]"></UsaChecklist>`,
+      },
+    },
+  },
 }
-CustomSlotContentChecklist.storyName = 'Custom Slot Content'
+
+export const CustomSlotContentChecklist = {
+  args: {
+    ...defaultProps,
+    default: '<li>A custom item</li>',
+  },
+  name: 'Custom Slot Content',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaChecklist><li>A custom item</li></UsaChecklist>`,
+      },
+    },
+  },
+}

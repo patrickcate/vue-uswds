@@ -15,15 +15,7 @@ export default {
   title: 'Components/UsaAlert',
   argTypes: {
     variant: {
-      options: [
-        '',
-        'info',
-        'warning',
-        'error',
-        'success',
-        'emergency',
-        'validation',
-      ],
+      options: ['', 'info', 'warning', 'error', 'success'],
       control: {
         type: 'select',
       },
@@ -81,153 +73,226 @@ export default {
     'slot:heading': '',
     message: '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaAlert },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `
+  render: args => ({
+    components: { UsaAlert },
+    props: Object.keys(UsaAlert.props),
+    setup() {
+      return { args }
+    },
+    template: `
     <UsaAlert
-      :variant="variant"
-      :slim="slim"
-      :no-icon="noIcon"
-      :role="role"
-      :heading="heading"
-      :heading-tag="headingTag"
-      :custom-classes="customClasses"
+      :variant="args.variant"
+      :slim="args.slim"
+      :no-icon="args.noIcon"
+      :role="args.role"
+      :heading="args.heading"
+      :heading-tag="args.headingTag"
+      :custom-classes="args.customClasses"
     >
-      <template v-if="${!!args['slot:heading']}" #heading>${
-        args['slot:heading']
-      }</template>
-      <template v-if="${!!args.default}" #default>${args.default}</template>
-      <template v-if="${!!args.message}" #message>${args.message}</template>
+      <template #heading>{{ args['slot:heading'] }}</template>
+      <template #default>{{ args.default }}</template>
+      <template #message>{{ args.message }}</template>
     </UsaAlert>`,
-})
-
-export const InfoAlert = DefaultTemplate.bind({})
-InfoAlert.args = {
-  ...defaultProps,
-  variant: 'info',
-  heading: 'Informative status',
+  }),
 }
-InfoAlert.storyName = 'Info'
 
-export const WarningAlert = DefaultTemplate.bind({})
-WarningAlert.args = {
-  ...defaultProps,
-  variant: 'warning',
-  heading: 'Warning status',
-}
-WarningAlert.storyName = 'Warning'
-
-export const ErrorAlert = DefaultTemplate.bind({})
-ErrorAlert.args = {
-  ...defaultProps,
-  variant: 'error',
-  heading: 'Error status',
-}
-ErrorAlert.storyName = 'Error'
-
-export const SuccessAlert = DefaultTemplate.bind({})
-SuccessAlert.args = {
-  ...defaultProps,
-  variant: 'success',
-  heading: 'Success status',
-}
-SuccessAlert.storyName = 'Success'
-
-export const EmergencyAlert = DefaultTemplate.bind({})
-EmergencyAlert.args = {
-  ...defaultProps,
-  variant: 'emergency',
-  heading: 'Emergency alert message',
-  default: 'I should only be used with the SiteAlert component.',
-}
-EmergencyAlert.storyName = 'Emergency'
-
-export const ValidationAlert = DefaultTemplate.bind({})
-ValidationAlert.args = {
-  ...defaultProps,
-  variant: 'validation',
-  heading: 'Short alert message',
-  default: 'I should only be used with the Validation component.',
-}
-ValidationAlert.storyName = 'Validation'
-
-export const SlimAlert = DefaultTemplate.bind({})
-SlimAlert.args = {
-  ...defaultProps,
-  variant: 'info',
-  slim: true,
-  heading: 'Informative status',
-}
-SlimAlert.storyName = 'Slim'
-
-export const NoIconAlert = DefaultTemplate.bind({})
-NoIconAlert.args = {
-  ...defaultProps,
-  variant: 'info',
-  noIcon: true,
-  heading: 'Informative status',
-}
-NoIconAlert.storyName = 'No Icon'
-
-export const SlimAndNoIconAlert = DefaultTemplate.bind({})
-SlimAndNoIconAlert.args = {
-  ...defaultProps,
-  variant: 'info',
-  slim: true,
-  noIcon: true,
-  heading: 'Informative status',
-}
-SlimAndNoIconAlert.storyName = 'Slim and No Icon'
-
-export const CustomClassesAlert = DefaultTemplate.bind({})
-CustomClassesAlert.args = {
-  ...defaultProps,
-  variant: 'info',
-  heading: 'Custom CSS classes',
-  customClasses: {
-    body: ['test-body-class'],
-    heading: ['test-heading-class'],
+export const InfoAlert = {
+  args: {
+    variant: 'info',
+    heading: 'Informative status',
   },
-  default: 'Uses custom CSS classes.',
+  name: 'Info',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAlert variant="info" heading="Informative status">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</UsaAlert>`,
+      },
+    },
+  },
 }
-CustomClassesAlert.storyName = 'Custom Classes'
 
-export const CustomRoleAlert = DefaultTemplate.bind({})
-CustomRoleAlert.args = {
-  ...defaultProps,
-  variant: 'info',
-  role: 'alertdialog',
+export const WarningAlert = {
+  args: {
+    variant: 'warning',
+    heading: 'Warning status',
+  },
+  name: 'Warning',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAlert variant="warning" heading="Warning status">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</UsaAlert>`,
+      },
+    },
+  },
 }
-CustomRoleAlert.storyName = 'Custom Role Attribute'
 
-export const HeadingTagAlert = DefaultTemplate.bind({})
-HeadingTagAlert.args = {
-  ...defaultProps,
-  variant: 'info',
-  heading: 'Custom Heading Tag',
-  headingTag: 'h4',
+export const ErrorAlert = {
+  args: {
+    ...defaultProps,
+    variant: 'error',
+    heading: 'Error status',
+  },
+  name: 'Error',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAlert variant="error" heading="Error status">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</UsaAlert>`,
+      },
+    },
+  },
 }
-HeadingTagAlert.storyName = 'Custom Heading Tag'
 
-export const HeadingSlotAlert = DefaultTemplate.bind({})
-HeadingSlotAlert.args = {
-  ...defaultProps,
-  variant: 'info',
-  'slot:heading': 'Custom Heading Slot',
+export const SuccessAlert = {
+  args: {
+    ...defaultProps,
+    variant: 'success',
+    heading: 'Success status',
+  },
+  name: 'Success',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAlert variant="success" heading="Success status">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</UsaAlert>`,
+      },
+    },
+  },
 }
-HeadingSlotAlert.storyName = 'Heading Slot'
 
-export const MessageSlotAlert = DefaultTemplate.bind({})
-MessageSlotAlert.args = {
-  ...defaultProps,
-  variant: 'info',
-  heading: 'Informative status',
-  message: 'Custom message slot content.',
+export const SlimAlert = {
+  args: {
+    ...defaultProps,
+    variant: 'info',
+    slim: true,
+    heading: 'Informative status',
+  },
+  name: 'Slim',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAlert :slim="true" variant="info" heading="Informative status">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</UsaAlert>`,
+      },
+    },
+  },
 }
-MessageSlotAlert.storyName = 'Message Slot'
+
+export const NoIconAlert = {
+  args: {
+    ...defaultProps,
+    variant: 'info',
+    noIcon: true,
+    heading: 'Informative status',
+  },
+  name: 'No Icon',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAlert :no-icon="true" variant="info" heading="Informative status">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</UsaAlert>`,
+      },
+    },
+  },
+}
+
+export const SlimAndNoIconAlert = {
+  args: {
+    ...defaultProps,
+    variant: 'info',
+    slim: true,
+    noIcon: true,
+    heading: 'Informative status',
+  },
+  name: 'Slim and No Icon',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAlert :no-icon="true" :slim="true" variant="info" heading="Informative status">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</UsaAlert>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesAlert = {
+  args: {
+    ...defaultProps,
+    variant: 'info',
+    heading: 'Custom CSS classes',
+    customClasses: {
+      body: ['test-body-class'],
+      heading: ['test-heading-class'],
+    },
+    default: 'Uses custom CSS classes.',
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAlert :custom-classes="{ body: ['test-body-class'], heading: ['test-heading-class'] }" variant="info" heading="Custom CSS classes">Uses custom CSS classes.</UsaAlert>`,
+      },
+    },
+  },
+}
+
+export const CustomRoleAlert = {
+  args: {
+    ...defaultProps,
+    variant: 'info',
+    role: 'alertdialog',
+  },
+  name: 'Custom Role Attribute',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAlert :role="alertdialog" variant="info" heading="Informative status">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</UsaAlert>`,
+      },
+    },
+  },
+}
+
+export const HeadingTagAlert = {
+  args: {
+    ...defaultProps,
+    variant: 'info',
+    heading: 'Custom Heading Tag',
+    headingTag: 'h4',
+  },
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAlert heading-tag="h4" variant="info" heading="Custom Heading Tag">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</UsaAlert>`,
+      },
+    },
+  },
+}
+
+export const HeadingSlotAlert = {
+  args: {
+    ...defaultProps,
+    variant: 'info',
+    'slot:heading': 'Custom Heading Slot',
+  },
+  name: 'Heading Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAlert variant="info">\n\t<template #heading>Custom Heading Slot</template>\n\t<template #default>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</template>\n</UsaAlert>`,
+      },
+    },
+  },
+}
+
+export const MessageSlotAlert = {
+  args: {
+    ...defaultProps,
+    variant: 'info',
+    heading: 'Informative status',
+    message: 'Custom message slot content.',
+  },
+  name: 'Message Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaAlert variant="info" heading="Informative status">\n\t<template #message>Custom message slot content.</template>\n</UsaAlert>`,
+      },
+    },
+  },
+}

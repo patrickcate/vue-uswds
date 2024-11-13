@@ -1,5 +1,5 @@
 <script setup>
-import { computed, toRef, inject } from 'vue'
+import { computed, inject } from 'vue'
 import {
   PREFIX_SEPARATOR,
   GRID_NAMESPACE,
@@ -106,7 +106,7 @@ defineExpose({
         class="usa-banner__content usa-accordion__content"
         :class="customClasses?.bannerContent"
       >
-        <slot><UsaBannerContent></UsaBannerContent></slot>
+        <slot><UsaBannerContent /></slot>
       </div>
     </div>
   </section>

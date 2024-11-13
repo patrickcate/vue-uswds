@@ -39,45 +39,72 @@ export default {
     'slot:required': '',
     default: 'Test Label',
   },
+  render: args => ({
+    components: { UsaLabel },
+    props: Object.keys(UsaLabel.props),
+    setup() {
+      return { args, for: args.for }
+    },
+    template: `<UsaLabel :for="args.for" :required="args.required" :error="args.error"><template v-if="!!args.default" #default>${args.default}</template><template v-if="!!args['slot:required']" #required>${args['slot:required']}</template></UsaLabel>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaLabel },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args, labelFor: args.for }
+export const DefaultLabel = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaLabel :for="labelFor" :required="required" :error="error"><template v-if="${!!args.default}" #default>${
-    args.default
-  }</template><template v-if="${!!args['slot:required']}" #required>${
-    args['slot:required']
-  }</template></UsaLabel>`,
-})
-
-export const DefaultLabel = DefaultTemplate.bind({})
-DefaultLabel.args = {
-  ...defaultProps,
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaLabel>Test Label</UsaLabel>`,
+      },
+    },
+  },
 }
-DefaultLabel.storyName = 'Default'
 
-export const RequiredLabel = DefaultTemplate.bind({})
-RequiredLabel.args = {
-  ...defaultProps,
-  required: true,
+export const RequiredLabel = {
+  args: {
+    ...defaultProps,
+    required: true,
+  },
+  name: 'Required',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaLabel :required="true">Test Label</UsaLabel>`,
+      },
+    },
+  },
 }
-RequiredLabel.storyName = 'Required'
 
-export const ErrorLabel = DefaultTemplate.bind({})
-ErrorLabel.args = {
-  ...defaultProps,
-  error: true,
+export const ErrorLabel = {
+  args: {
+    ...defaultProps,
+    error: true,
+  },
+  name: 'Error',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaLabel :error="true">Test Label</UsaLabel>`,
+      },
+    },
+  },
 }
-ErrorLabel.storyName = 'Error'
 
-export const RequiredSlotLabel = DefaultTemplate.bind({})
-RequiredSlotLabel.args = {
-  ...defaultProps,
-  required: true,
-  'slot:required': '(required)',
+export const RequiredSlotLabel = {
+  args: {
+    ...defaultProps,
+    required: true,
+    'slot:required': '(required)',
+  },
+  name: 'Required Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaLabel :required="true"><template #required>(required)</template></UsaLabel>`,
+      },
+    },
+  },
 }
-RequiredSlotLabel.storyName = 'Required Slot'

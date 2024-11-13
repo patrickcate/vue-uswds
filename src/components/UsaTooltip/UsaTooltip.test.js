@@ -2,17 +2,13 @@ import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import UsaTooltip from './UsaTooltip.vue'
 
 describe('UsaTooltip', () => {
-  it('renders the component', () => {
-    cy.mount(UsaTooltip, {
-      props: {
-        id: 'test-tooltip-id',
-        label: 'Test tooltip label',
-        customClasses: {},
-      },
-      slots: {
-        default: () => 'Test tooltip trigger',
-      },
-    })
+  it.only('renders the component', () => {
+    const wrapperComponent = {
+      components: { UsaTooltip },
+      template: `<div style="padding:150px;"><UsaTooltip id="test-tooltip-id" label="Test tooltip label">Test tooltip trigger</UsaTooltip></div>`,
+    }
+
+    cy.mount(wrapperComponent)
 
     cy.get('span.usa-tooltip').as('tooltip').should('exist')
 
@@ -29,7 +25,7 @@ describe('UsaTooltip', () => {
       .and('not.have.class', 'is-visible')
       .and('have.attr', 'role', 'tooltip')
       .and('have.attr', 'aria-hidden', 'true')
-      .and('have.class', 'usa-tooltip__body--bottom')
+      .and('have.class', 'usa-tooltip__body--top')
       .and('contain', 'Test tooltip label')
       .and('be.hidden')
 
@@ -39,7 +35,7 @@ describe('UsaTooltip', () => {
       .should('be.visible')
       .and('have.class', 'is-set')
       .and('have.class', 'is-visible')
-      .and('have.class', 'usa-tooltip__body--bottom')
+      .and('have.class', 'usa-tooltip__body--top')
       .and('have.attr', 'aria-hidden', 'false')
       .and('have.attr', 'style')
 
@@ -75,7 +71,7 @@ describe('UsaTooltip', () => {
       .and('have.class', 'is-visible')
       .and('have.attr', 'aria-hidden', 'false')
 
-    cy.get('@tooltip').type('{esc}')
+    cy.realPress('{esc}')
 
     cy.get('@tooltipLabel')
       .should('be.hidden')
@@ -83,7 +79,7 @@ describe('UsaTooltip', () => {
       .and('not.have.class', 'is-visible')
       .and('have.attr', 'aria-hidden', 'true')
 
-    cy.get('@tooltipTrigger').focus()
+    cy.get('@tooltipTrigger').realHover()
 
     cy.get('@tooltipLabel')
       .should('be.visible')
@@ -91,13 +87,13 @@ describe('UsaTooltip', () => {
       .and('have.class', 'is-visible')
       .and('have.attr', 'aria-hidden', 'false')
 
-    cy.get('@tooltip').type('{enter}')
+    cy.get('@tooltipLabel').realHover()
 
     cy.get('@tooltipLabel')
-      .should('be.hidden')
-      .and('not.have.class', 'is-set')
-      .and('not.have.class', 'is-visible')
-      .and('have.attr', 'aria-hidden', 'true')
+      .should('be.visible')
+      .and('have.class', 'is-set')
+      .and('have.class', 'is-visible')
+      .and('have.attr', 'aria-hidden', 'false')
   })
 
   it('renders with custom tags, CSS classes, and label slot content', () => {

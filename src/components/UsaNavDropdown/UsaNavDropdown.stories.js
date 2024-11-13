@@ -33,39 +33,62 @@ export default {
       },
     }),
   ],
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaNavDropdown },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaNavDropdown
-    :id="id"
-    :open="open"
+  render: args => ({
+    components: { UsaNavDropdown },
+    props: Object.keys(UsaNavDropdown.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaNavDropdown
+    :id="args.id"
+    :open="args.open"
   >${args.default}</UsaNavDropdown>`,
-})
-
-export const DefaultNavDropdown = DefaultTemplate.bind({})
-DefaultNavDropdown.args = {
-  ...defaultProps,
-  default: 'Dropdown items here',
+  }),
 }
-DefaultNavDropdown.storyName = 'Default'
 
-export const OpenByDefaultNavDropdown = DefaultTemplate.bind({})
-OpenByDefaultNavDropdown.args = {
-  ...defaultProps,
-  open: true,
-  default: 'Dropdown items here',
+export const DefaultNavDropdown = {
+  args: {
+    ...defaultProps,
+    default: 'Dropdown items here',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaNavDropdown>Dropdown items here</UsaNavDropdown>`,
+      },
+    },
+  },
 }
-OpenByDefaultNavDropdown.storyName = 'Open by Default'
 
-export const CustomIdNavDropdown = DefaultTemplate.bind({})
-CustomIdNavDropdown.args = {
-  ...defaultProps,
-  id: 'custom-id',
-  default: 'Dropdown items here',
+export const OpenByDefaultNavDropdown = {
+  args: {
+    ...defaultProps,
+    open: true,
+    default: 'Dropdown items here',
+  },
+  name: 'Open by Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaNavDropdown :open="true">Dropdown items here</UsaNavDropdown>`,
+      },
+    },
+  },
 }
-CustomIdNavDropdown.storyName = 'Custom ID'
+
+export const CustomIdNavDropdown = {
+  args: {
+    ...defaultProps,
+    id: 'custom-id',
+    default: 'Dropdown items here',
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaNavDropdown id="custom-id">Dropdown items here</UsaNavDropdown>`,
+      },
+    },
+  },
+}

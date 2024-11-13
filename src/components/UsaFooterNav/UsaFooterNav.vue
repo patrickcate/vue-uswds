@@ -39,12 +39,12 @@ const props = defineProps({
           :items="items"
           :heading-tag="collapsibleHeadingTag"
           :custom-classes="customClasses"
-        ></UsaFooterCollapsibleMenu>
+        />
         <UsaFooterMenu
           v-else-if="footerVariant === 'medium' || footerVariant === 'slim'"
           :items="items"
           :custom-classes="customClasses"
-        ></UsaFooterMenu>
+        />
       </template>
     </slot>
   </nav>

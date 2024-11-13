@@ -102,164 +102,275 @@ export default {
       template: '<div class="usa-form usa-form--large"><story /></div>',
     }),
   ],
+  render: args => ({
+    components: { UsaTextInput },
+    props: Object.keys(UsaTextInput.props),
+    setup() {
+      const modelValue = ref(args.modelValue)
+      return { args, modelValue }
+    },
+    template: `<UsaTextInput
+      v-bind="args.$attrs"
+      :type="args.type"
+      :width="args.width"
+      :group="args.group"
+      :label="args.label"
+      :required="args.required"
+      :error="args.error"
+      :id="args.id"
+      :custom-classes="args.customClasses"
+      v-model="args.modelValue"
+    >
+      <template v-if="!!args['slot:label']" #label>${args['slot:label']}</template>
+      <template v-if="!!args.hint" #hint>${args.hint}</template>
+      <template v-if="!!args['error-message']" #error-message>${args['error-message']}</template>
+      <template v-if="!!args['input-prefix']" #input-prefix>${args['input-prefix']}</template>
+      <template v-if="!!args['input-suffix']" #input-suffix>${args['input-suffix']}</template>
+    </UsaTextInput>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaTextInput },
-  props: Object.keys(argTypes),
-  setup() {
-    const modelValue = ref(args.modelValue)
-    return { ...args, modelValue }
+export const DefaultTextInput = {
+  args: {
+    ...defaultProps,
+    label: 'Text input label',
   },
-  template: `<UsaTextInput
-    v-bind="$attrs"
-    :type="type"
-    :width="width"
-    :group="group"
-    :label="label"
-    :required="required"
-    :error="error"
-    :id="id"
-    :custom-classes="customClasses"
-    v-model="modelValue"
-  >
-    <template v-if="${!!args['slot:label']}" #label>${
-      args['slot:label']
-    }</template>
-    <template v-if="${!!args.hint}" #hint>${args.hint}</template>
-    <template v-if="${!!args['error-message']}" #error-message>${
-      args['error-message']
-    }</template>
-    <template v-if="${!!args['input-prefix']}" #input-prefix>${
-      args['input-prefix']
-    }</template>
-    <template v-if="${!!args['input-suffix']}" #input-suffix>${
-      args['input-suffix']
-    }</template>
-  </UsaTextInput>`,
-})
-
-export const DefaultTextInput = DefaultTemplate.bind({})
-DefaultTextInput.args = {
-  ...defaultProps,
-  label: 'Text input label',
-}
-DefaultTextInput.storyName = 'Default'
-
-export const DefaultValueTextInput = DefaultTemplate.bind({})
-DefaultValueTextInput.args = {
-  ...defaultProps,
-  label: 'Text input label',
-  modelValue: `I am some default text`,
-}
-DefaultValueTextInput.storyName = 'Default Text'
-
-export const InputTypeTextInput = DefaultTemplate.bind({})
-InputTypeTextInput.args = {
-  ...defaultProps,
-  label: 'Text input label',
-  type: 'number',
-}
-InputTypeTextInput.storyName = 'Input Type'
-
-export const WidthTextInput = DefaultTemplate.bind({})
-WidthTextInput.args = {
-  ...defaultProps,
-  label: 'Text input label',
-  width: 'sm',
-}
-WidthTextInput.storyName = 'Width'
-
-export const HintTextInput = DefaultTemplate.bind({})
-HintTextInput.args = {
-  ...defaultProps,
-  label: 'Text input label',
-  hint: 'Choose wisely',
-}
-HintTextInput.storyName = 'Hint'
-
-export const ErrorTextInput = DefaultTemplate.bind({})
-ErrorTextInput.args = {
-  ...defaultProps,
-  label: 'Text input label',
-  error: true,
-}
-ErrorTextInput.storyName = 'Error'
-
-export const ErrorMessageTextInput = DefaultTemplate.bind({})
-ErrorMessageTextInput.args = {
-  ...defaultProps,
-  label: 'Text input label',
-  error: true,
-  'error-message': 'Error message here',
-}
-ErrorMessageTextInput.storyName = 'Error Message'
-
-export const RequiredTextInput = DefaultTemplate.bind({})
-RequiredTextInput.args = {
-  ...defaultProps,
-  label: 'Text input label',
-  required: true,
-}
-RequiredTextInput.storyName = 'Required'
-
-export const GroupedTextInput = DefaultTemplate.bind({})
-GroupedTextInput.args = {
-  ...defaultProps,
-  label: 'Text input label',
-  group: true,
-}
-GroupedTextInput.storyName = 'Group Input Elements'
-
-export const LabelSlotTextInput = DefaultTemplate.bind({})
-LabelSlotTextInput.args = {
-  ...defaultProps,
-  'slot:label': `<em>Label slot content</em>`,
-}
-LabelSlotTextInput.storyName = 'Label Slot'
-
-export const PrefixSlotTextInput = DefaultTemplate.bind({})
-PrefixSlotTextInput.args = {
-  ...defaultProps,
-  'input-prefix': '@',
-}
-PrefixSlotTextInput.storyName = 'Input Prefix'
-
-export const SuffixSlotTextInput = DefaultTemplate.bind({})
-SuffixSlotTextInput.args = {
-  ...defaultProps,
-  'input-suffix': '%',
-}
-SuffixSlotTextInput.storyName = 'Input Suffix'
-
-export const PrefixAndSuffixSlotTextInput = DefaultTemplate.bind({})
-PrefixAndSuffixSlotTextInput.args = {
-  ...defaultProps,
-  'input-prefix': '@',
-  'input-suffix': '%',
-}
-PrefixAndSuffixSlotTextInput.storyName = 'Input Prefix & Suffix'
-
-export const CustomIdTextInput = DefaultTemplate.bind({})
-CustomIdTextInput.args = {
-  ...defaultProps,
-  label: 'Text input label',
-  id: 'custom-id',
-}
-CustomIdTextInput.storyName = 'Custom ID'
-
-export const CustomClassesTextInput = DefaultTemplate.bind({})
-CustomClassesTextInput.args = {
-  ...defaultProps,
-  label: 'Text input label',
-  customClasses: {
-    component: ['test-component-class'],
-    label: ['test-label-class'],
-    inputGroup: ['test-input-group-class'],
-    inputPrefix: ['test-input-prefix-class'],
-    inputSuffix: ['test-input-suffix-class'],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput label="Text input label" />`,
+      },
+    },
   },
-  'input-prefix': '@',
-  'input-suffix': '%',
 }
-CustomClassesTextInput.storyName = 'Custom CSS Classes'
+
+export const DefaultValueTextInput = {
+  args: {
+    ...defaultProps,
+    label: 'Text input label',
+    modelValue: `I am some default text`,
+  },
+  name: 'Default Text',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput label="Text input label" v-model="ref('I am some default text')" />`,
+      },
+    },
+  },
+}
+
+export const InputTypeTextInput = {
+  args: {
+    ...defaultProps,
+    label: 'Text input label',
+    type: 'number',
+  },
+  name: 'Input Type',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput label="Text input label" type="number" />`,
+      },
+    },
+  },
+}
+
+export const WidthTextInput = {
+  args: {
+    ...defaultProps,
+    label: 'Text input label',
+    width: 'sm',
+  },
+  name: 'Width',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput label="Text input label" width="sm" />`,
+      },
+    },
+  },
+}
+
+export const HintTextInput = {
+  args: {
+    ...defaultProps,
+    label: 'Text input label',
+    hint: 'Choose wisely',
+  },
+  name: 'Hint',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput label="Text input label"><template #hint>Choose wisely</template></UsaTextInput>`,
+      },
+    },
+  },
+}
+
+export const ErrorTextInput = {
+  args: {
+    ...defaultProps,
+    label: 'Text input label',
+    error: true,
+  },
+  name: 'Error',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput label="Text input label" :error="true" />`,
+      },
+    },
+  },
+}
+
+export const ErrorMessageTextInput = {
+  args: {
+    ...defaultProps,
+    label: 'Text input label',
+    error: true,
+    'error-message': 'Error message here',
+  },
+  name: 'Error Message',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput label="Text input label" :error="true"><template #error-message>Error message here</template></UsaTextInput>`,
+      },
+    },
+  },
+}
+
+export const RequiredTextInput = {
+  args: {
+    ...defaultProps,
+    label: 'Text input label',
+    required: true,
+  },
+  name: 'Required',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput label="Text input label" :required="true" />`,
+      },
+    },
+  },
+}
+
+export const GroupedTextInput = {
+  args: {
+    ...defaultProps,
+    label: 'Text input label',
+    group: true,
+  },
+  name: 'Group Input Elements',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput label="Text input label" :group="true" />`,
+      },
+    },
+  },
+}
+
+export const LabelSlotTextInput = {
+  args: {
+    ...defaultProps,
+    'slot:label': `<em>Label slot content</em>`,
+  },
+  name: 'Label Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput><template #label><em>Label slot content</em></template></UsaTextInput>`,
+      },
+    },
+  },
+}
+
+export const PrefixSlotTextInput = {
+  args: {
+    ...defaultProps,
+    'input-prefix': '@',
+  },
+  name: 'Input Prefix',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput><template #input-prefix>@</template></UsaTextInput>`,
+      },
+    },
+  },
+}
+
+export const SuffixSlotTextInput = {
+  args: {
+    ...defaultProps,
+    'input-suffix': '%',
+  },
+  name: 'Input Suffix',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput><template #input-suffix>%</template></UsaTextInput>`,
+      },
+    },
+  },
+}
+
+export const PrefixAndSuffixSlotTextInput = {
+  args: {
+    ...defaultProps,
+    'input-prefix': '@',
+    'input-suffix': '%',
+  },
+  name: 'Input Prefix & Suffix',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput><template #input-prefix>@</template><template #input-suffix>%</template></UsaTextInput>`,
+      },
+    },
+  },
+}
+
+export const CustomIdTextInput = {
+  args: {
+    ...defaultProps,
+    label: 'Text input label',
+    id: 'custom-id',
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput label="Text input label" id="custom-id" />`,
+      },
+    },
+  },
+}
+
+export const CustomClassesTextInput = {
+  args: {
+    ...defaultProps,
+    label: 'Text input label',
+    customClasses: {
+      component: ['test-component-class'],
+      label: ['test-label-class'],
+      inputGroup: ['test-input-group-class'],
+      inputPrefix: ['test-input-prefix-class'],
+      inputSuffix: ['test-input-suffix-class'],
+    },
+    'input-prefix': '@',
+    'input-suffix': '%',
+  },
+  name: 'Custom CSS Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTextInput label="Text input label" :custom-classes="{ \n\tcomponent: ['test-component-class'], \n\tlabel: ['test-label-class'], \n\tinputGroup: ['test-input-group-class'], \n\tinputPrefix: ['test-input-prefix-class'], \n\tinputSuffix: ['test-input-suffix-class'] }\n">\n\t<template #input-prefix>@</template>\n\t<template #input-suffix>%</template>\n</UsaTextInput>`,
+      },
+    },
+  },
+}

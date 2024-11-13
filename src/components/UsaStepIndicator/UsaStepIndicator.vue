@@ -109,7 +109,7 @@ function stepStatus(label) {
         :current-step-number="currentStepNumber"
         :current-step-label="currentStepLabel"
         :total-steps="totalSteps"
-      ></UsaStepIndicatorHeader>
+      />
     </slot>
   </div>
 </template>

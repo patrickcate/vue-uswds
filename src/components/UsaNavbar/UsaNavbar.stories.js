@@ -1,3 +1,4 @@
+import { ref } from 'vue'
 import UsaNavbar from './UsaNavbar.vue'
 
 const defaultProps = {
@@ -28,57 +29,104 @@ export default {
     default: '',
     'menu-button': '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaNavbar },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaNavbar
-    :menu-button-label="menuButtonLabel"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaNavbar },
+    props: Object.keys(UsaNavbar.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaNavbar
+    :menu-button-label="args.menuButtonLabel"
+    :custom-classes="args.customClasses"
   >
-    <template v-if="${!!args.default}" #default>${args.default}</template>
-    <template v-if="${!!args[
-      'menu-button'
-    ]}" #menu-button="{ menuButtonLabel }">${args['menu-button']}</template>
+    <template v-if="!!args.default" #default>${args.default}</template>
+    <template v-if="!!args['menu-button']" #menu-button="{ menuButtonLabel }">${args['menu-button']}</template>
   </UsaNavbar>`,
-})
-
-export const DefaultNavbar = DefaultTemplate.bind({})
-DefaultNavbar.args = {
-  ...defaultProps,
+  }),
+  decorators: [
+    () => ({
+      template: '<story />',
+      provide: {
+        mobileMenuId: ref(''),
+        isMobileMenuOpen: ref(false),
+        toggleMobileMenu: () => {},
+      },
+    }),
+  ],
 }
-DefaultNavbar.storyName = 'Default'
 
-export const MenuButtonLabelNavbar = DefaultTemplate.bind({})
-MenuButtonLabelNavbar.args = {
-  ...defaultProps,
-  menuButtonLabel: 'Open Menu',
-}
-MenuButtonLabelNavbar.storyName = 'Menu Button Label'
-
-export const DefaultSlotNavbar = DefaultTemplate.bind({})
-DefaultSlotNavbar.args = {
-  ...defaultProps,
-  default: 'Your Logo Here',
-}
-DefaultSlotNavbar.storyName = 'Default Slot'
-
-export const MenuButtonScopedSlotNavbar = DefaultTemplate.bind({})
-MenuButtonScopedSlotNavbar.args = {
-  ...defaultProps,
-  'menu-button': '<em>My {{ menuButtonLabel }}</em>',
-}
-MenuButtonScopedSlotNavbar.storyName = 'Menu Button Scoped Slot'
-
-export const CustomClassesNavbar = DefaultTemplate.bind({})
-CustomClassesNavbar.args = {
-  ...defaultProps,
-  customClasses: {
-    button: ['test-button-class'],
+export const DefaultNavbar = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaNavbar></UsaNavbar>`,
+      },
+    },
   },
 }
-CustomClassesNavbar.storyName = 'Custom Classes'
+
+export const MenuButtonLabelNavbar = {
+  args: {
+    ...defaultProps,
+    menuButtonLabel: 'Open Menu',
+  },
+  name: 'Menu Button Label',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaNavbar menu-button-label="Open Menu"></UsaNavbar>`,
+      },
+    },
+  },
+}
+
+export const DefaultSlotNavbar = {
+  args: {
+    ...defaultProps,
+    default: 'Your Logo Here',
+  },
+  name: 'Default Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaNavbar>Your Logo Here</UsaNavbar>`,
+      },
+    },
+  },
+}
+
+export const MenuButtonScopedSlotNavbar = {
+  args: {
+    ...defaultProps,
+    'menu-button': '<em>My {{ menuButtonLabel }}</em>',
+  },
+  name: 'Menu Button Scoped Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaNavbar><template #menu-button="{ menuButtonLabel }"><em>My {{ menuButtonLabel }}</em></template></UsaNavbar>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesNavbar = {
+  args: {
+    ...defaultProps,
+    customClasses: {
+      button: ['test-button-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaNavbar :custom-classes="{ button: ['test-button-class'] }"></UsaNavbar>`,
+      },
+    },
+  },
+}

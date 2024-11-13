@@ -34,83 +34,105 @@ export default {
     phoneUrl: defaultProps.phoneUrl,
     default: '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaFooterAddress },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaFooterAddress
-    :heading="heading"
-    :email="email"
-    :phone="phone"
-    :phoneUrl="phoneUrl"
-  >${args.default}</UsaFooterAddress>`,
-})
-
-export const DefaultFooterAddress = DefaultTemplate.bind({})
-DefaultFooterAddress.args = {
-  ...defaultProps,
-  heading: 'Agency Contact Center',
-  email: 'info@agency.gov',
-  phone: '(800) 555-GOVT',
-  phoneUrl: '1-800-555-5555',
-}
-DefaultFooterAddress.decorators = [
-  () => ({
-    template: `<div class="usa-footer">
-        <div class="usa-footer__secondary-section">
-          <div class="grid-container">
-            <div class="usa-footer__contact-links"><story /></div>
-          </div>
-        </div>
-      </div>`,
-  }),
-]
-DefaultFooterAddress.storyName = 'Default'
-
-export const SlimFooterAddress = DefaultTemplate.bind({})
-SlimFooterAddress.args = {
-  ...defaultProps,
-  heading: 'Agency Contact Center',
-  email: 'info@agency.gov',
-  phone: '(800) 555-GOVT',
-  phoneUrl: '1-800-555-5555',
-}
-
-SlimFooterAddress.decorators = [
-  () => ({
-    template: `<div class="usa-footer">
-        <div class="usa-footer__primary-section">
-          <div class="usa-footer__primary-container grid-row">
-            <div class="usa-footer__contact-links"><story /></div>
-          </div>
-        </div>
-      </div>`,
-    provide: {
-      footerVariant: 'slim',
+  render: args => ({
+    components: { UsaFooterAddress },
+    props: Object.keys(UsaFooterAddress.props),
+    setup() {
+      return { args }
     },
+    template: `<UsaFooterAddress
+      :heading="args.heading"
+      :email="args.email"
+      :phone="args.phone"
+      :phoneUrl="args.phoneUrl"
+    >${args.default}</UsaFooterAddress>`,
   }),
-]
-SlimFooterAddress.storyName = 'Slim Footer'
-
-export const DefaultSlotFooterAddress = DefaultTemplate.bind({})
-DefaultSlotFooterAddress.args = {
-  ...defaultProps,
-  heading: 'Agency Contact Center',
-  default: '<em>Custom footer address markup here...</em>',
 }
-DefaultSlotFooterAddress.decorators = [
-  () => ({
-    template: `<div class="usa-footer">
-        <div class="usa-footer__secondary-section">
-          <div class="grid-container">
-            <div class="usa-footer__contact-links"><story /></div>
+
+export const DefaultFooterAddress = {
+  args: {
+    ...defaultProps,
+    heading: 'Agency Contact Center',
+    email: 'info@agency.gov',
+    phone: '(800) 555-GOVT',
+    phoneUrl: '1-800-555-5555',
+  },
+  decorators: [
+    () => ({
+      template: `<div class="usa-footer">
+          <div class="usa-footer__secondary-section">
+            <div class="grid-container">
+              <div class="usa-footer__contact-links"><story /></div>
+            </div>
           </div>
-        </div>
-      </div>`,
-  }),
-]
-DefaultSlotFooterAddress.storyName = 'Default Slot'
+        </div>`,
+    }),
+  ],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterAddress heading="Agency Contact Center" email="info@agency.gov" phone="(800) 555-GOVT" phoneUrl="1-800-555-5555"></UsaFooterAddress>`,
+      },
+    },
+  },
+}
+
+export const SlimFooterAddress = {
+  args: {
+    ...defaultProps,
+    heading: 'Agency Contact Center',
+    email: 'info@agency.gov',
+    phone: '(800) 555-GOVT',
+    phoneUrl: '1-800-555-5555',
+  },
+  decorators: [
+    () => ({
+      template: `<div class="usa-footer">
+          <div class="usa-footer__primary-section">
+            <div class="usa-footer__primary-container grid-row">
+              <div class="usa-footer__contact-links"><story /></div>
+            </div>
+          </div>
+        </div>`,
+      provide: {
+        footerVariant: 'slim',
+      },
+    }),
+  ],
+  name: 'Slim Footer',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterAddress heading="Agency Contact Center" email="info@agency.gov" phone="(800) 555-GOVT" phoneUrl="1-800-555-5555"></UsaFooterAddress>`,
+      },
+    },
+  },
+}
+
+export const DefaultSlotFooterAddress = {
+  args: {
+    ...defaultProps,
+    heading: 'Agency Contact Center',
+    default: '<em>Custom footer address markup here...</em>',
+  },
+  decorators: [
+    () => ({
+      template: `<div class="usa-footer">
+          <div class="usa-footer__secondary-section">
+            <div class="grid-container">
+              <div class="usa-footer__contact-links"><story /></div>
+            </div>
+          </div>
+        </div>`,
+    }),
+  ],
+  name: 'Default Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterAddress heading="Agency Contact Center"><em>Custom footer address markup here...</em></UsaFooterAddress>`,
+      },
+    },
+  },
+}

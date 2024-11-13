@@ -22,47 +22,78 @@ export default {
     size: defaultProps.size,
     default: `<UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem>`,
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaIconList, UsaIconListItem },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaIconList
-    :color="color"
-    :size="size"
+  render: args => ({
+    components: { UsaIconList, UsaIconListItem },
+    props: Object.keys(UsaIconList.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaIconList
+    :color="args.color"
+    :size="args.size"
   >${args.default}</UsaIconList>`,
-})
-
-export const DefaultIconList = DefaultTemplate.bind({})
-DefaultIconList.args = {
-  ...defaultProps,
+  }),
 }
-DefaultIconList.storyName = 'Default'
 
-export const ColorIconList = DefaultTemplate.bind({})
-ColorIconList.args = {
-  ...defaultProps,
-  color: 'success',
-}
-ColorIconList.storyName = 'Color'
-
-export const SingleSizeIconList = DefaultTemplate.bind({})
-SingleSizeIconList.args = {
-  ...defaultProps,
-  size: 'lg',
-}
-SingleSizeIconList.storyName = 'Single Size'
-
-export const ResponsiveSizesIconList = DefaultTemplate.bind({})
-ResponsiveSizesIconList.args = {
-  ...defaultProps,
-  size: {
-    mobile: 'lg',
-    tablet: 'xl',
-    desktop: '2xl',
+export const DefaultIconList = {
+  args: {
+    ...defaultProps,
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIconList><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem></UsaIconList>`,
+      },
+    },
   },
 }
-ResponsiveSizesIconList.storyName = 'Responsive Sizes'
+
+export const ColorIconList = {
+  args: {
+    ...defaultProps,
+    color: 'success',
+  },
+  name: 'Color',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIconList color="success"><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem></UsaIconList>`,
+      },
+    },
+  },
+}
+
+export const SingleSizeIconList = {
+  args: {
+    ...defaultProps,
+    size: 'lg',
+  },
+  name: 'Single Size',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIconsList size="lg"><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem></UsaIconsList>`,
+      },
+    },
+  },
+}
+
+export const ResponsiveSizesIconList = {
+  args: {
+    ...defaultProps,
+    size: {
+      mobile: 'lg',
+      tablet: 'xl',
+      desktop: '2xl',
+    },
+  },
+  name: 'Responsive Sizes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIconsList :size="{ mobile: 'lg', tablet: 'xl', desktop: '2xl' }"><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem><UsaIconListItem icon="check_circle">Icon list item</UsaIconListItem></UsaIconsList>`,
+      },
+    },
+  },
+}

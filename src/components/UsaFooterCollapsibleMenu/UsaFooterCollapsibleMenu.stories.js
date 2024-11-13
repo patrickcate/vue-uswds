@@ -93,55 +93,84 @@ export default {
         '<div class="usa-footer"><div class="usa-footer__nav"><story /></div></div>',
     }),
   ],
+  render: args => ({
+    components: { UsaFooterCollapsibleMenu },
+    props: Object.keys(UsaFooterCollapsibleMenu.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaFooterCollapsibleMenu
+      :items="args.items"
+      :heading-tag="args.headingTag"
+      :custom-classes="args.customClasses"
+    ></UsaFooterCollapsibleMenu>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaFooterCollapsibleMenu },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultFooterCollapsibleMenu = {
+  args: {
+    ...defaultProps,
+    items: testItems,
   },
-  template: `<UsaFooterCollapsibleMenu
-    :items="items"
-    :heading-tag="headingTag"
-    :custom-classes="customClasses"
-  ></UsaFooterCollapsibleMenu>`,
-})
-
-export const DefaultFooterCollapsibleMenu = DefaultTemplate.bind({})
-DefaultFooterCollapsibleMenu.args = {
-  ...defaultProps,
-  items: testItems,
-}
-DefaultFooterCollapsibleMenu.storyName = 'Default'
-
-export const HeadingTagFooterCollapsibleMenu = DefaultTemplate.bind({})
-HeadingTagFooterCollapsibleMenu.args = {
-  ...defaultProps,
-  items: testItems,
-  headingTag: 'h3',
-}
-HeadingTagFooterCollapsibleMenu.storyName = 'Custom Heading Tag'
-
-export const MobileCollapsibleMenu = DefaultTemplate.bind({})
-MobileCollapsibleMenu.args = {
-  ...defaultProps,
-  items: testItems,
-}
-MobileCollapsibleMenu.parameters = {
-  viewport: {
-    defaultViewport: 'iphone6',
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterCollapsibleMenu :items="${JSON.stringify(testItems, null, '\t')}"></UsaFooterCollapsibleMenu>`,
+      },
+    },
   },
 }
-MobileCollapsibleMenu.storyName = 'Mobile Collapsible'
 
-export const CustomClassesFooterCollapsibleMenu = DefaultTemplate.bind({})
-CustomClassesFooterCollapsibleMenu.args = {
-  ...defaultProps,
-  items: testItems,
-  customClasses: {
-    gridRow: ['test-grid-row-class'],
-    gridCol: ['test-grid-col-class'],
+export const HeadingTagFooterCollapsibleMenu = {
+  args: {
+    ...defaultProps,
+    items: testItems,
+    headingTag: 'h3',
+  },
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterCollapsibleMenu :items="${JSON.stringify(testItems, null, '\t')}" heading-tag="h3"></UsaFooterCollapsibleMenu>`,
+      },
+    },
   },
 }
-CustomClassesFooterCollapsibleMenu.storyName = 'Custom CSS Classes'
+
+export const MobileCollapsibleMenu = {
+  args: {
+    ...defaultProps,
+    items: testItems,
+  },
+  name: 'Mobile Collapsible',
+  parameters: {
+    viewport: {
+      defaultViewport: 'iphone6',
+    },
+    docs: {
+      source: {
+        code: `<UsaFooterCollapsibleMenu :items="${JSON.stringify(testItems, null, '\t')}"></UsaFooterCollapsibleMenu>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesFooterCollapsibleMenu = {
+  args: {
+    ...defaultProps,
+    items: testItems,
+    customClasses: {
+      gridRow: ['test-grid-row-class'],
+      gridCol: ['test-grid-col-class'],
+    },
+  },
+  name: 'Custom CSS Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaFooterCollapsibleMenu :items="${JSON.stringify(testItems, null, '\t')}" :custom-classes="{ gridRow: ['test-grid-row-class'], gridCol: ['test-grid-col-class'] }"></UsaFooterCollapsibleMenu>`,
+      },
+    },
+  },
+}

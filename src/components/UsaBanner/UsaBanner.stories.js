@@ -15,6 +15,7 @@ export default {
   argTypes: {
     open: {
       control: { type: 'boolean' },
+      description: 'Set banner to be open by default on initial load.',
     },
     id: {
       control: { type: 'text' },
@@ -52,100 +53,181 @@ export default {
     button: '',
     default: '',
   },
+  render: args => ({
+    components: { UsaBanner },
+    props: Object.keys(UsaBanner.props),
+    setup() {
+      return { args }
+    },
+    template: `
+    <UsaBanner
+      :id="args.id"
+      :open="args.open"
+      :aria-label="args.ariaLabel"
+      :header-text="args.headerText"
+      :action-text="args.actionText"
+      :custom-classes="args.customClasses"
+    >
+      <template v-if="args.flag" #flag>${args.flag}</template>
+      <template v-if="args.button" #button="{ isOpen, actionText }">${args.button}</template>
+      <template v-if="args.default" #default>${args.default}</template>
+    </UsaBanner>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaBanner },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultBanner = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaBanner
-    :id="id"
-    :open="open"
-    :ariaLabel="ariaLabel"
-    :headerText="headerText"
-    :actionText="actionText"
-    :customClasses="customClasses"
-  >
-    <template v-if="${!!args.flag}" #flag>${args.flag}</template>
-    <template v-if="${!!args.button}" #button>${args.button}</template>
-    <template v-if="${!!args.default}" #default>${args.default}</template>
-  </UsaBanner>`,
-})
-
-export const DefaultBanner = DefaultTemplate.bind({})
-DefaultBanner.args = {
-  ...defaultProps,
-}
-DefaultBanner.storyName = 'Default'
-
-export const DefaultOpenBanner = DefaultTemplate.bind({})
-DefaultOpenBanner.args = {
-  ...defaultProps,
-  open: true,
-}
-DefaultOpenBanner.storyName = 'Open by Default'
-
-export const CustomIdBanner = DefaultTemplate.bind({})
-CustomIdBanner.args = {
-  ...defaultProps,
-  id: 'custom-id',
-}
-CustomIdBanner.storyName = 'Custom ID'
-
-export const FlagSlotBanner = DefaultTemplate.bind({})
-FlagSlotBanner.args = {
-  ...defaultProps,
-  flag: 'Custom Flag Icon',
-}
-FlagSlotBanner.storyName = 'Flag Slot'
-
-export const ButtonSlotBanner = DefaultTemplate.bind({})
-ButtonSlotBanner.args = {
-  ...defaultProps,
-  button: 'Custom Button Text',
-}
-ButtonSlotBanner.storyName = 'Button Slot'
-
-export const DefaultSlotBanner = DefaultTemplate.bind({})
-DefaultSlotBanner.args = {
-  ...defaultProps,
-  open: true,
-  default: 'Custom Banner Content',
-}
-DefaultSlotBanner.storyName = 'Default Slot'
-
-export const CustomClassesBanner = DefaultTemplate.bind({})
-CustomClassesBanner.args = {
-  ...defaultProps,
-  customClasses: {
-    accordion: ['custom-accordion-class'],
-    bannerHeader: ['custom-banner-header-class'],
-    bannerInner: ['custom-banner-inner-class'],
-    button: ['custom-button-class'],
-    bannerContent: ['custom-banner-content-class'],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBanner></UsaBanner>`,
+      },
+    },
   },
 }
-CustomClassesBanner.storyName = 'Custom Classes'
 
-export const AriaLabelBanner = DefaultTemplate.bind({})
-AriaLabelBanner.args = {
-  ...defaultProps,
-  ariaLabel: 'Custom aria label',
+export const DefaultOpenBanner = {
+  args: {
+    ...defaultProps,
+    open: true,
+  },
+  name: 'Open by Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBanner :open="true"></UsaBanner>`,
+      },
+    },
+  },
 }
-AriaLabelBanner.storyName = 'Custom Aria Label'
 
-export const HeaderTextBanner = DefaultTemplate.bind({})
-HeaderTextBanner.args = {
-  ...defaultProps,
-  headerText: 'Custom header text',
+export const CustomIdBanner = {
+  args: {
+    ...defaultProps,
+    id: 'custom-id',
+  },
+  name: 'Custom ID',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBanner id="custom-id"></UsaBanner>`,
+      },
+    },
+  },
 }
-HeaderTextBanner.storyName = 'Custom Header Text'
 
-export const ActionTextBanner = DefaultTemplate.bind({})
-ActionTextBanner.args = {
-  ...defaultProps,
-  actionText: 'Custom action text',
+export const FlagSlotBanner = {
+  args: {
+    ...defaultProps,
+    flag: 'Custom Flag Icon',
+  },
+  name: 'Flag Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `
+          <UsaBanner>\n\t<template #flag>Custom Flag Icon</template>\n</UsaBanner>`,
+      },
+    },
+  },
 }
-ActionTextBanner.storyName = 'Custom Action Text'
+
+export const ButtonSlotBanner = {
+  args: {
+    ...defaultProps,
+    button: 'Custom Button Text',
+  },
+  name: 'Button Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBanner>\n\t<template #button>Custom Button</template>\n</UsaBanner>`,
+      },
+    },
+  },
+}
+
+export const DefaultSlotBanner = {
+  args: {
+    ...defaultProps,
+    open: true,
+    default: 'Custom Banner Content',
+  },
+  name: 'Default Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBanner>Custom Banner Content</UsaBanner>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesBanner = {
+  args: {
+    ...defaultProps,
+    customClasses: {
+      accordion: ['custom-accordion-class'],
+      bannerHeader: ['custom-banner-header-class'],
+      bannerInner: ['custom-banner-inner-class'],
+      button: ['custom-button-class'],
+      bannerContent: ['custom-banner-content-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBanner :custom-classes="{ accordion: ['custom-accordion-class'], bannerHeader: ['custom-banner-header-class'], bannerInner: ['custom-banner-inner-class'], button: ['custom-button-class'], bannerContent: ['custom-banner-content-class'] }">Custom Classes</UsaBanner>`,
+      },
+    },
+  },
+}
+
+export const AriaLabelBanner = {
+  args: {
+    ...defaultProps,
+    ariaLabel: 'Custom aria label',
+  },
+  name: 'Custom Aria Label',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBanner aria-label="Custom aria label"></UsaBanner>`,
+      },
+    },
+  },
+}
+
+export const HeaderTextBanner = {
+  args: {
+    ...defaultProps,
+    headerText: 'Custom header text',
+  },
+  name: 'Custom Header Text',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBanner header-text="Custom Header Text"></UsaBanner>`,
+      },
+    },
+  },
+}
+
+export const ActionTextBanner = {
+  args: {
+    ...defaultProps,
+    actionText: 'Custom action text',
+  },
+  name: 'Custom Action Text',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaBanner action-text="Custom action text"></UsaBanner>`,
+      },
+    },
+  },
+}

@@ -49,70 +49,109 @@ export default {
       },
     }),
   ],
+  render: args => ({
+    components: { UsaTableHeaderCell },
+    props: Object.keys(UsaTableHeaderCell.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaTableHeaderCell
+      :id="args.id"
+      :label="args.label"
+      :sortable="args.sortable"
+      :current-sorted-header="args.currentSortedHeader"
+      :current-sort-direction="args.currentSortDirection"
+    >
+      <template v-if="!!args.default" #default>${args.default}</template>
+    </UsaTableHeaderCell>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaTableHeaderCell },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultTableHeaderCell = {
+  args: {
+    ...defaultProps,
+    id: 'test-header-id',
+    label: 'Test header',
   },
-  template: `<UsaTableHeaderCell
-    :id="id"
-    :label="label"
-    :sortable="sortable"
-    :current-sorted-header="currentSortedHeader"
-    :current-sort-direction="currentSortDirection"
-  >
-    <template v-if="${!!args.default}" #default>${args.default}</template>
-  </UsaTableHeaderCell>`,
-})
-
-export const DefaultTableHeaderCell = DefaultTemplate.bind({})
-DefaultTableHeaderCell.args = {
-  ...defaultProps,
-  id: 'test-header-id',
-  label: 'Test header',
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTableHeaderCell id="test-header-id" label="Test header" />`,
+      },
+    },
+  },
 }
-DefaultTableHeaderCell.storyName = 'Default'
 
-export const SortableTableHeaderCell = DefaultTemplate.bind({})
-SortableTableHeaderCell.args = {
-  ...defaultProps,
-  id: 'test-header-id',
-  label: 'Test header',
-  sortable: true,
+export const SortableTableHeaderCell = {
+  args: {
+    ...defaultProps,
+    id: 'test-header-id',
+    label: 'Test header',
+    sortable: true,
+  },
+  name: 'Sortable',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTableHeaderCell id="test-header-id" label="Test header" :sortable="true" />`,
+      },
+    },
+  },
 }
-SortableTableHeaderCell.storyName = 'Sortable'
 
-export const AscendingSortTableHeaderCell = DefaultTemplate.bind({})
-AscendingSortTableHeaderCell.args = {
-  ...defaultProps,
-  id: 'test-header-id',
-  label: 'Test header',
-  sortable: true,
-  currentSortedHeader: 'test-header-id',
-  currentSortDirection: 'ascending',
+export const AscendingSortTableHeaderCell = {
+  args: {
+    ...defaultProps,
+    id: 'test-header-id',
+    label: 'Test header',
+    sortable: true,
+    currentSortedHeader: 'test-header-id',
+    currentSortDirection: 'ascending',
+  },
+  name: 'Ascending',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTableHeaderCell id="test-header-id" label="Test header" :sortable="true" current-sorted-header="test-header-id" current-sort-direction="ascending" />`,
+      },
+    },
+  },
 }
-AscendingSortTableHeaderCell.storyName = 'Ascending'
 
-export const DescendingSortTableHeaderCell = DefaultTemplate.bind({})
-DescendingSortTableHeaderCell.args = {
-  ...defaultProps,
-  id: 'test-header-id',
-  label: 'Test header',
-  sortable: true,
-  currentSortedHeader: 'test-header-id',
-  currentSortDirection: 'descending',
+export const DescendingSortTableHeaderCell = {
+  args: {
+    ...defaultProps,
+    id: 'test-header-id',
+    label: 'Test header',
+    sortable: true,
+    currentSortedHeader: 'test-header-id',
+    currentSortDirection: 'descending',
+  },
+  name: 'Descending',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTableHeaderCell id="test-header-id" label="Test header" :sortable="true" current-sorted-header="test-header-id" current-sort-direction="descending" />`,
+      },
+    },
+  },
 }
-DescendingSortTableHeaderCell.storyName = 'Descending'
 
-export const CustomSlotTableHeaderCell = DefaultTemplate.bind({})
-CustomSlotTableHeaderCell.args = {
-  ...defaultProps,
-  id: 'test-header-id',
-  label: 'Test header',
-  sortable: true,
-  default: '<em>Custom header label text here...</em>',
+export const CustomSlotTableHeaderCell = {
+  args: {
+    ...defaultProps,
+    id: 'test-header-id',
+    label: 'Test header',
+    sortable: true,
+    default: '<em>Custom header label text here...</em>',
+  },
+  name: 'Custom Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaTableHeaderCell id="test-header-id" label="Test header" :sortable="true"><em>Custom header label text here...</em></UsaTableHeaderCell>`,
+      },
+    },
+  },
 }
-CustomSlotTableHeaderCell.storyName = 'Custom Slot'

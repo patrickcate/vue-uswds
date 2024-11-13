@@ -118,7 +118,7 @@ watch(
         :id="computedId"
         :items="validatedItems"
         :class="customClasses?.checklist"
-      ></UsaChecklist>
+      />
     </template>
   </UsaAlert>
   <span

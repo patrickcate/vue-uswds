@@ -35,43 +35,66 @@ export default {
     headingTag: defaultProps.headingTag,
     customClasses: defaultProps.customClasses,
   },
+  render: args => ({
+    components: { UsaStepIndicatorHeader },
+    props: Object.keys(UsaStepIndicatorHeader.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaStepIndicatorHeader
+      :current-step-number="args.currentStepNumber"
+      :current-step-label="args.currentStepLabel"
+      :total-steps="args.totalSteps"
+      :headingTag="args.headingTag"
+      :custom-classes="args.customClasses"
+    ></UsaStepIndicatorHeader>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaStepIndicatorHeader },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultStepIndicatorHeader = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaStepIndicatorHeader
-    :current-step-number="currentStepNumber"
-    :current-step-label="currentStepLabel"
-    :total-steps="totalSteps"
-    :headingTag="headingTag"
-    :custom-classes="customClasses"
-  ></UsaStepIndicatorHeader>`,
-})
-
-export const DefaultStepIndicatorHeader = DefaultTemplate.bind({})
-DefaultStepIndicatorHeader.args = {
-  ...defaultProps,
-}
-DefaultStepIndicatorHeader.storyName = 'Default'
-
-export const CustomClassesStepIndicatorHeader = DefaultTemplate.bind({})
-CustomClassesStepIndicatorHeader.args = {
-  ...defaultProps,
-  customClasses: {
-    heading: ['test-heading-class'],
-    counter: ['test-counter-class'],
-    label: ['test-label-class'],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicatorHeader :current-step-number="1" current-step-label="Test step 1" :total-steps="3"></UsaStepIndicatorHeader>`,
+      },
+    },
   },
 }
-CustomClassesStepIndicatorHeader.storyName = 'Custom Classes'
 
-export const CustomHeadingTagStepIndicatorHeader = DefaultTemplate.bind({})
-CustomHeadingTagStepIndicatorHeader.args = {
-  ...defaultProps,
-  headingTag: 'h4',
+export const CustomClassesStepIndicatorHeader = {
+  args: {
+    ...defaultProps,
+    customClasses: {
+      heading: ['test-heading-class'],
+      counter: ['test-counter-class'],
+      label: ['test-label-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicatorHeader :current-step-number="1" current-step-label="Test step 1" :total-steps="3" :custom-classes="{ heading: ['test-heading-class'], counter: ['test-counter-class'], label: ['test-label-class'] }"></UsaStepIndicatorHeader>`,
+      },
+    },
+  },
 }
-CustomHeadingTagStepIndicatorHeader.storyName = 'Custom Heading Tag'
+
+export const CustomHeadingTagStepIndicatorHeader = {
+  args: {
+    ...defaultProps,
+    headingTag: 'h4',
+  },
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaStepIndicatorHeader :current-step-number="1" current-step-label="Test step 1" :total-steps="3" heading-tag="h4"></UsaStepIndicatorHeader>`,
+      },
+    },
+  },
+}

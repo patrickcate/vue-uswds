@@ -43,54 +43,83 @@ export default {
     default:
       '<p>Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien.</p>',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaProcessList, UsaProcessListItem },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `
+  render: args => ({
+    components: { UsaProcessList, UsaProcessListItem },
+    props: Object.keys(UsaProcessListItem.props),
+    setup() {
+      return { args }
+    },
+    template: `
     <UsaProcessList>
-      <UsaProcessListItem :heading="heading" :heading-tag="headingTag" :custom-classes="customClasses">
-        <template v-if="${!!args['slot:heading']}" #heading>${
-          args['slot:heading']
-        }</template>
-        <template v-if="${!!args.default}" #default>${args.default}</template>
+      <UsaProcessListItem :heading="args.heading" :heading-tag="args.headingTag" :custom-classes="args.customClasses">
+        <template v-if="!!args['slot:heading']" #heading>${args['slot:heading']}</template>
+        <template v-if="!!args.default" #default>${args.default}</template>
       </UsaProcessListItem>
     </UsaProcessList>
   `,
-})
-
-export const DefaultProcessListItem = DefaultTemplate.bind({})
-DefaultProcessListItem.args = {
-  ...defaultProps,
-  heading: 'Start a process',
+  }),
 }
-DefaultProcessListItem.storyName = 'Default'
 
-export const CustomHeadingTagProcessListItem = DefaultTemplate.bind({})
-CustomHeadingTagProcessListItem.args = {
-  ...defaultProps,
-  heading: 'Start a process',
-  headingTag: 'h4',
-}
-CustomHeadingTagProcessListItem.storyName = 'Custom Heading Tag'
-
-export const CustomClassesProcessListItem = DefaultTemplate.bind({})
-CustomClassesProcessListItem.args = {
-  ...defaultProps,
-  heading: 'Start a process',
-  customClasses: {
-    heading: ['test-heading-class'],
+export const DefaultProcessListItem = {
+  args: {
+    ...defaultProps,
+    heading: 'Start a process',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaProcessListItem heading="Start a process"></UsaProcessListItem>`,
+      },
+    },
   },
 }
-CustomClassesProcessListItem.storyName = 'Custom Classes'
 
-export const HeadingSlotProcessListItem = DefaultTemplate.bind({})
-HeadingSlotProcessListItem.args = {
-  ...defaultProps,
-  'slot:heading': 'Custom Heading Slot',
+export const CustomHeadingTagProcessListItem = {
+  args: {
+    ...defaultProps,
+    heading: 'Start a process',
+    headingTag: 'h4',
+  },
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaProcessListItem heading="Start a process" heading-tag="h4"></UsaProcessListItem>`,
+      },
+    },
+  },
 }
-HeadingSlotProcessListItem.storyName = 'Heading Slot'
+
+export const CustomClassesProcessListItem = {
+  args: {
+    ...defaultProps,
+    heading: 'Start a process',
+    customClasses: {
+      heading: ['test-heading-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaProcessListItem heading="Start a process" :custom-classes="{'heading': ['test-heading-class']}"></UsaProcessListItem>`,
+      },
+    },
+  },
+}
+
+export const HeadingSlotProcessListItem = {
+  args: {
+    ...defaultProps,
+    'slot:heading': 'Custom Heading Slot',
+  },
+  name: 'Heading Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaProcessListItem>\n\t<template #heading>Custom Heading Slot</template>\n</UsaProcessListItem>`,
+      },
+    },
+  },
+}

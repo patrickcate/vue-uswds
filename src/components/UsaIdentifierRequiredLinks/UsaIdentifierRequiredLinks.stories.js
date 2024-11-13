@@ -54,29 +54,44 @@ export default {
       template: '<div class="usa-identifier"><story /></div>',
     }),
   ],
+  render: args => ({
+    components: { UsaIdentifierRequiredLinks },
+    props: Object.keys(UsaIdentifierRequiredLinks.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaIdentifierRequiredLinks
+      :aria-label="args.ariaLabel"
+      :items="args.items"
+    />`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaIdentifierRequiredLinks },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultIdentifierRequiredLinks = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaIdentifierRequiredLinks
-    :aria-label="ariaLabel"
-    :items="items"
-  />`,
-})
-
-export const DefaultIdentifierRequiredLinks = DefaultTemplate.bind({})
-DefaultIdentifierRequiredLinks.args = {
-  ...defaultProps,
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIdentifierRequiredLinks items="${(JSON.stringify(defaultProps.items), null, '\t')}"></UsaIdentifierRequiredLinks>`,
+      },
+    },
+  },
 }
-DefaultIdentifierRequiredLinks.storyName = 'Default'
 
-export const CustomAriaLabelIdentifierRequiredLinks = DefaultTemplate.bind({})
-CustomAriaLabelIdentifierRequiredLinks.args = {
-  ...defaultProps,
-  ariaLabel: 'Custom aria label',
+export const CustomAriaLabelIdentifierRequiredLinks = {
+  args: {
+    ...defaultProps,
+    ariaLabel: 'Custom aria label',
+  },
+  name: 'Custom Aria Label',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaIdentifierRequiredLinks aria-label="Custom aria label" items="${(JSON.stringify(defaultProps.items), null, '\t')}"></UsaIdentifierRequiredLinks>`,
+      },
+    },
+  },
 }
-CustomAriaLabelIdentifierRequiredLinks.storyName = 'Custom Aria Label'

@@ -15,26 +15,41 @@ export default {
   args: {
     visible: defaultProps.visible,
   },
+  render: args => ({
+    components: { UsaOverlay },
+    props: Object.keys(UsaOverlay.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaOverlay :visible="args.visible"></UsaOverlay>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaOverlay },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultOverlay = {
+  args: {
+    ...defaultProps,
   },
-  template: `<UsaOverlay :visible="visible"></UsaOverlay>`,
-})
-
-export const DefaultOverlay = DefaultTemplate.bind({})
-DefaultOverlay.args = {
-  ...defaultProps,
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaOverlay />`,
+      },
+    },
+  },
 }
-DefaultOverlay.storyName = 'Default'
 
-export const VisibleOverlay = DefaultTemplate.bind({})
-VisibleOverlay.args = {
-  ...defaultProps,
-  visible: true,
+export const VisibleOverlay = {
+  args: {
+    ...defaultProps,
+    visible: true,
+  },
+  name: 'Visible',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaOverlay :visible="true" />`,
+      },
+    },
+  },
 }
-VisibleOverlay.storyName = 'Visible'

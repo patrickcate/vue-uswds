@@ -50,54 +50,85 @@ export default {
     customClasses: defaultProps.customClasses,
     default: '',
   },
-}
-
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaCollectionHeading },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
-  },
-  template: `<UsaCollectionHeading
-    :heading="heading"
-    :heading-tag="headingTag"
-    :href="href"
-    :to="to"
-    :router-component-name="routerComponentName"
-    :custom-classes="customClasses"
+  render: args => ({
+    components: { UsaCollectionHeading },
+    props: Object.keys(UsaCollectionHeading.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaCollectionHeading
+    :heading="args.heading"
+    :heading-tag="args.headingTag"
+    :href="args.href"
+    :to="args.to"
+    :router-component-name="args.routerComponentName"
+    :custom-classes="args.customClasses"
   >${args.default}</UsaCollectionHeading>`,
-})
-
-export const DefaultCollectionItemHeading = DefaultTemplate.bind({})
-DefaultCollectionItemHeading.args = {
-  ...defaultProps,
-  heading: 'Collection Item Heading',
+  }),
 }
-DefaultCollectionItemHeading.storyName = 'Default'
 
-export const CustomHeadingCollectionItemHeading = DefaultTemplate.bind({})
-CustomHeadingCollectionItemHeading.args = {
-  ...defaultProps,
-
-  headingTag: 'h4',
-  heading: 'Custom heading tag',
-}
-CustomHeadingCollectionItemHeading.storyName = 'Custom Heading Tag'
-
-export const HeadingSlotCollectionItemHeading = DefaultTemplate.bind({})
-HeadingSlotCollectionItemHeading.args = {
-  ...defaultProps,
-  heading: 'Collection Item Heading',
-  default: 'Custom header slot',
-}
-HeadingSlotCollectionItemHeading.storyName = 'Header Slot'
-
-export const CustomClassesCollectionItemHeading = DefaultTemplate.bind({})
-CustomClassesCollectionItemHeading.args = {
-  ...defaultProps,
-  heading: 'Collection Item Heading',
-  customClasses: {
-    link: ['test-link-class'],
+export const DefaultCollectionItemHeading = {
+  args: {
+    ...defaultProps,
+    heading: 'Collection Item Heading',
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionHeading heading="Collection Item Heading" />`,
+      },
+    },
   },
 }
-CustomClassesCollectionItemHeading.storyName = 'Custom Classes'
+
+export const CustomHeadingCollectionItemHeading = {
+  args: {
+    ...defaultProps,
+
+    headingTag: 'h4',
+    heading: 'Custom heading tag',
+  },
+  name: 'Custom Heading Tag',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionHeading heading-tag="h4" heading="Collection Item Heading" />`,
+      },
+    },
+  },
+}
+
+export const HeadingSlotCollectionItemHeading = {
+  args: {
+    ...defaultProps,
+    heading: 'Collection Item Heading',
+    default: 'Custom header slot',
+  },
+  name: 'Header Slot',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionHeading heading-tag="h4">Custom header slot</UsaCollectionHeading>`,
+      },
+    },
+  },
+}
+
+export const CustomClassesCollectionItemHeading = {
+  args: {
+    ...defaultProps,
+    heading: 'Collection Item Heading',
+    customClasses: {
+      link: ['test-link-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaCollectionHeading heading="Collection Item Heading" :custom-classes="{ link: ['test-link-class'] }" />`,
+      },
+    },
+  },
+}

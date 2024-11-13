@@ -1,4 +1,5 @@
 import UsaHero from './UsaHero.vue'
+import UsaHeroCallout from '../UsaHeroCallout'
 
 const defaultProps = {
   backgroundImage: UsaHero.props.backgroundImage.default,
@@ -8,6 +9,7 @@ const defaultProps = {
 
 export default {
   component: UsaHero,
+  subcomponents: { UsaHeroCallout },
   title: 'Components/UsaHero',
   argTypes: {
     backgroundImage: {
@@ -29,35 +31,49 @@ export default {
     customClasses: defaultProps.customClasses,
     default: '',
   },
+  render: args => ({
+    components: { UsaHero },
+    props: Object.keys(UsaHero.props),
+    setup() {
+      return { args }
+    },
+    template: `<UsaHero :background-image="args.backgroundImage" :aria-label="args.ariaLabel" :custom-classes="args.customClasses">${args.default}</UsaHero>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { UsaHero },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const DefaultHero = {
+  args: {
+    ...defaultProps,
+    backgroundImage:
+      'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.sites.pages.cloud.gov/preview/uswds/uswds/develop/hero.jpg',
+    ariaLabel: 'Introduction',
   },
-  template: `<UsaHero :background-image="backgroundImage"
-  :aria-label="ariaLabel" :custom-classes="customClasses">${args.default}</UsaHero>`,
-})
-
-export const DefaultHero = DefaultTemplate.bind({})
-DefaultHero.args = {
-  ...defaultProps,
-  backgroundImage:
-    'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.app.cloud.gov/preview/uswds/uswds/develop/hero.png',
-  ariaLabel: 'Introduction',
-}
-DefaultHero.storyName = 'Default'
-
-export const CustomClassesHero = DefaultTemplate.bind({})
-CustomClassesHero.args = {
-  ...defaultProps,
-  backgroundImage:
-    'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.app.cloud.gov/preview/uswds/uswds/develop/hero.png',
-  ariaLabel: 'Introduction',
-  customClasses: {
-    gridContainer: ['test-grid-container-class'],
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaHero :background-image="backgroundImage" :aria-label="ariaLabel"><UsaHeroCallout heading="Bring attention to a project priority" heading-alt="Hero callout:"><p>Support the callout with some short explanatory text. You don't need more than a couple of sentences.</p></UsaHeroCallout></UsaHero>`,
+      },
+    },
   },
 }
-CustomClassesHero.storyName = 'Custom Classes'
+
+export const CustomClassesHero = {
+  args: {
+    ...defaultProps,
+    backgroundImage:
+      'https://federalist-3b6ba08e-0df4-44c9-ac73-6fc193b0e19c.sites.pages.cloud.gov/preview/uswds/uswds/develop/hero.jpg',
+    ariaLabel: 'Introduction',
+    customClasses: {
+      gridContainer: ['test-grid-container-class'],
+    },
+  },
+  name: 'Custom Classes',
+  parameters: {
+    docs: {
+      source: {
+        code: `<UsaHero :background-image="backgroundImage" :aria-label="ariaLabel" :custom-classes="{gridContainer: ['test-grid-container-class']}"><UsaHeroCallout heading="Bring attention to a project priority" heading-alt="Hero callout:"><p>Support the callout with some short explanatory text. You don't need more than a couple of sentences.</p></UsaHeroCallout></UsaHero>`,
+      },
+    },
+  },
+}
