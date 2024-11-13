@@ -1,0 +1,13 @@
+import{c as i,r as c,o as m}from"./vue.esm-bundler-2e7cedae.js";import{_ as l}from"./_plugin-vue_export-helper-c27b6911.js";const s={},d={class:"usa-footer__primary-section"};function p(e,y){return m(),i("div",d,[c(e.$slots,"default")])}const o=l(s,[["render",p]]);s.__docgenInfo={exportName:"default",displayName:"UsaFooterPrimarySection",type:1,props:[{name:"key",global:!0,description:"",tags:[],required:!1,type:"PropertyKey",declarations:[],schema:{kind:"enum",type:"PropertyKey",schema:["string","number","symbol"]}},{name:"ref",global:!0,description:"",tags:[],required:!1,type:"VNodeRef",declarations:[],schema:{kind:"enum",type:"VNodeRef",schema:["string","Ref<any, any>",{kind:"event",type:"(ref: Element | ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string, {}, {}, {}, string, ComponentProvideOptions>, ... 4 more ..., any>, refs: Record<...>): void"}]}},{name:"ref_for",global:!0,description:"",tags:[],required:!1,type:"boolean",declarations:[],schema:{kind:"enum",type:"boolean",schema:["false","true"]}},{name:"ref_key",global:!0,description:"",tags:[],required:!1,type:"string",declarations:[],schema:"string"},{name:"class",global:!0,description:"",tags:[],required:!1,type:"unknown",declarations:[],schema:"unknown"},{name:"style",global:!0,description:"",tags:[],required:!1,type:"unknown",declarations:[],schema:"unknown"}],events:[],slots:[{name:"default",type:"{}",description:"",declarations:[],schema:{kind:"object",type:"{}"}}],exposed:[],sourceFiles:"/home/runner/work/vue-uswds/vue-uswds/src/components/UsaFooterPrimarySection/UsaFooterPrimarySection.vue"};const g={component:o,title:"Components/UsaFooterPrimarySection",argTypes:{default:{control:{type:"text"}}},args:{default:""},render:e=>({components:{UsaFooterPrimarySection:o},props:[],setup(){return{args:e}},template:`<UsaFooterPrimarySection>${e.default}</UsaFooterPrimarySection>`})},r={args:{default:"Test primary footer content"},name:"Default",parameters:{docs:{source:{code:"<UsaFooterPrimarySection>Test primary footer content</UsaFooterPrimarySection>"}}}};var t,a,n;r.parameters={...r.parameters,docs:{...(t=r.parameters)==null?void 0:t.docs,source:{originalSource:`{
+  args: {
+    default: 'Test primary footer content'
+  },
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: \`<UsaFooterPrimarySection>Test primary footer content</UsaFooterPrimarySection>\`
+      }
+    }
+  }
+}`,...(n=(a=r.parameters)==null?void 0:a.docs)==null?void 0:n.source}}};const _=["DefaultFooterPrimarySection"];export{r as DefaultFooterPrimarySection,_ as __namedExportsOrder,g as default};
