@@ -1,5 +1,22 @@
 Changelog
 
+# [1.10.0](https://github.com/patrickcate/vue-uswds/compare/v1.9.0...v1.10.0) (2024-11-13)
+
+
+### Bug Fixes
+
+* **UsaChecklistItem:** remove ability to focus checklist items ([2437a41](https://github.com/patrickcate/vue-uswds/commit/2437a412809e61e517ea9eb01f3f2ce4895d0152))
+
+
+### Features
+
+* **UsaTooltip:** allow users to hover over tooltip content ([94e7c0c](https://github.com/patrickcate/vue-uswds/commit/94e7c0c81454de1b3d60bfe0a88862976c291423))
+
+
+### Reverts
+
+* **UsaSelect:** remove `selected` attr binding ([070278b](https://github.com/patrickcate/vue-uswds/commit/070278b0511ac6197333d50bc4e05228cf0a8c6b))
+
 # [1.9.0](https://github.com/patrickcate/vue-uswds/compare/v1.8.0...v1.9.0) (2024-05-05)
 
 
