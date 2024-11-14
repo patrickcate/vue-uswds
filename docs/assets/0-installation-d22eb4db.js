@@ -1,4 +1,4 @@
-import{j as n}from"./jsx-runtime-414c8829.js";import{u as r}from"./index-876fed6d.js";import{ae as i}from"./index-b3005215.js";import"./_commonjsHelpers-725317a4.js";import"./iframe-c284a20d.js";import"../sb-preview/runtime.js";import"./index-1b441bc2.js";import"./index-9226d4a5.js";import"./index-356e4a49.js";function t(s){const e={a:"a",code:"code",h1:"h1",h2:"h2",p:"p",pre:"pre",strong:"strong",...r(),...s.components};return n.jsxs(n.Fragment,{children:[n.jsx(i,{title:"Guide/Installation"}),`
+import{ae as n,af as i}from"./index-f9c139c8.js";import{u as r}from"./index-73f02083.js";import"./iframe-334d931a.js";import"../sb-preview/runtime.js";import"./index-760c6342.js";import"./index-1b441bc2.js";import"./index-356e4a49.js";function t(s){const e={a:"a",code:"code",h1:"h1",h2:"h2",p:"p",pre:"pre",strong:"strong",...r(),...s.components};return n.jsxs(n.Fragment,{children:[n.jsx(i,{title:"Guide/Installation"}),`
 `,n.jsx(e.h1,{id:"installation",children:"Installation"}),`
 `,n.jsxs(e.p,{children:[n.jsx(e.strong,{children:"Note:"})," You will need to load the ",n.jsx(e.a,{href:"https://designsystem.digital.gov",rel:"nofollow",children:"USWDS"})," CSS separately."]}),`
 `,n.jsxs(e.p,{children:["Vue USWDS can be installed either by including it with a simple ",n.jsx(e.code,{children:"script"})," tag or using NPM and a build system."]}),`
@@ -23,4 +23,4 @@ import{j as n}from"./jsx-runtime-414c8829.js";import{u as r}from"./index-876fed6
 `})}),`
 `,n.jsx(e.p,{children:"or"}),`
 `,n.jsx(e.pre,{children:n.jsx(e.code,{className:"language-shell",children:`yarn install vue-uswds
-`})})]})}function j(s={}){const{wrapper:e}={...r(),...s.components};return e?n.jsx(e,{...s,children:n.jsx(t,{...s})}):t(s)}export{j as default};
+`})})]})}function u(s={}){const{wrapper:e}={...r(),...s.components};return e?n.jsx(e,{...s,children:n.jsx(t,{...s})}):t(s)}export{u as default};

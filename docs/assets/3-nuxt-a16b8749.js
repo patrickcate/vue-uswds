@@ -1,2 +1,0 @@
-import{j as t}from"./jsx-runtime-414c8829.js";import{u as s}from"./index-876fed6d.js";import"./_commonjsHelpers-725317a4.js";function o(n){const e={a:"a",h1:"h1",p:"p",...s(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(e.h1,{id:"use-with-nuxt",children:"Use with Nuxt"}),`
-`,t.jsxs(e.p,{children:["Install the ",t.jsx(e.a,{href:"https://github.com/patrickcate/nuxt-uswds",rel:"nofollow",children:"Nuxt USWDS"})," module."]})]})}function i(n={}){const{wrapper:e}={...s(),...n.components};return e?t.jsx(e,{...n,children:t.jsx(o,{...n})}):o(n)}export{i as default};
