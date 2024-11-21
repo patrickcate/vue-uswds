@@ -140,6 +140,7 @@ const groupElements = computed(
           <option
             v-if="!option.group"
             :value="option.value"
+            :selected="option.value === selectedValue"
             :disabled="option.disabled"
             >{{ option.text || option.value }}</option
           >
@@ -152,6 +153,7 @@ const groupElements = computed(
               v-for="groupedOption in option.options"
               :key="groupedOption.value"
               :value="groupedOption.value"
+              :selected="groupedOption.value === selectedValue"
               :disabled="groupedOption.disabled"
               >{{ groupedOption.text || groupedOption.value }}</option
             >
