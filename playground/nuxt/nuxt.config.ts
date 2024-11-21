@@ -2,4 +2,5 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['nuxt-uswds'],
+  compatibilityDate: '2024-11-20',
 })
