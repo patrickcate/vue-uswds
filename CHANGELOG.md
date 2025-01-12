@@ -1,5 +1,12 @@
 Changelog
 
+## [1.10.1](https://github.com/patrickcate/vue-uswds/compare/v1.10.0...v1.10.1) (2024-11-21)
+
+
+### Bug Fixes
+
+* **UsaSelect:** set `selected` prop correctly for ssr ([2556c07](https://github.com/patrickcate/vue-uswds/commit/2556c07a533464832b0095cbcf748e13fa0b8701))
+
 # [1.10.0](https://github.com/patrickcate/vue-uswds/compare/v1.9.0...v1.10.0) (2024-11-13)
 
 
