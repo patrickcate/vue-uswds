@@ -17,7 +17,7 @@ describe('UsaIcon', () => {
 
     cy.get('svg > use').should(
       'have.attr',
-      'xlink:href',
+      'href',
       '/assets/img/sprite.svg#flag',
     )
   })
@@ -44,7 +44,7 @@ describe('UsaIcon', () => {
       .and('have.attr', 'focusable', 'true')
       .and('have.class', 'usa-icon--size-3')
 
-    cy.get('svg > use').should('have.attr', 'xlink:href', '/test.svg#github')
+    cy.get('svg > use').should('have.attr', 'href', '/test.svg#github')
   })
 
   it('custom slot content is used', () => {
