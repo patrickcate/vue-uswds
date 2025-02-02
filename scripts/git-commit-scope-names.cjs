@@ -6,7 +6,7 @@ const getDirectories = source =>
   readdirSync(source, { withFileTypes: true })
     .filter(
       dirent =>
-        dirent.isDirectory() && !hiddenFilesRegexPattern.test(dirent.name)
+        dirent.isDirectory() && !hiddenFilesRegexPattern.test(dirent.name),
     )
     .map(dirent => dirent.name)
 
@@ -14,15 +14,15 @@ const getFilenames = source =>
   readdirSync(source, { withFileTypes: true })
     .filter(
       dirent =>
-        !dirent.isDirectory() && !hiddenFilesRegexPattern.test(dirent.name)
+        !dirent.isDirectory() && !hiddenFilesRegexPattern.test(dirent.name),
     )
     .map(dirent => dirent.name.replace('.js', ''))
 
 const componentNames = getDirectories(
-  join(__dirname, '..', 'src', 'components')
+  join(__dirname, '..', 'src', 'components'),
 )
 const composableNames = getFilenames(
-  join(__dirname, '..', 'src', 'composables')
+  join(__dirname, '..', 'src', 'composables'),
 )
 
 module.exports = {

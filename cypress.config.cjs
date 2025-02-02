@@ -30,7 +30,7 @@ module.exports = defineConfig({
               'node_modules',
               'vue',
               'dist',
-              'vue.esm-bundler.js'
+              'vue.esm-bundler.js',
             ),
           },
         },
