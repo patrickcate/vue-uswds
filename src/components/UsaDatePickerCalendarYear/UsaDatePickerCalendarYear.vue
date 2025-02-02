@@ -4,12 +4,11 @@ import {
   computed,
   watch,
   nextTick,
-  onMounted,
   onBeforeUnmount,
   shallowRef,
   toRef,
 } from 'vue'
-import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
+import { UseFocusTrap } from '@vueuse/integrations/useFocusTrap/component'
 import { YEAR_GROUP } from '@/utils/constants.js'
 import { getYear, setYear, parseIsoDate } from '@/utils/dates.js'
 import useYearPicker from './useYearPicker.js'
@@ -48,15 +47,13 @@ const props = defineProps({
   },
 })
 
-const yearDatePickerRef = ref(null)
-const yearButtonRefs = ref([])
-
-const { activate, deactivate } = useFocusTrap(yearDatePickerRef, {
+const focusTrapOptions = {
   immediate: true,
   clickOutsideDeactivates: true,
   initialFocus: '.usa-date-picker__calendar__year--focused',
   fallbackFocus: '.usa-date-picker__calendar__date-picker',
-})
+}
+const yearButtonRefs = ref([])
 
 const activeDateObject = shallowRef(parseIsoDate(props.activeDate))
 
@@ -236,91 +233,90 @@ watch(years, (newVisibleYears, oldVisibleYear) => {
   }
 })
 
-onMounted(() => {
-  activate()
-})
-
 onBeforeUnmount(() => {
   emit('update:activeYearStart', '')
   emit('update:activeYearEnd', '')
-
-  deactivate()
 })
 </script>
 
 <template>
-  <div
-    ref="yearDatePickerRef"
-    tabindex="-1"
-    class="usa-date-picker__calendar__year-picker"
-  >
-    <table class="usa-date-picker__calendar__table">
-      <tbody>
-        <tr>
-          <td>
-            <button
-              type="button"
-              class="usa-date-picker__calendar__previous-year-chunk"
-              :aria-label="previousYearsButtonLabel"
-              :disabled="!hasPastYear"
-              @click="toPreviousYears"
-              >&nbsp;</button
-            >
-          </td>
+  <UseFocusTrap :options="focusTrapOptions">
+    <div tabindex="-1" class="usa-date-picker__calendar__year-picker">
+      <table class="usa-date-picker__calendar__table">
+        <tbody>
+          <tr>
+            <td>
+              <button
+                type="button"
+                class="usa-date-picker__calendar__previous-year-chunk"
+                :aria-label="previousYearsButtonLabel"
+                :disabled="!hasPastYear"
+                @click="toPreviousYears"
+                >&nbsp;</button
+              >
+            </td>
 
-          <td colspan="3">
-            <table class="usa-date-picker__calendar__table" role="presentation">
-              <tbody>
-                <tr
-                  v-for="(row, rowIndex) in years"
-                  :key="`${rowIndex}-${row.map(({ year }) => year).join('-')}`"
-                >
-                  <td v-for="(item, buttonIndex) in row" :key="item.id">
-                    <button
-                      ref="yearButtonRefs"
-                      type="button"
-                      :disabled="item.disabled"
-                      :tabindex="tabIndex(item.year, rowIndex, buttonIndex)"
-                      class="usa-date-picker__calendar__year"
-                      :class="{
-                        'usa-date-picker__calendar__year--selected':
-                          currentSelectedYear === item.year,
-                        'usa-date-picker__calendar__year--focused':
-                          highlightedRowIndex === rowIndex &&
-                          highlightedButtonIndex === buttonIndex,
-                      }"
-                      :data-value="item.year"
-                      :aria-selected="currentSelectedYear === item.year"
-                      @click="handleClickOnYear(item.year)"
-                      @mouseover="handleHoverOnYear(item.year)"
-                      @keydown.prevent.up="handlePreviousYear(item.up)"
-                      @keydown.prevent.down="handleNextYear(item.down)"
-                      @keydown.prevent.left="handlePreviousYear(item.left)"
-                      @keydown.prevent.right="handleNextYear(item.right)"
-                      @keydown.prevent.home="handlePreviousYear(item.home)"
-                      @keydown.prevent.end="handleNextYear(item.end)"
-                      @keydown.prevent.page-up="handlePreviousYear(item.pageUp)"
-                      @keydown.prevent.page-down="handleNextYear(item.pageDown)"
-                      >{{ item.year }}</button
-                    >
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </td>
+            <td colspan="3">
+              <table
+                class="usa-date-picker__calendar__table"
+                role="presentation"
+              >
+                <tbody>
+                  <tr
+                    v-for="(row, rowIndex) in years"
+                    :key="`${rowIndex}-${row.map(({ year }) => year).join('-')}`"
+                  >
+                    <td v-for="(item, buttonIndex) in row" :key="item.id">
+                      <button
+                        ref="yearButtonRefs"
+                        type="button"
+                        :disabled="item.disabled"
+                        :tabindex="tabIndex(item.year, rowIndex, buttonIndex)"
+                        class="usa-date-picker__calendar__year"
+                        :class="{
+                          'usa-date-picker__calendar__year--selected':
+                            currentSelectedYear === item.year,
+                          'usa-date-picker__calendar__year--focused':
+                            highlightedRowIndex === rowIndex &&
+                            highlightedButtonIndex === buttonIndex,
+                        }"
+                        :data-value="item.year"
+                        :aria-selected="currentSelectedYear === item.year"
+                        @click="handleClickOnYear(item.year)"
+                        @mouseover="handleHoverOnYear(item.year)"
+                        @keydown.prevent.up="handlePreviousYear(item.up)"
+                        @keydown.prevent.down="handleNextYear(item.down)"
+                        @keydown.prevent.left="handlePreviousYear(item.left)"
+                        @keydown.prevent.right="handleNextYear(item.right)"
+                        @keydown.prevent.home="handlePreviousYear(item.home)"
+                        @keydown.prevent.end="handleNextYear(item.end)"
+                        @keydown.prevent.page-up="
+                          handlePreviousYear(item.pageUp)
+                        "
+                        @keydown.prevent.page-down="
+                          handleNextYear(item.pageDown)
+                        "
+                        >{{ item.year }}</button
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
 
-          <td>
-            <button
-              type="button"
-              class="usa-date-picker__calendar__next-year-chunk"
-              :aria-label="nextYearsButtonLabel"
-              :disabled="!hasFutureYear"
-              @click="toNextYears"
-              >&nbsp;</button
-            >
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+            <td>
+              <button
+                type="button"
+                class="usa-date-picker__calendar__next-year-chunk"
+                :aria-label="nextYearsButtonLabel"
+                :disabled="!hasFutureYear"
+                @click="toNextYears"
+                >&nbsp;</button
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </UseFocusTrap>
 </template>

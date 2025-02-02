@@ -8,10 +8,9 @@ import {
   toRaw,
   onBeforeUnmount,
   shallowRef,
-  onMounted,
   inject,
 } from 'vue'
-import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
+import { UseFocusTrap } from '@vueuse/integrations/useFocusTrap/component'
 import { isSameMonth, addMonths, subMonths, addYears, subYears } from 'date-fns'
 import {
   getMonthIndex,
@@ -100,15 +99,14 @@ const props = defineProps({
   },
 })
 
-const dayDatePickerRef = ref(null)
-const dateButtonRefs = ref([])
-
-const { activate, deactivate } = useFocusTrap(dayDatePickerRef, {
+const focusTrapOptions = {
   immediate: true,
   clickOutsideDeactivates: true,
   initialFocus: '.usa-date-picker__calendar__date--focused',
   fallbackFocus: '.usa-date-picker__calendar__date-picker',
-})
+}
+
+const dateButtonRefs = ref([])
 
 const selectedDate = computed({
   get() {
@@ -414,205 +412,201 @@ const stopWatchingHighlightedDate = watch(highlightedDate, () => {
   stopWatchingHighlightedDate()
 })
 
-onMounted(() => {
-  activate()
-})
-
 onBeforeUnmount(() => {
   emit('update:isPristine', true)
-  deactivate()
 })
 </script>
 
 <template>
-  <div
-    ref="dayDatePickerRef"
-    tabindex="-1"
-    class="usa-date-picker__calendar__date-picker"
-  >
-    <div class="usa-date-picker__calendar__row">
-      <div
-        class="usa-date-picker__calendar__cell usa-date-picker__calendar__cell--center-items"
-      >
-        <button
-          type="button"
-          class="usa-date-picker__calendar__previous-year"
-          :aria-label="previousYearButtonLabel"
-          :disabled="!hasPastYear"
-          @click="handlePreviousYear"
-        ></button>
-      </div>
-      <div
-        class="usa-date-picker__calendar__cell usa-date-picker__calendar__cell--center-items"
-      >
-        <button
-          type="button"
-          class="usa-date-picker__calendar__previous-month"
-          :aria-label="previousMonthButtonLabel"
-          :disabled="!hasPastMonth"
-          @click="handlePreviousMonth"
-        ></button>
-      </div>
-      <div
-        class="usa-date-picker__calendar__cell usa-date-picker__calendar__month-label"
-      >
-        <button
-          type="button"
-          class="usa-date-picker__calendar__month-selection"
-          :aria-label="monthSelectionButtonLabel"
-          @click="emit('update:selectorMode', 'month')"
-          >{{ activeMonthLabel }}</button
+  <UseFocusTrap :options="focusTrapOptions">
+    <div tabindex="-1" class="usa-date-picker__calendar__date-picker">
+      <div class="usa-date-picker__calendar__row">
+        <div
+          class="usa-date-picker__calendar__cell usa-date-picker__calendar__cell--center-items"
         >
-        <button
-          type="button"
-          class="usa-date-picker__calendar__year-selection"
-          :aria-label="yearSelectionButtonLabel"
-          @click="emit('update:selectorMode', 'year')"
-          >{{ activeYear }}</button
+          <button
+            type="button"
+            class="usa-date-picker__calendar__previous-year"
+            :aria-label="previousYearButtonLabel"
+            :disabled="!hasPastYear"
+            @click="handlePreviousYear"
+          ></button>
+        </div>
+        <div
+          class="usa-date-picker__calendar__cell usa-date-picker__calendar__cell--center-items"
         >
+          <button
+            type="button"
+            class="usa-date-picker__calendar__previous-month"
+            :aria-label="previousMonthButtonLabel"
+            :disabled="!hasPastMonth"
+            @click="handlePreviousMonth"
+          ></button>
+        </div>
+        <div
+          class="usa-date-picker__calendar__cell usa-date-picker__calendar__month-label"
+        >
+          <button
+            type="button"
+            class="usa-date-picker__calendar__month-selection"
+            :aria-label="monthSelectionButtonLabel"
+            @click="emit('update:selectorMode', 'month')"
+            >{{ activeMonthLabel }}</button
+          >
+          <button
+            type="button"
+            class="usa-date-picker__calendar__year-selection"
+            :aria-label="yearSelectionButtonLabel"
+            @click="emit('update:selectorMode', 'year')"
+            >{{ activeYear }}</button
+          >
+        </div>
+        <div
+          class="usa-date-picker__calendar__cell usa-date-picker__calendar__cell--center-items"
+        >
+          <button
+            type="button"
+            class="usa-date-picker__calendar__next-month"
+            :aria-label="nextMonthButtonLabel"
+            :disabled="!hasFutureMonth"
+            @click="handleNextMonth"
+          ></button>
+        </div>
+        <div
+          class="usa-date-picker__calendar__cell usa-date-picker__calendar__cell--center-items"
+        >
+          <button
+            type="button"
+            class="usa-date-picker__calendar__next-year"
+            :aria-label="nextYearButtonLabel"
+            :disabled="!hasFutureYear"
+            @click="handleNextYear"
+          ></button>
+        </div>
       </div>
-      <div
-        class="usa-date-picker__calendar__cell usa-date-picker__calendar__cell--center-items"
-      >
-        <button
-          type="button"
-          class="usa-date-picker__calendar__next-month"
-          :aria-label="nextMonthButtonLabel"
-          :disabled="!hasFutureMonth"
-          @click="handleNextMonth"
-        ></button>
-      </div>
-      <div
-        class="usa-date-picker__calendar__cell usa-date-picker__calendar__cell--center-items"
-      >
-        <button
-          type="button"
-          class="usa-date-picker__calendar__next-year"
-          :aria-label="nextYearButtonLabel"
-          :disabled="!hasFutureYear"
-          @click="handleNextYear"
-        ></button>
-      </div>
+
+      <table class="usa-date-picker__calendar__table">
+        <thead>
+          <tr>
+            <th
+              v-for="(dayLabel, index) in dayOfWeekLabels"
+              :key="dayLabel"
+              class="usa-date-picker__calendar__day-of-week"
+              scope="col"
+              :aria-label="dayLabel"
+              >{{ dayOfWeekAbbreviationLabels[index] }}
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr
+            v-for="(row, rowIndex) in dates"
+            :key="`${rowIndex}-${row.map(({ date }) => date).join('-')}`"
+          >
+            <td v-for="(item, buttonIndex) in row" :key="item.id">
+              <button
+                ref="dateButtonRefs"
+                type="button"
+                :disabled="item.disabled"
+                :tabindex="tabIndex(item.date, rowIndex, buttonIndex)"
+                class="usa-date-picker__calendar__date"
+                :class="{
+                  'usa-date-picker__calendar__date--previous-month':
+                    item.isPreviousMonth,
+                  'usa-date-picker__calendar__date--current-month':
+                    item.isCurrentMonth,
+                  'usa-date-picker__calendar__date--next-month':
+                    item.isNextMonth,
+                  'usa-date-picker__calendar__date--today':
+                    item.date === todaysDate,
+                  'usa-date-picker__calendar__date--selected':
+                    selectedDate === item.date,
+                  'usa-date-picker__calendar__date--focused':
+                    highlightedRowIndex === rowIndex &&
+                    highlightedButtonIndex === buttonIndex &&
+                    item.isCurrentMonth,
+                  'usa-date-picker__calendar__date--range-date':
+                    (isDateRange &&
+                      dateRangeEnd &&
+                      rangeType === 'start' &&
+                      item.date === dateRangeEnd) ||
+                    (isDateRange &&
+                      dateRangeStart &&
+                      rangeType === 'end' &&
+                      item.date === dateRangeStart),
+                  'usa-date-picker__calendar__date--within-range':
+                    (isDateRange &&
+                      dateRangeStart &&
+                      dateRangeEnd &&
+                      item.isInCurrentRange) ||
+                    (isDateRange &&
+                      dateRangeStart &&
+                      !dateRangeEnd &&
+                      item.date > dateRangeStart &&
+                      item.date < highlightedDate) ||
+                    (isDateRange &&
+                      dateRangeEnd &&
+                      !dateRangeStart &&
+                      item.date < dateRangeEnd &&
+                      item.date > highlightedDate),
+                  'usa-date-picker__calendar__date--range-date-start':
+                    (isDateRange &&
+                      dateRangeStart &&
+                      item.date === dateRangeStart) ||
+                    (isDateRange &&
+                      dateRangeEnd &&
+                      item.date !== dateRangeEnd &&
+                      rangeType === 'start' &&
+                      !dateRangeStart &&
+                      highlightedRowIndex === rowIndex &&
+                      highlightedButtonIndex === buttonIndex &&
+                      item.isCurrentMonth),
+                  'usa-date-picker__calendar__date--range-date-end':
+                    (isDateRange &&
+                      dateRangeEnd &&
+                      item.date === dateRangeEnd) ||
+                    (isDateRange &&
+                      dateRangeStart &&
+                      item.date !== dateRangeStart &&
+                      rangeType === 'end' &&
+                      !dateRangeEnd &&
+                      highlightedRowIndex === rowIndex &&
+                      highlightedButtonIndex === buttonIndex &&
+                      item.isCurrentMonth),
+                }"
+                :data-day="item.day"
+                :data-month="item.month"
+                :data-year="item.year"
+                :data-value="item.date"
+                :aria-label="item.label"
+                :aria-selected="selectedDate === item.date"
+                @click="handleClickOnDate(item.date)"
+                @mouseover="handleHoverOnDate(item.date)"
+                @keydown.prevent.up="handlePreviousDate(item.up)"
+                @keydown.prevent.down="handleNextDate(item.down)"
+                @keydown.prevent.left="handlePreviousDate(item.left)"
+                @keydown.prevent.right="handleNextDate(item.right)"
+                @keydown.prevent.home="handlePreviousDate(item.home)"
+                @keydown.prevent.end="handleNextDate(item.end)"
+                @keydown.prevent.page-up.exact="
+                  handlePreviousDate(item.pageUp, 'month')
+                "
+                @keydown.prevent.page-down.exact="
+                  handleNextDate(item.pageDown, 'month')
+                "
+                @keydown.prevent.shift.page-up="
+                  handlePreviousDate(item.shiftPageUp, 'year')
+                "
+                @keydown.prevent.shift.page-down="
+                  handleNextDate(item.shiftPageDown, 'year')
+                "
+                >{{ item.day }}</button
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
-    <table class="usa-date-picker__calendar__table">
-      <thead>
-        <tr>
-          <th
-            v-for="(dayLabel, index) in dayOfWeekLabels"
-            :key="dayLabel"
-            class="usa-date-picker__calendar__day-of-week"
-            scope="col"
-            :aria-label="dayLabel"
-            >{{ dayOfWeekAbbreviationLabels[index] }}
-          </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr
-          v-for="(row, rowIndex) in dates"
-          :key="`${rowIndex}-${row.map(({ date }) => date).join('-')}`"
-        >
-          <td v-for="(item, buttonIndex) in row" :key="item.id">
-            <button
-              ref="dateButtonRefs"
-              type="button"
-              :disabled="item.disabled"
-              :tabindex="tabIndex(item.date, rowIndex, buttonIndex)"
-              class="usa-date-picker__calendar__date"
-              :class="{
-                'usa-date-picker__calendar__date--previous-month':
-                  item.isPreviousMonth,
-                'usa-date-picker__calendar__date--current-month':
-                  item.isCurrentMonth,
-                'usa-date-picker__calendar__date--next-month': item.isNextMonth,
-                'usa-date-picker__calendar__date--today':
-                  item.date === todaysDate,
-                'usa-date-picker__calendar__date--selected':
-                  selectedDate === item.date,
-                'usa-date-picker__calendar__date--focused':
-                  highlightedRowIndex === rowIndex &&
-                  highlightedButtonIndex === buttonIndex &&
-                  item.isCurrentMonth,
-                'usa-date-picker__calendar__date--range-date':
-                  (isDateRange &&
-                    dateRangeEnd &&
-                    rangeType === 'start' &&
-                    item.date === dateRangeEnd) ||
-                  (isDateRange &&
-                    dateRangeStart &&
-                    rangeType === 'end' &&
-                    item.date === dateRangeStart),
-                'usa-date-picker__calendar__date--within-range':
-                  (isDateRange &&
-                    dateRangeStart &&
-                    dateRangeEnd &&
-                    item.isInCurrentRange) ||
-                  (isDateRange &&
-                    dateRangeStart &&
-                    !dateRangeEnd &&
-                    item.date > dateRangeStart &&
-                    item.date < highlightedDate) ||
-                  (isDateRange &&
-                    dateRangeEnd &&
-                    !dateRangeStart &&
-                    item.date < dateRangeEnd &&
-                    item.date > highlightedDate),
-                'usa-date-picker__calendar__date--range-date-start':
-                  (isDateRange &&
-                    dateRangeStart &&
-                    item.date === dateRangeStart) ||
-                  (isDateRange &&
-                    dateRangeEnd &&
-                    item.date !== dateRangeEnd &&
-                    rangeType === 'start' &&
-                    !dateRangeStart &&
-                    highlightedRowIndex === rowIndex &&
-                    highlightedButtonIndex === buttonIndex &&
-                    item.isCurrentMonth),
-                'usa-date-picker__calendar__date--range-date-end':
-                  (isDateRange && dateRangeEnd && item.date === dateRangeEnd) ||
-                  (isDateRange &&
-                    dateRangeStart &&
-                    item.date !== dateRangeStart &&
-                    rangeType === 'end' &&
-                    !dateRangeEnd &&
-                    highlightedRowIndex === rowIndex &&
-                    highlightedButtonIndex === buttonIndex &&
-                    item.isCurrentMonth),
-              }"
-              :data-day="item.day"
-              :data-month="item.month"
-              :data-year="item.year"
-              :data-value="item.date"
-              :aria-label="item.label"
-              :aria-selected="selectedDate === item.date"
-              @click="handleClickOnDate(item.date)"
-              @mouseover="handleHoverOnDate(item.date)"
-              @keydown.prevent.up="handlePreviousDate(item.up)"
-              @keydown.prevent.down="handleNextDate(item.down)"
-              @keydown.prevent.left="handlePreviousDate(item.left)"
-              @keydown.prevent.right="handleNextDate(item.right)"
-              @keydown.prevent.home="handlePreviousDate(item.home)"
-              @keydown.prevent.end="handleNextDate(item.end)"
-              @keydown.prevent.page-up.exact="
-                handlePreviousDate(item.pageUp, 'month')
-              "
-              @keydown.prevent.page-down.exact="
-                handleNextDate(item.pageDown, 'month')
-              "
-              @keydown.prevent.shift.page-up="
-                handlePreviousDate(item.shiftPageUp, 'year')
-              "
-              @keydown.prevent.shift.page-down="
-                handleNextDate(item.shiftPageDown, 'year')
-              "
-              >{{ item.day }}</button
-            >
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  </UseFocusTrap>
 </template>

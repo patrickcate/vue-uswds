@@ -37,7 +37,7 @@ const props = defineProps({
       :href="href"
       :to="to"
       :router-component-name="routerComponentName"
-      @click="closeAllDropdowns(), closeMobileMenu()"
+      @click="(closeAllDropdowns(), closeMobileMenu())"
     >
       <span><slot></slot></span>
     </BaseLink>
