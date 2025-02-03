@@ -1,10 +1,13 @@
-const path = require('path')
-const vue = require('@vitejs/plugin-vue')
-const { defineConfig } = require('cypress')
-const codeCoverageTask = require('@cypress/code-coverage/task')
-const istanbul = require('vite-plugin-istanbul')
+import { resolve, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'cypress'
+import codeCoverageTask from '@cypress/code-coverage/task'
+import istanbul from 'vite-plugin-istanbul'
 
-module.exports = defineConfig({
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+export default defineConfig({
   video: false,
   numTestsKeptInMemory: 0,
   experimentalMemoryManagement: true,
@@ -23,9 +26,9 @@ module.exports = defineConfig({
         logLevel: 'silent',
         resolve: {
           alias: {
-            '@': path.resolve(__dirname, 'src'),
-            '@module': path.resolve(__dirname, 'node_modules'),
-            vue: path.resolve(
+            '@': resolve(__dirname, 'src'),
+            '@module': resolve(__dirname, 'node_modules'),
+            vue: resolve(
               __dirname,
               'node_modules',
               'vue',
@@ -37,22 +40,12 @@ module.exports = defineConfig({
         plugins: [
           vue(),
           istanbul({
-            include: ['src/components', 'src/composables', 'src/utils'],
-            exclude: [
-              'node_modules',
-              '^src/**',
-              '**/*.test.js',
-              '**/*.stories.js',
-              '**/*.fixtures.js',
-            ],
-            cypress: true,
+            include: 'src/*',
+            exclude: ['node_modules', 'cypress'],
+            extension: ['.js', '.ts', '.vue'],
             requireEnv: false,
-            extension: ['.js', '.vue'],
           }),
         ],
-        build: {
-          sourcemap: true,
-        },
       },
     },
     setupNodeEvents(on, config) {

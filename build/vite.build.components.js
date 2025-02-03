@@ -1,8 +1,11 @@
-import { resolve } from 'path'
+import { resolve, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { aliasOptions, buildOptions } from './vite.build.common.js'
 import { dependencies } from '../package.json'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   ...aliasOptions,
