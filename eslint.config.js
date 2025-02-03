@@ -40,7 +40,7 @@ export default [
     rules: {
       'no-unused-vars':
         process.env.NODE_ENV === 'production' ? 'error' : 'warn',
-      'vue/no-unused-vars':
+      'vue/block-order':
         process.env.NODE_ENV === 'production' ? 'error' : 'warn',
     },
   },
