@@ -89,9 +89,9 @@ export default {
       :heading-tag="args.headingTag"
       :custom-classes="args.customClasses"
     >
-      <template #heading>{{ args['slot:heading'] }}</template>
-      <template #default>{{ args.default }}</template>
-      <template #message>{{ args.message }}</template>
+      <template v-if="!!args['slot:heading']" #heading>${args['slot:heading']}</template>
+      <template v-if="!!args.default" #default>${args.default}</template>
+      <template v-if="!!args.message" #message>${args.message}</template>
     </UsaAlert>`,
   }),
 }
