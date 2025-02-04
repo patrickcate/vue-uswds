@@ -1,5 +1,12 @@
 Changelog
 
+# [1.11.0](https://github.com/patrickcate/vue-uswds/compare/v1.10.1...v1.11.0) (2025-01-12)
+
+
+### Features
+
+* **UsaIcon:** switch from deprecated `xlink:href` attribute to `href` ([7d4b5b0](https://github.com/patrickcate/vue-uswds/commit/7d4b5b031a1432dc9cc01961344835ef61e20cc5)), closes [#1131](https://github.com/patrickcate/vue-uswds/issues/1131)
+
 ## [1.10.1](https://github.com/patrickcate/vue-uswds/compare/v1.10.0...v1.10.1) (2024-11-21)
 
 
