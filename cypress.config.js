@@ -41,7 +41,7 @@ export default defineConfig({
           vue(),
           istanbul({
             include: 'src/*',
-            exclude: ['node_modules', 'cypress'],
+            exclude: ['node_modules', 'cypress', '**/*.fixtures.js'],
             extension: ['.js', '.ts', '.vue'],
             requireEnv: false,
           }),

@@ -28,7 +28,7 @@ const props = defineProps({
         focusable="false"
         role="img"
       >
-        <use :xlink:href="`${svgSpritePath}#close`"></use>
+        <use :href="`${svgSpritePath}#close`"></use>
       </svg>
     </slot>
   </button>
