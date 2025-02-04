@@ -27,7 +27,7 @@ describe('UsaModalCloseButton', () => {
 
     cy.get('@svgIcon')
       .find('use')
-      .should('have.attr', 'xlink:href', '/test.svg#close')
+      .should('have.attr', 'href', '/test.svg#close')
   })
 
   it('shows scoped slot content', () => {

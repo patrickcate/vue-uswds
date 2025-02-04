@@ -96,7 +96,7 @@ describe('UsaPaginationArrow', () => {
 
     cy.get('@arrowSvg')
       .find('use')
-      .should('have.attr', 'xlink:href', '/test.svg#navigate_before')
+      .should('have.attr', 'href', '/test.svg#navigate_before')
 
     cy.get('@wrapper').invoke('setProps', {
       direction: 'next',
@@ -113,7 +113,7 @@ describe('UsaPaginationArrow', () => {
 
     cy.get('@arrowSvg')
       .find('use')
-      .should('have.attr', 'xlink:href', '/test.svg#navigate_next')
+      .should('have.attr', 'href', '/test.svg#navigate_next')
   })
 
   it('renders custom `before` and `after` slot content', () => {
