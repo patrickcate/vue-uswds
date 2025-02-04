@@ -117,9 +117,9 @@ jobs:
 
       - name: Upload coverage to Codecov
         if: github.actor != 'dependabot[bot]'
-        uses: codecov/codecov-action@v5.1.2
+        uses: codecov/codecov-action@v5.3.1
         with:
-          file: ./coverage/lcov.info
+          files: ./coverage/lcov.info
 
       - name: Automatically merge dependabot updates
         if: github.event_name == 'pull_request'

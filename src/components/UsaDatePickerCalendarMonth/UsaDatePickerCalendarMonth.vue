@@ -1,14 +1,6 @@
 <script setup>
-import {
-  ref,
-  computed,
-  watch,
-  onMounted,
-  onBeforeUnmount,
-  toRef,
-  shallowRef,
-} from 'vue'
-import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
+import { ref, computed, watch, toRef, shallowRef } from 'vue'
+import { UseFocusTrap } from '@vueuse/integrations/useFocusTrap/component'
 import { getMonth, getYear, parseIsoDate } from '@/utils/dates.js'
 import { useMonthPicker } from './useMonthPicker.js'
 
@@ -33,15 +25,14 @@ const props = defineProps({
   },
 })
 
-const monthDatePickerRef = ref(null)
-const monthButtonRefs = ref([])
-
-const { activate, deactivate } = useFocusTrap(monthDatePickerRef, {
+const focusTrapOptions = {
   immediate: true,
   clickOutsideDeactivates: true,
   initialFocus: '.usa-date-picker__calendar__month--focused',
   fallbackFocus: '.usa-date-picker__calendar__date-picker',
-})
+}
+
+const monthButtonRefs = ref([])
 
 const activeDateObject = shallowRef(parseIsoDate(props.activeDate))
 
@@ -134,60 +125,50 @@ watch(
   },
   { immediate: true },
 )
-
-onMounted(() => {
-  activate()
-})
-
-onBeforeUnmount(() => {
-  deactivate()
-})
 </script>
 
 <template>
-  <div
-    ref="monthDatePickerRef"
-    tabindex="-1"
-    class="usa-date-picker__calendar__month-picker"
-  >
-    <table class="usa-date-picker__calendar__table" role="presentation">
-      <tbody>
-        <tr
-          v-for="(row, rowIndex) in months"
-          :key="`${rowIndex}-${row.map(({ month }) => month).join('-')}`"
-        >
-          <td v-for="(item, buttonIndex) in row" :key="item.id">
-            <button
-              ref="monthButtonRefs"
-              type="button"
-              :disabled="item.disabled"
-              :tabindex="tabIndex(item.month, rowIndex, buttonIndex)"
-              class="usa-date-picker__calendar__month"
-              :class="{
-                'usa-date-picker__calendar__month--selected':
-                  activeMonth === item.month,
-                'usa-date-picker__calendar__month--focused':
-                  highlightedRowIndex === rowIndex &&
-                  highlightedButtonIndex === buttonIndex,
-              }"
-              :data-value="item.month"
-              :data-label="item.label"
-              :aria-selected="activeMonth === item.month"
-              @click="handleClickOnMonth(item.month)"
-              @mouseover="handleHoverOnMonth(item.month)"
-              @keydown.prevent.up="handlePreviousMonth(item.up)"
-              @keydown.prevent.down="handleNextMonth(item.down)"
-              @keydown.prevent.left="handlePreviousMonth(item.left)"
-              @keydown.prevent.right="handleNextMonth(item.right)"
-              @keydown.prevent.home="handlePreviousMonth(item.home)"
-              @keydown.prevent.end="handleNextMonth(item.end)"
-              @keydown.prevent.page-up="handlePreviousMonth(item.pageUp)"
-              @keydown.prevent.page-down="handleNextMonth(item.pageDown)"
-              >{{ item.label }}</button
-            >
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <UseFocusTrap :options="focusTrapOptions">
+    <div tabindex="-1" class="usa-date-picker__calendar__month-picker">
+      <table class="usa-date-picker__calendar__table" role="presentation">
+        <tbody>
+          <tr
+            v-for="(row, rowIndex) in months"
+            :key="`${rowIndex}-${row.map(({ month }) => month).join('-')}`"
+          >
+            <td v-for="(item, buttonIndex) in row" :key="item.id">
+              <button
+                ref="monthButtonRefs"
+                type="button"
+                :disabled="item.disabled"
+                :tabindex="tabIndex(item.month, rowIndex, buttonIndex)"
+                class="usa-date-picker__calendar__month"
+                :class="{
+                  'usa-date-picker__calendar__month--selected':
+                    activeMonth === item.month,
+                  'usa-date-picker__calendar__month--focused':
+                    highlightedRowIndex === rowIndex &&
+                    highlightedButtonIndex === buttonIndex,
+                }"
+                :data-value="item.month"
+                :data-label="item.label"
+                :aria-selected="activeMonth === item.month"
+                @click="handleClickOnMonth(item.month)"
+                @mouseover="handleHoverOnMonth(item.month)"
+                @keydown.prevent.up="handlePreviousMonth(item.up)"
+                @keydown.prevent.down="handleNextMonth(item.down)"
+                @keydown.prevent.left="handlePreviousMonth(item.left)"
+                @keydown.prevent.right="handleNextMonth(item.right)"
+                @keydown.prevent.home="handlePreviousMonth(item.home)"
+                @keydown.prevent.end="handleNextMonth(item.end)"
+                @keydown.prevent.page-up="handlePreviousMonth(item.pageUp)"
+                @keydown.prevent.page-down="handleNextMonth(item.pageDown)"
+                >{{ item.label }}</button
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </UseFocusTrap>
 </template>

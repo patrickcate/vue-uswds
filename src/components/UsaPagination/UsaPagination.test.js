@@ -67,11 +67,7 @@ describe('UsaPagination', () => {
 
     cy.get('@itemPrevious')
       .find('svg use')
-      .should(
-        'have.attr',
-        'xlink:href',
-        '/assets/img/sprite.svg#navigate_before',
-      )
+      .should('have.attr', 'href', '/assets/img/sprite.svg#navigate_before')
 
     cy.get('@itemPrevious').find('span').should('contain', 'Previous')
 
@@ -120,7 +116,7 @@ describe('UsaPagination', () => {
 
     cy.get('@itemNext')
       .find('svg use')
-      .should('have.attr', 'xlink:href', '/assets/img/sprite.svg#navigate_next')
+      .should('have.attr', 'href', '/assets/img/sprite.svg#navigate_next')
 
     cy.get('@itemNext').find('span').should('contain', 'Next')
   })
