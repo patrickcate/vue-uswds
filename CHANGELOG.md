@@ -1,5 +1,22 @@
 Changelog
 
+# [1.12.0](https://github.com/patrickcate/vue-uswds/compare/v1.11.0...v1.12.0) (2025-02-05)
+
+
+### Bug Fixes
+
+* switch from deprecated `xlink:href` attribute to `href` ([570b3d2](https://github.com/patrickcate/vue-uswds/commit/570b3d2502c820ddade1e89ed270e34079625686))
+
+
+### Features
+
+* switch to using focus trap VueUse component ([41fb1ce](https://github.com/patrickcate/vue-uswds/commit/41fb1ce65e14286e9c924614143c82228ffc6f4a)), closes [#437](https://github.com/patrickcate/vue-uswds/issues/437)
+
+
+### Reverts
+
+* roll back version of VueUse after agadoo treeshaking error ([21b3734](https://github.com/patrickcate/vue-uswds/commit/21b373422f9ff7add52c0a49474c0a6aadff638b))
+
 # [1.11.0](https://github.com/patrickcate/vue-uswds/compare/v1.10.1...v1.11.0) (2025-01-12)
 
 
