@@ -1,3 +1,0 @@
-import{j as t,M as r}from"./index-DBsGMxVV.js";import{useMDXComponents as s}from"./index-CNi6odBs.js";import"./iframe-C0MRCKEq.js";import"./index-CEXj7t9i.js";import"./index-Cu4lwwaE.js";import"./index-ogSvIofg.js";function o(n){const e={a:"a",h1:"h1",p:"p",...s(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(r,{title:"Guide/Nuxt"}),`
-`,t.jsx(e.h1,{id:"use-with-nuxt",children:"Use with Nuxt"}),`
-`,t.jsxs(e.p,{children:["Install the ",t.jsx(e.a,{href:"https://github.com/patrickcate/nuxt-uswds",rel:"nofollow",children:"Nuxt USWDS"})," module."]})]})}function h(n={}){const{wrapper:e}={...s(),...n.components};return e?t.jsx(e,{...n,children:t.jsx(o,{...n})}):o(n)}export{h as default};
