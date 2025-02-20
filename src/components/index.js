@@ -54,6 +54,7 @@ import UsaIdentifier from './UsaIdentifier'
 import UsaIdentifierLogo from './UsaIdentifierLogo'
 import UsaIdentifierMasthead from './UsaIdentifierMasthead'
 import UsaIdentifierRequiredLinks from './UsaIdentifierRequiredLinks'
+import UsaInPageNav from './UsaInPageNav'
 import UsaLabel from './UsaLabel'
 import UsaLink from './UsaLink'
 import UsaLogo from './UsaLogo'
@@ -156,6 +157,7 @@ export {
   UsaIdentifierLogo,
   UsaIdentifierMasthead,
   UsaIdentifierRequiredLinks,
+  UsaInPageNav,
   UsaLabel,
   UsaLink,
   UsaLogo,
