@@ -9,26 +9,34 @@ export default {
   component: <%= h.changeCase.pascal(component_name) %>,
   title: 'Components/<%= h.changeCase.pascal(component_name) %>',
   argTypes: {
-    defaultSlot: {
+    default: {
       control: { type: 'text' },
     },
   },
   args: {
-    defaultSlot: 'Test',
+    default: 'Test',
   },
+  render: args => ({
+    components: { <%= h.changeCase.pascal(component_name) %> },
+    props: Object.keys(<%= h.changeCase.pascal(component_name) %>.props),
+    setup() {
+      return { args }
+    },
+    template: `
+    <<%= h.changeCase.pascal(component_name) %>></<%= h.changeCase.pascal(component_name) %>>`,
+  }),
 }
 
-const DefaultTemplate = (args, { argTypes }) => ({
-  components: { <%= h.changeCase.pascal(component_name) %> },
-  props: Object.keys(argTypes),
-  setup() {
-    return { ...args }
+export const Default<%= h.changeCase.pascal(component_name) %> = {
+  args: {
+    ...defaultProps,
   },
-  template: `<<%= h.changeCase.pascal(component_name) %>>${args.defaultSlot}</<%= h.changeCase.pascal(component_name) %>>`,
-})
-
-export const Default<%= h.changeCase.pascal(component_name).replace('Usa', '') %> = DefaultTemplate.bind({})
-Default<%= h.changeCase.pascal(component_name).replace('Usa', '') %>.args = {
-  ...defaultProps,
+  name: 'Default',
+  parameters: {
+    docs: {
+      source: {
+        code: `<<%= h.changeCase.pascal(component_name) %>></<%= h.changeCase.pascal(component_name) %>>`,
+      },
+    },
+  },
 }
-Default<%= h.changeCase.pascal(component_name).replace('Usa', '') %>.storyName = 'Default'
