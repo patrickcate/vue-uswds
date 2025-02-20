@@ -37,6 +37,9 @@ export default defineConfig({
             ),
           },
         },
+        build: {
+          sourcemap: true,
+        },
         plugins: [
           vue(),
           istanbul({
