@@ -1,5 +1,12 @@
 Changelog
 
+# [1.13.0](https://github.com/patrickcate/vue-uswds/compare/v1.12.0...v1.13.0) (2025-02-20)
+
+
+### Features
+
+* add `UsaInPageNav` component ([f499329](https://github.com/patrickcate/vue-uswds/commit/f499329422827b0f6f8b394479c1a732bc8fae53)), closes [#474](https://github.com/patrickcate/vue-uswds/issues/474)
+
 # [1.12.0](https://github.com/patrickcate/vue-uswds/compare/v1.11.0...v1.12.0) (2025-02-05)
 
 
