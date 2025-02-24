@@ -2,7 +2,7 @@ import '@module/@uswds/uswds/dist/css/uswds.min.css'
 import UsaTooltip from './UsaTooltip.vue'
 
 describe('UsaTooltip', () => {
-  it.only('renders the component', () => {
+  it('renders the component', () => {
     const wrapperComponent = {
       components: { UsaTooltip },
       template: `<div style="padding:150px;"><UsaTooltip id="test-tooltip-id" label="Test tooltip label">Test tooltip trigger</UsaTooltip></div>`,

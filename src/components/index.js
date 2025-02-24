@@ -56,6 +56,7 @@ import UsaIdentifierMasthead from './UsaIdentifierMasthead'
 import UsaIdentifierRequiredLinks from './UsaIdentifierRequiredLinks'
 import UsaInPageNav from './UsaInPageNav'
 import UsaLabel from './UsaLabel'
+import UsaLanguageSelector from './UsaLanguageSelector'
 import UsaLink from './UsaLink'
 import UsaLogo from './UsaLogo'
 import UsaMediaBlock from './UsaMediaBlock'
@@ -159,6 +160,7 @@ export {
   UsaIdentifierRequiredLinks,
   UsaInPageNav,
   UsaLabel,
+  UsaLanguageSelector,
   UsaLink,
   UsaLogo,
   UsaMediaBlock,
