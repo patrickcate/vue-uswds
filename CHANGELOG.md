@@ -1,5 +1,12 @@
 Changelog
 
+# [1.14.0](https://github.com/patrickcate/vue-uswds/compare/v1.13.0...v1.14.0) (2025-02-25)
+
+
+### Features
+
+* **UsaLanguageSelector:** add `UsaLanguageSelector` component ([26a3f04](https://github.com/patrickcate/vue-uswds/commit/26a3f04ee5788deaa373340cb02c1f25f9477c90))
+
 # [1.13.0](https://github.com/patrickcate/vue-uswds/compare/v1.12.0...v1.13.0) (2025-02-20)
 
 
