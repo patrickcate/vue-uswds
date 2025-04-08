@@ -2,7 +2,7 @@ import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'cypress'
-import codeCoverageTask from '@cypress/code-coverage/task'
+import codeCoverageTask from '@cypress/code-coverage/task.js'
 import istanbul from 'vite-plugin-istanbul'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
