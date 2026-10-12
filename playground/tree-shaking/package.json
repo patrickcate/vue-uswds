@@ -9,7 +9,7 @@
   },
   "sideEffects": false,
   "dependencies": {
-    "vue": "^3.2.33",
+    "vue": "^3.5.43",
     "vue-uswds": "^0.7.3"
   },
   "devDependencies": {
