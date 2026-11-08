@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowJs": true,
+    "checkJs": false,
+    "declaration": true,
+    "declarationDir": "dist/types",
+    "emitDeclarationOnly": true,
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@module/*": ["node_modules/*"]
+    },
+    "outDir": "dist/types"
+  },
+  "include": [
+    "src/index.js",
+    "src/core.js",
+    "src/components/**/*.vue",
+    "src/components/**/index.js"
+  ],
+  "exclude": [
+    "src/main.js",
+    "src/App.vue",
+    "**/*.test.js",
+    "**/*.stories.js",
+    "**/*.fixtures.js",
+    "node_modules"
+  ]
+}
